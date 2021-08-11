@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Create Vectors with Patterns | R Programming: Zero to Pro</title>
+  <meta name="description" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
+  <meta name="github-repo" content="r02pro/r02pro.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
+  
+  <meta name="twitter:description" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
+  
+
+<meta name="author" content="Yang Feng and Jianan Zhu" />
+
+
+<meta name="date" content="2021-08-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vector.html"/>
+<link rel="next" href="sort-vector.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming: From Zero to Pro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="Installation.html"><a href="Installation.html#download-and-install"><i class="fa fa-check"></i><b>1.1.1</b> Download and Install</a></li>
+<li class="chapter" data-level="1.1.2" data-path="Installation.html"><a href="Installation.html#rstudio-interface"><i class="fa fa-check"></i><b>1.1.2</b> RStudio Interface</a></li>
+<li class="chapter" data-level="1.1.3" data-path="Installation.html"><a href="Installation.html#install-and-load-r-packages"><i class="fa fa-check"></i><b>1.1.3</b> Install and load R packages</a></li>
+<li class="chapter" data-level="1.1.4" data-path="Installation.html"><a href="Installation.html#exercise-setup"><i class="fa fa-check"></i><b>1.1.4</b> Exercise setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="Calculator.html"><a href="Calculator.html"><i class="fa fa-check"></i><b>1.2</b> Use R as a Fancy Calculator</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Calculator.html"><a href="Calculator.html#add-comments-using"><i class="fa fa-check"></i><b>1.2.1</b> Add comments using “#”</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Calculator.html"><a href="Calculator.html#basic-calculation"><i class="fa fa-check"></i><b>1.2.2</b> Basic calculation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="Calculator.html"><a href="Calculator.html#approximation"><i class="fa fa-check"></i><b>1.2.3</b> Approximation</a></li>
+<li class="chapter" data-level="1.2.4" data-path="Calculator.html"><a href="Calculator.html#power-logarithm"><i class="fa fa-check"></i><b>1.2.4</b> Power &amp; logarithm</a></li>
+<li class="chapter" data-level="1.2.5" data-path="Calculator.html"><a href="Calculator.html#trigonometric-function"><i class="fa fa-check"></i><b>1.2.5</b> Trigonometric function</a></li>
+<li class="chapter" data-level="1.2.6" data-path="Calculator.html"><a href="Calculator.html#exercise"><i class="fa fa-check"></i><b>1.2.6</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-objects.html"><a href="r-objects.html"><i class="fa fa-check"></i><b>2</b> R Objects</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Object-Assignment.html"><a href="Object-Assignment.html"><i class="fa fa-check"></i><b>2.1</b> Object Assignment</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="Object-Assignment.html"><a href="Object-Assignment.html#assignment-operation-with--"><i class="fa fa-check"></i><b>2.1.1</b> Assignment Operation with <code>&lt;-</code></a></li>
+<li class="chapter" data-level="2.1.2" data-path="Object-Assignment.html"><a href="Object-Assignment.html#review-objects-in-environment"><i class="fa fa-check"></i><b>2.1.2</b> Review objects in environment</a></li>
+<li class="chapter" data-level="2.1.3" data-path="Object-Assignment.html"><a href="Object-Assignment.html#Naming"><i class="fa fa-check"></i><b>2.1.3</b> Object naming rule</a></li>
+<li class="chapter" data-level="2.1.4" data-path="Object-Assignment.html"><a href="Object-Assignment.html#object-types"><i class="fa fa-check"></i><b>2.1.4</b> Object types</a></li>
+<li class="chapter" data-level="2.1.5" data-path="Object-Assignment.html"><a href="Object-Assignment.html#exercise-1"><i class="fa fa-check"></i><b>2.1.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>2.2</b> Numeric Vector, Character Vector, &amp; Logical Vector</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="vector.html"><a href="vector.html#numeric-vector"><i class="fa fa-check"></i><b>2.2.1</b> Numeric vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="vector.html"><a href="vector.html#character-vector-characterletter"><i class="fa fa-check"></i><b>2.2.2</b> Character vector character/letter</a></li>
+<li class="chapter" data-level="2.2.3" data-path="vector.html"><a href="vector.html#logical-vector"><i class="fa fa-check"></i><b>2.2.3</b> Logical vector</a></li>
+<li class="chapter" data-level="2.2.4" data-path="vector.html"><a href="vector.html#the-coercion-rule"><i class="fa fa-check"></i><b>2.2.4</b> <strong>The coercion rule</strong></a></li>
+<li class="chapter" data-level="2.2.5" data-path="vector.html"><a href="vector.html#exercise-2"><i class="fa fa-check"></i><b>2.2.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="vector-patterns.html"><a href="vector-patterns.html"><i class="fa fa-check"></i><b>2.3</b> Create Vectors with Patterns</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="vector-patterns.html"><a href="vector-patterns.html#create-equally-spaced-numeric-vectors-via"><i class="fa fa-check"></i><b>2.3.1</b> Create equally-spaced numeric vectors via <code>:</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="vector-patterns.html"><a href="vector-patterns.html#create-equally-spaced-numeric-vectors-via-seq"><i class="fa fa-check"></i><b>2.3.2</b> Create equally-spaced numeric vectors via <code>seq()</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="vector-patterns.html"><a href="vector-patterns.html#create-a-matching-numeric-vectors-via-seq_along"><i class="fa fa-check"></i><b>2.3.3</b> Create a matching numeric vectors via <code>seq_along()</code></a></li>
+<li class="chapter" data-level="2.3.4" data-path="vector-patterns.html"><a href="vector-patterns.html#create-numeric-vectors-via-sequence"><i class="fa fa-check"></i><b>2.3.4</b> Create numeric vectors via <code>sequence()</code></a></li>
+<li class="chapter" data-level="2.3.5" data-path="vector-patterns.html"><a href="vector-patterns.html#create-numeric-character-and-logical-vectors-with-repetition"><i class="fa fa-check"></i><b>2.3.5</b> Create numeric, character and logical vectors with repetition</a></li>
+<li class="chapter" data-level="2.3.6" data-path="vector-patterns.html"><a href="vector-patterns.html#getting-unique-elements-and-their-frequencies"><i class="fa fa-check"></i><b>2.3.6</b> Getting unique elements and their frequencies</a></li>
+<li class="chapter" data-level="2.3.7" data-path="vector-patterns.html"><a href="vector-patterns.html#exercise-3"><i class="fa fa-check"></i><b>2.3.7</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sort-vector.html"><a href="sort-vector.html"><i class="fa fa-check"></i><b>2.4</b> Sort, Rank, &amp; Order</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sort-vector.html"><a href="sort-vector.html#numeric-vectors"><i class="fa fa-check"></i><b>2.4.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sort-vector.html"><a href="sort-vector.html#character-vectors"><i class="fa fa-check"></i><b>2.4.2</b> Character vectors</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sort-vector.html"><a href="sort-vector.html#logical-vectors"><i class="fa fa-check"></i><b>2.4.3</b> Logical vectors</a></li>
+<li class="chapter" data-level="2.4.4" data-path="sort-vector.html"><a href="sort-vector.html#exercise-4"><i class="fa fa-check"></i><b>2.4.4</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="statistical-functions-on-vectors.html"><a href="statistical-functions-on-vectors.html"><i class="fa fa-check"></i><b>2.5</b> Statistical functions on vectors</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="statistical-functions-on-vectors.html"><a href="statistical-functions-on-vectors.html#numeric-vectors-1"><i class="fa fa-check"></i><b>2.5.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="statistical-functions-on-vectors.html"><a href="statistical-functions-on-vectors.html#character-vectors-1"><i class="fa fa-check"></i><b>2.5.2</b> Character vectors</a></li>
+<li class="chapter" data-level="2.5.3" data-path="statistical-functions-on-vectors.html"><a href="statistical-functions-on-vectors.html#logical-vectors-1"><i class="fa fa-check"></i><b>2.5.3</b> Logical vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="statistical-functions-on-vectors.html"><a href="statistical-functions-on-vectors.html#exercise-5"><i class="fa fa-check"></i><b>2.5.4</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-dataset.html"><a href="intro-dataset.html"><i class="fa fa-check"></i><b>3.1</b> Introduction to Datasets</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-dataset.html"><a href="intro-dataset.html#are-two-story-houses-more-expensive-than-one-story-ones"><i class="fa fa-check"></i><b>3.1.1</b> Are two-story houses more expensive than one-story ones?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="intro-dataset.html"><a href="intro-dataset.html#converting-data-types"><i class="fa fa-check"></i><b>3.1.2</b> Converting Data Types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="scatterplots.html"><a href="scatterplots.html"><i class="fa fa-check"></i><b>3.2</b> Scatterplots</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="scatterplots.html"><a href="scatterplots.html#using-the-plot-function"><i class="fa fa-check"></i><b>3.2.1</b> Using the <code>plot()</code> function</a></li>
+<li class="chapter" data-level="3.2.2" data-path="scatterplots.html"><a href="scatterplots.html#using-the-ggplot-function"><i class="fa fa-check"></i><b>3.2.2</b> Using the <code>ggplot()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="aes.html"><a href="aes.html"><i class="fa fa-check"></i><b>3.3</b> Aesthetics in ggplot</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="aes.html"><a href="aes.html#global-aes"><i class="fa fa-check"></i><b>3.3.1</b> Global Aesthetics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="aes.html"><a href="aes.html#map-discrete-aes"><i class="fa fa-check"></i><b>3.3.2</b> Map Discrete Variables to Aesthetics</a></li>
+<li class="chapter" data-level="3.3.3" data-path="aes.html"><a href="aes.html#change-legend-order-via-factors"><i class="fa fa-check"></i><b>3.3.3</b> Change Legend Order via Factors</a></li>
+<li class="chapter" data-level="3.3.4" data-path="aes.html"><a href="aes.html#map-continous-aes"><i class="fa fa-check"></i><b>3.3.4</b> Map Continuous Variables to Aesthetics</a></li>
+<li class="chapter" data-level="3.3.5" data-path="aes.html"><a href="aes.html#map-converted-logical-variable-to-aesthetics"><i class="fa fa-check"></i><b>3.3.5</b> Map Converted Logical Variable to Aesthetics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="smoothline.html"><a href="smoothline.html"><i class="fa fa-check"></i><b>3.4</b> Smoothline Fits</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="smoothline.html"><a href="smoothline.html#creating-smoothline-fits-using-geom_smooth"><i class="fa fa-check"></i><b>3.4.1</b> Creating Smoothline Fits using <code>geom_smooth()</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="smoothline.html"><a href="smoothline.html#aesthetics-in-smoothline-fits"><i class="fa fa-check"></i><b>3.4.2</b> Aesthetics in Smoothline Fits</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="multi-geom.html"><a href="multi-geom.html"><i class="fa fa-check"></i><b>3.5</b> Multiple geoms and Aesthetics</a></li>
+<li class="chapter" data-level="3.6" data-path="global-local-mapping.html"><a href="global-local-mapping.html"><i class="fa fa-check"></i><b>3.6</b> Global and Local Aesthetic Mappings</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="import-export.html"><a href="import-export.html"><i class="fa fa-check"></i><b>4</b> Data Import and Export</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="export-data.html"><a href="export-data.html"><i class="fa fa-check"></i><b>4.1</b> Exporting Data to Delimited Files</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="export-data.html"><a href="export-data.html#set-the-working-directory"><i class="fa fa-check"></i><b>4.1.1</b> Set the working directory</a></li>
+<li class="chapter" data-level="4.1.2" data-path="export-data.html"><a href="export-data.html#delimited-files"><i class="fa fa-check"></i><b>4.1.2</b> Delimited files</a></li>
+<li class="chapter" data-level="4.1.3" data-path="export-data.html"><a href="export-data.html#write-an-object-into-a-.csv-file"><i class="fa fa-check"></i><b>4.1.3</b> Write an object into a .csv file</a></li>
+<li class="chapter" data-level="4.1.4" data-path="export-data.html"><a href="export-data.html#write-an-object-into-a-delimited-file"><i class="fa fa-check"></i><b>4.1.4</b> Write an object into a delimited file</a></li>
+<li class="chapter" data-level="4.1.5" data-path="export-data.html"><a href="export-data.html#exercise-6"><i class="fa fa-check"></i><b>4.1.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>4.2</b> Importing Data from Delimited Files</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="import-data.html"><a href="import-data.html#import-.csv-files-using-read_csv"><i class="fa fa-check"></i><b>4.2.1</b> Import .csv Files using <code>read_csv()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="import-data.html"><a href="import-data.html#read-inline-.csv-files"><i class="fa fa-check"></i><b>4.2.2</b> Read Inline .csv Files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="import-data.html"><a href="import-data.html#handing-missing-values"><i class="fa fa-check"></i><b>4.2.3</b> Handing Missing Values</a></li>
+<li class="chapter" data-level="4.2.4" data-path="import-data.html"><a href="import-data.html#importing-data-from-a-delimited-file"><i class="fa fa-check"></i><b>4.2.4</b> Importing data from a delimited file</a></li>
+<li class="chapter" data-level="4.2.5" data-path="import-data.html"><a href="import-data.html#import-menu"><i class="fa fa-check"></i><b>4.2.5</b> Import data using the menu</a></li>
+<li class="chapter" data-level="4.2.6" data-path="import-data.html"><a href="import-data.html#exercise-7"><i class="fa fa-check"></i><b>4.2.6</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="import-excel.html"><a href="import-excel.html"><i class="fa fa-check"></i><b>4.3</b> Exporting and Importing Data from Excel Files</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="import-excel.html"><a href="import-excel.html#export-data-into-excel-files"><i class="fa fa-check"></i><b>4.3.1</b> Export data into Excel files</a></li>
+<li class="chapter" data-level="4.3.2" data-path="import-excel.html"><a href="import-excel.html#import-excel-files-.xls-and-.xlsx-using-read_excel"><i class="fa fa-check"></i><b>4.3.2</b> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></a></li>
+<li class="chapter" data-level="4.3.3" data-path="import-excel.html"><a href="import-excel.html#import-excel-file-using-the-menu"><i class="fa fa-check"></i><b>4.3.3</b> Import Excel file using the menu</a></li>
+<li class="chapter" data-level="4.3.4" data-path="import-excel.html"><a href="import-excel.html#exercise-8"><i class="fa fa-check"></i><b>4.3.4</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="import-other.html"><a href="import-other.html"><i class="fa fa-check"></i><b>4.4</b> Working with Data from SPSS, SAS, and Stata Files</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="import-other.html"><a href="import-other.html#export-and-import-spss-files"><i class="fa fa-check"></i><b>4.4.1</b> Export and Import SPSS Files</a></li>
+<li class="chapter" data-level="4.4.2" data-path="import-other.html"><a href="import-other.html#export-and-import-sas-files"><i class="fa fa-check"></i><b>4.4.2</b> Export and Import SAS Files</a></li>
+<li class="chapter" data-level="4.4.3" data-path="import-other.html"><a href="import-other.html#export-and-import-stata-files"><i class="fa fa-check"></i><b>4.4.3</b> Export and Import Stata Files</a></li>
+<li class="chapter" data-level="4.4.4" data-path="import-other.html"><a href="import-other.html#import-using-the-menu"><i class="fa fa-check"></i><b>4.4.4</b> Import using the menu</a></li>
+<li class="chapter" data-level="4.4.5" data-path="import-other.html"><a href="import-other.html#exercise-9"><i class="fa fa-check"></i><b>4.4.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="save-object.html"><a href="save-object.html"><i class="fa fa-check"></i><b>4.5</b> Save and Restore Objects and Workspace</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>4.5.1</b> Save and Restore Objects using .RData</a></li>
+<li class="chapter" data-level="4.5.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>4.5.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="save-object.html"><a href="save-object.html#exercise-10"><i class="fa fa-check"></i><b>4.5.3</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="filter-observations.html"><a href="filter-observations.html"><i class="fa fa-check"></i><b>5.1</b> Filter Observations and Objects Masking</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>5.1.1</b> Objects Masking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>6</b> Tidy Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html"><i class="fa fa-check"></i><b>6.1</b> Convert Between Names and Values</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>6.1.1</b> Convert Values into Column Names</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>6.1.2</b> Convert Column Names into Values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>7</b> Strings</a></li>
+<li class="chapter" data-level="8" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>8</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>8.1</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="normal-distribution.html"><a href="normal-distribution.html#pdf"><i class="fa fa-check"></i><b>8.1.1</b> Probability density function (pdf)</a></li>
+<li class="chapter" data-level="8.1.2" data-path="normal-distribution.html"><a href="normal-distribution.html#cdf"><i class="fa fa-check"></i><b>8.1.2</b> Cumulative distribution function (cdf)</a></li>
+<li class="chapter" data-level="8.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>8.1.3</b> Quantile function</a></li>
+<li class="chapter" data-level="8.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>8.1.4</b> Random Number Generator</a></li>
+<li class="chapter" data-level="8.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#exercise-11"><i class="fa fa-check"></i><b>8.1.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="other-distributions.html"><a href="other-distributions.html"><i class="fa fa-check"></i><b>8.2</b> Other Distributions</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="other-distributions.html"><a href="other-distributions.html#exercise-12"><i class="fa fa-check"></i><b>8.2.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>8.3</b> Random Permutation and Random Sampling</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sampling.html"><a href="sampling.html#random-permutation"><i class="fa fa-check"></i><b>8.3.1</b> Random Permutation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sampling.html"><a href="sampling.html#random-sampling-without-replacement"><i class="fa fa-check"></i><b>8.3.2</b> Random Sampling without Replacement</a></li>
+<li class="chapter" data-level="8.3.3" data-path="sampling.html"><a href="sampling.html#random-sampling-with-replacement"><i class="fa fa-check"></i><b>8.3.3</b> Random Sampling with Replacement</a></li>
+<li class="chapter" data-level="8.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>8.3.4</b> Random Sampling with Unequal Probabilities</a></li>
+<li class="chapter" data-level="8.3.5" data-path="sampling.html"><a href="sampling.html#exercise-13"><i class="fa fa-check"></i><b>8.3.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>8.4</b> Covariance and Correlation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-14"><i class="fa fa-check"></i><b>8.4.1</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>9</b> Writing Complicated Codes</a></li>
+<li class="chapter" data-level="10" data-path="case-study.html"><a href="case-study.html"><i class="fa fa-check"></i><b>10</b> A Case Study: 24 Solver</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming: Zero to Pro</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vector-patterns" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Create Vectors with Patterns</h2>
+<p>Now you are familiar with numeric vector, character vector and logical vector, and you can create them from scratch using the <code>c()</code> function. However, in many applications, we may want to create vectors with certain patterns. In this section, we will introduce several commonly used functions for generating vectors with patterns.</p>
+<div id="create-equally-spaced-numeric-vectors-via" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Create equally-spaced numeric vectors via <code>:</code></h3>
+<p>One of the commonly used patterns associated with numeric vectors is numeric vectors composed of <strong>equally-spaced</strong> integers, where the differences between adjacent values in the vectors are all <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>.</p>
+<p>Suppose we want to create a vector with consecutive integers from 1 to 5. The first method is to write all numbers down in <code>c()</code>,</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="vector-patterns.html#cb82-1" aria-hidden="true" tabindex="-1"></a>pattern1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
+<p>You can see that it is not too cumbersome to enumerate all 5 integers when creating <code>pattern1</code>. Let’s imagine if we want to create a vector containing 100 consecutive integers. Do we have a faster way than writing all 100 integers down? The answer is Yes!</p>
+<p>You can use the <strong>colon operator</strong> <code>:</code>, which is frequently used in everyday programming. (Note that you don’t need to use <code>c()</code> with <code>:</code>)</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="vector-patterns.html#cb83-1" aria-hidden="true" tabindex="-1"></a>pattern2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co">#consecutive integers from 1 to 5</span></span></code></pre></div>
+<p>In addition to creating vectors with consecutive integers that is increasing, <code>:</code> can also be used to create vectors with integers in decreasing sequences.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="vector-patterns.html#cb84-1" aria-hidden="true" tabindex="-1"></a>pattern3 <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">2</span>  <span class="co">#decreasing sequence from 6 to 2</span></span>
+<span id="cb84-2"><a href="vector-patterns.html#cb84-2" aria-hidden="true" tabindex="-1"></a>pattern4 <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:-</span><span class="dv">3</span> <span class="co">#decreasing sequence from 3 to -3</span></span></code></pre></div>
+<p>Powerful the <code>:</code> operator is, it can only generate equally-spaced numeric vectors with increment 1 or -1. If you want to generate numeric vectors with different increments, you can use the more powerful <code>seq()</code> function.</p>
+</div>
+<div id="create-equally-spaced-numeric-vectors-via-seq" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Create equally-spaced numeric vectors via <code>seq()</code></h3>
+<p>A very efficient way to create <strong>equally-spaced</strong> numeric vectors is to use the <code>seq()</code> function, which is short for sequence.</p>
+<p><strong><em>a. Create sequences with <code>by</code> argument</em></strong></p>
+<p>To use the <code>seq()</code> function, you can specify the start value of the sequence in the <code>from</code> argument, the limit end value in the <code>to</code> argument, and the increment in the <code>by</code> argument.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="vector-patterns.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Here, the vector starts with 1, increases by 1 at each step, and ends at 5. Note that the <code>from</code> and <code>by</code> arguments are optional in <code>seq()</code>. If you don’t specify their values, <code>seq()</code> will use the default value 1 for both arguments.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="vector-patterns.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="infobox caution">
+<p>Now you have had four methods to create vectors with consecutive integers.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="vector-patterns.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)                <span class="co">#write all numbers down</span></span>
+<span id="cb87-2"><a href="vector-patterns.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>                           <span class="co">#use colon operator</span></span>
+<span id="cb87-3"><a href="vector-patterns.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co">#use seq()</span></span>
+<span id="cb87-4"><a href="vector-patterns.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">6</span>)                   <span class="co">#use seq()</span></span></code></pre></div>
+</div>
+<p>Next, let’s change the increment to 2 and you will get a numeric vector with 1, 3 and 5 as its values.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="vector-patterns.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] 1 3 5</code></pre>
+<p>If you only change the limit end value to 6, you still get the same sequence, since the next value in the sequence would be 7 which is larger than the limit end value 6.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="vector-patterns.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">2</span>) </span></code></pre></div>
+<pre><code>#&gt; [1] 1 3 5</code></pre>
+<p>Unlike <code>:</code>, you can set values of three arguments in <code>seq()</code> as decimal numbers. Here, you will get a sequence starting with 1.1, each element in this sequence will be added by 0.7 on the basis of the previous element, until the biggest number smaller than 6.2.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="vector-patterns.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.1</span>, <span class="at">to =</span> <span class="fl">6.2</span>, <span class="at">by =</span> <span class="fl">0.7</span>) </span></code></pre></div>
+<pre><code>#&gt; [1] 1.1 1.8 2.5 3.2 3.9 4.6 5.3 6.0</code></pre>
+<p>You can also create a decreasing sequence by using a smaller <code>to</code> value than the <code>from</code> value, coupled with a negative value in the <code>by</code> argument.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="vector-patterns.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="sc">-</span><span class="fl">0.5</span>) </span></code></pre></div>
+<p>If a positive value is used in the <code>by</code> argument in a decreasing sequence, you will see an error message.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="vector-patterns.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.5</span>) </span></code></pre></div>
+<pre><code>#&gt; Error in seq.default(from = 1.5, to = -1, by = 0.5): wrong sign in &#39;by&#39; argument</code></pre>
+<p><strong><em>b. Create sequences with <code>length.out</code> argument</em></strong></p>
+<p>Instead of setting the increment, you can also specify the <code>length.out</code> argument, which creates a sequence with equal space in the specified length. R will automatically calculate the interval between two neighboring numbers according to values of three arguments in <code>seq()</code>.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="vector-patterns.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<p>Here, you will get a sequence of length 9 from 1 to 5.</p>
+<p>You can also create a decreasing sequence by using the <code>length.out</code> argument.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="vector-patterns.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<div class="infobox caution">
+<p>Unlike creating sequences with <code>by</code> argument, if you specify the <code>length.out</code> argument in <code>seq()</code>, the start value and end value of the sequence you get will be exactly match the input arguments.</p>
+</div>
+<p><strong><em>c. Create sequences with both <code>by</code> and <code>length.out</code> arguments</em></strong></p>
+<p>Lastly, if you provide both the <code>by</code> and <code>length.out</code> arguments, only one of <code>from</code> and <code>to</code> is needed. With one value (the start value or the limit end value) fixed, <code>seq()</code> will create a vector with specified increment and length.</p>
+<p>If you only have the <code>from</code> argument, you will get a sequence starting from the value you set with the increment in the <code>by</code> argument, until you get a sequence with specified length.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="vector-patterns.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>If you only have the <code>to</code> argument, you will get a sequence end with the value you set with the increment in the <code>by</code> argument, until you get a sequence with specified length.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="vector-patterns.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>One last thing regarding <code>seq()</code> is that you can <em>at most</em> provide three arguments. For example, you will see an error when running the following example since all four arguments are specified.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="vector-patterns.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt; Error in seq.default(from = 1, to = 3, by = 1, length.out = 3): too many arguments</code></pre>
+</div>
+<div id="create-a-matching-numeric-vectors-via-seq_along" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Create a matching numeric vectors via <code>seq_along()</code></h3>
+<p>Now, we introduce one function related to <code>seq()</code>. Let’s first create a numeric vector,</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="vector-patterns.html#cb103-1" aria-hidden="true" tabindex="-1"></a>extend <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<p>From the <code>seq()</code> above, you know that the length of this vector is <code>9</code>. Next, let’s put this numeric vector in <code>seq_along()</code>.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="vector-patterns.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(extend)</span></code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4 5 6 7 8 9</code></pre>
+<p><code>seq_along()</code> takes a vector as its argument, and generates consecutive integers from 1 to the length of the input vector. The <code>seq_along()</code> function is commonly used when writing loops, which will be covered at a later time.</p>
+<div class="infobox caution">
+<p>You can also use <code>1:length(extend)</code> to get the same result as <code>seq_along(extend)</code>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="vector-patterns.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(extend)</span></code></pre></div>
+</div>
+</div>
+<div id="create-numeric-vectors-via-sequence" class="section level3" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Create numeric vectors via <code>sequence()</code></h3>
+<p>Sometimes, you may want to combine multiple equally-spaced integer sequences into a single vector. To do this, you can use the function <code>sequence()</code>. The most common usage of <code>sequence()</code> is to supply a vector of integers as its input.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="vector-patterns.html#cb107-1" aria-hidden="true" tabindex="-1"></a>comp_seq1 <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)) </span>
+<span id="cb107-2"><a href="vector-patterns.html#cb107-2" aria-hidden="true" tabindex="-1"></a>comp_seq1</span></code></pre></div>
+<pre><code>#&gt;  [1] 1 2 1 2 3 1 2 3 4 5</code></pre>
+<p>From the result, we can see that it firstly create equally-spaced vectors 1:2, 1:3, and 1:5, then combine all vectors into a single one. This avoids the trouble of writing something like <code>c(1:2, 1:3, 1:5)</code>.</p>
+<p>More generally, we can construct a vector of more complex integer sequences with additional arguments, namely <code>sequence(nvec, from, by)</code>. Here, the <code>nvec</code> , <code>from</code> and <code>by</code> are integer vectors of the corresponding <code>length.out</code>, <code>from</code>, and <code>by</code> arguments of each equally-spaced sequence. Let’s see the following example.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="vector-patterns.html#cb109-1" aria-hidden="true" tabindex="-1"></a>comp_seq2 <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="at">nvec =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">from =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">by =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb109-2"><a href="vector-patterns.html#cb109-2" aria-hidden="true" tabindex="-1"></a>comp_seq2</span></code></pre></div>
+<pre><code>#&gt; [1]  1  3  5  7  2  1  0 -1  1</code></pre>
+<p>Now, <code>sequence()</code> generate three different equally-spaced integer sequences and combine them to a single vector. We can reproduce the vector using <code>c()</code> and three calls of the <code>seq()</code> function.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="vector-patterns.html#cb111-1" aria-hidden="true" tabindex="-1"></a>comp_seq3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>,  <span class="at">by =</span>  <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">4</span>),</span>
+<span id="cb111-2"><a href="vector-patterns.html#cb111-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>,  <span class="at">by =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">3</span>),</span>
+<span id="cb111-3"><a href="vector-patterns.html#cb111-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span>  <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">2</span>))</span>
+<span id="cb111-4"><a href="vector-patterns.html#cb111-4" aria-hidden="true" tabindex="-1"></a>comp_seq3</span></code></pre></div>
+<pre><code>#&gt; [1]  1  3  5  7  2  1  0 -1  1</code></pre>
+</div>
+<div id="create-numeric-character-and-logical-vectors-with-repetition" class="section level3" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Create numeric, character and logical vectors with repetition</h3>
+<p>Another commonly used pattern associated with vectors is <strong>repetition</strong>. Note that while the equally-spaced pattern only makes sense for numeric vectors, the repetition pattern work for all three kinds of vectors.</p>
+<p>To do repetition, you can use the <code>rep()</code> function, which works by repeating the first argument for the number of times indicated in the second argument.</p>
+<p>Firstly, let’s create a numeric vector with repetition.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="vector-patterns.html#cb113-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb113-2"><a href="vector-patterns.html#cb113-2" aria-hidden="true" tabindex="-1"></a>num1</span></code></pre></div>
+<pre><code>#&gt; [1] 2 2 2 2</code></pre>
+<p>Since the first argument is 2 and the second argument is 4, 2 is repeated for 4 times, resulting a length-4 vector with all elements 2.</p>
+<p>The first argument can also be a numeric vector with several values.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="vector-patterns.html#cb115-1" aria-hidden="true" tabindex="-1"></a>num2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb115-2"><a href="vector-patterns.html#cb115-2" aria-hidden="true" tabindex="-1"></a>num2</span></code></pre></div>
+<pre><code>#&gt; [1] 1 4 2 1 4 2 1 4 2</code></pre>
+<p>Here, then <code>rep()</code> will repeat the whole vector <code>c(1, 4, 2)</code> three times. Note that the vector is <strong>repeated as a whole</strong>, not elementwisely.</p>
+<p>You may be wondering what happens the second argument also has several numbers? Let’s try together.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="vector-patterns.html#cb117-1" aria-hidden="true" tabindex="-1"></a>num3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb117-2"><a href="vector-patterns.html#cb117-2" aria-hidden="true" tabindex="-1"></a>num3</span></code></pre></div>
+<pre><code>#&gt; [1] 1 1 1 5 5 7</code></pre>
+<p>When the second argument is also a vector, R will do an <strong>element repeat</strong> operation by repeating each element in the first argument the number of times indicated in the corresponding location of the second argument, and combine the repeated vectors to a single vector. In this example, 1 is repeated 3 times, 5 is repeated twice, and 7 is repeated once. It is equivalent to</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="vector-patterns.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="dv">7</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p>The <code>rep()</code> function works the same way if the first argument is a character vector.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="vector-patterns.html#cb120-1" aria-hidden="true" tabindex="-1"></a>animals1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="dv">2</span>)</span>
+<span id="cb120-2"><a href="vector-patterns.html#cb120-2" aria-hidden="true" tabindex="-1"></a>animals1</span>
+<span id="cb120-3"><a href="vector-patterns.html#cb120-3" aria-hidden="true" tabindex="-1"></a>animals2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb120-4"><a href="vector-patterns.html#cb120-4" aria-hidden="true" tabindex="-1"></a>animals2</span></code></pre></div>
+<p>You can also use logical vectors in the first argument.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="vector-patterns.html#cb121-1" aria-hidden="true" tabindex="-1"></a>logic <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb121-2"><a href="vector-patterns.html#cb121-2" aria-hidden="true" tabindex="-1"></a>logic</span></code></pre></div>
+</div>
+<div id="getting-unique-elements-and-their-frequencies" class="section level3" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Getting unique elements and their frequencies</h3>
+<p>So far, you have learned how to create vectors with different patterns. Sometimes, you may want to get the unique elements of a vector and their corresponding frequencies. Let’s use <code>num3</code> as an example. <strong>(Don’t forget to use <code>ls()</code> or check the environment panel to find all objects you have defined)</strong>,</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="vector-patterns.html#cb122-1" aria-hidden="true" tabindex="-1"></a>num3           <span class="co">#check the values</span></span></code></pre></div>
+<pre><code>#&gt; [1] 1 1 1 5 5 7</code></pre>
+<p>You can use <code>unique()</code> to show all unique elements in vectors</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="vector-patterns.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(num3)   <span class="co">#get the unique elements</span></span></code></pre></div>
+<pre><code>#&gt; [1] 1 5 7</code></pre>
+<p>From the result, you know the unique elements in <code>num3</code> are <code>1</code>,<code>5</code>, and <code>7</code>. To get the frequency of each element, you can use the <code>table()</code> function.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="vector-patterns.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(num3)    <span class="co">#get the frequency table</span></span></code></pre></div>
+<pre><code>#&gt; num3
+#&gt; 1 5 7 
+#&gt; 3 2 1</code></pre>
+<p>Here, the first row is the name of the object, the second row shows all unique elements, and the third row is the corresponding frequency of each element in the same column. In <code>num3</code>, there are three <code>1</code>s, two <code>5</code>s and one <code>7</code>.</p>
+<p><code>unique()</code> and <code>table()</code> work similarly for character vectors and logical vectors. You can try the following codes.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="vector-patterns.html#cb128-1" aria-hidden="true" tabindex="-1"></a>animals</span>
+<span id="cb128-2"><a href="vector-patterns.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(animals)</span>
+<span id="cb128-3"><a href="vector-patterns.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(animals)</span>
+<span id="cb128-4"><a href="vector-patterns.html#cb128-4" aria-hidden="true" tabindex="-1"></a>logic</span>
+<span id="cb128-5"><a href="vector-patterns.html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(logic)</span>
+<span id="cb128-6"><a href="vector-patterns.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(logic)</span></code></pre></div>
+</div>
+<div id="exercise-3" class="section level3" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Exercise</h3>
+<p>You can run the following code to do the exercise.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="vector-patterns.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="fl">2.3</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vector.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sort-vector.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02.3_Create_Vectors_with_Patterns.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r02pro.pdf", "r02pro.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
