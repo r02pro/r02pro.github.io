@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-08-07" />
+<meta name="date" content="2021-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">R Programming: From Zero to Pro</a></li>
+<li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
@@ -365,28 +365,28 @@ To visualize the relationship between two continuous variables, the most commonl
 <div id="using-the-plot-function" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Using the <code>plot()</code> function</h3>
 <p>In base R, we can use the <code>plot()</code> function to generate this scatterplot with the first argument being the variable on the x-axis and the second argument being the variable on the y-axis.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="scatterplots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb215-2"><a href="scatterplots.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-140-1.png" width="576" />
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="scatterplots.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb219-2"><a href="scatterplots.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-143-1.png" width="576" />
 From the scatterplot, we can see a clear increasing trend between <code>sale_price</code> and <code>liv_area</code>, which is consistent with our intuition. The <code>plot()</code> function provides a rich capability of customization. For example, we can set the labels on the x-axis and y-axis, change the color of the points, etc.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="scatterplots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price, <span class="at">xlab =</span> <span class="st">&quot;liv_area&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;sale_price&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-141-1.png" width="576" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="scatterplots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price, <span class="at">xlab =</span> <span class="st">&quot;liv_area&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;sale_price&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-144-1.png" width="576" /></p>
 </div>
 <div id="using-the-ggplot-function" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Using the <code>ggplot()</code> function</h3>
 <p>Although the <code>plot()</code> function gets the work done, the <strong>ggplot2</strong> package provides a superior user experience which allows us to create complex plots with ease. Since the <strong>ggplot2</strong> package is a member of the <strong>tidyverse</strong> package, you don’t need to install it separately if <strong>tidyverse</strong> was already installed. Let’s first load the package <strong>ggplot2</strong> and create a scatterplot.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="scatterplots.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb217-2"><a href="scatterplots.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="scatterplots.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb221-2"><a href="scatterplots.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <pre><code>#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-142-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-145-1.png" width="576" /></p>
 <p>Aside from the expected scatterplot, you can see a warning message “Removed 1 rows containing missing values (geom_point).” This indicate that there is 1 row in <code>sahp</code> that contains missing values and it was removed during the plotting process. The removal of missing values is a default behavior for all plots generated by the <strong>ggplot2</strong> package.</p>
 <p>Now, let’s walk through the mechanism of <strong>ggplot2</strong>. In a nutshell, ggplot2 implements the <strong>grammar of graphics</strong>, a coherent system for describing and building graphs. A more detailed description on the grammar of graphics can be found in <span class="citation"><a href="#ref-wickham2010layered" role="doc-biblioref">Wickham</a> (<a href="#ref-wickham2010layered" role="doc-biblioref">2010</a>)</span>.</p>
 <p>Let’s break it down into two steps. In <strong>ggplot2</strong>, we always start with the function <code>ggplot()</code> with a data frame or tibble as its argument.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="scatterplots.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-143-1.png" width="576" /></p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="scatterplots.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-146-1.png" width="576" /></p>
 <p>After running this code, you can see an empty plot. This is because ggplot does not yet know which variables or what type of plots you want to create. To generate a scatterplot, you can use add a layer using the <code>+</code> operator followed by the <code>geom_point()</code> function. The <code>geom_point()</code> is one of the many available geoms in ggplot.</p>
 <p>Inside <code>geom_point()</code>, you need to set the value of the <code>mapping</code> argument. The <code>mapping</code> argument takes a functional form as <code>mapping = aes()</code>, where the <code>aes</code> is short for aesthetics. For example, you can use <code>aes()</code> to tell ggplot to use which variable on the x-axis, which variable on the y-axis. Let’s take another look at this example.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="scatterplots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="scatterplots.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p>Here, inside the <code>aes()</code> function, we set <code>x = liv_area</code> and <code>y = sale_price</code>, indicating that the variable <code>liv_area</code> will appear on the x-axis and <code>sale_price</code> will appear on the y-axis.</p>
 
 </div>
@@ -446,7 +446,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
 "toc": {
 "collapse": "subsection"
 }

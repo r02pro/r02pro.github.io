@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-08-07" />
+<meta name="date" content="2021-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">R Programming: From Zero to Pro</a></li>
+<li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
@@ -361,42 +361,42 @@ div.csl-indent {
 <h2><span class="header-section-number">3.6</span> Global and Local Aesthetic Mappings</h2>
 <p>In Section <a href="multi-geom.html#multi-geom">3.5</a>, you learned how to combine the scatterplot and smoothline fit into a single plot by using two geoms.</p>
 <p>Let’s first review the code.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="global-local-mapping.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb314-2"><a href="global-local-mapping.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb314-3"><a href="global-local-mapping.html#cb314-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="global-local-mapping.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb318-2"><a href="global-local-mapping.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb318-3"><a href="global-local-mapping.html#cb318-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <pre><code>#&gt; Warning: Removed 1 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-182-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-185-1.png" width="576" /></p>
 <p>You may notice that the arguments inside <code>geom_point()</code> and <code>geom_smooth()</code> are identical. Now, thinking about if we want to generate another plot by replacing the <code>liv_area</code> with <code>lot_area</code> (the size of lot area), both instances of <code>liv_area</code> need to be changed to <code>lot_area</code>, which is a bit cumbersome. It turns out we can use the so-called <strong>global mapping</strong> to simplify the code. Correspondingly, we call a mapping inside a specific geom <strong>local mapping</strong>.</p>
 <p>To use the global mapping, we move the <code>mapping</code> argument from the geoms into the <code>ggplot()</code> function.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="global-local-mapping.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="global-local-mapping.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <p>We can also map variables to aesthetics in the global mapping. The global aesthetic mapping will be inherited in all geoms used.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="global-local-mapping.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="global-local-mapping.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <pre><code>#&gt; Warning: Removed 1 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>#&gt; Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-184-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-187-1.png" width="576" /></p>
 <p>Clearly, the use of global mapping greatly simplify our code as we would need to repeat the same mapping argument in both geoms.</p>
 <p>In addition to use the same mapping in each geom as the global mapping, we can extend or overwrite the global mapping in each geom.</p>
 <ol style="list-style-type: decimal">
 <li>Extend Global Aesthetic Mappings</li>
 </ol>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="global-local-mapping.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">linetype =</span> kit_qual))</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="global-local-mapping.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">linetype =</span> kit_qual))</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-185-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-188-1.png" width="576" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Overwrite Global Aesthetic Mappings</li>
 </ol>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="global-local-mapping.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="global-local-mapping.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-186-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-189-1.png" width="576" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Mix</li>
 </ol>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="global-local-mapping.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="global-local-mapping.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-187-1.png" width="576" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-190-1.png" width="576" /></p>
 
 </div>
 <!-- </div> -->
@@ -449,7 +449,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
 "toc": {
 "collapse": "subsection"
 }

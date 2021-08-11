@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-08-07" />
+<meta name="date" content="2021-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -156,7 +156,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">R Programming: From Zero to Pro</a></li>
+<li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
@@ -363,25 +363,25 @@ div.csl-indent {
 <div id="export-data-into-excel-files" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Export data into Excel files</h3>
 <p>To export data into an Excel file, you can use the <strong>writexl</strong> package. Let’s first install the package.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="import-excel.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;writexl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="import-excel.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;writexl&quot;</span>)</span></code></pre></div>
 <p>Now, we can load the <strong>writexl</strong> package and use the <code>write.xlsx()</code> function to write data into an Excel file with extension .xlsx.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="import-excel.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="import-excel.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span></code></pre></div>
 <pre><code>#&gt; Error in library(writexl): there is no package called &#39;writexl&#39;</code></pre>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="import-excel.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(my_animals, <span class="st">&quot;my_animals.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="import-excel.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(my_animals, <span class="st">&quot;my_animals.xlsx&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; Error in write_xlsx(my_animals, &quot;my_animals.xlsx&quot;): could not find function &quot;write_xlsx&quot;</code></pre>
 <p>By default, the column name of the data frame/tibble will be written to the first row of the Excel file.</p>
 <p>In addition to writing one data frame to an Excel file, <code>write.xlsx()</code> can also write multiple data frames into a single Excel file, with each sheet containing each data frame. Let’s take a look at the following example which write both <code>my_animals</code> and <code>sahp</code> (a tibble in the <code>r02pro</code> package) into an Excel file named “two_data.xlsx.”</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="import-excel.html#cb353-1" aria-hidden="true" tabindex="-1"></a>two_data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_animals =</span> my_animals, <span class="at">sahp =</span> sahp)</span>
-<span id="cb353-2"><a href="import-excel.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(two_data, <span class="st">&quot;two_data.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="import-excel.html#cb357-1" aria-hidden="true" tabindex="-1"></a>two_data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_animals =</span> my_animals, <span class="at">sahp =</span> sahp)</span>
+<span id="cb357-2"><a href="import-excel.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(two_data, <span class="st">&quot;two_data.xlsx&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; Error in write_xlsx(two_data, &quot;two_data.xlsx&quot;): could not find function &quot;write_xlsx&quot;</code></pre>
 </div>
 <div id="import-excel-files-.xls-and-.xlsx-using-read_excel" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></h3>
 <p>Having learned how to export data into an Excel file, let’s see how to read an existing Excel file into R. We can use the <code>read_excel()</code> function in the <code>readxl</code> package to import Excel files. Here, <code>readxl</code> is another subpackage in the <strong>tidyverse</strong> package. Thus we can directly load the package and use it.
 Let’s import the sheet <code>sahp</code> from the Excel file “two_data.xlsx.”</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="import-excel.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb355-2"><a href="import-excel.html#cb355-2" aria-hidden="true" tabindex="-1"></a>shap_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
-<span id="cb355-3"><a href="import-excel.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shap_1)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="import-excel.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb359-2"><a href="import-excel.html#cb359-2" aria-hidden="true" tabindex="-1"></a>shap_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
+<span id="cb359-3"><a href="import-excel.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shap_1)</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 6 x 13
 #&gt;   dt_sold             bedroom bathroom gar_car oa_qual liv_area lot_area
 #&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -394,8 +394,8 @@ Let’s import the sheet <code>sahp</code> from the Excel file “two_data.xlsx.
 #&gt; # … with 6 more variables: house_style &lt;chr&gt;, kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;,
 #&gt; #   central_air &lt;lgl&gt;, sale_price &lt;dbl&gt;, good_qual &lt;lgl&gt;</code></pre>
 <p>If we only want to import a portion of the data, let’ say the first 5 rows and the first four columns, then we can set the argument <code>range = "A1:D5"</code>.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="import-excel.html#cb357-1" aria-hidden="true" tabindex="-1"></a>shap_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
-<span id="cb357-2"><a href="import-excel.html#cb357-2" aria-hidden="true" tabindex="-1"></a>shap_2</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="import-excel.html#cb361-1" aria-hidden="true" tabindex="-1"></a>shap_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
+<span id="cb361-2"><a href="import-excel.html#cb361-2" aria-hidden="true" tabindex="-1"></a>shap_2</span></code></pre></div>
 <pre><code>#&gt; # A tibble: 4 x 4
 #&gt;   dt_sold             bedroom bathroom gar_car
 #&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
@@ -471,7 +471,7 @@ Let’s import the sheet <code>sahp</code> from the Excel file “two_data.xlsx.
 <div id="exercise-8" class="section level3" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> Exercise</h3>
 <p>You can run the following code to do the exercise.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="import-excel.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="import-excel.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="dv">4</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -524,7 +524,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
 "toc": {
 "collapse": "subsection"
 }
