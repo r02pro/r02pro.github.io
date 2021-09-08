@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.11 Customization of x and y Axes | R Programming: Zero to Pro</title>
-  <meta name="description" content="3.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <title>2.17 Summary of R Objects | R Programming: Zero to Pro</title>
+  <meta name="description" content="2.17 Summary of R Objects | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta property="og:title" content="2.17 Summary of R Objects | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="3.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta property="og:description" content="2.17 Summary of R Objects | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="2.17 Summary of R Objects | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="3.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="2.17 Summary of R Objects | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bar-charts.html"/>
-<link rel="next" href="histogram.html"/>
+<link rel="prev" href="null.html"/>
+<link rel="next" href="data-visualization.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -485,67 +485,18 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="customization-axes" class="section level2" number="3.11">
-<h2><span class="header-section-number">3.11</span> Customization of x and y Axes</h2>
-<p>In this section, we would like to digress a little bit to learn some possible customizations of the x and y axes.</p>
-<p>First, let’s review the scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="customization-axes.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb475-2"><a href="customization-axes.html#cb475-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb475-3"><a href="customization-axes.html#cb475-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-302-1.png" width="576" /></p>
-<div id="customizing-the-breaks-on-the-x-and-y-axes" class="section level3" number="3.11.1">
-<h3><span class="header-section-number">3.11.1</span> Customizing the Breaks on the x and y Axes</h3>
-<p>In the above plot, the breaks on the x axis are 1000, 2000, and 3000. The breaks on the y axis are 100, 200, 300, 400, and 500. Sometimes, we may want to customize the breaks, e.g. to show a finer scale. To do this, we can use the <code>scale_x_continous()</code> and <code>scale_y_continuous()</code> functions. Both functions take an argument called <code>breaks</code> which is a numeric vector specifying the desired breaks on the x and y axes.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="customization-axes.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb476-2"><a href="customization-axes.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">500</span>, <span class="at">to =</span> <span class="dv">3500</span>, <span class="at">by =</span> <span class="dv">500</span>)) <span class="sc">+</span></span>
-<span id="cb476-3"><a href="customization-axes.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">50</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-303-1.png" width="576" /></p>
-<p>In this example, we have customized the breaks for <code>liv_area</code> to be a equally-spaced sequence from 500 to 3500 with increment 500, and the breaks for <code>sale_price</code> to be another equally-spaced sequence from 50 to 600 with increment 50.</p>
-<p>When the specified breaks do not cover the full range of the data, you will see the breaks changed but all the data points are still visible.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="customization-axes.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb477-2"><a href="customization-axes.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">300</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-304-1.png" width="576" /></p>
-<p>On the other hand, if the specified breaks go beyond the value of the data, <code>ggplot()</code> will only show the breaks values within the data range.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="customization-axes.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb478-2"><a href="customization-axes.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">500</span>, <span class="at">to =</span> <span class="dv">5000</span>, <span class="at">by =</span> <span class="dv">500</span>)) <span class="sc">+</span></span>
-<span id="cb478-3"><a href="customization-axes.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">200</span>, <span class="at">to =</span> <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-305-1.png" width="576" /></p>
-</div>
-<div id="zoom-in-to-a-specific-region-of-the-data" class="section level3" number="3.11.2">
-<h3><span class="header-section-number">3.11.2</span> Zoom In to a Specific Region of the Data</h3>
-<p>Sometimes, you want to zoom in to the specific region of the data to see a finer detail. To do this, you can use the <code>coord_cartesian()</code> function with arguments <code>xlim</code> and <code>ylim</code> for specifying the desired region.</p>
-<p>Let’s say we want to focus on the houses with <code>liv_area</code> between 1000 and 2000.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="customization-axes.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))  <span class="sc">+</span></span>
-<span id="cb479-2"><a href="customization-axes.html#cb479-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-306-1.png" width="576" /></p>
-<p>Let’s narrow down further to only the houses with <code>liv_area</code> between 1000 and 2000, and <code>sale_price</code> between 200 and 300.</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="customization-axes.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))  <span class="sc">+</span></span>
-<span id="cb480-2"><a href="customization-axes.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">300</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-307-1.png" width="576" /></p>
-</div>
-<div id="plot-with-transformed-variables-and-log-scale-plot" class="section level3" number="3.11.3">
-<h3><span class="header-section-number">3.11.3</span> Plot with Transformed Variables and Log-scale Plot</h3>
-<p>In some applications, instead of using the original variables, you may want to generate a plot with certain transformations of them.</p>
-<p>In our scatterplot, maybe we want to change the y-axis to the logarithm of the sale price.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="customization-axes.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> <span class="fu">log10</span>(sale_price)))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-308-1.png" width="576" /></p>
-<p>The working mechanism is to first generate a temporary variable <code>log10(sale_price)</code> on the fly, and then generate a scatterplot between <code>liv_area</code> and the transformed variable.</p>
-<p>For this particular <code>log10()</code> transformation, an alternative is to generate a <strong>Log-scale Plot</strong> by setting the <code>trans</code> argument in the <code>scale_y_continous()</code> function. The <code>log-scale plot</code> is a popular way for displaying numerical data over a very wide range of values in a compact fashion.</p>
-<p>The default value of <code>trans</code> is <code>"identity"</code> meaning no transformation. There are many different <code>trans</code> choices including <code>log</code>, <code>exp</code>, <code>log10</code>, <code>sqrt</code>, and others.</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="customization-axes.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb482-2"><a href="customization-axes.html#cb482-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-309-1.png" width="576" /></p>
-<p>This works in a very different way by change the scale of the y-axis.</p>
+<div id="summary-r-objects" class="section level2" number="2.17">
+<h2><span class="header-section-number">2.17</span> Summary of R Objects</h2>
 
 </div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="bar-charts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="histogram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="null.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
