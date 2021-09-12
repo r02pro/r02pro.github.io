@@ -4,36 +4,36 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro</title>
-  <meta name="description" content="1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro" />
+  <title>2.8 Set Operations | R Programming: Zero to Pro</title>
+  <meta name="description" content="2.8 Set Operations | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro" />
+  <meta property="og:title" content="2.8 Set Operations | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro" />
+  <meta property="og:description" content="2.8 Set Operations | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="2.8 Set Operations | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="1.2 Use R as a Fancy Calculator | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="2.8 Set Operations | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-09-08" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Installation.html"/>
-<link rel="next" href="r-objects.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<link rel="prev" href="logical-operators.html"/>
+<link rel="next" href="na.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -485,167 +485,24 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Calculator" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Use R as a Fancy Calculator</h2>
-<p>While R is super powerful, it is, first of all, a very fancy calculator.</p>
-<div id="add-comments-using" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Add comments using “#”</h3>
-<p>The first item we will cover is about adding comments. In R, you can add comments using the pound sign <code>#</code>. In each line, anything after <code>#</code> are comments, which will be ignored by R. Let’s see an example,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Calculator.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="co">#first calculate 1/2=0.5, then 6-0.5=5.5</span></span></code></pre></div>
-<pre><code>#&gt; [1] 5.5</code></pre>
-<p>Just looking at the resulting value 5.5, you may not know the detail of the calculation process. The comment informs you the operation order: the division is calculated before the subtraction.</p>
-<p>In general, adding comments to codes is a very good practice, as it greatly increases readability and make collaboration easier. We will also add many comments in our codes to help you learn R.</p>
-</div>
-<div id="basic-calculation" class="section level3" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Basic calculation</h3>
-<p>Now let’s start to use R as a calculator! You can use R to do addition, subtraction, multiplication，division, and combine multiple basic operations. You can also calculate the square root, absolute value and the sign of a number.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Operation</th>
-<th align="left">Explanation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1 + 2</td>
-<td align="left">addition</td>
-</tr>
-<tr class="even">
-<td align="left">1 - 2</td>
-<td align="left">subtraction</td>
-</tr>
-<tr class="odd">
-<td align="left">2 * 4</td>
-<td align="left">multiplication</td>
-</tr>
-<tr class="even">
-<td align="left">2 / 4</td>
-<td align="left">division</td>
-</tr>
-<tr class="odd">
-<td align="left">6 - 1 / 2</td>
-<td align="left">multiple operations</td>
-</tr>
-<tr class="even">
-<td align="left">sqrt(100)</td>
-<td align="left">square root</td>
-</tr>
-<tr class="odd">
-<td align="left">abs(-3)</td>
-<td align="left">absolute value</td>
-</tr>
-<tr class="even">
-<td align="left">sign(-3)</td>
-<td align="left">sign</td>
-</tr>
-</tbody>
-</table>
-<p>While the first seven operations in the table look intuitive, you may be wondering, what does the <code>sign()</code> function mean here? Is it a stop sign?</p>
-<p><img src="pics/1stop.jpg" width="16%" style="display: block; margin: auto;" /></p>
-<p>Sometimes, you may have no idea how a particular function works. Fortunately, R provides a detailed documentation for each function. There are three ways to ask for help in R.</p>
-<ul>
-<li>Use question mark followed by the function name, e.g. <code>?sign</code><br />
-</li>
-<li>Use help function, e.g. <code>help(sign)</code></li>
-<li>Use the help window in RStudio, as shown in Figure <a href="Calculator.html#fig:help">1.1</a>. The help window is the panel 4 of Figure <a href="#fig:four"><strong>??</strong></a> in Section <a href="Installation.html#Installation">1.1</a>. Then type in the function name in the box to the right of the magnifying glass and press return.</li>
-</ul>
-<div class="figure" style="text-align: center"><span id="fig:help"></span>
-<img src="pics/1help.png" alt="Ask for help" width="70%" />
-<p class="caption">
-Figure 1.1: Ask for help
-</p>
-</div>
-</div>
-<div id="approximation" class="section level3" number="1.2.3">
-<h3><span class="header-section-number">1.2.3</span> Approximation</h3>
-<p>After learning about doing basic calculations, let’s move on to do approximation in R. When you do division, for example, when computing <code>7 / 3</code>, the answer is not a whole number since 7 is not divisible by 3. Under these circumstances, approximation operators are very handy to use. Let’s take <code>7 / 3</code> as the example.</p>
-<p><strong><em>a. Get the integer part and the remainder</em></strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">7%/%3 = 2</td>
-<td align="left">integer division</td>
-</tr>
-<tr class="even">
-<td align="left">7%%3 = 1</td>
-<td align="left">modulus</td>
-</tr>
-</tbody>
-</table>
-<p>We all know that 7 = 3 * <strong>2</strong> + <strong>1</strong>. So the <em>integer division</em> will pick up the integer part, which is 2 here; and the <em>modulus</em> will get the remainder, which is 1.</p>
-<p><strong><em>b. Get the nearby integer</em></strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Calculator.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>)   </span>
-<span id="cb3-2"><a href="Calculator.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>) </span></code></pre></div>
-<p>Since <strong>2</strong> &lt;= 7/3 &lt;= <strong>3</strong>, you can use the <code>floor</code> function to find the <em>largest integer</em> &lt;= 7/3, which is 2; and the <code>ceiling</code> function gives the <em>smallest integer</em> &gt;= 7/3, which is 3.</p>
-<p><strong><em>c. Round to the nearest number</em></strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Calculator.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>)   </span>
-<span id="cb4-2"><a href="Calculator.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p>The <code>round</code> function follows the <strong>rounding principle</strong>. By default, you will get the nearest integer to <code>7 / 3</code>, which is <code>2</code>. If you want to control the approximation accuracy, you can add a <code>digits</code> argument to specify how many digits you want after the decimal point. Here you will get <code>2.333</code> after adding <code>digits = 3</code>.</p>
-</div>
-<div id="power-logarithm" class="section level3" number="1.2.4">
-<h3><span class="header-section-number">1.2.4</span> Power &amp; logarithm</h3>
-<p>You can also use R to do <em>power</em> and <em>logarithmic</em> operations.</p>
-<p>Generally, you can use <strong>^</strong> to do power operations. For example, <code>10^5</code> will give us 10 to the power of 5. Here, 10 is the <em>base</em> value, and 5 is the <em>exponent</em>. The result is 100000, but it is shown as <code>1e+05</code> in R. That’s because R uses the so-called <em>scientific notation</em>.</p>
-<div class="infobox caution">
-<p><strong>scientific notation</strong>: a common way to express numbers which are too large or too small to be conveniently written in decimal form. Generally, it expresses numbers in forms of <span class="math inline">\(m \times 10^n\)</span> and R uses the <strong>e notation</strong>. Note that the <strong>e notation</strong> has nothing to do with the natural number <span class="math inline">\(e\)</span>. Let’s see some examples,
-<span class="math display">\[\begin{align}
-1 \times 10^5 &amp;= \mbox{1e+05}\\
-2 \times 10^4 &amp;= \mbox{2e+04}\\
-1.2 \times 10^{-3} &amp;= \mbox{1.2e-03}
-\end{align}\]</span></p>
-</div>
-<p>In mathematics, the <em>logarithmic operations</em> are inverse to the power operations. If <strong><span class="math inline">\(b^y = x\)</span></strong> and you only know <em><span class="math inline">\(b\)</span></em> and <em><span class="math inline">\(x\)</span></em>, you can do logarithm operations to solve <em><span class="math inline">\(y\)</span></em> using the general form <strong><span class="math inline">\(y = \log(x, b)\)</span></strong>, which is called the logarithm of <span class="math inline">\(x\)</span> with base <span class="math inline">\(b\)</span>.</p>
-<p>In R, logarithm functions with base value of 10, 2, or the natural number <span class="math inline">\(e\)</span> have shortcuts <code>log10()</code>, <code>log2()</code>, and <code>log()</code>, respectively. Let’s see an example of <code>log10()</code>, the logarithm function with base <em>10</em>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Calculator.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span> </span>
-<span id="cb5-2"><a href="Calculator.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fl">1e6</span>) <span class="co">#log10() = log(x, 10)</span></span></code></pre></div>
-<p>Next, let’s see <code>log2()</code>, the logarithm function with base <em>2</em>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Calculator.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">10</span></span>
-<span id="cb6-2"><a href="Calculator.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1024</span>)  <span class="co">#log2() = log(x, 2)</span></span></code></pre></div>
-<p>Before moving on to the natural logarithm, note that the natural number <span class="math inline">\(e\)</span> needs to be written as <code>exp(1)</code> in R. When you want to do power operations on <span class="math inline">\(e\)</span>, you can simply change the argument in the function <code>exp()</code>, for example, <code>exp(3)</code> is <span class="math inline">\(e\)</span> to the power of 3. Here, <code>log()</code> without specifying the <code>base</code> argument represents the logarithm function with base <span class="math inline">\(e\)</span>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Calculator.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)      </span>
-<span id="cb7-2"><a href="Calculator.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">3</span>)</span>
-<span id="cb7-3"><a href="Calculator.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(<span class="dv">3</span>))  <span class="co">#log() = log(x, exp(1))</span></span></code></pre></div>
-</div>
-<div id="trigonometric-function" class="section level3" number="1.2.5">
-<h3><span class="header-section-number">1.2.5</span> Trigonometric function</h3>
-<p>R also provides the common trigonometric functions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Calculator.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi)</span>
-<span id="cb8-2"><a href="Calculator.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">acos</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
-<p>Here, <code>acos()</code> is the inverse function of <code>cos()</code>. If we set <span class="math inline">\(cos(a) = b\)</span>, then we will get <span class="math inline">\(acos(b) = a\)</span>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Calculator.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi<span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb9-2"><a href="Calculator.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="dv">1</span>)</span></code></pre></div>
-<p>Similarly, <code>asin()</code> is the inverse function of <code>sin()</code>. If we set <span class="math inline">\(sin(a) = b\)</span>, then we will get <span class="math inline">\(asin(b) = a\)</span>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Calculator.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(pi<span class="sc">/</span><span class="dv">4</span>)</span>
-<span id="cb10-2"><a href="Calculator.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">atan</span>(<span class="dv">1</span>)</span></code></pre></div>
-<p>Also, <code>atan()</code> is the inverse function of <code>tan()</code>. If we set <span class="math inline">\(tan(a) = b\)</span>, then we will get <span class="math inline">\(atan(b) = a\)</span>.</p>
-</div>
-<div id="exercises-1" class="section level3" number="1.2.6">
-<h3><span class="header-section-number">1.2.6</span> Exercises</h3>
-<ol style="list-style-type: decimal">
-<li><p>Write R code to compute <span class="math inline">\(\sqrt{5 \times 5}\)</span>.</p></li>
-<li><p>Write R code to get help on the function <code>floor</code>.</p></li>
-<li><p>Write R code to compute the square of <span class="math inline">\(\pi\)</span> and round it to 4 digits after the decimal point.</p></li>
-<li><p>Write R code to compute the logarithm of 1 billion with base 1000.</p></li>
-<li><p>Write R code to verify <span class="math inline">\(sin^2(x) + cos^2(x) = 1\)</span>, for <span class="math inline">\(x = 724\)</span>.</p></li>
-</ol>
+<div id="set-operations" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Set Operations</h2>
+<p>In Section <a href="logical-operators.html#logical-operators">2.7</a>, we introduced logical operators which are operators on logical vectors. Now, we discuss the operations between sets. Let’s begin by defining two vectors.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="set-operations.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="set-operations.html#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<p>To get values in both <code>x</code> and <code>y</code>, you can use the <code>intersect()</code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="set-operations.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(x, y)</span></code></pre></div>
+<pre><code>#&gt; [1] 1 3</code></pre>
+<p>Note that although both <code>x</code> and <code>y</code> have two elements of <code>1</code>, the result of their intersection only has one <code>1</code>, showing that only the unique elements are retained in the output.</p>
 
 </div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="Installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logical-operators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="na.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-09-08" />
+<meta name="date" content="2021-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="na.html"/>
 <link rel="next" href="character-vectors-factors-ordered-factors.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -250,7 +250,8 @@ div.csl-indent {
 <li class="chapter" data-level="2.10" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>2.10</b> Dates and Times</a>
 <ul>
 <li class="chapter" data-level="2.10.1" data-path="dates.html"><a href="dates.html#dates-1"><i class="fa fa-check"></i><b>2.10.1</b> Dates</a></li>
-<li class="chapter" data-level="2.10.2" data-path="dates.html"><a href="dates.html#exercises-9"><i class="fa fa-check"></i><b>2.10.2</b> Exercises</a></li>
+<li class="chapter" data-level="2.10.2" data-path="dates.html"><a href="dates.html#times"><i class="fa fa-check"></i><b>2.10.2</b> Times</a></li>
+<li class="chapter" data-level="2.10.3" data-path="dates.html"><a href="dates.html#exercises-9"><i class="fa fa-check"></i><b>2.10.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="character-vectors-factors-ordered-factors.html"><a href="character-vectors-factors-ordered-factors.html"><i class="fa fa-check"></i><b>2.11</b> Character Vectors, Factors &amp; Ordered Factors</a>
 <ul>
@@ -261,6 +262,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.12" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>2.12</b> Matrix</a>
 <ul>
 <li class="chapter" data-level="2.12.1" data-path="matrix.html"><a href="matrix.html#create-a-matrix-from-a-vector"><i class="fa fa-check"></i><b>2.12.1</b> Create a matrix from a vector</a></li>
+<li class="chapter" data-level="2.12.2" data-path="matrix.html"><a href="matrix.html#combine-vectors-or-matrices-into-a-matrix"><i class="fa fa-check"></i><b>2.12.2</b> Combine vectors or matrices into a matrix</a></li>
 </ul></li>
 <li class="chapter" data-level="2.13" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>2.13</b> Array</a></li>
 <li class="chapter" data-level="2.14" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>2.14</b> Data Frame and Tibble</a></li>
@@ -487,31 +489,38 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dates" class="section level2" number="2.10">
 <h2><span class="header-section-number">2.10</span> Dates and Times</h2>
-<p>In addition to numbers and strings, dates and times are two special formats of vectors which are commonly used.</p>
+<p>In addition to numbers and strings, <strong>dates</strong> and <strong>times</strong> are two special formats of vectors which are commonly used.</p>
 <div id="dates-1" class="section level3" number="2.10.1">
 <h3><span class="header-section-number">2.10.1</span> Dates</h3>
-<p><strong><em>a. introduction and different formats</em></strong></p>
-<p>Let’s first look at the date format of vector. First, to get today’s date, you can use the <code>Sys.Date()</code> function.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dates.html#cb304-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
-<span id="cb304-2"><a href="dates.html#cb304-2" aria-hidden="true" tabindex="-1"></a>today</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;2021-09-08&quot;</code></pre>
-<p>Looking at the output, it may appear to be the same format as a string. However, it is actually of date class, which makes working with dates a piece of cake. For example, we can use <code>today - 1</code> to get the date of yesterday, and use <code>today + 1</code> to get the date of tomorrow.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="dates.html#cb306-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
-<pre><code>#&gt; [1] &quot;2021-09-07&quot;</code></pre>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dates.html#cb308-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
-<pre><code>#&gt; [1] &quot;2021-09-09&quot;</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="dates.html#cb310-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
-<pre><code>#&gt; [1] &quot;2021-09-18&quot;</code></pre>
-<p>In addition to get dates in the past or the future, you can use the <code>format()</code> function to format the date into a string which contains various useful elements of a given date.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="dates.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(today, <span class="st">&quot;%a, %b %d, %m/%d/%Y&quot;</span>)</span></code></pre></div>
-<p>A list of commonly used information and the
-For links to versions available on-line see <a href="https://www.qsl.net/g1smd/isopdf.htm" class="uri">https://www.qsl.net/g1smd/isopdf.htm</a>.</p>
+<p><strong><em>a. introduction to Date class and different formats</em></strong></p>
+<p>Let’s first look at the date format of vector. First, to get today’s date, you can use the <code>Sys.Date()</code> function. And you can confirm it is indeed of Date class by the <code>class()</code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="dates.html#cb2-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb2-2"><a href="dates.html#cb2-2" aria-hidden="true" tabindex="-1"></a>today</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="dates.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(today)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;Date&quot;</code></pre>
+<p>Looking at the output, it may appear to be the same format as a string. However, it is actually of the <strong>Date</strong> class, which makes working with dates a piece of cake. For example, we can use <code>today - 1</code> to get the date of yesterday, and use <code>today + 1</code> to get the date of tomorrow.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="dates.html#cb6-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-10&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="dates.html#cb8-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-12&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="dates.html#cb10-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-21&quot;</code></pre>
+<p>You can also get the days of week for a date using the <code>weekdays()</code> function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="dates.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weekdays</span>(today)</span></code></pre></div>
+<p>If you use a regular character to denote the date information, an error will show up if you try to do addition or subtraction operations on it.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="dates.html#cb13-1" aria-hidden="true" tabindex="-1"></a>date_char <span class="ot">&lt;-</span> <span class="st">&quot;2021-09-09&quot;</span></span>
+<span id="cb13-2"><a href="dates.html#cb13-2" aria-hidden="true" tabindex="-1"></a>date_char <span class="sc">-</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>#&gt; Error in date_char - 1: non-numeric argument to binary operator</code></pre>
+<p>In addition to get dates in the past or the future, you can use the <code>format()</code> function to format the date into a character format which contains various useful elements of a given date.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dates.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(today, <span class="st">&quot;%a, %b %d, %m/%d/%Y&quot;</span>)</span></code></pre></div>
+<p>A list of commonly used elements of dates and the corresponding code is summarized in the following table.</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Code</th>
 <th align="left">Name</th>
-<th align="left">Ex</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
@@ -523,7 +532,7 @@ For links to versions available on-line see <a href="https://www.qsl.net/g1smd/i
 <tr class="even">
 <td align="left">%d</td>
 <td align="left">2-digit day</td>
-<td align="left">08</td>
+<td align="left">11</td>
 </tr>
 <tr class="odd">
 <td align="left">%y</td>
@@ -538,12 +547,12 @@ For links to versions available on-line see <a href="https://www.qsl.net/g1smd/i
 <tr class="odd">
 <td align="left">%a</td>
 <td align="left">abbreviated weekday</td>
-<td align="left">Wed</td>
+<td align="left">Sat</td>
 </tr>
 <tr class="even">
 <td align="left">%A</td>
 <td align="left">full weekday</td>
-<td align="left">Wednesday</td>
+<td align="left">Saturday</td>
 </tr>
 <tr class="odd">
 <td align="left">%b</td>
@@ -557,9 +566,84 @@ For links to versions available on-line see <a href="https://www.qsl.net/g1smd/i
 </tr>
 </tbody>
 </table>
+<p>To convert character representation back to a Date class object, you can use the <code>as.Date()</code> function with the character and its corresponding format.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="dates.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;Apr-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%b-%d-%Y&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-04-03&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="dates.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;09/October/97&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d/%B/%y&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;1997-10-09&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="dates.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-01-03&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="dates.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d-%m-%Y&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-03-01&quot;</code></pre>
+<p>Before moving on, it is useful to mention that R store dates as integers, represents the days that has passed since Jan 1, 1970. Let’s try a few dates and convert them into numeric values. We can also construct date using the number so days since a reference date (the <code>origin</code> argument in the <code>as_date()</code> function)</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="dates.html#cb24-1" aria-hidden="true" tabindex="-1"></a>ref_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970/01/01&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y/%m/%d&quot;</span>)</span>
+<span id="cb24-2"><a href="dates.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(ref_date <span class="sc">-</span> <span class="dv">1</span>, ref_date, ref_date <span class="sc">+</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;1969-12-31&quot; &quot;1970-01-01&quot; &quot;1970-01-03&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="dates.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(ref_date <span class="sc">-</span> <span class="dv">1</span>, ref_date, ref_date <span class="sc">+</span> <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>#&gt; [1] -1  0  2</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="dates.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="dv">10</span>, <span class="at">origin =</span> <span class="st">&quot;2021-01-01&quot;</span>) <span class="co">#10 days after 2021-01-01</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-01-11&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="dates.html#cb30-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> ref_date                   <span class="co">#the time difference between two dates</span></span></code></pre></div>
+<pre><code>#&gt; Time difference of 18881 days</code></pre>
 </div>
-<div id="exercises-9" class="section level3" number="2.10.2">
-<h3><span class="header-section-number">2.10.2</span> Exercises</h3>
+<div id="times" class="section level3" number="2.10.2">
+<h3><span class="header-section-number">2.10.2</span> Times</h3>
+<p>After talking about dates, it is natural to introduce how <strong>times</strong> are represented in R. Just like dates, let’s first get the time right now.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="dates.html#cb32-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb32-2"><a href="dates.html#cb32-2" aria-hidden="true" tabindex="-1"></a>now</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11 21:37:21 EDT&quot;</code></pre>
+<p>You can also get the time of an hour ago or a minute later.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="dates.html#cb34-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">-</span> <span class="dv">3600</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11 20:37:21 EDT&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="dates.html#cb36-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="dv">60</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11 21:38:21 EDT&quot;</code></pre>
+<p>Just like dates, you can format the time into characters via the <code>format()</code> function.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="dates.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="st">&quot;year %Y, month %m, day %d, hour %H, min %M, second %S&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;year 2021, month 09, day 11, hour 21, min 37, second 21&quot;</code></pre>
+<p>A list of commonly used elements of times and the corresponding code is summarized in the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Name</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">%H</td>
+<td align="left">hours</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left">%M</td>
+<td align="left">minutes</td>
+<td align="left">37</td>
+</tr>
+<tr class="odd">
+<td align="left">%S</td>
+<td align="left">seconds</td>
+<td align="left">21</td>
+</tr>
+<tr class="even">
+<td align="left">%Z</td>
+<td align="left">time zone</td>
+<td align="left">EDT</td>
+</tr>
+</tbody>
+</table>
+<p>You can also display the time in a different time zone by setting the <code>tz</code> argument in the <code>format()</code> function.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="dates.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)                 <span class="co">#Coordinated Universal Time</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-12 01:37:21&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="dates.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>) <span class="co">#Pacific Standard Time</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11 18:37:21&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="dates.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)    <span class="co">#Eastern Standard Time</span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-11 21:37:21&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="dates.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)       <span class="co">#Greenwich Mean Time </span></span></code></pre></div>
+<pre><code>#&gt; [1] &quot;2021-09-12 02:37:21&quot;</code></pre>
+</div>
+<div id="exercises-9" class="section level3" number="2.10.3">
+<h3><span class="header-section-number">2.10.3</span> Exercises</h3>
 
 </div>
 </div>
