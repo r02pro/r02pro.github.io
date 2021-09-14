@@ -520,39 +520,56 @@ div.csl-indent {
 <span id="cb5-2"><a href="vector.html#cb5-2" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>))</span>
 <span id="cb5-3"><a href="vector.html#cb5-3" aria-hidden="true" tabindex="-1"></a>z1</span>
 <span id="cb5-4"><a href="vector.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(z1)</span></code></pre></div>
-<p>After creating vectors, you can use the function <code>class()</code> to check its <strong>vector type</strong>,</p>
+<p>After creating vectors, you can use the function <code>class()</code> to check its <strong>class</strong>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="vector.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x1)</span>
-<span id="cb6-2"><a href="vector.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y1) </span>
-<span id="cb6-3"><a href="vector.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(z1)</span></code></pre></div>
-<p>From the results, you will know that <code>x1</code>, <code>y1</code> and <code>z1</code> are all of numeric type, which is the reason why they are called <em>numeric vectors</em>.</p>
+<span id="cb6-2"><a href="vector.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
+<span id="cb6-3"><a href="vector.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y1)</span>
+<span id="cb6-4"><a href="vector.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
+<span id="cb6-5"><a href="vector.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(z1)</span>
+<span id="cb6-6"><a href="vector.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<p>From the results, you will know that <code>x1</code>, <code>y1</code> and <code>z1</code> are numeric, which is the reason why they are called <em>numeric vectors</em>.</p>
+<p>Another useful function <code>typeof()</code> gives us the <strong>internal</strong> type of an R object, which tells how the information is stored.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="vector.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(x1)</span>
+<span id="cb7-2"><a href="vector.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb7-3"><a href="vector.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(y1) </span>
+<span id="cb7-4"><a href="vector.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb7-5"><a href="vector.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(z1)</span>
+<span id="cb7-6"><a href="vector.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
+<p>As we can see, the objects are all of <code>double</code> type, reflecting that it is stored with <strong>double precision</strong>. Note that although the object <code>x1</code> looks to be an integer, it is stored as a double precision object. To create an object of integer type, you need to add an <code>L</code> to the integer. See the following example.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="vector.html#cb8-1" aria-hidden="true" tabindex="-1"></a>my_int <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, <span class="sc">-</span>3L, 6L)</span>
+<span id="cb8-2"><a href="vector.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_int)</span>
+<span id="cb8-3"><a href="vector.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
+<span id="cb8-4"><a href="vector.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_int)</span>
+<span id="cb8-5"><a href="vector.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
+<p>Here, <code>my_int</code> is an integer vector.</p>
 <p><strong><em>b. Operations between two numeric vectors</em></strong></p>
 <p>Since numeric vectors are made of numbers, you can do <strong>arithmetic operations</strong> between them, just like the fancy calculator in Section <a href="Calculator.html#Calculator">1.2</a>. If two vectors are of the <strong>same length</strong>, the calculation is done <strong>elementwisely</strong>. In other words, R will perform the operation separately for each element. First, let’s create another vector <code>x2</code> of length 1 and do addition with <code>x1</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="vector.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb7-2"><a href="vector.html#cb7-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">+</span> x2</span></code></pre></div>
-<pre><code>#&gt; [1] 9</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="vector.html#cb9-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb9-2"><a href="vector.html#cb9-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">+</span> x2</span>
+<span id="cb9-3"><a href="vector.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span></code></pre></div>
 <p>Then obviously you will get 9!</p>
 <p>Similarly, you can create another vector <code>y2</code> of the same length as vector <code>y1</code>. Then, you can do operations between <code>y1</code> and <code>y2</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="vector.html#cb9-1" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb9-2"><a href="vector.html#cb9-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">+</span> y2</span></code></pre></div>
-<pre><code>#&gt; [1] 3 7 4 8 7</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="vector.html#cb10-1" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="vector.html#cb10-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">+</span> y2</span>
+<span id="cb10-3"><a href="vector.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 7 4 8 7</span></span></code></pre></div>
 <p>The result is yet another length-5 vector. To check the calculation was indeed done elementwisely, you can verify that the value of the first element is <span class="math inline">\(1 + 2 = 3\)</span>, and value of the second element is <span class="math inline">\(3 + 4 = 7\)</span>, etc.</p>
 <p>Since the calculation is done elementwisely, people normally would want the two vectors to have the same length. However, there is a <strong>recycling</strong> rule in R, which is sometimes quite useful and enables us to write simpler code. Specifically, if one vector is shorter than the other vector, R will recycle (repeat) the shorter vector until it matches in length with the longer one. This recycling is particularly helpful for an operator between a <strong>length&gt;1</strong> vector and a <strong>length-1</strong> vector. Let’s see an example.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="vector.html#cb11-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">+</span> x1</span></code></pre></div>
-<pre><code>#&gt; [1]  7  9  9 11 11</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="vector.html#cb11-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">+</span> x1</span>
+<span id="cb11-2"><a href="vector.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  7  9  9 11 11</span></span></code></pre></div>
 <p>From the result, you can see that each element in <code>y1</code> is added by 6.</p>
 <p>The followings are a few additional examples you can try.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="vector.html#cb13-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">*</span> x2</span>
-<span id="cb13-2"><a href="vector.html#cb13-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">/</span> <span class="dv">5</span></span>
-<span id="cb13-3"><a href="vector.html#cb13-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="sc">-</span> x1</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="vector.html#cb12-1" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">*</span> x2</span>
+<span id="cb12-2"><a href="vector.html#cb12-2" aria-hidden="true" tabindex="-1"></a>y1 <span class="sc">/</span> <span class="dv">5</span></span>
+<span id="cb12-3"><a href="vector.html#cb12-3" aria-hidden="true" tabindex="-1"></a>y2 <span class="sc">-</span> x1</span></code></pre></div>
 </div>
 <div id="vector-character" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Character vector</h3>
 <p><strong><em>a. Create character vectors</em></strong></p>
 <p>Now, let’s move to character vectors. In a <strong>character vector</strong>, the value of each element is of character type, which means each value is a <strong>string</strong>. A <strong>string</strong> is a sequence of characters (including letters, numbers, or symbols) surrounded by a pair of double quotes (<code>""</code>) or single quotes (<code>''</code>). To be consistent, we will stick with double quotes in this book.</p>
 <p>Let’s first create a character vector <code>sheepstudio</code> which only has one element. You can then check the value of this vector by typing its name and verify the vector type by using <code>class()</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="vector.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sheepstudio <span class="ot">&lt;-</span> <span class="st">&quot;sheep@007&quot;</span> </span>
-<span id="cb14-2"><a href="vector.html#cb14-2" aria-hidden="true" tabindex="-1"></a>sheepstudio</span>
-<span id="cb14-3"><a href="vector.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(sheepstudio)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="vector.html#cb13-1" aria-hidden="true" tabindex="-1"></a>sheepstudio <span class="ot">&lt;-</span> <span class="st">&quot;sheep@007&quot;</span> </span>
+<span id="cb13-2"><a href="vector.html#cb13-2" aria-hidden="true" tabindex="-1"></a>sheepstudio</span>
+<span id="cb13-3"><a href="vector.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(sheepstudio)</span></code></pre></div>
 <div class="infobox caution">
 <p>Double quotes need to be paired in strings. If you miss the right double quote, R will show a plus on the next line, waiting for you to finish the command. If this happens, you can either enter the matching double quote, or press ESC to escape this command.</p>
 <div class="figure" style="text-align: center"><span id="fig:quo"></span>
@@ -563,93 +580,96 @@ Figure 2.1: Miss the right quotation mark
 </div>
 </div>
 <p>Similar to a numeric vector, you can use the <code>c()</code> function to combine several strings to create a character vector. You can verify the number of strings in the character vector by using <code>length()</code>, and <code>nchar()</code> can help you get the number of characters in each string.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="vector.html#cb15-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep@29&quot;</span>, <span class="st">&quot;pig$29&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
-<span id="cb15-2"><a href="vector.html#cb15-2" aria-hidden="true" tabindex="-1"></a>animals</span>
-<span id="cb15-3"><a href="vector.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(animals)</span>
-<span id="cb15-4"><a href="vector.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(animals)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="vector.html#cb14-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep@29&quot;</span>, <span class="st">&quot;pig$29&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
+<span id="cb14-2"><a href="vector.html#cb14-2" aria-hidden="true" tabindex="-1"></a>animals</span>
+<span id="cb14-3"><a href="vector.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(animals)</span>
+<span id="cb14-4"><a href="vector.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(animals)</span></code></pre></div>
 <p>Note that if you have a vector consisted of numbers with surrounding double quotes, it is also a character vector. (“4” and “29” are strings)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="vector.html#cb16-1" aria-hidden="true" tabindex="-1"></a>num_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">29</span>)</span>
-<span id="cb16-2"><a href="vector.html#cb16-2" aria-hidden="true" tabindex="-1"></a>char_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;4&quot;</span>, <span class="st">&quot;29&quot;</span>) </span>
-<span id="cb16-3"><a href="vector.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(num_vec)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="vector.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(char_vec)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="vector.html#cb15-1" aria-hidden="true" tabindex="-1"></a>num_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">29</span>)</span>
+<span id="cb15-2"><a href="vector.html#cb15-2" aria-hidden="true" tabindex="-1"></a>char_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;4&quot;</span>, <span class="st">&quot;29&quot;</span>) </span>
+<span id="cb15-3"><a href="vector.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(num_vec)</span>
+<span id="cb15-4"><a href="vector.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
+<span id="cb15-5"><a href="vector.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(char_vec)</span>
+<span id="cb15-6"><a href="vector.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p><strong><em>b. Concatenate several strings into a single string</em></strong></p>
 <p>Next, we will introduce how to concatenate several strings into a single string. To do this, you can use the <code>paste()</code> function. First, let’s create a character vector with four elements,</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vector.html#cb20-1" aria-hidden="true" tabindex="-1"></a>four_strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
-<span id="cb20-2"><a href="vector.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(four_strings) <span class="co">#verify the number of strings</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="vector.html#cb16-1" aria-hidden="true" tabindex="-1"></a>four_strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
+<span id="cb16-2"><a href="vector.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(four_strings) <span class="co">#verify the number of strings</span></span></code></pre></div>
 <p>Then use <code>paste()</code> instead of <code>c()</code>,</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="vector.html#cb21-1" aria-hidden="true" tabindex="-1"></a>one_long_string <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
-<span id="cb21-2"><a href="vector.html#cb21-2" aria-hidden="true" tabindex="-1"></a>one_long_string</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;This is Sheep@29 $Studio&quot;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="vector.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(one_long_string)</span>
-<span id="cb23-2"><a href="vector.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(one_long_string) <span class="co">#verify the number of strings</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="vector.html#cb17-1" aria-hidden="true" tabindex="-1"></a>one_long_string <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
+<span id="cb17-2"><a href="vector.html#cb17-2" aria-hidden="true" tabindex="-1"></a>one_long_string</span>
+<span id="cb17-3"><a href="vector.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;This is Sheep@29 $Studio&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="vector.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(one_long_string)</span>
+<span id="cb18-2"><a href="vector.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(one_long_string) <span class="co">#verify the number of strings</span></span></code></pre></div>
 <p>From the results, you can see that <code>one_long_string</code> is a character vector with length 1, and the value of <code>one_long_string</code> is a single string with space between the individual strings.</p>
 <p>You may notice that in <code>paste()</code>, the default separator between the individual strings is space. Actually you can change the separator by setting the <code>sep</code> argument in <code>paste()</code>. For example, you can separate the individual strings with comma,</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="vector.html#cb24-1" aria-hidden="true" tabindex="-1"></a>comma <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>) </span>
-<span id="cb24-2"><a href="vector.html#cb24-2" aria-hidden="true" tabindex="-1"></a>comma</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;This,is,Sheep@29,$Studio&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="vector.html#cb19-1" aria-hidden="true" tabindex="-1"></a>comma <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>) </span>
+<span id="cb19-2"><a href="vector.html#cb19-2" aria-hidden="true" tabindex="-1"></a>comma</span>
+<span id="cb19-3"><a href="vector.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;This,is,Sheep@29,$Studio&quot;</span></span></code></pre></div>
 <p>If you don’t want to use a separator, you can use the <code>paste0()</code> function.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="vector.html#cb26-1" aria-hidden="true" tabindex="-1"></a>nosep <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>) </span>
-<span id="cb26-2"><a href="vector.html#cb26-2" aria-hidden="true" tabindex="-1"></a>nosep</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;ThisisSheep@29$Studio&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vector.html#cb20-1" aria-hidden="true" tabindex="-1"></a>nosep <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>) </span>
+<span id="cb20-2"><a href="vector.html#cb20-2" aria-hidden="true" tabindex="-1"></a>nosep</span>
+<span id="cb20-3"><a href="vector.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ThisisSheep@29$Studio&quot;</span></span></code></pre></div>
 <p>In addition to paste several strings into one long string, you can also use the <code>paste()</code> function paste two character vectors, where the pair of strings will be pasted elementwisely.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="vector.html#cb28-1" aria-hidden="true" tabindex="-1"></a>Month_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;July&quot;</span>, <span class="st">&quot;August&quot;</span>)</span>
-<span id="cb28-2"><a href="vector.html#cb28-2" aria-hidden="true" tabindex="-1"></a>Year_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2007&quot;</span>, <span class="st">&quot;2008&quot;</span>)</span>
-<span id="cb28-3"><a href="vector.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(Month_vec, Year_vec)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;July 2007&quot;   &quot;August 2008&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="vector.html#cb21-1" aria-hidden="true" tabindex="-1"></a>Month_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;July&quot;</span>, <span class="st">&quot;August&quot;</span>)</span>
+<span id="cb21-2"><a href="vector.html#cb21-2" aria-hidden="true" tabindex="-1"></a>Year_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2007&quot;</span>, <span class="st">&quot;2008&quot;</span>)</span>
+<span id="cb21-3"><a href="vector.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(Month_vec, Year_vec)</span>
+<span id="cb21-4"><a href="vector.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;July 2007&quot;   &quot;August 2008&quot;</span></span></code></pre></div>
 <p><strong><em>c. Change case</em></strong></p>
 <p>In character vectors, each string can contain both uppercase and lowercase letters. You can unify the cases of all letters inside a vector. Let’s review the character vector <code>four_strings</code> at first,</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="vector.html#cb30-1" aria-hidden="true" tabindex="-1"></a>four_strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
-<span id="cb30-2"><a href="vector.html#cb30-2" aria-hidden="true" tabindex="-1"></a>four_strings</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;This&quot;     &quot;is&quot;       &quot;Sheep@29&quot; &quot;$Studio&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="vector.html#cb22-1" aria-hidden="true" tabindex="-1"></a>four_strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Sheep@29&quot;</span>, <span class="st">&quot;$Studio&quot;</span>)</span>
+<span id="cb22-2"><a href="vector.html#cb22-2" aria-hidden="true" tabindex="-1"></a>four_strings</span>
+<span id="cb22-3"><a href="vector.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;This&quot;     &quot;is&quot;       &quot;Sheep@29&quot; &quot;$Studio&quot;</span></span></code></pre></div>
 <p>Then use the <code>tolower()</code> function to convert all letters to lower case,</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="vector.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(four_strings)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;this&quot;     &quot;is&quot;       &quot;sheep@29&quot; &quot;$studio&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="vector.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(four_strings)</span>
+<span id="cb23-2"><a href="vector.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;this&quot;     &quot;is&quot;       &quot;sheep@29&quot; &quot;$studio&quot;</span></span></code></pre></div>
 <p>The opposite function of <code>tolower()</code> is <code>toupper()</code>, which converts all letters to upper case,</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="vector.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(four_strings)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;THIS&quot;     &quot;IS&quot;       &quot;SHEEP@29&quot; &quot;$STUDIO&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="vector.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(four_strings)</span>
+<span id="cb24-2"><a href="vector.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;THIS&quot;     &quot;IS&quot;       &quot;SHEEP@29&quot; &quot;$STUDIO&quot;</span></span></code></pre></div>
 </div>
 <div id="logical-vector" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Logical vector</h3>
 <p>So far we have created several numeric vectors and character vectors. Some vectors have names, and some do not. You can see all the <strong>named objects</strong> by using the <code>ls()</code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="vector.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
-<pre><code>#&gt;  [1] &quot;a&quot;               &quot;a_good_name&quot;    
-#&gt;  [3] &quot;A_Good_Name&quot;     &quot;animals&quot;        
-#&gt;  [5] &quot;b&quot;               &quot;b_vec&quot;          
-#&gt;  [7] &quot;big1&quot;            &quot;big2&quot;           
-#&gt;  [9] &quot;big3&quot;            &quot;char&quot;           
-#&gt; [11] &quot;char_vec&quot;        &quot;Code&quot;           
-#&gt; [13] &quot;comma&quot;           &quot;d&quot;              
-#&gt; [15] &quot;dat_vec&quot;         &quot;date_char&quot;      
-#&gt; [17] &quot;Example&quot;         &quot;four_strings&quot;   
-#&gt; [19] &quot;h&quot;               &quot;home&quot;           
-#&gt; [21] &quot;logi1&quot;           &quot;logi2&quot;          
-#&gt; [23] &quot;logic1&quot;          &quot;logic2&quot;         
-#&gt; [25] &quot;m1&quot;              &quot;m2&quot;             
-#&gt; [27] &quot;mix_1&quot;           &quot;mix_2&quot;          
-#&gt; [29] &quot;mix_3&quot;           &quot;mix_4&quot;          
-#&gt; [31] &quot;Mon_vec&quot;         &quot;Month_vec&quot;      
-#&gt; [33] &quot;n&quot;               &quot;Name&quot;           
-#&gt; [35] &quot;nosep&quot;           &quot;now&quot;            
-#&gt; [37] &quot;num_vec&quot;         &quot;one_long_string&quot;
-#&gt; [39] &quot;Operation&quot;       &quot;ref_date&quot;       
-#&gt; [41] &quot;Result&quot;          &quot;same1&quot;          
-#&gt; [43] &quot;same2&quot;           &quot;same3&quot;          
-#&gt; [45] &quot;set1&quot;            &quot;set2&quot;           
-#&gt; [47] &quot;set3&quot;            &quot;sheepstudio&quot;    
-#&gt; [49] &quot;sub1&quot;            &quot;sub2&quot;           
-#&gt; [51] &quot;today&quot;           &quot;twodays&quot;        
-#&gt; [53] &quot;w&quot;               &quot;x&quot;              
-#&gt; [55] &quot;x_numeric&quot;       &quot;x1&quot;             
-#&gt; [57] &quot;x2&quot;              &quot;x3&quot;             
-#&gt; [59] &quot;xb3&quot;             &quot;xs4&quot;            
-#&gt; [61] &quot;y&quot;               &quot;y_numeric&quot;      
-#&gt; [63] &quot;y1&quot;              &quot;y2&quot;             
-#&gt; [65] &quot;y3&quot;              &quot;yb8&quot;            
-#&gt; [67] &quot;Year_vec&quot;        &quot;yesterday&quot;      
-#&gt; [69] &quot;ys9&quot;             &quot;z&quot;              
-#&gt; [71] &quot;z1&quot;              &quot;zoo&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="vector.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb25-2"><a href="vector.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;a&quot;               &quot;a_good_name&quot;    </span></span>
+<span id="cb25-3"><a href="vector.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;A_Good_Name&quot;     &quot;animals&quot;        </span></span>
+<span id="cb25-4"><a href="vector.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;b&quot;               &quot;b_vec&quot;          </span></span>
+<span id="cb25-5"><a href="vector.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;big1&quot;            &quot;big2&quot;           </span></span>
+<span id="cb25-6"><a href="vector.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;big3&quot;            &quot;char&quot;           </span></span>
+<span id="cb25-7"><a href="vector.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;char_vec&quot;        &quot;Code&quot;           </span></span>
+<span id="cb25-8"><a href="vector.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;comma&quot;           &quot;d&quot;              </span></span>
+<span id="cb25-9"><a href="vector.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] &quot;dat_vec&quot;         &quot;date_char&quot;      </span></span>
+<span id="cb25-10"><a href="vector.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] &quot;days_diff&quot;       &quot;Example&quot;        </span></span>
+<span id="cb25-11"><a href="vector.html#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;four_strings&quot;    &quot;h&quot;              </span></span>
+<span id="cb25-12"><a href="vector.html#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;home&quot;            &quot;hours_diff&quot;     </span></span>
+<span id="cb25-13"><a href="vector.html#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [23] &quot;logi1&quot;           &quot;logi2&quot;          </span></span>
+<span id="cb25-14"><a href="vector.html#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] &quot;logic1&quot;          &quot;logic2&quot;         </span></span>
+<span id="cb25-15"><a href="vector.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [27] &quot;m1&quot;              &quot;m2&quot;             </span></span>
+<span id="cb25-16"><a href="vector.html#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] &quot;mix_1&quot;           &quot;mix_2&quot;          </span></span>
+<span id="cb25-17"><a href="vector.html#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [31] &quot;mix_3&quot;           &quot;mix_4&quot;          </span></span>
+<span id="cb25-18"><a href="vector.html#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [33] &quot;Mon_vec&quot;         &quot;Month_vec&quot;      </span></span>
+<span id="cb25-19"><a href="vector.html#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [35] &quot;my_int&quot;          &quot;n&quot;              </span></span>
+<span id="cb25-20"><a href="vector.html#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] &quot;Name&quot;            &quot;nosep&quot;          </span></span>
+<span id="cb25-21"><a href="vector.html#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [39] &quot;now&quot;             &quot;num_vec&quot;        </span></span>
+<span id="cb25-22"><a href="vector.html#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] &quot;one_long_string&quot; &quot;Operation&quot;      </span></span>
+<span id="cb25-23"><a href="vector.html#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [43] &quot;ref_date&quot;        &quot;Result&quot;         </span></span>
+<span id="cb25-24"><a href="vector.html#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [45] &quot;same1&quot;           &quot;same2&quot;          </span></span>
+<span id="cb25-25"><a href="vector.html#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [47] &quot;same3&quot;           &quot;set1&quot;           </span></span>
+<span id="cb25-26"><a href="vector.html#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [49] &quot;set2&quot;            &quot;set3&quot;           </span></span>
+<span id="cb25-27"><a href="vector.html#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [51] &quot;sheepstudio&quot;     &quot;sub1&quot;           </span></span>
+<span id="cb25-28"><a href="vector.html#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [53] &quot;sub2&quot;            &quot;today&quot;          </span></span>
+<span id="cb25-29"><a href="vector.html#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [55] &quot;twodays&quot;         &quot;w&quot;              </span></span>
+<span id="cb25-30"><a href="vector.html#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [57] &quot;weeks_diff&quot;      &quot;x&quot;              </span></span>
+<span id="cb25-31"><a href="vector.html#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [59] &quot;x_numeric&quot;       &quot;x_w_name&quot;       </span></span>
+<span id="cb25-32"><a href="vector.html#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [61] &quot;x_wo_name&quot;       &quot;x1&quot;             </span></span>
+<span id="cb25-33"><a href="vector.html#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [63] &quot;x2&quot;              &quot;x3&quot;             </span></span>
+<span id="cb25-34"><a href="vector.html#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [65] &quot;xb3&quot;             &quot;xs4&quot;            </span></span>
+<span id="cb25-35"><a href="vector.html#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [67] &quot;y&quot;               &quot;y_numeric&quot;      </span></span>
+<span id="cb25-36"><a href="vector.html#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [69] &quot;y1&quot;              &quot;y2&quot;             </span></span>
+<span id="cb25-37"><a href="vector.html#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [71] &quot;y3&quot;              &quot;yb8&quot;            </span></span>
+<span id="cb25-38"><a href="vector.html#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [73] &quot;Year_vec&quot;        &quot;yesterday&quot;      </span></span>
+<span id="cb25-39"><a href="vector.html#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [75] &quot;ys9&quot;             &quot;z&quot;              </span></span>
+<span id="cb25-40"><a href="vector.html#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [77] &quot;z1&quot;              &quot;zoo&quot;</span></span></code></pre></div>
 <p>As introduced in Section <a href="Object-Assignment.html#Object-Assignment">2.1</a>, another way to check the named objects is via the environment panel as shown in Figure <a href="vector.html#fig:enviro">2.2</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:enviro"></span>
 <img src="pics/2enviro.png" alt="Environment" width="70%" />
@@ -662,84 +682,87 @@ Figure 2.2: Environment
 <p>By now you have created several objects, and you will find that the objects will not be saved in R if you don’t assign their values to names, for example, the results of <code>x1 + x2</code> and <code>y1 + y2</code> are not shown in the environment.</p>
 </div>
 <p>Before introducing the <em>logical vector</em>, let’s first learn a function called <code>is.numeric()</code>, which checks whether a vector is of numeric type,</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="vector.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(y1) <span class="co">#Is y1 of numeric type?</span></span></code></pre></div>
-<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="vector.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(y1) <span class="co">#Is y1 of numeric type?</span></span>
+<span id="cb26-2"><a href="vector.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Similar to <code>is.numeric()</code>, you can also use <code>is.character()</code> function to check if the given vector is of character type.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="vector.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(y1) <span class="co">#Is y1 of character type?</span></span></code></pre></div>
-<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vector.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(y1) <span class="co">#Is y1 of character type?</span></span>
+<span id="cb27-2"><a href="vector.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>You may notice that results are <code>TRUE</code> or <code>FALSE</code> from the above codes. Actually, <strong>logical vectors</strong> are vectors that only use <code>TRUE</code> or <code>FALSE</code> as values. Note that <code>TRUE</code> and <code>FALSE</code> are logical constants in R. Similarly, you can use <code>is.logical()</code> to check if the vector is of logical type, or you can use <code>class()</code> to find out the exact type.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="vector.html#cb42-1" aria-hidden="true" tabindex="-1"></a>logic1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) <span class="co">#you can also use the c() function to create a logical vector</span></span>
-<span id="cb42-2"><a href="vector.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(logic1)</span>
-<span id="cb42-3"><a href="vector.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(logic1)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="vector.html#cb28-1" aria-hidden="true" tabindex="-1"></a>logic1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>) <span class="co">#you can also use the c() function to create a logical vector</span></span>
+<span id="cb28-2"><a href="vector.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(logic1)</span>
+<span id="cb28-3"><a href="vector.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(logic1)</span></code></pre></div>
 <p>You can also use <code>T</code> to represent <code>TRUE</code> and <code>F</code> to represent <code>FALSE</code> in logical vectors.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="vector.html#cb43-1" aria-hidden="true" tabindex="-1"></a>logic2 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, F)</span>
-<span id="cb43-2"><a href="vector.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(logic2)</span>
-<span id="cb43-3"><a href="vector.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(logic2)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vector.html#cb29-1" aria-hidden="true" tabindex="-1"></a>logic2 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, F)</span>
+<span id="cb29-2"><a href="vector.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(logic2)</span>
+<span id="cb29-3"><a href="vector.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(logic2)</span></code></pre></div>
 <p>It is worth to point out that you don’t want to put a pair of double quotes around <code>TRUE</code> or <code>FALSE</code> when you use them as logical values. If you do that, a character vector will be generated instead.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="vector.html#cb44-1" aria-hidden="true" tabindex="-1"></a>char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>)</span>
-<span id="cb44-2"><a href="vector.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(char)</span>
-<span id="cb44-3"><a href="vector.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(char)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="vector.html#cb30-1" aria-hidden="true" tabindex="-1"></a>char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>)</span>
+<span id="cb30-2"><a href="vector.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(char)</span>
+<span id="cb30-3"><a href="vector.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(char)</span></code></pre></div>
 <p>Note that the keywords <code>TRUE</code> and <code>FALSE</code> are case sensitive, and all letters inside them need to be in <strong>upper case</strong>. If you change any letter to the lower case, you will get an error, because <code>True</code> is neither a logical constant nor a defined object.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="vector.html#cb45-1" aria-hidden="true" tabindex="-1"></a>tlogic <span class="ot">&lt;-</span> True</span></code></pre></div>
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;True&#39; not found</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="vector.html#cb31-1" aria-hidden="true" tabindex="-1"></a>tlogic <span class="ot">&lt;-</span> True</span>
+<span id="cb31-2"><a href="vector.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;True&#39; not found</span></span></code></pre></div>
 </div>
 <div id="coercion" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> The coercion rule</h3>
 <p>So far, you have known that vectors are objects that have values of the same type, including numbers, strings, or logical values. But in practice, you may have values with a mix of different types. If you still want to combine them into a <strong>vector</strong>, R will <em>unify</em> all values into the most complex one, which is usually called the <strong>coercion rule</strong>. Specifically, R use the following order of complexity (from simple to complex).
 <span class="math display">\[logical &lt; numeric &lt; character\]</span></p>
 <p>Let’s see a few examples about the coercion. The first example mixes logical values with numbers.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="vector.html#cb47-1" aria-hidden="true" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">24</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb47-2"><a href="vector.html#cb47-2" aria-hidden="true" tabindex="-1"></a>mix_1 </span></code></pre></div>
-<pre><code>#&gt; [1]  1  7 24  0</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="vector.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="vector.html#cb32-1" aria-hidden="true" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">24</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb32-2"><a href="vector.html#cb32-2" aria-hidden="true" tabindex="-1"></a>mix_1 </span>
+<span id="cb32-3"><a href="vector.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  7 24  0</span></span>
+<span id="cb32-4"><a href="vector.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span>
+<span id="cb32-5"><a href="vector.html#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
 <p>You can see that <code>TRUE</code> will be converted to 1 and <code>FALSE</code> will be converted to 0 when they appear with numbers, that’s because numbers are more complex than logical values, and R will unify all values into the most complex one. Then you will see that <code>mix_1</code> is a numeric vector with four numbers. This is the <strong>most commonly</strong> usage of coercion rule in R.</p>
 <p>The second example mixes numbers with strings.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="vector.html#cb51-1" aria-hidden="true" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="st">&quot;happy&quot;</span>, <span class="dv">26</span>, <span class="st">&quot;string&quot;</span>)</span>
-<span id="cb51-2"><a href="vector.html#cb51-2" aria-hidden="true" tabindex="-1"></a>mix_2 </span></code></pre></div>
-<pre><code>#&gt; [1] &quot;8&quot;      &quot;happy&quot;  &quot;26&quot;     &quot;string&quot;</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="vector.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="vector.html#cb33-1" aria-hidden="true" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="st">&quot;happy&quot;</span>, <span class="dv">26</span>, <span class="st">&quot;string&quot;</span>)</span>
+<span id="cb33-2"><a href="vector.html#cb33-2" aria-hidden="true" tabindex="-1"></a>mix_2 </span>
+<span id="cb33-3"><a href="vector.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;8&quot;      &quot;happy&quot;  &quot;26&quot;     &quot;string&quot;</span></span>
+<span id="cb33-4"><a href="vector.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
+<span id="cb33-5"><a href="vector.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>You can see that both <code>8</code> and <code>26</code> are converted into strings since strings are more complex than numbers. Then <code>mix_2</code> will be a character vector.</p>
 <p>The final example mixes logical values, numbers and strings.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="vector.html#cb55-1" aria-hidden="true" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb55-2"><a href="vector.html#cb55-2" aria-hidden="true" tabindex="-1"></a>mix_3</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="vector.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_3)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="vector.html#cb34-1" aria-hidden="true" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb34-2"><a href="vector.html#cb34-2" aria-hidden="true" tabindex="-1"></a>mix_3</span>
+<span id="cb34-3"><a href="vector.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span>
+<span id="cb34-4"><a href="vector.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_3)</span>
+<span id="cb34-5"><a href="vector.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>You can see in <code>mix_3</code>, both <code>97</code> and <code>TRUE</code> are converted to strings! That’s because values of character type are the most complex among all values.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="vector.html#cb59-1" aria-hidden="true" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb59-2"><a href="vector.html#cb59-2" aria-hidden="true" tabindex="-1"></a>mix_4</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="vector.html#cb35-1" aria-hidden="true" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb35-2"><a href="vector.html#cb35-2" aria-hidden="true" tabindex="-1"></a>mix_4</span>
+<span id="cb35-3"><a href="vector.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
 <p>However, if you create another vector <code>mix_4</code>, you first have <code>c(16, TRUE)</code> which will be converted to <code>c(16, 1)</code> since numbers are more complex than logical values. Then, <code>c(16, 1)</code> will be converted to <code>c("16", "1")</code> when you combine it with <code>"pig"</code>, leading to the results of <code>mix_4</code>.</p>
 </div>
 <div id="named-vectors" class="section level3" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> Named Vectors</h3>
 <p>In addition to storing the values of a vector, you can also create <strong>named vectors</strong>. To do that, the first option is to give each element a name in the processing of creating the vector using the form of <code>name = value</code>.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="vector.html#cb61-1" aria-hidden="true" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
-<span id="cb61-2"><a href="vector.html#cb61-2" aria-hidden="true" tabindex="-1"></a>x_wo_name</span></code></pre></div>
-<pre><code>#&gt; [1] 165  60  22</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="vector.html#cb63-1" aria-hidden="true" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
-<span id="cb63-2"><a href="vector.html#cb63-2" aria-hidden="true" tabindex="-1"></a>x_w_name</span></code></pre></div>
-<pre><code>#&gt; height weight    BMI 
-#&gt;    165     60     22</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="vector.html#cb36-1" aria-hidden="true" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
+<span id="cb36-2"><a href="vector.html#cb36-2" aria-hidden="true" tabindex="-1"></a>x_wo_name</span>
+<span id="cb36-3"><a href="vector.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 165  60  22</span></span>
+<span id="cb36-4"><a href="vector.html#cb36-4" aria-hidden="true" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
+<span id="cb36-5"><a href="vector.html#cb36-5" aria-hidden="true" tabindex="-1"></a>x_w_name</span>
+<span id="cb36-6"><a href="vector.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
+<span id="cb36-7"><a href="vector.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    165     60     22</span></span></code></pre></div>
 <p>A second way to assign names to a vector is to use the <code>names()</code> function. For example, if we want to represent whether it snows on each day using a logical vector.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="vector.html#cb65-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb65-2"><a href="vector.html#cb65-2" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>#&gt; [1]  TRUE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="vector.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>)</span>
-<span id="cb67-2"><a href="vector.html#cb67-2" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>#&gt; Jan 1 Jan 2 Jan 3 
-#&gt;  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="vector.html#cb37-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb37-2"><a href="vector.html#cb37-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb37-3"><a href="vector.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
+<span id="cb37-4"><a href="vector.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>)</span>
+<span id="cb37-5"><a href="vector.html#cb37-5" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb37-6"><a href="vector.html#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jan 1 Jan 2 Jan 3 </span></span>
+<span id="cb37-7"><a href="vector.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>Note that the assignment operation looks similar to the object assignment operation. The values for names need to be a character vector.</p>
 <p>The names of a vector is a type of <strong>attributes</strong> of R Objects. The name attribute provides additional information regarding the meaning of each element, and enables us to extract values using the names to be discussed in Section <a href="comparison-vector-subsetting.html#vector-subsetting">2.6.3</a>.</p>
 <p>To examine the type and attributes of an R object, you can use the <code>str()</code> function.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="vector.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
-<span id="cb69-2"><a href="vector.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="vector.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
+<span id="cb38-2"><a href="vector.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Named num [1:3] 165 60 22</span></span>
+<span id="cb38-3"><a href="vector.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;names&quot;)= chr [1:3] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
+<span id="cb38-4"><a href="vector.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span>
+<span id="cb38-5"><a href="vector.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num [1:3] 165 60 22</span></span></code></pre></div>
 <p>You can see that it is a named numeric vector, with the names attribute. The <code>str()</code> function also shows the first few values of the vector and the names. As a contrast, <code>str()</code> function tells us <code>x_wo_name</code> is a plain numeric vector with no attributes.</p>
 <p>To directly extract certain attributes of an R object, you can use the <code>attr()</code> function on it with the second argument being the specific attribute you wish to extract.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="vector.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="vector.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span>
+<span id="cb39-2"><a href="vector.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-3" class="section level3" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> Exercises</h3>
