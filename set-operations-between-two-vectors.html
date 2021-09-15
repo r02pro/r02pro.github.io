@@ -509,10 +509,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="set-operations-between-two-vectors" class="section level2" number="2.8">
 <h2><span class="header-section-number">2.8</span> Set Operations between two vectors</h2>
-<p>In Section <a href="logical-operators.html#logical-operators">2.7</a>, we introduced logical operators which are operators on two vectors. In this section, we want to discuss other operations which can be used between two vectors. Here, two vectors need to be the <strong>same type</strong>. Note that while the logical operators only makes sense for logical vectors, the operations we will introduce work for all three kinds of vectors. In the remaining part of this section, we will introduce several operations one by one.</p>
+<p>In Section <a href="logical-operators.html#logical-operators">2.7</a>, we introduced logical operators which are operators between two logical vectors. In this section, we will discuss set operations between two vectors of the <strong>same type</strong>. Note that while the logical operators only makes sense for logical vectors, the operations we will introduce work for all three kinds of vectors. In the remaining part of this section, we will introduce several operations one by one.</p>
 <div id="numeric-vectors-2" class="section level3" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Numeric vectors</h3>
-<p>Let’s start from numeric vectors. Firstly, you need to create two numeric vectors <code>x</code> and <code>y</code>.</p>
+<p>Let’s start with numeric vectors. Firstly, let’s create two numeric vectors <code>x</code> and <code>y</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="set-operations-between-two-vectors.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
 <span id="cb2-2"><a href="set-operations-between-two-vectors.html#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p><strong><em>a. Intersection</em></strong><br />
@@ -529,11 +529,11 @@ To get values in either <code>x</code> or <code>y</code>, you can use the <code>
 To get values in <code>x</code> but not in <code>y</code>, you can use the <code>setdiff()</code> function. Notice that <code>x</code> is in the first argument and <code>y</code> is in the second in this situation.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="set-operations-between-two-vectors.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(x, y)</span>
 <span id="cb5-2"><a href="set-operations-between-two-vectors.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
-<p>Here, the result is <code>2</code> not <code>1 2</code>. That’s because for this operation, you will get unique elements of <code>x</code> and <code>y</code> firstly, then set difference between them.</p>
+<p>Here, the result is <code>2</code> not <code>1 2</code>. That’s because for this operation, you will get unique elements of <code>x</code> and <code>y</code> firstly, then find the set difference between them.</p>
 <p>Similarly, if you want to get values in <code>y</code> but not in <code>x</code>, <code>y</code> should be in the first argument and <code>x</code> is in the second.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="set-operations-between-two-vectors.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(y, x)</span>
 <span id="cb6-2"><a href="set-operations-between-two-vectors.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 5</span></span></code></pre></div>
-<p><strong><em>d. Set Equality</em></strong><br />
+<p><strong><em>d. Set equality</em></strong><br />
 To check whether the two vectors <code>x</code> and <code>y</code> are the same, you can use the <code>setequal()</code> function.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="set-operations-between-two-vectors.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(x, y)</span>
 <span id="cb7-2"><a href="set-operations-between-two-vectors.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
@@ -541,7 +541,7 @@ To check whether the two vectors <code>x</code> and <code>y</code> are the same,
 <p>Keep in mind, the <code>setequal()</code> function works by looking at whether the two vectors have same set of unique values. For example, you will get <code>TRUE</code> in the following example,</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="set-operations-between-two-vectors.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb8-2"><a href="set-operations-between-two-vectors.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p><strong><em>e. Membership Determination</em></strong><br />
+<p><strong><em>e. Membership determination</em></strong><br />
 To check whether each element of <code>x</code> is inside <code>y</code>, you can use the <code>is.element()</code> function or the <code>%in%</code> operator.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="set-operations-between-two-vectors.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.element</span>(x, y)</span>
 <span id="cb9-2"><a href="set-operations-between-two-vectors.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span>
@@ -598,7 +598,7 @@ To check whether each element of <code>x</code> is inside <code>y</code>, you ca
 </div>
 <div id="logical-vectors-1" class="section level3" number="2.8.3">
 <h3><span class="header-section-number">2.8.3</span> Logical vectors</h3>
-<p>Of course you can apply operations on logical vectors too.</p>
+<p>Of course you can also apply set operations on logical vectors.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="set-operations-between-two-vectors.html#cb12-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
 <span id="cb12-2"><a href="set-operations-between-two-vectors.html#cb12-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
 <span id="cb12-3"><a href="set-operations-between-two-vectors.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(c, d)</span>
@@ -611,8 +611,10 @@ To check whether each element of <code>x</code> is inside <code>y</code>, you ca
 <h3><span class="header-section-number">2.8.4</span> Exercises</h3>
 <p>Consider the vector <code>s1 &lt;- seq(from = 1, to = 100, length.out = 7)</code>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Compare <code>s1</code> to 50 and assign the result to name s2. compare <code>s1</code> to 80 and assign the result to name s3.</p></li>
-<li><p>Find the subvector of <code>s1</code> with values</p></li>
+<li><p>Compare <code>s1</code> to 50 to see whether the values of <code>s1</code> are bigger than 50, then assign the result to name s2. Compare <code>s1</code> to 80 to see whether the values of <code>s1</code> are less or equal to 80, then assign the result to name s3.</p></li>
+<li><p>Find the subvector of <code>s1</code> with values bigger than 50 and less or equal to 80.</p></li>
+<li><p>Can you use the intersection of <code>s2</code> and <code>s3</code> to do vector subsetting on <code>s1</code>? If not, please explain why.</p></li>
+<li><p>If you apply the five operations introduced in this section on <code>s2</code> and <code>s3</code>, you will get five results. Is there any result can be used to do vector subsetting on <code>s1</code>? If yes, please explain why.</p></li>
 </ol>
 
 </div>
