@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-09-22" />
+<meta name="date" content="2021-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="summary-of-operators.html"/>
 <link rel="next" href="dates.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -242,7 +242,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html"><i class="fa fa-check"></i><b>2.8</b> Set Operations between two vectors</a>
 <ul>
-<li class="chapter" data-level="2.8.1" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#numeric-vectors-2"><i class="fa fa-check"></i><b>2.8.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.8.1" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#operations"><i class="fa fa-check"></i><b>2.8.1</b> Numeric vectors</a></li>
 <li class="chapter" data-level="2.8.2" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#character-vectors-1"><i class="fa fa-check"></i><b>2.8.2</b> Character vectors</a></li>
 <li class="chapter" data-level="2.8.3" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#logical-vectors-1"><i class="fa fa-check"></i><b>2.8.3</b> Logical vectors</a></li>
 <li class="chapter" data-level="2.8.4" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#exercises-9"><i class="fa fa-check"></i><b>2.8.4</b> Exercises</a></li>
@@ -303,7 +303,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.17" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>2.17</b> NULL, NA, NaN, and Inf</a>
 <ul>
-<li class="chapter" data-level="2.17.1" data-path="null.html"><a href="null.html#null-1"><i class="fa fa-check"></i><b>2.17.1</b> NULL</a></li>
+<li class="chapter" data-level="2.17.1" data-path="null.html"><a href="null.html#null"><i class="fa fa-check"></i><b>2.17.1</b> NULL</a></li>
 <li class="chapter" data-level="2.17.2" data-path="null.html"><a href="null.html#NaN"><i class="fa fa-check"></i><b>2.17.2</b> NaN</a></li>
 <li class="chapter" data-level="2.17.3" data-path="null.html"><a href="null.html#Inf"><i class="fa fa-check"></i><b>2.17.3</b> Inf</a></li>
 <li class="chapter" data-level="2.17.4" data-path="null.html"><a href="null.html#a-comparison-of-the-four-special-values-in-r"><i class="fa fa-check"></i><b>2.17.4</b> A comparison of the four special values in R</a></li>
@@ -540,10 +540,10 @@ div.csl-indent {
 <span id="cb3-3"><a href="na.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1 NA  2 NA  3</span></span>
 <span id="cb3-4"><a href="na.html#cb3-4" aria-hidden="true" tabindex="-1"></a>b[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</span>
 <span id="cb3-5"><a href="na.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA NA</span></span></code></pre></div>
-<p>Now you have had a basic understanding of <code>NA</code>. In the following parts of this section, we want to introduce several properties of <code>NA</code>. Let’s start with class and type of <code>NA</code>.</p>
+<p>Now you have had a basic understanding of <code>NA</code>. In the following parts of this section, we want to introduce several properties of <code>NA</code>. Let’s start with <code>NA</code> is contagious.</p>
 <div id="na-is-contagious" class="section level3" number="2.10.1">
 <h3><span class="header-section-number">2.10.1</span> <code>NA</code> is contagious</h3>
-<p><code>NA</code> implies that the underlying value is not available. As a result, for most operations associated with <code>NA</code>, the results will also be <code>NA</code>, showing that <code>NA</code> is <strong>contagious</strong>.</p>
+<p><code>NA</code> implies that the underlying value is not available, in other words, there is uncertainty with the value. As a result, for most operations associated with <code>NA</code>, the results will also be <code>NA</code>, showing that <code>NA</code> is <strong>contagious</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="na.html#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb4-2"><a href="na.html#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="sc">+</span> <span class="dv">3</span></span>
 <span id="cb4-3"><a href="na.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
@@ -558,8 +558,12 @@ div.csl-indent {
 <div class="infobox caution">
 <ol style="list-style-type: decimal">
 <li><p>Think about what is the value of 1<sup>NA</sup> in R. Try to run it in R. Does it agree with your thoughts?</p></li>
-<li><p>Think about what is the value of 0<sup>NA</sup> in R. Try to run it in R. Does it agree with your thoughts? (Hint: we have <span class="math inline">\(0^0 = \lim_{x\to 0}x^x =\exp[\lim_{x\to 0} x\log(x)]=\exp[0] = 1\)</span>)</p></li>
+<li><p>Think about what is the value of 0<sup>NA</sup> in R. Try to run it in R. Does it agree with your thoughts?</p></li>
 </ol>
+<ul>
+<li>Answer 1. For any <span class="math inline">\(x\)</span>, we have <span class="math inline">\(1^x = \exp(\log (1^x)) = \exp(x \log 1) = \exp(x \cdot 0) = 1\)</span>. Since there is no uncertainty regarding the expression, the value of 1<sup>NA</sup> is 1</li>
+<li>Answer 2. We have <span class="math inline">\(0^0 = \lim_{x\to 0}x^x =\exp[\lim_{x\to 0} x\log(x)]=\exp[0] = 1\)</span>, and <span class="math inline">\(0^1 = 0\)</span>. In other words, the underlying value of 0<sup>NA</sup> is 1 if <code>NA</code> takes the value 0, and it is 0 if <code>NA</code> takes the value 1. Since the underlying value of 0<sup>NA</sup> not deterministic, the value of 0<sup>NA</sup> is <code>NA</code>.</li>
+</ul>
 </div>
 <p>Now, let’s talk about what impact the <code>NA</code> values make when we apply statistical functions. Let’s create a vector containing <code>NA</code> values, and apply some functions on it.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="na.html#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="cn">NA</span>, <span class="dv">2</span>)</span>
@@ -571,8 +575,8 @@ div.csl-indent {
 <span id="cb6-7"><a href="na.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
 <span id="cb6-8"><a href="na.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span>
 <span id="cb6-9"><a href="na.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
-<p>As you can see, for many functions on vectors, as long as there exists at least one <code>NA</code> values, the results are often impossible to determine, hence resulting an <code>NA</code> value as well.</p>
-<p>As a result, you may want to ignore the <code>NA</code> values during the function evaluation. Fortunately, most functions on vectors provide an optional argument <code>na.rm</code>, which takes a logical value, indicating whether to remove <code>NA</code> before applying the functions. Let’s see the following examples.</p>
+<p>As you can see, for many statistical functions on vectors, as long as there exists at least one <code>NA</code> values in vectors, the results are often impossible to determine, hence resulting an <code>NA</code> value as well.</p>
+<p>As a result, you may want to ignore the <code>NA</code> values during the function evaluation. Fortunately, most statistical functions on vectors provide an optional argument <code>na.rm</code>, which takes a logical value, indicating whether to remove <code>NA</code> before applying the functions. Let’s see the following examples.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="na.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb7-2"><a href="na.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
 <span id="cb7-3"><a href="na.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -584,57 +588,66 @@ div.csl-indent {
 <span id="cb8-2"><a href="na.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x_no_na) </span>
 <span id="cb8-3"><a href="na.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x_no_na)</span>
 <span id="cb8-4"><a href="na.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x_no_na)</span></code></pre></div>
+<p>Interesting, the <code>summary()</code> function will deal with the <code>NA</code> values automatically by removing them before computing the five percentiles and the mean. In addition, the <code>summary()</code> function provides a column which shows the number of <code>NA</code>s in <code>x</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="na.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x) </span>
+<span id="cb9-2"><a href="na.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb9-3"><a href="na.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1.00    1.75    2.50    2.50    3.25    4.00       2</span></span></code></pre></div>
 </div>
 <div id="work-with-na-values" class="section level3" number="2.10.2">
 <h3><span class="header-section-number">2.10.2</span> Work with <code>NA</code> values</h3>
 <p>When there are <code>NA</code> values in our vector, there is nothing to be afraid of as there are many useful tools we can use.</p>
 <p>Let’s use <code>x &lt;- c(1, NA, 3, 4, NA, 2)</code> throughout this part.</p>
 <p><strong><em>a. Find indices with missing values</em></strong></p>
-<p>To find indices with missing values, you may be tempted to use the comparison operator introduced in Section <a href="comparison-vector-subsetting.html#comparison-vector-subsetting">2.6</a> and compare with <code>NA</code>. Let’s try the following code.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="na.html#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
-<p>You get a vector of all values equaling <code>NA</code>. This is actually not surprising for the following reason. Given that the <code>NA</code> we are comparing can take any unknown value, any comparison with it will result in an <code>NA</code> value due to the lack of information.</p>
-<p>Instead of using <code>==</code> for finding missing values, the correct way is to use the <code>is.na()</code> function, which returns a logical vector representing whether each element is missing or not. Then, we can use the <code>which()</code> function to find the indices for the <code>NA</code> values. And the <code>sum()</code> function on the logical vector returns the number of <code>NA</code> values in the vector, following the cocercion rule described in Section <a href="vector-functions.html#func-logical-vector">2.5.3</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="na.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(x)        <span class="co">#logical vector     </span></span>
-<span id="cb10-2"><a href="na.html#cb10-2" aria-hidden="true" tabindex="-1"></a>x_na</span>
-<span id="cb10-3"><a href="na.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE FALSE  TRUE FALSE</span></span>
-<span id="cb10-4"><a href="na.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(x_na)             <span class="co">#numeric vector</span></span>
-<span id="cb10-5"><a href="na.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 5</span></span>
-<span id="cb10-6"><a href="na.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x_na)               <span class="co">#the number of NAs in x </span></span>
-<span id="cb10-7"><a href="na.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb10-8"><a href="na.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span>x_na)              <span class="co">#the number of non-NAs in x</span></span>
-<span id="cb10-9"><a href="na.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
-<p>If you want to detect whether there is any <code>NA</code> values in the vector, you can use the <code>anyNA()</code> function.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="na.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>))</span>
-<span id="cb11-2"><a href="na.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb11-3"><a href="na.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb11-4"><a href="na.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Firstly, we will introduce how to find indices with missing values. To find the indices, you may be tempted to use the comparison operator introduced in Section <a href="comparison-vector-subsetting.html#comparison-vector-subsetting">2.6</a>. Let’s try to compare <code>x</code> with <code>NA</code> as the following code.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="na.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
+<p>You get a vector of all values equaling <code>NA</code>! This is actually not surprising for the following reason. Given that the <code>NA</code> you are comparing can take any unknown value, any comparison with it will result in an <code>NA</code> value due to the lack of information.</p>
+<p>Instead of using <code>==</code> for finding missing values, the correct way is to use the <code>is.na()</code> function, which returns a logical vector <code>x_na</code> representing whether the value of each element is missing or not. Then, you can use the <code>which()</code> function which can return the locations of all <code>TRUE</code> values to find the indices for the <code>NA</code> values. Here, the <code>sum()</code> function on the logical vector <code>x_na</code> returns the number of <code>NA</code> values in the vector, following the cocercion rule described in Section <a href="vector-functions.html#func-logical-vector">2.5.3</a>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="na.html#cb11-1" aria-hidden="true" tabindex="-1"></a>x_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(x)        <span class="co">#logical vector     </span></span>
+<span id="cb11-2"><a href="na.html#cb11-2" aria-hidden="true" tabindex="-1"></a>x_na</span>
+<span id="cb11-3"><a href="na.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE FALSE  TRUE FALSE</span></span>
+<span id="cb11-4"><a href="na.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(x_na)             <span class="co">#numeric vector</span></span>
+<span id="cb11-5"><a href="na.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 5</span></span>
+<span id="cb11-6"><a href="na.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x_na)               <span class="co">#the number of NAs in x </span></span>
+<span id="cb11-7"><a href="na.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb11-8"><a href="na.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span>x_na)              <span class="co">#the number of non-NAs in x</span></span>
+<span id="cb11-9"><a href="na.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<p>If you only want to detect whether there is any <code>NA</code> values in the vector, you can use the <code>anyNA()</code> function.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="na.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>))</span>
+<span id="cb12-2"><a href="na.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb12-3"><a href="na.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb12-4"><a href="na.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p><strong><em>b. Remove missing values</em></strong></p>
-<p>Sometimes, you may want to simply remove the missing values. To do that, you can use a logical vector to do vector subsetting as introduced in Section <a href="comparison-vector-subsetting.html#vector-subsetting">2.6.3</a>. The specific logical vector you want to use is the opposite (<code>!</code>) of the logical vector that represents missing values.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="na.html#cb12-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x[<span class="sc">!</span>x_na]</span>
-<span id="cb12-2"><a href="na.html#cb12-2" aria-hidden="true" tabindex="-1"></a>x2</span>
-<span id="cb12-3"><a href="na.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 4 2</span></span></code></pre></div>
+<p>Sometimes, you may want to simply remove the missing values. To do that, you can use a logical vector to do vector subsetting as introduced in Section <a href="comparison-vector-subsetting.html#vector-subsetting">2.6.3</a>. The specific logical vector you want to use is the opposite (<code>!</code>) of the logical vector that represents missing values. Then you will get a subvector of <code>x</code> which keeps all values except <code>NA</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="na.html#cb13-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x[<span class="sc">!</span>x_na]</span>
+<span id="cb13-2"><a href="na.html#cb13-2" aria-hidden="true" tabindex="-1"></a>x2</span>
+<span id="cb13-3"><a href="na.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 4 2</span></span></code></pre></div>
 <p><strong><em>c. Impute missing values</em></strong></p>
-<p>In many applications, naively removing the missing values before doing the analysis may lead to incorrect inference. Usually, it is useful to make the data complete by <strong>imputing</strong> the missing values. For example, we can use mean imputing or median imputing, which uses the mean or median of the non-missing values.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="na.html#cb13-1" aria-hidden="true" tabindex="-1"></a>x_impute <span class="ot">&lt;-</span> x</span>
-<span id="cb13-2"><a href="na.html#cb13-2" aria-hidden="true" tabindex="-1"></a>x_impute[x_na] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-3"><a href="na.html#cb13-3" aria-hidden="true" tabindex="-1"></a>x_impute</span>
-<span id="cb13-4"><a href="na.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.0 2.5 3.0 4.0 2.5 2.0</span></span>
-<span id="cb13-5"><a href="na.html#cb13-5" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb13-6"><a href="na.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1 NA  3  4 NA  2</span></span></code></pre></div>
-<p>In <code>x_impute</code>, the 2nd and 5th location of <code>x</code> is replaced by 2.5, the average of the non-missing values of <code>x</code>.</p>
+<p>In many applications, naively removing the missing values before doing the analysis may lead to incorrect inference. Usually, it is useful to make the data complete by <strong>imputing</strong> the missing values. For example, you can use mean imputing or median imputing, which replaces the missing values with the mean or median of the non-missing values.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="na.html#cb14-1" aria-hidden="true" tabindex="-1"></a>x_impute <span class="ot">&lt;-</span> x</span>
+<span id="cb14-2"><a href="na.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="na.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
+<span id="cb14-4"><a href="na.html#cb14-4" aria-hidden="true" tabindex="-1"></a>x_impute[x_na] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-5"><a href="na.html#cb14-5" aria-hidden="true" tabindex="-1"></a>x_impute</span>
+<span id="cb14-6"><a href="na.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.0 2.5 3.0 4.0 2.5 2.0</span></span>
+<span id="cb14-7"><a href="na.html#cb14-7" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb14-8"><a href="na.html#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1 NA  3  4 NA  2</span></span></code></pre></div>
+<div class="infobox caution">
+<p>If you want to compare the values of an object before and after some operations, you can create a new object with the same value as the original object (here, we create <code>x_impute</code> which has the same value as <code>x</code>), then make operations on <code>x_impute</code> without changing the value of <code>x</code>.</p>
+</div>
+<p>In <code>x_impute</code>, values of the 2nd and 5th elements are replaced by 2.5, the average of the non-missing values of <code>x</code>.</p>
 <p><strong><em>d. Replace non-standard missing values with <code>NA</code> in the vector</em></strong></p>
 <p>Sometimes, the data we collected may not use <code>NA</code> to indicate missingness. For example, in the following vector <code>x3</code>, the value <code>999</code> represents the corresponding element is missing.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="na.html#cb14-1" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">999</span>, <span class="dv">1</span>, <span class="dv">999</span>, <span class="dv">3</span>, <span class="dv">999</span>, <span class="dv">999</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="na.html#cb15-1" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">999</span>, <span class="dv">1</span>, <span class="dv">999</span>, <span class="dv">3</span>, <span class="dv">999</span>, <span class="dv">999</span>)</span></code></pre></div>
 <p>It is highly recommended to convert the values into <code>NA</code> before carrying out any analysis.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="na.html#cb15-1" aria-hidden="true" tabindex="-1"></a>x3[x3 <span class="sc">==</span> <span class="dv">999</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb15-2"><a href="na.html#cb15-2" aria-hidden="true" tabindex="-1"></a>x3</span>
-<span id="cb15-3"><a href="na.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>
-<p>Let’s see another example where both <code>999</code> and <code>-999</code> represent the value is missing.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="na.html#cb16-1" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">999</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">999</span>)</span>
-<span id="cb16-2"><a href="na.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="do">##999 and -999 are the values indicating missingness</span></span>
-<span id="cb16-3"><a href="na.html#cb16-3" aria-hidden="true" tabindex="-1"></a>x4[x4 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">999</span>, <span class="sc">-</span><span class="dv">999</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb16-4"><a href="na.html#cb16-4" aria-hidden="true" tabindex="-1"></a>x4</span>
-<span id="cb16-5"><a href="na.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="na.html#cb16-1" aria-hidden="true" tabindex="-1"></a>x3[x3 <span class="sc">==</span> <span class="dv">999</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb16-2"><a href="na.html#cb16-2" aria-hidden="true" tabindex="-1"></a>x3</span>
+<span id="cb16-3"><a href="na.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>
+<p>Let’s see another example where both <code>999</code> and <code>-999</code> represent the value is missing. You can convert all <code>999</code> and <code>-999</code> into <code>NA</code> by using operations introduced in Section <a href="set-operations-between-two-vectors.html#operations">2.8.1</a></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="na.html#cb17-1" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">999</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">999</span>)</span>
+<span id="cb17-2"><a href="na.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="do">##999 and -999 are the values indicating missingness</span></span>
+<span id="cb17-3"><a href="na.html#cb17-3" aria-hidden="true" tabindex="-1"></a>x4[x4 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">999</span>, <span class="sc">-</span><span class="dv">999</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb17-4"><a href="na.html#cb17-4" aria-hidden="true" tabindex="-1"></a>x4</span>
+<span id="cb17-5"><a href="na.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>
 </div>
 <div id="exercises-10" class="section level3" number="2.10.3">
 <h3><span class="header-section-number">2.10.3</span> Exercises</h3>
@@ -642,12 +655,13 @@ div.csl-indent {
 <li>For the vector <code>x &lt;- rep(c(1, 2, NA), 3:5)</code>,</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
+<li>Verify each value of <code>summary(x, na.rm = TRUE)</code> by using other functions.</li>
 <li>find the indices with missing values;</li>
 <li>create a vector x_no_na containing the non-missing values in <code>x</code>;</li>
 <li>replace those missing values by the median of the non-missing values in <code>x</code>.</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>For the vector <code>y &lt;- rep(c("NA", 2, NA), 5:3)</code>, the values of both <code>"NA"</code> and <code>NA</code> indicate missingness. Find the indices of <code>y</code> that correspond to missing values.</li>
+<li>For the vector <code>y &lt;- rep(c("N", 2, "A"), 5:3)</code>, the values of both <code>"N"</code> and <code>"A"</code> indicate missingness. Convert non-standard missing values to <code>NA</code>, then find the indices of <code>y</code> that correspond to missing values.</li>
 </ol>
 
 </div>
