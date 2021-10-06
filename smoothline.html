@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -549,7 +554,7 @@ div.csl-indent {
 <span id="cb395-2"><a href="smoothline.html#cb395-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb395-3"><a href="smoothline.html#cb395-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
 <span id="cb395-4"><a href="smoothline.html#cb395-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-417-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-416-1.png" width="576" /></p>
 <p>Perhaps it is helpful to review the code for generating a scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="smoothline.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p>We can see that the only difference is the use of different geoms. In fact, the mechanism of <code>geom_smooth()</code> is that it fits a smooth line according to the points of the given variable pair. By default, it uses the <strong>loess</strong> method (locally estimated scatterplot smoothing), which is a popular nonparametric regression technique. In addition to the smoothline, it also generates a shaded area, representing the confidence interval around the fitted smoothline. To hide this shaded area, you can add the argument <code>se = FALSE</code> as a global aesthetic.</p>
@@ -557,7 +562,7 @@ div.csl-indent {
 <p>In addition to the default loess method for smoothline fit, <code>geom_smooth()</code> also provides other smoothing moethods. For example, we can set <code>method = "lm"</code> to fit a linear line.</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="smoothline.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
 <span id="cb398-2"><a href="smoothline.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-420-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-419-1.png" width="576" /></p>
 </div>
 <div id="aesthetics-in-smoothline-fits" class="section level3" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Aesthetics in Smoothline Fits</h3>
@@ -567,34 +572,34 @@ div.csl-indent {
 <p>When we map a variable to the <code>group</code> aesthetic, <code>geom_smooth</code> will first divide all the data points into different <em>groups</em> according to the variable value, and then fit a separate smoothline for each group.</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="smoothline.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">group =</span> good_qual))</span>
 <span id="cb400-2"><a href="smoothline.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-422-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-421-1.png" width="576" /></p>
 <p>You can see that two smoothlines are generated. However, it is not clear from the plot which group each smoothline corresponds to. To make the two smoothlines different, you can map the variable to other aesthetics.</p>
 <p><strong><em>b. Color</em></strong></p>
 <p>As in <code>geom_point()</code>, we can map the variable to the color aesthetic.</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="smoothline.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual))</span>
 <span id="cb401-2"><a href="smoothline.html#cb401-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-423-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-422-1.png" width="576" />
 This is a more informative plot than the one using <code>group</code> aesthetic as you can see the two smoothlines have different colors according to the <code>good_qual</code> variable.ß</p>
 <p><strong><em>c. Linetype</em></strong></p>
 <p>Another useful aesthetic that was not applicable in <code>geom_point()</code> is <code>linetype</code>, which controls the linetypes for each smoothline.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="smoothline.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">linetype =</span> good_qual))</span>
 <span id="cb402-2"><a href="smoothline.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-424-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-423-1.png" width="576" />
 The plot shows a dashed line for the smoothline corresponding to <code>good_qual == TRUE</code>, and a solid line for the smoothline corresponding to <code>good_qual == FALSE</code>.</p>
 <p><strong><em>d. Size</em></strong></p>
 <p>You can also map <code>good_qual</code> to the <code>size</code> aesthetic, which controls the width of each smoothline fit.</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="smoothline.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">size =</span> good_qual))</span>
 <span id="cb403-2"><a href="smoothline.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-425-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-424-1.png" width="576" /></p>
 <p>It is worth to mention that <code>shape</code> is not a valid aesthetic for <code>geom_smooth</code> as it doesn’t make sense to talk about the shape of a line.</p>
 <div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="smoothline.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">shape =</span> good_qual))</span>
 <span id="cb404-2"><a href="smoothline.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-426-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-425-1.png" width="576" /></p>
 <p>When you try to map a variable to the <code>shape</code> aesthetic, <code>geom_smooth()</code> will show a warning message “Warning: Ignoring unknown aesthetics: shape,” and use the <code>group</code> aesthetic instead.</p>
 <p>Naturally, you can also have global aesthetic and it is straightforward to combine multiple aesthetics in the same plot.</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="smoothline.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">linetype =</span> <span class="dv">2</span>)</span>
 <span id="cb405-2"><a href="smoothline.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-427-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-426-1.png" width="576" /></p>
 
 </div>
 </div>

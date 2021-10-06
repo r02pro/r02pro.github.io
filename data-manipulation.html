@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -542,15 +547,15 @@ div.csl-indent {
 <div id="data-manipulation" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Manipulation</h1>
 <p>For conducting data analysis, we often need to conduct various kinds of data manipulation. We will use the <code>ahp</code> dataset in the <strong>r02pro</strong> package throughout this chapter. Let’s first review the dataset.</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="data-manipulation.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb582-2"><a href="data-manipulation.html#cb582-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="data-manipulation.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb590-2"><a href="data-manipulation.html#cb590-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
 <p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="data-manipulation.html#cb583-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="data-manipulation.html#cb591-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
 <p>To view the entire dataset, you can use the <code>View()</code> function, which will open the dataset in the new file window.</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="data-manipulation.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="data-manipulation.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
 <p>To get the first 6 rows of <code>ahp</code>, you can use the <code>head()</code> function, which also has an optional argument if you want a different number of top rows.</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="data-manipulation.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp)</span>
-<span id="cb585-2"><a href="data-manipulation.html#cb585-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="data-manipulation.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp)</span>
+<span id="cb593-2"><a href="data-manipulation.html#cb593-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
 <p>The following are some possible questions we may want to explore.</p>
 <ol style="list-style-type: decimal">
 <li><p>(pick observations by their values) Find the houses that are sold in Jan 2009.</p></li>

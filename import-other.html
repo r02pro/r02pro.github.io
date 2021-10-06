@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -545,33 +550,33 @@ div.csl-indent {
 <div id="export-and-import-spss-files" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Export and Import SPSS Files</h3>
 <p>Let’s first defined a data frame for</p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="import-other.html#cb561-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb561-2"><a href="import-other.html#cb561-2" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb561-3"><a href="import-other.html#cb561-3" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
-<span id="cb561-4"><a href="import-other.html#cb561-4" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">tibble</span>(dig_num, ani_char,conditions)</span>
-<span id="cb561-5"><a href="import-other.html#cb561-5" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="import-other.html#cb569-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb569-2"><a href="import-other.html#cb569-2" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb569-3"><a href="import-other.html#cb569-3" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
+<span id="cb569-4"><a href="import-other.html#cb569-4" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">tibble</span>(dig_num, ani_char,conditions)</span>
+<span id="cb569-5"><a href="import-other.html#cb569-5" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
 <p>The data frame <code>my_animals</code> will be used as in Section <a href="export-data.html#export-data">5.1</a>. You can use the function <code>write_sav()</code> to export a data frame into a SPSS .sav file.</p>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="import-other.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb562-2"><a href="import-other.html#cb562-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sav</span>(my_animals, <span class="st">&quot;my_animals.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="import-other.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb570-2"><a href="import-other.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sav</span>(my_animals, <span class="st">&quot;my_animals.sav&quot;</span>)</span></code></pre></div>
 <p>To read a SPSS file ending in .sav or .por, you can use the function <code>read_spss()</code> which will automatically call <code>read_sav()</code> for .sav files and <code>read_por()</code> for .por files.</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="import-other.html#cb563-1" aria-hidden="true" tabindex="-1"></a>my_animals_spss <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;my_animals.sav&quot;</span>)</span>
-<span id="cb563-2"><a href="import-other.html#cb563-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="import-other.html#cb571-1" aria-hidden="true" tabindex="-1"></a>my_animals_spss <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;my_animals.sav&quot;</span>)</span>
+<span id="cb571-2"><a href="import-other.html#cb571-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span></code></pre></div>
 </div>
 <div id="export-and-import-sas-files" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Export and Import SAS Files</h3>
 <p>You can use the function <code>write_sas()</code> to export a data frame into a SAS .sas7bdat file.</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="import-other.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sas</span>(my_animals, <span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="import-other.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sas</span>(my_animals, <span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span></code></pre></div>
 <p>To import a SAS file, you can use the function <code>read_sas()</code>.</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="import-other.html#cb565-1" aria-hidden="true" tabindex="-1"></a>my_animals_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span>
-<span id="cb565-2"><a href="import-other.html#cb565-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="import-other.html#cb573-1" aria-hidden="true" tabindex="-1"></a>my_animals_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span>
+<span id="cb573-2"><a href="import-other.html#cb573-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span></code></pre></div>
 </div>
 <div id="export-and-import-stata-files" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Export and Import Stata Files</h3>
 <p>Lastly, let’s talk about Stata files. You can use the function <code>write_dta()</code> to export a data frame into a Stata .dta file.</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="import-other.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_dta</span>(my_animals, <span class="st">&quot;my_animals.dta&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="import-other.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_dta</span>(my_animals, <span class="st">&quot;my_animals.dta&quot;</span>)</span></code></pre></div>
 <p>To read a Stata file ending in .dta, you can use the function <code>read_dta()</code>.</p>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="import-other.html#cb567-1" aria-hidden="true" tabindex="-1"></a>my_animals_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;my_animals.dta&quot;</span>)</span>
-<span id="cb567-2"><a href="import-other.html#cb567-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="import-other.html#cb575-1" aria-hidden="true" tabindex="-1"></a>my_animals_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;my_animals.dta&quot;</span>)</span>
+<span id="cb575-2"><a href="import-other.html#cb575-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span></code></pre></div>
 </div>
 <div id="import-using-the-menu" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Import using the menu</h3>
@@ -580,7 +585,7 @@ div.csl-indent {
 <div id="exercise-1" class="section level3" number="5.4.5">
 <h3><span class="header-section-number">5.4.5</span> Exercise</h3>
 <p>You can run the following code to do the exercise.</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="import-other.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="import-other.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.1&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

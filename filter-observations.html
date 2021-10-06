@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -542,7 +547,7 @@ div.csl-indent {
 <div id="filter-observations" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Filter Observations and Objects Masking</h2>
 <p>Let’s start with the first task outlined at the beginning of this chapter. Suppose we want to find the houses that are sold in Jan 2009. You can use the function <code>filter()</code> in the <strong>dplyr</strong> package, a member of the <strong>tidyverse</strong> package. If you haven’t installed the <strong>tidyverse</strong> package, you need to install it. Let’s first load the <strong>dplyr</strong> package.</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="filter-observations.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="filter-observations.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div id="objects-masking" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Objects Masking</h3>
 <p>After loading the package <strong>dplyr</strong>, you can see the following message</p>
@@ -551,14 +556,14 @@ div.csl-indent {
     filter, lag</code></pre>
 <p>The message appears because <strong>dplyr</strong> contains the functions <code>filter()</code> and <code>lag()</code> which are already defined and preloaded in the R package <strong>stats</strong>. As a result, the original functions are masked by the new definition in <strong>dplyr</strong>.</p>
 <p>In this scenario when the same function name is shared by multiple packages, we can add the package name as a prefix to the function name with <em>double colon</em> (<code>::</code>). For example, <code>stats::filter()</code> represents the <code>filter()</code> function in the <strong>stats</strong> package, while <code>dplyr::filter()</code> represents the <code>filter()</code> function in the <strong>dplyr</strong> package. You can also look at their documentations.</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="filter-observations.html#cb588-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
-<span id="cb588-2"><a href="filter-observations.html#cb588-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="filter-observations.html#cb596-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
+<span id="cb596-2"><a href="filter-observations.html#cb596-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
 <p>It is helpful to verify which version of <code>filter()</code> you are using by typing the function name <code>filter</code>.</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="filter-observations.html#cb589-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="filter-observations.html#cb597-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
 <p>Usually, R will use the function in the package that is loaded last. To verify the search path, you can use the <code>search()</code> function. R will</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="filter-observations.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="filter-observations.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code></pre></div>
 <p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="filter-observations.html#cb591-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="filter-observations.html#cb599-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
 <p>The following are some possible questions we may want to explore.</p>
 <ol style="list-style-type: decimal">
 <li><p>(pick observations by their values) Find the houses that are larger than 2K sq. ft.</p></li>

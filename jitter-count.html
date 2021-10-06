@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -545,27 +550,27 @@ div.csl-indent {
 <div id="overplotting" class="section level3" number="4.9.1">
 <h3><span class="header-section-number">4.9.1</span> Overplotting</h3>
 <p>As an example, let’s generate a scatterplot between <code>kit_qual</code> and <code>heat_qual</code>.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="jitter-count.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb431-2"><a href="jitter-count.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb431-3"><a href="jitter-count.html#cb431-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual)) <span class="co">#overplotting</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-452-1.png" width="576" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="jitter-count.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb439-2"><a href="jitter-count.html#cb439-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb439-3"><a href="jitter-count.html#cb439-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual)) <span class="co">#overplotting</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-461-1.png" width="576" /></p>
 <p>From the plot, you may immediately realize that there are many overlapping data points. Actually, there will be at most 16 possible distinct points on the plot since both variables have 4 categories. This phenomenon is called <strong>overplotting</strong>. Overplotting is not desirable since it hides useful information about the joint distribution. For example, we don’t know which value pairs out of the 16 possibilities appear more frequently in the data.</p>
 <p>To solve the overplotting issues, we introduce two solutions, namely jittering and count plots.</p>
 </div>
 <div id="jitter" class="section level3" number="4.9.2">
 <h3><span class="header-section-number">4.9.2</span> Jittering</h3>
 <p>The first method for solving the overplotting issue is to add a small random perturbation to all datapoints, i.e., <strong>jittering</strong>. You can use the <code>geom_jitter()</code> function which works by first perturb the data points and then generate a scatterplot.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="jitter-count.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-453-1.png" width="576" /></p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="jitter-count.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-462-1.png" width="576" /></p>
 <p>For the jittered plot, we can clearly see which pair of <code>kit_qual</code> and <code>heat_qual</code> have more observations. By default, the perturbation will be performed both vertically and horizontally with the same amount of 40% of the resolution of the data. To customize the amount of jittering, you can specify the arguments <code>width</code> as the amount of horizontal jittering and <code>height</code> as the amount of vertical jittering in the unit of the resolution of the data. To turn off the horizontal jittering, you can specify <code>width = 0</code>.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="jitter-count.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual),  <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-454-1.png" width="576" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="jitter-count.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual),  <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-463-1.png" width="576" /></p>
 </div>
 <div id="count" class="section level3" number="4.9.3">
 <h3><span class="header-section-number">4.9.3</span> Counts Plots</h3>
 <p>When we want to visualize the distribution of a pair of discrete variables, another method to solve the overplotting issue is the <strong>counts plot</strong>, which uses circles of different sizes to represent the frequency of each value pair. You can use the function <code>geom_count()</code> to generate a counts plot.</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="jitter-count.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="jitter-count.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-464-1.png" width="576" /></p>
 <p>From this plot, you can clearly tell the frequency of each value pair by the legend showing the relationship between the size of the circle and the count.</p>
 
 </div>

@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -693,20 +698,20 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <p>After talking about dates, it is natural to introduce how <strong>times</strong> are represented in R. Just like dates, let’s first get the time at the current moment using the <code>Sys.time()</code> function. You can also check its class, internal storage type, and structure by the <code>class()</code>, <code>typeof()</code>, and <code>str()</code> functions.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dates.html#cb258-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb258-2"><a href="dates.html#cb258-2" aria-hidden="true" tabindex="-1"></a>now</span>
-<span id="cb258-3"><a href="dates.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 07:44:05 EDT&quot;</span></span>
+<span id="cb258-3"><a href="dates.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 17:39:27 EDT&quot;</span></span>
 <span id="cb258-4"><a href="dates.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(now)</span>
 <span id="cb258-5"><a href="dates.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
 <span id="cb258-6"><a href="dates.html#cb258-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(now)</span>
 <span id="cb258-7"><a href="dates.html#cb258-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
 <span id="cb258-8"><a href="dates.html#cb258-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(now)</span>
-<span id="cb258-9"><a href="dates.html#cb258-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2021-10-06 07:44:05&quot;</span></span></code></pre></div>
+<span id="cb258-9"><a href="dates.html#cb258-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2021-10-06 17:39:27&quot;</span></span></code></pre></div>
 <p>The object <code>now</code> is of class <code>POSIXct</code>. The second element of <code>class(now)</code> is <code>POSIXt</code>, which is a parent class for class <code>POSIXct</code> and class <code>PISIXlt</code>. This parent class <code>POSIXt</code> is used to allow operations such as subtraction to mix the two classes.</p>
 <p>From the result of <code>typeof(now)</code>, we know that similar to dates, the <code>POSIXct</code> class used to represent times is also stored as <code>double</code>. Indeed, the class <code>POSIXct</code> represents the (signed) number of seconds since the beginning of 1970 as a numeric vector.</p>
 <p>You can also get the time of an hour ago or a minute later. Now, here the difference is in the unit of seconds instead of days for the date class.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dates.html#cb259-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">-</span> <span class="dv">3600</span></span>
-<span id="cb259-2"><a href="dates.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 06:44:05 EDT&quot;</span></span>
+<span id="cb259-2"><a href="dates.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 16:39:27 EDT&quot;</span></span>
 <span id="cb259-3"><a href="dates.html#cb259-3" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="dv">60</span></span>
-<span id="cb259-4"><a href="dates.html#cb259-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 07:45:05 EDT&quot;</span></span></code></pre></div>
+<span id="cb259-4"><a href="dates.html#cb259-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 17:40:27 EDT&quot;</span></span></code></pre></div>
 <p>Besides all the elements for dates you can use for the time class object, a list of other commonly used elements of times and the corresponding conversion specifications is summarized in the following table.</p>
 <table>
 <thead>
@@ -720,17 +725,17 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <tr class="odd">
 <td align="left">%H</td>
 <td align="left">hours</td>
-<td align="left">07</td>
+<td align="left">17</td>
 </tr>
 <tr class="even">
 <td align="left">%M</td>
 <td align="left">minutes</td>
-<td align="left">44</td>
+<td align="left">39</td>
 </tr>
 <tr class="odd">
 <td align="left">%S</td>
 <td align="left">seconds</td>
-<td align="left">05</td>
+<td align="left">27</td>
 </tr>
 <tr class="even">
 <td align="left">%Z</td>
@@ -741,16 +746,16 @@ Of course, an error will show up if you try to do addition or subtraction operat
 </table>
 <p>Just like dates, you can format the time into characters via the <code>format()</code> function.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dates.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="st">&quot;Hi! The current time in %Z (Time Zone) is %A (weekday), year %Y, month %m, day %d, hour %H, min %M, second %S. &quot;</span>)</span>
-<span id="cb260-2"><a href="dates.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Wednesday (weekday), year 2021, month 10, day 06, hour 07, min 44, second 05. &quot;</span></span></code></pre></div>
+<span id="cb260-2"><a href="dates.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Wednesday (weekday), year 2021, month 10, day 06, hour 17, min 39, second 27. &quot;</span></span></code></pre></div>
 <p>You can also display the time in a different time zone by setting the <code>tz</code> argument in the <code>format()</code> function.</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dates.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)                 <span class="co">#Coordinated Universal Time</span></span>
-<span id="cb261-2"><a href="dates.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 11:44:05&quot;</span></span>
+<span id="cb261-2"><a href="dates.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 21:39:27&quot;</span></span>
 <span id="cb261-3"><a href="dates.html#cb261-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>) <span class="co">#Pacific Standard Time</span></span>
-<span id="cb261-4"><a href="dates.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 04:44:05&quot;</span></span>
+<span id="cb261-4"><a href="dates.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 14:39:27&quot;</span></span>
 <span id="cb261-5"><a href="dates.html#cb261-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)    <span class="co">#Eastern Standard Time</span></span>
-<span id="cb261-6"><a href="dates.html#cb261-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 07:44:05&quot;</span></span>
+<span id="cb261-6"><a href="dates.html#cb261-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 17:39:27&quot;</span></span>
 <span id="cb261-7"><a href="dates.html#cb261-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)       <span class="co">#Greenwich Mean Time </span></span>
-<span id="cb261-8"><a href="dates.html#cb261-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 12:44:05&quot;</span></span></code></pre></div>
+<span id="cb261-8"><a href="dates.html#cb261-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-06 22:39:27&quot;</span></span></code></pre></div>
 <p>To create a time object from a character, you can use the <code>as.POSIXlt()</code> function with the optional <code>format</code> argument.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dates.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;2021-09-21 13:14:15&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span>
 <span id="cb262-2"><a href="dates.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span>
@@ -758,7 +763,7 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <span id="cb262-4"><a href="dates.html#cb262-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span></code></pre></div>
 <p>Similar as the difference of dates, the difference of two times is also an object of class <code>difftime</code>. You can again use the <code>as.difftime()</code> function to help with getting a time difference object in the given unit. For example, to get the time 2 days 3 hours and 4 minutes later, you can use the following.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dates.html#cb263-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">3</span>, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;mins&quot;</span>) </span>
-<span id="cb263-2"><a href="dates.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-08 10:48:05 EDT&quot;</span></span></code></pre></div>
+<span id="cb263-2"><a href="dates.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-08 20:43:27 EDT&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-13" class="section level3" number="2.13.3">
 <h3><span class="header-section-number">2.13.3</span> Exercises</h3>

@@ -356,10 +356,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#an-introduction-to-line-plots"><i class="fa fa-check"></i><b>4.7.1</b> An Introduction to Line Plots</a></li>
-<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.2</b> Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
@@ -546,16 +551,16 @@ div.csl-indent {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Object-Assignment.html#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span> <span class="co">#addition</span></span>
 <span id="cb13-2"><a href="Object-Assignment.html#cb13-2" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span> <span class="co">#subtraction</span></span>
 <span id="cb13-3"><a href="Object-Assignment.html#cb13-3" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">/</span> <span class="dv">3</span> <span class="co">#division</span></span></code></pre></div>
-<p>You need to type the expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, we will introduce how to assign the value of the <code>exp(3) / log(20,3) * 7</code> to a name for future use. Then, for any operation involving <code>exp(3) / log(20,3) * 7</code>, you can just use the corresponding name instead.</p>
+<p>You need to type the expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, we will introduce how to do <strong>object assignment</strong> with <code>exp(3) / log(20,3) * 7</code> which can help you to assign the value of it to a name for future use. Then, for any operation involving <code>exp(3) / log(20,3) * 7</code>, you can just use the corresponding name instead.</p>
 <div id="what-is-an-r-object" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> What is an R Object?</h3>
-<p>Firstly, we will introduce the most important thing in R, which is called <strong>object</strong>. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, and <code>floor(7 / 3)</code> is also an object.</p>
-<p>In the above examples, there is only one <strong>element</strong> in the result of each object. However, the object can contain more than one elements in the result, and each element has its own <strong>value</strong>. Notice that different elements can have the same value. Values can be of three types including numerical, character, and logical.</p>
-<p>For example, <code>1 + 2</code> is an object with one element of value 3.</p>
+<p>Before we get started, let’s firstly have a basic understanding of the most important thing in R, which is called <strong>object</strong>. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, the expression <code>floor(7 / 3)</code> is an object, and of course expression <code>exp(3) / log(20,3) * 7</code> is also an object.</p>
+<p>If you run <code>5</code>, you will get one element of value 5 from the output. Similarly, if you run <code>1 + 2</code>, you will get one element of value 3 from the output. You can try to run <code>floor(7 / 3)</code> and <code>exp(3) / log(20,3) * 7</code> by yourself. In these four examples, you can see that there is only one <strong>element</strong> in each object.</p>
+<p>However, an object can contain more than one elements, and each element has its own <strong>value</strong>. Notice that different elements can have the same value. Therefore, different objects can have different values.</p>
 </div>
 <div id="assignment" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Assignment Operation with <code>&lt;-</code></h3>
-<p>Knowing the importance of objects, let’s introduce how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the assignment operator, which will create a new object with a name. You can use the new named object once it is created in subsequent calculations without redundancy. Let’s start with a simple example,</p>
+<p>Knowing the importance of objects and their corresponding values, let’s introduce how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the assignment operator, which will create a new object with a name. You can use the new named object once it is created in subsequent calculations without redundancy. Let’s start with a simple example,</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Object-Assignment.html#cb14-1" aria-hidden="true" tabindex="-1"></a>x_numeric <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
 <p>The assignment operation has three components. From left to right，</p>
 <ul>
@@ -577,16 +582,17 @@ Figure 1.14: No output
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Object-Assignment.html#cb15-1" aria-hidden="true" tabindex="-1"></a>x_numeric</span>
 <span id="cb15-2"><a href="Object-Assignment.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>Great! You get the value 5, indicating that you have successfully assigned the value 5 to the name x_numeric, and you have created a new object <code>x_numeric</code>. You can use <code>x_numeric</code> instead of <code>5</code> to do the subsequent calculations because <code>x_numeric</code> and <code>5</code> have the same value.</p>
-<p>You can also assign value(s) of any R expression (including operations and functions) to a name.
-Let’s try to simplify the three expressions we did at the beginning of this section. It is easy to observe that the three lines of codes share a common term <code>exp(3) / log(20,3) * 7</code>. Let’s assign the value of the common term to a name.</p>
+<p>You can assign <strong>value(s)</strong> of any R objects to a name. Let’s try to simplify the three expressions we did at the beginning of this section. It is easy to observe that the three lines of codes share a common term <code>exp(3) / log(20,3) * 7</code>. Let’s assign the value of the common term to a name.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Object-Assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span></span>
 <span id="cb16-2"><a href="Object-Assignment.html#cb16-2" aria-hidden="true" tabindex="-1"></a>y_numeric</span>
 <span id="cb16-3"><a href="Object-Assignment.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 51.56119</span></span></code></pre></div>
-<p>Here, R will first calculate the result of <code>exp(3) / log(20,3) * 7</code> and assign the value of the result to <code>y_numeric</code>.</p>
 <p>Now you have successfully created an object <code>y_numeric</code> with value 51.56119. Using the named object <code>y_numeric</code>, you can simplify the three calculations as follows.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Object-Assignment.html#cb17-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">+</span> <span class="dv">3</span></span>
 <span id="cb17-2"><a href="Object-Assignment.html#cb17-2" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">-</span> <span class="dv">3</span></span>
 <span id="cb17-3"><a href="Object-Assignment.html#cb17-3" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<div class="infobox caution">
+<p>Note that in the object assignment process, it is not the expression itself but rather the value(s) of the expression, that is assigned to a name. So you will not get the expression <code>exp(3) / log(20,3) * 7</code> from <code>y_numeric</code>.</p>
+</div>
 <p>You can also try the following examples by yourself.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Object-Assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>) </span>
 <span id="cb18-2"><a href="Object-Assignment.html#cb18-2" aria-hidden="true" tabindex="-1"></a>a</span>
@@ -602,7 +608,40 @@ Let’s try to simplify the three expressions we did at the beginning of this se
 <p>After creating new objects <code>x_numeric</code> and <code>y_numeric</code>, they will appear in the <strong>Environment</strong>, located in the top right panel (<strong>panel3 in Figure <a href="Installation.html#fig:four">1.4</a></strong>). You can check all the <strong>named objects</strong> and their values in this area. It is helpful to monitor the environment from time to time to make sure everything look fine. Notice that objects without names will not be shown in the environment.</p>
 <p>You can also see the list of all the named objects using function <code>ls()</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Object-Assignment.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a&quot;         &quot;b&quot;         &quot;x_numeric&quot; &quot;y_numeric&quot;</span></span></code></pre></div>
+<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;a&quot;                                  &quot;allx&quot;                              </span></span>
+<span id="cb20-3"><a href="Object-Assignment.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;ally&quot;                               &quot;alpha1&quot;                            </span></span>
+<span id="cb20-4"><a href="Object-Assignment.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;b&quot;                                  &quot;beta1&quot;                             </span></span>
+<span id="cb20-5"><a href="Object-Assignment.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;Code&quot;                               &quot;cols&quot;                              </span></span>
+<span id="cb20-6"><a href="Object-Assignment.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;contributors&quot;                       &quot;d&quot;                                 </span></span>
+<span id="cb20-7"><a href="Object-Assignment.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;data&quot;                               &quot;date_char&quot;                         </span></span>
+<span id="cb20-8"><a href="Object-Assignment.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;ds16_Nobel_Laureates_and_Chocolate&quot; &quot;Explanation&quot;                       </span></span>
+<span id="cb20-9"><a href="Object-Assignment.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] &quot;frac&quot;                               &quot;GaltonFamilies&quot;                    </span></span>
+<span id="cb20-10"><a href="Object-Assignment.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] &quot;ind0&quot;                               &quot;ind1&quot;                              </span></span>
+<span id="cb20-11"><a href="Object-Assignment.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;lmod&quot;                               &quot;logic1&quot;                            </span></span>
+<span id="cb20-12"><a href="Object-Assignment.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;manilius&quot;                           &quot;moon3&quot;                             </span></span>
+<span id="cb20-13"><a href="Object-Assignment.html#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [23] &quot;my_int&quot;                             &quot;N&quot;                                 </span></span>
+<span id="cb20-14"><a href="Object-Assignment.html#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] &quot;Name&quot;                               &quot;Operation&quot;                         </span></span>
+<span id="cb20-15"><a href="Object-Assignment.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [27] &quot;ori_overall_list&quot;                   &quot;ori_overall_list_logistic&quot;         </span></span>
+<span id="cb20-16"><a href="Object-Assignment.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] &quot;ori_overall_list_svm&quot;               &quot;ori_typeI_list&quot;                    </span></span>
+<span id="cb20-17"><a href="Object-Assignment.html#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [31] &quot;ori_typeI_list_logistic&quot;            &quot;ori_typeI_list_svm&quot;                </span></span>
+<span id="cb20-18"><a href="Object-Assignment.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [33] &quot;ori_typeII_list&quot;                    &quot;ori_typeII_list_logistic&quot;          </span></span>
+<span id="cb20-19"><a href="Object-Assignment.html#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [35] &quot;ori_typeII_list_svm&quot;                &quot;overall_list&quot;                      </span></span>
+<span id="cb20-20"><a href="Object-Assignment.html#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] &quot;overall_list_logistic&quot;              &quot;overall_list_svm&quot;                  </span></span>
+<span id="cb20-21"><a href="Object-Assignment.html#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [39] &quot;p1&quot;                                 &quot;p2&quot;                                </span></span>
+<span id="cb20-22"><a href="Object-Assignment.html#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [41] &quot;p3&quot;                                 &quot;Pattern&quot;                           </span></span>
+<span id="cb20-23"><a href="Object-Assignment.html#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [43] &quot;pima&quot;                               &quot;sheepstudio&quot;                       </span></span>
+<span id="cb20-24"><a href="Object-Assignment.html#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [45] &quot;today&quot;                              &quot;today_char&quot;                        </span></span>
+<span id="cb20-25"><a href="Object-Assignment.html#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [47] &quot;tr_size0&quot;                           &quot;tr_size1&quot;                          </span></span>
+<span id="cb20-26"><a href="Object-Assignment.html#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [49] &quot;typeI_list&quot;                         &quot;typeI_list_logistic&quot;               </span></span>
+<span id="cb20-27"><a href="Object-Assignment.html#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [51] &quot;typeI_list_svm&quot;                     &quot;typeII_list&quot;                       </span></span>
+<span id="cb20-28"><a href="Object-Assignment.html#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [53] &quot;typeII_list_logistic&quot;               &quot;typeII_list_svm&quot;                   </span></span>
+<span id="cb20-29"><a href="Object-Assignment.html#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [55] &quot;vec_with_name1&quot;                     &quot;x&quot;                                 </span></span>
+<span id="cb20-30"><a href="Object-Assignment.html#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [57] &quot;x_numeric&quot;                          &quot;x_w_name&quot;                          </span></span>
+<span id="cb20-31"><a href="Object-Assignment.html#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [59] &quot;x_wo_name&quot;                          &quot;x1&quot;                                </span></span>
+<span id="cb20-32"><a href="Object-Assignment.html#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [61] &quot;xs4&quot;                                &quot;y&quot;                                 </span></span>
+<span id="cb20-33"><a href="Object-Assignment.html#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [63] &quot;y_numeric&quot;                          &quot;y1&quot;                                </span></span>
+<span id="cb20-34"><a href="Object-Assignment.html#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [65] &quot;y2&quot;                                 &quot;y3&quot;                                </span></span>
+<span id="cb20-35"><a href="Object-Assignment.html#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [67] &quot;yb8&quot;                                &quot;z1&quot;</span></span></code></pre></div>
 <p>All the objects shown in the environment or the list have been saved in R, so they are available for future use directly. It is a good habit to do object assignments if you want to save important values for future use.</p>
 </div>
 <div id="Naming" class="section level3" number="1.3.4">
@@ -611,7 +650,7 @@ Let’s try to simplify the three expressions we did at the beginning of this se
 <p><strong><em>a. Must start with a letter or . (period)</em></strong><br />
 If starting with period, the second character can’t be a number.</p>
 <p><strong><em>b. Can only contain letters, numbers, <code>_</code> (underscore), and <code>.</code> (period)</em></strong>
-One recommended naming style is to only use lowercase letters and numbers, and use underscore to separate words within a name. So you can use relatively longer names that is more readable.</p>
+One recommended naming style is to use lowercase letters and numbers, and use underscore to separate words within a name. So you can use relatively longer names that is more readable.</p>
 <p><strong><em>c. Can not use special keywords as names.</em></strong>
 For example, <strong>TRUE &lt;- 12</strong> is not permitted as <code>TRUE</code> is a special keyword in R. You can see from the following that this assignment operation leads to an error message.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Object-Assignment.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">12</span></span>
