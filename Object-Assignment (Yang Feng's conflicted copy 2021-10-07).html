@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 Object Assignment | R Programming: Zero to Pro</title>
+  <meta name="description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta name="github-repo" content="r02pro/r02pro.github.io" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  
+  <meta name="twitter:description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  
+
+<meta name="author" content="Yang Feng and Jianan Zhu" />
+
+
+<meta name="date" content="2021-10-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Calculator.html"/>
+<link rel="next" href="r-objects.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming: Zero to Pro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="Installation.html"><a href="Installation.html#download-and-install"><i class="fa fa-check"></i><b>1.1.1</b> Download and Install</a></li>
+<li class="chapter" data-level="1.1.2" data-path="Installation.html"><a href="Installation.html#rstudio-interface"><i class="fa fa-check"></i><b>1.1.2</b> RStudio Interface</a></li>
+<li class="chapter" data-level="1.1.3" data-path="Installation.html"><a href="Installation.html#install-and-load-r-packages"><i class="fa fa-check"></i><b>1.1.3</b> Install and load R packages</a></li>
+<li class="chapter" data-level="1.1.4" data-path="Installation.html"><a href="Installation.html#exercises"><i class="fa fa-check"></i><b>1.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="Calculator.html"><a href="Calculator.html"><i class="fa fa-check"></i><b>1.2</b> Use R as a Fancy Calculator</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Calculator.html"><a href="Calculator.html#add-comments-using"><i class="fa fa-check"></i><b>1.2.1</b> Add comments using “#”</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Calculator.html"><a href="Calculator.html#basic-calculation"><i class="fa fa-check"></i><b>1.2.2</b> Basic calculation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="Calculator.html"><a href="Calculator.html#approximation"><i class="fa fa-check"></i><b>1.2.3</b> Approximation</a></li>
+<li class="chapter" data-level="1.2.4" data-path="Calculator.html"><a href="Calculator.html#power-logarithm"><i class="fa fa-check"></i><b>1.2.4</b> Power &amp; logarithm</a></li>
+<li class="chapter" data-level="1.2.5" data-path="Calculator.html"><a href="Calculator.html#trigonometric-function"><i class="fa fa-check"></i><b>1.2.5</b> Trigonometric function</a></li>
+<li class="chapter" data-level="1.2.6" data-path="Calculator.html"><a href="Calculator.html#exercises-1"><i class="fa fa-check"></i><b>1.2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Object-Assignment.html"><a href="Object-Assignment.html"><i class="fa fa-check"></i><b>1.3</b> Object Assignment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Object-Assignment.html"><a href="Object-Assignment.html#what-is-an-r-object"><i class="fa fa-check"></i><b>1.3.1</b> What is an R Object?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Object-Assignment.html"><a href="Object-Assignment.html#assignment"><i class="fa fa-check"></i><b>1.3.2</b> Assignment Operation with <code>&lt;-</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="Object-Assignment.html"><a href="Object-Assignment.html#review-objects-in-environment"><i class="fa fa-check"></i><b>1.3.3</b> Review objects in environment</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Object-Assignment.html"><a href="Object-Assignment.html#Naming"><i class="fa fa-check"></i><b>1.3.4</b> Object naming rule</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Object-Assignment.html"><a href="Object-Assignment.html#object-types"><i class="fa fa-check"></i><b>1.3.5</b> Object types</a></li>
+<li class="chapter" data-level="1.3.6" data-path="Object-Assignment.html"><a href="Object-Assignment.html#exercises-2"><i class="fa fa-check"></i><b>1.3.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-objects.html"><a href="r-objects.html"><i class="fa fa-check"></i><b>2</b> R Objects (I): Vectors</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="vector.html"><a href="vector.html"><i class="fa fa-check"></i><b>2.1</b> Vectors: Numeric, Character, and Logical</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="vector.html"><a href="vector.html#numeric-vector"><i class="fa fa-check"></i><b>2.1.1</b> Numeric vector</a></li>
+<li class="chapter" data-level="2.1.2" data-path="vector.html"><a href="vector.html#vector-character"><i class="fa fa-check"></i><b>2.1.2</b> Character vector</a></li>
+<li class="chapter" data-level="2.1.3" data-path="vector.html"><a href="vector.html#logical-vector"><i class="fa fa-check"></i><b>2.1.3</b> Logical vector</a></li>
+<li class="chapter" data-level="2.1.4" data-path="vector.html"><a href="vector.html#exercises-3"><i class="fa fa-check"></i><b>2.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="attr-coercion.html"><a href="attr-coercion.html"><i class="fa fa-check"></i><b>2.2</b> Vectors: Storage Types, Attributes and Coercion</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="attr-coercion.html"><a href="attr-coercion.html#storage-type"><i class="fa fa-check"></i><b>2.2.1</b> Storage Types</a></li>
+<li class="chapter" data-level="2.2.2" data-path="attr-coercion.html"><a href="attr-coercion.html#named-vectors"><i class="fa fa-check"></i><b>2.2.2</b> Named Vectors and Attributes</a></li>
+<li class="chapter" data-level="2.2.3" data-path="attr-coercion.html"><a href="attr-coercion.html#coercion"><i class="fa fa-check"></i><b>2.2.3</b> The Coercion Rule</a></li>
+<li class="chapter" data-level="2.2.4" data-path="attr-coercion.html"><a href="attr-coercion.html#complex-vectors"><i class="fa fa-check"></i><b>2.2.4</b> Complex Vectors</a></li>
+<li class="chapter" data-level="2.2.5" data-path="attr-coercion.html"><a href="attr-coercion.html#exercises-4"><i class="fa fa-check"></i><b>2.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="vector-patterns.html"><a href="vector-patterns.html"><i class="fa fa-check"></i><b>2.3</b> Create Vectors with Patterns</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="vector-patterns.html"><a href="vector-patterns.html#create-equally-spaced-numeric-vectors-via"><i class="fa fa-check"></i><b>2.3.1</b> Create equally-spaced numeric vectors via <code>:</code></a></li>
+<li class="chapter" data-level="2.3.2" data-path="vector-patterns.html"><a href="vector-patterns.html#create-equally-spaced-numeric-vectors-via-seq"><i class="fa fa-check"></i><b>2.3.2</b> Create equally-spaced numeric vectors via <code>seq()</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="vector-patterns.html"><a href="vector-patterns.html#create-matching-numeric-vectors-via-seq_along"><i class="fa fa-check"></i><b>2.3.3</b> Create matching numeric vectors via <code>seq_along()</code></a></li>
+<li class="chapter" data-level="2.3.4" data-path="vector-patterns.html"><a href="vector-patterns.html#create-numeric-vectors-via-sequence"><i class="fa fa-check"></i><b>2.3.4</b> Create numeric vectors via <code>sequence()</code></a></li>
+<li class="chapter" data-level="2.3.5" data-path="vector-patterns.html"><a href="vector-patterns.html#create-numeric-character-and-logical-vectors-with-repetition"><i class="fa fa-check"></i><b>2.3.5</b> Create numeric, character and logical vectors with repetition</a></li>
+<li class="chapter" data-level="2.3.6" data-path="vector-patterns.html"><a href="vector-patterns.html#getting-unique-elements-and-their-frequencies"><i class="fa fa-check"></i><b>2.3.6</b> Getting unique elements and their frequencies</a></li>
+<li class="chapter" data-level="2.3.7" data-path="vector-patterns.html"><a href="vector-patterns.html#exercises-5"><i class="fa fa-check"></i><b>2.3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="sort-vector.html"><a href="sort-vector.html"><i class="fa fa-check"></i><b>2.4</b> Sort, Rank, &amp; Order</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sort-vector.html"><a href="sort-vector.html#numeric-vectors"><i class="fa fa-check"></i><b>2.4.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.4.2" data-path="sort-vector.html"><a href="sort-vector.html#sort-character"><i class="fa fa-check"></i><b>2.4.2</b> Character vectors</a></li>
+<li class="chapter" data-level="2.4.3" data-path="sort-vector.html"><a href="sort-vector.html#logical-vectors"><i class="fa fa-check"></i><b>2.4.3</b> Logical vectors</a></li>
+<li class="chapter" data-level="2.4.4" data-path="sort-vector.html"><a href="sort-vector.html#exercises-6"><i class="fa fa-check"></i><b>2.4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="vector-functions.html"><a href="vector-functions.html"><i class="fa fa-check"></i><b>2.5</b> Statistical Functions on Vectors</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="vector-functions.html"><a href="vector-functions.html#numeric-vectors-1"><i class="fa fa-check"></i><b>2.5.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="vector-functions.html"><a href="vector-functions.html#character-vectors"><i class="fa fa-check"></i><b>2.5.2</b> Character vectors</a></li>
+<li class="chapter" data-level="2.5.3" data-path="vector-functions.html"><a href="vector-functions.html#func-logical-vector"><i class="fa fa-check"></i><b>2.5.3</b> Logical vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="vector-functions.html"><a href="vector-functions.html#exercises-7"><i class="fa fa-check"></i><b>2.5.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html"><i class="fa fa-check"></i><b>2.6</b> Comparisons, Vector Subsetting &amp; Change Values</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html#comparisons-on-vectors-of-the-same-type"><i class="fa fa-check"></i><b>2.6.1</b> Comparisons on vectors of the same type</a></li>
+<li class="chapter" data-level="2.6.2" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html#comparisons-on-vectors-of-different-types"><i class="fa fa-check"></i><b>2.6.2</b> Comparisons on vectors of different types</a></li>
+<li class="chapter" data-level="2.6.3" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html#vector-subsetting"><i class="fa fa-check"></i><b>2.6.3</b> Vector subsetting</a></li>
+<li class="chapter" data-level="2.6.4" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html#change-values-in-named-vectors"><i class="fa fa-check"></i><b>2.6.4</b> Change values in named vectors</a></li>
+<li class="chapter" data-level="2.6.5" data-path="comparison-vector-subsetting.html"><a href="comparison-vector-subsetting.html#exercises-8"><i class="fa fa-check"></i><b>2.6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="logical-operators.html"><a href="logical-operators.html"><i class="fa fa-check"></i><b>2.7</b> Logical Operators</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="logical-operators.html"><a href="logical-operators.html#not-operator-by"><i class="fa fa-check"></i><b>2.7.1</b> NOT operator by <code>!</code></a></li>
+<li class="chapter" data-level="2.7.2" data-path="logical-operators.html"><a href="logical-operators.html#and-operator-by"><i class="fa fa-check"></i><b>2.7.2</b> AND operator by <code>&amp;</code></a></li>
+<li class="chapter" data-level="2.7.3" data-path="logical-operators.html"><a href="logical-operators.html#or-operator-by"><i class="fa fa-check"></i><b>2.7.3</b> OR operator by <code>|</code></a></li>
+<li class="chapter" data-level="2.7.4" data-path="logical-operators.html"><a href="logical-operators.html#exclusive-or-by-xor"><i class="fa fa-check"></i><b>2.7.4</b> Exclusive OR by <code>xor</code></a></li>
+<li class="chapter" data-level="2.7.5" data-path="logical-operators.html"><a href="logical-operators.html#summary-of-logical-operators"><i class="fa fa-check"></i><b>2.7.5</b> Summary of Logical Operators</a></li>
+<li class="chapter" data-level="2.7.6" data-path="logical-operators.html"><a href="logical-operators.html#exercises-9"><i class="fa fa-check"></i><b>2.7.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html"><i class="fa fa-check"></i><b>2.8</b> Set Operations between two vectors</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#operations"><i class="fa fa-check"></i><b>2.8.1</b> Numeric vectors</a></li>
+<li class="chapter" data-level="2.8.2" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#character-vectors-1"><i class="fa fa-check"></i><b>2.8.2</b> Character vectors</a></li>
+<li class="chapter" data-level="2.8.3" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#logical-vectors-1"><i class="fa fa-check"></i><b>2.8.3</b> Logical vectors</a></li>
+<li class="chapter" data-level="2.8.4" data-path="set-operations-between-two-vectors.html"><a href="set-operations-between-two-vectors.html#exercises-10"><i class="fa fa-check"></i><b>2.8.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="summary-of-operators.html"><a href="summary-of-operators.html"><i class="fa fa-check"></i><b>2.9</b> Summary of Operators</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="summary-of-operators.html"><a href="summary-of-operators.html#arithmetic-operator"><i class="fa fa-check"></i><b>2.9.1</b> Arithmetic operator</a></li>
+<li class="chapter" data-level="2.9.2" data-path="summary-of-operators.html"><a href="summary-of-operators.html#assignment-operator"><i class="fa fa-check"></i><b>2.9.2</b> Assignment operator</a></li>
+<li class="chapter" data-level="2.9.3" data-path="summary-of-operators.html"><a href="summary-of-operators.html#relational-operator"><i class="fa fa-check"></i><b>2.9.3</b> Relational operator</a></li>
+<li class="chapter" data-level="2.9.4" data-path="summary-of-operators.html"><a href="summary-of-operators.html#logical-operator"><i class="fa fa-check"></i><b>2.9.4</b> Logical operator</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="na.html"><a href="na.html"><i class="fa fa-check"></i><b>2.10</b> Missing Values (NA)</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="na.html"><a href="na.html#na-is-contagious"><i class="fa fa-check"></i><b>2.10.1</b> <code>NA</code> is contagious</a></li>
+<li class="chapter" data-level="2.10.2" data-path="na.html"><a href="na.html#work-with-na-values"><i class="fa fa-check"></i><b>2.10.2</b> Work with <code>NA</code> values</a></li>
+<li class="chapter" data-level="2.10.3" data-path="na.html"><a href="na.html#exercises-11"><i class="fa fa-check"></i><b>2.10.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="factor.html"><a href="factor.html"><i class="fa fa-check"></i><b>2.11</b> Character Vectors, Factors &amp; Ordered Factors</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="factor.html"><a href="factor.html#create-a-factor-from-a-vector"><i class="fa fa-check"></i><b>2.11.1</b> Create a factor from a vector</a></li>
+<li class="chapter" data-level="2.11.2" data-path="factor.html"><a href="factor.html#set-the-factor-levels-and-labels"><i class="fa fa-check"></i><b>2.11.2</b> Set the factor levels and labels</a></li>
+<li class="chapter" data-level="2.11.3" data-path="factor.html"><a href="factor.html#ordered-factors"><i class="fa fa-check"></i><b>2.11.3</b> Ordered factors</a></li>
+<li class="chapter" data-level="2.11.4" data-path="factor.html"><a href="factor.html#exercises-12"><i class="fa fa-check"></i><b>2.11.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>2.12</b> NULL, NaN, and Inf</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="null.html"><a href="null.html#null-1"><i class="fa fa-check"></i><b>2.12.1</b> NULL</a></li>
+<li class="chapter" data-level="2.12.2" data-path="null.html"><a href="null.html#NaN"><i class="fa fa-check"></i><b>2.12.2</b> NaN</a></li>
+<li class="chapter" data-level="2.12.3" data-path="null.html"><a href="null.html#Inf"><i class="fa fa-check"></i><b>2.12.3</b> Inf</a></li>
+<li class="chapter" data-level="2.12.4" data-path="null.html"><a href="null.html#a-comparison-of-the-four-special-values-in-r"><i class="fa fa-check"></i><b>2.12.4</b> A comparison of the four special values in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="dates.html"><a href="dates.html"><i class="fa fa-check"></i><b>2.13</b> Dates and Times</a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="dates.html"><a href="dates.html#dates-1"><i class="fa fa-check"></i><b>2.13.1</b> Dates</a></li>
+<li class="chapter" data-level="2.13.2" data-path="dates.html"><a href="dates.html#times"><i class="fa fa-check"></i><b>2.13.2</b> Times</a></li>
+<li class="chapter" data-level="2.13.3" data-path="dates.html"><a href="dates.html#exercises-13"><i class="fa fa-check"></i><b>2.13.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-objects-other-types.html"><a href="r-objects-other-types.html"><i class="fa fa-check"></i><b>3</b> R Objects (II): Other Types</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="matrix.html"><a href="matrix.html#create-a-matrix-from-a-vector"><i class="fa fa-check"></i><b>3.1.1</b> Create a matrix from a vector</a></li>
+<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors-or-matrices-into-a-matrix"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
+<li class="chapter" data-level="3.1.3" data-path="matrix.html"><a href="matrix.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrix subsetting</a></li>
+<li class="chapter" data-level="3.1.4" data-path="matrix.html"><a href="matrix.html#operators-and-functions-on-matrices"><i class="fa fa-check"></i><b>3.1.4</b> Operators and functions on matrices</a></li>
+<li class="chapter" data-level="3.1.5" data-path="matrix.html"><a href="matrix.html#apply-matrix"><i class="fa fa-check"></i><b>3.1.5</b> Apply functions on each row or each column</a></li>
+<li class="chapter" data-level="3.1.6" data-path="matrix.html"><a href="matrix.html#exercises-14"><i class="fa fa-check"></i><b>3.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>3.2</b> Array</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="array.html"><a href="array.html#create-an-array-from-a-vector"><i class="fa fa-check"></i><b>3.2.1</b> Create an array from a vector</a></li>
+<li class="chapter" data-level="3.2.2" data-path="array.html"><a href="array.html#array-subsetting"><i class="fa fa-check"></i><b>3.2.2</b> Array subsetting</a></li>
+<li class="chapter" data-level="3.2.3" data-path="array.html"><a href="array.html#operators-and-functions-on-arrays"><i class="fa fa-check"></i><b>3.2.3</b> Operators and functions on arrays</a></li>
+<li class="chapter" data-level="3.2.4" data-path="array.html"><a href="array.html#apply-functions-along-certain-dimensions"><i class="fa fa-check"></i><b>3.2.4</b> Apply functions along certain dimension(s)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>3.3</b> Data Frame and Tibble</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="dataframe.html"><a href="dataframe.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.3.1</b> Introduction to Data Frames</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataframe.html"><a href="dataframe.html#subsetting-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Subsetting Data Frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#introduction-to-tibbles"><i class="fa fa-check"></i><b>3.3.3</b> Introduction to tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>3.4</b> List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="list.html"><a href="list.html#create-a-list"><i class="fa fa-check"></i><b>3.4.1</b> Create a list</a></li>
+<li class="chapter" data-level="3.4.2" data-path="list.html"><a href="list.html#extract-a-list-element-and-list-subsetting"><i class="fa fa-check"></i><b>3.4.2</b> Extract a list element and list subsetting</a></li>
+<li class="chapter" data-level="3.4.3" data-path="list.html"><a href="list.html#list-inside-a-list"><i class="fa fa-check"></i><b>3.4.3</b> List inside a list</a></li>
+<li class="chapter" data-level="3.4.4" data-path="list.html"><a href="list.html#unlist-a-list"><i class="fa fa-check"></i><b>3.4.4</b> Unlist a list</a></li>
+<li class="chapter" data-level="3.4.5" data-path="list.html"><a href="list.html#apply-functions-for-each-element-of-a-list"><i class="fa fa-check"></i><b>3.4.5</b> Apply functions for each element of a list</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="summary-r-objects.html"><a href="summary-r-objects.html"><i class="fa fa-check"></i><b>3.5</b> Summary of R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>4</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="intro-dataset.html"><a href="intro-dataset.html"><i class="fa fa-check"></i><b>4.1</b> Introduction to Datasets</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="intro-dataset.html"><a href="intro-dataset.html#are-two-story-houses-more-expensive-than-one-story-ones"><i class="fa fa-check"></i><b>4.1.1</b> Are two-story houses more expensive than one-story ones?</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intro-dataset.html"><a href="intro-dataset.html#converting-data-types"><i class="fa fa-check"></i><b>4.1.2</b> Converting Data Types</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="scatterplots.html"><a href="scatterplots.html"><i class="fa fa-check"></i><b>4.2</b> Scatterplots</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="scatterplots.html"><a href="scatterplots.html#using-the-plot-function"><i class="fa fa-check"></i><b>4.2.1</b> Using the <code>plot()</code> function</a></li>
+<li class="chapter" data-level="4.2.2" data-path="scatterplots.html"><a href="scatterplots.html#point"><i class="fa fa-check"></i><b>4.2.2</b> Using the <code>ggplot()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="aes.html"><a href="aes.html"><i class="fa fa-check"></i><b>4.3</b> Aesthetics in ggplot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="aes.html"><a href="aes.html#global-aes"><i class="fa fa-check"></i><b>4.3.1</b> Global Aesthetics</a></li>
+<li class="chapter" data-level="4.3.2" data-path="aes.html"><a href="aes.html#map-discrete-aes"><i class="fa fa-check"></i><b>4.3.2</b> Map Discrete Variables to Aesthetics</a></li>
+<li class="chapter" data-level="4.3.3" data-path="aes.html"><a href="aes.html#change-legend-order-via-factors"><i class="fa fa-check"></i><b>4.3.3</b> Change Legend Order via Factors</a></li>
+<li class="chapter" data-level="4.3.4" data-path="aes.html"><a href="aes.html#map-continous-aes"><i class="fa fa-check"></i><b>4.3.4</b> Map Continuous Variables to Aesthetics</a></li>
+<li class="chapter" data-level="4.3.5" data-path="aes.html"><a href="aes.html#map-converted-logical-variable-to-aesthetics"><i class="fa fa-check"></i><b>4.3.5</b> Map Converted Logical Variable to Aesthetics</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="smoothline.html"><a href="smoothline.html"><i class="fa fa-check"></i><b>4.4</b> Smoothline Fits</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="smoothline.html"><a href="smoothline.html#creating-smoothline-fits-using-geom_smooth"><i class="fa fa-check"></i><b>4.4.1</b> Creating Smoothline Fits using <code>geom_smooth()</code></a></li>
+<li class="chapter" data-level="4.4.2" data-path="smoothline.html"><a href="smoothline.html#aesthetics-in-smoothline-fits"><i class="fa fa-check"></i><b>4.4.2</b> Aesthetics in Smoothline Fits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="multi-geom.html"><a href="multi-geom.html"><i class="fa fa-check"></i><b>4.5</b> Multiple geoms and Aesthetics</a></li>
+<li class="chapter" data-level="4.6" data-path="global-local-mapping.html"><a href="global-local-mapping.html"><i class="fa fa-check"></i><b>4.6</b> Global and Local Aesthetic Mappings</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="global-local-mapping.html"><a href="global-local-mapping.html#extend-global-aesthetic-mappings"><i class="fa fa-check"></i><b>4.6.1</b> Extend Global Aesthetic Mappings</a></li>
+<li class="chapter" data-level="4.6.2" data-path="global-local-mapping.html"><a href="global-local-mapping.html#overwrite-global-aesthetic-mappings"><i class="fa fa-check"></i><b>4.6.2</b> Overwrite Global Aesthetic Mappings</a></li>
+<li class="chapter" data-level="4.6.3" data-path="global-local-mapping.html"><a href="global-local-mapping.html#mix"><i class="fa fa-check"></i><b>4.6.3</b> Mix</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots via geom_line()</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
+<li class="chapter" data-level="4.9.2" data-path="jitter-count.html"><a href="jitter-count.html#jitter"><i class="fa fa-check"></i><b>4.9.2</b> Jittering</a></li>
+<li class="chapter" data-level="4.9.3" data-path="jitter-count.html"><a href="jitter-count.html#count"><i class="fa fa-check"></i><b>4.9.3</b> Counts Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts via geom_bar()</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="bar-charts.html"><a href="bar-charts.html#an-introduction-to-bar-chart"><i class="fa fa-check"></i><b>4.10.1</b> An Introduction to Bar Chart</a></li>
+<li class="chapter" data-level="4.10.2" data-path="bar-charts.html"><a href="bar-charts.html#reordering-bar-chart"><i class="fa fa-check"></i><b>4.10.2</b> Reordering Bars in Bar Charts</a></li>
+<li class="chapter" data-level="4.10.3" data-path="bar-charts.html"><a href="bar-charts.html#aesthetics-in-bar-charts"><i class="fa fa-check"></i><b>4.10.3</b> Aesthetics in Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="customization-axes.html"><a href="customization-axes.html"><i class="fa fa-check"></i><b>4.11</b> Customization of x and y Axes</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="customization-axes.html"><a href="customization-axes.html#customizing-the-breaks-on-the-x-and-y-axes"><i class="fa fa-check"></i><b>4.11.1</b> Customizing the Breaks on the x and y Axes</a></li>
+<li class="chapter" data-level="4.11.2" data-path="customization-axes.html"><a href="customization-axes.html#zoom-in-to-a-specific-region-of-the-data"><i class="fa fa-check"></i><b>4.11.2</b> Zoom In to a Specific Region of the Data</a></li>
+<li class="chapter" data-level="4.11.3" data-path="customization-axes.html"><a href="customization-axes.html#plot-with-transformed-variables-and-log-scale-plot"><i class="fa fa-check"></i><b>4.11.3</b> Plot with Transformed Variables and Log-scale Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="histogram.html"><a href="histogram.html"><i class="fa fa-check"></i><b>4.12</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="histogram.html"><a href="histogram.html#using-the-hist-function"><i class="fa fa-check"></i><b>4.12.1</b> Using the <code>hist()</code> function</a></li>
+<li class="chapter" data-level="4.12.2" data-path="histogram.html"><a href="histogram.html#using-the-geom_histogram-function"><i class="fa fa-check"></i><b>4.12.2</b> Using the <code>geom_histogram()</code> function</a></li>
+<li class="chapter" data-level="4.12.3" data-path="histogram.html"><a href="histogram.html#aesthetics-in-geom_histogram"><i class="fa fa-check"></i><b>4.12.3</b> Aesthetics in <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="4.12.4" data-path="histogram.html"><a href="histogram.html#density-estimate-using-histograms"><i class="fa fa-check"></i><b>4.12.4</b> Density Estimate Using Histograms</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="density-plot.html"><a href="density-plot.html"><i class="fa fa-check"></i><b>4.13</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.13.1" data-path="density-plot.html"><a href="density-plot.html#aesthetics-in-density-plots"><i class="fa fa-check"></i><b>4.13.1</b> Aesthetics in Density Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>4.14</b> Boxplots</a>
+<ul>
+<li class="chapter" data-level="4.14.1" data-path="boxplots.html"><a href="boxplots.html#using-the-boxplot-function"><i class="fa fa-check"></i><b>4.14.1</b> Using the <code>boxplot()</code> function</a></li>
+<li class="chapter" data-level="4.14.2" data-path="boxplots.html"><a href="boxplots.html#boxplot-1"><i class="fa fa-check"></i><b>4.14.2</b> Using the <code>geom_boxplot()</code> function</a></li>
+<li class="chapter" data-level="4.14.3" data-path="boxplots.html"><a href="boxplots.html#boxplot-2"><i class="fa fa-check"></i><b>4.14.3</b> Compare distributions in different groups</a></li>
+<li class="chapter" data-level="4.14.4" data-path="boxplots.html"><a href="boxplots.html#map-aesthetics-to-boxplot"><i class="fa fa-check"></i><b>4.14.4</b> Map aesthetics to boxplot</a></li>
+<li class="chapter" data-level="4.14.5" data-path="boxplots.html"><a href="boxplots.html#notched-boxplots"><i class="fa fa-check"></i><b>4.14.5</b> Notched Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="4.15" data-path="violin.html"><a href="violin.html"><i class="fa fa-check"></i><b>4.15</b> Violin Plots</a>
+<ul>
+<li class="chapter" data-level="4.15.1" data-path="violin.html"><a href="violin.html#the-basic-violin-plot"><i class="fa fa-check"></i><b>4.15.1</b> The basic violin plot</a></li>
+<li class="chapter" data-level="4.15.2" data-path="violin.html"><a href="violin.html#violin-plot-with-boxplot"><i class="fa fa-check"></i><b>4.15.2</b> Violin plot with boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.16" data-path="errorbar.html"><a href="errorbar.html"><i class="fa fa-check"></i><b>4.16</b> Error Bars</a></li>
+<li class="chapter" data-level="4.17" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html"><i class="fa fa-check"></i><b>4.17</b> Arrange Multiple Plots</a>
+<ul>
+<li class="chapter" data-level="4.17.1" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-wrap"><i class="fa fa-check"></i><b>4.17.1</b> Facet wrap</a></li>
+<li class="chapter" data-level="4.17.2" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-grid"><i class="fa fa-check"></i><b>4.17.2</b> Facet grid</a></li>
+</ul></li>
+<li class="chapter" data-level="4.18" data-path="customization.html"><a href="customization.html"><i class="fa fa-check"></i><b>4.18</b> Customization of Labels and Titles</a></li>
+<li class="chapter" data-level="4.19" data-path="summary-geom.html"><a href="summary-geom.html"><i class="fa fa-check"></i><b>4.19</b> Summary of Geoms &amp; Grammatical Structure of <code>ggplot()</code></a>
+<ul>
+<li class="chapter" data-level="4.19.1" data-path="summary-geom.html"><a href="summary-geom.html#summarize-all-geoms"><i class="fa fa-check"></i><b>4.19.1</b> Summarize all geoms</a></li>
+<li class="chapter" data-level="4.19.2" data-path="summary-geom.html"><a href="summary-geom.html#the-grammatical-structure-of-ggplot"><i class="fa fa-check"></i><b>4.19.2</b> The grammatical structure of <code>ggplot()</code></a></li>
+<li class="chapter" data-level="4.19.3" data-path="summary-geom.html"><a href="summary-geom.html#a-complex-ggplot-example"><i class="fa fa-check"></i><b>4.19.3</b> A complex <code>ggplot()</code> example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="import-export.html"><a href="import-export.html"><i class="fa fa-check"></i><b>5</b> Data Import and Export</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="export-data.html"><a href="export-data.html"><i class="fa fa-check"></i><b>5.1</b> Exporting Data to Delimited Files</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="export-data.html"><a href="export-data.html#set-the-working-directory"><i class="fa fa-check"></i><b>5.1.1</b> Set the working directory</a></li>
+<li class="chapter" data-level="5.1.2" data-path="export-data.html"><a href="export-data.html#delimited-files"><i class="fa fa-check"></i><b>5.1.2</b> Delimited files</a></li>
+<li class="chapter" data-level="5.1.3" data-path="export-data.html"><a href="export-data.html#write-an-object-into-a-.csv-file"><i class="fa fa-check"></i><b>5.1.3</b> Write an object into a .csv file</a></li>
+<li class="chapter" data-level="5.1.4" data-path="export-data.html"><a href="export-data.html#write-an-object-into-a-delimited-file"><i class="fa fa-check"></i><b>5.1.4</b> Write an object into a delimited file</a></li>
+<li class="chapter" data-level="5.1.5" data-path="export-data.html"><a href="export-data.html#exercises-15"><i class="fa fa-check"></i><b>5.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>5.2</b> Importing Data from Delimited Files</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="import-data.html"><a href="import-data.html#import-.csv-files-using-read_csv"><i class="fa fa-check"></i><b>5.2.1</b> Import .csv Files using <code>read_csv()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="import-data.html"><a href="import-data.html#read-inline-.csv-files"><i class="fa fa-check"></i><b>5.2.2</b> Read Inline .csv Files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="import-data.html"><a href="import-data.html#handing-missing-values"><i class="fa fa-check"></i><b>5.2.3</b> Handing Missing Values</a></li>
+<li class="chapter" data-level="5.2.4" data-path="import-data.html"><a href="import-data.html#importing-data-from-a-delimited-file"><i class="fa fa-check"></i><b>5.2.4</b> Importing data from a delimited file</a></li>
+<li class="chapter" data-level="5.2.5" data-path="import-data.html"><a href="import-data.html#import-menu"><i class="fa fa-check"></i><b>5.2.5</b> Import data using the menu</a></li>
+<li class="chapter" data-level="5.2.6" data-path="import-data.html"><a href="import-data.html#exercises-16"><i class="fa fa-check"></i><b>5.2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="import-excel.html"><a href="import-excel.html"><i class="fa fa-check"></i><b>5.3</b> Exporting and Importing Data from Excel Files</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="import-excel.html"><a href="import-excel.html#export-data-into-excel-files"><i class="fa fa-check"></i><b>5.3.1</b> Export data into Excel files</a></li>
+<li class="chapter" data-level="5.3.2" data-path="import-excel.html"><a href="import-excel.html#import-excel-files-.xls-and-.xlsx-using-read_excel"><i class="fa fa-check"></i><b>5.3.2</b> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></a></li>
+<li class="chapter" data-level="5.3.3" data-path="import-excel.html"><a href="import-excel.html#import-excel-file-using-the-menu"><i class="fa fa-check"></i><b>5.3.3</b> Import Excel file using the menu</a></li>
+<li class="chapter" data-level="5.3.4" data-path="import-excel.html"><a href="import-excel.html#exercise"><i class="fa fa-check"></i><b>5.3.4</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="import-other.html"><a href="import-other.html"><i class="fa fa-check"></i><b>5.4</b> Working with Data from SPSS, SAS, and Stata Files</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="import-other.html"><a href="import-other.html#export-and-import-spss-files"><i class="fa fa-check"></i><b>5.4.1</b> Export and Import SPSS Files</a></li>
+<li class="chapter" data-level="5.4.2" data-path="import-other.html"><a href="import-other.html#export-and-import-sas-files"><i class="fa fa-check"></i><b>5.4.2</b> Export and Import SAS Files</a></li>
+<li class="chapter" data-level="5.4.3" data-path="import-other.html"><a href="import-other.html#export-and-import-stata-files"><i class="fa fa-check"></i><b>5.4.3</b> Export and Import Stata Files</a></li>
+<li class="chapter" data-level="5.4.4" data-path="import-other.html"><a href="import-other.html#import-using-the-menu"><i class="fa fa-check"></i><b>5.4.4</b> Import using the menu</a></li>
+<li class="chapter" data-level="5.4.5" data-path="import-other.html"><a href="import-other.html#exercise-1"><i class="fa fa-check"></i><b>5.4.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="save-object.html"><a href="save-object.html"><i class="fa fa-check"></i><b>5.5</b> Save and Restore Objects and Workspace</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>5.5.1</b> Save and Restore Objects using .RData</a></li>
+<li class="chapter" data-level="5.5.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>5.5.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="save-object.html"><a href="save-object.html#exercise-2"><i class="fa fa-check"></i><b>5.5.3</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="filter-observations.html"><a href="filter-observations.html"><i class="fa fa-check"></i><b>6.1</b> Filter Observations and Objects Masking</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>6.1.1</b> Objects Masking</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html"><i class="fa fa-check"></i><b>7.1</b> Convert Between Names and Values</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
+<li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
+<li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9.1</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="normal-distribution.html"><a href="normal-distribution.html#pdf"><i class="fa fa-check"></i><b>9.1.1</b> Probability density function (pdf)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="normal-distribution.html"><a href="normal-distribution.html#cdf"><i class="fa fa-check"></i><b>9.1.2</b> Cumulative distribution function (cdf)</a></li>
+<li class="chapter" data-level="9.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>9.1.3</b> Quantile function</a></li>
+<li class="chapter" data-level="9.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>9.1.4</b> Random Number Generator</a></li>
+<li class="chapter" data-level="9.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#exercise-3"><i class="fa fa-check"></i><b>9.1.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="other-distributions.html"><a href="other-distributions.html"><i class="fa fa-check"></i><b>9.2</b> Other Distributions</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="other-distributions.html"><a href="other-distributions.html#exercise-4"><i class="fa fa-check"></i><b>9.2.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>9.3</b> Random Permutation and Random Sampling</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="sampling.html"><a href="sampling.html#random-permutation"><i class="fa fa-check"></i><b>9.3.1</b> Random Permutation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sampling.html"><a href="sampling.html#random-sampling-without-replacement"><i class="fa fa-check"></i><b>9.3.2</b> Random Sampling without Replacement</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sampling.html"><a href="sampling.html#random-sampling-with-replacement"><i class="fa fa-check"></i><b>9.3.3</b> Random Sampling with Replacement</a></li>
+<li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
+<li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-5"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-6"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="write-code.html"><a href="write-code.html"><i class="fa fa-check"></i><b>10</b> Writing Complicated Codes</a></li>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="intro-r-markdown.html"><a href="intro-r-markdown.html"><i class="fa fa-check"></i><b>11.1</b> Introduction to R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="intro-r-markdown.html"><a href="intro-r-markdown.html#create-a-new-r-markdown-document"><i class="fa fa-check"></i><b>11.1.1</b> Create a new R Markdown document</a></li>
+<li class="chapter" data-level="11.1.2" data-path="intro-r-markdown.html"><a href="intro-r-markdown.html#knit-the-r-markdown-document"><i class="fa fa-check"></i><b>11.1.2</b> Knit the R Markdown document</a></li>
+<li class="chapter" data-level="11.1.3" data-path="intro-r-markdown.html"><a href="intro-r-markdown.html#write-an-r-markdown-document"><i class="fa fa-check"></i><b>11.1.3</b> Write an R Markdown document</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="rmd-text-formating.html"><a href="rmd-text-formating.html"><i class="fa fa-check"></i><b>11.2</b> Text Formatting in R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="rmd-text-formating.html"><a href="rmd-text-formating.html#special-text-formats"><i class="fa fa-check"></i><b>11.2.1</b> Special text formats</a></li>
+<li class="chapter" data-level="11.2.2" data-path="rmd-text-formating.html"><a href="rmd-text-formating.html#lists-in-r-markdown"><i class="fa fa-check"></i><b>11.2.2</b> Lists in R Markdown</a></li>
+<li class="chapter" data-level="11.2.3" data-path="rmd-text-formating.html"><a href="rmd-text-formating.html#tables-in-r-markdown"><i class="fa fa-check"></i><b>11.2.3</b> Tables in R Markdown</a></li>
+<li class="chapter" data-level="11.2.4" data-path="rmd-text-formating.html"><a href="rmd-text-formating.html#insert-citations-and-manage-bibliographies-in-r-markdown"><i class="fa fa-check"></i><b>11.2.4</b> Insert citations and manage bibliographies in R Markdown</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="case-study.html"><a href="case-study.html"><i class="fa fa-check"></i><b>12</b> A Case Study: 24 Solver</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming: Zero to Pro</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Object-Assignment" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Object Assignment</h2>
+<p>In the last section, you have seen the power of R as a fancy calculator. However, in order to do more complicated and interesting tasks, you may need to store intermediate results for future use.</p>
+<p>Let’s take a look at a concrete example. Say if you want to do the following calculations involving <code>exp(3) / log(20,3) * 7</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Object-Assignment.html#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span> <span class="co">#addition</span></span></code></pre></div>
+<pre><code>## [1] 54.56119</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Object-Assignment.html#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span> <span class="co">#subtraction</span></span></code></pre></div>
+<pre><code>## [1] 48.56119</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Object-Assignment.html#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">/</span> <span class="dv">3</span> <span class="co">#division</span></span></code></pre></div>
+<pre><code>## [1] 17.18706</code></pre>
+<p>You need to type the expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, we will introduce how to do <strong>object assignment</strong> with <code>exp(3) / log(20,3) * 7</code> which can help you to assign the value of it to a name for future use. Then, for any operation involving <code>exp(3) / log(20,3) * 7</code>, you can just use the corresponding name instead.</p>
+<div id="what-is-an-r-object" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> What is an R Object?</h3>
+<p>Before we get started, let’s firstly have a basic understanding of the most important thing in R, which is called <strong>object</strong>. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, the expression <code>floor(7 / 3)</code> is an object, and of course expression <code>exp(3) / log(20,3) * 7</code> is also an object.</p>
+<p>If you run <code>5</code>, you will get one element of value 5 from the output. Similarly, if you run <code>1 + 2</code>, you will get one element of value 3 from the output. You can try to run <code>floor(7 / 3)</code> and <code>exp(3) / log(20,3) * 7</code> by yourself. In these four examples, you can see that there is only one <strong>element</strong> in each object.</p>
+<p>However, an object can contain more than one elements, and each element has its own <strong>value</strong>. Notice that different elements can have the same value. Therefore, different objects can have different values.</p>
+</div>
+<div id="assignment" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Assignment Operation with <code>&lt;-</code></h3>
+<p>Knowing the importance of objects and their corresponding values, let’s introduce how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the assignment operator, which will create a new object with a name. You can use the new named object once it is created in subsequent calculations without redundancy. Let’s start with a simple example,</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Object-Assignment.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x_numeric <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
+<p>The assignment operation has three components. From left to right，</p>
+<ul>
+<li>the first component <code>x_numeric</code> is the <strong>object name</strong> of a new object, which has certain naming rules which we will discuss shortly in Section <a href="Object-Assignment.html#Naming">1.3.4</a>.</li>
+<li>The second component is the <strong>assignment operator</strong> <code>&lt;-</code>, which is a combination of the less than sign <code>&lt;</code> immediately followed by the minus sign <code>-</code>.</li>
+<li>The final component is the <strong>value(s)</strong> to be assigned to the name, which is 5 here.</li>
+</ul>
+<div class="infobox caution">
+<p>There is no space between <code>&lt;</code> and <code>-</code> in the assignment operator <code>&lt;-</code>. Note that although <code>=</code> may also appear to be working as the assignment operator, it is not recommended as <code>=</code> is usually reserved for specifying the value(s) of arguments in a function call, which will be introduced in Section <a href="vector-patterns.html#vector-patterns">2.3</a>.</p>
+</div>
+<p>After running the code above, you will see no output in the console, unlike the case when we ran <code>1 + 2</code> which gives us the answer <code>3</code> (as shown in the Figure <a href="Object-Assignment.html#fig:noa">1.1</a>). You may be wondering, did we successfully make our first assignment operation?</p>
+<div class="figure" style="text-align: center"><span id="fig:noa"></span>
+<img src="pics/2noa.png" alt="No output" width="70%" />
+<p class="caption">
+Figure 1.1: No output
+</p>
+</div>
+<p>To verify it, you can run the code with just the object name to check its value. (For named objects, you can get their value(s) by running codes with their object names.)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Object-Assignment.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x_numeric</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Great! You get the value 5, indicating that you have successfully assigned the value 5 to the name x_numeric, and you have created a new object <code>x_numeric</code>. You can use <code>x_numeric</code> instead of <code>5</code> to do the subsequent calculations because <code>x_numeric</code> and <code>5</code> have the same value.</p>
+<p>You can assign <strong>value(s)</strong> of any R objects to a name. Let’s try to simplify the three expressions we did at the beginning of this section. It is easy to observe that the three lines of codes share a common term <code>exp(3) / log(20,3) * 7</code>. Let’s assign the value of the common term to a name.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Object-Assignment.html#cb10-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>,<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span></span>
+<span id="cb10-2"><a href="Object-Assignment.html#cb10-2" aria-hidden="true" tabindex="-1"></a>y_numeric</span></code></pre></div>
+<pre><code>## [1] 51.56119</code></pre>
+<p>Now you have successfully created an object <code>y_numeric</code> with value 51.56119. Using the named object <code>y_numeric</code>, you can simplify the three calculations as follows.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Object-Assignment.html#cb12-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 54.56119</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Object-Assignment.html#cb14-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 48.56119</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Object-Assignment.html#cb16-1" aria-hidden="true" tabindex="-1"></a>y_numeric <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 17.18706</code></pre>
+<div class="infobox caution">
+<p>Note that in the object assignment process, it is not the expression itself but rather the value(s) of the expression, that is assigned to a name. So you will not get the expression <code>exp(3) / log(20,3) * 7</code> from <code>y_numeric</code>.</p>
+</div>
+<p>You can also try the following examples by yourself.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Object-Assignment.html#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>) </span>
+<span id="cb18-2"><a href="Object-Assignment.html#cb18-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Object-Assignment.html#cb20-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">%/%</span><span class="dv">3</span></span>
+<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Clearly, using the object assignment, you can greatly simplify your code and avoid redundancy.</p>
+<p>Note that R object names are <strong>case-sensitive</strong>. For example, you have defined <code>x_numeric</code>, but if you type <code>X_numeric</code>, you will get an error message as follow.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Object-Assignment.html#cb22-1" aria-hidden="true" tabindex="-1"></a>X_numeric</span></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;X_numeric&#39; not found</code></pre>
+</div>
+<div id="review-objects-in-environment" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Review objects in environment</h3>
+<p>After creating new objects <code>x_numeric</code> and <code>y_numeric</code>, they will appear in the <strong>Environment</strong>, located in the top right panel (<strong>panel3 in Figure <a href="#fig:four"><strong>??</strong></a></strong>). You can check all the <strong>named objects</strong> and their values in this area. It is helpful to monitor the environment from time to time to make sure everything look fine. Notice that objects without names will not be shown in the environment.</p>
+<p>You can also see the list of all the named objects using function <code>ls()</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Object-Assignment.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot;                  &quot;ani_char&quot;          
+##  [3] &quot;animal&quot;             &quot;animal_tidy&quot;       
+##  [5] &quot;animal_wide&quot;        &quot;animal_wide_weight&quot;
+##  [7] &quot;b&quot;                  &quot;Code&quot;              
+##  [9] &quot;d&quot;                  &quot;data_type&quot;         
+## [11] &quot;dig_num&quot;            &quot;dig_num_new&quot;       
+## [13] &quot;Dim&quot;                &quot;dt_sold_order&quot;     
+## [15] &quot;Example&quot;            &quot;Intgers&quot;           
+## [17] &quot;key_mat&quot;            &quot;Keys&quot;              
+## [19] &quot;Meaning&quot;            &quot;my_list&quot;           
+## [21] &quot;n&quot;                  &quot;Name&quot;              
+## [23] &quot;norm_dat&quot;           &quot;norm_dat_1&quot;        
+## [25] &quot;norm_dat_2&quot;         &quot;norm_dat_3&quot;        
+## [27] &quot;p&quot;                  &quot;para_1&quot;            
+## [29] &quot;para_2&quot;             &quot;Parameter&quot;         
+## [31] &quot;q&quot;                  &quot;sahp_2006&quot;         
+## [33] &quot;Section&quot;            &quot;Strings&quot;           
+## [35] &quot;Type&quot;               &quot;weight&quot;            
+## [37] &quot;x&quot;                  &quot;x_numeric&quot;         
+## [39] &quot;x1&quot;                 &quot;x2&quot;                
+## [41] &quot;x3&quot;                 &quot;y_numeric&quot;         
+## [43] &quot;year&quot;</code></pre>
+<p>All the objects shown in the environment or the list have been saved in R, so they are available for future use directly. It is a good habit to do object assignments if you want to save important values for future use.</p>
+</div>
+<div id="Naming" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Object naming rule</h3>
+<p>Now you have created two named objects <code>x_numeric</code> and <code>y_numeric</code>. In general, R is very flexible in the name you give to an object，however, there are three important rules you need to follow.</p>
+<p><strong><em>a. Must start with a letter or . (period)</em></strong><br />
+If starting with period, the second character can’t be a number.</p>
+<p><strong><em>b. Can only contain letters, numbers, <code>_</code> (underscore), and <code>.</code> (period)</em></strong>
+One recommended naming style is to use lowercase letters and numbers, and use underscore to separate words within a name. So you can use relatively longer names that is more readable.</p>
+<p><strong><em>c. Can not use special keywords as names.</em></strong>
+For example, <strong>TRUE &lt;- 12</strong> is not permitted as <code>TRUE</code> is a special keyword in R. You can see from the following that this assignment operation leads to an error message.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Object-Assignment.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">12</span></span></code></pre></div>
+<pre><code>## Error in TRUE &lt;- 12: invalid (do_set) left-hand side to assignment</code></pre>
+<p>Some commonly used reserved keywords that cannot be used as names are listed as below.</p>
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;">
+break
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+else
+</td>
+<td style="text-align:left;">
+NaN
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+next
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+for
+</td>
+<td style="text-align:left;">
+repeat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+function
+</td>
+<td style="text-align:left;">
+return
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+if
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inf
+</td>
+<td style="text-align:left;">
+while
+</td>
+</tr>
+</tbody>
+</table>
+<p>To get a complete list of reserved words, you can run the following code.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Object-Assignment.html#cb28-1" aria-hidden="true" tabindex="-1"></a>?Reserved</span></code></pre></div>
+</div>
+<div id="object-types" class="section level3" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Object types</h3>
+<p>In this section, you have learned about how to assign a value to a name. The values you assigned are all of numeric type. Actually, an object may contain more than one values. Also, the values it contains can be of other types than numeric, including character and logical. Depending on the <strong>composition of values</strong>, the object belongs to one particular type.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Section
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Vector
+</td>
+<td style="text-align:left;">
+<a href="vector.html#vector">2.1</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Matrix
+</td>
+<td style="text-align:left;">
+<a href="matrix.html#matrix">3.1</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Array
+</td>
+<td style="text-align:left;">
+<a href="array.html#array">3.2</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Data Frame
+</td>
+<td style="text-align:left;">
+<a href="dataframe.html#dataframe">3.3</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+List
+</td>
+<td style="text-align:left;">
+<a href="list.html#list">3.4</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p>We will focus on vectors in Chapter <a href="r-objects.html#r-objects">2</a> and discuss other object types in Chapter <a href="r-objects-other-types.html#r-objects-other-types">3</a>.</p>
+<p>While some of the object types look more intuitive than others, you have nothing to worry about since we have the next two chapters devoted to the details of R objects. Objects are the building blocks of R programming and it will be time well spent mastering every object type.</p>
+</div>
+<div id="exercises-2" class="section level3" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Write R code to assign the value 20 to the name <code>num_1</code>.</p></li>
+<li><p>Which of the following is a valid object name in R?</p></li>
+</ol>
+<ul>
+<li><code>2.True</code></li>
+<li><code>else</code></li>
+<li><code>I_am_not_a_valid_name</code></li>
+<li><code>I_am_a_Pretty#_name</code></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Write R code to get the list of all objects in the environment.</li>
+</ol>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Calculator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r02pro.pdf", "r02pro.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
