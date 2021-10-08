@@ -33,7 +33,7 @@
   
 <link rel="prev" href="save-object.html"/>
 <link rel="next" href="filter-observations.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,7 +160,6 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -310,7 +309,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="dataframe.html"><a href="dataframe.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.3.1</b> Introduction to Data Frames</a></li>
 <li class="chapter" data-level="3.3.2" data-path="dataframe.html"><a href="dataframe.html#adding-observations-or-variables-in-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Adding Observations or Variables in Data Frames</a></li>
-<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subsetting-data-frames"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting Data Frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subset_df"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting Data Frames</a></li>
 <li class="chapter" data-level="3.3.4" data-path="dataframe.html"><a href="dataframe.html#introduction-to-tibbles"><i class="fa fa-check"></i><b>3.3.4</b> Introduction to tibbles</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>3.4</b> List</a>
@@ -477,6 +476,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="filter-observations.html"><a href="filter-observations.html"><i class="fa fa-check"></i><b>6.1</b> Filter Observations and Objects Masking</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>6.1.1</b> Objects Masking</a></li>
+<li class="chapter" data-level="6.1.2" data-path="filter-observations.html"><a href="filter-observations.html#filter-observations-1"><i class="fa fa-check"></i><b>6.1.2</b> Filter Observations</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -556,24 +556,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="data-manipulation" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Manipulation</h1>
-<p>For conducting data analysis, we often need to conduct various kinds of data manipulation. We will use the <code>ahp</code> dataset in the <strong>r02pro</strong> package throughout this chapter. Let’s first review the dataset.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="data-manipulation.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb593-2"><a href="data-manipulation.html#cb593-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
-<p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="data-manipulation.html#cb594-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
-<p>To view the entire dataset, you can use the <code>View()</code> function, which will open the dataset in the new file window.</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="data-manipulation.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
-<p>To get the first 6 rows of <code>ahp</code>, you can use the <code>head()</code> function, which also has an optional argument if you want a different number of top rows.</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="data-manipulation.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp)</span>
-<span id="cb596-2"><a href="data-manipulation.html#cb596-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
-<p>The following are some possible questions we may want to explore.</p>
-<ol style="list-style-type: decimal">
-<li><p>(pick observations by their values) Find the houses that are sold in Jan 2009.</p></li>
-<li><p>(reorder the observations) Find the houses with the highest sale prices.</p></li>
-<li><p>(pick variable by their names) We see there are 56 columns. For a particular data analysis question, perhaps we want to focus on a subset of the columns.</p></li>
-<li><p>(create new variables as functions of existing ones) From the existing variables, perhaps we want to create new ones, for instance, the average price per living area.</p></li>
-<li><p>(create various summary statistics) We may want to create certain summary statistics. For example, what is the average sale price for each type of houses?</p></li>
-</ol>
+<p>Placeholder</p>
 <!--chapter:end:06_Data_Manipulation.Rmd-->
 </div>
             </section>

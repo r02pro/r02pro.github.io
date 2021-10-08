@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-manipulation.html"/>
 <link rel="next" href="tidy-data.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,7 +160,6 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -310,7 +309,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="dataframe.html"><a href="dataframe.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.3.1</b> Introduction to Data Frames</a></li>
 <li class="chapter" data-level="3.3.2" data-path="dataframe.html"><a href="dataframe.html#adding-observations-or-variables-in-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Adding Observations or Variables in Data Frames</a></li>
-<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subsetting-data-frames"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting Data Frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subset_df"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting Data Frames</a></li>
 <li class="chapter" data-level="3.3.4" data-path="dataframe.html"><a href="dataframe.html#introduction-to-tibbles"><i class="fa fa-check"></i><b>3.3.4</b> Introduction to tibbles</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>3.4</b> List</a>
@@ -477,6 +476,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.1" data-path="filter-observations.html"><a href="filter-observations.html"><i class="fa fa-check"></i><b>6.1</b> Filter Observations and Objects Masking</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>6.1.1</b> Objects Masking</a></li>
+<li class="chapter" data-level="6.1.2" data-path="filter-observations.html"><a href="filter-observations.html#filter-observations-1"><i class="fa fa-check"></i><b>6.1.2</b> Filter Observations</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -557,7 +557,15 @@ div.csl-indent {
 <div id="filter-observations" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Filter Observations and Objects Masking</h2>
 <p>Let’s start with the first task outlined at the beginning of this chapter. Suppose we want to find the houses that are sold in Jan 2009. You can use the function <code>filter()</code> in the <strong>dplyr</strong> package, a member of the <strong>tidyverse</strong> package. If you haven’t installed the <strong>tidyverse</strong> package, you need to install it. Let’s first load the <strong>dplyr</strong> package.</p>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="filter-observations.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="filter-observations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <div id="objects-masking" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Objects Masking</h3>
 <p>After loading the package <strong>dplyr</strong>, you can see the following message</p>
@@ -566,22 +574,58 @@ div.csl-indent {
     filter, lag</code></pre>
 <p>The message appears because <strong>dplyr</strong> contains the functions <code>filter()</code> and <code>lag()</code> which are already defined and preloaded in the R package <strong>stats</strong>. As a result, the original functions are masked by the new definition in <strong>dplyr</strong>.</p>
 <p>In this scenario when the same function name is shared by multiple packages, we can add the package name as a prefix to the function name with <em>double colon</em> (<code>::</code>). For example, <code>stats::filter()</code> represents the <code>filter()</code> function in the <strong>stats</strong> package, while <code>dplyr::filter()</code> represents the <code>filter()</code> function in the <strong>dplyr</strong> package. You can also look at their documentations.</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="filter-observations.html#cb599-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
-<span id="cb599-2"><a href="filter-observations.html#cb599-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="filter-observations.html#cb6-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
+<span id="cb6-2"><a href="filter-observations.html#cb6-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
 <p>It is helpful to verify which version of <code>filter()</code> you are using by typing the function name <code>filter</code>.</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="filter-observations.html#cb600-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
-<p>Usually, R will use the function in the package that is loaded last. To verify the search path, you can use the <code>search()</code> function. R will</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="filter-observations.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code></pre></div>
-<p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="filter-observations.html#cb602-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
-<p>The following are some possible questions we may want to explore.</p>
-<ol style="list-style-type: decimal">
-<li><p>(pick observations by their values) Find the houses that are larger than 2K sq. ft.</p></li>
-<li><p>(reorder the observations) Find the houses with the highest sale prices.</p></li>
-<li><p>(pick variable by their names) We see there are 56 columns. For a particular data analysis question, perhaps we want to focus on a subset of the columns.</p></li>
-<li><p>(create new variables as functions of existing ones) From the existing variables, perhaps we want to create new ones, for instance, the average price per living area.</p></li>
-<li><p>(create various summary statistics) We may want to create certain summary statistics. For example, what is the average sale price for each type of houses?</p></li>
-</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="filter-observations.html#cb7-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
+<p>Usually, R will use the function in the package that is loaded at a later time. To verify the search path, you can use the <code>search()</code> function. R will show a list of attached packages and R objects.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="filter-observations.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:dplyr&quot;     &quot;package:tibble&quot;   
+##  [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+##  [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
+## [10] &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
+</div>
+<div id="filter-observations-1" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Filter Observations</h3>
+<p>Now, let’s introduce how to use <code>filter()</code> to get the subset of <code>ahp</code> which consists of houses that are sold in Jan 2009. To use the <code>filter()</code> function, you put the dataset in the first argument, and put the <strong>logical statements</strong> as individual arguments after that. We know the <code>ahp</code> dataset has the year information in <code>yr_sold</code> and the month information in <code>mo_sold</code>. Apparently, Jan 2009 corresponding to <code>yr_sold == 2009</code> and <code>mo_sold == 1</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="filter-observations.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb10-2"><a href="filter-observations.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 10 x 56
+##    dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type
+##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    
+##  1 2009-01-07    2009       1     1979       1998         20 1Fam     
+##  2 2009-01-09    2009       1     1920       1950         30 1Fam     
+##  3 2009-01-04    2009       1     1958       1958         20 1Fam     
+##  4 2009-01-17    2009       1     2004       2004         20 1Fam     
+##  5 2009-01-16    2009       1       NA       2007         20 1Fam     
+##  6 2009-01-18    2009       1     2008       2008         20 1Fam     
+##  7 2009-01-07    2009       1     2008       2009         60 1Fam     
+##  8 2009-01-28    2009       1     2004       2004         60 1Fam     
+##  9 2009-01-12    2009       1     1926       2004         45 1Fam     
+## 10 2009-01-07    2009       1     2004       2005         20 1Fam     
+## # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,
+## #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,
+## #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,
+## #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,
+## #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,
+## #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,
+## #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,
+## #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,
+## #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,
+## #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,
+## #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,
+## #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</code></pre>
+<p>In the <code>filter()</code> function, each logical statement will be computed, which leads to a logical vector of the same length as the number of observations. Then, only the observations that have <code>TRUE</code> values in all logical vectors are kept.</p>
+<p>It is helpful to learn the mechanism of <code>filter()</code> by reproducing the results using what we learned on data frame subsetting in Section @ref(subset_df).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="filter-observations.html#cb12-1" aria-hidden="true" tabindex="-1"></a>ahp[ahp<span class="sc">$</span>yr_sold <span class="sc">==</span> <span class="dv">2009</span> <span class="sc">&amp;</span> ahp<span class="sc">$</span>mo_sold <span class="sc">==</span> <span class="dv">1</span>, ] </span></code></pre></div>
+<p>Although we got the same answer, we hope you agree with us that the <code>filter()</code> function provides more intuitive and simpler codes than the raw data frame subsetting. For example, the tibble name <code>ahp</code> appeared three times in the data frame subsetting while it only appears once in the <code>filter()</code> function.</p>
+<div class="infobox caution">
+<p>This is an example of the power of creating new R functions and R packages. They usually enable us to do tasks that couldn’t be done using the existing functions in base R, or making coding easier than just using the existing functions. Recall that the same thing happened in the visualization where we compared the visualization functions in base R with the <code>ggplot()</code> function. No matter how complicated the figure we want to create is, we only need to put the data set name once in the <code>ggplot()</code> function if all the layers are using the same data set.</p>
+</div>
+<p>It is worth noting that the <code>filter()</code> function only returns the obsevations when the conditions are all <code>TRUE</code>, without including the <code>NA</code> observations.</p>
+<p>Using the <code>filter()</code> function, the original tibble is unchanged. To save the filtered tibble, you can either assign the value to the original tibble name, which will overwrite it; or assign the value to a new name, which will create a new tibble with the new values. Let’s save all houses that were sold in Apr 2009 in a new tibble.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="filter-observations.html#cb13-1" aria-hidden="true" tabindex="-1"></a>apr09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">4</span>)</span></code></pre></div>
+<p>It is worth emphasizing the n n</p>
 
 </div>
 </div>
