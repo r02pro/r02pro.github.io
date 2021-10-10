@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-08" />
+<meta name="date" content="2021-10-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="reorder-observations.html"/>
 <link rel="next" href="tidy-data.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,6 +160,7 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -566,67 +567,15 @@ div.csl-indent {
 <h2><span class="header-section-number">6.3</span> Pipe: Combining Multiple Operations</h2>
 <p>We have now learned how to filter observations according to a set of conditions (Section <a href="filter-observations.html#filter-observations">6.1</a>) and how to rearrange observations according to a set of variables (Section <a href="reorder-observations.html#reorder-observations">6.2</a>). In practical applications, we usually need to apply <strong>more than one operations sequentially</strong> on a given data.</p>
 <p>Let’s consider the <code>ahp</code> dataset again. Say we want to first find the houses that were sold in Jan 2009 and with over all condition 5. Then, arrange the houses from the oldest to the newest.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pipe.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb1-2"><a href="pipe.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb1-3"><a href="pipe.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pipe.html#cb5-1" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
-<span id="cb5-2"><a href="pipe.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, yr_built)                                          <span class="co">#find the oldest houses</span></span></code></pre></div>
-<pre><code>## # A tibble: 8 x 56
-##   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type
-##   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    
-## 1 2009-01-09    2009       1     1920       1950         30 1Fam     
-## 2 2009-01-07    2009       1     1979       1998         20 1Fam     
-## 3 2009-01-17    2009       1     2004       2004         20 1Fam     
-## 4 2009-01-28    2009       1     2004       2004         60 1Fam     
-## 5 2009-01-07    2009       1     2004       2005         20 1Fam     
-## 6 2009-01-18    2009       1     2008       2008         20 1Fam     
-## 7 2009-01-07    2009       1     2008       2009         60 1Fam     
-## 8 2009-01-16    2009       1       NA       2007         20 1Fam     
-## # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,
-## #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,
-## #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,
-## #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,
-## #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,
-## #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,
-## #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,
-## #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,
-## #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,
-## #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,
-## #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,
-## #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</code></pre>
-<p>You may notice that we created a intermediate object named <code>jan09</code> which may be ununcessary. In the <strong>dplyr</strong> package, there</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pipe.html#cb7-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(yr_built)</span></code></pre></div>
-<pre><code>## # A tibble: 8 x 56
-##   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type
-##   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    
-## 1 2009-01-09    2009       1     1920       1950         30 1Fam     
-## 2 2009-01-07    2009       1     1979       1998         20 1Fam     
-## 3 2009-01-17    2009       1     2004       2004         20 1Fam     
-## 4 2009-01-28    2009       1     2004       2004         60 1Fam     
-## 5 2009-01-07    2009       1     2004       2005         20 1Fam     
-## 6 2009-01-18    2009       1     2008       2008         20 1Fam     
-## 7 2009-01-07    2009       1     2008       2009         60 1Fam     
-## 8 2009-01-16    2009       1       NA       2007         20 1Fam     
-## # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,
-## #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,
-## #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,
-## #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,
-## #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,
-## #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,
-## #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,
-## #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,
-## #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,
-## #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,
-## #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,
-## #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="pipe.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb620-2"><a href="pipe.html#cb620-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb620-3"><a href="pipe.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb620-4"><a href="pipe.html#cb620-4" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
+<span id="cb620-5"><a href="pipe.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, yr_built)                                          <span class="co">#find the oldest houses</span></span></code></pre></div>
+<p>You may notice that we created a intermediate object named <code>jan09</code> which may be ununcessary. To avoid this repetition and make the code more streamlined, you can take advantage of the <strong>pipe</strong> operator <code>%&gt;%</code> in the <strong>dplyr</strong> package. Let’s take a look at the code before going to the details.</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="pipe.html#cb621-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb621-2"><a href="pipe.html#cb621-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb621-3"><a href="pipe.html#cb621-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built)</span></code></pre></div>
 
 </div>
 <!-- </div> -->
