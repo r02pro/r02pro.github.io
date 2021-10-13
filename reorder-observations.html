@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="filter-observations.html"/>
 <link rel="next" href="pipe.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -567,70 +573,85 @@ div.csl-indent {
 <h2><span class="header-section-number">6.2</span> Reorder Observations</h2>
 <p>Now, let’s look at the second task: find the 10 houses with the highest sale prices. To order observations, you can use the function <code>arrange()</code> in the <strong>dplyr</strong> package.</p>
 <p>To make the ordering easier to check, we will first focus on a smaller data set, that corresponds to the houses that was sold in Jan 2009 with overall condition equaling 5.</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="reorder-observations.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb617-2"><a href="reorder-observations.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb617-3"><a href="reorder-observations.html#cb617-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb617-4"><a href="reorder-observations.html#cb617-4" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>)</span>
-<span id="cb617-5"><a href="reorder-observations.html#cb617-5" aria-hidden="true" tabindex="-1"></a>jan09</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="reorder-observations.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb616-2"><a href="reorder-observations.html#cb616-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb616-3"><a href="reorder-observations.html#cb616-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb616-4"><a href="reorder-observations.html#cb616-4" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb616-5"><a href="reorder-observations.html#cb616-5" aria-hidden="true" tabindex="-1"></a>jan09</span></code></pre></div>
 <p>To arrange the observations in the ascending order of the year that the house was built (<code>yr_built</code>), you just need to add <code>yr_built</code> as a second argument of the <code>arrange()</code> function. To arrange the descending order, you just need to add <code>desc()</code> around the variable.</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="reorder-observations.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, yr_built)         <span class="co">#arrange in the ascending order of yr_built</span></span>
-<span id="cb618-2"><a href="reorder-observations.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 56</span></span>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="reorder-observations.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, yr_built)         <span class="co">#arrange in the ascending order of yr_built</span></span>
+<span id="cb617-2"><a href="reorder-observations.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 x 56</span></span>
+<span id="cb617-3"><a href="reorder-observations.html#cb617-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
+<span id="cb617-4"><a href="reorder-observations.html#cb617-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb617-5"><a href="reorder-observations.html#cb617-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
+<span id="cb617-6"><a href="reorder-observations.html#cb617-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
+<span id="cb617-7"><a href="reorder-observations.html#cb617-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
+<span id="cb617-8"><a href="reorder-observations.html#cb617-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
+<span id="cb617-9"><a href="reorder-observations.html#cb617-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
+<span id="cb617-10"><a href="reorder-observations.html#cb617-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
+<span id="cb617-11"><a href="reorder-observations.html#cb617-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
+<span id="cb617-12"><a href="reorder-observations.html#cb617-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
+<span id="cb617-13"><a href="reorder-observations.html#cb617-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
+<span id="cb617-14"><a href="reorder-observations.html#cb617-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
+<span id="cb617-15"><a href="reorder-observations.html#cb617-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb617-16"><a href="reorder-observations.html#cb617-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
+<span id="cb617-17"><a href="reorder-observations.html#cb617-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
+<span id="cb617-18"><a href="reorder-observations.html#cb617-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
+<span id="cb617-19"><a href="reorder-observations.html#cb617-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb617-20"><a href="reorder-observations.html#cb617-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb617-21"><a href="reorder-observations.html#cb617-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb617-22"><a href="reorder-observations.html#cb617-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb617-23"><a href="reorder-observations.html#cb617-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb617-24"><a href="reorder-observations.html#cb617-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span>
+<span id="cb617-25"><a href="reorder-observations.html#cb617-25" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built))   <span class="co">#arrange in the descending order of yr_built</span></span>
+<span id="cb617-26"><a href="reorder-observations.html#cb617-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 x 56</span></span>
+<span id="cb617-27"><a href="reorder-observations.html#cb617-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
+<span id="cb617-28"><a href="reorder-observations.html#cb617-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb617-29"><a href="reorder-observations.html#cb617-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
+<span id="cb617-30"><a href="reorder-observations.html#cb617-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
+<span id="cb617-31"><a href="reorder-observations.html#cb617-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
+<span id="cb617-32"><a href="reorder-observations.html#cb617-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
+<span id="cb617-33"><a href="reorder-observations.html#cb617-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
+<span id="cb617-34"><a href="reorder-observations.html#cb617-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
+<span id="cb617-35"><a href="reorder-observations.html#cb617-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
+<span id="cb617-36"><a href="reorder-observations.html#cb617-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
+<span id="cb617-37"><a href="reorder-observations.html#cb617-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
+<span id="cb617-38"><a href="reorder-observations.html#cb617-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
+<span id="cb617-39"><a href="reorder-observations.html#cb617-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb617-40"><a href="reorder-observations.html#cb617-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
+<span id="cb617-41"><a href="reorder-observations.html#cb617-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
+<span id="cb617-42"><a href="reorder-observations.html#cb617-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
+<span id="cb617-43"><a href="reorder-observations.html#cb617-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb617-44"><a href="reorder-observations.html#cb617-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb617-45"><a href="reorder-observations.html#cb617-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb617-46"><a href="reorder-observations.html#cb617-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb617-47"><a href="reorder-observations.html#cb617-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb617-48"><a href="reorder-observations.html#cb617-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<p>You may observe from the results that there are several houses with the same <code>yr_built</code> value, leading to a tie. To break the tie, you can supply additional variables in the <code>arrange()</code> function, which will arrange the observations in the tie according to the additional variables sequentially.</p>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="reorder-observations.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built), bldg_class)</span>
+<span id="cb618-2"><a href="reorder-observations.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 x 56</span></span>
 <span id="cb618-3"><a href="reorder-observations.html#cb618-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
 <span id="cb618-4"><a href="reorder-observations.html#cb618-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span id="cb618-5"><a href="reorder-observations.html#cb618-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
-<span id="cb618-6"><a href="reorder-observations.html#cb618-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
+<span id="cb618-5"><a href="reorder-observations.html#cb618-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
+<span id="cb618-6"><a href="reorder-observations.html#cb618-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
 <span id="cb618-7"><a href="reorder-observations.html#cb618-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
-<span id="cb618-8"><a href="reorder-observations.html#cb618-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
-<span id="cb618-9"><a href="reorder-observations.html#cb618-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
-<span id="cb618-10"><a href="reorder-observations.html#cb618-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
-<span id="cb618-11"><a href="reorder-observations.html#cb618-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
+<span id="cb618-8"><a href="reorder-observations.html#cb618-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
+<span id="cb618-9"><a href="reorder-observations.html#cb618-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
+<span id="cb618-10"><a href="reorder-observations.html#cb618-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
+<span id="cb618-11"><a href="reorder-observations.html#cb618-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
 <span id="cb618-12"><a href="reorder-observations.html#cb618-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
 <span id="cb618-13"><a href="reorder-observations.html#cb618-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
-<span id="cb618-14"><a href="reorder-observations.html#cb618-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,</span></span>
-<span id="cb618-15"><a href="reorder-observations.html#cb618-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb618-14"><a href="reorder-observations.html#cb618-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
+<span id="cb618-15"><a href="reorder-observations.html#cb618-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
 <span id="cb618-16"><a href="reorder-observations.html#cb618-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
 <span id="cb618-17"><a href="reorder-observations.html#cb618-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
 <span id="cb618-18"><a href="reorder-observations.html#cb618-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb618-19"><a href="reorder-observations.html#cb618-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;, …</span></span>
-<span id="cb618-20"><a href="reorder-observations.html#cb618-20" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built))   <span class="co">#arrange in the descending order of yr_built</span></span>
-<span id="cb618-21"><a href="reorder-observations.html#cb618-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 56</span></span>
-<span id="cb618-22"><a href="reorder-observations.html#cb618-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
-<span id="cb618-23"><a href="reorder-observations.html#cb618-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span id="cb618-24"><a href="reorder-observations.html#cb618-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
-<span id="cb618-25"><a href="reorder-observations.html#cb618-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
-<span id="cb618-26"><a href="reorder-observations.html#cb618-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
-<span id="cb618-27"><a href="reorder-observations.html#cb618-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
-<span id="cb618-28"><a href="reorder-observations.html#cb618-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
-<span id="cb618-29"><a href="reorder-observations.html#cb618-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
-<span id="cb618-30"><a href="reorder-observations.html#cb618-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
-<span id="cb618-31"><a href="reorder-observations.html#cb618-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
-<span id="cb618-32"><a href="reorder-observations.html#cb618-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
-<span id="cb618-33"><a href="reorder-observations.html#cb618-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,</span></span>
-<span id="cb618-34"><a href="reorder-observations.html#cb618-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
-<span id="cb618-35"><a href="reorder-observations.html#cb618-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
-<span id="cb618-36"><a href="reorder-observations.html#cb618-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
-<span id="cb618-37"><a href="reorder-observations.html#cb618-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb618-38"><a href="reorder-observations.html#cb618-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;, …</span></span></code></pre></div>
-<p>You may observe from the results that there are several houses with the same <code>yr_built</code> value, leading to a tie. To break the tie, you can supply additional variables in the <code>arrange()</code> function, which will arrange the observations in the tie according to the additional variables sequentially.</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="reorder-observations.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built), bldg_class)</span>
-<span id="cb619-2"><a href="reorder-observations.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 56</span></span>
-<span id="cb619-3"><a href="reorder-observations.html#cb619-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
-<span id="cb619-4"><a href="reorder-observations.html#cb619-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span id="cb619-5"><a href="reorder-observations.html#cb619-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
-<span id="cb619-6"><a href="reorder-observations.html#cb619-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
-<span id="cb619-7"><a href="reorder-observations.html#cb619-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
-<span id="cb619-8"><a href="reorder-observations.html#cb619-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
-<span id="cb619-9"><a href="reorder-observations.html#cb619-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
-<span id="cb619-10"><a href="reorder-observations.html#cb619-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
-<span id="cb619-11"><a href="reorder-observations.html#cb619-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
-<span id="cb619-12"><a href="reorder-observations.html#cb619-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
-<span id="cb619-13"><a href="reorder-observations.html#cb619-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
-<span id="cb619-14"><a href="reorder-observations.html#cb619-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,</span></span>
-<span id="cb619-15"><a href="reorder-observations.html#cb619-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
-<span id="cb619-16"><a href="reorder-observations.html#cb619-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
-<span id="cb619-17"><a href="reorder-observations.html#cb619-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
-<span id="cb619-18"><a href="reorder-observations.html#cb619-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb619-19"><a href="reorder-observations.html#cb619-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;, …</span></span></code></pre></div>
+<span id="cb618-19"><a href="reorder-observations.html#cb618-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb618-20"><a href="reorder-observations.html#cb618-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb618-21"><a href="reorder-observations.html#cb618-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb618-22"><a href="reorder-observations.html#cb618-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb618-23"><a href="reorder-observations.html#cb618-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb618-24"><a href="reorder-observations.html#cb618-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
 <p>Here, the observations are arranged in the descending order of <code>yr_built</code>, and the ties are broken in the ascending order of <code>bldg_class</code>. Clearly, you can supply as many arguments as needed in the <code>arrange()</code> function. It is also important to note that the observations that has an <code>NA</code> value in the specified variable will always be arranged at the end of the output.</p>
 
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="dataframe.html"/>
 <link rel="next" href="list.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -576,7 +582,7 @@ div.csl-indent {
 <span id="cb333-4"><a href="tibble.html#cb333-4" aria-hidden="true" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>
 <span id="cb333-5"><a href="tibble.html#cb333-5" aria-hidden="true" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, healthy)</span>
 <span id="cb333-6"><a href="tibble.html#cb333-6" aria-hidden="true" tabindex="-1"></a>my_tibble</span>
-<span id="cb333-7"><a href="tibble.html#cb333-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb333-7"><a href="tibble.html#cb333-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
 <span id="cb333-8"><a href="tibble.html#cb333-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
 <span id="cb333-9"><a href="tibble.html#cb333-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;  </span></span>
 <span id="cb333-10"><a href="tibble.html#cb333-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
@@ -591,7 +597,7 @@ div.csl-indent {
 <p>From the output, we can see that tibbles show the variable type under the name, which is very helpful. Another useful feature of tibble compare to data frame is that when you check its value, the output only shows at most the first 10 rows and the number of columns that can fit the output window, which avoids the console to be overcrowded.</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="tibble.html#cb335-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span></span>
 <span id="cb335-2"><a href="tibble.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">id =</span> x, <span class="at">value =</span> <span class="fu">sin</span>(x))</span>
-<span id="cb335-3"><a href="tibble.html#cb335-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 100,000 × 2</span></span>
+<span id="cb335-3"><a href="tibble.html#cb335-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 100,000 x 2</span></span>
 <span id="cb335-4"><a href="tibble.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       id  value</span></span>
 <span id="cb335-5"><a href="tibble.html#cb335-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
 <span id="cb335-6"><a href="tibble.html#cb335-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     1  0.841</span></span>
@@ -665,7 +671,7 @@ div.csl-indent {
 <h3><span class="header-section-number">3.4.2</span> Adding Observations or Variables in Tibbles</h3>
 <p>In a tibble, adding observations has an easier method than that in a data frame, via the <code>add_row()</code> function in the <strong>tibble</strong> package.</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="tibble.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_row</span>(my_tibble, <span class="at">animal =</span> <span class="st">&quot;pig&quot;</span>, <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2017</span>, <span class="dv">2018</span>), <span class="at">healthy =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb338-2"><a href="tibble.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 3</span></span>
+<span id="cb338-2"><a href="tibble.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 x 3</span></span>
 <span id="cb338-3"><a href="tibble.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
 <span id="cb338-4"><a href="tibble.html#cb338-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;lgl&gt;  </span></span>
 <span id="cb338-5"><a href="tibble.html#cb338-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
@@ -688,7 +694,7 @@ div.csl-indent {
 <p>While the tibble subsetting is very similar to the data frame subsetting, we would like to point out a few key differences.</p>
 <p>First of all, when you use the <code>[</code> and <code>]</code> to do tibble subsetting, it always returns a tibble by default, even if only one column is selected. This behavior is different from subsetting data frames using <code>[</code> and <code>]</code>. If you would like to get a vector using only one column is selected, you need to add <code>drop = TRUE</code> in the subsetting process. You can also subset a single row and convert it into a vector by adding the same argument.</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tibble.html#cb340-1" aria-hidden="true" tabindex="-1"></a>my_tibble[, <span class="dv">1</span>]               <span class="co">#3*1 tibble</span></span>
-<span id="cb340-2"><a href="tibble.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 1</span></span>
+<span id="cb340-2"><a href="tibble.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 1</span></span>
 <span id="cb340-3"><a href="tibble.html#cb340-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal</span></span>
 <span id="cb340-4"><a href="tibble.html#cb340-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; </span></span>
 <span id="cb340-5"><a href="tibble.html#cb340-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep </span></span>

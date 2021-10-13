@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="errorbar.html"/>
 <link rel="next" href="customization.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -575,8 +581,8 @@ div.csl-indent {
 <p>The first function is called <code>facet_wrap()</code>, which generate separate plots for each category and wrap the plots into 2d panels.</p>
 <p>Let’s first divide to data according to <code>oa_qual</code>.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="arrange-multi-plots.html#cb537-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-559-1.png" width="576" />
-You can see that there are nine different scatterplots between <code>sale_price</code> and <code>liv_area</code> according to the value of <code>oa_qual</code>. The scatterplots are nicely arranged in a 3-by-3 grid with the value of <code>oa_qual</code> on top of each subplot.</p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-559-1.png" width="576" /></p>
+<p>You can see that there are nine different scatterplots between <code>sale_price</code> and <code>liv_area</code> according to the value of <code>oa_qual</code>. The scatterplots are nicely arranged in a 3-by-3 grid with the value of <code>oa_qual</code> on top of each subplot.</p>
 <p>Note that the scales of all nine plots are the same, which make it straightforward to compare between different groups. On the other hand, the points for some of the groups (e.g., <code>oa_qual == 5</code>) are scrambled together, making us difficult to see the details. To make the subplots having their own scales, you can set <code>scales = "free"</code>.</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="arrange-multi-plots.html#cb538-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-560-1.png" width="576" /></p>

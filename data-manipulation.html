@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="save-object.html"/>
 <link rel="next" href="filter-observations.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -566,15 +572,15 @@ div.csl-indent {
 <div id="data-manipulation" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Manipulation</h1>
 <p>For conducting data analysis, we often need to conduct various kinds of data manipulation. We will use the <code>ahp</code> data set in the <strong>r02pro</strong> package throughout this chapter. Let’s first review the data set.</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="data-manipulation.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb604-2"><a href="data-manipulation.html#cb604-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="data-manipulation.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb603-2"><a href="data-manipulation.html#cb603-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
 <p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="data-manipulation.html#cb605-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="data-manipulation.html#cb604-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
 <p>To view the entire dataset, you can use the <code>View()</code> function, which will open the dataset in the new file window.</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="data-manipulation.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="data-manipulation.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
 <p>To get the first 6 rows of <code>ahp</code>, you can use the <code>head()</code> function, which also has an optional argument if you want a different number of top rows.</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="data-manipulation.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp)</span>
-<span id="cb607-2"><a href="data-manipulation.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="data-manipulation.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp)</span>
+<span id="cb606-2"><a href="data-manipulation.html#cb606-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
 <p>The following are some possible questions we may want to explore.</p>
 <ol style="list-style-type: decimal">
 <li><p>(pick observations by their values) Find the houses that are sold in Jan 2009.</p></li>

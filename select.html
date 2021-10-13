@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.2 Other Distributions | R Programming: Zero to Pro</title>
-  <meta name="description" content="9.2 Other Distributions | R Programming: Zero to Pro" />
+  <title>6.4 Select and Rename Variables | R Programming: Zero to Pro</title>
+  <meta name="description" content="6.4 Select and Rename Variables | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.2 Other Distributions | R Programming: Zero to Pro" />
+  <meta property="og:title" content="6.4 Select and Rename Variables | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="9.2 Other Distributions | R Programming: Zero to Pro" />
+  <meta property="og:description" content="6.4 Select and Rename Variables | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.2 Other Distributions | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="6.4 Select and Rename Variables | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="9.2 Other Distributions | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="6.4 Select and Rename Variables | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="normal-distribution.html"/>
-<link rel="next" href="sampling.html"/>
+<link rel="prev" href="pipe.html"/>
+<link rel="next" href="tidy-data.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -569,31 +569,43 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="other-distributions" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Other Distributions</h2>
-<p>In Section <a href="normal-distribution.html#normal-distribution">9.1</a>, we gave a detailed introduction to the four functions for a normal distribution, which is a popular <em>continuous</em> distribution. In particular, we now know that <code>dnorm()</code> produces the pdf of a normal distribution. In the case of <em>discrete</em> distributions, however, we would have <strong>probability mass function (pmf)</strong> instead of the pdf. Let’s use the <strong>binomial</strong> distribution as a representative example of discrete distributions with the four functions as below.</p>
-<p>Now, let’s look at a few other commonly used distributions. For simplicity, let’s just use the random number generator for each distribution in the following table.</p>
-<p>As we can see from this table, all random number generator functions are formed by the letter <code>r</code> followed by the name of the distribution we would like to generate from. For the other three functions, we just need to change the initial letter <code>r</code>:</p>
-<ul>
-<li>to <code>d</code> for pdf (continuous distribution) or pmf (discrete distribution),</li>
-<li>to <code>p</code> for cdf,</li>
-<li>to <code>q</code> for quantile function.</li>
-</ul>
-<p>Let’s do some statistical exercise with those distributions.</p>
-<div id="exercise-4" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Exercise</h3>
-<p>You can run the following code to do the exercise.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="other-distributions.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.2&quot;</span>)</span></code></pre></div>
+<div id="select" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Select and Rename Variables</h2>
+<p>So far, we have only been manipulating observations, including filtering and arranging the observations. In many applications, there are some variables which may not be the focus of the research problem. As a result, learning how to <strong>select</strong> variables is very useful in data analysis.</p>
+<div id="select-variables-via-names" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Select Variables via Names</h3>
+<p>Let’s again consider the <code>ahp</code> data set, which contains 56 variables in total. If we want to focus on the sold date, house style, living area, and sale price, we can use the <code>select()</code> function in the <strong>dplyr</strong> package. We will be using the pipe introduced in Section <a href="pipe.html#pipe">6.3</a> throughout the rest of this Chapter. Inside the <code>select()</code> function, you can include the variables to select as different arguments. Note that the quotation marks are not necessary.</p>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="select.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb622-2"><a href="select.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb622-3"><a href="select.html#cb622-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(dt_sold, house_style, liv_area, sale_price)</span></code></pre></div>
+<p>As you can see from the output, the <code>select()</code> function returns another tibble with all the observations and the selected variables.</p>
+</div>
+<div id="rename-variables" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Rename Variables</h3>
+<p>In the <code>select()</code> function, you can also <strong>rename the variables</strong> in the form of <code>new_name = old_name</code> as the arguments. Let’s see the following example where we want to rename <code>dt_sold</code> as <code>sold_date</code> and <code>liv_area</code> as <code>living_area</code>.</p>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="select.html#cb623-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area, sale_price)</span></code></pre></div>
+<p>Note that in this renaming operations, only the variables mentioned in the <code>select()</code> function are kept. If you want to generate a tibble with some variables renamed while keeping all variables, you can use the <code>rename()</code> function.</p>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="select.html#cb624-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area)</span></code></pre></div>
+<p>From this example, you can see the different behavior between <code>select()</code> and <code>rename()</code> when renaming variables.</p>
+</div>
+<div id="select-variables-with-patterns" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Select Variables with Patterns</h3>
+<p>Sometimes, you may want to select many variables that follows a particular pattern.</p>
+<p><strong><em>a. select consecutive variables</em></strong>
+The first type of variable patterns is <strong>consecutive variables</strong> in a tibble.
+For example, if you want to select all variables from <code>yr_sold</code> to <code>yr_remodel</code> in the tibble, you can use <code>yr_sold:yr_remodel</code> as a single argument in the <code>select()</code> function. Note that the result highly depends on the particular ordering of variables in the tibble.</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="select.html#cb625-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold<span class="sc">:</span>yr_remodel, sale_price)</span></code></pre></div>
 
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="normal-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pipe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

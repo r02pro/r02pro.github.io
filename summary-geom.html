@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="customization.html"/>
 <link rel="next" href="import-export.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -576,24 +582,73 @@ div.csl-indent {
 <div id="the-grammatical-structure-of-ggplot" class="section level3" number="4.19.2">
 <h3><span class="header-section-number">4.19.2</span> The grammatical structure of <code>ggplot()</code></h3>
 <p>Next, we review the grammatical structure of <code>ggplot()</code>.</p>
-<pre><code>#&gt; Error in loadNamespace(name): there is no package called &#39;kableExtra&#39;</code></pre>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="81%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Code</th>
+<th align="left">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ggplot(data = &lt;DATA&gt;) +</code></td>
+<td align="left">data to be used</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&lt;GEOM_FUNCTION&gt;(</code></td>
+<td align="left">geom for generating the desirable plot</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mapping = aes(&lt;MAPPINGS&gt;),</code></td>
+<td align="left">aesthetic mappings, this may include the x and y axes and other features like <code>color</code>, <code>shape</code>, <code>fill</code>, <code>linetype</code>, <code>size</code>, etc.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>stat = &lt;STAT&gt;,</code></td>
+<td align="left">statistical transformation, for example, when we create the errorbar</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>position = &lt;POSITION&gt;) +</code></td>
+<td align="left">position, like <code>stack</code>, <code>dodge</code>, <code>fill</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>&lt;COORDINATE_FUNCTION&gt; +</code></td>
+<td align="left">such as flipping the x and y axes</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&lt;FACET_FUNCTION&gt; +</code></td>
+<td align="left"><code>facet_wrap()</code> and <code>facet_grid()</code>, create multiple plots for different subsets of the data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>&lt;SCALE_FUNCTION&gt; +</code></td>
+<td align="left">customize the x and y breaks</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>&lt;THEME_FUNCTION&gt;</code></td>
+<td align="left">customize labels, title, and fonts</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="a-complex-ggplot-example" class="section level3" number="4.19.3">
 <h3><span class="header-section-number">4.19.3</span> A complex <code>ggplot()</code> example</h3>
 <p>To conclude this chapter, let’s look at an example with all components.</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="summary-geom.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb559-2"><a href="summary-geom.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb559-3"><a href="summary-geom.html#cb559-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp)) <span class="sc">+</span></span>
-<span id="cb559-4"><a href="summary-geom.html#cb559-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
-<span id="cb559-5"><a href="summary-geom.html#cb559-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>),</span>
-<span id="cb559-6"><a href="summary-geom.html#cb559-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="co">#Default stat for geom_bar, can be removed</span></span>
-<span id="cb559-7"><a href="summary-geom.html#cb559-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
-<span id="cb559-8"><a href="summary-geom.html#cb559-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb559-9"><a href="summary-geom.html#cb559-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(house_style)) <span class="sc">+</span></span>
-<span id="cb559-10"><a href="summary-geom.html#cb559-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)) <span class="sc">+</span></span>
-<span id="cb559-11"><a href="summary-geom.html#cb559-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb559-12"><a href="summary-geom.html#cb559-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;proportion&quot;</span>) <span class="sc">+</span></span>
-<span id="cb559-13"><a href="summary-geom.html#cb559-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar chart for the sahp dataset&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="summary-geom.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb558-2"><a href="summary-geom.html#cb558-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb558-3"><a href="summary-geom.html#cb558-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp)) <span class="sc">+</span></span>
+<span id="cb558-4"><a href="summary-geom.html#cb558-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb558-5"><a href="summary-geom.html#cb558-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>),</span>
+<span id="cb558-6"><a href="summary-geom.html#cb558-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="co">#Default stat for geom_bar, can be removed</span></span>
+<span id="cb558-7"><a href="summary-geom.html#cb558-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb558-8"><a href="summary-geom.html#cb558-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb558-9"><a href="summary-geom.html#cb558-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(house_style)) <span class="sc">+</span></span>
+<span id="cb558-10"><a href="summary-geom.html#cb558-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb558-11"><a href="summary-geom.html#cb558-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb558-12"><a href="summary-geom.html#cb558-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;proportion&quot;</span>) <span class="sc">+</span></span>
+<span id="cb558-13"><a href="summary-geom.html#cb558-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar chart for the sahp dataset&#39;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-581-1.png" width="576" /></p>
 <p>This plot shows a bar chart using the data <code>sahp</code> for the variable <code>kit_qual</code>, map the variable <code>oa_qual &gt; 5</code> to the fill aesthetic and with <code>fill</code> position, with the x and y coordinates flipped, faceted using the variable <code>house_style</code>, and with the breaks on the y axis, the title and its font, the label on the y axis being customized.</p>
 

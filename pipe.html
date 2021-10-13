@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-10" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="reorder-observations.html"/>
-<link rel="next" href="tidy-data.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<link rel="next" href="select.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -487,6 +487,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a></li>
+<li class="chapter" data-level="6.4" data-path="select.html"><a href="select.html"><i class="fa fa-check"></i><b>6.4</b> Select and Rename Variables</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="select.html"><a href="select.html#select-variables-via-names"><i class="fa fa-check"></i><b>6.4.1</b> Select Variables via Names</a></li>
+<li class="chapter" data-level="6.4.2" data-path="select.html"><a href="select.html#rename-variables"><i class="fa fa-check"></i><b>6.4.2</b> Rename Variables</a></li>
+<li class="chapter" data-level="6.4.3" data-path="select.html"><a href="select.html#select-variables-with-patterns"><i class="fa fa-check"></i><b>6.4.3</b> Select Variables with Patterns</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
 <ul>
@@ -565,27 +571,33 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="pipe" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Pipe: Combining Multiple Operations</h2>
-<p>We have now learned how to filter observations according to a set of conditions (Section <a href="filter-observations.html#filter-observations">6.1</a>) and how to rearrange observations according to a set of variables (Section <a href="reorder-observations.html#reorder-observations">6.2</a>). In practical applications, we usually need to apply <strong>more than one operations sequentially</strong> on a given data.</p>
-<p>Let’s consider the <code>ahp</code> dataset again. Say we want to first find the houses that were sold in Jan 2009 and with over all condition 5. Then, arrange the houses from the oldest to the newest.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="pipe.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb620-2"><a href="pipe.html#cb620-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb620-3"><a href="pipe.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb620-4"><a href="pipe.html#cb620-4" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
-<span id="cb620-5"><a href="pipe.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(jan09, yr_built)                                          <span class="co">#find the oldest houses</span></span></code></pre></div>
-<p>You may notice that we created a intermediate object named <code>jan09</code> which may be ununcessary. To avoid this repetition and make the code more streamlined, you can take advantage of the <strong>pipe</strong> operator <code>%&gt;%</code> in the <strong>dplyr</strong> package. Let’s take a look at the code before going to the details.</p>
+<p>We have now learned how to filter observations according to a set of conditions (Section <a href="filter-observations.html#filter-observations">6.1</a>) and how to rearrange observations according to a set of variables (Section <a href="reorder-observations.html#reorder-observations">6.2</a>). In practical applications, we usually need to apply <strong>multiple operations sequentially</strong> on a given data.</p>
+<p>Let’s consider the <code>ahp</code> dataset again. Say we want to first find the houses that were sold in Jan 2009 and with over all condition 5. Then, arrange the houses from the oldest to the newest. Finally, create a scatterplot on the <code>sale_price</code> vs. <code>liv_area</code>.</p>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="pipe.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb619-2"><a href="pipe.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb619-3"><a href="pipe.html#cb619-3" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
+<span id="cb619-4"><a href="pipe.html#cb619-4" aria-hidden="true" tabindex="-1"></a>jan09_yr <span class="ot">&lt;-</span> <span class="fu">arrange</span>(jan09, yr_built)                              <span class="co">#find the oldest houses</span></span>
+<span id="cb619-5"><a href="pipe.html#cb619-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jan09_yr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-641-1.png" width="576" /></p>
+<p>You may notice that we created two intermediate objects named <code>jan09</code> and <code>jan09_yr</code> which may be unnecessary. Let’s say what happens to the code if we are not allowed to define such intermediate objects.</p>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="pipe.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>), yr_built),</span>
+<span id="cb620-2"><a href="pipe.html#cb620-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() </span></code></pre></div>
+<p>We hope you agree that while the code gets the work done, it is not pretty. To make the code more streamlined and intuitive, you can take advantage of the <strong>pipe</strong> operator <code>%&gt;%</code> in the <strong>dplyr</strong> package. Let’s take a look at the code using pipes before going to the details.</p>
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="pipe.html#cb621-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
 <span id="cb621-2"><a href="pipe.html#cb621-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb621-3"><a href="pipe.html#cb621-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built)</span></code></pre></div>
+<span id="cb621-3"><a href="pipe.html#cb621-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built) <span class="sc">%&gt;%</span></span>
+<span id="cb621-4"><a href="pipe.html#cb621-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb621-5"><a href="pipe.html#cb621-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>We hope you agree this code looks more intuitive than the previous version. The working mechanism of <code>%&gt;%</code> is as follows. When you use <code>data %&gt;% some_function(argA, argB)</code>, this is equivalent to <code>some_function(data, argA, argB)</code>. As a result, you can use multiple <code>%&gt;%</code> operators in a row, if the first function provides an output which is the input data of the second function, etc.</p>
 
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="reorder-observations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="select.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
