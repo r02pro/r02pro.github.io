@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-manipulation.html"/>
 <link rel="next" href="reorder-observations.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -587,13 +591,14 @@ div.csl-indent {
 <div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="filter-observations.html#cb610-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
 <p>Usually, R will use the function in the package that is loaded at a later time. To verify the search path, you can use the <code>search()</code> function. R will show a list of attached packages and R objects.</p>
 <div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="filter-observations.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span>
-<span id="cb611-2"><a href="filter-observations.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;        &quot;package:haven&quot;     &quot;package:readxl&quot;   </span></span>
-<span id="cb611-3"><a href="filter-observations.html#cb611-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;package:forcats&quot;   &quot;package:stringr&quot;   &quot;package:purrr&quot;    </span></span>
-<span id="cb611-4"><a href="filter-observations.html#cb611-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:readr&quot;     &quot;package:tidyr&quot;     &quot;package:tidyverse&quot;</span></span>
-<span id="cb611-5"><a href="filter-observations.html#cb611-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;package:ggplot2&quot;   &quot;package:tibble&quot;    &quot;package:r02pro&quot;   </span></span>
-<span id="cb611-6"><a href="filter-observations.html#cb611-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:dplyr&quot;     &quot;package:stats&quot;     &quot;package:graphics&quot; </span></span>
-<span id="cb611-7"><a href="filter-observations.html#cb611-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; </span></span>
-<span id="cb611-8"><a href="filter-observations.html#cb611-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;</span></span></code></pre></div>
+<span id="cb611-2"><a href="filter-observations.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:haven&quot;      &quot;package:readxl&quot;    </span></span>
+<span id="cb611-3"><a href="filter-observations.html#cb611-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;package:writexl&quot;    &quot;package:kableExtra&quot; &quot;package:forcats&quot;   </span></span>
+<span id="cb611-4"><a href="filter-observations.html#cb611-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:stringr&quot;    &quot;package:purrr&quot;      &quot;package:readr&quot;     </span></span>
+<span id="cb611-5"><a href="filter-observations.html#cb611-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;package:tidyr&quot;      &quot;package:tidyverse&quot;  &quot;package:ggplot2&quot;   </span></span>
+<span id="cb611-6"><a href="filter-observations.html#cb611-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:tibble&quot;     &quot;package:r02pro&quot;     &quot;package:dplyr&quot;     </span></span>
+<span id="cb611-7"><a href="filter-observations.html#cb611-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] &quot;package:stats&quot;      &quot;package:graphics&quot;   &quot;package:grDevices&quot; </span></span>
+<span id="cb611-8"><a href="filter-observations.html#cb611-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:utils&quot;      &quot;package:datasets&quot;   &quot;package:methods&quot;   </span></span>
+<span id="cb611-9"><a href="filter-observations.html#cb611-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] &quot;Autoloads&quot;          &quot;package:base&quot;</span></span></code></pre></div>
 </div>
 <div id="filter-observations-1" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Filter Observations</h3>
@@ -614,8 +619,8 @@ div.csl-indent {
 <span id="cb612-14"><a href="filter-observations.html#cb612-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2009-01-12    2009       1     1926       2004         45 1Fam     </span></span>
 <span id="cb612-15"><a href="filter-observations.html#cb612-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
 <span id="cb612-16"><a href="filter-observations.html#cb612-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
-<span id="cb612-17"><a href="filter-observations.html#cb612-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
-<span id="cb612-18"><a href="filter-observations.html#cb612-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb612-17"><a href="filter-observations.html#cb612-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;,</span></span>
+<span id="cb612-18"><a href="filter-observations.html#cb612-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
 <span id="cb612-19"><a href="filter-observations.html#cb612-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
 <span id="cb612-20"><a href="filter-observations.html#cb612-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
 <span id="cb612-21"><a href="filter-observations.html#cb612-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
