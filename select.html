@@ -579,17 +579,17 @@ div.csl-indent {
 <div id="select-variables-via-names" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Select Variables via Names</h3>
 <p>Let’s again consider the <code>ahp</code> data set, which contains 56 variables in total. If we want to focus on the sold date, house style, living area, and sale price, we can use the <code>select()</code> function in the <strong>dplyr</strong> package. We will be using the pipe introduced in Section <a href="pipe.html#pipe">6.3</a> throughout the rest of this Chapter. Inside the <code>select()</code> function, you can include the variables to select as different arguments. Note that the quotation marks are not necessary.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="select.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb622-2"><a href="select.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb622-3"><a href="select.html#cb622-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(dt_sold, house_style, liv_area, sale_price)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="select.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb621-2"><a href="select.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb621-3"><a href="select.html#cb621-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(dt_sold, house_style, liv_area, sale_price)</span></code></pre></div>
 <p>As you can see from the output, the <code>select()</code> function returns another tibble with all the observations and the selected variables.</p>
 </div>
 <div id="rename-variables" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Rename Variables</h3>
 <p>In the <code>select()</code> function, you can also <strong>rename the variables</strong> in the form of <code>new_name = old_name</code> as the arguments. Let’s see the following example where we want to rename <code>dt_sold</code> as <code>sold_date</code> and <code>liv_area</code> as <code>living_area</code>.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="select.html#cb623-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area, sale_price)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="select.html#cb622-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area, sale_price)</span></code></pre></div>
 <p>Note that in this renaming operations, only the variables mentioned in the <code>select()</code> function are kept. If you want to generate a tibble with some variables renamed while keeping all variables, you can use the <code>rename()</code> function.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="select.html#cb624-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="select.html#cb623-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area)</span></code></pre></div>
 <p>From this example, you can see the different behavior between <code>select()</code> and <code>rename()</code> when renaming variables.</p>
 </div>
 <div id="select-variables-with-patterns" class="section level3" number="6.4.3">
@@ -598,7 +598,7 @@ div.csl-indent {
 <p><strong><em>a. select consecutive variables</em></strong>
 The first type of variable patterns is <strong>consecutive variables</strong> in a tibble.
 For example, if you want to select all variables from <code>yr_sold</code> to <code>yr_remodel</code> in the tibble, you can use <code>yr_sold:yr_remodel</code> as a single argument in the <code>select()</code> function. Note that the result highly depends on the particular ordering of variables in the tibble.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="select.html#cb625-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold<span class="sc">:</span>yr_remodel, sale_price)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="select.html#cb624-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold<span class="sc">:</span>yr_remodel, sale_price)</span></code></pre></div>
 
 </div>
 </div>
