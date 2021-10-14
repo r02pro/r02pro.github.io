@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -160,6 +164,7 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -579,54 +584,54 @@ div.csl-indent {
 <h2><span class="header-section-number">4.17</span> Arrange Multiple Plots</h2>
 <p>So far, you have mastered many geoms, and you know one popular way to add the information of additional variables to a plot is mapping them to certain aesthetics. Another way to achieve this goal is to divide the data into different groups according to the additional variables, generate different plots for each group, and arrange the plots into <strong>facets</strong>. This is particularly useful for categorical variables.</p>
 <p>Let’s use the <code>sahp</code> dataset and generate a scatterplot for <code>sale_price</code> vs. <code>liv_area</code> and save it as <code>g</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="arrange-multi-plots.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="arrange-multi-plots.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb1-3"><a href="arrange-multi-plots.html#cb1-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="arrange-multi-plots.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb536-2"><a href="arrange-multi-plots.html#cb536-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb536-3"><a href="arrange-multi-plots.html#cb536-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <div id="facet-wrap" class="section level3" number="4.17.1">
 <h3><span class="header-section-number">4.17.1</span> Facet wrap</h3>
 <p>The first function is called <code>facet_wrap()</code>, which generate separate plots for each category and wrap the plots into 2d panels.</p>
 <p>Let’s first divide to data according to <code>oa_qual</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="arrange-multi-plots.html#cb2-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="arrange-multi-plots.html#cb537-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-559-1.png" width="576" /></p>
 <p>You can see that there are nine different scatterplots between <code>sale_price</code> and <code>liv_area</code> according to the value of <code>oa_qual</code>. The scatterplots are nicely arranged in a 3-by-3 grid with the value of <code>oa_qual</code> on top of each subplot.</p>
 <p>Note that the scales of all nine plots are the same, which make it straightforward to compare between different groups. On the other hand, the points for some of the groups (e.g., <code>oa_qual == 5</code>) are scrambled together, making us difficult to see the details. To make the subplots having their own scales, you can set <code>scales = "free"</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="arrange-multi-plots.html#cb3-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="arrange-multi-plots.html#cb538-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-560-1.png" width="576" /></p>
 <p>From the plot, it is clear that each subplot has its own scale depending on the data range in the subset of the data. If you want to make the subplots to have fixed scale only on the x-axis or the y-axis, you can set <code>scales = "free_y"</code> or <code>scales = "free_x"</code> respectively.</p>
 <p>In addition to the default layout, you can set the desired number of rows or columns. For example, to arrange the plots in two rows for the variable <code>kit_qual</code>, you can use</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="arrange-multi-plots.html#cb4-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;kit_qual&quot;</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="arrange-multi-plots.html#cb539-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;kit_qual&quot;</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-561-1.png" width="576" /></p>
 <p>In addition to using one variable to form the subgroups, you can also use multiple variables by using a vector of their names in the <code>facet_wrap()</code> function.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="arrange-multi-plots.html#cb5-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;kit_qual&quot;</span>,<span class="st">&quot;central_air&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="arrange-multi-plots.html#cb540-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;kit_qual&quot;</span>,<span class="st">&quot;central_air&quot;</span>))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-562-1.png" width="576" /></p>
 <p>This will show the plots for combinations of <code>kit_qual</code> and <code>central_air</code>. For example, the top left plot is the scatterplot between <code>liv_area</code> and <code>sale_price</code> for houses with <code>kit_qual == "Average"</code> and <code>central_air == "Y"</code>. Let’s find out how many different values are there for <code>kit_qual</code> and <code>central_air</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="arrange-multi-plots.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span></code></pre></div>
-<pre><code>## [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="arrange-multi-plots.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span></code></pre></div>
-<pre><code>## [1] &quot;Y&quot; &quot;N&quot;</code></pre>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="arrange-multi-plots.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
+<span id="cb541-2"><a href="arrange-multi-plots.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span>
+<span id="cb541-3"><a href="arrange-multi-plots.html#cb541-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span>
+<span id="cb541-4"><a href="arrange-multi-plots.html#cb541-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Y&quot; &quot;N&quot;</span></span></code></pre></div>
 <p>Clearly, there are in total eight possible combinations of values for these two variables. Upon a careful look, you may realize there is no plot for <code>kit_qual == "Excellent"</code> and <code>central_air == "N"</code>. The reason is due to the fact there are no houses satisfying both criteria. Let’s verify as follows.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="arrange-multi-plots.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>kit_qual <span class="sc">==</span> <span class="st">&quot;Excellent&quot;</span> <span class="sc">&amp;</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;N&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="arrange-multi-plots.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>kit_qual <span class="sc">==</span> <span class="st">&quot;Excellent&quot;</span> <span class="sc">&amp;</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;N&quot;</span>)</span>
+<span id="cb542-2"><a href="arrange-multi-plots.html#cb542-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>Note that the <code>facet_wrap()</code> function can be combined with any geoms we have learned. Let’s see an example of bar charts.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="arrange-multi-plots.html#cb12-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual))</span>
-<span id="cb12-2"><a href="arrange-multi-plots.html#cb12-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;house_style&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="arrange-multi-plots.html#cb543-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual))</span>
+<span id="cb543-2"><a href="arrange-multi-plots.html#cb543-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;house_style&quot;</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-565-1.png" width="576" /></p>
 </div>
 <div id="facet-grid" class="section level3" number="4.17.2">
 <h3><span class="header-section-number">4.17.2</span> Facet grid</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="arrange-multi-plots.html#cb13-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="arrange-multi-plots.html#cb544-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-566-1.png" width="576" /></p>
 <p>In addition to facet wrap, you can also use the function <code>facet_grid()</code> to form a matrix of plots defined by row and column faceting variables. It is mostly useful when you have two discrete variables, and most combinations of the variables exist in the data.</p>
 <p>Comparing with the plot generated by <code>facet_wrap()</code>, <code>facet_grid()</code> will also show empty plots if there are no observations with certain combinations, e.g. <code>kit_qual == "Excellent"</code> and <code>central_air == "N"</code>. This particular way to arrange plots is very informative.</p>
 <p>Similar to <code>facet_wrap()</code>, you can also allow the scales of each subplot to be different by setting the <code>scales</code> argument.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="arrange-multi-plots.html#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air), <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="arrange-multi-plots.html#cb545-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air), <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-567-1.png" width="576" /></p>
 </div>
 <div id="exercises-28" class="section level3" number="4.17.3">
 <h3><span class="header-section-number">4.17.3</span> Exercises</h3>
 <p>Use the <code>sahp</code> data set to answer the following questions.</p>
 <ol style="list-style-type: decimal">
-<li>Create a boxplot for <code>liv_area</code> and assign it to the name <code>my_boxplot</code>.</li>
+<li>Create a boxplot for <code>liv_area</code> and assign it to the name my_boxplot.</li>
 <li>Using <code>my_boxplot</code> in Q1, generate separate plots according to the value of <code>bedroom</code>. What conclusions can you draw from the plot?</li>
 <li>Using <code>my_boxplot</code> in Q1, generate a matrix of subplots with kitchen quality (<code>kit_qual</code>) as the row and whether the house has central ac (<code>central_air</code>) as the column. Do you see a subplot for all combinations of <code>kit_qual</code> and <code>central_air</code>? If not, explain the reason.</li>
 </ol>
