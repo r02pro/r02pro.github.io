@@ -516,9 +516,10 @@ div.csl-indent {
 <li class="chapter" data-level="6.8" data-path="mutating-join.html"><a href="mutating-join.html"><i class="fa fa-check"></i><b>6.8</b> Mutating Joins</a>
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="mutating-join.html"><a href="mutating-join.html#inner-join"><i class="fa fa-check"></i><b>6.8.1</b> Inner Join</a></li>
-<li class="chapter" data-level="6.8.2" data-path="mutating-join.html"><a href="mutating-join.html#right-join"><i class="fa fa-check"></i><b>6.8.2</b> Right Join</a></li>
-<li class="chapter" data-level="6.8.3" data-path="mutating-join.html"><a href="mutating-join.html#full-join"><i class="fa fa-check"></i><b>6.8.3</b> Full Join</a></li>
-<li class="chapter" data-level="6.8.4" data-path="mutating-join.html"><a href="mutating-join.html#a-summary-of-all-mutating-joins"><i class="fa fa-check"></i><b>6.8.4</b> A Summary of All Mutating Joins</a></li>
+<li class="chapter" data-level="6.8.2" data-path="mutating-join.html"><a href="mutating-join.html#left-join"><i class="fa fa-check"></i><b>6.8.2</b> Left Join</a></li>
+<li class="chapter" data-level="6.8.3" data-path="mutating-join.html"><a href="mutating-join.html#right-join"><i class="fa fa-check"></i><b>6.8.3</b> Right Join</a></li>
+<li class="chapter" data-level="6.8.4" data-path="mutating-join.html"><a href="mutating-join.html#full-join"><i class="fa fa-check"></i><b>6.8.4</b> Full Join</a></li>
+<li class="chapter" data-level="6.8.5" data-path="mutating-join.html"><a href="mutating-join.html#a-summary-of-all-mutating-joins"><i class="fa fa-check"></i><b>6.8.5</b> A Summary of All Mutating Joins</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -623,8 +624,10 @@ div.csl-indent {
 <span id="cb647-7"><a href="mutating-join.html#cb647-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
 <span id="cb647-8"><a href="mutating-join.html#cb647-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
 <span id="cb647-9"><a href="mutating-join.html#cb647-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span></code></pre></div>
-<p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>d1</code> that has a matching value in <code>d2</code> for <code>bsmt_ht</code>. The 5th observation in <code>d1</code> is dropped in the result since its <code>bsmt_ht</code> value is <code>"Fair"</code>, which doesn’t have a matched observation in <code>d2</code>.
-### Left Join {#left-join}</p>
+<p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>d1</code> that has a matching value in <code>d2</code> for <code>bsmt_ht</code>. The 5th observation in <code>d1</code> is dropped in the result since its <code>bsmt_ht</code> value is <code>"Fair"</code>, which doesn’t have a matched observation in <code>d2</code>.</p>
+</div>
+<div id="left-join" class="section level3" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Left Join</h3>
 <p>The second type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>left join</strong>. You can use the <code>left_join()</code> function, which returns all rows in <code>d1</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d2</code> or not.</p>
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="mutating-join.html#cb648-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
 <span id="cb648-2"><a href="mutating-join.html#cb648-2" aria-hidden="true" tabindex="-1"></a>left</span>
@@ -638,8 +641,8 @@ div.csl-indent {
 <span id="cb648-10"><a href="mutating-join.html#cb648-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>d1</code> is kept, even though the last row doesn’t have a matching observation in <code>d2</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding value for <code>height</code> is <code>NA</code>.</p>
 </div>
-<div id="right-join" class="section level3" number="6.8.2">
-<h3><span class="header-section-number">6.8.2</span> Right Join</h3>
+<div id="right-join" class="section level3" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Right Join</h3>
 <p>The third type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>right join</strong>, which works in a similar fashion as left join. You can use the <code>right_join()</code> function, which returns all rows in <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d1</code> or not.</p>
 <div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="mutating-join.html#cb649-1" aria-hidden="true" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
 <span id="cb649-2"><a href="mutating-join.html#cb649-2" aria-hidden="true" tabindex="-1"></a>right</span>
@@ -654,8 +657,8 @@ div.csl-indent {
 <span id="cb649-11"><a href="mutating-join.html#cb649-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>d2</code> is kept, even though the last two rows don’t have a matching observation in <code>d1</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding values for <code>dt_sold</code> and <code>bsmt_area</code> are <code>NA</code>.</p>
 </div>
-<div id="full-join" class="section level3" number="6.8.3">
-<h3><span class="header-section-number">6.8.3</span> Full Join</h3>
+<div id="full-join" class="section level3" number="6.8.4">
+<h3><span class="header-section-number">6.8.4</span> Full Join</h3>
 <p>The fourth type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>full join</strong>. You can use the <code>full_join()</code> function, which returns all rows in both <code>d1</code> and <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in either <code>d1</code> or <code>d2</code>.</p>
 <div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="mutating-join.html#cb650-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
 <span id="cb650-2"><a href="mutating-join.html#cb650-2" aria-hidden="true" tabindex="-1"></a>full</span>
@@ -671,8 +674,8 @@ div.csl-indent {
 <span id="cb650-12"><a href="mutating-join.html#cb650-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
 <p>As you can tell from the result, it includes all observations from both <code>d1</code> and <code>d2</code>. You can view it as the union of <code>left_join()</code> and <code>right_join()</code>.</p>
 </div>
-<div id="a-summary-of-all-mutating-joins" class="section level3" number="6.8.4">
-<h3><span class="header-section-number">6.8.4</span> A Summary of All Mutating Joins</h3>
+<div id="a-summary-of-all-mutating-joins" class="section level3" number="6.8.5">
+<h3><span class="header-section-number">6.8.5</span> A Summary of All Mutating Joins</h3>
 <table>
 <thead>
 <tr>
