@@ -33,7 +33,7 @@
   
 <link rel="prev" href="data-visualization.html"/>
 <link rel="next" href="scatterplots.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -513,6 +517,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="mutating-join.html"><a href="mutating-join.html#inner-join"><i class="fa fa-check"></i><b>6.8.1</b> Inner Join</a></li>
 <li class="chapter" data-level="6.8.2" data-path="mutating-join.html"><a href="mutating-join.html#right-join"><i class="fa fa-check"></i><b>6.8.2</b> Right Join</a></li>
+<li class="chapter" data-level="6.8.3" data-path="mutating-join.html"><a href="mutating-join.html#full-join"><i class="fa fa-check"></i><b>6.8.3</b> Full Join</a></li>
+<li class="chapter" data-level="6.8.4" data-path="mutating-join.html"><a href="mutating-join.html#a-summary-of-all-mutating-joins"><i class="fa fa-check"></i><b>6.8.4</b> A Summary of All Mutating Joins</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -602,7 +608,7 @@ Besides the <strong>r02pro</strong> package, we will also extensively use the <s
 <span id="cb361-3"><a href="intro-dataset.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
 <p>After loading the three packages, you can type <code>sahp</code> to have a quick look of the dataset.</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="intro-dataset.html#cb362-1" aria-hidden="true" tabindex="-1"></a>sahp</span>
-<span id="cb362-2"><a href="intro-dataset.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 × 12</span></span>
+<span id="cb362-2"><a href="intro-dataset.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 12</span></span>
 <span id="cb362-3"><a href="intro-dataset.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    bedroom bathroom gar_car oa_qual liv_area lot_area house_style</span></span>
 <span id="cb362-4"><a href="intro-dataset.html#cb362-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      </span></span>
 <span id="cb362-5"><a href="intro-dataset.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       3      2.5       2       6     1479    13517 2Story     </span></span>
@@ -709,19 +715,19 @@ use the <code>head()</code> function, which produces the first 6 observations by
 <h3><span class="header-section-number">4.1.3</span> Recover Modified Values</h3>
 <p>When you are working with a data set inside a package, you may accidentally modified some values in place by mistake. In this situation, you don’t need to panic as you can easily recover the data set into a faculty setting (i.e. the original version inside the package). To do this, you just need to use the <code>data()</code> function with the data set name as its argument. Let’s try to modify one value of <code>sahp</code> and recover the data set afterward.</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="intro-dataset.html#cb379-1" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#get the original value</span></span>
-<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
 <span id="cb379-3"><a href="intro-dataset.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
 <span id="cb379-4"><a href="intro-dataset.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
 <span id="cb379-5"><a href="intro-dataset.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span>
 <span id="cb379-6"><a href="intro-dataset.html#cb379-6" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">5</span>         <span class="co">#modify the value</span></span>
 <span id="cb379-7"><a href="intro-dataset.html#cb379-7" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the modified value</span></span>
-<span id="cb379-8"><a href="intro-dataset.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb379-8"><a href="intro-dataset.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
 <span id="cb379-9"><a href="intro-dataset.html#cb379-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
 <span id="cb379-10"><a href="intro-dataset.html#cb379-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
 <span id="cb379-11"><a href="intro-dataset.html#cb379-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5</span></span>
 <span id="cb379-12"><a href="intro-dataset.html#cb379-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sahp)             <span class="co">#recover the data</span></span>
 <span id="cb379-13"><a href="intro-dataset.html#cb379-13" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the value is recovered</span></span>
-<span id="cb379-14"><a href="intro-dataset.html#cb379-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb379-14"><a href="intro-dataset.html#cb379-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
 <span id="cb379-15"><a href="intro-dataset.html#cb379-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
 <span id="cb379-16"><a href="intro-dataset.html#cb379-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
 <span id="cb379-17"><a href="intro-dataset.html#cb379-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span></code></pre></div>

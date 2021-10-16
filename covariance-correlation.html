@@ -33,7 +33,7 @@
   
 <link rel="prev" href="sampling.html"/>
 <link rel="next" href="write-code.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -513,6 +517,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="mutating-join.html"><a href="mutating-join.html#inner-join"><i class="fa fa-check"></i><b>6.8.1</b> Inner Join</a></li>
 <li class="chapter" data-level="6.8.2" data-path="mutating-join.html"><a href="mutating-join.html#right-join"><i class="fa fa-check"></i><b>6.8.2</b> Right Join</a></li>
+<li class="chapter" data-level="6.8.3" data-path="mutating-join.html"><a href="mutating-join.html#full-join"><i class="fa fa-check"></i><b>6.8.3</b> Full Join</a></li>
+<li class="chapter" data-level="6.8.4" data-path="mutating-join.html"><a href="mutating-join.html#a-summary-of-all-mutating-joins"><i class="fa fa-check"></i><b>6.8.4</b> A Summary of All Mutating Joins</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -593,21 +599,21 @@ div.csl-indent {
 <div id="covariance_correlation" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Covariance and Correlation</h2>
 <p>In this section, we will dive further into statistics, this time talking about the relationship among variables. For two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, the covariance between them is defined as <span class="math inline">\(Cov(X, Y) = E[(X-E(X))(Y-E(Y))]\)</span>.</p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="covariance-correlation.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">724</span>)</span>
-<span id="cb686-2"><a href="covariance-correlation.html#cb686-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
-<span id="cb686-3"><a href="covariance-correlation.html#cb686-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb686-4"><a href="covariance-correlation.html#cb686-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb686-5"><a href="covariance-correlation.html#cb686-5" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb686-6"><a href="covariance-correlation.html#cb686-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x1, x2)</span>
-<span id="cb686-7"><a href="covariance-correlation.html#cb686-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x1, x3)</span>
-<span id="cb686-8"><a href="covariance-correlation.html#cb686-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x2, x3)</span>
-<span id="cb686-9"><a href="covariance-correlation.html#cb686-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, x2, x3)</span>
-<span id="cb686-10"><a href="covariance-correlation.html#cb686-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x) <span class="co">#correlation matrix</span></span>
-<span id="cb686-11"><a href="covariance-correlation.html#cb686-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x) <span class="co">#covariance matrix</span></span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="covariance-correlation.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">724</span>)</span>
+<span id="cb685-2"><a href="covariance-correlation.html#cb685-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<span id="cb685-3"><a href="covariance-correlation.html#cb685-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb685-4"><a href="covariance-correlation.html#cb685-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb685-5"><a href="covariance-correlation.html#cb685-5" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb685-6"><a href="covariance-correlation.html#cb685-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x1, x2)</span>
+<span id="cb685-7"><a href="covariance-correlation.html#cb685-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x1, x3)</span>
+<span id="cb685-8"><a href="covariance-correlation.html#cb685-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x2, x3)</span>
+<span id="cb685-9"><a href="covariance-correlation.html#cb685-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x1, x2, x3)</span>
+<span id="cb685-10"><a href="covariance-correlation.html#cb685-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x) <span class="co">#correlation matrix</span></span>
+<span id="cb685-11"><a href="covariance-correlation.html#cb685-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x) <span class="co">#covariance matrix</span></span></code></pre></div>
 <div id="exercise-6" class="section level3" number="9.4.1">
 <h3><span class="header-section-number">9.4.1</span> Exercise</h3>
 <p>You can run the following code to do the exercise.</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="covariance-correlation.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.4&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="covariance-correlation.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.4&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
