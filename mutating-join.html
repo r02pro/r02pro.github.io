@@ -33,7 +33,7 @@
   
 <link rel="prev" href="grouped-mutate-filter.html"/>
 <link rel="next" href="tidy-data.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -160,6 +160,7 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -511,6 +512,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.8" data-path="mutating-join.html"><a href="mutating-join.html"><i class="fa fa-check"></i><b>6.8</b> Mutating Joins</a>
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="mutating-join.html"><a href="mutating-join.html#inner-join"><i class="fa fa-check"></i><b>6.8.1</b> Inner Join</a></li>
+<li class="chapter" data-level="6.8.2" data-path="mutating-join.html"><a href="mutating-join.html#right-join"><i class="fa fa-check"></i><b>6.8.2</b> Right Join</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a>
@@ -591,37 +593,14 @@ div.csl-indent {
 <div id="mutating-join" class="section level2" number="6.8">
 <h2><span class="header-section-number">6.8</span> Mutating Joins</h2>
 <p>So far, we have been working on a single data set. In applications, however, we often have the need to combine multiple data sets into a single one before doing data analysis. Let’s prepare two data sets to show the various ways we can <strong>join two data sets</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="mutating-join.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ dplyr   1.0.7
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.1
-## ✓ purrr   0.3.4</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="mutating-join.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb5-2"><a href="mutating-join.html#cb5-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="mutating-join.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="mutating-join.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb5-5"><a href="mutating-join.html#cb5-5" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
-<span id="cb5-6"><a href="mutating-join.html#cb5-6" aria-hidden="true" tabindex="-1"></a>d1</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
-##   dt_sold    bsmt_area bsmt_ht
-##   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  
-## 1 2010-03-25       725 Average
-## 2 2009-04-10       913 Good   
-## 3 2010-01-15      1057 Average
-## 4 2010-04-19       384 Good   
-## 5 2010-03-22       676 Fair</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="mutating-join.html#cb7-1" aria-hidden="true" tabindex="-1"></a>d2</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 2
-##   bsmt_ht   height      
-##   &lt;chr&gt;     &lt;chr&gt;       
-## 1 Excellent 100+ inches 
-## 2 Good      90-99 inches
-## 3 Average   80-89 inches
-## 4 Poor      &lt;70 inches</code></pre>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="mutating-join.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb648-2"><a href="mutating-join.html#cb648-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb648-3"><a href="mutating-join.html#cb648-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb648-4"><a href="mutating-join.html#cb648-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
+<span id="cb648-5"><a href="mutating-join.html#cb648-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb648-6"><a href="mutating-join.html#cb648-6" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
+<span id="cb648-7"><a href="mutating-join.html#cb648-7" aria-hidden="true" tabindex="-1"></a>d1</span>
+<span id="cb648-8"><a href="mutating-join.html#cb648-8" aria-hidden="true" tabindex="-1"></a>d2</span></code></pre></div>
 <p>From the results, we know <code>d1</code> is a tibble of
 5 observations and 3 variables including <code>dt_sold</code>, <code>bsmt_area</code>, and <code>bsmt_ht</code>. <code>d2</code> is another tibble of 4 observations and 2 variales including <code>bsmt_ht</code> and <code>height</code>.</p>
 <p>It is clear that the two tibbles share a variable named <code>bsmt_ht</code>. It could be interesting to join the two tibbles into a single one by including all variables while matching the values of <code>bsmt_ht</code>. The bridging variable <code>bsmt_ht</code> is usually called the <strong>key</strong> to the joining operation.</p>
@@ -629,15 +608,44 @@ div.csl-indent {
 <div id="inner-join" class="section level3" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Inner Join</h3>
 <p>The first type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>inner join</strong>. You can use the <code>inner_join()</code> function, which returns all rows in <code>d1</code> such that there are matching values of all keys in <code>d2</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="mutating-join.html#cb9-1" aria-hidden="true" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb9-2"><a href="mutating-join.html#cb9-2" aria-hidden="true" tabindex="-1"></a>inner</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 4
-##   dt_sold    bsmt_area bsmt_ht height      
-##   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       
-## 1 2010-03-25       725 Average 80-89 inches
-## 2 2009-04-10       913 Good    90-99 inches
-## 3 2010-01-15      1057 Average 80-89 inches
-## 4 2010-04-19       384 Good    90-99 inches</code></pre>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="mutating-join.html#cb649-1" aria-hidden="true" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb649-2"><a href="mutating-join.html#cb649-2" aria-hidden="true" tabindex="-1"></a>inner</span>
+<span id="cb649-3"><a href="mutating-join.html#cb649-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb649-4"><a href="mutating-join.html#cb649-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb649-5"><a href="mutating-join.html#cb649-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb649-6"><a href="mutating-join.html#cb649-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb649-7"><a href="mutating-join.html#cb649-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb649-8"><a href="mutating-join.html#cb649-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb649-9"><a href="mutating-join.html#cb649-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span></code></pre></div>
+<p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>d1</code> that has a matching value in <code>d2</code> for <code>bsmt_ht</code>. The 5th observation in <code>d1</code> is dropped in the result since its <code>bsmt_ht</code> value is <code>"Fair"</code>, which doesn’t have a matched observation in <code>d2</code>.
+### Left Join {#left-join}</p>
+<p>The second type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>left join</strong>. You can use the <code>left_join()</code> function, which returns all rows in <code>d1</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d2</code> or not.</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="mutating-join.html#cb650-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb650-2"><a href="mutating-join.html#cb650-2" aria-hidden="true" tabindex="-1"></a>left</span>
+<span id="cb650-3"><a href="mutating-join.html#cb650-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb650-4"><a href="mutating-join.html#cb650-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb650-5"><a href="mutating-join.html#cb650-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb650-6"><a href="mutating-join.html#cb650-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb650-7"><a href="mutating-join.html#cb650-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb650-8"><a href="mutating-join.html#cb650-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb650-9"><a href="mutating-join.html#cb650-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span>
+<span id="cb650-10"><a href="mutating-join.html#cb650-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
+<p>As you can see from the result, all rows in <code>d1</code> is kept, even though the last row doesn’t have a matching observation in <code>d2</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding value for <code>height</code> is <code>NA</code>.</p>
+</div>
+<div id="right-join" class="section level3" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Right Join</h3>
+<p>The third type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>right join</strong>, which works in a similar fashion as <strong>left join</strong>. You can use the <code>left_join()</code> function, which returns all rows in <code>d1</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d2</code> or not.</p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="mutating-join.html#cb651-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb651-2"><a href="mutating-join.html#cb651-2" aria-hidden="true" tabindex="-1"></a>left</span>
+<span id="cb651-3"><a href="mutating-join.html#cb651-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb651-4"><a href="mutating-join.html#cb651-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb651-5"><a href="mutating-join.html#cb651-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb651-6"><a href="mutating-join.html#cb651-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb651-7"><a href="mutating-join.html#cb651-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb651-8"><a href="mutating-join.html#cb651-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb651-9"><a href="mutating-join.html#cb651-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span>
+<span id="cb651-10"><a href="mutating-join.html#cb651-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
+<p>As you can see from the result, all rows in <code>d1</code> is kept, even though the last row doesn’t have a matching observation in <code>d2</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding value for <code>height</code> is <code>NA</code>.</p>
 
 </div>
 </div>
