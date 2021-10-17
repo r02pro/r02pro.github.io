@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.8 Add Auxiliary Lines | R Programming: Zero to Pro</title>
-  <meta name="description" content="4.8 Add Auxiliary Lines | R Programming: Zero to Pro" />
+  <title>6.8 Joins | R Programming: Zero to Pro</title>
+  <meta name="description" content="6.8 Joins | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.8 Add Auxiliary Lines | R Programming: Zero to Pro" />
+  <meta property="og:title" content="6.8 Joins | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="4.8 Add Auxiliary Lines | R Programming: Zero to Pro" />
+  <meta property="og:description" content="6.8 Joins | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.8 Add Auxiliary Lines | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="6.8 Joins | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="4.8 Add Auxiliary Lines | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="6.8 Joins | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="line-plot.html"/>
-<link rel="next" href="jitter-count.html"/>
+<link rel="prev" href="grouped-mutate-filter.html"/>
+<link rel="next" href="tidy-data.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -598,72 +598,183 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="add-auxiliary" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Add Auxiliary Lines</h2>
-<p>Having learned how to generate scatterplots, smoothline fits, and line plot, it is sometimes helpful to add auxiliary lines to existing plots to provide additional information.</p>
-<div id="using-abline-with-plot" class="section level3" number="4.8.1">
-<h3><span class="header-section-number">4.8.1</span> Using <code>abline()</code> with <code>plot()</code></h3>
-<p>Let’s first review the scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="add-auxiliary.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb443-2"><a href="add-auxiliary.html#cb443-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span></code></pre></div>
-<p>In this plot, you may want to add some auxiliary lines. You can use the function <code>abline()</code> after a call of <code>plot()</code> to do this. To add a vertical line, you can set the parameter <code>v</code>; to add a horizontal line, you can set the parameter <code>h</code>.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="add-auxiliary.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
-<span id="cb444-2"><a href="add-auxiliary.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">2000</span>, <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>)       <span class="do">##Add a vertical line at liv_area = 2000</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-466-1.png" width="576" /></p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="add-auxiliary.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
-<span id="cb445-2"><a href="add-auxiliary.html#cb445-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">300</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)         <span class="do">##Add a horizontal line at sale_price = 2000</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-467-1.png" width="576" /></p>
-<p>Note that the <code>v</code> and <code>h</code> arguments can also be vectors with more than one values, which will lead to multiple vertical or horizontal lines. The corresponding argument <code>col</code> can also be a vector with multiple values.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="add-auxiliary.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
-<span id="cb446-2"><a href="add-auxiliary.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>))         <span class="do">##Add multiple horizontal lines</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-468-1.png" width="576" /></p>
-<p>In addition to adding vertical lines and horizontal lines, you can also add any line with the <code>abline()</code> function. We know a line can be represented as a function <span class="math inline">\(y = a + b\times x\)</span>, where <span class="math inline">\(a\)</span> is the intercept and <span class="math inline">\(b\)</span> is the slope. In the <code>abline()</code>, you can generate such a line by specifying the parameter <code>a</code> for the intercept and <code>b</code> for the slope. Note that you can run <code>abline()</code> multiple times to add multiple lines.</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="add-auxiliary.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
-<span id="cb447-2"><a href="add-auxiliary.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">300</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)   </span>
-<span id="cb447-3"><a href="add-auxiliary.html#cb447-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">100</span>, <span class="at">b =</span> <span class="fl">0.1</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>) </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-469-1.png" width="576" /></p>
+<div id="joins" class="section level2" number="6.8">
+<h2><span class="header-section-number">6.8</span> Joins</h2>
+<p>So far, we have been working on a single data set. In applications, however, we often have the need to combine multiple data sets into a single one before doing data analysis. Let’s prepare two data sets to show the various ways we can <strong>join two data sets</strong>.</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="joins.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb646-2"><a href="joins.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb646-3"><a href="joins.html#cb646-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb646-4"><a href="joins.html#cb646-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
+<span id="cb646-5"><a href="joins.html#cb646-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb646-6"><a href="joins.html#cb646-6" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
+<span id="cb646-7"><a href="joins.html#cb646-7" aria-hidden="true" tabindex="-1"></a>d1</span>
+<span id="cb646-8"><a href="joins.html#cb646-8" aria-hidden="true" tabindex="-1"></a>d2</span></code></pre></div>
+<p>From the results, we know <code>d1</code> is a tibble of
+5 observations and 3 variables including <code>dt_sold</code>, <code>bsmt_area</code>, and <code>bsmt_ht</code>. <code>d2</code> is another tibble of 4 observations and 2 variales including <code>bsmt_ht</code> and <code>height</code>.</p>
+<p>It is clear that the two tibbles share a variable named <code>bsmt_ht</code>. It could be interesting to join the two tibbles into a single one by including all variables while matching the values of <code>bsmt_ht</code>. The bridging variable <code>bsmt_ht</code> is usually called the <strong>key</strong> to the joining operation.</p>
+<p>Next, we will discuss several different join operations between <code>d1</code> and <code>d2</code>, with the key being <code>bsmt_ht</code>.</p>
+<div id="inner-join" class="section level3" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Inner Join</h3>
+<p>The first type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>inner join</strong>. You can use the <code>inner_join()</code> function, which returns all rows in <code>d1</code> such that there are matching values of all keys in <code>d2</code>.</p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="joins.html#cb647-1" aria-hidden="true" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb647-2"><a href="joins.html#cb647-2" aria-hidden="true" tabindex="-1"></a>inner</span>
+<span id="cb647-3"><a href="joins.html#cb647-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 x 4</span></span>
+<span id="cb647-4"><a href="joins.html#cb647-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb647-5"><a href="joins.html#cb647-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb647-6"><a href="joins.html#cb647-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb647-7"><a href="joins.html#cb647-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb647-8"><a href="joins.html#cb647-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb647-9"><a href="joins.html#cb647-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span></code></pre></div>
+<p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>d1</code> that has a matching value in <code>d2</code> for <code>bsmt_ht</code>. The 5th observation in <code>d1</code> is dropped in the result since its <code>bsmt_ht</code> value is <code>"Fair"</code>, which doesn’t have a matched observation in <code>d2</code>.</p>
 </div>
-<div id="using-geom_hline-geom_vline-and-geom_abline" class="section level3" number="4.8.2">
-<h3><span class="header-section-number">4.8.2</span> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></h3>
-<p>Let’s first review the following scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="add-auxiliary.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb448-2"><a href="add-auxiliary.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb448-3"><a href="add-auxiliary.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-470-1.png" width="576" /></p>
-<p>Looking at the scatterplot, it maybe helpful to add a horizontal line. To do this, you can use the <code>geom_hline()</code> function with argument <code>yintercept</code> specifying the value on the y-axis.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="add-auxiliary.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">300</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-471-1.png" width="576" /></p>
-<p>Here, a horizontal line at 300 is added to the scatterplot.</p>
-<p>You can also add both vertical lines and horizontal lines to the same plot.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="add-auxiliary.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2000</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">300</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-472-1.png" width="576" /></p>
-<p>In addition to adding vertical lines and horizontal lines, you can also add any line with the <code>geom_abline()</code> function. We know a line can be represented as a function <span class="math inline">\(y = a + b\times x\)</span>, where <span class="math inline">\(a\)</span> is the intercept and <span class="math inline">\(b\)</span> is the slope. In the <code>geom_abline()</code>, you can generate such a line by specifying the <code>slope</code> and <code>intercept</code> arguments.</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="add-auxiliary.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.1</span>, <span class="at">intercept =</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-473-1.png" width="576" /></p>
-<p>Similar to smoothline fit and line plots, you can change line type here. Different numbers correspond to different line types.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="add-auxiliary.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.1</span>, <span class="at">intercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="dv">3</span>) </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-474-1.png" width="576" /></p>
+<div id="left-join" class="section level3" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Left Join</h3>
+<p>The second type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>left join</strong>. You can use the <code>left_join()</code> function, which returns all rows in <code>d1</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d2</code> or not.</p>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="joins.html#cb648-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb648-2"><a href="joins.html#cb648-2" aria-hidden="true" tabindex="-1"></a>left</span>
+<span id="cb648-3"><a href="joins.html#cb648-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 x 4</span></span>
+<span id="cb648-4"><a href="joins.html#cb648-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb648-5"><a href="joins.html#cb648-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb648-6"><a href="joins.html#cb648-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb648-7"><a href="joins.html#cb648-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb648-8"><a href="joins.html#cb648-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb648-9"><a href="joins.html#cb648-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span>
+<span id="cb648-10"><a href="joins.html#cb648-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
+<p>As you can see from the result, all rows in <code>d1</code> is kept, even though the last row doesn’t have a matching observation in <code>d2</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding value for <code>height</code> is <code>NA</code>.</p>
 </div>
-<div id="exercises-21" class="section level3" number="4.8.3">
-<h3><span class="header-section-number">4.8.3</span> Exercises</h3>
-<ol style="list-style-type: decimal">
-<li>Using the <code>sahp</code> data, using <code>plot()</code> to generate a scatterplot between <code>lot_area</code> (x-axis) and <code>sale_price</code> (y-axis), and add horizontal lines at 150 with color “blue” and 200 with color “red.”</li>
-<li>Using the <code>sahp</code> data, using <code>ggplot()</code> to generate a scatterplot between <code>sale_price</code> (x-axis) and <code>liv_area</code> (y-axis), and add the following lines to the plot:</li>
-</ol>
-<ul>
-<li><span class="math inline">\(y = 5\times x + 1000\)</span> (in green color, dashed line)</li>
-<li><span class="math inline">\(y = 3\times x + 1500\)</span> (in purple color, solid line)</li>
-</ul>
+<div id="right-join" class="section level3" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Right Join</h3>
+<p>The third type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>right join</strong>, which works in a similar fashion as left join. You can use the <code>right_join()</code> function, which returns all rows in <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d1</code> or not.</p>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="joins.html#cb649-1" aria-hidden="true" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb649-2"><a href="joins.html#cb649-2" aria-hidden="true" tabindex="-1"></a>right</span>
+<span id="cb649-3"><a href="joins.html#cb649-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
+<span id="cb649-4"><a href="joins.html#cb649-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
+<span id="cb649-5"><a href="joins.html#cb649-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb649-6"><a href="joins.html#cb649-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
+<span id="cb649-7"><a href="joins.html#cb649-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
+<span id="cb649-8"><a href="joins.html#cb649-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
+<span id="cb649-9"><a href="joins.html#cb649-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
+<span id="cb649-10"><a href="joins.html#cb649-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 NA                NA Excellent 100+ inches </span></span>
+<span id="cb649-11"><a href="joins.html#cb649-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
+<p>As you can see from the result, all rows in <code>d2</code> is kept, even though the last two rows don’t have a matching observation in <code>d1</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding values for <code>dt_sold</code> and <code>bsmt_area</code> are <code>NA</code>.</p>
+</div>
+<div id="full-join" class="section level3" number="6.8.4">
+<h3><span class="header-section-number">6.8.4</span> Full Join</h3>
+<p>The fourth type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>full join</strong>. You can use the <code>full_join()</code> function, which returns all rows in both <code>d1</code> and <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in either <code>d1</code> or <code>d2</code>.</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="joins.html#cb650-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb650-2"><a href="joins.html#cb650-2" aria-hidden="true" tabindex="-1"></a>full</span>
+<span id="cb650-3"><a href="joins.html#cb650-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 x 4</span></span>
+<span id="cb650-4"><a href="joins.html#cb650-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
+<span id="cb650-5"><a href="joins.html#cb650-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb650-6"><a href="joins.html#cb650-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
+<span id="cb650-7"><a href="joins.html#cb650-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
+<span id="cb650-8"><a href="joins.html#cb650-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
+<span id="cb650-9"><a href="joins.html#cb650-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
+<span id="cb650-10"><a href="joins.html#cb650-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair      &lt;NA&gt;        </span></span>
+<span id="cb650-11"><a href="joins.html#cb650-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Excellent 100+ inches </span></span>
+<span id="cb650-12"><a href="joins.html#cb650-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
+<p>As you can tell from the result, it includes all observations from both <code>d1</code> and <code>d2</code>. You can view it as the union of <code>left_join()</code> and <code>right_join()</code>.</p>
+</div>
+<div id="filtering-join" class="section level3" number="6.8.5">
+<h3><span class="header-section-number">6.8.5</span> Filtering Joins</h3>
+<p>For the previous four types of joins, the resulting table contains columns from both input tables. Sometimes, you may want to only keep the columns from one of the input tables. This is called <strong>filtering joins</strong>, meaning that it is actually doing the filtering operations like the <code>filter()</code> function we learned in Section <a href="filter-observations.html#filter-observations">6.1</a>.</p>
+<p><strong><em>a. Semi Join</em></strong></p>
+<p>The first type of filtering joins is called <strong>semi join</strong>, which returns all rows from <code>d1</code> where there are matching values in <code>d2</code> on the <strong>keys</strong>.</p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="joins.html#cb651-1" aria-hidden="true" tabindex="-1"></a>semi <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb651-2"><a href="joins.html#cb651-2" aria-hidden="true" tabindex="-1"></a>semi</span>
+<span id="cb651-3"><a href="joins.html#cb651-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb651-4"><a href="joins.html#cb651-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
+<span id="cb651-5"><a href="joins.html#cb651-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb651-6"><a href="joins.html#cb651-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average</span></span>
+<span id="cb651-7"><a href="joins.html#cb651-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good   </span></span>
+<span id="cb651-8"><a href="joins.html#cb651-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average</span></span>
+<span id="cb651-9"><a href="joins.html#cb651-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good</span></span></code></pre></div>
+<p>As expected, the output is the first four rows of <code>d1</code> where there are matching values of <code>bsmt_area</code> in <code>d2</code>. Note that only the columns of <code>d1</code> are kept in the output, making it a filtering operation.</p>
+<p><strong><em>b. Anti Join</em></strong></p>
+<p>Another type of filtering joins is called <strong>anti join</strong>, which returns all rows from <code>d1</code> where there <strong>don’t exist</strong> matching values in <code>d2</code> on the <strong>keys</strong>.</p>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="joins.html#cb652-1" aria-hidden="true" tabindex="-1"></a>anti <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb652-2"><a href="joins.html#cb652-2" aria-hidden="true" tabindex="-1"></a>anti</span>
+<span id="cb652-3"><a href="joins.html#cb652-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 3</span></span>
+<span id="cb652-4"><a href="joins.html#cb652-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
+<span id="cb652-5"><a href="joins.html#cb652-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb652-6"><a href="joins.html#cb652-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-22       676 Fair</span></span></code></pre></div>
+<p>The output only contains rows of <code>d1</code> where there are <strong>no</strong> matching values of <code>bsmt_area</code> in <code>d2</code>, which contains only the last row of <code>d1</code>. Again, only the columns of <code>d1</code> are kept in the output, making it another filtering operation.</p>
+</div>
+<div id="a-summary-of-all-mutating-joins" class="section level3" number="6.8.6">
+<h3><span class="header-section-number">6.8.6</span> A Summary of All Mutating Joins</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+Meaning
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>inner_join()</code>
+</td>
+<td style="text-align:left;">
+All rows in <code>d1</code> and <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>left_join()</code>
+</td>
+<td style="text-align:left;">
+All rows in <code>d1</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>right_join()</code>
+</td>
+<td style="text-align:left;">
+All rows in <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>full_join()</code>
+</td>
+<td style="text-align:left;">
+All rows in <code>d1</code> or <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>semi_join()</code>
+</td>
+<td style="text-align:left;">
+Only rows in <code>d1</code> with matching keys in <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>anti_join()</code>
+</td>
+<td style="text-align:left;">
+Only rows in <code>d1</code> with no matching keys in <code>d2</code>
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="line-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="jitter-count.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="grouped-mutate-filter.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidy-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
