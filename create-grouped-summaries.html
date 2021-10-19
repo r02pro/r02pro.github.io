@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="create-variables.html"/>
 <link rel="next" href="grouped-mutate-filter.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -604,34 +604,34 @@ div.csl-indent {
 <div id="create-summaries" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Create Summaries</h3>
 <p>To create summaries for a variable, you can use the <code>summarize()</code> function. Let’s compute the number of houses, the average living area, and the 1st and 3rd quartile sale price of all houses.</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="create-grouped-summaries.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb640-2"><a href="create-grouped-summaries.html#cb640-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb640-3"><a href="create-grouped-summaries.html#cb640-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb640-4"><a href="create-grouped-summaries.html#cb640-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb640-5"><a href="create-grouped-summaries.html#cb640-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
-<span id="cb640-6"><a href="create-grouped-summaries.html#cb640-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   n_houses ave_liv_area  prob q_price</span></span>
-<span id="cb640-7"><a href="create-grouped-summaries.html#cb640-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb640-8"><a href="create-grouped-summaries.html#cb640-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     2048        1500.  0.25    130.</span></span>
-<span id="cb640-9"><a href="create-grouped-summaries.html#cb640-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2048        1500.  0.75    214</span></span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="create-grouped-summaries.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb637-2"><a href="create-grouped-summaries.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb637-3"><a href="create-grouped-summaries.html#cb637-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb637-4"><a href="create-grouped-summaries.html#cb637-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb637-5"><a href="create-grouped-summaries.html#cb637-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
+<span id="cb637-6"><a href="create-grouped-summaries.html#cb637-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   n_houses ave_liv_area  prob q_price</span></span>
+<span id="cb637-7"><a href="create-grouped-summaries.html#cb637-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb637-8"><a href="create-grouped-summaries.html#cb637-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     2048        1500.  0.25    130.</span></span>
+<span id="cb637-9"><a href="create-grouped-summaries.html#cb637-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2048        1500.  0.75    214</span></span></code></pre></div>
 <p>Note that here we use the <code>n()</code> function to count the number of houses. And the <code>prob</code> argument is included to represent the corresponding quantiles levels.</p>
 </div>
 <div id="create-grouped-summaries-1" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Create Grouped Summaries</h3>
 <p>So far, we have learned to use <code>summarize()</code> to create summaries for all observations. In practical applications, it is often more useful to compute the summaries when the observations are grouped according to certain criteria. Let’s say we want to create the same summaries for each value of overall quality (<code>oa_qual</code>). Then, we need to add a <code>group_by()</code> function before applying the <code>summarize()</code> function.</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="create-grouped-summaries.html#cb641-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb641-2"><a href="create-grouped-summaries.html#cb641-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
-<span id="cb641-3"><a href="create-grouped-summaries.html#cb641-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb641-4"><a href="create-grouped-summaries.html#cb641-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="create-grouped-summaries.html#cb638-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb638-2"><a href="create-grouped-summaries.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
+<span id="cb638-3"><a href="create-grouped-summaries.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb638-4"><a href="create-grouped-summaries.html#cb638-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span></code></pre></div>
 <p>From the output, you can see that for each value of <code>oa_qual</code>, we have two rows representing different quantile values. It is interesting to visualize the relationship between the <code>oa_qual</code> and the quantile price (<code>q_price</code>), with different colors for the 1st and 3rd quantile.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="create-grouped-summaries.html#cb642-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb642-2"><a href="create-grouped-summaries.html#cb642-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
-<span id="cb642-3"><a href="create-grouped-summaries.html#cb642-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb642-4"><a href="create-grouped-summaries.html#cb642-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> oa_qual, <span class="at">y =</span> q_price, <span class="at">color =</span> <span class="fu">factor</span>(prob))) <span class="sc">+</span></span>
-<span id="cb642-5"><a href="create-grouped-summaries.html#cb642-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb642-6"><a href="create-grouped-summaries.html#cb642-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb642-7"><a href="create-grouped-summaries.html#cb642-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span>
-<span id="cb642-8"><a href="create-grouped-summaries.html#cb642-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-665-1.png" width="576" /></p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="create-grouped-summaries.html#cb639-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb639-2"><a href="create-grouped-summaries.html#cb639-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
+<span id="cb639-3"><a href="create-grouped-summaries.html#cb639-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb639-4"><a href="create-grouped-summaries.html#cb639-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> oa_qual, <span class="at">y =</span> q_price, <span class="at">color =</span> <span class="fu">factor</span>(prob))) <span class="sc">+</span></span>
+<span id="cb639-5"><a href="create-grouped-summaries.html#cb639-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb639-6"><a href="create-grouped-summaries.html#cb639-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb639-7"><a href="create-grouped-summaries.html#cb639-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span>
+<span id="cb639-8"><a href="create-grouped-summaries.html#cb639-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-662-1.png" width="576" /></p>
 <p>This figure is very informative, showing that both the 1st quartile and 3rd quantile of the sale price increases as the overall quality increases.</p>
 
 </div>

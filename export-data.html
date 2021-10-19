@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="import-export.html"/>
 <link rel="next" href="import-data.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -603,13 +603,27 @@ div.csl-indent {
 <p>We will start by introducing how to export data to a file in this chapter.</p>
 <div id="set-the-working-directory" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Set the working directory</h3>
-<p>Firstly, we will introduce an important concept of <strong>Working Directory</strong>. To conduct the data export and import, you are recommended to set the <em>working directory</em> since we usually use a path relative to the working directory for interacting with files on the computer in R, . To set the working directory, you can click <em>Session</em> on the menu and click <em>Set Working Directory</em>. <strong>ADD a screenshot with this menu here</strong> There are three options under this menu.</p>
+<p>Firstly, we will introduce an important concept of <strong>Working Directory</strong>. To conduct the data export and import, you are recommended to set the <em>working directory</em> since we usually use a path relative to the working directory for interacting with files on the computer in R, . To set the working directory, you can click <em>Session</em> on the menu and click <em>Set Working Directory</em>.</p>
+<div class="figure" style="text-align: center"><span id="fig:setwd1"></span>
+<img src="pics/5_setwd.png" alt="Set Working Directory" width="90%" />
+<p class="caption">
+Figure 5.1: Set Working Directory
+</p>
+</div>
+<p>There are three options under this menu.</p>
 <ul>
 <li><em>To Source File Location</em>: this is the same directory as the current R script.</li>
 <li><em>To Files Pane Location</em>: this is the same directory as shown in the Files Panel on the bottom right of RStudio.</li>
 <li><em>Choose Directory…</em>: this will open up a window from which you can choose any desired directory.</li>
 </ul>
-<p>After selecting any of the three options, we can see a line of code containing the function <code>setwd()</code> executed in the console. <strong>ADD a screenshot with this line of code here</strong> Indeed, this menu operation is equivalent to using the <code>setwd()</code> function with the argument being the full path or relative path of the desired directory.</p>
+After selecting any of the three options, we can see a line of code containing the function <code>setwd()</code> executed in the console.
+<div class="figure" style="text-align: center"><span id="fig:setwd2"></span>
+<img src="pics/5setwd2.png" alt="Set Working Directory (2)" width="90%" />
+<p class="caption">
+Figure 5.2: Set Working Directory (2)
+</p>
+</div>
+<p>Indeed, this menu operation is equivalent to using the <code>setwd()</code> function with the argument being the full path or relative path of the desired directory.</p>
 <p>Another related function is <code>getwd()</code> which tells us the absolute path representing the current working directory.</p>
 <div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="export-data.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 </div>
@@ -619,8 +633,8 @@ div.csl-indent {
 </div>
 <div id="write-an-object-into-a-.csv-file" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Write an object into a .csv file</h3>
-<p>First, let’s work with one popular kind of <em>delimited</em> files called <em>comma-separated value</em> file, usually with the file extension .csv. In a .csv file, the <em>delimiter</em> is <em>comma</em> (<code>,</code>).</p>
-<p>Let’s review the data frame you created in <strong>Section???</strong>.</p>
+<p>First, let’s work with one popular kind of <em>delimited</em> files called <em>comma-separated value</em> file, usually with the file extension .csv. In a .csv file, the <em>delimiter</em> is <em>comma</em> (<code>,</code>) .</p>
+<p>Let’s first create a data frame.</p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="export-data.html#cb560-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
 <span id="cb560-2"><a href="export-data.html#cb560-2" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
 <span id="cb560-3"><a href="export-data.html#cb560-3" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
@@ -629,8 +643,14 @@ div.csl-indent {
 <p>Now, let’s write the data frame <code>my_animals</code> into a file called “my_animals.csv” in the currently working directory. To write an object into a .csv file, you will use the <code>write_csv()</code> function in the <strong>readr</strong> package. Since <strong>readr</strong> is a subpackage of <strong>tidyverse</strong>, you don’t need to install it separately, but you need to load the package in each new R session.</p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="export-data.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb561-2"><a href="export-data.html#cb561-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals.csv&quot;</span>)</span></code></pre></div>
-<p>You can verify the .csv file has been indeed created and open the file with RStudio or any text editor to verify its contents. <strong>Shall we use a screenshot again?</strong>
-We can see that all the information has been written in the .csv file, which has <em>commas</em> separating the values on each line. In particular, you may find out the first row of the file corresponds to the column names. If you don’t want to include the column names, you can set the argument <code>col_names</code> to be <code>FALSE</code>.</p>
+<p>You can verify the .csv file has been indeed created and open the file with RStudio or any text editor to verify its contents.</p>
+<div class="figure" style="text-align: center"><span id="fig:csv"></span>
+<img src="pics/5-csvcontents.png" alt="File Contents" width="90%" />
+<p class="caption">
+Figure 5.3: File Contents
+</p>
+</div>
+<p>We can see that all the information has been written in the .csv file, which has <em>commas</em> separating the values on each line. In particular, you may find out the first row of the file corresponds to the column names. If you don’t want to include the column names, you can set the argument <code>col_names</code> to be <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="export-data.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_no_colname.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>By default, <code>write_csv()</code> writes the data into a file in which <code>NA</code> is used to represent all the missing values, just like in the tibble. If you want to use another string to represent the missing values in the file, you can set the argument <code>na</code> to be the string.</p>
 <div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="export-data.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_missing.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;This value is missing!&quot;</span>)</span></code></pre></div>
