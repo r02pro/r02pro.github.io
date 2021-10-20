@@ -33,7 +33,7 @@
   
 <link rel="prev" href="pipe.html"/>
 <link rel="next" href="create-variables.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -658,7 +659,7 @@ div.csl-indent {
 <span id="cb626-14"><a href="select-variables.html#cb626-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01    2007       9     1969       1969         60 1Fam     </span></span>
 <span id="cb626-15"><a href="select-variables.html#cb626-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: house_style &lt;chr&gt;,</span></span>
 <span id="cb626-16"><a href="select-variables.html#cb626-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;,</span></span>
-<span id="cb626-17"><a href="select-variables.html#cb626-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   living_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;, `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;,</span></span>
+<span id="cb626-17"><a href="select-variables.html#cb626-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   living_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;, 2fl_area &lt;dbl&gt;, tot_rms &lt;dbl&gt;,</span></span>
 <span id="cb626-18"><a href="select-variables.html#cb626-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;, kit_qual &lt;chr&gt;,</span></span>
 <span id="cb626-19"><a href="select-variables.html#cb626-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;, bsmt_cond &lt;chr&gt;,</span></span>
 <span id="cb626-20"><a href="select-variables.html#cb626-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;, ext_cond &lt;chr&gt;,</span></span>
@@ -877,12 +878,12 @@ Another commonly used pattern is to select all variables with names that start w
 <span id="cb635-14"><a href="select-variables.html#cb635-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007       135  2007-09-01       9     1969       1969         60</span></span>
 <span id="cb635-15"><a href="select-variables.html#cb635-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: bldg_type &lt;chr&gt;,</span></span>
 <span id="cb635-16"><a href="select-variables.html#cb635-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;,</span></span>
-<span id="cb635-17"><a href="select-variables.html#cb635-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
-<span id="cb635-18"><a href="select-variables.html#cb635-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
-<span id="cb635-19"><a href="select-variables.html#cb635-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
-<span id="cb635-20"><a href="select-variables.html#cb635-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
-<span id="cb635-21"><a href="select-variables.html#cb635-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb635-22"><a href="select-variables.html#cb635-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb635-17"><a href="select-variables.html#cb635-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, 1fl_area &lt;dbl&gt;, 2fl_area &lt;dbl&gt;,</span></span>
+<span id="cb635-18"><a href="select-variables.html#cb635-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;, kit_qual &lt;chr&gt;,</span></span>
+<span id="cb635-19"><a href="select-variables.html#cb635-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;, bsmt_cond &lt;chr&gt;,</span></span>
+<span id="cb635-20"><a href="select-variables.html#cb635-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;, ext_cond &lt;chr&gt;,</span></span>
+<span id="cb635-21"><a href="select-variables.html#cb635-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;, fp &lt;dbl&gt;,</span></span>
+<span id="cb635-22"><a href="select-variables.html#cb635-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
 <span id="cb635-23"><a href="select-variables.html#cb635-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
 <span id="cb635-24"><a href="select-variables.html#cb635-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
 <span id="cb635-25"><a href="select-variables.html#cb635-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>

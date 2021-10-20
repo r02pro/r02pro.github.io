@@ -33,7 +33,7 @@
   
 <link rel="prev" href="select-variables.html"/>
 <link rel="next" href="create-grouped-summaries.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -643,9 +644,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="create-variables.html#cb638-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
 <span id="cb638-2"><a href="create-variables.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
 <span id="cb638-3"><a href="create-variables.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb638-4"><a href="create-variables.html#cb638-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` input `area`.</span></span>
-<span id="cb638-5"><a href="create-variables.html#cb638-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span>
-<span id="cb638-6"><a href="create-variables.html#cb638-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Input `area` is `lot_area + liv_area`.</span></span></code></pre></div>
+<span id="cb638-4"><a href="create-variables.html#cb638-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` column `area`.</span></span>
+<span id="cb638-5"><a href="create-variables.html#cb638-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ `area = lot_area + liv_area`.</span></span>
+<span id="cb638-6"><a href="create-variables.html#cb638-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span></code></pre></div>
 <p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the order of each house in terms of sale price, you can use <code>mutate(sale_price_order = order(sale_price))</code>. To create a variable as the mean of the sale prices of all houses, you can add <code>sale_price_ave = mean(sale_price)</code> as an argument in the <code>mutate()</code> function.</p>
 <div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="create-variables.html#cb639-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span></span>
 <span id="cb639-2"><a href="create-variables.html#cb639-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">%&gt;%</span></span>

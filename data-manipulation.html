@@ -33,7 +33,7 @@
   
 <link rel="prev" href="save-object.html"/>
 <link rel="next" href="filter-observations.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -600,10 +601,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="data-manipulation" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data Manipulation</h1>
-<p>For conducting data analysis, we often need to conduct various kinds of data manipulation. We will use the <code>ahp</code> data set in the <strong>r02pro</strong> package throughout this chapter. Let’s first review the data set.</p>
+<p>For conducting data analysis, we often need to conduct various kinds of data manipulation. We will use the <code>ahp</code> data set in the <strong>r02pro</strong> package throughout this chapter. Let’s first look at the data set.</p>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="data-manipulation.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb605-2"><a href="data-manipulation.html#cb605-2" aria-hidden="true" tabindex="-1"></a>ahp</span></code></pre></div>
-<p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 features including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
+<p><code>ahp</code> is a dataset of 2048 houses in Ames, Iowa from 2006 to 2010, with 56 variables including the sale date and price. To learn more about each variable, you can look at its documentation.</p>
 <div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="data-manipulation.html#cb606-1" aria-hidden="true" tabindex="-1"></a>?ahp</span></code></pre></div>
 <p>To view the entire dataset, you can use the <code>View()</code> function, which will open the dataset in the new file window.</p>
 <div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="data-manipulation.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(ahp)</span></code></pre></div>
@@ -612,12 +613,25 @@ div.csl-indent {
 <span id="cb608-2"><a href="data-manipulation.html#cb608-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ahp, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of ahp</span></span></code></pre></div>
 <p>The following are some possible questions we may want to explore.</p>
 <ol style="list-style-type: decimal">
-<li><p>(pick observations by their values) Find the houses that are sold in Jan 2009.</p></li>
-<li><p>(reorder the observations) Find the 10 houses with the highest sale prices.</p></li>
-<li><p>(pick variable by their names) We see there are 56 columns. For a particular data analysis question, perhaps we want to focus on a subset of the columns.</p></li>
-<li><p>(create new variables as functions of existing ones) From the existing variables, perhaps we want to create new ones, for instance, the average price per living area.</p></li>
-<li><p>(create various summary statistics) We may want to create certain summary statistics. For example, what is the average sale price for each type of houses?</p></li>
+<li>(pick observations by their values) Find the houses that are sold in Jan 2009.</li>
 </ol>
+<p>You will learn how to <strong>filter observations</strong> in Section <a href="filter-observations.html#filter-observations">6.1</a>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>(reorder the observations) Find the 10 houses with the highest sale prices.</li>
+</ol>
+<p>You will learn how to <strong>reorder observations</strong> in Section <a href="reorder-observations.html#reorder-observations">6.2</a>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>(pick variable by their names) We see there are 56 columns. For a particular data analysis question, perhaps we want to focus on a subset of the columns.</li>
+</ol>
+<p>You will learn how to <strong>select variables</strong> in Section <a href="select-variables.html#select-variables">6.4</a>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>(create new variables as functions of existing ones) From the existing variables, perhaps we want to create new ones, for instance, the average price per living area.</li>
+</ol>
+<p>You will learn how to <strong>create new variables</strong> in Section <a href="create-variables.html#create-variables">6.5</a>.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>(create various summary statistics) We may want to create certain summary statistics. For example, what is the average sale price for each type of houses?</li>
+</ol>
+<p>You will learn how to <strong>group observations</strong> and <strong>create summary statistics for each group</strong> in Section <a href="create-grouped-summaries.html#create-grouped-summaries">6.6</a>.</p>
 <!--chapter:end:06_Data_Manipulation.Rmd-->
 </div>
             </section>

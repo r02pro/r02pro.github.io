@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro</title>
-  <meta name="description" content="6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro" />
+  <title>7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro</title>
+  <meta name="description" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro" />
+  <meta property="og:title" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro" />
+  <meta property="og:description" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="6.3 Pipe: Combining Multiple Operations | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="reorder-observations.html"/>
-<link rel="next" href="select-variables.html"/>
+<link rel="prev" href="tidy-name-value.html"/>
+<link rel="next" href="strings.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -599,35 +599,30 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pipe" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Pipe: Combining Multiple Operations</h2>
-<p>We have now learned how to filter observations according to a set of conditions (Section <a href="filter-observations.html#filter-observations">6.1</a>) and how to rearrange observations according to a set of variables (Section <a href="reorder-observations.html#reorder-observations">6.2</a>). In practical applications, we usually need to apply <strong>multiple operations sequentially</strong> on a given data.</p>
-<p>Let’s consider the <code>ahp</code> dataset again. Say we want to first find the houses that were sold in Jan 2009 and with over all condition 5. Then, arrange the houses from the oldest to the newest. Finally, create a scatterplot on the <code>sale_price</code> vs. <code>liv_area</code>.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="pipe.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb621-2"><a href="pipe.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb621-3"><a href="pipe.html#cb621-3" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
-<span id="cb621-4"><a href="pipe.html#cb621-4" aria-hidden="true" tabindex="-1"></a>jan09_yr <span class="ot">&lt;-</span> <span class="fu">arrange</span>(jan09, yr_built)                              <span class="co">#find the oldest houses</span></span>
-<span id="cb621-5"><a href="pipe.html#cb621-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jan09_yr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-651-1.png" width="576" /></p>
-<p>You may notice that we created two intermediate objects named <code>jan09</code> and <code>jan09_yr</code> which may be unnecessary. Let’s say what happens to the code if we are not allowed to define such intermediate objects.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="pipe.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>), yr_built),</span>
-<span id="cb622-2"><a href="pipe.html#cb622-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() </span></code></pre></div>
-<p>We hope you agree that while the code gets the work done, it is not pretty. To make the code more streamlined and intuitive, you can take advantage of the <strong>pipe</strong> operator <code>%&gt;%</code> in the <strong>dplyr</strong> package. Let’s take a look at the code using pipes before going to the details.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="pipe.html#cb623-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb623-2"><a href="pipe.html#cb623-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb623-3"><a href="pipe.html#cb623-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built) <span class="sc">%&gt;%</span></span>
-<span id="cb623-4"><a href="pipe.html#cb623-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb623-5"><a href="pipe.html#cb623-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p>We hope you agree this code looks more intuitive than the previous version. The working mechanism of <code>%&gt;%</code> is as follows. When you use <code>data %&gt;% some_function(argA, argB)</code>, this is equivalent to <code>some_function(data, argA, argB)</code>. As a result, you can use multiple <code>%&gt;%</code> operators in a row, if the first function provides an output which is the input data of the second function, etc.</p>
+<div id="separate-unite-columns" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></h2>
+<p>To introduce the separate operation, let’s first create an untidy data set.</p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="separate-unite-columns.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb660-2"><a href="separate-unite-columns.html#cb660-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb660-3"><a href="separate-unite-columns.html#cb660-3" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb660-4"><a href="separate-unite-columns.html#cb660-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
+<span id="cb660-5"><a href="separate-unite-columns.html#cb660-5" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
+<span id="cb660-6"><a href="separate-unite-columns.html#cb660-6" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
+<span id="cb660-7"><a href="separate-unite-columns.html#cb660-7" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, weight, height)</span>
+<span id="cb660-8"><a href="separate-unite-columns.html#cb660-8" aria-hidden="true" tabindex="-1"></a>animal_tidy</span>
+<span id="cb660-9"><a href="separate-unite-columns.html#cb660-9" aria-hidden="true" tabindex="-1"></a><span class="co">#unite the weight and height into the ratio</span></span>
+<span id="cb660-10"><a href="separate-unite-columns.html#cb660-10" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb660-11"><a href="separate-unite-columns.html#cb660-11" aria-hidden="true" tabindex="-1"></a>animal_ratio</span></code></pre></div>
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="reorder-observations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="select-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidy-name-value.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="strings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

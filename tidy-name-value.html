@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="tidy-data.html"/>
-<link rel="next" href="strings.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<link rel="next" href="separate-unite-columns.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -616,10 +617,15 @@ div.csl-indent {
 <span id="cb655-13"><a href="tidy-name-value.html#cb655-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA</span></span>
 <span id="cb655-14"><a href="tidy-name-value.html#cb655-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300</span></span>
 <span id="cb655-15"><a href="tidy-name-value.html#cb655-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800</span></span></code></pre></div>
-<p>By checking the definition of <strong>tidy data</strong>, it is clear <code>animal_tidy</code> is indeed tidy. Let’s make it untidy.</p>
+<p>By checking the definition of <strong>tidy data</strong>, it is clear <code>animal_tidy</code> is indeed <strong>tidy</strong>. Let’s make it untidy.</p>
 <div id="tidy-wide" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Convert Values into Column Names</h3>
-<p>In <code>animal_tidy</code>, each row contains the year when the weight measurement was taken. Suppose we want to convert the year value into column names. You can use the <code>pivot_wider()</code> function in <strong>tidyr</strong> package, another member of the <strong>tidyverse</strong> package. In <code>pivot_wider()</code>, you need to specify two arguments: <code>names_from</code> denotes which column in the original tibble contains the values of the new column names, <code>values_from</code> denotes which column in the original tibble contains the values for each cell in the new tibble. The reason why the function is called <code>pivot_wider()</code> is due to the fact that it will create a <strong>wider</strong> dataset than the orginal one, containing more columns.</p>
+<p>In <code>animal_tidy</code>, each row contains the year when the weight measurement was taken. Suppose we want to convert the year value into column names. You can use the <code>pivot_wider()</code> function in <strong>tidyr</strong> package, another member of the <strong>tidyverse</strong> package.</p>
+<p>In <code>pivot_wider()</code>, you need to specify two arguments:</p>
+<ul>
+<li><code>names_from</code> denotes which column in the original tibble contains the values of the new column names, - <code>values_from</code> denotes which column in the original tibble contains the values for each cell in the new tibble.</li>
+</ul>
+<p>The reason why the function is called <code>pivot_wider()</code> is due to the fact that it will create a <strong>wider</strong> dataset than the orginal one, containing more columns.</p>
 <div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="tidy-name-value.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb656-2"><a href="tidy-name-value.html#cb656-2" aria-hidden="true" tabindex="-1"></a>animal_wide <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year,                                  <span class="at">values_from =</span> weight) </span>
 <span id="cb656-3"><a href="tidy-name-value.html#cb656-3" aria-hidden="true" tabindex="-1"></a>animal_wide   <span class="co">#untidy animal: wide</span></span>
@@ -656,7 +662,7 @@ div.csl-indent {
 <span id="cb658-11"><a href="tidy-name-value.html#cb658-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA</span></span>
 <span id="cb658-12"><a href="tidy-name-value.html#cb658-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300</span></span>
 <span id="cb658-13"><a href="tidy-name-value.html#cb658-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800</span></span></code></pre></div>
-<p>In <code>pivot_longer()</code>, <code>cols</code> specifies the column names that you want to convert from, which accept the same format as that in <code>dplyr::select()</code> introduced in <strong>Section ?</strong>. <code>names_to</code> specifies the variable name you want to use for the column names. Finally, <code>values_to</code> specifies the variable name for holding the values in the selected columns.
+<p>In <code>pivot_longer()</code>, <code>cols</code> specifies the column names that you want to convert from, which accept the same format as that in <code>dplyr::select()</code> introduced in Section <a href="select-variables.html#select-variables">6.4</a>. <code>names_to</code> specifies the variable name you want to use for the column names. Finally, <code>values_to</code> specifies the variable name for holding the values in the selected columns.
 You can see that we have recovered the <code>animal_tidy</code> through the tidy process. To tidy <code>animal_wide_weight</code>, we can use the same function <code>pivot_longer()</code> along with the argument <code>names_prefix</code> as below.</p>
 <div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="tidy-name-value.html#cb659-1" aria-hidden="true" tabindex="-1"></a>animal_wide_weight <span class="sc">%&gt;%</span> </span>
 <span id="cb659-2"><a href="tidy-name-value.html#cb659-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
@@ -676,14 +682,13 @@ You can see that we have recovered the <code>animal_tidy</code> through the tidy
 
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="tidy-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="strings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="separate-unite-columns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

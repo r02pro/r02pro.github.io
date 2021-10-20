@@ -33,7 +33,7 @@
   
 <link rel="prev" href="array.html"/>
 <link rel="next" href="tibble.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -640,7 +641,7 @@ div.csl-indent {
 <span id="cb306-2"><a href="dataframe.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;data.frame&quot;</span></span>
 <span id="cb306-3"><a href="dataframe.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_data_frame)</span>
 <span id="cb306-4"><a href="dataframe.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;data.frame&#39;:    6 obs. of  6 variables:</span></span>
-<span id="cb306-5"><a href="dataframe.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ animal   : chr  &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot; ...</span></span>
+<span id="cb306-5"><a href="dataframe.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ animal   : Factor w/ 2 levels &quot;pig&quot;,&quot;sheep&quot;: 2 2 2 1 1 1</span></span>
 <span id="cb306-6"><a href="dataframe.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ year     : int  2019 2020 2021 2019 2020 2021</span></span>
 <span id="cb306-7"><a href="dataframe.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ weight   : num  110 120 140 NA 300 800</span></span>
 <span id="cb306-8"><a href="dataframe.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ height   : num  2.2 2.4 2.7 2 2.1 2.3</span></span>
@@ -648,19 +649,20 @@ div.csl-indent {
 <span id="cb306-10"><a href="dataframe.html#cb306-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ healthy  : logi  TRUE TRUE TRUE TRUE TRUE FALSE</span></span></code></pre></div>
 <p>The <code>str()</code> tells us the data frame has 6 observations and 6 variables, along with the type and the first few values of each variable. From the output, you may be puzzled by the <code>$</code> symbol before each variable name. In fact, you can easily extract a certain column corresponding to a variable with its name.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="dataframe.html#cb307-1" aria-hidden="true" tabindex="-1"></a>my_data_frame<span class="sc">$</span>animal</span>
-<span id="cb307-2"><a href="dataframe.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot;   &quot;pig&quot;   &quot;pig&quot;</span></span>
-<span id="cb307-3"><a href="dataframe.html#cb307-3" aria-hidden="true" tabindex="-1"></a>my_data_frame<span class="sc">$</span>weight</span>
-<span id="cb307-4"><a href="dataframe.html#cb307-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 110 120 140  NA 300 800</span></span></code></pre></div>
+<span id="cb307-2"><a href="dataframe.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] sheep sheep sheep pig   pig   pig  </span></span>
+<span id="cb307-3"><a href="dataframe.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: pig sheep</span></span>
+<span id="cb307-4"><a href="dataframe.html#cb307-4" aria-hidden="true" tabindex="-1"></a>my_data_frame<span class="sc">$</span>weight</span>
+<span id="cb307-5"><a href="dataframe.html#cb307-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 110 120 140  NA 300 800</span></span></code></pre></div>
 <p>In Section <a href="vector-functions.html#vector-functions">2.5</a>, we introduced the very useful function <code>summary()</code> which gives us important summary statistics for a vector. Using <code>summary()</code> on a data frame, you get the summary statistics for each variable.</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="dataframe.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_data_frame)</span>
-<span id="cb308-2"><a href="dataframe.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     animal               year          weight        height          condition</span></span>
-<span id="cb308-3"><a href="dataframe.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Length:6           Min.   :2019   Min.   :110   Min.   :2.000   average  :1  </span></span>
-<span id="cb308-4"><a href="dataframe.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Class :character   1st Qu.:2019   1st Qu.:120   1st Qu.:2.125   good     :2  </span></span>
-<span id="cb308-5"><a href="dataframe.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mode  :character   Median :2020   Median :140   Median :2.250   excellent:2  </span></span>
-<span id="cb308-6"><a href="dataframe.html#cb308-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Mean   :2020   Mean   :294   Mean   :2.283   NA&#39;s     :1  </span></span>
-<span id="cb308-7"><a href="dataframe.html#cb308-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     3rd Qu.:2021   3rd Qu.:300   3rd Qu.:2.375                </span></span>
-<span id="cb308-8"><a href="dataframe.html#cb308-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                     Max.   :2021   Max.   :800   Max.   :2.700                </span></span>
-<span id="cb308-9"><a href="dataframe.html#cb308-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                    NA&#39;s   :1                                  </span></span>
+<span id="cb308-2"><a href="dataframe.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    animal       year          weight        height          condition</span></span>
+<span id="cb308-3"><a href="dataframe.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  pig  :3   Min.   :2019   Min.   :110   Min.   :2.000   average  :1  </span></span>
+<span id="cb308-4"><a href="dataframe.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  sheep:3   1st Qu.:2019   1st Qu.:120   1st Qu.:2.125   good     :2  </span></span>
+<span id="cb308-5"><a href="dataframe.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Median :2020   Median :140   Median :2.250   excellent:2  </span></span>
+<span id="cb308-6"><a href="dataframe.html#cb308-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Mean   :2020   Mean   :294   Mean   :2.283   NA&#39;s     :1  </span></span>
+<span id="cb308-7"><a href="dataframe.html#cb308-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            3rd Qu.:2021   3rd Qu.:300   3rd Qu.:2.375                </span></span>
+<span id="cb308-8"><a href="dataframe.html#cb308-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Max.   :2021   Max.   :800   Max.   :2.700                </span></span>
+<span id="cb308-9"><a href="dataframe.html#cb308-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                           NA&#39;s   :1                                  </span></span>
 <span id="cb308-10"><a href="dataframe.html#cb308-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   healthy       </span></span>
 <span id="cb308-11"><a href="dataframe.html#cb308-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mode :logical  </span></span>
 <span id="cb308-12"><a href="dataframe.html#cb308-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  FALSE:1        </span></span>

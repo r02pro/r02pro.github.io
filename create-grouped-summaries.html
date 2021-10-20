@@ -33,7 +33,7 @@
   
 <link rel="prev" href="create-variables.html"/>
 <link rel="next" href="grouped-mutate-filter.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -530,6 +530,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-wide"><i class="fa fa-check"></i><b>7.1.1</b> Convert Values into Column Names</a></li>
 <li class="chapter" data-level="7.1.2" data-path="tidy-name-value.html"><a href="tidy-name-value.html#tidy-long"><i class="fa fa-check"></i><b>7.1.2</b> Convert Column Names into Values</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html"><i class="fa fa-check"></i><b>7.2</b> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
@@ -621,7 +622,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="create-grouped-summaries.html#cb643-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
 <span id="cb643-2"><a href="create-grouped-summaries.html#cb643-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
 <span id="cb643-3"><a href="create-grouped-summaries.html#cb643-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb643-4"><a href="create-grouped-summaries.html#cb643-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span></code></pre></div>
+<span id="cb643-4"><a href="create-grouped-summaries.html#cb643-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span></code></pre></div>
 <p>From the output, you can see that for each value of <code>oa_qual</code>, we have two rows representing different quantile values. It is interesting to visualize the relationship between the <code>oa_qual</code> and the quantile price (<code>q_price</code>), with different colors for the 1st and 3rd quantile.</p>
 <div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="create-grouped-summaries.html#cb644-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
 <span id="cb644-2"><a href="create-grouped-summaries.html#cb644-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
@@ -629,7 +630,7 @@ div.csl-indent {
 <span id="cb644-4"><a href="create-grouped-summaries.html#cb644-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> oa_qual, <span class="at">y =</span> q_price, <span class="at">color =</span> <span class="fu">factor</span>(prob))) <span class="sc">+</span></span>
 <span id="cb644-5"><a href="create-grouped-summaries.html#cb644-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb644-6"><a href="create-grouped-summaries.html#cb644-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb644-7"><a href="create-grouped-summaries.html#cb644-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span>
+<span id="cb644-7"><a href="create-grouped-summaries.html#cb644-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span>
 <span id="cb644-8"><a href="create-grouped-summaries.html#cb644-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-674-1.png" width="576" /></p>
 <p>This figure is very informative, showing that both the 1st quartile and 3rd quantile of the sale price increases as the overall quality increases.</p>
