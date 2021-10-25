@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-24" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="combine-subset-strings.html"/>
 <link rel="next" href="statistics.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -163,6 +167,7 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -625,15 +630,15 @@ div.csl-indent {
 <div id="match-pattern" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Matching Pattern with Regular Expressions</h2>
 <p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>ahp</code> data set from <strong>r02pro</strong> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="match-pattern.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb1-2"><a href="match-pattern.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-3"><a href="match-pattern.html#cb1-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="match-pattern.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb679-2"><a href="match-pattern.html#cb679-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb679-3"><a href="match-pattern.html#cb679-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
 <p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. Let’s describe a few commonly usd patterns.</p>
 <p><strong><em>a. contain a given string</em></strong>
 To find all strings that contain <code>"yr"</code>, you can run the following code.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="match-pattern.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-baebcf4a2e258eb557d3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-baebcf4a2e258eb557d3">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li><span class='match'>yr<\/span>_sold<\/li>\n  <li>mo_sold<\/li>\n  <li><span class='match'>yr<\/span>_built<\/li>\n  <li><span class='match'>yr<\/span>_remodel<\/li>\n  <li>bldg_class<\/li>\n  <li>bldg_type<\/li>\n  <li>house_style<\/li>\n  <li>zoning<\/li>\n  <li>neighborhd<\/li>\n  <li>oa_cond<\/li>\n  <li>oa_qual<\/li>\n  <li>func<\/li>\n  <li>liv_area<\/li>\n  <li>1fl_area<\/li>\n  <li>2fl_area<\/li>\n  <li>tot_rms<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>kit<\/li>\n  <li>kit_qual<\/li>\n  <li>central_air<\/li>\n  <li>elect<\/li>\n  <li>bsmt_area<\/li>\n  <li>bsmt_cond<\/li>\n  <li>bsmt_exp<\/li>\n  <li>bsmt_fin_qual<\/li>\n  <li>bsmt_ht<\/li>\n  <li>ext_cond<\/li>\n  <li>ext_cover<\/li>\n  <li>ext_qual<\/li>\n  <li>fdn<\/li>\n  <li>fence<\/li>\n  <li>fp<\/li>\n  <li>fp_qual<\/li>\n  <li>gar_area<\/li>\n  <li>gar_car<\/li>\n  <li>gar_cond<\/li>\n  <li>gar_fin<\/li>\n  <li>gar_qual<\/li>\n  <li>gar_type<\/li>\n  <li>gar_<span class='match'>yr<\/span><\/li>\n  <li>heat_qual<\/li>\n  <li>land_contour<\/li>\n  <li>land_slope<\/li>\n  <li>lot_area<\/li>\n  <li>lot_config<\/li>\n  <li>lot_frontage<\/li>\n  <li>lot_shape<\/li>\n  <li>pave_dr<\/li>\n  <li>roof_matl<\/li>\n  <li>roof_style<\/li>\n  <li>op_area<\/li>\n  <li>ep_area<\/li>\n  <li>wd_area<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="match-pattern.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-ffcf6cfe32332af90121" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ffcf6cfe32332af90121">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li><span class='match'>yr<\/span>_sold<\/li>\n  <li>mo_sold<\/li>\n  <li><span class='match'>yr<\/span>_built<\/li>\n  <li><span class='match'>yr<\/span>_remodel<\/li>\n  <li>bldg_class<\/li>\n  <li>bldg_type<\/li>\n  <li>house_style<\/li>\n  <li>zoning<\/li>\n  <li>neighborhd<\/li>\n  <li>oa_cond<\/li>\n  <li>oa_qual<\/li>\n  <li>func<\/li>\n  <li>liv_area<\/li>\n  <li>1fl_area<\/li>\n  <li>2fl_area<\/li>\n  <li>tot_rms<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>kit<\/li>\n  <li>kit_qual<\/li>\n  <li>central_air<\/li>\n  <li>elect<\/li>\n  <li>bsmt_area<\/li>\n  <li>bsmt_cond<\/li>\n  <li>bsmt_exp<\/li>\n  <li>bsmt_fin_qual<\/li>\n  <li>bsmt_ht<\/li>\n  <li>ext_cond<\/li>\n  <li>ext_cover<\/li>\n  <li>ext_qual<\/li>\n  <li>fdn<\/li>\n  <li>fence<\/li>\n  <li>fp<\/li>\n  <li>fp_qual<\/li>\n  <li>gar_area<\/li>\n  <li>gar_car<\/li>\n  <li>gar_cond<\/li>\n  <li>gar_fin<\/li>\n  <li>gar_qual<\/li>\n  <li>gar_type<\/li>\n  <li>gar_<span class='match'>yr<\/span><\/li>\n  <li>heat_qual<\/li>\n  <li>land_contour<\/li>\n  <li>land_slope<\/li>\n  <li>lot_area<\/li>\n  <li>lot_config<\/li>\n  <li>lot_frontage<\/li>\n  <li>lot_shape<\/li>\n  <li>pave_dr<\/li>\n  <li>roof_matl<\/li>\n  <li>roof_style<\/li>\n  <li>op_area<\/li>\n  <li>ep_area<\/li>\n  <li>wd_area<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 </div>
 <!-- </div> -->

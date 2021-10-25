@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-23" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="strings.html"/>
 <link rel="next" href="match-pattern.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,13 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
@@ -160,6 +167,7 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -624,56 +632,54 @@ div.csl-indent {
 <div id="concatenate-strings" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Concatenate Strings</h3>
 <p>First, let’s introduce how to <strong>concatenate multiple strings</strong> into a single string. To do this, we will use the <code>str_c()</code> function in the <strong>stringr</strong> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="combine-subset-strings.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-2"><a href="combine-subset-strings.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)    <span class="co">#equivalent to `paste0()`</span></span></code></pre></div>
-<pre><code>## [1] &quot;sheeppigmonkey&quot;</code></pre>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="combine-subset-strings.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb669-2"><a href="combine-subset-strings.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)    <span class="co">#equivalent to `paste0()`</span></span>
+<span id="cb669-3"><a href="combine-subset-strings.html#cb669-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheeppigmonkey&quot;</span></span></code></pre></div>
 <p>Similar to the <code>paste()</code> function, you can specify a separator between the input strings.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="combine-subset-strings.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep pig monkey&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="combine-subset-strings.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&amp;&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep&amp;pig&amp;monkey&quot;</code></pre>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="combine-subset-strings.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb670-2"><a href="combine-subset-strings.html#cb670-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep pig monkey&quot;</span></span>
+<span id="cb670-3"><a href="combine-subset-strings.html#cb670-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&amp;&quot;</span>)</span>
+<span id="cb670-4"><a href="combine-subset-strings.html#cb670-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&amp;pig&amp;monkey&quot;</span></span></code></pre></div>
 <p>The <code>str_c()</code> can also accept vectors of length greater than one as its arguments, where it will conduct the concatenating operation elementwisely.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="combine-subset-strings.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="st">&quot;s in the zoo.&quot;</span>) </span></code></pre></div>
-<pre><code>## [1] &quot;There are sheeps in the zoo.&quot;  &quot;There are pigs in the zoo.&quot;   
-## [3] &quot;There are monkeys in the zoo.&quot;</code></pre>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="combine-subset-strings.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="st">&quot;s in the zoo.&quot;</span>) </span>
+<span id="cb671-2"><a href="combine-subset-strings.html#cb671-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;There are sheeps in the zoo.&quot;  &quot;There are pigs in the zoo.&quot;   </span></span>
+<span id="cb671-3"><a href="combine-subset-strings.html#cb671-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] &quot;There are monkeys in the zoo.&quot;</span></span></code></pre></div>
 <p>As you can see from the result, the first and third string are recycled to match the length of the second string.</p>
 <p>Next, let’s introduce how to concatenate the strings inside a chracter vector. First, let’s try to apply the <code>str_c()</code> function on a character vector.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="combine-subset-strings.html#cb9-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
-<span id="cb9-2"><a href="combine-subset-strings.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot;</code></pre>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="combine-subset-strings.html#cb672-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
+<span id="cb672-2"><a href="combine-subset-strings.html#cb672-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals)</span>
+<span id="cb672-3"><a href="combine-subset-strings.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot;</span></span></code></pre></div>
 <p>Apparently, we didn’t get the expected concatenated string. To do so, we need to add an argument <code>collapse</code> as the separator.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="combine-subset-strings.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep|pig|monkey&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="combine-subset-strings.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep-pig-monkey&quot;</code></pre>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="combine-subset-strings.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb673-2"><a href="combine-subset-strings.html#cb673-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep|pig|monkey&quot;</span></span>
+<span id="cb673-3"><a href="combine-subset-strings.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb673-4"><a href="combine-subset-strings.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep-pig-monkey&quot;</span></span></code></pre></div>
 <p>When we have multiple character vectors as the arguments in the <code>str_c()</code> function with the <code>collapse</code> argument, the character vectors will first be concatenated respectively, and then the concatenated strings will be further concatenated with the separator as in the <code>collapse</code> argument.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="combine-subset-strings.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, animals, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheepsheep|pigpig|monkeymonkey&quot;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="combine-subset-strings.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;sheep-pig-monkey&quot;</code></pre>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="combine-subset-strings.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, animals, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb674-2"><a href="combine-subset-strings.html#cb674-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheepsheep|pigpig|monkeymonkey&quot;</span></span>
+<span id="cb674-3"><a href="combine-subset-strings.html#cb674-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(animals, <span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb674-4"><a href="combine-subset-strings.html#cb674-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep-pig-monkey&quot;</span></span></code></pre></div>
 </div>
 <div id="create-and-modify-substrings" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Create and Modify Substrings</h3>
 <p>It is often of interest to create <strong>substrings</strong> from an existing string. A <strong>substring</strong> is a string formed by a consecutive sequence of characters within the existing string.</p>
 <p>To get a substring, you can use the <code>substr()</code> function. The <code>start</code> and <code>end</code> arguments represent the starting and ending position of the desired substrings.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="combine-subset-strings.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;she&quot; &quot;pig&quot; &quot;mon&quot;</code></pre>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="combine-subset-strings.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">3</span>)</span>
+<span id="cb675-2"><a href="combine-subset-strings.html#cb675-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;she&quot; &quot;pig&quot; &quot;mon&quot;</span></span></code></pre></div>
 <p>Here, you will get a substring from position 1 to poisition 3 for each element of the original character vector. In addition to using the positive integer to represent the position, you can also use negative integer to represent the relative position from the last symbol.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="combine-subset-strings.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="sc">-</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;shee&quot;  &quot;pi&quot;    &quot;monke&quot;</code></pre>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="combine-subset-strings.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb676-2"><a href="combine-subset-strings.html#cb676-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;shee&quot;  &quot;pi&quot;    &quot;monke&quot;</span></span></code></pre></div>
 <p>Here, for each string, we extract the substring from position 1 to the second to last position. In addition to using one integer for start and end, you can also supply a vector of the same length as the string to be subsetted.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="combine-subset-strings.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">end =</span> (<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="sc">-</span><span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;sheep&quot; &quot;i&quot;     &quot;nk&quot;</code></pre>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="combine-subset-strings.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">end =</span> (<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="sc">-</span><span class="dv">3</span>))</span>
+<span id="cb677-2"><a href="combine-subset-strings.html#cb677-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;i&quot;     &quot;nk&quot;</span></span></code></pre></div>
 <p>Let’s look at the result together.
 - The first element is the first position to the last position of <code>"sheep"</code>.
 - The second element is the second position to the second to last position of <code>"pig"</code>.
 - The third element is the third position to the third to last position of <code>"monkey"</code>.</p>
 <p>Once we know how to create the substring, it is straightforward to modify the substing in place of the original string. Let’s try to update the substrings.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="combine-subset-strings.html#cb25-1" aria-hidden="true" tabindex="-1"></a>animals</span></code></pre></div>
-<pre><code>## [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot;</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="combine-subset-strings.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">end =</span> (<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="sc">-</span><span class="dv">3</span>)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ns_1&quot;</span>, <span class="st">&quot;ns_2&quot;</span>, <span class="st">&quot;ns_3&quot;</span>)</span>
-<span id="cb27-2"><a href="combine-subset-strings.html#cb27-2" aria-hidden="true" tabindex="-1"></a>animals</span></code></pre></div>
-<pre><code>## [1] &quot;ns_1&quot;     &quot;pns_2g&quot;   &quot;mons_3ey&quot;</code></pre>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="combine-subset-strings.html#cb678-1" aria-hidden="true" tabindex="-1"></a>animals</span>
+<span id="cb678-2"><a href="combine-subset-strings.html#cb678-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(animals, <span class="at">start =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">end =</span> (<span class="sc">-</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="sc">-</span><span class="dv">3</span>)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ns_1&quot;</span>, <span class="st">&quot;ns_2&quot;</span>, <span class="st">&quot;ns_3&quot;</span>)</span>
+<span id="cb678-3"><a href="combine-subset-strings.html#cb678-3" aria-hidden="true" tabindex="-1"></a>animals</span></code></pre></div>
 <p>From the results, we can see the corresponding substrings are replaced by <code>"ns_1", "ns_2", "ns_3"</code>, respectively.</p>
 
 </div>
