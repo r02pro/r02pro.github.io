@@ -4,35 +4,35 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Strings | R Programming: Zero to Pro</title>
-  <meta name="description" content="Chapter 8 Strings | R Programming: Zero to Pro" />
+  <title>8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro</title>
+  <meta name="description" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Strings | R Programming: Zero to Pro" />
+  <meta property="og:title" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 8 Strings | R Programming: Zero to Pro" />
+  <meta property="og:description" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Strings | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="Chapter 8 Strings | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-23" />
+<meta name="date" content="2021-10-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="separate-unite-columns.html"/>
-<link rel="next" href="combine-subset-strings.html"/>
+<link rel="prev" href="combine-subset-strings.html"/>
+<link rel="next" href="statistics.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -53,6 +53,9 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
@@ -619,18 +622,28 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="strings" class="section level1" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Strings</h1>
-<p>In Section <a href="vector.html#vector-character">2.1.2</a>, we have introduced the character vector that is consisted of strings. In this Chapter, we will introduce various kinds of operations we can do on strings using the <strong>stringr</strong> package, which is a subpackage of <strong>tidyverse</strong>.</p>
-<!--chapter:end:08_Strings.Rmd-->
+<div id="match-pattern" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Matching Pattern with Regular Expressions</h2>
+<p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>ahp</code> data set from <strong>r02pro</strong> package.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="match-pattern.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb1-2"><a href="match-pattern.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-3"><a href="match-pattern.html#cb1-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
+<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. Let’s describe a few commonly usd patterns.</p>
+<p><strong><em>a. contain a given string</em></strong>
+To find all strings that contain <code>"yr"</code>, you can run the following code.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="match-pattern.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-baebcf4a2e258eb557d3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-baebcf4a2e258eb557d3">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li><span class='match'>yr<\/span>_sold<\/li>\n  <li>mo_sold<\/li>\n  <li><span class='match'>yr<\/span>_built<\/li>\n  <li><span class='match'>yr<\/span>_remodel<\/li>\n  <li>bldg_class<\/li>\n  <li>bldg_type<\/li>\n  <li>house_style<\/li>\n  <li>zoning<\/li>\n  <li>neighborhd<\/li>\n  <li>oa_cond<\/li>\n  <li>oa_qual<\/li>\n  <li>func<\/li>\n  <li>liv_area<\/li>\n  <li>1fl_area<\/li>\n  <li>2fl_area<\/li>\n  <li>tot_rms<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>kit<\/li>\n  <li>kit_qual<\/li>\n  <li>central_air<\/li>\n  <li>elect<\/li>\n  <li>bsmt_area<\/li>\n  <li>bsmt_cond<\/li>\n  <li>bsmt_exp<\/li>\n  <li>bsmt_fin_qual<\/li>\n  <li>bsmt_ht<\/li>\n  <li>ext_cond<\/li>\n  <li>ext_cover<\/li>\n  <li>ext_qual<\/li>\n  <li>fdn<\/li>\n  <li>fence<\/li>\n  <li>fp<\/li>\n  <li>fp_qual<\/li>\n  <li>gar_area<\/li>\n  <li>gar_car<\/li>\n  <li>gar_cond<\/li>\n  <li>gar_fin<\/li>\n  <li>gar_qual<\/li>\n  <li>gar_type<\/li>\n  <li>gar_<span class='match'>yr<\/span><\/li>\n  <li>heat_qual<\/li>\n  <li>land_contour<\/li>\n  <li>land_slope<\/li>\n  <li>lot_area<\/li>\n  <li>lot_config<\/li>\n  <li>lot_frontage<\/li>\n  <li>lot_shape<\/li>\n  <li>pave_dr<\/li>\n  <li>roof_matl<\/li>\n  <li>roof_style<\/li>\n  <li>op_area<\/li>\n  <li>ep_area<\/li>\n  <li>wd_area<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="separate-unite-columns.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="combine-subset-strings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="combine-subset-strings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
