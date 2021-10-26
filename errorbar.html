@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.16 Error Bars | R Programming: Zero to Pro</title>
   <meta name="description" content="4.16 Error Bars | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.16 Error Bars | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="violin.html"/>
 <link rel="next" href="arrange-multi-plots.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -630,41 +636,41 @@ div.csl-indent {
 <div id="errorbar" class="section level2" number="4.16">
 <h2><span class="header-section-number">4.16</span> Error Bars</h2>
 <p>So far, we have learned several ways to compare continuous distributions for different groups, including the density plot, boxplot, and the violin plot. In this lesson, we introduce another visualization method, called <strong>error bar</strong>, which is a graphical representations of the uncertainty in a certain measurement. Let’s prepare a ggplot object to get started.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="errorbar.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb534-2"><a href="errorbar.html#cb534-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb534-3"><a href="errorbar.html#cb534-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb534-4"><a href="errorbar.html#cb534-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="errorbar.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb535-2"><a href="errorbar.html#cb535-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb535-3"><a href="errorbar.html#cb535-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb535-4"><a href="errorbar.html#cb535-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p>Here, we visualize the error bar as the mean <span class="math inline">\(\pm\)</span> standard error.</p>
 <p>To show the mean of <code>sale_price</code> for different <code>house_style</code> groups, you can use the <code>geom_point()</code> function with arguments <code>stat = "summary"</code> and <code>fun = "mean"</code>.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="errorbar.html#cb535-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-579-1.png" width="576" /></p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="errorbar.html#cb536-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-559-1.png" width="576" /></p>
 <p>To add error bars to the mean points, we use <code>geom_errorbar()</code> coupled with the <code>fun.data = "mean_se"</code> argument.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="errorbar.html#cb536-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb536-2"><a href="errorbar.html#cb536-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>) </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-580-1.png" width="576" /></p>
-<p>You can control the width of the errorbar by setting the <code>width</code> argument.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="errorbar.html#cb537-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb537-2"><a href="errorbar.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-581-1.png" width="576" /></p>
+<span id="cb537-2"><a href="errorbar.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>) </span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-560-1.png" width="576" /></p>
+<p>You can control the width of the errorbar by setting the <code>width</code> argument.</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="errorbar.html#cb538-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb538-2"><a href="errorbar.html#cb538-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-561-1.png" width="576" /></p>
 <p>This plot is called a <strong>mean-error-bar</strong> plot. Let’s take a detailed look at this plot. The distance from the mean point to the lower bound of the error bar is the so called <strong>standard error</strong>, which is defined as the standard deviation of the sample divided by the square root of the sample size. Let’s try to calculate the upper and lower bounds of the error bar.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="errorbar.html#cb538-1" aria-hidden="true" tabindex="-1"></a>sale_price_1_story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
-<span id="cb538-2"><a href="errorbar.html#cb538-2" aria-hidden="true" tabindex="-1"></a>sale_price_1_story_se <span class="ot">&lt;-</span> <span class="fu">sd</span>(sale_price_1_story)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price_1_story))</span>
-<span id="cb538-3"><a href="errorbar.html#cb538-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">+</span> sale_price_1_story_se</span>
-<span id="cb538-4"><a href="errorbar.html#cb538-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 192.251</span></span>
-<span id="cb538-5"><a href="errorbar.html#cb538-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">-</span> sale_price_1_story_se</span>
-<span id="cb538-6"><a href="errorbar.html#cb538-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 173.8044</span></span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="errorbar.html#cb539-1" aria-hidden="true" tabindex="-1"></a>sale_price_1_story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
+<span id="cb539-2"><a href="errorbar.html#cb539-2" aria-hidden="true" tabindex="-1"></a>sale_price_1_story_se <span class="ot">&lt;-</span> <span class="fu">sd</span>(sale_price_1_story)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price_1_story))</span>
+<span id="cb539-3"><a href="errorbar.html#cb539-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">+</span> sale_price_1_story_se</span>
+<span id="cb539-4"><a href="errorbar.html#cb539-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 192.251</span></span>
+<span id="cb539-5"><a href="errorbar.html#cb539-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">-</span> sale_price_1_story_se</span>
+<span id="cb539-6"><a href="errorbar.html#cb539-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 173.8044</span></span></code></pre></div>
 <p>You may notice that we are referring the data as sample since the <code>sahp</code> dataset contains only a subset of the population with all houses in the world. An important application of error bar is to construct the 95% confidence interval of the population mean. You know that the 95% confidence interval for a normal distribution is mean <span class="math inline">\(\pm\)</span> 1.96*se. If the data follows a normal distribution, you can construct such a confidence interval by setting the multiplier of the standard error in the error bar to be 1.96.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="errorbar.html#cb539-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb539-2"><a href="errorbar.html#cb539-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">fun.args =</span> <span class="fu">list</span>(<span class="at">mult =</span> <span class="fl">1.96</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-583-1.png" width="576" /></p>
-<p>Of course, you can also add the error bar on top of the other plots like the boxplot or violin plot.</p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="errorbar.html#cb540-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb540-2"><a href="errorbar.html#cb540-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb540-3"><a href="errorbar.html#cb540-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-584-1.png" width="576" /></p>
+<span id="cb540-2"><a href="errorbar.html#cb540-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">fun.args =</span> <span class="fu">list</span>(<span class="at">mult =</span> <span class="fl">1.96</span>))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-563-1.png" width="576" /></p>
+<p>Of course, you can also add the error bar on top of the other plots like the boxplot or violin plot.</p>
 <div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="errorbar.html#cb541-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb541-2"><a href="errorbar.html#cb541-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
+<span id="cb541-2"><a href="errorbar.html#cb541-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb541-3"><a href="errorbar.html#cb541-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-564-1.png" width="576" /></p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="errorbar.html#cb542-1" aria-hidden="true" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb542-2"><a href="errorbar.html#cb542-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
+<span id="cb542-3"><a href="errorbar.html#cb542-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 
 </div>
             </section>
@@ -677,7 +683,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -716,7 +721,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

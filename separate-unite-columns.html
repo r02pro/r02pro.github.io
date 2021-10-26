@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro</title>
   <meta name="description" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="tidy-name-value.html"/>
 <link rel="next" href="strings.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -630,39 +636,39 @@ div.csl-indent {
 <div id="separate-unite-columns" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code></h2>
 <p>To introduce the separate and and unite operation, let’s first create a tidy data set containing the weight and height of year 2019 to 2021 for a sheep and a pig.</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="separate-unite-columns.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb667-2"><a href="separate-unite-columns.html#cb667-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb667-3"><a href="separate-unite-columns.html#cb667-3" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb667-4"><a href="separate-unite-columns.html#cb667-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
-<span id="cb667-5"><a href="separate-unite-columns.html#cb667-5" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
-<span id="cb667-6"><a href="separate-unite-columns.html#cb667-6" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
-<span id="cb667-7"><a href="separate-unite-columns.html#cb667-7" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, weight, height)</span>
-<span id="cb667-8"><a href="separate-unite-columns.html#cb667-8" aria-hidden="true" tabindex="-1"></a>animal_tidy</span>
-<span id="cb667-9"><a href="separate-unite-columns.html#cb667-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
-<span id="cb667-10"><a href="separate-unite-columns.html#cb667-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight height</span></span>
-<span id="cb667-11"><a href="separate-unite-columns.html#cb667-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb667-12"><a href="separate-unite-columns.html#cb667-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110    2.2</span></span>
-<span id="cb667-13"><a href="separate-unite-columns.html#cb667-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120    2.4</span></span>
-<span id="cb667-14"><a href="separate-unite-columns.html#cb667-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140    2.7</span></span>
-<span id="cb667-15"><a href="separate-unite-columns.html#cb667-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA    2  </span></span>
-<span id="cb667-16"><a href="separate-unite-columns.html#cb667-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300    2.1</span></span>
-<span id="cb667-17"><a href="separate-unite-columns.html#cb667-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800    2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="separate-unite-columns.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb668-2"><a href="separate-unite-columns.html#cb668-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb668-3"><a href="separate-unite-columns.html#cb668-3" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb668-4"><a href="separate-unite-columns.html#cb668-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
+<span id="cb668-5"><a href="separate-unite-columns.html#cb668-5" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
+<span id="cb668-6"><a href="separate-unite-columns.html#cb668-6" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
+<span id="cb668-7"><a href="separate-unite-columns.html#cb668-7" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, weight, height)</span>
+<span id="cb668-8"><a href="separate-unite-columns.html#cb668-8" aria-hidden="true" tabindex="-1"></a>animal_tidy</span>
+<span id="cb668-9"><a href="separate-unite-columns.html#cb668-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
+<span id="cb668-10"><a href="separate-unite-columns.html#cb668-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight height</span></span>
+<span id="cb668-11"><a href="separate-unite-columns.html#cb668-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb668-12"><a href="separate-unite-columns.html#cb668-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110    2.2</span></span>
+<span id="cb668-13"><a href="separate-unite-columns.html#cb668-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120    2.4</span></span>
+<span id="cb668-14"><a href="separate-unite-columns.html#cb668-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140    2.7</span></span>
+<span id="cb668-15"><a href="separate-unite-columns.html#cb668-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA    2  </span></span>
+<span id="cb668-16"><a href="separate-unite-columns.html#cb668-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300    2.1</span></span>
+<span id="cb668-17"><a href="separate-unite-columns.html#cb668-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800    2.3</span></span></code></pre></div>
 <div id="combine-columns-via-unite" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Combine Columns via <code>unite()</code></h3>
 <p>Sometimes, we may want to <strong>combine multiple columns</strong> into a single one. To do this, you can use the <code>unite()</code> function in the <strong>tidyr</strong> package.</p>
 <p>In the <code>unite()</code> function, you need to specify the name of the to-be created column (<code>col</code>), the columns to be combined, and the separator between the columns (<code>sep</code>).</p>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="separate-unite-columns.html#cb668-1" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> </span>
-<span id="cb668-2"><a href="separate-unite-columns.html#cb668-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="co">#unite the weight and height into the ratio</span></span>
-<span id="cb668-3"><a href="separate-unite-columns.html#cb668-3" aria-hidden="true" tabindex="-1"></a>animal_ratio</span>
-<span id="cb668-4"><a href="separate-unite-columns.html#cb668-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb668-5"><a href="separate-unite-columns.html#cb668-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year ratio  </span></span>
-<span id="cb668-6"><a href="separate-unite-columns.html#cb668-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  </span></span>
-<span id="cb668-7"><a href="separate-unite-columns.html#cb668-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 110/2.2</span></span>
-<span id="cb668-8"><a href="separate-unite-columns.html#cb668-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 120/2.4</span></span>
-<span id="cb668-9"><a href="separate-unite-columns.html#cb668-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 140/2.7</span></span>
-<span id="cb668-10"><a href="separate-unite-columns.html#cb668-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 NA/2   </span></span>
-<span id="cb668-11"><a href="separate-unite-columns.html#cb668-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 300/2.1</span></span>
-<span id="cb668-12"><a href="separate-unite-columns.html#cb668-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 800/2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="separate-unite-columns.html#cb669-1" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb669-2"><a href="separate-unite-columns.html#cb669-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="co">#unite the weight and height into the ratio</span></span>
+<span id="cb669-3"><a href="separate-unite-columns.html#cb669-3" aria-hidden="true" tabindex="-1"></a>animal_ratio</span>
+<span id="cb669-4"><a href="separate-unite-columns.html#cb669-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb669-5"><a href="separate-unite-columns.html#cb669-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year ratio  </span></span>
+<span id="cb669-6"><a href="separate-unite-columns.html#cb669-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  </span></span>
+<span id="cb669-7"><a href="separate-unite-columns.html#cb669-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 110/2.2</span></span>
+<span id="cb669-8"><a href="separate-unite-columns.html#cb669-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 120/2.4</span></span>
+<span id="cb669-9"><a href="separate-unite-columns.html#cb669-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 140/2.7</span></span>
+<span id="cb669-10"><a href="separate-unite-columns.html#cb669-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 NA/2   </span></span>
+<span id="cb669-11"><a href="separate-unite-columns.html#cb669-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 300/2.1</span></span>
+<span id="cb669-12"><a href="separate-unite-columns.html#cb669-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 800/2.3</span></span></code></pre></div>
 <p>Now, the <code>animal_ratio</code> has a new column named <code>ratio</code> which is displayed as the weight divided by the height.</p>
 </div>
 <div id="separate-one-column-into-multiple-columns-using-separate" class="section level3" number="7.2.2">
@@ -672,64 +678,64 @@ div.csl-indent {
 - <code>col</code>: the name of the column to be separated
 - <code>into</code>: the desired names of the to-be created columns after separation
 - <code>sep</code>: the separator during the separation process</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="separate-unite-columns.html#cb669-1" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="sc">%&gt;%</span> </span>
-<span id="cb669-2"><a href="separate-unite-columns.html#cb669-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
-<span id="cb669-3"><a href="separate-unite-columns.html#cb669-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
-<span id="cb669-4"><a href="separate-unite-columns.html#cb669-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight height</span></span>
-<span id="cb669-5"><a href="separate-unite-columns.html#cb669-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; </span></span>
-<span id="cb669-6"><a href="separate-unite-columns.html#cb669-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 110    2.2   </span></span>
-<span id="cb669-7"><a href="separate-unite-columns.html#cb669-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 120    2.4   </span></span>
-<span id="cb669-8"><a href="separate-unite-columns.html#cb669-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 140    2.7   </span></span>
-<span id="cb669-9"><a href="separate-unite-columns.html#cb669-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 NA     2     </span></span>
-<span id="cb669-10"><a href="separate-unite-columns.html#cb669-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 300    2.1   </span></span>
-<span id="cb669-11"><a href="separate-unite-columns.html#cb669-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 800    2.3</span></span></code></pre></div>
-<p>From the result, you can see that the original <strong>tidy</strong> tibble is recovered via the <code>separate()</code> function. After a careful look, you may notice that the column types of <code>weight</code> and <code>height</code> are both <code>character</code>, which may not be what we want. To convert the types automatically, you can add the <code>convert = TRUE</code> argument in the <code>separate()</code> function.</p>
 <div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="separate-unite-columns.html#cb670-1" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="sc">%&gt;%</span> </span>
-<span id="cb670-2"><a href="separate-unite-columns.html#cb670-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb670-2"><a href="separate-unite-columns.html#cb670-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
 <span id="cb670-3"><a href="separate-unite-columns.html#cb670-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
 <span id="cb670-4"><a href="separate-unite-columns.html#cb670-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight height</span></span>
-<span id="cb670-5"><a href="separate-unite-columns.html#cb670-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
-<span id="cb670-6"><a href="separate-unite-columns.html#cb670-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110    2.2</span></span>
-<span id="cb670-7"><a href="separate-unite-columns.html#cb670-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120    2.4</span></span>
-<span id="cb670-8"><a href="separate-unite-columns.html#cb670-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140    2.7</span></span>
-<span id="cb670-9"><a href="separate-unite-columns.html#cb670-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA    2  </span></span>
-<span id="cb670-10"><a href="separate-unite-columns.html#cb670-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300    2.1</span></span>
-<span id="cb670-11"><a href="separate-unite-columns.html#cb670-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800    2.3</span></span></code></pre></div>
+<span id="cb670-5"><a href="separate-unite-columns.html#cb670-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; </span></span>
+<span id="cb670-6"><a href="separate-unite-columns.html#cb670-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 110    2.2   </span></span>
+<span id="cb670-7"><a href="separate-unite-columns.html#cb670-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 120    2.4   </span></span>
+<span id="cb670-8"><a href="separate-unite-columns.html#cb670-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 140    2.7   </span></span>
+<span id="cb670-9"><a href="separate-unite-columns.html#cb670-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 NA     2     </span></span>
+<span id="cb670-10"><a href="separate-unite-columns.html#cb670-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 300    2.1   </span></span>
+<span id="cb670-11"><a href="separate-unite-columns.html#cb670-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 800    2.3</span></span></code></pre></div>
+<p>From the result, you can see that the original <strong>tidy</strong> tibble is recovered via the <code>separate()</code> function. After a careful look, you may notice that the column types of <code>weight</code> and <code>height</code> are both <code>character</code>, which may not be what we want. To convert the types automatically, you can add the <code>convert = TRUE</code> argument in the <code>separate()</code> function.</p>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="separate-unite-columns.html#cb671-1" aria-hidden="true" tabindex="-1"></a>animal_ratio <span class="sc">%&gt;%</span> </span>
+<span id="cb671-2"><a href="separate-unite-columns.html#cb671-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;ratio&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;height&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb671-3"><a href="separate-unite-columns.html#cb671-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
+<span id="cb671-4"><a href="separate-unite-columns.html#cb671-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight height</span></span>
+<span id="cb671-5"><a href="separate-unite-columns.html#cb671-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span id="cb671-6"><a href="separate-unite-columns.html#cb671-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110    2.2</span></span>
+<span id="cb671-7"><a href="separate-unite-columns.html#cb671-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120    2.4</span></span>
+<span id="cb671-8"><a href="separate-unite-columns.html#cb671-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140    2.7</span></span>
+<span id="cb671-9"><a href="separate-unite-columns.html#cb671-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA    2  </span></span>
+<span id="cb671-10"><a href="separate-unite-columns.html#cb671-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300    2.1</span></span>
+<span id="cb671-11"><a href="separate-unite-columns.html#cb671-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800    2.3</span></span></code></pre></div>
 <p>Now, <code>weight</code> is interger and <code>height</code> is double.</p>
 <p>In addition to separating via the separator, you can also separate by the position. For example, to separate the year into century (first two digits) and 2-digit year (last 2 digits), you can separate the <code>year</code> after position 2.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="separate-unite-columns.html#cb671-1" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y12&quot;</span>,<span class="st">&quot;y34&quot;</span>), <span class="at">sep =</span> <span class="dv">2</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb671-2"><a href="separate-unite-columns.html#cb671-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
-<span id="cb671-3"><a href="separate-unite-columns.html#cb671-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal   y12   y34 weight height</span></span>
-<span id="cb671-4"><a href="separate-unite-columns.html#cb671-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb671-5"><a href="separate-unite-columns.html#cb671-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep     20    19    110    2.2</span></span>
-<span id="cb671-6"><a href="separate-unite-columns.html#cb671-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep     20    20    120    2.4</span></span>
-<span id="cb671-7"><a href="separate-unite-columns.html#cb671-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep     20    21    140    2.7</span></span>
-<span id="cb671-8"><a href="separate-unite-columns.html#cb671-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig       20    19     NA    2  </span></span>
-<span id="cb671-9"><a href="separate-unite-columns.html#cb671-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig       20    20    300    2.1</span></span>
-<span id="cb671-10"><a href="separate-unite-columns.html#cb671-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig       20    21    800    2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="separate-unite-columns.html#cb672-1" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y12&quot;</span>,<span class="st">&quot;y34&quot;</span>), <span class="at">sep =</span> <span class="dv">2</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb672-2"><a href="separate-unite-columns.html#cb672-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
+<span id="cb672-3"><a href="separate-unite-columns.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal   y12   y34 weight height</span></span>
+<span id="cb672-4"><a href="separate-unite-columns.html#cb672-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb672-5"><a href="separate-unite-columns.html#cb672-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep     20    19    110    2.2</span></span>
+<span id="cb672-6"><a href="separate-unite-columns.html#cb672-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep     20    20    120    2.4</span></span>
+<span id="cb672-7"><a href="separate-unite-columns.html#cb672-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep     20    21    140    2.7</span></span>
+<span id="cb672-8"><a href="separate-unite-columns.html#cb672-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig       20    19     NA    2  </span></span>
+<span id="cb672-9"><a href="separate-unite-columns.html#cb672-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig       20    20    300    2.1</span></span>
+<span id="cb672-10"><a href="separate-unite-columns.html#cb672-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig       20    21    800    2.3</span></span></code></pre></div>
 <p>You can also separate at multiple locations. For example, to separate the year into four columns, representing four digits, you can use multiple positions to separate.</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="separate-unite-columns.html#cb672-1" aria-hidden="true" tabindex="-1"></a>anmial_digits <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>,<span class="st">&quot;y2&quot;</span>,<span class="st">&quot;y3&quot;</span>,<span class="st">&quot;y4&quot;</span>), <span class="at">sep =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb672-2"><a href="separate-unite-columns.html#cb672-2" aria-hidden="true" tabindex="-1"></a>anmial_digits</span>
-<span id="cb672-3"><a href="separate-unite-columns.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
-<span id="cb672-4"><a href="separate-unite-columns.html#cb672-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal    y1    y2    y3    y4 weight height</span></span>
-<span id="cb672-5"><a href="separate-unite-columns.html#cb672-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb672-6"><a href="separate-unite-columns.html#cb672-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep      2     0     1     9    110    2.2</span></span>
-<span id="cb672-7"><a href="separate-unite-columns.html#cb672-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep      2     0     2     0    120    2.4</span></span>
-<span id="cb672-8"><a href="separate-unite-columns.html#cb672-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep      2     0     2     1    140    2.7</span></span>
-<span id="cb672-9"><a href="separate-unite-columns.html#cb672-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig        2     0     1     9     NA    2  </span></span>
-<span id="cb672-10"><a href="separate-unite-columns.html#cb672-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig        2     0     2     0    300    2.1</span></span>
-<span id="cb672-11"><a href="separate-unite-columns.html#cb672-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig        2     0     2     1    800    2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="separate-unite-columns.html#cb673-1" aria-hidden="true" tabindex="-1"></a>anmial_digits <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>,<span class="st">&quot;y2&quot;</span>,<span class="st">&quot;y3&quot;</span>,<span class="st">&quot;y4&quot;</span>), <span class="at">sep =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb673-2"><a href="separate-unite-columns.html#cb673-2" aria-hidden="true" tabindex="-1"></a>anmial_digits</span>
+<span id="cb673-3"><a href="separate-unite-columns.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 7</span></span>
+<span id="cb673-4"><a href="separate-unite-columns.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal    y1    y2    y3    y4 weight height</span></span>
+<span id="cb673-5"><a href="separate-unite-columns.html#cb673-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb673-6"><a href="separate-unite-columns.html#cb673-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep      2     0     1     9    110    2.2</span></span>
+<span id="cb673-7"><a href="separate-unite-columns.html#cb673-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep      2     0     2     0    120    2.4</span></span>
+<span id="cb673-8"><a href="separate-unite-columns.html#cb673-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep      2     0     2     1    140    2.7</span></span>
+<span id="cb673-9"><a href="separate-unite-columns.html#cb673-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig        2     0     1     9     NA    2  </span></span>
+<span id="cb673-10"><a href="separate-unite-columns.html#cb673-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig        2     0     2     0    300    2.1</span></span>
+<span id="cb673-11"><a href="separate-unite-columns.html#cb673-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig        2     0     2     1    800    2.3</span></span></code></pre></div>
 <p>Using the <code>animal_digits</code>, you can also combine all the four digits into a column named <code>year</code>.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="separate-unite-columns.html#cb673-1" aria-hidden="true" tabindex="-1"></a>anmial_digits <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, y1<span class="sc">:</span>y4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb673-2"><a href="separate-unite-columns.html#cb673-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
-<span id="cb673-3"><a href="separate-unite-columns.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight height</span></span>
-<span id="cb673-4"><a href="separate-unite-columns.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb673-5"><a href="separate-unite-columns.html#cb673-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110    2.2</span></span>
-<span id="cb673-6"><a href="separate-unite-columns.html#cb673-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120    2.4</span></span>
-<span id="cb673-7"><a href="separate-unite-columns.html#cb673-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140    2.7</span></span>
-<span id="cb673-8"><a href="separate-unite-columns.html#cb673-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA    2  </span></span>
-<span id="cb673-9"><a href="separate-unite-columns.html#cb673-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300    2.1</span></span>
-<span id="cb673-10"><a href="separate-unite-columns.html#cb673-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800    2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="separate-unite-columns.html#cb674-1" aria-hidden="true" tabindex="-1"></a>anmial_digits <span class="sc">%&gt;%</span> <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, y1<span class="sc">:</span>y4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb674-2"><a href="separate-unite-columns.html#cb674-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 4</span></span>
+<span id="cb674-3"><a href="separate-unite-columns.html#cb674-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight height</span></span>
+<span id="cb674-4"><a href="separate-unite-columns.html#cb674-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb674-5"><a href="separate-unite-columns.html#cb674-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110    2.2</span></span>
+<span id="cb674-6"><a href="separate-unite-columns.html#cb674-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120    2.4</span></span>
+<span id="cb674-7"><a href="separate-unite-columns.html#cb674-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140    2.7</span></span>
+<span id="cb674-8"><a href="separate-unite-columns.html#cb674-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA    2  </span></span>
+<span id="cb674-9"><a href="separate-unite-columns.html#cb674-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300    2.1</span></span>
+<span id="cb674-10"><a href="separate-unite-columns.html#cb674-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800    2.3</span></span></code></pre></div>
 <p>Note that here, the seperator is set to be the empty string since we don’t want any separator within the four-digit year.</p>
 
 </div>
@@ -745,7 +751,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -784,7 +789,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

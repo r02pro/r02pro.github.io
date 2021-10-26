@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro</title>
   <meta name="description" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.2 Matching Pattern with Regular Expressions | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="combine-subset-strings.html"/>
 <link rel="next" href="statistics.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -630,13 +636,13 @@ div.csl-indent {
 <div id="match-pattern" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Matching Pattern with Regular Expressions</h2>
 <p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>ahp</code> data set from <strong>r02pro</strong> package.</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="match-pattern.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb684-2"><a href="match-pattern.html#cb684-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb684-3"><a href="match-pattern.html#cb684-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="match-pattern.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb685-2"><a href="match-pattern.html#cb685-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb685-3"><a href="match-pattern.html#cb685-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
 <p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. Let’s describe a few commonly usd patterns.</p>
 <p><strong><em>a. contain a given string</em></strong>
 To find all strings that contain <code>"yr"</code>, you can run the following code.</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="match-pattern.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="match-pattern.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-ffcf6cfe32332af90121" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-ffcf6cfe32332af90121">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li><span class='match'>yr<\/span>_sold<\/li>\n  <li>mo_sold<\/li>\n  <li><span class='match'>yr<\/span>_built<\/li>\n  <li><span class='match'>yr<\/span>_remodel<\/li>\n  <li>bldg_class<\/li>\n  <li>bldg_type<\/li>\n  <li>house_style<\/li>\n  <li>zoning<\/li>\n  <li>neighborhd<\/li>\n  <li>oa_cond<\/li>\n  <li>oa_qual<\/li>\n  <li>func<\/li>\n  <li>liv_area<\/li>\n  <li>1fl_area<\/li>\n  <li>2fl_area<\/li>\n  <li>tot_rms<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>kit<\/li>\n  <li>kit_qual<\/li>\n  <li>central_air<\/li>\n  <li>elect<\/li>\n  <li>bsmt_area<\/li>\n  <li>bsmt_cond<\/li>\n  <li>bsmt_exp<\/li>\n  <li>bsmt_fin_qual<\/li>\n  <li>bsmt_ht<\/li>\n  <li>ext_cond<\/li>\n  <li>ext_cover<\/li>\n  <li>ext_qual<\/li>\n  <li>fdn<\/li>\n  <li>fence<\/li>\n  <li>fp<\/li>\n  <li>fp_qual<\/li>\n  <li>gar_area<\/li>\n  <li>gar_car<\/li>\n  <li>gar_cond<\/li>\n  <li>gar_fin<\/li>\n  <li>gar_qual<\/li>\n  <li>gar_type<\/li>\n  <li>gar_<span class='match'>yr<\/span><\/li>\n  <li>heat_qual<\/li>\n  <li>land_contour<\/li>\n  <li>land_slope<\/li>\n  <li>lot_area<\/li>\n  <li>lot_config<\/li>\n  <li>lot_frontage<\/li>\n  <li>lot_shape<\/li>\n  <li>pave_dr<\/li>\n  <li>roof_matl<\/li>\n  <li>roof_style<\/li>\n  <li>op_area<\/li>\n  <li>ep_area<\/li>\n  <li>wd_area<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
@@ -652,7 +658,6 @@ To find all strings that contain <code>"yr"</code>, you can run the following co
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -691,7 +696,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

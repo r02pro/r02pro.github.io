@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.12 Histograms | R Programming: Zero to Pro</title>
   <meta name="description" content="4.12 Histograms | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.12 Histograms | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="customization-axes.html"/>
 <link rel="next" href="density-plot.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -634,78 +640,77 @@ div.csl-indent {
 <div id="using-the-hist-function" class="section level3" number="4.12.1">
 <h3><span class="header-section-number">4.12.1</span> Using the <code>hist()</code> function</h3>
 <p>To generate a histogram, you can simply use <code>hist()</code> with the variable as the argument.</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="histogram.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb482-2"><a href="histogram.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sahp<span class="sc">$</span>sale_price)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-526-1.png" width="576" /></p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="histogram.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb483-2"><a href="histogram.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(sahp<span class="sc">$</span>sale_price)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-506-1.png" width="576" /></p>
 <p>On the x-axis, the histogram displays the range of values for the sale price. Then, the histogram divides the x-axis into bins with equal width, and a bar is erected over the bin with the y-axis showing the corresponding number of observations (called Frequency on the y-axis label).</p>
 </div>
 <div id="using-the-geom_histogram-function" class="section level3" number="4.12.2">
 <h3><span class="header-section-number">4.12.2</span> Using the <code>geom_histogram()</code> function</h3>
 <p>In addition to using the <code>hist()</code> function in base R. The <code>geom_histogram()</code> function in the <strong>ggplot2</strong> package provides richer functionality. Let’s take a quick look.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="histogram.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb483-2"><a href="histogram.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb483-3"><a href="histogram.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price))</span>
-<span id="cb483-4"><a href="histogram.html#cb483-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value</span></span>
-<span id="cb483-5"><a href="histogram.html#cb483-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; with `binwidth`.</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-527-1.png" width="576" /></p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="histogram.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb484-2"><a href="histogram.html#cb484-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb484-3"><a href="histogram.html#cb484-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price))</span>
+<span id="cb484-4"><a href="histogram.html#cb484-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-507-1.png" width="576" /></p>
 <p>We could see a message, saying “<code>stat_bin()</code> using <code>bins = 30</code>” which implies the histogram has 30 bins by default. Next, we introduce three different ways to customize the bins.</p>
 <p><strong><em>a. Use aesthetic <code>bins</code>.</em></strong></p>
 <p>We can change the number of bins with the global aesthetic <code>bins</code>.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="histogram.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb484-2"><a href="histogram.html#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-528-1.png" width="576" /></p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="histogram.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb485-2"><a href="histogram.html#cb485-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-508-1.png" width="576" /></p>
 <p>We can see that the histogram now has 5 bins and each bin has the same width.</p>
 <p><strong><em>b. Use aesthetic <code>binwidth</code>.</em></strong></p>
 <p>And from the message, another way to change the number of bins is to specify the <code>binwidth</code>, which is another global aesthetic.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="histogram.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb485-2"><a href="histogram.html#cb485-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">binwidth =</span> <span class="fl">1e2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-529-1.png" width="576" /></p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="histogram.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb486-2"><a href="histogram.html#cb486-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">binwidth =</span> <span class="fl">1e2</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-509-1.png" width="576" /></p>
 <p><strong><em>c. Manually set the bins.</em></strong></p>
 <p>If desired, you can manually set the bins via the <code>breaks</code> argument in the <code>geom_histogram()</code> function.</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="histogram.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb486-2"><a href="histogram.html#cb486-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">100</span>))  </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-530-1.png" width="576" /></p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="histogram.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb487-2"><a href="histogram.html#cb487-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">100</span>))  </span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-510-1.png" width="576" /></p>
 <p>The <code>breaks</code> argument is a numeric vector specifying how the bins are constructed. Let’s verify the height of the first bin.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="histogram.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="co">#verify the first bin count</span></span>
-<span id="cb487-2"><a href="histogram.html#cb487-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>sale_price <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="histogram.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="co">#verify the first bin count</span></span>
+<span id="cb488-2"><a href="histogram.html#cb488-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>sale_price <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 </div>
 <div id="aesthetics-in-geom_histogram" class="section level3" number="4.12.3">
 <h3><span class="header-section-number">4.12.3</span> Aesthetics in <code>geom_histogram()</code></h3>
 <p>Next, we introduce the aesthetics in histograms, which are very similar to those in bar charts. For example, we can map a variable to the fill aesthetic.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="histogram.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb488-2"><a href="histogram.html#cb488-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-532-1.png" width="576" /></p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="histogram.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb489-2"><a href="histogram.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-512-1.png" width="576" /></p>
 <p>We can see that like the bar chart, the bar for each bin is now divided into sub-bars with different colors. The different colors in each sub-bar correspond to the values of <code>house_style</code>. And the height of each sub-bar represents the count for the cases with the <code>sale_price</code> in this particular bin and the specific value of <code>house_style</code>. Just like <code>geom_bar()</code>, we have a global aesthetic called <code>position</code>, which does position adjustment for different sub-bars. The default position value is again <code>"stack"</code> if you don’t specify it.</p>
 <p><strong><em>a. Stacked bars</em></strong></p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="histogram.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb489-2"><a href="histogram.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;stack&quot;</span>, <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="histogram.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb490-2"><a href="histogram.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;stack&quot;</span>, <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>As expected, we get the same histogram as before.</p>
 <p><strong><em>b. Dodged bars</em></strong></p>
 <p>The second option for position is <code>"dodge"</code>, which places the sub-bars beside one another, making it easier to compare individual counts for the combination of a bin of <code>sale_price</code> and <code>house_style</code>.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="histogram.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb490-2"><a href="histogram.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-534-1.png" width="576" /></p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="histogram.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb491-2"><a href="histogram.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-514-1.png" width="576" /></p>
 <p><strong><em>c. Filled bars</em></strong></p>
 <p>Another option for optional is <code>position = "fill"</code>. It works like stacking, but makes each set of stacked bars the same height.</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="histogram.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb491-2"><a href="histogram.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">100</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-535-1.png" width="576" /></p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="histogram.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb492-2"><a href="histogram.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">fill =</span> house_style), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">100</span>))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-515-1.png" width="576" /></p>
 <p>Just like <code>geom_bar()</code>, the y axis may be labeled as “proportion” rather than “count,” to be more precise. This makes it easier to compare proportions of different values of cut for different bins of price. For example, we can see that the proportion of <code>house_style = "1.5Fin"</code> is highest for the houses with sale price less than 100.</p>
 </div>
 <div id="density-estimate-using-histograms" class="section level3" number="4.12.4">
 <h3><span class="header-section-number">4.12.4</span> Density Estimate Using Histograms</h3>
 <p>In addition to using histograms to visualize the distribution of a discrete variable, you can also construct a density density of variable using a proper normalization. To generate such a density estimate, you can add <code>y = ..density..</code> as a mapping in the <code>aes()</code> function in <code>geom_historgram()</code>. Let’s see an example as below.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="histogram.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span>  </span>
-<span id="cb492-2"><a href="histogram.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">y =</span> ..density..), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">6e2</span>, <span class="at">by =</span> <span class="fl">1e2</span>)) <span class="sc">+</span> </span>
-<span id="cb492-3"><a href="histogram.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">7e-3</span>, <span class="at">by =</span> <span class="fl">1e-3</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-536-1.png" width="576" /></p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="histogram.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span>  </span>
+<span id="cb493-2"><a href="histogram.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">y =</span> ..density..), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">6e2</span>, <span class="at">by =</span> <span class="fl">1e2</span>)) <span class="sc">+</span> </span>
+<span id="cb493-3"><a href="histogram.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">7e-3</span>, <span class="at">by =</span> <span class="fl">1e-3</span>))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-516-1.png" width="576" /></p>
 <p>Here, we added the <code>breaks</code> arguments on the bins as well as on the y-axis.</p>
 <p>Let’s try to calculate the height of the first bar together. We know that the total area of the bars is 1, agreeing with the definition of density. First, we get the area of the first bar. Then we divide it by the width to get the height.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="histogram.html#cb493-1" aria-hidden="true" tabindex="-1"></a>sale_price_no_na <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sahp<span class="sc">$</span>sale_price) </span>
-<span id="cb493-2"><a href="histogram.html#cb493-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sale_price_no_na <span class="sc">&lt;</span> <span class="fl">1e2</span>)<span class="sc">/</span><span class="fu">length</span>(sale_price_no_na) <span class="co">#area of the first bar</span></span>
-<span id="cb493-3"><a href="histogram.html#cb493-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1036585</span></span>
-<span id="cb493-4"><a href="histogram.html#cb493-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sale_price_no_na <span class="sc">&lt;</span> <span class="fl">1e2</span>)<span class="sc">/</span><span class="fu">length</span>(sale_price_no_na) <span class="sc">/</span><span class="fl">1e2</span> <span class="co">#height of the first bar</span></span>
-<span id="cb493-5"><a href="histogram.html#cb493-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.001036585</span></span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="histogram.html#cb494-1" aria-hidden="true" tabindex="-1"></a>sale_price_no_na <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(sahp<span class="sc">$</span>sale_price) </span>
+<span id="cb494-2"><a href="histogram.html#cb494-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sale_price_no_na <span class="sc">&lt;</span> <span class="fl">1e2</span>)<span class="sc">/</span><span class="fu">length</span>(sale_price_no_na) <span class="co">#area of the first bar</span></span>
+<span id="cb494-3"><a href="histogram.html#cb494-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1036585</span></span>
+<span id="cb494-4"><a href="histogram.html#cb494-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sale_price_no_na <span class="sc">&lt;</span> <span class="fl">1e2</span>)<span class="sc">/</span><span class="fu">length</span>(sale_price_no_na) <span class="sc">/</span><span class="fl">1e2</span> <span class="co">#height of the first bar</span></span>
+<span id="cb494-5"><a href="histogram.html#cb494-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.001036585</span></span></code></pre></div>
 <p>You can see that the height matches the <code>y</code> axis for the first bar.</p>
 </div>
 <div id="exercises-25" class="section level3" number="4.12.5">
@@ -735,7 +740,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -774,7 +778,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

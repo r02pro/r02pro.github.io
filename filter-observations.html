@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.1 Filter Observations and Objects Masking | R Programming: Zero to Pro</title>
   <meta name="description" content="6.1 Filter Observations and Objects Masking | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.1 Filter Observations and Objects Masking | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="data-manipulation.html"/>
 <link rel="next" href="reorder-observations.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -630,7 +636,7 @@ div.csl-indent {
 <div id="filter-observations" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Filter Observations and Objects Masking</h2>
 <p>Let’s start with the first task outlined at the beginning of this chapter. Suppose we want to find the houses that are sold in Jan 2009. You can use the function <code>filter()</code> in the <strong>dplyr</strong> package, a member of the <strong>tidyverse</strong> package. If you haven’t installed the <strong>tidyverse</strong> package, you need to install it. Let’s first load the <strong>dplyr</strong> package.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="filter-observations.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="filter-observations.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div id="objects-masking" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Objects Masking</h3>
 <p>After loading the package <strong>dplyr</strong>, you can see the following message</p>
@@ -639,77 +645,64 @@ div.csl-indent {
     filter, lag</code></pre>
 <p>The message appears because <strong>dplyr</strong> contains the functions <code>filter()</code> and <code>lag()</code> which are already defined and preloaded in the R package <strong>stats</strong>. As a result, the original functions are masked by the new definition in <strong>dplyr</strong>.</p>
 <p>In this scenario when the same function name is shared by multiple packages, we can add the package name as a prefix to the function name with <em>double colon</em> (<code>::</code>). For example, <code>stats::filter()</code> represents the <code>filter()</code> function in the <strong>stats</strong> package, while <code>dplyr::filter()</code> represents the <code>filter()</code> function in the <strong>dplyr</strong> package. You can also look at their documentations.</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="filter-observations.html#cb618-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
-<span id="cb618-2"><a href="filter-observations.html#cb618-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="filter-observations.html#cb619-1" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
+<span id="cb619-2"><a href="filter-observations.html#cb619-2" aria-hidden="true" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
 <p>It is helpful to verify which version of <code>filter()</code> you are using by typing the function name <code>filter</code>.</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="filter-observations.html#cb619-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="filter-observations.html#cb620-1" aria-hidden="true" tabindex="-1"></a>filter</span></code></pre></div>
 <p>Usually, R will use the function in the package that is loaded at a later time. To verify the search path, you can use the <code>search()</code> function. R will show a list of attached packages and R objects.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="filter-observations.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span>
-<span id="cb620-2"><a href="filter-observations.html#cb620-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:haven&quot;     </span></span>
-<span id="cb620-3"><a href="filter-observations.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3] &quot;package:readxl&quot;     &quot;package:kableExtra&quot;</span></span>
-<span id="cb620-4"><a href="filter-observations.html#cb620-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;package:forcats&quot;    &quot;package:stringr&quot;   </span></span>
-<span id="cb620-5"><a href="filter-observations.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:purrr&quot;      &quot;package:readr&quot;     </span></span>
-<span id="cb620-6"><a href="filter-observations.html#cb620-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;package:tidyr&quot;      &quot;package:tidyverse&quot; </span></span>
-<span id="cb620-7"><a href="filter-observations.html#cb620-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] &quot;package:ggplot2&quot;    &quot;package:tibble&quot;    </span></span>
-<span id="cb620-8"><a href="filter-observations.html#cb620-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:r02pro&quot;     &quot;package:dplyr&quot;     </span></span>
-<span id="cb620-9"><a href="filter-observations.html#cb620-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] &quot;tools:rstudio&quot;      &quot;package:stats&quot;     </span></span>
-<span id="cb620-10"><a href="filter-observations.html#cb620-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [17] &quot;package:graphics&quot;   &quot;package:grDevices&quot; </span></span>
-<span id="cb620-11"><a href="filter-observations.html#cb620-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:utils&quot;      &quot;package:datasets&quot;  </span></span>
-<span id="cb620-12"><a href="filter-observations.html#cb620-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [21] &quot;package:methods&quot;    &quot;Autoloads&quot;         </span></span>
-<span id="cb620-13"><a href="filter-observations.html#cb620-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [23] &quot;package:base&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="filter-observations.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span>
+<span id="cb621-2"><a href="filter-observations.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:haven&quot;      &quot;package:readxl&quot;    </span></span>
+<span id="cb621-3"><a href="filter-observations.html#cb621-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;package:kableExtra&quot; &quot;package:forcats&quot;    &quot;package:stringr&quot;   </span></span>
+<span id="cb621-4"><a href="filter-observations.html#cb621-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:purrr&quot;      &quot;package:readr&quot;      &quot;package:tidyr&quot;     </span></span>
+<span id="cb621-5"><a href="filter-observations.html#cb621-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] &quot;package:tidyverse&quot;  &quot;package:ggplot2&quot;    &quot;package:tibble&quot;    </span></span>
+<span id="cb621-6"><a href="filter-observations.html#cb621-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:r02pro&quot;     &quot;package:dplyr&quot;      &quot;package:stats&quot;     </span></span>
+<span id="cb621-7"><a href="filter-observations.html#cb621-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] &quot;package:graphics&quot;   &quot;package:grDevices&quot;  &quot;package:utils&quot;     </span></span>
+<span id="cb621-8"><a href="filter-observations.html#cb621-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:datasets&quot;   &quot;package:methods&quot;    &quot;Autoloads&quot;         </span></span>
+<span id="cb621-9"><a href="filter-observations.html#cb621-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] &quot;package:base&quot;</span></span></code></pre></div>
 </div>
 <div id="filter-observations-1" class="section level3" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Filter Observations</h3>
 <p>Now, let’s introduce how to use <code>filter()</code> to get the subset of <code>ahp</code> which consists of houses that are sold in Jan 2009. To use the <code>filter()</code> function, you put the dataset in the first argument, and put the <strong>logical statements</strong> as individual arguments after that. We know the <code>ahp</code> dataset has the year information in <code>yr_sold</code> and the month information in <code>mo_sold</code>. Apparently, Jan 2009 corresponding to <code>yr_sold == 2009</code> and <code>mo_sold == 1</code>.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="filter-observations.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb621-2"><a href="filter-observations.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>) </span>
-<span id="cb621-3"><a href="filter-observations.html#cb621-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 x 56</span></span>
-<span id="cb621-4"><a href="filter-observations.html#cb621-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    yr_sold mo_sold yr_built yr_remodel</span></span>
-<span id="cb621-5"><a href="filter-observations.html#cb621-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb621-6"><a href="filter-observations.html#cb621-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2009-01-07    2009       1     1979       1998</span></span>
-<span id="cb621-7"><a href="filter-observations.html#cb621-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-01-09    2009       1     1920       1950</span></span>
-<span id="cb621-8"><a href="filter-observations.html#cb621-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2009-01-04    2009       1     1958       1958</span></span>
-<span id="cb621-9"><a href="filter-observations.html#cb621-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2009-01-17    2009       1     2004       2004</span></span>
-<span id="cb621-10"><a href="filter-observations.html#cb621-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2009-01-16    2009       1       NA       2007</span></span>
-<span id="cb621-11"><a href="filter-observations.html#cb621-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2009-01-18    2009       1     2008       2008</span></span>
-<span id="cb621-12"><a href="filter-observations.html#cb621-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2009-01-07    2009       1     2008       2009</span></span>
-<span id="cb621-13"><a href="filter-observations.html#cb621-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2009-01-28    2009       1     2004       2004</span></span>
-<span id="cb621-14"><a href="filter-observations.html#cb621-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2009-01-12    2009       1     1926       2004</span></span>
-<span id="cb621-15"><a href="filter-observations.html#cb621-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2009-01-07    2009       1     2004       2005</span></span>
-<span id="cb621-16"><a href="filter-observations.html#cb621-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 51 more variables: bldg_class &lt;dbl&gt;,</span></span>
-<span id="cb621-17"><a href="filter-observations.html#cb621-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bldg_type &lt;chr&gt;, house_style &lt;chr&gt;,</span></span>
-<span id="cb621-18"><a href="filter-observations.html#cb621-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;,</span></span>
-<span id="cb621-19"><a href="filter-observations.html#cb621-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;,</span></span>
-<span id="cb621-20"><a href="filter-observations.html#cb621-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `1fl_area` &lt;dbl&gt;, `2fl_area` &lt;dbl&gt;,</span></span>
-<span id="cb621-21"><a href="filter-observations.html#cb621-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;,</span></span>
-<span id="cb621-22"><a href="filter-observations.html#cb621-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit &lt;dbl&gt;, kit_qual &lt;chr&gt;, central_air &lt;chr&gt;,</span></span>
-<span id="cb621-23"><a href="filter-observations.html#cb621-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;, bsmt_cond &lt;chr&gt;,</span></span>
-<span id="cb621-24"><a href="filter-observations.html#cb621-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;,</span></span>
-<span id="cb621-25"><a href="filter-observations.html#cb621-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_ht &lt;chr&gt;, ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;,</span></span>
-<span id="cb621-26"><a href="filter-observations.html#cb621-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb621-27"><a href="filter-observations.html#cb621-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;,</span></span>
-<span id="cb621-28"><a href="filter-observations.html#cb621-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;, gar_fin &lt;chr&gt;,</span></span>
-<span id="cb621-29"><a href="filter-observations.html#cb621-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
-<span id="cb621-30"><a href="filter-observations.html#cb621-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;,</span></span>
-<span id="cb621-31"><a href="filter-observations.html#cb621-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
-<span id="cb621-32"><a href="filter-observations.html#cb621-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;,</span></span>
-<span id="cb621-33"><a href="filter-observations.html#cb621-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
-<span id="cb621-34"><a href="filter-observations.html#cb621-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;,</span></span>
-<span id="cb621-35"><a href="filter-observations.html#cb621-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;, wd_area &lt;dbl&gt;,</span></span>
-<span id="cb621-36"><a href="filter-observations.html#cb621-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="filter-observations.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb622-2"><a href="filter-observations.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>) </span>
+<span id="cb622-3"><a href="filter-observations.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 x 56</span></span>
+<span id="cb622-4"><a href="filter-observations.html#cb622-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
+<span id="cb622-5"><a href="filter-observations.html#cb622-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb622-6"><a href="filter-observations.html#cb622-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2009-01-07    2009       1     1979       1998         20 1Fam     </span></span>
+<span id="cb622-7"><a href="filter-observations.html#cb622-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-01-09    2009       1     1920       1950         30 1Fam     </span></span>
+<span id="cb622-8"><a href="filter-observations.html#cb622-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2009-01-04    2009       1     1958       1958         20 1Fam     </span></span>
+<span id="cb622-9"><a href="filter-observations.html#cb622-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2009-01-17    2009       1     2004       2004         20 1Fam     </span></span>
+<span id="cb622-10"><a href="filter-observations.html#cb622-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2009-01-16    2009       1       NA       2007         20 1Fam     </span></span>
+<span id="cb622-11"><a href="filter-observations.html#cb622-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2009-01-18    2009       1     2008       2008         20 1Fam     </span></span>
+<span id="cb622-12"><a href="filter-observations.html#cb622-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2009-01-07    2009       1     2008       2009         60 1Fam     </span></span>
+<span id="cb622-13"><a href="filter-observations.html#cb622-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2009-01-28    2009       1     2004       2004         60 1Fam     </span></span>
+<span id="cb622-14"><a href="filter-observations.html#cb622-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2009-01-12    2009       1     1926       2004         45 1Fam     </span></span>
+<span id="cb622-15"><a href="filter-observations.html#cb622-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2009-01-07    2009       1     2004       2005         20 1Fam     </span></span>
+<span id="cb622-16"><a href="filter-observations.html#cb622-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 49 more variables: house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;,</span></span>
+<span id="cb622-17"><a href="filter-observations.html#cb622-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
+<span id="cb622-18"><a href="filter-observations.html#cb622-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb622-19"><a href="filter-observations.html#cb622-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
+<span id="cb622-20"><a href="filter-observations.html#cb622-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
+<span id="cb622-21"><a href="filter-observations.html#cb622-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
+<span id="cb622-22"><a href="filter-observations.html#cb622-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb622-23"><a href="filter-observations.html#cb622-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb622-24"><a href="filter-observations.html#cb622-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb622-25"><a href="filter-observations.html#cb622-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb622-26"><a href="filter-observations.html#cb622-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb622-27"><a href="filter-observations.html#cb622-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
 <p>In the <code>filter()</code> function, each logical statement will be computed, which leads to a logical vector of the same length as the number of observations. Then, only the observations that have <code>TRUE</code> values in all logical vectors are kept.</p>
 <p>It is helpful to learn the mechanism of <code>filter()</code> by reproducing the results using what we learned on data frame subsetting in Section @ref(subset_df).</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="filter-observations.html#cb622-1" aria-hidden="true" tabindex="-1"></a>ahp[ahp<span class="sc">$</span>yr_sold <span class="sc">==</span> <span class="dv">2009</span> <span class="sc">&amp;</span> ahp<span class="sc">$</span>mo_sold <span class="sc">==</span> <span class="dv">1</span>, ] </span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="filter-observations.html#cb623-1" aria-hidden="true" tabindex="-1"></a>ahp[ahp<span class="sc">$</span>yr_sold <span class="sc">==</span> <span class="dv">2009</span> <span class="sc">&amp;</span> ahp<span class="sc">$</span>mo_sold <span class="sc">==</span> <span class="dv">1</span>, ] </span></code></pre></div>
 <p>Although we got the same answer, we hope you agree with us that the <code>filter()</code> function provides more intuitive and simpler codes than the raw data frame subsetting. For example, the tibble name <code>ahp</code> appeared three times in the data frame subsetting while it only appears once in the <code>filter()</code> function.</p>
 <div class="infobox caution">
 <p>This is an example of the power of creating new R functions and R packages. They usually enable us to do tasks that couldn’t be done using the existing functions in base R, or making coding easier than just using the existing functions. Recall that the same thing happened in the visualization where we compared the visualization functions in base R with the <code>ggplot()</code> function. No matter how complicated the figure we want to create is, we only need to put the data set name once in the <code>ggplot()</code> function if all the layers are using the same data set.</p>
 </div>
 <p>It is worth noting that the <code>filter()</code> function only returns the obsevations when the conditions are all <code>TRUE</code>, without including the <code>NA</code> observations.</p>
 <p>Using the <code>filter()</code> function, the original tibble is <strong>unchanged</strong>, which is actually the feature of many functions we will learn in this Chapter. To save the filtered tibble, you can either assign the value to the original tibble name, which will overwrite it; or assign the value to a new name, which will create a new tibble with the new values. Let’s save all houses that were sold in Apr 2009 in a new tibble.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="filter-observations.html#cb623-1" aria-hidden="true" tabindex="-1"></a>apr09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">4</span>)</span>
-<span id="cb623-2"><a href="filter-observations.html#cb623-2" aria-hidden="true" tabindex="-1"></a>apr09</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="filter-observations.html#cb624-1" aria-hidden="true" tabindex="-1"></a>apr09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">4</span>)</span>
+<span id="cb624-2"><a href="filter-observations.html#cb624-2" aria-hidden="true" tabindex="-1"></a>apr09</span></code></pre></div>
 <p>In addition to using separate logical statements, you can also have logical operations between multiple logical vectors inside each statement. This makes the <code>filter()</code> function very flexible in expressing different kinds of filtering operation. Let’s say we want to find all houses that are sold in 2007, remodeled in 2006, and with house style either “1Story” or “2Story.”</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="filter-observations.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ahp, dt_sold <span class="sc">&gt;=</span> <span class="st">&quot;2007-01-01&quot;</span>, dt_sold <span class="sc">&lt;</span> <span class="st">&quot;2008-01-01&quot;</span>, yr_remodel <span class="sc">==</span> <span class="dv">2006</span>, house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span> <span class="sc">|</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="filter-observations.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ahp, dt_sold <span class="sc">&gt;=</span> <span class="st">&quot;2007-01-01&quot;</span>, dt_sold <span class="sc">&lt;</span> <span class="st">&quot;2008-01-01&quot;</span>, yr_remodel <span class="sc">==</span> <span class="dv">2006</span>, house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span> <span class="sc">|</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>)</span></code></pre></div>
 <p>From the above example, you can see that a variable can used multiple times in different logical statements.</p>
 </div>
 <div id="exercise-1" class="section level3" number="6.1.3">
@@ -731,7 +724,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -770,7 +762,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

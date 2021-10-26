@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.5 Statistical Functions on Vectors | R Programming: Zero to Pro</title>
   <meta name="description" content="2.5 Statistical Functions on Vectors | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.5 Statistical Functions on Vectors | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="sort-vector.html"/>
 <link rel="next" href="comparison-vector-subsetting.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -633,69 +639,69 @@ div.csl-indent {
 <div id="numeric-vectors-1" class="section level3" number="2.5.1">
 <h3><span class="header-section-number">2.5.1</span> Numeric vectors</h3>
 <p>Let’s first create a numeric vector.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="vector-functions.html#cb127-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">75</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb127-2"><a href="vector-functions.html#cb127-2" aria-hidden="true" tabindex="-1"></a>h <span class="co">#check the value of h</span></span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="vector-functions.html#cb128-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">75</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb128-2"><a href="vector-functions.html#cb128-2" aria-hidden="true" tabindex="-1"></a>h <span class="co">#check the value of h</span></span></code></pre></div>
 <p>Next, we will divide statistical functions into several groups, and introduce them one by one.</p>
 <p><strong><em>Group A: minimum and maximum</em></strong></p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="vector-functions.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(h) </span>
-<span id="cb128-2"><a href="vector-functions.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(h) </span>
-<span id="cb128-3"><a href="vector-functions.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="vector-functions.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(h) </span>
+<span id="cb129-2"><a href="vector-functions.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(h) </span>
+<span id="cb129-3"><a href="vector-functions.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(h)</span></code></pre></div>
 <p>First, you can get the <strong>minimum</strong> and <strong>maximum</strong> values of a numeric vector, and <code>range()</code> produces a length-2 vector with both the minimum value(the first element) and maximum value(the second element).</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="vector-functions.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(h) </span>
-<span id="cb129-2"><a href="vector-functions.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(h) </span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="vector-functions.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(h) </span>
+<span id="cb130-2"><a href="vector-functions.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(h) </span></code></pre></div>
 <p>In addition to getting the minimum and the maximum values, it is often useful to get the corresponding locations of them. Here, the fourth element in <code>h</code> has the minimum value 0, so you will get a result of <code>4</code> from <code>which.min()</code>. If there are multiple elements with the minimum value, <code>which.min()</code> will return the first location. Similarly, <code>which.max()</code> tells you the location of the maximum value.</p>
 <div class="infobox caution">
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="vector-functions.html#cb130-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb130-2"><a href="vector-functions.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(g)</span>
-<span id="cb130-3"><a href="vector-functions.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(g)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="vector-functions.html#cb131-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb131-2"><a href="vector-functions.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(g)</span>
+<span id="cb131-3"><a href="vector-functions.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(g)</span></code></pre></div>
 <p>The third element and the fourth element in <code>g</code> both have the minimum value, but <code>which.min(g)</code> has a value of 3 since the third element is the first location with the minimum value. Similarly, <code>which.max()</code> gives you a result of <code>1</code>.</p>
 </div>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="vector-functions.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cummin</span>(h) </span>
-<span id="cb131-2"><a href="vector-functions.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cummax</span>(h) </span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="vector-functions.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cummin</span>(h) </span>
+<span id="cb132-2"><a href="vector-functions.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cummax</span>(h) </span></code></pre></div>
 <p>In addition to calculating the minimum value of all elements, you can also use the <strong>cumulative minimum</strong> function, called <code>cummin()</code>. It returns a vector of the same length as the input vector, with the value at each location being the minimum of all preceding elements until that location in the original vector. For example, the first element of <code>cummin(h)</code> is <code>3</code> since the minimum of the first element in the original vector is always itself, the second element is <code>2</code> since the minimum of the first two elements (<code>3</code> and <code>2</code>) in <code>h</code>is 2, and so on. Note that once we reach the minimum value of the vector, the remaining elements of the cumulative minimum function will always equal to the minimum value. There is also a corresponding function for computing the cumulative maximums, called <code>cummax()</code>.</p>
 <p><strong><em>Group B: sum and product</em></strong></p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="vector-functions.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(h)</span>
-<span id="cb132-2"><a href="vector-functions.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="vector-functions.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(h)</span>
+<span id="cb133-2"><a href="vector-functions.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(h)</span></code></pre></div>
 <p>Next, let’s look at the <code>sum()</code> function, which produces the <strong>sum</strong> of all elements in the vector. For the numeric vector <code>h</code>, the sum is <code>3+2+75+0+100</code>, which is <code>180</code>. Similar to <code>cummin()</code>, you can use the <code>cumsum()</code> function to compute the <em>cumulative sums</em>, which works by summing up the elements of the original vector cumulatively up to each location. In <code>cumsum(h)</code>, the first element is <code>3</code> since there is only one element to do summation, the second element is <code>5</code> since the summation of the first two elements (<code>3</code> and <code>2</code>) in <code>h</code> is 5, and you can easily verify the value of the remaining elements by yourself.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="vector-functions.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(h)</span>
-<span id="cb133-2"><a href="vector-functions.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cumprod</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="vector-functions.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span>(h)</span>
+<span id="cb134-2"><a href="vector-functions.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cumprod</span>(h)</span></code></pre></div>
 <p>We also have the <code>prod()</code> function, computing the <strong>product</strong> of all elements of <code>h</code>. Since there is <code>0</code> in <code>h</code>, the result is <code>0</code>. Again, we have the <em>cumulative product</em> function <code>cumprod()</code> working by multiplying the elements of the original vector cumulatively up to each location.</p>
 <p><strong><em>Group C: mean and median</em></strong></p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="vector-functions.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(h)</span>
-<span id="cb134-2"><a href="vector-functions.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   0   2   3  75 100</span></span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="vector-functions.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(h)</span>
+<span id="cb135-2"><a href="vector-functions.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   0   2   3  75 100</span></span></code></pre></div>
 <p>Before introducing this group, let’s first review the <code>sort()</code> function introduced in Section <a href="sort-vector.html#sort-vector">2.4</a>. By default, this function can sort elements from the smallest to the largest.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="vector-functions.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(h)</span>
-<span id="cb135-2"><a href="vector-functions.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="vector-functions.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(h)</span>
+<span id="cb136-2"><a href="vector-functions.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(h)</span></code></pre></div>
 <p>The <code>mean()</code> function returns the average of all elements. And the <code>median()</code> function returns the middle number in the resulting vector of <code>sort()</code> where the elements are listed in order from the smallest to the largest. If the vector length is odd, the middle number is the value of the element in the central location. In <code>sort(h)</code>, we can see that the median corresponds to the third number out of five numbers since there are two numbers larger than 3 and two numbers smaller than 3. If the vector length is even, the middle number is the average of the two middle elements after sorting.</p>
 <div class="infobox caution">
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="vector-functions.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(g)</span>
-<span id="cb136-2"><a href="vector-functions.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(g)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="vector-functions.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(g)</span>
+<span id="cb137-2"><a href="vector-functions.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(g)</span></code></pre></div>
 <p>Take <code>g</code> for example, after sorting, you will see that <code>1</code> and <code>2</code> are in the middle. The median is then defined as the average of these two elements, equaling 1.5.</p>
 </div>
 <p><strong><em>Group D: quantiles</em></strong></p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="vector-functions.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h)</span>
-<span id="cb137-2"><a href="vector-functions.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0%  25%  50%  75% 100% </span></span>
-<span id="cb137-3"><a href="vector-functions.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    0    2    3   75  100</span></span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="vector-functions.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h)</span>
+<span id="cb138-2"><a href="vector-functions.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0%  25%  50%  75% 100% </span></span>
+<span id="cb138-3"><a href="vector-functions.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    0    2    3   75  100</span></span></code></pre></div>
 <p><code>quantile()</code> produces <strong>sample quantiles</strong> of a given numeric vector. By default, it generates 5 numbers, the top row represents the different percentiles, including the 0 percentile, 25th percentile (0.25 quantile), 50th percentile (0.5 quantile), 75th percentile (0.75 quantile), and 100th percentile, and the second row consists of the corresponding values of each quantile. We next go over all five quantile values.</p>
 <p>First of all, 0 percentile and 100th percentile are always the minimum and the maximum values, respectively. The 50th percentile (0.5 quantile) is the same as the median.</p>
 <p>The 25-th percentile (0.25 quantile), also called the <strong>first quartile</strong>, is the value such that there are 25 percent (or a quarter) of the remaining data (whole data without this number) smaller than it. For vector <code>h</code>, the value is 2 since there is exactly 1 number, which is 25 percent of the remaining 4 numbers, smaller than 2.</p>
 <p>Similarly, the 75-th percentile, also called the <strong>third quartile</strong>, is the value such that 75 percent of the remaining data is smaller than this number. For vector <code>h</code>, the value is 75 since there are 3 numbers, which are 75 percent of the remaining 4 numbers, smaller than 75.</p>
 <p>You also have an important concept called <strong>interquartile range</strong> (IQR), defined as the difference between the 3rd quartile (75-th percentile) and the 1st quartile (25-th percentile). The interquartile range of <code>h</code> is 73, which is <code>75 - 2</code>.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="vector-functions.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="vector-functions.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(h)</span></code></pre></div>
 <p>In addition to the default five percentiles, you can also use the <code>quantile()</code> function to get any quantile between 0 and 1. To do this, you just need to specify the second argument <code>probs</code>. Let’s try to find the 95th quantile.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="vector-functions.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="vector-functions.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <p>As before, this asks you to compute the 95th percentile, meaning 95 percent of the remaining data is smaller than this value. Because you only have 5 values in this vector, it may not be very intuitive. However, if you have more elements in a vector, say 1001, you can count the number of the remaining data that is smaller than this value, which should be 950 (the number of remaining data is 1000, and 95 percent of 1000 is 950).</p>
 <p>In addition, the second argument can be a vector of probabilities, which will produce a numeric vector of the corresponding quantiles.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="vector-functions.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.99</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="vector-functions.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(h, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.99</span>))</span></code></pre></div>
 <p><strong><em>Group E: summary statistics</em></strong></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="vector-functions.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(h)</span>
-<span id="cb141-2"><a href="vector-functions.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb141-3"><a href="vector-functions.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       0       2       3      36      75     100</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="vector-functions.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(h)</span>
+<span id="cb142-2"><a href="vector-functions.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb142-3"><a href="vector-functions.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       0       2       3      36      75     100</span></span></code></pre></div>
 <p>Compared with <code>quantile()</code>, a more general function to have a comprehensive understanding of numeric vectors is <code>summary()</code>. From <code>summary()</code>, you can get the 5 percentiles and the mean.<br />
 (Min: 0 percentile, 1st Qu: 25-th percentile, Median: 50-th percentile, 3rd Qu: 75-th percentile, Max: 100-th percentile)</p>
 <p><strong><em>Group F: variance and standard deviation</em></strong></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="vector-functions.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(h)</span>
-<span id="cb142-2"><a href="vector-functions.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(h)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="vector-functions.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(h)</span>
+<span id="cb143-2"><a href="vector-functions.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(h)</span></code></pre></div>
 <p>The last group of functions are <code>var()</code> and <code>sd()</code> which compute the <strong>sample variance</strong> and <strong>sample standard deviation</strong> of a numeric vector, respectively. The formula of sample variance of vector <span class="math inline">\(h\)</span> is <span class="math display">\[var(h) = \frac{1}{n-1}\sum_{i=1}^n (h_i-\bar h)^2,\]</span> where <span class="math inline">\(n\)</span> is the length of <span class="math inline">\(h\)</span> and <span class="math inline">\(\bar h\)</span> is the average of all elements. By definition, the sample standard deviation is the square root of sample variance, which you can verify by <code>sqrt(var(h))</code>.</p>
 <p>For your convenience, we would like to provide a summary of all the functions introduced in the following table.</p>
 <table>
@@ -796,20 +802,20 @@ div.csl-indent {
 <div id="character-vectors" class="section level3" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Character vectors</h3>
 <p>Compared with numeric vectors, there are much less things you can do on character vectors. For character vectors, you can also apply <code>summary()</code>.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="vector-functions.html#cb143-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
-<span id="cb143-2"><a href="vector-functions.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(animals)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="vector-functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb144-2"><a href="vector-functions.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(animals)</span></code></pre></div>
 <p>From the result, you can see that the <code>summary()</code> function will only tell you the vector length (6 elements) and vector type (character vector), much less useful than the case for numeric vectors.</p>
 </div>
 <div id="func-logical-vector" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Logical vectors</h3>
 <p>What if we apply <code>summary()</code> on logical vectors?</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="vector-functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a>logic <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(T,F,T), <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
-<span id="cb144-2"><a href="vector-functions.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logic)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="vector-functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a>logic <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(T,F,T), <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb145-2"><a href="vector-functions.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logic)</span></code></pre></div>
 <p>Similar to character vectors, you can get the vector type, which is <code>logical</code> here. You also get a frequency table for the times <code>FALSE</code> and <code>TRUE</code> appear in the vector.</p>
 <p>Different from character vectors, you can apply almost all the functions summarized in Table <a href="#tab:summaryFuns"><strong>??</strong></a> to logical vectors, where the <strong>coercion rule</strong> introduced in Section <a href="attr-coercion.html#coercion">2.2.3</a> will be in effect to convert all logical values into numerical values. In particular, in the logical vector, <code>TRUE</code> will be converted to 1 and <code>FALSE</code> will be converted to 0. Let’s take a look at an example,</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="vector-functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb145-2"><a href="vector-functions.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)</span>
-<span id="cb145-3"><a href="vector-functions.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="vector-functions.html#cb146-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb146-2"><a href="vector-functions.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(a)</span>
+<span id="cb146-3"><a href="vector-functions.html#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
 <p>Clearly, <code>sum(a)</code> equals 3 since there are 3 <code>TRUE</code> values and <code>mean(a)</code> equals 0.6 since it is the average of three 1s and two 0s. You are welcome to try other functions on a logical vector.</p>
 </div>
 <div id="exercises-7" class="section level3" number="2.5.4">
@@ -835,7 +841,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -874,7 +879,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

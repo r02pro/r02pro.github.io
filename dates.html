@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.12 Dates and Times | R Programming: Zero to Pro</title>
   <meta name="description" content="2.12 Dates and Times | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.12 Dates and Times | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="factor.html"/>
 <link rel="next" href="r-objects-other-types.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -634,35 +640,35 @@ div.csl-indent {
 <h3><span class="header-section-number">2.12.1</span> Dates</h3>
 <p><strong><em>a. Date class</em></strong></p>
 <p>Let’s first look at a vector in the date format. First, to get today’s date, you can use the <code>Sys.Date()</code> function. Similarly, you can verify its class by using the <code>class()</code> function.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="dates.html#cb235-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
-<span id="cb235-2"><a href="dates.html#cb235-2" aria-hidden="true" tabindex="-1"></a>today</span>
-<span id="cb235-3"><a href="dates.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26&quot;</span></span>
-<span id="cb235-4"><a href="dates.html#cb235-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(today)</span>
-<span id="cb235-5"><a href="dates.html#cb235-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dates.html#cb236-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb236-2"><a href="dates.html#cb236-2" aria-hidden="true" tabindex="-1"></a>today</span>
+<span id="cb236-3"><a href="dates.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26&quot;</span></span>
+<span id="cb236-4"><a href="dates.html#cb236-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(today)</span>
+<span id="cb236-5"><a href="dates.html#cb236-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
 <p>Looking at the output, we know that <code>today</code> is a vector of the <strong>Date</strong> class. You may be wondering how are the dates stored in R. To get this information, you can use the <code>typeof()</code> function on a date object.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dates.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(today)</span>
-<span id="cb236-2"><a href="dates.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dates.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(today)</span>
+<span id="cb237-2"><a href="dates.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>This may look a bit surprising to you. Indeed, dates objects are stored as numeric values (in “double” to be precise), representing the (signed) number of days that has passed since Jan 1, 1970 (The reference date in R). To get this information, you can convert it to a number by <code>as.numeric()</code>.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dates.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(today)</span>
-<span id="cb237-2"><a href="dates.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18926</span></span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dates.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(today)</span>
+<span id="cb238-2"><a href="dates.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18926</span></span></code></pre></div>
 <p>Storing the dates as numbers make it handy to perform additions and subtractions. For example, you can use <code>today - 1</code> to get the date of yesterday, and use <code>today + 1</code> to get the date of tomorrow.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dates.html#cb238-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb238-2"><a href="dates.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-25&quot;</span></span>
-<span id="cb238-3"><a href="dates.html#cb238-3" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb238-4"><a href="dates.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-27&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="dates.html#cb239-1" aria-hidden="true" tabindex="-1"></a>today <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb239-2"><a href="dates.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-25&quot;</span></span>
+<span id="cb239-3"><a href="dates.html#cb239-3" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb239-4"><a href="dates.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-27&quot;</span></span></code></pre></div>
 <p>The computation in R is done by adding or subtracting one to the number of days since Jan 1, 1970.</p>
 <div class="infobox caution">
 <p>Although the output of <code>today</code> looks similar to a string, you will get a character vector if you assign value(s) like <code>"2021-09-09"</code> to a name. You you can verify its class by using <code>class()</code>.
 Of course, an error will show up if you try to do addition or subtraction operations on a character vector.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="dates.html#cb239-1" aria-hidden="true" tabindex="-1"></a>date_char <span class="ot">&lt;-</span> <span class="st">&quot;2021-09-09&quot;</span></span>
-<span id="cb239-2"><a href="dates.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(date_char)</span>
-<span id="cb239-3"><a href="dates.html#cb239-3" aria-hidden="true" tabindex="-1"></a>date_char <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb239-4"><a href="dates.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in date_char - 1: non-numeric argument to binary operator</span></span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dates.html#cb240-1" aria-hidden="true" tabindex="-1"></a>date_char <span class="ot">&lt;-</span> <span class="st">&quot;2021-09-09&quot;</span></span>
+<span id="cb240-2"><a href="dates.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(date_char)</span>
+<span id="cb240-3"><a href="dates.html#cb240-3" aria-hidden="true" tabindex="-1"></a>date_char <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb240-4"><a href="dates.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in date_char - 1: non-numeric argument to binary operator</span></span></code></pre></div>
 </div>
 <p>You can also get the days of week, months, and quarters for a date using the functions <code>weekdays()</code>, <code>months()</code>, and <code>quarters()</code>.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dates.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weekdays</span>(today)</span>
-<span id="cb240-2"><a href="dates.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">months</span>(today)</span>
-<span id="cb240-3"><a href="dates.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quarters</span>(today)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="dates.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weekdays</span>(today)</span>
+<span id="cb241-2"><a href="dates.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="fu">months</span>(today)</span>
+<span id="cb241-3"><a href="dates.html#cb241-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quarters</span>(today)</span></code></pre></div>
 <p><strong><em>b. Converting between dates and strings</em></strong></p>
 <p>Now, you may be wondering what information we can extract out of an object of the date class. We can use the <code>format()</code> function to convert a date class object into a string that contains various information about the date. First, let’s introduce a list of commonly used elements of dates and the corresponding <strong>conversion specification</strong>. A conversion specification is usually formed by <code>%</code> followed by a single letter. The following table shows a list of common conversion specifications.</p>
 <table>
@@ -717,84 +723,84 @@ Of course, an error will show up if you try to do addition or subtraction operat
 </tbody>
 </table>
 <p>Then, for a Date class object, we can create a <strong>format string</strong> that containing any number of the <strong>conversion specifications</strong> in the previous table. The working mechanism of <code>format()</code> is that it will scan through the <strong>format string</strong>, look for all the conversion specifications, and convert the conversion specifications into their corresponding values for the given date. Any character in the format string which is not part of a conversion specification is interpreted literally (and <code>%%</code> gives <code>%</code>). Let’s see an example.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="dates.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(today, <span class="st">&quot;Today is %A (%a for short), %b %d, %Y. It is also %m/%d/%Y&quot;</span>)</span>
-<span id="cb241-2"><a href="dates.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Today is Tuesday (Tue for short), Oct 26, 2021. It is also 10/26/2021&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dates.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(today, <span class="st">&quot;Today is %A (%a for short), %b %d, %Y. It is also %m/%d/%Y&quot;</span>)</span>
+<span id="cb242-2"><a href="dates.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Today is Tuesday (Tue for short), Oct 26, 2021. It is also 10/26/2021&quot;</span></span></code></pre></div>
 <p>On the other hand, we can also convert a string back into a Date class object. To do that, you can use the <code>as.Date()</code> function with the string along with the corresponding format string in the <code>fomat</code> argument. You can also specify the <code>tryFormats</code> argument, which contains a character vector with all possible formats to try.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dates.html#cb242-1" aria-hidden="true" tabindex="-1"></a>Aug <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;08-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span>
-<span id="cb242-2"><a href="dates.html#cb242-2" aria-hidden="true" tabindex="-1"></a>Aug</span>
-<span id="cb242-3"><a href="dates.html#cb242-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-01&quot;</span></span>
-<span id="cb242-4"><a href="dates.html#cb242-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Aug)</span>
-<span id="cb242-5"><a href="dates.html#cb242-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="dates.html#cb243-1" aria-hidden="true" tabindex="-1"></a>Aug <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;08-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span>
+<span id="cb243-2"><a href="dates.html#cb243-2" aria-hidden="true" tabindex="-1"></a>Aug</span>
+<span id="cb243-3"><a href="dates.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-08-01&quot;</span></span>
+<span id="cb243-4"><a href="dates.html#cb243-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Aug)</span>
+<span id="cb243-5"><a href="dates.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
 <p>Here, the value of <code>format</code> corresponds to each part in string. <code>%m</code> corresponds to <code>08</code>, which is the month of the date. <code>%d</code> corresponds to <code>01</code>, which is the day of the date. <code>%Y</code> corresponds to <code>2021</code>, which is the year of the date. Now you have successfully converted the string into a vector of the Date class!</p>
 <p>The <code>as.Date()</code> function can be viewed as the inverse function of <code>format()</code> when we use the same format string.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="dates.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">format</span>(today, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>), <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dates.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="fu">format</span>(today, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>), <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span></code></pre></div>
 <p>Notice that the correspondence of the string and supplied format should follow the above table, otherwise you may get some unexpected result.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dates.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%B-%d-%y&quot;</span>)        <span class="co">#wrong</span></span>
-<span id="cb244-2"><a href="dates.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb244-3"><a href="dates.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;August-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%B-%d-%y&quot;</span>)    <span class="co">#correct</span></span>
-<span id="cb244-4"><a href="dates.html#cb244-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-08-01&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="dates.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%B-%d-%y&quot;</span>)        <span class="co">#wrong</span></span>
+<span id="cb245-2"><a href="dates.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb245-3"><a href="dates.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;August-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%B-%d-%y&quot;</span>)    <span class="co">#correct</span></span>
+<span id="cb245-4"><a href="dates.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-08-01&quot;</span></span></code></pre></div>
 <p>Here, you should use <code>August</code> rather than <code>08</code> in string because <code>%B</code> corresponds to full month, so you get <code>NA</code> as the result.</p>
 <p>In addition to use <code>-</code> as the separator, you can also use <code>/</code> as the separator. If the separators used in the string and the format doesn’t match in <code>as.Date()</code>, you will also get <code>NA</code> as the result.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="dates.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
-<span id="cb245-2"><a href="dates.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-08-01&quot;</span></span>
-<span id="cb245-3"><a href="dates.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%y&quot;</span>)</span>
-<span id="cb245-4"><a href="dates.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb245-5"><a href="dates.html#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d/%y&quot;</span>)</span>
-<span id="cb245-6"><a href="dates.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dates.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
+<span id="cb246-2"><a href="dates.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2020-08-01&quot;</span></span>
+<span id="cb246-3"><a href="dates.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%y&quot;</span>)</span>
+<span id="cb246-4"><a href="dates.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb246-5"><a href="dates.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;08/01/2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d/%y&quot;</span>)</span>
+<span id="cb246-6"><a href="dates.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>You can try different combinations by yourself. Here are some examples！</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dates.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span>
-<span id="cb246-2"><a href="dates.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-01-03&quot;</span></span>
-<span id="cb246-3"><a href="dates.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d-%m-%Y&quot;</span>)</span>
-<span id="cb246-4"><a href="dates.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-01&quot;</span></span>
-<span id="cb246-5"><a href="dates.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;Apr-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%b-%d-%Y&quot;</span>)</span>
-<span id="cb246-6"><a href="dates.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-04-03&quot;</span></span>
-<span id="cb246-7"><a href="dates.html#cb246-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;09/October/97&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d/%B/%y&quot;</span>)</span>
-<span id="cb246-8"><a href="dates.html#cb246-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1997-10-09&quot;</span></span>
-<span id="cb246-9"><a href="dates.html#cb246-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;2010-02-29&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb246-10"><a href="dates.html#cb246-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="dates.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span>
+<span id="cb247-2"><a href="dates.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-01-03&quot;</span></span>
+<span id="cb247-3"><a href="dates.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;01-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d-%m-%Y&quot;</span>)</span>
+<span id="cb247-4"><a href="dates.html#cb247-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-03-01&quot;</span></span>
+<span id="cb247-5"><a href="dates.html#cb247-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;Apr-03-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%b-%d-%Y&quot;</span>)</span>
+<span id="cb247-6"><a href="dates.html#cb247-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-04-03&quot;</span></span>
+<span id="cb247-7"><a href="dates.html#cb247-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;09/October/97&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%d/%B/%y&quot;</span>)</span>
+<span id="cb247-8"><a href="dates.html#cb247-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1997-10-09&quot;</span></span>
+<span id="cb247-9"><a href="dates.html#cb247-9" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">&quot;2010-02-29&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb247-10"><a href="dates.html#cb247-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>It is worth noting that the last output is <code>NA</code>, indicating that Feb 29, 2010 is not a valid date. That’s because only leap years have 29 days in February!</p>
 <p>We can also construct date using the number of days since a reference date using the <code>origin</code> argument in the <code>as_date()</code> function.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="dates.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="dv">10</span>, <span class="at">origin =</span> <span class="st">&quot;2021-01-01&quot;</span>)      <span class="co">#10 days after 2021-01-01</span></span>
-<span id="cb247-2"><a href="dates.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-01-11&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dates.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="dv">10</span>, <span class="at">origin =</span> <span class="st">&quot;2021-01-01&quot;</span>)      <span class="co">#10 days after 2021-01-01</span></span>
+<span id="cb248-2"><a href="dates.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-01-11&quot;</span></span></code></pre></div>
 <p><strong><em>c. <code>difftime</code> class</em></strong></p>
 <p>Now, let’s introduce a very useful class named <code>difftime</code>. From the name, you may be able to tell it is designed to represent <strong>time differences</strong>. Let’s see an example when we subtract between two dates objects.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dates.html#cb248-1" aria-hidden="true" tabindex="-1"></a>ref_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970/01/01&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y/%m/%d&quot;</span>)</span>
-<span id="cb248-2"><a href="dates.html#cb248-2" aria-hidden="true" tabindex="-1"></a>days_diff <span class="ot">&lt;-</span> today <span class="sc">-</span> ref_date           <span class="co">#the time difference between two dates</span></span>
-<span id="cb248-3"><a href="dates.html#cb248-3" aria-hidden="true" tabindex="-1"></a>days_diff</span>
-<span id="cb248-4"><a href="dates.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 18926 days</span></span>
-<span id="cb248-5"><a href="dates.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(days_diff)</span>
-<span id="cb248-6"><a href="dates.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;difftime&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="dates.html#cb249-1" aria-hidden="true" tabindex="-1"></a>ref_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970/01/01&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y/%m/%d&quot;</span>)</span>
+<span id="cb249-2"><a href="dates.html#cb249-2" aria-hidden="true" tabindex="-1"></a>days_diff <span class="ot">&lt;-</span> today <span class="sc">-</span> ref_date           <span class="co">#the time difference between two dates</span></span>
+<span id="cb249-3"><a href="dates.html#cb249-3" aria-hidden="true" tabindex="-1"></a>days_diff</span>
+<span id="cb249-4"><a href="dates.html#cb249-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 18926 days</span></span>
+<span id="cb249-5"><a href="dates.html#cb249-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(days_diff)</span>
+<span id="cb249-6"><a href="dates.html#cb249-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;difftime&quot;</span></span></code></pre></div>
 <p>To learn more about the <code>difftime</code> class, let’s look at its structure.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="dates.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(days_diff)</span>
-<span id="cb249-2"><a href="dates.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  &#39;difftime&#39; num 18926</span></span>
-<span id="cb249-3"><a href="dates.html#cb249-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;units&quot;)= chr &quot;days&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dates.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(days_diff)</span>
+<span id="cb250-2"><a href="dates.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  &#39;difftime&#39; num 18926</span></span>
+<span id="cb250-3"><a href="dates.html#cb250-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;units&quot;)= chr &quot;days&quot;</span></span></code></pre></div>
 <p>You can see that it is stored as a number, with an attribute named <code>"units"</code> and the value <code>"days"</code>. This attribute shows the units of the difference. To create a time difference in other units, you can use the <code>difftime()</code> function and specify the <code>units</code> argument to the desired units.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dates.html#cb250-1" aria-hidden="true" tabindex="-1"></a>hours_diff <span class="ot">&lt;-</span> <span class="fu">difftime</span>(today, ref_date, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>)</span>
-<span id="cb250-2"><a href="dates.html#cb250-2" aria-hidden="true" tabindex="-1"></a>weeks_diff <span class="ot">&lt;-</span> <span class="fu">difftime</span>(today, ref_date, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dates.html#cb251-1" aria-hidden="true" tabindex="-1"></a>hours_diff <span class="ot">&lt;-</span> <span class="fu">difftime</span>(today, ref_date, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>)</span>
+<span id="cb251-2"><a href="dates.html#cb251-2" aria-hidden="true" tabindex="-1"></a>weeks_diff <span class="ot">&lt;-</span> <span class="fu">difftime</span>(today, ref_date, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span></code></pre></div>
 <p>You can also use the <code>as.difftime()</code> function to help getting date. For example, to get the date of 10 weeks and 3 days from <code>today</code>, you can use the following code.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dates.html#cb251-1" aria-hidden="true" tabindex="-1"></a>ten_week <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">10</span>, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span>
-<span id="cb251-2"><a href="dates.html#cb251-2" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> ten_week <span class="sc">+</span> <span class="dv">3</span></span>
-<span id="cb251-3"><a href="dates.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2022-01-07&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dates.html#cb252-1" aria-hidden="true" tabindex="-1"></a>ten_week <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">10</span>, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span>
+<span id="cb252-2"><a href="dates.html#cb252-2" aria-hidden="true" tabindex="-1"></a>today <span class="sc">+</span> ten_week <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb252-3"><a href="dates.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2022-01-07&quot;</span></span></code></pre></div>
 </div>
 <div id="times" class="section level3" number="2.12.2">
 <h3><span class="header-section-number">2.12.2</span> Times</h3>
 <p>After talking about dates, it is natural to introduce how <strong>times</strong> are represented in R. Just like dates, let’s first get the time at the current moment using the <code>Sys.time()</code> function. You can also check its class, internal storage type, and structure by the <code>class()</code>, <code>typeof()</code>, and <code>str()</code> functions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dates.html#cb252-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb252-2"><a href="dates.html#cb252-2" aria-hidden="true" tabindex="-1"></a>now</span>
-<span id="cb252-3"><a href="dates.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 12:59:24 EDT&quot;</span></span>
-<span id="cb252-4"><a href="dates.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(now)</span>
-<span id="cb252-5"><a href="dates.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
-<span id="cb252-6"><a href="dates.html#cb252-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(now)</span>
-<span id="cb252-7"><a href="dates.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb252-8"><a href="dates.html#cb252-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(now)</span>
-<span id="cb252-9"><a href="dates.html#cb252-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2021-10-26 12:59:24&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dates.html#cb253-1" aria-hidden="true" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb253-2"><a href="dates.html#cb253-2" aria-hidden="true" tabindex="-1"></a>now</span>
+<span id="cb253-3"><a href="dates.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 16:24:51 EDT&quot;</span></span>
+<span id="cb253-4"><a href="dates.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(now)</span>
+<span id="cb253-5"><a href="dates.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
+<span id="cb253-6"><a href="dates.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(now)</span>
+<span id="cb253-7"><a href="dates.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb253-8"><a href="dates.html#cb253-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(now)</span>
+<span id="cb253-9"><a href="dates.html#cb253-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2021-10-26 16:24:51&quot;</span></span></code></pre></div>
 <p>The object <code>now</code> is of class <code>POSIXct</code>. The second element of <code>class(now)</code> is <code>POSIXt</code>, which is a parent class for class <code>POSIXct</code> and class <code>PISIXlt</code>. This parent class <code>POSIXt</code> is used to allow operations such as subtraction to mix the two classes.</p>
 <p>From the result of <code>typeof(now)</code>, we know that similar to dates, the <code>POSIXct</code> class used to represent times is also stored as <code>double</code>. Indeed, the class <code>POSIXct</code> represents the (signed) number of seconds since the beginning of 1970 as a numeric vector.</p>
 <p>You can also get the time of an hour ago or a minute later. Now, here the difference is in the unit of seconds instead of days for the date class.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dates.html#cb253-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">-</span> <span class="dv">3600</span></span>
-<span id="cb253-2"><a href="dates.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 11:59:24 EDT&quot;</span></span>
-<span id="cb253-3"><a href="dates.html#cb253-3" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="dv">60</span></span>
-<span id="cb253-4"><a href="dates.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 13:00:24 EDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dates.html#cb254-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">-</span> <span class="dv">3600</span></span>
+<span id="cb254-2"><a href="dates.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 15:24:51 EDT&quot;</span></span>
+<span id="cb254-3"><a href="dates.html#cb254-3" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="dv">60</span></span>
+<span id="cb254-4"><a href="dates.html#cb254-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 16:25:51 EDT&quot;</span></span></code></pre></div>
 <p>Besides all the elements for dates you can use for the time class object, a list of other commonly used elements of times and the corresponding conversion specifications is summarized in the following table.</p>
 <table>
 <thead>
@@ -808,17 +814,17 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <tr class="odd">
 <td align="left">%H</td>
 <td align="left">hours</td>
-<td align="left">12</td>
+<td align="left">16</td>
 </tr>
 <tr class="even">
 <td align="left">%M</td>
 <td align="left">minutes</td>
-<td align="left">59</td>
+<td align="left">24</td>
 </tr>
 <tr class="odd">
 <td align="left">%S</td>
 <td align="left">seconds</td>
-<td align="left">24</td>
+<td align="left">51</td>
 </tr>
 <tr class="even">
 <td align="left">%Z</td>
@@ -828,25 +834,25 @@ Of course, an error will show up if you try to do addition or subtraction operat
 </tbody>
 </table>
 <p>Just like dates, you can format the time into characters via the <code>format()</code> function.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dates.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="st">&quot;Hi! The current time in %Z (Time Zone) is %A (weekday), year %Y, month %m, day %d, hour %H, min %M, second %S. &quot;</span>)</span>
-<span id="cb254-2"><a href="dates.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Tuesday (weekday), year 2021, month 10, day 26, hour 12, min 59, second 24. &quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dates.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="st">&quot;Hi! The current time in %Z (Time Zone) is %A (weekday), year %Y, month %m, day %d, hour %H, min %M, second %S. &quot;</span>)</span>
+<span id="cb255-2"><a href="dates.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Tuesday (weekday), year 2021, month 10, day 26, hour 16, min 24, second 51. &quot;</span></span></code></pre></div>
 <p>You can also display the time in a different time zone by setting the <code>tz</code> argument in the <code>format()</code> function.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dates.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)                 <span class="co">#Coordinated Universal Time</span></span>
-<span id="cb255-2"><a href="dates.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 16:59:24&quot;</span></span>
-<span id="cb255-3"><a href="dates.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>) <span class="co">#Pacific Standard Time</span></span>
-<span id="cb255-4"><a href="dates.html#cb255-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 09:59:24&quot;</span></span>
-<span id="cb255-5"><a href="dates.html#cb255-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)    <span class="co">#Eastern Standard Time</span></span>
-<span id="cb255-6"><a href="dates.html#cb255-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 12:59:24&quot;</span></span>
-<span id="cb255-7"><a href="dates.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)       <span class="co">#Greenwich Mean Time </span></span>
-<span id="cb255-8"><a href="dates.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 17:59:24&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dates.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)                 <span class="co">#Coordinated Universal Time</span></span>
+<span id="cb256-2"><a href="dates.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 20:24:51&quot;</span></span>
+<span id="cb256-3"><a href="dates.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>) <span class="co">#Pacific Standard Time</span></span>
+<span id="cb256-4"><a href="dates.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 13:24:51&quot;</span></span>
+<span id="cb256-5"><a href="dates.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)    <span class="co">#Eastern Standard Time</span></span>
+<span id="cb256-6"><a href="dates.html#cb256-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 16:24:51&quot;</span></span>
+<span id="cb256-7"><a href="dates.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)       <span class="co">#Greenwich Mean Time </span></span>
+<span id="cb256-8"><a href="dates.html#cb256-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-26 21:24:51&quot;</span></span></code></pre></div>
 <p>To create a time object from a character, you can use the <code>as.POSIXlt()</code> function with the optional <code>format</code> argument.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dates.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;2021-09-21 13:14:15&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span>
-<span id="cb256-2"><a href="dates.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span>
-<span id="cb256-3"><a href="dates.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;13:14:15, Sep 21, 2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%H:%M:%S, %b %d, %Y&quot;</span>)</span>
-<span id="cb256-4"><a href="dates.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dates.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;2021-09-21 13:14:15&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span>
+<span id="cb257-2"><a href="dates.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span>
+<span id="cb257-3"><a href="dates.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;13:14:15, Sep 21, 2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%H:%M:%S, %b %d, %Y&quot;</span>)</span>
+<span id="cb257-4"><a href="dates.html#cb257-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span></code></pre></div>
 <p>Similar as the difference of dates, the difference of two times is also an object of class <code>difftime</code>. You can again use the <code>as.difftime()</code> function to help with getting a time difference object in the given unit. For example, to get the time 2 days 3 hours and 4 minutes later, you can use the following.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dates.html#cb257-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">3</span>, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;mins&quot;</span>) </span>
-<span id="cb257-2"><a href="dates.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-28 16:03:24 EDT&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dates.html#cb258-1" aria-hidden="true" tabindex="-1"></a>now <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">3</span>, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;mins&quot;</span>) </span>
+<span id="cb258-2"><a href="dates.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-10-28 19:28:51 EDT&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-13" class="section level3" number="2.12.3">
 <h3><span class="header-section-number">2.12.3</span> Exercises</h3>
@@ -870,7 +876,6 @@ Of course, an error will show up if you try to do addition or subtraction operat
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -909,7 +914,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

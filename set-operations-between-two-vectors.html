@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.8 Set Operations between two vectors | R Programming: Zero to Pro</title>
   <meta name="description" content="2.8 Set Operations between two vectors | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.8 Set Operations between two vectors | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="logical-operators.html"/>
 <link rel="next" href="summary-of-operators.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -633,46 +639,46 @@ div.csl-indent {
 <div id="operations" class="section level3" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Numeric vectors</h3>
 <p>Let’s start with numeric vectors. Firstly, let’s create two numeric vectors <code>x</code> and <code>y</code>.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="set-operations-between-two-vectors.html#cb192-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
-<span id="cb192-2"><a href="set-operations-between-two-vectors.html#cb192-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="set-operations-between-two-vectors.html#cb193-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb193-2"><a href="set-operations-between-two-vectors.html#cb193-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p><strong><em>a. Intersection</em></strong><br />
 To get values in both <code>x</code> and <code>y</code>, you can use the <code>intersect()</code> function.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="set-operations-between-two-vectors.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(x, y)</span>
-<span id="cb193-2"><a href="set-operations-between-two-vectors.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="set-operations-between-two-vectors.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(x, y)</span>
+<span id="cb194-2"><a href="set-operations-between-two-vectors.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3</span></span></code></pre></div>
 <p>Note that although <code>x</code> has three elements of <code>1</code> and <code>y</code> has two, the result of their intersection only has one <code>1</code>, showing that only the <strong>unique elements</strong> are retained in the output.</p>
 <p><strong><em>b. Union</em></strong><br />
 To get values in either <code>x</code> or <code>y</code>, you can use the <code>union()</code> function.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="set-operations-between-two-vectors.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(x, y)</span>
-<span id="cb194-2"><a href="set-operations-between-two-vectors.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="set-operations-between-two-vectors.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(x, y)</span>
+<span id="cb195-2"><a href="set-operations-between-two-vectors.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
 <p>Again, only one copy of each value is retained in the output.</p>
 <p><strong><em>c. Set difference</em></strong><br />
 To get values in <code>x</code> but not in <code>y</code>, you can use the <code>setdiff()</code> function. Notice that <code>x</code> is in the first argument and <code>y</code> is in the second in this situation.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="set-operations-between-two-vectors.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(x, y)</span>
-<span id="cb195-2"><a href="set-operations-between-two-vectors.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="set-operations-between-two-vectors.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(x, y)</span>
+<span id="cb196-2"><a href="set-operations-between-two-vectors.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 <p>Then you will get the result of <code>2</code>! But you may be wondering why you don’t get <code>1 2</code> as the result since there is one more <code>1</code> in <code>x</code> than in <code>y</code>? That’s because for this operation, you will get unique elements of <code>x</code> and <code>y</code> firstly, then find the set difference between them.</p>
 <p>Similarly, if you want to get values in <code>y</code> but not in <code>x</code>, <code>y</code> should be in the first argument and <code>x</code> is in the second.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="set-operations-between-two-vectors.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(y, x)</span>
-<span id="cb196-2"><a href="set-operations-between-two-vectors.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="set-operations-between-two-vectors.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(y, x)</span>
+<span id="cb197-2"><a href="set-operations-between-two-vectors.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 5</span></span></code></pre></div>
 <p><strong><em>d. Set equality</em></strong><br />
 To check whether the two vectors <code>x</code> and <code>y</code> are the same, you can use the <code>setequal()</code> function.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="set-operations-between-two-vectors.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(x, y)</span>
-<span id="cb197-2"><a href="set-operations-between-two-vectors.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="set-operations-between-two-vectors.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(x, y)</span>
+<span id="cb198-2"><a href="set-operations-between-two-vectors.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>Of course you will get <code>FALSE</code> since <code>x</code> has value <code>2</code> which <code>y</code> doesn’t have.</p>
 <p>Similar to the <code>setdiff()</code> function, the <code>setequal()</code> function works by looking at whether the two vectors have same set of unique values. For example, you will get <code>TRUE</code> in the following example,</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="set-operations-between-two-vectors.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb198-2"><a href="set-operations-between-two-vectors.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="set-operations-between-two-vectors.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb199-2"><a href="set-operations-between-two-vectors.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p><strong><em>e. Membership determination</em></strong><br />
 To check whether each element of <code>x</code> is inside <code>y</code>, you can use the <code>is.element()</code> function or the <code>%in%</code> operator.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="set-operations-between-two-vectors.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.element</span>(x, y)</span>
-<span id="cb199-2"><a href="set-operations-between-two-vectors.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span>
-<span id="cb199-3"><a href="set-operations-between-two-vectors.html#cb199-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%in%</span> y</span>
-<span id="cb199-4"><a href="set-operations-between-two-vectors.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="set-operations-between-two-vectors.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.element</span>(x, y)</span>
+<span id="cb200-2"><a href="set-operations-between-two-vectors.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span>
+<span id="cb200-3"><a href="set-operations-between-two-vectors.html#cb200-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%in%</span> y</span>
+<span id="cb200-4"><a href="set-operations-between-two-vectors.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span></code></pre></div>
 <p>In this example, it returns a logical vector of length-5, the same length as <code>x</code>. The first element of <code>x</code> is <code>1</code>, and <code>y</code> also has elements with value 1, so the first element of the logical vector is <code>TRUE</code>. The second element of <code>x</code> is <code>2</code>, but <code>y</code> doesn’t have any elements with value 2, hence the result is <code>FALSE</code>. You can verify the other elements by yourself.</p>
 <p>The order of vectors is important for membership determination since if you put <code>y</code> before <code>x</code>, you will check whether each element of <code>y</code> is inside <code>x</code>.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="set-operations-between-two-vectors.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.element</span>(y, x)</span>
-<span id="cb200-2"><a href="set-operations-between-two-vectors.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb200-3"><a href="set-operations-between-two-vectors.html#cb200-3" aria-hidden="true" tabindex="-1"></a>y <span class="sc">%in%</span> x</span>
-<span id="cb200-4"><a href="set-operations-between-two-vectors.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="set-operations-between-two-vectors.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.element</span>(y, x)</span>
+<span id="cb201-2"><a href="set-operations-between-two-vectors.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb201-3"><a href="set-operations-between-two-vectors.html#cb201-3" aria-hidden="true" tabindex="-1"></a>y <span class="sc">%in%</span> x</span>
+<span id="cb201-4"><a href="set-operations-between-two-vectors.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>Please find a summary of the set operations between <code>x</code> and <code>y</code> in the following table.</p>
 <table>
 <thead>
@@ -708,24 +714,24 @@ To check whether each element of <code>x</code> is inside <code>y</code>, you ca
 <div id="character-vectors-1" class="section level3" number="2.8.2">
 <h3><span class="header-section-number">2.8.2</span> Character vectors</h3>
 <p>Now you must have been familiar with all the five operations! Similar to numeric vectors, you can also apply operations on character vectors. Here are some codes which you can run by yourself.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="set-operations-between-two-vectors.html#cb201-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;chicken&quot;</span>, <span class="st">&quot;dragon&quot;</span>)</span>
-<span id="cb201-2"><a href="set-operations-between-two-vectors.html#cb201-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb201-3"><a href="set-operations-between-two-vectors.html#cb201-3" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(a, b)</span>
-<span id="cb201-4"><a href="set-operations-between-two-vectors.html#cb201-4" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(a, b)</span>
-<span id="cb201-5"><a href="set-operations-between-two-vectors.html#cb201-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(a, b)</span>
-<span id="cb201-6"><a href="set-operations-between-two-vectors.html#cb201-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(a, b)</span>
-<span id="cb201-7"><a href="set-operations-between-two-vectors.html#cb201-7" aria-hidden="true" tabindex="-1"></a>a <span class="sc">%in%</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="set-operations-between-two-vectors.html#cb202-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;chicken&quot;</span>, <span class="st">&quot;dragon&quot;</span>)</span>
+<span id="cb202-2"><a href="set-operations-between-two-vectors.html#cb202-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb202-3"><a href="set-operations-between-two-vectors.html#cb202-3" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(a, b)</span>
+<span id="cb202-4"><a href="set-operations-between-two-vectors.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(a, b)</span>
+<span id="cb202-5"><a href="set-operations-between-two-vectors.html#cb202-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(a, b)</span>
+<span id="cb202-6"><a href="set-operations-between-two-vectors.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(a, b)</span>
+<span id="cb202-7"><a href="set-operations-between-two-vectors.html#cb202-7" aria-hidden="true" tabindex="-1"></a>a <span class="sc">%in%</span> b</span></code></pre></div>
 </div>
 <div id="logical-vectors-1" class="section level3" number="2.8.3">
 <h3><span class="header-section-number">2.8.3</span> Logical vectors</h3>
 <p>Of course you can also apply set operations on logical vectors.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="set-operations-between-two-vectors.html#cb202-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
-<span id="cb202-2"><a href="set-operations-between-two-vectors.html#cb202-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
-<span id="cb202-3"><a href="set-operations-between-two-vectors.html#cb202-3" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(c, d)</span>
-<span id="cb202-4"><a href="set-operations-between-two-vectors.html#cb202-4" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(c, d)</span>
-<span id="cb202-5"><a href="set-operations-between-two-vectors.html#cb202-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(c, d)</span>
-<span id="cb202-6"><a href="set-operations-between-two-vectors.html#cb202-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(c, d)</span>
-<span id="cb202-7"><a href="set-operations-between-two-vectors.html#cb202-7" aria-hidden="true" tabindex="-1"></a>c <span class="sc">%in%</span> d</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="set-operations-between-two-vectors.html#cb203-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
+<span id="cb203-2"><a href="set-operations-between-two-vectors.html#cb203-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>)</span>
+<span id="cb203-3"><a href="set-operations-between-two-vectors.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(c, d)</span>
+<span id="cb203-4"><a href="set-operations-between-two-vectors.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(c, d)</span>
+<span id="cb203-5"><a href="set-operations-between-two-vectors.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(c, d)</span>
+<span id="cb203-6"><a href="set-operations-between-two-vectors.html#cb203-6" aria-hidden="true" tabindex="-1"></a><span class="fu">setequal</span>(c, d)</span>
+<span id="cb203-7"><a href="set-operations-between-two-vectors.html#cb203-7" aria-hidden="true" tabindex="-1"></a>c <span class="sc">%in%</span> d</span></code></pre></div>
 </div>
 <div id="exercises-10" class="section level3" number="2.8.4">
 <h3><span class="header-section-number">2.8.4</span> Exercises</h3>
@@ -748,7 +754,6 @@ To check whether each element of <code>x</code> is inside <code>y</code>, you ca
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -787,7 +792,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

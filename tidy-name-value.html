@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.1 Convert Between Names and Values | R Programming: Zero to Pro</title>
   <meta name="description" content="7.1 Convert Between Names and Values | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.1 Convert Between Names and Values | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="tidy-data.html"/>
 <link rel="next" href="separate-unite-columns.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -630,21 +636,21 @@ div.csl-indent {
 <div id="tidy-name-value" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Convert Between Names and Values</h2>
 <p>First, let’s create an artificial dataset which contains the weights of a sheep and a pig for years 2019, 2020, and 2021.</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="tidy-name-value.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb662-2"><a href="tidy-name-value.html#cb662-2" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb662-3"><a href="tidy-name-value.html#cb662-3" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
-<span id="cb662-4"><a href="tidy-name-value.html#cb662-4" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
-<span id="cb662-5"><a href="tidy-name-value.html#cb662-5" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, weight)</span>
-<span id="cb662-6"><a href="tidy-name-value.html#cb662-6" aria-hidden="true" tabindex="-1"></a>animal_tidy</span>
-<span id="cb662-7"><a href="tidy-name-value.html#cb662-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb662-8"><a href="tidy-name-value.html#cb662-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight</span></span>
-<span id="cb662-9"><a href="tidy-name-value.html#cb662-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
-<span id="cb662-10"><a href="tidy-name-value.html#cb662-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110</span></span>
-<span id="cb662-11"><a href="tidy-name-value.html#cb662-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120</span></span>
-<span id="cb662-12"><a href="tidy-name-value.html#cb662-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140</span></span>
-<span id="cb662-13"><a href="tidy-name-value.html#cb662-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA</span></span>
-<span id="cb662-14"><a href="tidy-name-value.html#cb662-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300</span></span>
-<span id="cb662-15"><a href="tidy-name-value.html#cb662-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800</span></span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="tidy-name-value.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb663-2"><a href="tidy-name-value.html#cb663-2" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb663-3"><a href="tidy-name-value.html#cb663-3" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
+<span id="cb663-4"><a href="tidy-name-value.html#cb663-4" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
+<span id="cb663-5"><a href="tidy-name-value.html#cb663-5" aria-hidden="true" tabindex="-1"></a>animal_tidy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, weight)</span>
+<span id="cb663-6"><a href="tidy-name-value.html#cb663-6" aria-hidden="true" tabindex="-1"></a>animal_tidy</span>
+<span id="cb663-7"><a href="tidy-name-value.html#cb663-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb663-8"><a href="tidy-name-value.html#cb663-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal  year weight</span></span>
+<span id="cb663-9"><a href="tidy-name-value.html#cb663-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span id="cb663-10"><a href="tidy-name-value.html#cb663-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019    110</span></span>
+<span id="cb663-11"><a href="tidy-name-value.html#cb663-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020    120</span></span>
+<span id="cb663-12"><a href="tidy-name-value.html#cb663-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021    140</span></span>
+<span id="cb663-13"><a href="tidy-name-value.html#cb663-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019     NA</span></span>
+<span id="cb663-14"><a href="tidy-name-value.html#cb663-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020    300</span></span>
+<span id="cb663-15"><a href="tidy-name-value.html#cb663-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021    800</span></span></code></pre></div>
 <p>By checking the definition of <strong>tidy data</strong>, it is clear <code>animal_tidy</code> is indeed <strong>tidy</strong>. Let’s make it untidy.</p>
 <div id="tidy-wide" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Convert Values into Column Names</h3>
@@ -654,58 +660,58 @@ div.csl-indent {
 <li><code>names_from</code> denotes which column in the original tibble contains the values of the new column names, - <code>values_from</code> denotes which column in the original tibble contains the values for each cell in the new tibble.</li>
 </ul>
 <p>The reason why the function is called <code>pivot_wider()</code> is due to the fact that it will create a <strong>wider</strong> dataset than the orginal one, containing more columns.</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="tidy-name-value.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb663-2"><a href="tidy-name-value.html#cb663-2" aria-hidden="true" tabindex="-1"></a>animal_wide <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year,                                  <span class="at">values_from =</span> weight) </span>
-<span id="cb663-3"><a href="tidy-name-value.html#cb663-3" aria-hidden="true" tabindex="-1"></a>animal_wide   <span class="co">#untidy animal: wide</span></span>
-<span id="cb663-4"><a href="tidy-name-value.html#cb663-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
-<span id="cb663-5"><a href="tidy-name-value.html#cb663-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal `2019` `2020` `2021`</span></span>
-<span id="cb663-6"><a href="tidy-name-value.html#cb663-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb663-7"><a href="tidy-name-value.html#cb663-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep     110    120    140</span></span>
-<span id="cb663-8"><a href="tidy-name-value.html#cb663-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 pig        NA    300    800</span></span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="tidy-name-value.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb664-2"><a href="tidy-name-value.html#cb664-2" aria-hidden="true" tabindex="-1"></a>animal_wide <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year,                                  <span class="at">values_from =</span> weight) </span>
+<span id="cb664-3"><a href="tidy-name-value.html#cb664-3" aria-hidden="true" tabindex="-1"></a>animal_wide   <span class="co">#untidy animal: wide</span></span>
+<span id="cb664-4"><a href="tidy-name-value.html#cb664-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
+<span id="cb664-5"><a href="tidy-name-value.html#cb664-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal `2019` `2020` `2021`</span></span>
+<span id="cb664-6"><a href="tidy-name-value.html#cb664-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb664-7"><a href="tidy-name-value.html#cb664-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep     110    120    140</span></span>
+<span id="cb664-8"><a href="tidy-name-value.html#cb664-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 pig        NA    300    800</span></span></code></pre></div>
 <p>In <code>animal_wide</code>, we have the columns names <code>2019</code>, <code>2020</code>, and <code>2021</code> coming from the <code>year</code> variable, and the values <code>110</code>, <code>120</code>, <code>140</code>, <code>NA</code>, <code>300</code>, and <code>800</code> from the <code>weight</code> variable, both of which are in the original tibble <code>animal_tidy</code>. The <code>animal_wide</code> is clearly <em>untidy</em>, since neither the <code>weight</code> nor the <code>year</code> information is contained in a single column. Note that this data format is commonly encountered in practice.</p>
 <p>As it is clear from the resulting tibble, the name <code>weight</code> is lost during the pivoting process, which is not desirable. Fortunately, you can add a prefix “weight” to the column names via an argument <code>names_prefix</code> in the <code>pivot_wider()</code> function.</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="tidy-name-value.html#cb664-1" aria-hidden="true" tabindex="-1"></a>animal_wide_weight <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year,</span>
-<span id="cb664-2"><a href="tidy-name-value.html#cb664-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_prefix =</span> <span class="st">&quot;weight&quot;</span>,</span>
-<span id="cb664-3"><a href="tidy-name-value.html#cb664-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> weight) </span>
-<span id="cb664-4"><a href="tidy-name-value.html#cb664-4" aria-hidden="true" tabindex="-1"></a>animal_wide_weight   </span>
-<span id="cb664-5"><a href="tidy-name-value.html#cb664-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
-<span id="cb664-6"><a href="tidy-name-value.html#cb664-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal weight2019 weight2020 weight2021</span></span>
-<span id="cb664-7"><a href="tidy-name-value.html#cb664-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb664-8"><a href="tidy-name-value.html#cb664-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep         110        120        140</span></span>
-<span id="cb664-9"><a href="tidy-name-value.html#cb664-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 pig            NA        300        800</span></span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="tidy-name-value.html#cb665-1" aria-hidden="true" tabindex="-1"></a>animal_wide_weight <span class="ot">&lt;-</span> animal_tidy <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year,</span>
+<span id="cb665-2"><a href="tidy-name-value.html#cb665-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_prefix =</span> <span class="st">&quot;weight&quot;</span>,</span>
+<span id="cb665-3"><a href="tidy-name-value.html#cb665-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> weight) </span>
+<span id="cb665-4"><a href="tidy-name-value.html#cb665-4" aria-hidden="true" tabindex="-1"></a>animal_wide_weight   </span>
+<span id="cb665-5"><a href="tidy-name-value.html#cb665-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 4</span></span>
+<span id="cb665-6"><a href="tidy-name-value.html#cb665-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal weight2019 weight2020 weight2021</span></span>
+<span id="cb665-7"><a href="tidy-name-value.html#cb665-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb665-8"><a href="tidy-name-value.html#cb665-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep         110        120        140</span></span>
+<span id="cb665-9"><a href="tidy-name-value.html#cb665-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 pig            NA        300        800</span></span></code></pre></div>
 </div>
 <div id="tidy-long" class="section level3" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Convert Column Names into Values</h3>
 <p>Now, you will learn how to <em>tidy</em> <code>animal_wide</code> into a tidy data. To do this, you can use the <code>pivot_longer()</code> function to convert the columns names <code>2019</code>, <code>2020</code>, and <code>2021</code> into values of a variable, for example, <code>year</code>.</p>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="tidy-name-value.html#cb665-1" aria-hidden="true" tabindex="-1"></a>animal_wide <span class="sc">%&gt;%</span> </span>
-<span id="cb665-2"><a href="tidy-name-value.html#cb665-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
-<span id="cb665-3"><a href="tidy-name-value.html#cb665-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
-<span id="cb665-4"><a href="tidy-name-value.html#cb665-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;weight&quot;</span>)</span>
-<span id="cb665-5"><a href="tidy-name-value.html#cb665-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb665-6"><a href="tidy-name-value.html#cb665-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight</span></span>
-<span id="cb665-7"><a href="tidy-name-value.html#cb665-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span id="cb665-8"><a href="tidy-name-value.html#cb665-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110</span></span>
-<span id="cb665-9"><a href="tidy-name-value.html#cb665-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120</span></span>
-<span id="cb665-10"><a href="tidy-name-value.html#cb665-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140</span></span>
-<span id="cb665-11"><a href="tidy-name-value.html#cb665-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA</span></span>
-<span id="cb665-12"><a href="tidy-name-value.html#cb665-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300</span></span>
-<span id="cb665-13"><a href="tidy-name-value.html#cb665-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800</span></span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="tidy-name-value.html#cb666-1" aria-hidden="true" tabindex="-1"></a>animal_wide <span class="sc">%&gt;%</span> </span>
+<span id="cb666-2"><a href="tidy-name-value.html#cb666-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb666-3"><a href="tidy-name-value.html#cb666-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
+<span id="cb666-4"><a href="tidy-name-value.html#cb666-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;weight&quot;</span>)</span>
+<span id="cb666-5"><a href="tidy-name-value.html#cb666-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb666-6"><a href="tidy-name-value.html#cb666-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight</span></span>
+<span id="cb666-7"><a href="tidy-name-value.html#cb666-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span id="cb666-8"><a href="tidy-name-value.html#cb666-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110</span></span>
+<span id="cb666-9"><a href="tidy-name-value.html#cb666-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120</span></span>
+<span id="cb666-10"><a href="tidy-name-value.html#cb666-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140</span></span>
+<span id="cb666-11"><a href="tidy-name-value.html#cb666-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA</span></span>
+<span id="cb666-12"><a href="tidy-name-value.html#cb666-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300</span></span>
+<span id="cb666-13"><a href="tidy-name-value.html#cb666-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800</span></span></code></pre></div>
 <p>In <code>pivot_longer()</code>, <code>cols</code> specifies the column names that you want to convert from, which accept the same format as that in <code>dplyr::select()</code> introduced in Section <a href="select-variables.html#select-variables">6.4</a>. <code>names_to</code> specifies the variable name you want to use for the column names. Finally, <code>values_to</code> specifies the variable name for holding the values in the selected columns.
 You can see that we have recovered the <code>animal_tidy</code> through the tidy process. To tidy <code>animal_wide_weight</code>, we can use the same function <code>pivot_longer()</code> along with the argument <code>names_prefix</code> as below.</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="tidy-name-value.html#cb666-1" aria-hidden="true" tabindex="-1"></a>animal_wide_weight <span class="sc">%&gt;%</span> </span>
-<span id="cb666-2"><a href="tidy-name-value.html#cb666-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
-<span id="cb666-3"><a href="tidy-name-value.html#cb666-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb666-4"><a href="tidy-name-value.html#cb666-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;weight&quot;</span>, </span>
-<span id="cb666-5"><a href="tidy-name-value.html#cb666-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;weight&quot;</span>)</span>
-<span id="cb666-6"><a href="tidy-name-value.html#cb666-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb666-7"><a href="tidy-name-value.html#cb666-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight</span></span>
-<span id="cb666-8"><a href="tidy-name-value.html#cb666-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;</span></span>
-<span id="cb666-9"><a href="tidy-name-value.html#cb666-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110</span></span>
-<span id="cb666-10"><a href="tidy-name-value.html#cb666-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120</span></span>
-<span id="cb666-11"><a href="tidy-name-value.html#cb666-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140</span></span>
-<span id="cb666-12"><a href="tidy-name-value.html#cb666-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA</span></span>
-<span id="cb666-13"><a href="tidy-name-value.html#cb666-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300</span></span>
-<span id="cb666-14"><a href="tidy-name-value.html#cb666-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800</span></span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="tidy-name-value.html#cb667-1" aria-hidden="true" tabindex="-1"></a>animal_wide_weight <span class="sc">%&gt;%</span> </span>
+<span id="cb667-2"><a href="tidy-name-value.html#cb667-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb667-3"><a href="tidy-name-value.html#cb667-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb667-4"><a href="tidy-name-value.html#cb667-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">&quot;weight&quot;</span>, </span>
+<span id="cb667-5"><a href="tidy-name-value.html#cb667-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;weight&quot;</span>)</span>
+<span id="cb667-6"><a href="tidy-name-value.html#cb667-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb667-7"><a href="tidy-name-value.html#cb667-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal year  weight</span></span>
+<span id="cb667-8"><a href="tidy-name-value.html#cb667-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span id="cb667-9"><a href="tidy-name-value.html#cb667-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 sheep  2019     110</span></span>
+<span id="cb667-10"><a href="tidy-name-value.html#cb667-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 sheep  2020     120</span></span>
+<span id="cb667-11"><a href="tidy-name-value.html#cb667-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 sheep  2021     140</span></span>
+<span id="cb667-12"><a href="tidy-name-value.html#cb667-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 pig    2019      NA</span></span>
+<span id="cb667-13"><a href="tidy-name-value.html#cb667-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 pig    2020     300</span></span>
+<span id="cb667-14"><a href="tidy-name-value.html#cb667-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 pig    2021     800</span></span></code></pre></div>
 <p>In this regards, <code>pivot_wider()</code> and <code>pivot_longer()</code> can be viewed as <em>opposite</em> functions.</p>
 
 </div>
@@ -720,7 +726,6 @@ You can see that we have recovered the <code>animal_tidy</code> through the tidy
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -759,7 +764,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

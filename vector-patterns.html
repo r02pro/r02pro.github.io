@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Create Vectors with Patterns | R Programming: Zero to Pro</title>
   <meta name="description" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Create Vectors with Patterns | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="attr-coercion.html"/>
 <link rel="next" href="sort-vector.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -167,7 +167,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -582,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -634,25 +640,25 @@ div.csl-indent {
 <h3><span class="header-section-number">2.3.1</span> Create equally-spaced numeric vectors via <code>:</code></h3>
 <p>One of the commonly used patterns associated with numeric vectors is numeric vectors composed of <strong>equally-spaced</strong> integers, where the differences between adjacent values in the vectors are all <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>.</p>
 <p>Suppose we want to create a vector with consecutive integers from 1 to 5. The first method is to write all numbers down in <code>c()</code>,</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="vector-patterns.html#cb77-1" aria-hidden="true" tabindex="-1"></a>pattern1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="vector-patterns.html#cb78-1" aria-hidden="true" tabindex="-1"></a>pattern1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p>You can see that it is not too cumbersome to enumerate all 5 integers when creating <code>pattern1</code>. Let’s imagine if we want to create a vector containing 100 consecutive integers. Do we have a faster way than writing all 100 integers down? The answer is Yes!</p>
 <p>You can use the <strong>colon operator</strong> <code>:</code>, which is frequently used in everyday programming. (Note that you don’t need to use <code>c()</code> together with <code>:</code>)</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="vector-patterns.html#cb78-1" aria-hidden="true" tabindex="-1"></a>pattern2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co">#consecutive integers from 1 to 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="vector-patterns.html#cb79-1" aria-hidden="true" tabindex="-1"></a>pattern2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="co">#consecutive integers from 1 to 5</span></span></code></pre></div>
 <div class="infobox caution">
 <p>It is worth mentioning the subtle difference between <code>pattern1</code> and <code>pattern2</code>.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="vector-patterns.html#cb79-1" aria-hidden="true" tabindex="-1"></a>pattern1</span>
-<span id="cb79-2"><a href="vector-patterns.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
-<span id="cb79-3"><a href="vector-patterns.html#cb79-3" aria-hidden="true" tabindex="-1"></a>pattern2</span>
-<span id="cb79-4"><a href="vector-patterns.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
-<span id="cb79-5"><a href="vector-patterns.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(pattern1)</span>
-<span id="cb79-6"><a href="vector-patterns.html#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb79-7"><a href="vector-patterns.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(pattern2)</span>
-<span id="cb79-8"><a href="vector-patterns.html#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="vector-patterns.html#cb80-1" aria-hidden="true" tabindex="-1"></a>pattern1</span>
+<span id="cb80-2"><a href="vector-patterns.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
+<span id="cb80-3"><a href="vector-patterns.html#cb80-3" aria-hidden="true" tabindex="-1"></a>pattern2</span>
+<span id="cb80-4"><a href="vector-patterns.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
+<span id="cb80-5"><a href="vector-patterns.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(pattern1)</span>
+<span id="cb80-6"><a href="vector-patterns.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb80-7"><a href="vector-patterns.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(pattern2)</span>
+<span id="cb80-8"><a href="vector-patterns.html#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
 <p>You can see that although <code>pattern1</code> and <code>pattern2</code> appear to have the same values, they are stored as double and integer values, respectively. The reason is that when you create consecutive integers using <code>:</code>, R will store them as integers to save space.</p>
 </div>
 <p>In addition to creating vectors with consecutive integers that is increasing, <code>:</code> can also be used to create vectors with integers in decreasing sequences.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="vector-patterns.html#cb80-1" aria-hidden="true" tabindex="-1"></a>pattern3 <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">2</span>  <span class="co">#decreasing sequence from 6 to 2</span></span>
-<span id="cb80-2"><a href="vector-patterns.html#cb80-2" aria-hidden="true" tabindex="-1"></a>pattern4 <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:-</span><span class="dv">3</span> <span class="co">#decreasing sequence from 3 to -3</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="vector-patterns.html#cb81-1" aria-hidden="true" tabindex="-1"></a>pattern3 <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">2</span>  <span class="co">#decreasing sequence from 6 to 2</span></span>
+<span id="cb81-2"><a href="vector-patterns.html#cb81-2" aria-hidden="true" tabindex="-1"></a>pattern4 <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">:-</span><span class="dv">3</span> <span class="co">#decreasing sequence from 3 to -3</span></span></code></pre></div>
 <p>Powerful the <code>:</code> operator is, it can only generate equally-spaced numeric vectors with increment 1 or -1. If you want to generate equally-spaced numeric vectors with different increments, you can use the more powerful <code>seq()</code> function.</p>
 </div>
 <div id="create-equally-spaced-numeric-vectors-via-seq" class="section level3" number="2.3.2">
@@ -660,69 +666,69 @@ div.csl-indent {
 <p>A very efficient way to create <strong>equally-spaced</strong> numeric vectors is to use the <code>seq()</code> function, which is short for sequence.</p>
 <p><strong><em>a. Create sequences with <code>by</code> argument</em></strong></p>
 <p>To use the <code>seq()</code> function, you can specify the start value of the sequence in the <code>from</code> argument, the limit end value in the <code>to</code> argument, and the increment in the <code>by</code> argument.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="vector-patterns.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="vector-patterns.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Here, the vector starts with 1, increases by 1 at each step, and ends at 5. Note that the <code>from</code> and <code>by</code> arguments are optional in <code>seq()</code>. If you don’t specify their values, <code>seq()</code> will use the default value 1 for both arguments.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="vector-patterns.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="vector-patterns.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">5</span>)</span></code></pre></div>
 <div class="infobox caution">
 <p>Now you have had four methods to create vectors with consecutive integers.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="vector-patterns.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)                <span class="co">#write all numbers down</span></span>
-<span id="cb83-2"><a href="vector-patterns.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>                           <span class="co">#use colon operator</span></span>
-<span id="cb83-3"><a href="vector-patterns.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co">#use seq()</span></span>
-<span id="cb83-4"><a href="vector-patterns.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">6</span>)                   <span class="co">#use seq()</span></span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="vector-patterns.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)                <span class="co">#write all numbers down</span></span>
+<span id="cb84-2"><a href="vector-patterns.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>                           <span class="co">#use colon operator</span></span>
+<span id="cb84-3"><a href="vector-patterns.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co">#use seq()</span></span>
+<span id="cb84-4"><a href="vector-patterns.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">6</span>)                   <span class="co">#use seq()</span></span></code></pre></div>
 </div>
 <p>Next, let’s change the increment to 2 and you will get a numeric vector with <code>1 3 5</code> as its values.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="vector-patterns.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb84-2"><a href="vector-patterns.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5</span></span></code></pre></div>
-<p>Note that the end value of the sequence doesn’t always equal the <code>to</code> argument. If you change the limit end value to 6, you still get the same sequence, since the next value in the sequence would be 7 which is larger than the limit end value 6. This is the reason why <code>to</code> is called the limited end value, not the end value.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="vector-patterns.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">2</span>) </span>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="vector-patterns.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb85-2"><a href="vector-patterns.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5</span></span></code></pre></div>
+<p>Note that the end value of the sequence doesn’t always equal the <code>to</code> argument. If you change the limit end value to 6, you still get the same sequence, since the next value in the sequence would be 7 which is larger than the limit end value 6. This is the reason why <code>to</code> is called the limited end value, not the end value.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="vector-patterns.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">2</span>) </span>
+<span id="cb86-2"><a href="vector-patterns.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5</span></span></code></pre></div>
 <p>Unlike <code>:</code>, you can set values of three arguments in <code>seq()</code> as decimal numbers.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="vector-patterns.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.1</span>, <span class="at">to =</span> <span class="fl">6.2</span>, <span class="at">by =</span> <span class="fl">0.7</span>) </span>
-<span id="cb86-2"><a href="vector-patterns.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.1 1.8 2.5 3.2 3.9 4.6 5.3 6.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="vector-patterns.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.1</span>, <span class="at">to =</span> <span class="fl">6.2</span>, <span class="at">by =</span> <span class="fl">0.7</span>) </span>
+<span id="cb87-2"><a href="vector-patterns.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.1 1.8 2.5 3.2 3.9 4.6 5.3 6.0</span></span></code></pre></div>
 <p>Here, you will get a sequence which starts with 1.1, increases by 0.7 each time until it is larger than 6.2.</p>
 <p>You can also create a decreasing sequence by using a smaller <code>to</code> value than the <code>from</code> value, coupled with a negative value in the <code>by</code> argument.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="vector-patterns.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="sc">-</span><span class="fl">0.5</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="vector-patterns.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="sc">-</span><span class="fl">0.5</span>) </span></code></pre></div>
 <p>If a positive value is used in the <code>by</code> argument in a decreasing sequence, you will see an error message.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="vector-patterns.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.5</span>) </span>
-<span id="cb88-2"><a href="vector-patterns.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in seq.default(from = 1.5, to = -1, by = 0.5): wrong sign in &#39;by&#39; argument</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="vector-patterns.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">1.5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.5</span>) </span>
+<span id="cb89-2"><a href="vector-patterns.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in seq.default(from = 1.5, to = -1, by = 0.5): wrong sign in &#39;by&#39; argument</span></span></code></pre></div>
 <p><strong><em>b. Create sequences with <code>length.out</code> argument</em></strong></p>
 <p>Instead of setting the increment, you can also specify the <code>length.out</code> argument, which creates a sequence with equal space in the specified length. R will automatically calculate the interval between two neighboring numbers according to values of three arguments in <code>seq()</code>.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="vector-patterns.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="vector-patterns.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
 <p>Here, you will get a equally-spaced sequence of length 9 from 1 to 5.</p>
 <p>You can also create a decreasing sequence by using the <code>length.out</code> argument.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="vector-patterns.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="vector-patterns.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
 <div class="infobox caution">
 <p>Unlike creating sequences with <code>by</code> argument, if you specify the <code>length.out</code> argument in <code>seq()</code>, the start value and end value of the sequence you get will be exactly match the input arguments.</p>
 </div>
 <p><strong><em>c. Create sequences with both <code>by</code> and <code>length.out</code> arguments</em></strong></p>
 <p>Lastly, if you provide both the <code>by</code> and <code>length.out</code> arguments, only one of <code>from</code> and <code>to</code> is needed. With one value (the start value or the limit end value) fixed, <code>seq()</code> will create a vector with specified increment and length.</p>
 <p>If you only have the <code>from</code> argument, you will get a sequence starting from the value you set with the increment in the <code>by</code> argument, until you get a sequence with specified length.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="vector-patterns.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="vector-patterns.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>If you only have the <code>to</code> argument, you will get a sequence end with the value you set with the increment in the <code>by</code> argument, until you get a sequence with specified length.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="vector-patterns.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="vector-patterns.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>One last thing regarding <code>seq()</code> is that you can <em>at most</em> provide three arguments. For example, you will see an error when running the following example since all four arguments are specified.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="vector-patterns.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">3</span>)</span>
-<span id="cb93-2"><a href="vector-patterns.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in seq.default(from = 1, to = 3, by = 1, length.out = 3): too many arguments</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="vector-patterns.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">3</span>)</span>
+<span id="cb94-2"><a href="vector-patterns.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in seq.default(from = 1, to = 3, by = 1, length.out = 3): too many arguments</span></span></code></pre></div>
 </div>
 <div id="create-matching-numeric-vectors-via-seq_along" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Create matching numeric vectors via <code>seq_along()</code></h3>
 <p>Now, we will introduce one function related to <code>seq()</code>. Let’s first create a numeric vector,</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="vector-patterns.html#cb94-1" aria-hidden="true" tabindex="-1"></a>extend <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="vector-patterns.html#cb95-1" aria-hidden="true" tabindex="-1"></a>extend <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">length.out =</span> <span class="dv">9</span>) </span></code></pre></div>
 <p>From the <code>seq()</code> above, you know that the length of this vector is 9. Next, let’s put this numeric vector in <code>seq_along()</code>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="vector-patterns.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(extend)</span>
-<span id="cb95-2"><a href="vector-patterns.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6 7 8 9</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="vector-patterns.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(extend)</span>
+<span id="cb96-2"><a href="vector-patterns.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6 7 8 9</span></span></code></pre></div>
 <p><code>seq_along()</code> takes a vector as its argument, and generates consecutive integers from 1 to the length of the input vector. The <code>seq_along()</code> function is commonly used when writing loops, which will be covered at a later time.</p>
 <div class="infobox caution">
 <p>You can also use <code>1:length(extend)</code> to get the same result as <code>seq_along(extend)</code>.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="vector-patterns.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(extend)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="vector-patterns.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(extend)</span></code></pre></div>
 </div>
 </div>
 <div id="create-numeric-vectors-via-sequence" class="section level3" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Create numeric vectors via <code>sequence()</code></h3>
 <p>Sometimes, you may want to combine multiple equally-spaced integer sequences into a single vector. To do this, you can use the function <code>sequence()</code>. The most common usage of <code>sequence()</code> is to supply a vector of integers as its input.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="vector-patterns.html#cb97-1" aria-hidden="true" tabindex="-1"></a>comp_seq1 <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)) </span>
-<span id="cb97-2"><a href="vector-patterns.html#cb97-2" aria-hidden="true" tabindex="-1"></a>comp_seq1</span>
-<span id="cb97-3"><a href="vector-patterns.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 2 1 2 3 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="vector-patterns.html#cb98-1" aria-hidden="true" tabindex="-1"></a>comp_seq1 <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)) </span>
+<span id="cb98-2"><a href="vector-patterns.html#cb98-2" aria-hidden="true" tabindex="-1"></a>comp_seq1</span>
+<span id="cb98-3"><a href="vector-patterns.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 2 1 2 3 1 2 3 4 5</span></span></code></pre></div>
 <p>From the result, you can see that it firstly create equally-spaced vectors <code>1:2</code>, <code>1:3</code>, and <code>1:5</code>, then combine all vectors into a single one. This avoids the trouble of writing something like <code>c(1:2, 1:3, 1:5)</code>.</p>
 <!-- More generally, we can construct a vector composed of more complex integer sequences with additional arguments, namely `sequence(nvec, from, by)`. Here, the `nvec` , `from` and `by` are integer vectors of the corresponding `length.out`, `from`, and `by` arguments of each equally-spaced sequence. Let's see the following example. -->
 <!-- ```{r results=TRUE} -->
@@ -742,51 +748,51 @@ div.csl-indent {
 <p>Another commonly used pattern associated with vectors is <strong>repetition</strong>. Note that while the equally-spaced pattern only makes sense for numeric vectors, the repetition pattern work for all three kinds of vectors.</p>
 <p>To do repetition, you can use the <code>rep()</code> function, which works by repeating the first argument for the number of times indicated in the second argument.</p>
 <p>Firstly, let’s create a numeric vector with repetition.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="vector-patterns.html#cb98-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb98-2"><a href="vector-patterns.html#cb98-2" aria-hidden="true" tabindex="-1"></a>num1</span>
-<span id="cb98-3"><a href="vector-patterns.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 2 2 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="vector-patterns.html#cb99-1" aria-hidden="true" tabindex="-1"></a>num1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb99-2"><a href="vector-patterns.html#cb99-2" aria-hidden="true" tabindex="-1"></a>num1</span>
+<span id="cb99-3"><a href="vector-patterns.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 2 2 2</span></span></code></pre></div>
 <p>Since the first argument is <code>2</code> and the second argument is <code>4</code>, <code>2</code> is repeated for <code>4</code> times, resulting a length-4 vector with all elements of value 2.</p>
 <p>The first argument can also be a numeric vector with several values.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="vector-patterns.html#cb99-1" aria-hidden="true" tabindex="-1"></a>num2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dv">3</span>)</span>
-<span id="cb99-2"><a href="vector-patterns.html#cb99-2" aria-hidden="true" tabindex="-1"></a>num2</span>
-<span id="cb99-3"><a href="vector-patterns.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4 2 1 4 2 1 4 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="vector-patterns.html#cb100-1" aria-hidden="true" tabindex="-1"></a>num2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb100-2"><a href="vector-patterns.html#cb100-2" aria-hidden="true" tabindex="-1"></a>num2</span>
+<span id="cb100-3"><a href="vector-patterns.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4 2 1 4 2 1 4 2</span></span></code></pre></div>
 <p>Here, the <code>rep()</code> will repeat the whole vector <code>c(1, 4, 2)</code> three times. Note that the vector is <strong>repeated as a whole</strong>, not elementwisely.</p>
 <p>You may be wondering what happens the second argument also has several numbers? Let’s try together.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="vector-patterns.html#cb100-1" aria-hidden="true" tabindex="-1"></a>num3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span>
-<span id="cb100-2"><a href="vector-patterns.html#cb100-2" aria-hidden="true" tabindex="-1"></a>num3</span>
-<span id="cb100-3"><a href="vector-patterns.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 1 1 5 5 7</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="vector-patterns.html#cb101-1" aria-hidden="true" tabindex="-1"></a>num3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb101-2"><a href="vector-patterns.html#cb101-2" aria-hidden="true" tabindex="-1"></a>num3</span>
+<span id="cb101-3"><a href="vector-patterns.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 1 1 5 5 7</span></span></code></pre></div>
 <p>When the second argument is also a vector, R will do an <strong>element repeat</strong> operation by repeating each element in the first argument the number of times indicated in the corresponding location of the second argument, and combine the repeated vectors to a single vector. In this example, 1 is repeated 3 times, 4 is repeated twice, and 7 is repeated once. It is equivalent to</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="vector-patterns.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="dv">7</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="vector-patterns.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">2</span>), <span class="fu">rep</span>(<span class="dv">7</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>The <code>rep()</code> function works the same way if the first argument is a character vector.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="vector-patterns.html#cb102-1" aria-hidden="true" tabindex="-1"></a>animals1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="dv">2</span>)</span>
-<span id="cb102-2"><a href="vector-patterns.html#cb102-2" aria-hidden="true" tabindex="-1"></a>animals1</span>
-<span id="cb102-3"><a href="vector-patterns.html#cb102-3" aria-hidden="true" tabindex="-1"></a>animals2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb102-4"><a href="vector-patterns.html#cb102-4" aria-hidden="true" tabindex="-1"></a>animals2</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="vector-patterns.html#cb103-1" aria-hidden="true" tabindex="-1"></a>animals1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="dv">2</span>)</span>
+<span id="cb103-2"><a href="vector-patterns.html#cb103-2" aria-hidden="true" tabindex="-1"></a>animals1</span>
+<span id="cb103-3"><a href="vector-patterns.html#cb103-3" aria-hidden="true" tabindex="-1"></a>animals2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb103-4"><a href="vector-patterns.html#cb103-4" aria-hidden="true" tabindex="-1"></a>animals2</span></code></pre></div>
 <p>You can also use logical vectors in the first argument.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="vector-patterns.html#cb103-1" aria-hidden="true" tabindex="-1"></a>logic <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb103-2"><a href="vector-patterns.html#cb103-2" aria-hidden="true" tabindex="-1"></a>logic</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="vector-patterns.html#cb104-1" aria-hidden="true" tabindex="-1"></a>logic <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb104-2"><a href="vector-patterns.html#cb104-2" aria-hidden="true" tabindex="-1"></a>logic</span></code></pre></div>
 </div>
 <div id="getting-unique-elements-and-their-frequencies" class="section level3" number="2.3.6">
 <h3><span class="header-section-number">2.3.6</span> Getting unique elements and their frequencies</h3>
 <p>So far, you have learned how to create vectors with different patterns. Sometimes, you may want to get the unique elements (elements of different values) of a vector and their corresponding frequencies. Let’s use <code>num3</code> as an example. <strong>(Don’t forget to use <code>ls()</code> or check the environment panel to find all objects you have defined)</strong>,</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="vector-patterns.html#cb104-1" aria-hidden="true" tabindex="-1"></a>num3           <span class="co">#check the values</span></span>
-<span id="cb104-2"><a href="vector-patterns.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 1 1 5 5 7</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="vector-patterns.html#cb105-1" aria-hidden="true" tabindex="-1"></a>num3           <span class="co">#check the values</span></span>
+<span id="cb105-2"><a href="vector-patterns.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 1 1 5 5 7</span></span></code></pre></div>
 <p>You can use <code>unique()</code> to show all unique elements in vectors.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="vector-patterns.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(num3)   <span class="co">#get the unique elements</span></span>
-<span id="cb105-2"><a href="vector-patterns.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 5 7</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="vector-patterns.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(num3)   <span class="co">#get the unique elements</span></span>
+<span id="cb106-2"><a href="vector-patterns.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 5 7</span></span></code></pre></div>
 <p>From the result, you know the unique elements in <code>num3</code> are <code>1</code>,<code>5</code>, and <code>7</code>. To get the frequency of each element, you can use the <code>table()</code> function.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="vector-patterns.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(num3)    <span class="co">#get the frequency table</span></span>
-<span id="cb106-2"><a href="vector-patterns.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num3</span></span>
-<span id="cb106-3"><a href="vector-patterns.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 5 7 </span></span>
-<span id="cb106-4"><a href="vector-patterns.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="vector-patterns.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(num3)    <span class="co">#get the frequency table</span></span>
+<span id="cb107-2"><a href="vector-patterns.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num3</span></span>
+<span id="cb107-3"><a href="vector-patterns.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 5 7 </span></span>
+<span id="cb107-4"><a href="vector-patterns.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2 1</span></span></code></pre></div>
 <p>Here, the first row is the name of the object, the second row shows all unique elements, and the third row is the corresponding frequency of each element in the same column. In <code>num3</code>, there are three <code>1</code>s, two <code>5</code>s and one <code>7</code>.</p>
 <p><code>unique()</code> and <code>table()</code> work similarly for character vectors and logical vectors. You can try the following codes.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="vector-patterns.html#cb107-1" aria-hidden="true" tabindex="-1"></a>animals</span>
-<span id="cb107-2"><a href="vector-patterns.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(animals)</span>
-<span id="cb107-3"><a href="vector-patterns.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(animals)</span>
-<span id="cb107-4"><a href="vector-patterns.html#cb107-4" aria-hidden="true" tabindex="-1"></a>logic</span>
-<span id="cb107-5"><a href="vector-patterns.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(logic)</span>
-<span id="cb107-6"><a href="vector-patterns.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(logic)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="vector-patterns.html#cb108-1" aria-hidden="true" tabindex="-1"></a>animals</span>
+<span id="cb108-2"><a href="vector-patterns.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(animals)</span>
+<span id="cb108-3"><a href="vector-patterns.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(animals)</span>
+<span id="cb108-4"><a href="vector-patterns.html#cb108-4" aria-hidden="true" tabindex="-1"></a>logic</span>
+<span id="cb108-5"><a href="vector-patterns.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(logic)</span>
+<span id="cb108-6"><a href="vector-patterns.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(logic)</span></code></pre></div>
 </div>
 <div id="exercises-5" class="section level3" number="2.3.7">
 <h3><span class="header-section-number">2.3.7</span> Exercises</h3>
@@ -809,7 +815,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -848,7 +853,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.pdf", "r02pro.epub"],
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
