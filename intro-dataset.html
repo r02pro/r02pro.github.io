@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -632,68 +632,73 @@ div.csl-indent {
 <p>Before generating any beautiful plots, let’s first introduce the data set that will be used throughout this chapter. The data set is a part of the Ames Housing Price data, containing 165 observations and 12 features including the sale date and price.</p>
 <p>The data set <code>sahp</code> is located in the R package <strong>r02pro</strong>, the companion package of this book.
 Besides the <strong>r02pro</strong> package, we will also extensively use the <strong>ggplot2</strong> package for visualization in this chapter. Like the <strong>tibble</strong> package, <strong>ggplot2</strong> is another member of the <strong>tidyverse</strong> package. You can install the <strong>ggplot2</strong> package if you haven’t done so.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="intro-dataset.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="intro-dataset.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>First, let’s load the <strong>r02pro</strong>, <strong>ggplot2</strong>, and <strong>tibble</strong> packages.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="intro-dataset.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb361-2"><a href="intro-dataset.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb361-3"><a href="intro-dataset.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="intro-dataset.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb366-2"><a href="intro-dataset.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb366-3"><a href="intro-dataset.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
 <p>After loading the three packages, you can type <code>sahp</code> to have a quick look of the dataset.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="intro-dataset.html#cb362-1" aria-hidden="true" tabindex="-1"></a>sahp</span>
-<span id="cb362-2"><a href="intro-dataset.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 12</span></span>
-<span id="cb362-3"><a href="intro-dataset.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    bedroom bathroom gar_car oa_qual liv_area lot_area house_style</span></span>
-<span id="cb362-4"><a href="intro-dataset.html#cb362-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      </span></span>
-<span id="cb362-5"><a href="intro-dataset.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       3      2.5       2       6     1479    13517 2Story     </span></span>
-<span id="cb362-6"><a href="intro-dataset.html#cb362-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       4      3.5       2       7     2122    11492 2Story     </span></span>
-<span id="cb362-7"><a href="intro-dataset.html#cb362-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       3      2         1       5     1057     7922 1Story     </span></span>
-<span id="cb362-8"><a href="intro-dataset.html#cb362-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       3      2.5       2       5     1444     9802 2Story     </span></span>
-<span id="cb362-9"><a href="intro-dataset.html#cb362-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       3      2         2       6     1445    14235 1.5Fin     </span></span>
-<span id="cb362-10"><a href="intro-dataset.html#cb362-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2      2.5       2       6     1888    16492 1Story     </span></span>
-<span id="cb362-11"><a href="intro-dataset.html#cb362-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2      3         2       6     1072     3675 SFoyer     </span></span>
-<span id="cb362-12"><a href="intro-dataset.html#cb362-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       3      2         2       5     1188    12160 1Story     </span></span>
-<span id="cb362-13"><a href="intro-dataset.html#cb362-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       2      1         1       5      924    15783 1Story     </span></span>
-<span id="cb362-14"><a href="intro-dataset.html#cb362-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       5      2.5       2       5     2080    11606 2Story     </span></span>
-<span id="cb362-15"><a href="intro-dataset.html#cb362-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 4 more variables: kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;,</span></span>
-<span id="cb362-16"><a href="intro-dataset.html#cb362-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="intro-dataset.html#cb367-1" aria-hidden="true" tabindex="-1"></a>sahp</span>
+<span id="cb367-2"><a href="intro-dataset.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 12</span></span>
+<span id="cb367-3"><a href="intro-dataset.html#cb367-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    bedroom bathroom gar_car oa_qual</span></span>
+<span id="cb367-4"><a href="intro-dataset.html#cb367-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb367-5"><a href="intro-dataset.html#cb367-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       3      2.5       2       6</span></span>
+<span id="cb367-6"><a href="intro-dataset.html#cb367-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       4      3.5       2       7</span></span>
+<span id="cb367-7"><a href="intro-dataset.html#cb367-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       3      2         1       5</span></span>
+<span id="cb367-8"><a href="intro-dataset.html#cb367-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       3      2.5       2       5</span></span>
+<span id="cb367-9"><a href="intro-dataset.html#cb367-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       3      2         2       6</span></span>
+<span id="cb367-10"><a href="intro-dataset.html#cb367-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2      2.5       2       6</span></span>
+<span id="cb367-11"><a href="intro-dataset.html#cb367-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2      3         2       6</span></span>
+<span id="cb367-12"><a href="intro-dataset.html#cb367-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       3      2         2       5</span></span>
+<span id="cb367-13"><a href="intro-dataset.html#cb367-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       2      1         1       5</span></span>
+<span id="cb367-14"><a href="intro-dataset.html#cb367-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       5      2.5       2       5</span></span>
+<span id="cb367-15"><a href="intro-dataset.html#cb367-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 7 more variables:</span></span>
+<span id="cb367-16"><a href="intro-dataset.html#cb367-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   liv_area &lt;dbl&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb367-17"><a href="intro-dataset.html#cb367-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   house_style &lt;chr&gt;, kit_qual &lt;chr&gt;,</span></span>
+<span id="cb367-18"><a href="intro-dataset.html#cb367-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, central_air &lt;chr&gt;,</span></span>
+<span id="cb367-19"><a href="intro-dataset.html#cb367-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;</span></span></code></pre></div>
 <p>You can see that <code>sahp</code> is a <em>tibble</em> with 165 observations and 12 variables. By default, the output only shows the first 10 observations in the tibble along with the first few variables that can fit the window. To view the full dataset, you can use the <code>view()</code> function, which will open the dataset in a new window.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="intro-dataset.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sahp)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="intro-dataset.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sahp)</span></code></pre></div>
 <p>To view the top rows of the dataset, you can
 use the <code>head()</code> function, which produces the first 6 observations by default. You can also set an optional second argument to pick any given number of observations.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="intro-dataset.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp)</span>
-<span id="cb364-2"><a href="intro-dataset.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp, <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="intro-dataset.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp)</span>
+<span id="cb369-2"><a href="intro-dataset.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp, <span class="dv">15</span>)</span></code></pre></div>
 <p>To get a first impression on the dataset, you can use the <code>summary()</code> function introduced in Section <a href="vector-functions.html#vector-functions">2.5</a>.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="intro-dataset.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="intro-dataset.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp)</span></code></pre></div>
 <p>In the output, we get the summary statistics for each variable. For numeric variables, we get the minimum, 1st quartile, median, mean, 3rd quartile, and the maximum. It also shows the number of <code>NA</code>s for a particular variable. For character variables, we only get the length of the vector, the class, and the mode.</p>
 <p>Although the types of each variable are shown in the result when typing <code>sahp</code>, a more detailed list can be found with the function <code>str()</code>.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="intro-dataset.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sahp)</span>
-<span id="cb366-2"><a href="intro-dataset.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [165 × 12] (S3: tbl_df/tbl/data.frame)</span></span>
-<span id="cb366-3"><a href="intro-dataset.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dt_sold    : Date[1:165], format: &quot;2010-03-25&quot; &quot;2009-04-10&quot; ...</span></span>
-<span id="cb366-4"><a href="intro-dataset.html#cb366-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bedroom    : num [1:165] 3 4 3 3 3 2 2 3 2 5 ...</span></span>
-<span id="cb366-5"><a href="intro-dataset.html#cb366-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bathroom   : num [1:165] 2.5 3.5 2 2.5 2 2.5 3 2 1 2.5 ...</span></span>
-<span id="cb366-6"><a href="intro-dataset.html#cb366-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gar_car    : num [1:165] 2 2 1 2 2 2 2 2 1 2 ...</span></span>
-<span id="cb366-7"><a href="intro-dataset.html#cb366-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ oa_qual    : num [1:165] 6 7 5 5 6 6 6 5 5 5 ...</span></span>
-<span id="cb366-8"><a href="intro-dataset.html#cb366-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ liv_area   : num [1:165] 1479 2122 1057 1444 1445 ...</span></span>
-<span id="cb366-9"><a href="intro-dataset.html#cb366-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lot_area   : num [1:165] 13517 11492 7922 9802 14235 ...</span></span>
-<span id="cb366-10"><a href="intro-dataset.html#cb366-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ house_style: chr [1:165] &quot;2Story&quot; &quot;2Story&quot; &quot;1Story&quot; &quot;2Story&quot; ...</span></span>
-<span id="cb366-11"><a href="intro-dataset.html#cb366-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ kit_qual   : chr [1:165] &quot;Good&quot; &quot;Good&quot; &quot;Good&quot; &quot;Average&quot; ...</span></span>
-<span id="cb366-12"><a href="intro-dataset.html#cb366-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ heat_qual  : chr [1:165] &quot;Excellent&quot; &quot;Excellent&quot; &quot;Average&quot; &quot;Good&quot; ...</span></span>
-<span id="cb366-13"><a href="intro-dataset.html#cb366-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ central_air: chr [1:165] &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; ...</span></span>
-<span id="cb366-14"><a href="intro-dataset.html#cb366-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sale_price : num [1:165] 130 NA 109 174 138 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="intro-dataset.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sahp)</span>
+<span id="cb371-2"><a href="intro-dataset.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [165 × 12] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb371-3"><a href="intro-dataset.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dt_sold    : Date[1:165], format:  ...</span></span>
+<span id="cb371-4"><a href="intro-dataset.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bedroom    : num [1:165] 3 4 3 3 3 2 2 3 2 5 ...</span></span>
+<span id="cb371-5"><a href="intro-dataset.html#cb371-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bathroom   : num [1:165] 2.5 3.5 2 2.5 2 2.5 3 2 1 2.5 ...</span></span>
+<span id="cb371-6"><a href="intro-dataset.html#cb371-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gar_car    : num [1:165] 2 2 1 2 2 2 2 2 1 2 ...</span></span>
+<span id="cb371-7"><a href="intro-dataset.html#cb371-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ oa_qual    : num [1:165] 6 7 5 5 6 6 6 5 5 5 ...</span></span>
+<span id="cb371-8"><a href="intro-dataset.html#cb371-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ liv_area   : num [1:165] 1479 2122 1057 1444 1445 ...</span></span>
+<span id="cb371-9"><a href="intro-dataset.html#cb371-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lot_area   : num [1:165] 13517 11492 7922 9802 14235 ...</span></span>
+<span id="cb371-10"><a href="intro-dataset.html#cb371-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ house_style: chr [1:165] &quot;2Story&quot; &quot;2Story&quot; &quot;1Story&quot; &quot;2Story&quot; ...</span></span>
+<span id="cb371-11"><a href="intro-dataset.html#cb371-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ kit_qual   : chr [1:165] &quot;Good&quot; &quot;Good&quot; &quot;Good&quot; &quot;Average&quot; ...</span></span>
+<span id="cb371-12"><a href="intro-dataset.html#cb371-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ heat_qual  : chr [1:165] &quot;Excellent&quot; &quot;Excellent&quot; &quot;Average&quot; &quot;Good&quot; ...</span></span>
+<span id="cb371-13"><a href="intro-dataset.html#cb371-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ central_air: chr [1:165] &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; ...</span></span>
+<span id="cb371-14"><a href="intro-dataset.html#cb371-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sale_price : num [1:165] 130 NA 109 174 138 ...</span></span></code></pre></div>
 <p>The <code>str()</code> function gives a list of each component, the corresponding type, the length, and the first several values.</p>
 <div id="are-two-story-houses-more-expensive-than-one-story-ones" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Are two-story houses more expensive than one-story ones?</h3>
 <p>Let’s try to answer this question by doing some analysis. First, let’s create the logical vectors corresponding to two-story and one-story houses.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="intro-dataset.html#cb367-1" aria-hidden="true" tabindex="-1"></a>story_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span></span>
-<span id="cb367-2"><a href="intro-dataset.html#cb367-2" aria-hidden="true" tabindex="-1"></a>story_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="intro-dataset.html#cb372-1" aria-hidden="true" tabindex="-1"></a>story_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span></span>
+<span id="cb372-2"><a href="intro-dataset.html#cb372-2" aria-hidden="true" tabindex="-1"></a>story_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span></span></code></pre></div>
 <p>Then, we create two vectors containing the prices of the two groups, respectively.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="intro-dataset.html#cb368-1" aria-hidden="true" tabindex="-1"></a>sale_price_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_2]</span>
-<span id="cb368-2"><a href="intro-dataset.html#cb368-2" aria-hidden="true" tabindex="-1"></a>sale_price_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_1]</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="intro-dataset.html#cb373-1" aria-hidden="true" tabindex="-1"></a>sale_price_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_2]</span>
+<span id="cb373-2"><a href="intro-dataset.html#cb373-2" aria-hidden="true" tabindex="-1"></a>sale_price_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_1]</span></code></pre></div>
 <p>Finally, we can run the <code>summary()</code> function on both vectors.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="intro-dataset.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_2)</span>
-<span id="cb369-2"><a href="intro-dataset.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
-<span id="cb369-3"><a href="intro-dataset.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    55.0   137.9   174.0   197.8   231.5   545.2       1</span></span>
-<span id="cb369-4"><a href="intro-dataset.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_1)</span>
-<span id="cb369-5"><a href="intro-dataset.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb369-6"><a href="intro-dataset.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    44.0   129.0   160.0   183.0   224.2   465.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="intro-dataset.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_2)</span>
+<span id="cb374-2"><a href="intro-dataset.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb374-3"><a href="intro-dataset.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    55.0   137.9   174.0   197.8   231.5   545.2 </span></span>
+<span id="cb374-4"><a href="intro-dataset.html#cb374-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    NA&#39;s </span></span>
+<span id="cb374-5"><a href="intro-dataset.html#cb374-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       1</span></span>
+<span id="cb374-6"><a href="intro-dataset.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_1)</span>
+<span id="cb374-7"><a href="intro-dataset.html#cb374-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb374-8"><a href="intro-dataset.html#cb374-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    44.0   129.0   160.0   183.0   224.2   465.0</span></span></code></pre></div>
 <p>From these summaries, it is clear that the corresponding statistic is larger for two-story houses compared with one-story ones, for all 6 measures. As a result, we can draw the conclusion that the two-story houses indeed have a higher sale price than the one-story ones.</p>
 </div>
 <div id="converting-data-types" class="section level3" number="4.1.2">
@@ -701,67 +706,67 @@ use the <code>head()</code> function, which produces the first 6 observations by
 <p>When you import a data set into R, some variables may not have the desired types. In this case, it would be useful to convert them into the types you want before conducting further data analysis.</p>
 <p><strong><em>a. Convert a character vector to an unordered factor</em></strong></p>
 <p>Let’s look at the variable <code>house_style</code> in <code>sahp</code>. We can see from the output of <code>str(sahp)</code> that it is of <code>chr</code> type. Let’s confirm this and get it summary.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="intro-dataset.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb370-2"><a href="intro-dataset.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb370-3"><a href="intro-dataset.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb370-4"><a href="intro-dataset.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Length     Class      Mode </span></span>
-<span id="cb370-5"><a href="intro-dataset.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       165 character character</span></span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="intro-dataset.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb375-2"><a href="intro-dataset.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb375-3"><a href="intro-dataset.html#cb375-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb375-4"><a href="intro-dataset.html#cb375-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Length     Class      Mode </span></span>
+<span id="cb375-5"><a href="intro-dataset.html#cb375-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       165 character character</span></span></code></pre></div>
 <p>As briefly mentioned before, using the <code>summary()</code> function on a character vector doesn’t provide us much useful information. Let’s find the unique values of this vector and get the frequency table.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="intro-dataset.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb371-2"><a href="intro-dataset.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2Story&quot; &quot;1Story&quot; &quot;1.5Fin&quot; &quot;SFoyer&quot; &quot;SLvl&quot;</span></span>
-<span id="cb371-3"><a href="intro-dataset.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb371-4"><a href="intro-dataset.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb371-5"><a href="intro-dataset.html#cb371-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
-<span id="cb371-6"><a href="intro-dataset.html#cb371-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="intro-dataset.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb376-2"><a href="intro-dataset.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2Story&quot; &quot;1Story&quot; &quot;1.5Fin&quot; &quot;SFoyer&quot; &quot;SLvl&quot;</span></span>
+<span id="cb376-3"><a href="intro-dataset.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb376-4"><a href="intro-dataset.html#cb376-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb376-5"><a href="intro-dataset.html#cb376-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
+<span id="cb376-6"><a href="intro-dataset.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
 <p>We can see that there are five house styles along with their frequencies. It turns out to be particularly useful to convert this type of variable into a <em>factor</em> type. Let’s use the function <code>as.factor()</code> and run the summary function again.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="intro-dataset.html#cb372-1" aria-hidden="true" tabindex="-1"></a>house_style_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb372-2"><a href="intro-dataset.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(house_style_factor)</span>
-<span id="cb372-3"><a href="intro-dataset.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
-<span id="cb372-4"><a href="intro-dataset.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="intro-dataset.html#cb377-1" aria-hidden="true" tabindex="-1"></a>house_style_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb377-2"><a href="intro-dataset.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(house_style_factor)</span>
+<span id="cb377-3"><a href="intro-dataset.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
+<span id="cb377-4"><a href="intro-dataset.html#cb377-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
 <p><strong><em>b. Convert a character vector to an ordered factor</em></strong></p>
 <p>Now, let’s take a look at another variable called <code>kit_qual</code>, measuring the kitchen quality. Again, let’s check the unique values.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="intro-dataset.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
-<span id="cb373-2"><a href="intro-dataset.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="intro-dataset.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
+<span id="cb378-2"><a href="intro-dataset.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span></code></pre></div>
 <p>In addition to having four different quality values, they have an internal ordering among them. In particular, we know Fair &lt; Average &lt; Good &lt; Excellent. To reflect this, you can convert this variable in to an <em>ordered factor</em> using the <code>factor()</code> function. In particular, the <code>ordered = TRUE</code> argument reflects that we want to create an ordered factor.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="intro-dataset.html#cb374-1" aria-hidden="true" tabindex="-1"></a>kit_qual_ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>kit_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))<span class="co">#covert to ordered factor</span></span>
-<span id="cb374-2"><a href="intro-dataset.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(kit_qual_ordered_factor)</span>
-<span id="cb374-3"><a href="intro-dataset.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Fair   Average      Good Excellent </span></span>
-<span id="cb374-4"><a href="intro-dataset.html#cb374-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         9        85        57        14</span></span>
-<span id="cb374-5"><a href="intro-dataset.html#cb374-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kit_qual_ordered_factor)</span>
-<span id="cb374-6"><a href="intro-dataset.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Ord.factor w/ 4 levels &quot;Fair&quot;&lt;&quot;Average&quot;&lt;..: 3 3 3 2 2 3 2 2 2 1 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="intro-dataset.html#cb379-1" aria-hidden="true" tabindex="-1"></a>kit_qual_ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>kit_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))<span class="co">#covert to ordered factor</span></span>
+<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(kit_qual_ordered_factor)</span>
+<span id="cb379-3"><a href="intro-dataset.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Fair   Average      Good Excellent </span></span>
+<span id="cb379-4"><a href="intro-dataset.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         9        85        57        14</span></span>
+<span id="cb379-5"><a href="intro-dataset.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kit_qual_ordered_factor)</span>
+<span id="cb379-6"><a href="intro-dataset.html#cb379-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Ord.factor w/ 4 levels &quot;Fair&quot;&lt;&quot;Average&quot;&lt;..: 3 3 3 2 2 3 2 2 2 1 ...</span></span></code></pre></div>
 <p><strong><em>c. Convert a character vector to a logical vector</em></strong></p>
 <p>Lastly, let’s look at the variable <code>central_air</code>, representing whether the house has central AC or not. As before, let’s get the unique elements.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="intro-dataset.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span>
-<span id="cb375-2"><a href="intro-dataset.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Y&quot; &quot;N&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="intro-dataset.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span>
+<span id="cb380-2"><a href="intro-dataset.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Y&quot; &quot;N&quot;</span></span></code></pre></div>
 <p>Intuitively, you can create a logical vector representing whether the house has central AC.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="intro-dataset.html#cb376-1" aria-hidden="true" tabindex="-1"></a>central_air_logi <span class="ot">&lt;-</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;Y&quot;</span></span>
-<span id="cb376-2"><a href="intro-dataset.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(central_air_logi)</span>
-<span id="cb376-3"><a href="intro-dataset.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(central_air_logi)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="intro-dataset.html#cb381-1" aria-hidden="true" tabindex="-1"></a>central_air_logi <span class="ot">&lt;-</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;Y&quot;</span></span>
+<span id="cb381-2"><a href="intro-dataset.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(central_air_logi)</span>
+<span id="cb381-3"><a href="intro-dataset.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(central_air_logi)</span></code></pre></div>
 <p>Sometimes, you may also want to create additional variables from the existing ones. For example, we know the overall quality of the house ranges from 2 to 10.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="intro-dataset.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>oa_qual)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="intro-dataset.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>oa_qual)</span></code></pre></div>
 <p>Maybe we want to call a house of good quality if <code>oa_qual</code> is larger than 5. We can then create a new logical variable as follows.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="intro-dataset.html#cb378-1" aria-hidden="true" tabindex="-1"></a>good_qual <span class="ot">&lt;-</span> sahp<span class="sc">$</span>oa_qual <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="intro-dataset.html#cb383-1" aria-hidden="true" tabindex="-1"></a>good_qual <span class="ot">&lt;-</span> sahp<span class="sc">$</span>oa_qual <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
 </div>
 <div id="recover-modified-values" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Recover Modified Values</h3>
 <p>When you are working with a data set inside a package, you may accidentally modified some values in place by mistake. In this situation, you don’t need to panic as you can easily recover the data set into a faculty setting (i.e. the original version inside the package). To do this, you just need to use the <code>data()</code> function with the data set name as its argument. Let’s try to modify one value of <code>sahp</code> and recover the data set afterward.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="intro-dataset.html#cb379-1" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#get the original value</span></span>
-<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb379-3"><a href="intro-dataset.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb379-4"><a href="intro-dataset.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb379-5"><a href="intro-dataset.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span>
-<span id="cb379-6"><a href="intro-dataset.html#cb379-6" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">5</span>         <span class="co">#modify the value</span></span>
-<span id="cb379-7"><a href="intro-dataset.html#cb379-7" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the modified value</span></span>
-<span id="cb379-8"><a href="intro-dataset.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb379-9"><a href="intro-dataset.html#cb379-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb379-10"><a href="intro-dataset.html#cb379-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb379-11"><a href="intro-dataset.html#cb379-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5</span></span>
-<span id="cb379-12"><a href="intro-dataset.html#cb379-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sahp)             <span class="co">#recover the data</span></span>
-<span id="cb379-13"><a href="intro-dataset.html#cb379-13" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the value is recovered</span></span>
-<span id="cb379-14"><a href="intro-dataset.html#cb379-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb379-15"><a href="intro-dataset.html#cb379-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb379-16"><a href="intro-dataset.html#cb379-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb379-17"><a href="intro-dataset.html#cb379-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="intro-dataset.html#cb384-1" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#get the original value</span></span>
+<span id="cb384-2"><a href="intro-dataset.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb384-3"><a href="intro-dataset.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb384-4"><a href="intro-dataset.html#cb384-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb384-5"><a href="intro-dataset.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span>
+<span id="cb384-6"><a href="intro-dataset.html#cb384-6" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">5</span>         <span class="co">#modify the value</span></span>
+<span id="cb384-7"><a href="intro-dataset.html#cb384-7" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the modified value</span></span>
+<span id="cb384-8"><a href="intro-dataset.html#cb384-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb384-9"><a href="intro-dataset.html#cb384-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb384-10"><a href="intro-dataset.html#cb384-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb384-11"><a href="intro-dataset.html#cb384-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5</span></span>
+<span id="cb384-12"><a href="intro-dataset.html#cb384-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sahp)             <span class="co">#recover the data</span></span>
+<span id="cb384-13"><a href="intro-dataset.html#cb384-13" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the value is recovered</span></span>
+<span id="cb384-14"><a href="intro-dataset.html#cb384-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb384-15"><a href="intro-dataset.html#cb384-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb384-16"><a href="intro-dataset.html#cb384-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb384-17"><a href="intro-dataset.html#cb384-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span></code></pre></div>
 
 </div>
 </div>

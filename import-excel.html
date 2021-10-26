@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -633,60 +633,63 @@ div.csl-indent {
 <div id="export-data-into-excel-files" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Export data into Excel files</h3>
 <p>To export data into an Excel file, you can use the <strong>writexl</strong> package. Let’s first install the package.</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="import-excel.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;writexl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="import-excel.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;writexl&quot;</span>)</span></code></pre></div>
 <p>Now, we can load the <strong>writexl</strong> package and use the <code>write.xlsx()</code> function to write data into an Excel file with extension .xlsx. Let’s first load the data from “my_animals.csv,” and write it to “my_animals.xlsx.”</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="import-excel.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
-<span id="cb579-2"><a href="import-excel.html#cb579-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb579-3"><a href="import-excel.html#cb579-3" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;my_animals.csv&quot;</span>)</span>
-<span id="cb579-4"><a href="import-excel.html#cb579-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(my_animals, <span class="st">&quot;my_animals.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="import-excel.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb584-2"><a href="import-excel.html#cb584-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb584-3"><a href="import-excel.html#cb584-3" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;my_animals.csv&quot;</span>)</span>
+<span id="cb584-4"><a href="import-excel.html#cb584-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(my_animals, <span class="st">&quot;my_animals.xlsx&quot;</span>)</span></code></pre></div>
 <p>By default, the column names of the data frame/tibble will be written to the first row of the Excel file. To skip the column names, you can set <code>col_names = FALSE</code> in the <code>write_xlsx()</code> function.</p>
 <p>In addition to writing a single data frame to an Excel file, <code>write.xlsx()</code> can also write <strong>multiple data frames</strong> into a single Excel file, with each sheet containing each data frame. To do that, you need to supply a list of data frames as the first argument in <code>write_xlsx()</code>. Let’s take a look at the following example which write both <code>my_animals</code> and <code>sahp</code> (a tibble in the <strong>r02pro</strong> package) into an Excel file named “two_data.xlsx.”</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="import-excel.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb580-2"><a href="import-excel.html#cb580-2" aria-hidden="true" tabindex="-1"></a>two_data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_animals =</span> my_animals, <span class="at">sahp =</span> sahp)</span>
-<span id="cb580-3"><a href="import-excel.html#cb580-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(two_data, <span class="st">&quot;two_data.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="import-excel.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb585-2"><a href="import-excel.html#cb585-2" aria-hidden="true" tabindex="-1"></a>two_data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">my_animals =</span> my_animals, <span class="at">sahp =</span> sahp)</span>
+<span id="cb585-3"><a href="import-excel.html#cb585-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(two_data, <span class="st">&quot;two_data.xlsx&quot;</span>)</span></code></pre></div>
 <p>You can open this file with Excel and verify its contents.</p>
 </div>
 <div id="import-excel-files-.xls-and-.xlsx-using-read_excel" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></h3>
 <p>Having learned how to export data into an Excel file, let’s see how to read an existing Excel file into R. We can use the <code>read_excel()</code> function in the <code>readxl</code> package to import Excel files. Here, <code>readxl</code> is another subpackage in the <strong>tidyverse</strong> package. Thus we can directly load the package if the <strong>tidyverse</strong> package is already installed.</p>
 <p>Let’s import the Excel file “two_data.xlsx” we just created into R.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="import-excel.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb581-2"><a href="import-excel.html#cb581-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>)</span>
-<span id="cb581-3"><a href="import-excel.html#cb581-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_df)</span>
-<span id="cb581-4"><a href="import-excel.html#cb581-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb581-5"><a href="import-excel.html#cb581-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
-<span id="cb581-6"><a href="import-excel.html#cb581-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
-<span id="cb581-7"><a href="import-excel.html#cb581-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 sheep    Excellent </span></span>
-<span id="cb581-8"><a href="import-excel.html#cb581-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 pig      Good      </span></span>
-<span id="cb581-9"><a href="import-excel.html#cb581-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 monkey   N         </span></span>
-<span id="cb581-10"><a href="import-excel.html#cb581-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 pig      Fair      </span></span>
-<span id="cb581-11"><a href="import-excel.html#cb581-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 monkey   Good      </span></span>
-<span id="cb581-12"><a href="import-excel.html#cb581-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &lt;NA&gt;     Good</span></span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="import-excel.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb586-2"><a href="import-excel.html#cb586-2" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>)</span>
+<span id="cb586-3"><a href="import-excel.html#cb586-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_df)</span>
+<span id="cb586-4"><a href="import-excel.html#cb586-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb586-5"><a href="import-excel.html#cb586-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
+<span id="cb586-6"><a href="import-excel.html#cb586-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
+<span id="cb586-7"><a href="import-excel.html#cb586-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 sheep    Excellent </span></span>
+<span id="cb586-8"><a href="import-excel.html#cb586-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 pig      Good      </span></span>
+<span id="cb586-9"><a href="import-excel.html#cb586-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 monkey   N         </span></span>
+<span id="cb586-10"><a href="import-excel.html#cb586-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 pig      Fair      </span></span>
+<span id="cb586-11"><a href="import-excel.html#cb586-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 monkey   Good      </span></span>
+<span id="cb586-12"><a href="import-excel.html#cb586-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &lt;NA&gt;     Good</span></span></code></pre></div>
 <p>We can see from the result that although the file contains two sheets, the function will import the first sheet by default. To import the second sheet, you can set the <code>sheet</code> argument to the sheet name (<code>sahp</code>) or the position of the sheet (2).</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="import-excel.html#cb582-1" aria-hidden="true" tabindex="-1"></a>shap_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
-<span id="cb582-2"><a href="import-excel.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="co">#shap_1 &lt;- read_excel(&quot;two_data.xlsx&quot;, sheet = 2)     #same result as the previous line</span></span>
-<span id="cb582-3"><a href="import-excel.html#cb582-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shap_1)</span>
-<span id="cb582-4"><a href="import-excel.html#cb582-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 13</span></span>
-<span id="cb582-5"><a href="import-excel.html#cb582-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car oa_qual liv_area lot_area</span></span>
-<span id="cb582-6"><a href="import-excel.html#cb582-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb582-7"><a href="import-excel.html#cb582-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2       6     1479    13517</span></span>
-<span id="cb582-8"><a href="import-excel.html#cb582-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2       7     2122    11492</span></span>
-<span id="cb582-9"><a href="import-excel.html#cb582-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1       5     1057     7922</span></span>
-<span id="cb582-10"><a href="import-excel.html#cb582-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2       5     1444     9802</span></span>
-<span id="cb582-11"><a href="import-excel.html#cb582-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22 00:00:00       3      2         2       6     1445    14235</span></span>
-<span id="cb582-12"><a href="import-excel.html#cb582-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2010-06-06 00:00:00       2      2.5       2       6     1888    16492</span></span>
-<span id="cb582-13"><a href="import-excel.html#cb582-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 6 more variables: house_style &lt;chr&gt;, kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;,</span></span>
-<span id="cb582-14"><a href="import-excel.html#cb582-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, sale_price &lt;dbl&gt;, good_qual &lt;lgl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="import-excel.html#cb587-1" aria-hidden="true" tabindex="-1"></a>shap_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
+<span id="cb587-2"><a href="import-excel.html#cb587-2" aria-hidden="true" tabindex="-1"></a><span class="co">#shap_1 &lt;- read_excel(&quot;two_data.xlsx&quot;, sheet = 2)     #same result as the previous line</span></span>
+<span id="cb587-3"><a href="import-excel.html#cb587-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(shap_1)</span>
+<span id="cb587-4"><a href="import-excel.html#cb587-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 13</span></span>
+<span id="cb587-5"><a href="import-excel.html#cb587-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car</span></span>
+<span id="cb587-6"><a href="import-excel.html#cb587-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb587-7"><a href="import-excel.html#cb587-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2</span></span>
+<span id="cb587-8"><a href="import-excel.html#cb587-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2</span></span>
+<span id="cb587-9"><a href="import-excel.html#cb587-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1</span></span>
+<span id="cb587-10"><a href="import-excel.html#cb587-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2</span></span>
+<span id="cb587-11"><a href="import-excel.html#cb587-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22 00:00:00       3      2         2</span></span>
+<span id="cb587-12"><a href="import-excel.html#cb587-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 2010-06-06 00:00:00       2      2.5       2</span></span>
+<span id="cb587-13"><a href="import-excel.html#cb587-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 9 more variables: oa_qual &lt;dbl&gt;,</span></span>
+<span id="cb587-14"><a href="import-excel.html#cb587-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   liv_area &lt;dbl&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb587-15"><a href="import-excel.html#cb587-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   house_style &lt;chr&gt;, kit_qual &lt;chr&gt;,</span></span>
+<span id="cb587-16"><a href="import-excel.html#cb587-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, central_air &lt;chr&gt;,</span></span>
+<span id="cb587-17"><a href="import-excel.html#cb587-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;, good_qual &lt;lgl&gt;</span></span></code></pre></div>
 <p>If we only want to import a portion of the data, say the first 5 rows and the first 4 columns, then we can set the argument <code>range = "A1:D5"</code>, just like the range in an excel file.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="import-excel.html#cb583-1" aria-hidden="true" tabindex="-1"></a>shap_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
-<span id="cb583-2"><a href="import-excel.html#cb583-2" aria-hidden="true" tabindex="-1"></a>shap_2</span>
-<span id="cb583-3"><a href="import-excel.html#cb583-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 x 4</span></span>
-<span id="cb583-4"><a href="import-excel.html#cb583-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car</span></span>
-<span id="cb583-5"><a href="import-excel.html#cb583-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb583-6"><a href="import-excel.html#cb583-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2</span></span>
-<span id="cb583-7"><a href="import-excel.html#cb583-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2</span></span>
-<span id="cb583-8"><a href="import-excel.html#cb583-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1</span></span>
-<span id="cb583-9"><a href="import-excel.html#cb583-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2</span></span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="import-excel.html#cb588-1" aria-hidden="true" tabindex="-1"></a>shap_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
+<span id="cb588-2"><a href="import-excel.html#cb588-2" aria-hidden="true" tabindex="-1"></a>shap_2</span>
+<span id="cb588-3"><a href="import-excel.html#cb588-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 x 4</span></span>
+<span id="cb588-4"><a href="import-excel.html#cb588-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car</span></span>
+<span id="cb588-5"><a href="import-excel.html#cb588-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb588-6"><a href="import-excel.html#cb588-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2</span></span>
+<span id="cb588-7"><a href="import-excel.html#cb588-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2</span></span>
+<span id="cb588-8"><a href="import-excel.html#cb588-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1</span></span>
+<span id="cb588-9"><a href="import-excel.html#cb588-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2</span></span></code></pre></div>
 <p>Note that <code>read_excel()</code> can read both .xls and xlsx file types.</p>
 </div>
 <div id="import-excel-file-using-the-menu" class="section level3" number="5.3.3">

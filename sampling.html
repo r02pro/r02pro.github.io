@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -634,31 +634,31 @@ div.csl-indent {
 <h3><span class="header-section-number">9.3.1</span> Random Permutation</h3>
 <p>In statistics and machine learning, you usually need to do a random permutation of the data. For example, you can evaluate a model’s performance by dividing the data randomly into two parts for training and validation, respectively.</p>
 <p>For the vector <code>x &lt;- 6:10</code>, you can use the function <code>sample()</code> to get a permutation for <code>x</code>.</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="sampling.html#cb700-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb700-2"><a href="sampling.html#cb700-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">97</span>)</span>
-<span id="cb700-3"><a href="sampling.html#cb700-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x)  <span class="co">#a random permutation of x</span></span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="sampling.html#cb705-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb705-2"><a href="sampling.html#cb705-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">97</span>)</span>
+<span id="cb705-3"><a href="sampling.html#cb705-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x)  <span class="co">#a random permutation of x</span></span></code></pre></div>
 <p>To reproduce the random permutation, we can use the same seed.</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="sampling.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">97</span>)</span>
-<span id="cb701-2"><a href="sampling.html#cb701-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x)  <span class="co">#reproduce the random permutation</span></span></code></pre></div>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="sampling.html#cb706-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">97</span>)</span>
+<span id="cb706-2"><a href="sampling.html#cb706-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x)  <span class="co">#reproduce the random permutation</span></span></code></pre></div>
 </div>
 <div id="random-sampling-without-replacement" class="section level3" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Random Sampling without Replacement</h3>
 <p>Note that the vector <code>x</code> has 5 elements in total. To sample a few elements from <code>x</code>, you can again use the <code>sample()</code> function. For example, if you want to randomly sample two elements from <code>x</code>, you can use the following code</p>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="sampling.html#cb702-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="sampling.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">2</span>) </span></code></pre></div>
 <p>Here, the <code>size</code> argument specify the targeted number of elements. By default, the <code>sample</code> function take a sample <strong>without replacement</strong>, i.e. the results sample has no duplicated elements. Because of this, if the <code>size</code> is larger than the length of the vector <code>x</code>, you will see an error message as follows.</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="sampling.html#cb703-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">6</span>)</span>
-<span id="cb703-2"><a href="sampling.html#cb703-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in sample.int(length(x), size, replace, prob): cannot take a sample larger than the population when &#39;replace = FALSE&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="sampling.html#cb708-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb708-2"><a href="sampling.html#cb708-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in sample.int(length(x), size, replace, prob): cannot take a sample larger than the population when &#39;replace = FALSE&#39;</span></span></code></pre></div>
 <p>In addition to using a vector in the first argument of <code>sample</code>, you can also use a positive integer (e.g., 10), which will be equivalent to <code>x = 1:10</code>. See the following code for an example.</p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="sampling.html#cb704-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">4</span>)   <span class="co">#sample 4 integers from 1 to 10.</span></span>
-<span id="cb704-2"><a href="sampling.html#cb704-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="co">#sample 4 integers from 1 to 10.</span></span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="sampling.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">4</span>)   <span class="co">#sample 4 integers from 1 to 10.</span></span>
+<span id="cb709-2"><a href="sampling.html#cb709-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="co">#sample 4 integers from 1 to 10.</span></span></code></pre></div>
 </div>
 <div id="random-sampling-with-replacement" class="section level3" number="9.3.3">
 <h3><span class="header-section-number">9.3.3</span> Random Sampling with Replacement</h3>
 <p>Sometimes, you may want to get a sample with replacements. You will still be using the <code>sample</code> function, but setting the argument <code>replace = TRUE</code>. The following code samples 10 elements with replacement from x.</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="sampling.html#cb705-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="sampling.html#cb710-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>As expected, you will see some duplicated elements in the output vector.</p>
 <p>A very important application of random sample with replacement is <strong>bootstrap</strong>. A bootstrap sample is a sample of <em>the same size as the original data</em> with replacement. So, if you want to get a bootstrap sample from x, you will sample 5 elements with replacement from x.</p>
-<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="sampling.html#cb706-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co">#a bootstrap sample</span></span></code></pre></div>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="sampling.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co">#a bootstrap sample</span></span></code></pre></div>
 <div class="infobox caution">
 <p>Note that, when the argument <code>size</code> is not provided, it will take the default value: the length of <code>x</code>.</p>
 </div>
@@ -667,15 +667,15 @@ div.csl-indent {
 <h3><span class="header-section-number">9.3.4</span> Random Sampling with Unequal Probabilities</h3>
 <p>By default, the <code>sample()</code> function will draw each element with the same probability. In some cases, you may want to assign different probabilities for different elements.</p>
 <p>To draw elements with different probabilities, the first method is to use the random number generator for Binomial distribution or Bernoulli distribution. Let’s say we want to randomly sample 100 elements from a Bernoulli distribution with success probability <span class="math inline">\(p=0.2\)</span>.</p>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="sampling.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="sampling.html#cb712-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">100</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p>In addition to using the <code>rbinom</code> function introduced in Section <a href="other-distributions.html#other-distributions">9.2</a>, you can use the <code>sample</code> function with the <code>prob</code> argument inside to achieve the same goal.</p>
-<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="sampling.html#cb708-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="sampling.html#cb713-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>))</span></code></pre></div>
 <p>You will samples 100 elements with replacement from c(0,1) here, and the probability of drawing 0 is 0.8, the probability of drawing 1 is 0.2.</p>
 </div>
 <div id="exercise-6" class="section level3" number="9.3.5">
 <h3><span class="header-section-number">9.3.5</span> Exercise</h3>
 <p>You can run the following code to do the exercise.</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="sampling.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="sampling.html#cb714-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r02pro</span>(<span class="st">&quot;8.3&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

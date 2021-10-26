@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -633,60 +633,60 @@ div.csl-indent {
 <div id="export-and-import-spss-files" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Export and Import SPSS Files</h3>
 <p>Let’s first load the package <strong>haven</strong>, and prepare a data frame for exporting.</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="import-other.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
-<span id="cb586-2"><a href="import-other.html#cb586-2" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb586-3"><a href="import-other.html#cb586-3" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb586-4"><a href="import-other.html#cb586-4" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
-<span id="cb586-5"><a href="import-other.html#cb586-5" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">tibble</span>(dig_num, ani_char,conditions)</span>
-<span id="cb586-6"><a href="import-other.html#cb586-6" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="import-other.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb591-2"><a href="import-other.html#cb591-2" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb591-3"><a href="import-other.html#cb591-3" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb591-4"><a href="import-other.html#cb591-4" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
+<span id="cb591-5"><a href="import-other.html#cb591-5" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">tibble</span>(dig_num, ani_char,conditions)</span>
+<span id="cb591-6"><a href="import-other.html#cb591-6" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
 <p>The data frame <code>my_animals</code> will be used as in Section <a href="export-data.html#export-data">5.1</a>. You can use the function <code>write_sav()</code> to export a data frame into a SPSS .sav file.</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="import-other.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sav</span>(my_animals, <span class="st">&quot;my_animals.sav&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="import-other.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sav</span>(my_animals, <span class="st">&quot;my_animals.sav&quot;</span>)</span></code></pre></div>
 <p>To read a SPSS file ending in .sav or .por, you can use the function <code>read_spss()</code> which will automatically call <code>read_sav()</code> for .sav files and <code>read_por()</code> for .por files.</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="import-other.html#cb588-1" aria-hidden="true" tabindex="-1"></a>my_animals_spss <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;my_animals.sav&quot;</span>)</span>
-<span id="cb588-2"><a href="import-other.html#cb588-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span>
-<span id="cb588-3"><a href="import-other.html#cb588-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb588-4"><a href="import-other.html#cb588-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
-<span id="cb588-5"><a href="import-other.html#cb588-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
-<span id="cb588-6"><a href="import-other.html#cb588-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
-<span id="cb588-7"><a href="import-other.html#cb588-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
-<span id="cb588-8"><a href="import-other.html#cb588-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
-<span id="cb588-9"><a href="import-other.html#cb588-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
-<span id="cb588-10"><a href="import-other.html#cb588-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
-<span id="cb588-11"><a href="import-other.html#cb588-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="import-other.html#cb593-1" aria-hidden="true" tabindex="-1"></a>my_animals_spss <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;my_animals.sav&quot;</span>)</span>
+<span id="cb593-2"><a href="import-other.html#cb593-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span>
+<span id="cb593-3"><a href="import-other.html#cb593-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb593-4"><a href="import-other.html#cb593-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
+<span id="cb593-5"><a href="import-other.html#cb593-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
+<span id="cb593-6"><a href="import-other.html#cb593-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
+<span id="cb593-7"><a href="import-other.html#cb593-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
+<span id="cb593-8"><a href="import-other.html#cb593-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
+<span id="cb593-9"><a href="import-other.html#cb593-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
+<span id="cb593-10"><a href="import-other.html#cb593-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
+<span id="cb593-11"><a href="import-other.html#cb593-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
 </div>
 <div id="export-and-import-sas-files" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Export and Import SAS Files</h3>
 <p>You can use the function <code>write_sas()</code> to export a data frame into a SAS .sas7bdat file.</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="import-other.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sas</span>(my_animals, <span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="import-other.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sas</span>(my_animals, <span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span></code></pre></div>
 <p>To import a SAS file, you can use the function <code>read_sas()</code>.</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="import-other.html#cb590-1" aria-hidden="true" tabindex="-1"></a>my_animals_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span>
-<span id="cb590-2"><a href="import-other.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span>
-<span id="cb590-3"><a href="import-other.html#cb590-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb590-4"><a href="import-other.html#cb590-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
-<span id="cb590-5"><a href="import-other.html#cb590-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
-<span id="cb590-6"><a href="import-other.html#cb590-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
-<span id="cb590-7"><a href="import-other.html#cb590-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
-<span id="cb590-8"><a href="import-other.html#cb590-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
-<span id="cb590-9"><a href="import-other.html#cb590-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
-<span id="cb590-10"><a href="import-other.html#cb590-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
-<span id="cb590-11"><a href="import-other.html#cb590-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="import-other.html#cb595-1" aria-hidden="true" tabindex="-1"></a>my_animals_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">&quot;my_animals.sas7bdat&quot;</span>)</span>
+<span id="cb595-2"><a href="import-other.html#cb595-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span>
+<span id="cb595-3"><a href="import-other.html#cb595-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb595-4"><a href="import-other.html#cb595-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
+<span id="cb595-5"><a href="import-other.html#cb595-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
+<span id="cb595-6"><a href="import-other.html#cb595-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
+<span id="cb595-7"><a href="import-other.html#cb595-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
+<span id="cb595-8"><a href="import-other.html#cb595-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
+<span id="cb595-9"><a href="import-other.html#cb595-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
+<span id="cb595-10"><a href="import-other.html#cb595-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
+<span id="cb595-11"><a href="import-other.html#cb595-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
 </div>
 <div id="export-and-import-stata-files" class="section level3" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> Export and Import Stata Files</h3>
 <p>Lastly, let’s talk about Stata files. You can use the function <code>write_dta()</code> to export a data frame into a Stata .dta file.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="import-other.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_dta</span>(my_animals, <span class="st">&quot;my_animals.dta&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="import-other.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_dta</span>(my_animals, <span class="st">&quot;my_animals.dta&quot;</span>)</span></code></pre></div>
 <p>To read a Stata file ending in .dta, you can use the function <code>read_dta()</code>.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="import-other.html#cb592-1" aria-hidden="true" tabindex="-1"></a>my_animals_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;my_animals.dta&quot;</span>)</span>
-<span id="cb592-2"><a href="import-other.html#cb592-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span>
-<span id="cb592-3"><a href="import-other.html#cb592-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb592-4"><a href="import-other.html#cb592-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
-<span id="cb592-5"><a href="import-other.html#cb592-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
-<span id="cb592-6"><a href="import-other.html#cb592-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
-<span id="cb592-7"><a href="import-other.html#cb592-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
-<span id="cb592-8"><a href="import-other.html#cb592-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
-<span id="cb592-9"><a href="import-other.html#cb592-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
-<span id="cb592-10"><a href="import-other.html#cb592-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
-<span id="cb592-11"><a href="import-other.html#cb592-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="import-other.html#cb597-1" aria-hidden="true" tabindex="-1"></a>my_animals_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;my_animals.dta&quot;</span>)</span>
+<span id="cb597-2"><a href="import-other.html#cb597-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span>
+<span id="cb597-3"><a href="import-other.html#cb597-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
+<span id="cb597-4"><a href="import-other.html#cb597-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
+<span id="cb597-5"><a href="import-other.html#cb597-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
+<span id="cb597-6"><a href="import-other.html#cb597-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  Excellent </span></span>
+<span id="cb597-7"><a href="import-other.html#cb597-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    Good      </span></span>
+<span id="cb597-8"><a href="import-other.html#cb597-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; N         </span></span>
+<span id="cb597-9"><a href="import-other.html#cb597-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    Fair      </span></span>
+<span id="cb597-10"><a href="import-other.html#cb597-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; Good      </span></span>
+<span id="cb597-11"><a href="import-other.html#cb597-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       Good</span></span></code></pre></div>
 </div>
 <div id="import-using-the-menu" class="section level3" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Import using the menu</h3>

@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -633,31 +633,31 @@ div.csl-indent {
 <div id="overplotting" class="section level3" number="4.9.1">
 <h3><span class="header-section-number">4.9.1</span> Overplotting</h3>
 <p>As an example, let’s generate a scatterplot between <code>kit_qual</code> and <code>heat_qual</code>.</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="jitter-count.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb453-2"><a href="jitter-count.html#cb453-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb453-3"><a href="jitter-count.html#cb453-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb453-4"><a href="jitter-count.html#cb453-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual)) <span class="co">#overplotting</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-476-1.png" width="576" /></p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="jitter-count.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb458-2"><a href="jitter-count.html#cb458-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb458-3"><a href="jitter-count.html#cb458-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb458-4"><a href="jitter-count.html#cb458-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual)) <span class="co">#overplotting</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-502-1.png" width="576" /></p>
 <p>From the plot, you may immediately realize that there are many overlapping data points. Actually, there will be at most 16 possible distinct points on the plot since both variables have 4 categories. This phenomenon is called <strong>overplotting</strong>. Overplotting is not desirable since it hides useful information about the joint distribution. For example, we don’t know which value pairs out of the 16 possibilities appear more frequently in the data.</p>
 <p>To solve the overplotting issues, we introduce two solutions, namely jittering and count plots.</p>
 </div>
 <div id="jitter" class="section level3" number="4.9.2">
 <h3><span class="header-section-number">4.9.2</span> Jittering</h3>
 <p>The first method for solving the overplotting issue is to add a small random perturbation to all datapoints, i.e., <strong>jittering</strong>. You can use the <code>geom_jitter()</code> function which works by first perturb the data points and then generate a scatterplot.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="jitter-count.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb454-2"><a href="jitter-count.html#cb454-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-477-1.png" width="576" /></p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="jitter-count.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb459-2"><a href="jitter-count.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-503-1.png" width="576" /></p>
 <p>For the jittered plot, we can clearly see which pair of <code>kit_qual</code> and <code>heat_qual</code> have more observations. By default, the perturbation will be performed both vertically and horizontally with the same amount of 40% of the resolution of the data. To customize the amount of jittering, you can specify the arguments <code>width</code> as the amount of horizontal jittering and <code>height</code> as the amount of vertical jittering in the unit of the resolution of the data. To turn off the horizontal jittering, you can specify <code>width = 0</code>.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="jitter-count.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb455-2"><a href="jitter-count.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual),  <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-478-1.png" width="576" /></p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="jitter-count.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb460-2"><a href="jitter-count.html#cb460-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual),  <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-504-1.png" width="576" /></p>
 </div>
 <div id="count" class="section level3" number="4.9.3">
 <h3><span class="header-section-number">4.9.3</span> Counts Plots</h3>
 <p>When we want to visualize the distribution of a pair of discrete variables, another method to solve the overplotting issue is the <strong>counts plot</strong>, which uses circles of different sizes to represent the frequency of each value pair. You can use the function <code>geom_count()</code> to generate a counts plot.</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="jitter-count.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb456-2"><a href="jitter-count.html#cb456-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-479-1.png" width="576" /></p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="jitter-count.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb461-2"><a href="jitter-count.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> heat_qual))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-505-1.png" width="576" /></p>
 <p>From this plot, you can clearly tell the frequency of each value pair by the legend showing the relationship between the size of the circle and the count.</p>
 </div>
 <div id="exercises-22" class="section level3" number="4.9.4">

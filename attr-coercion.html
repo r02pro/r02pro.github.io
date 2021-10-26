@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -632,7 +632,7 @@ div.csl-indent {
 <p>Having learned vectors in Section <a href="vector.html#vector">2.1</a>, we first introduce an important concept called <strong>storage types</strong> and use two commonly used numeric classes (integers and doubles) as examples, then introduce the concept of <strong>attributes</strong> from a <strong>named vector</strong>, and discuss the <strong>coercion</strong> rule when you combine values of different types into a single vector.</p>
 <div id="storage-type" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Storage Types</h3>
-<p>Having learned the numeric vector, character vector, and logical vector, it is time to introduce how they are stored in R. To find the <strong>internal storage type</strong> of an R object, you can use the <code>typeof()</code> function. Let’s see an example of numeric vector.</p>
+<p>Having learned the numeric vector, character vector, and logical vector, it is time to introduce how they are stored in R. To find the <strong>internal storage type</strong> of an R object, you can use the <code>typeof()</code> function. First, let’s see an example of numeric vector.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="attr-coercion.html#cb54-1" aria-hidden="true" tabindex="-1"></a>my_double <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb54-2"><a href="attr-coercion.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_double)          <span class="co">#class</span></span>
 <span id="cb54-3"><a href="attr-coercion.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
@@ -640,7 +640,7 @@ div.csl-indent {
 <span id="cb54-5"><a href="attr-coercion.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb54-6"><a href="attr-coercion.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_double)         <span class="co">#storage type</span></span>
 <span id="cb54-7"><a href="attr-coercion.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
-<p>We can see that the internal storage type of <code>my_num</code> is <strong>double</strong>, which is stored as a double precision numeric value. Looking at the values of <code>my_num</code>, it is easy to see that they are all integers. You may be wondering it is necessary to store the integers in a double type. The answer is no. You can definitely store the integers in a <strong>integer type</strong>, which offers great memory savings compared to doubles. The tricky part is that you usually need to explicitly tell R that you are storing them as integers.</p>
+<p>We can see that the internal storage type of <code>my_num</code> is <strong>double</strong>, meaning that <code>my_num</code> is stored as a <strong>double precision</strong> numeric value. Looking at the values of <code>my_num</code>, it is easy to see that they are all integers. You may be wondering it is necessary to store the integers in a double type. The answer is no. You can definitely store the integers in a <strong>integer type</strong>, which offers great memory savings compared to doubles. The tricky part is that you usually need to explicitly tell R that you are storing them as integers.</p>
 <p>To create an integer vector, you can still use the <code>c()</code> function with the integers separated by comma as arguments. However, you need to put an “L” after each integer. Let’s create an integer and check its <code>typeof()</code>.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="attr-coercion.html#cb55-1" aria-hidden="true" tabindex="-1"></a>my_int <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 3L, 4L)</span>
 <span id="cb55-2"><a href="attr-coercion.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_int)</span>
@@ -665,121 +665,178 @@ div.csl-indent {
 <div class="infobox caution">
 <p>Despite the differences between integers and doubles, you can usually ignore their differences unless you are working on a very big data set. R will automatically convert objects between integers and doubles when necessary.</p>
 </div>
+<p>Let’s look at the internal storage type and structure of character and logical vectors.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="attr-coercion.html#cb58-1" aria-hidden="true" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
+<span id="cb58-2"><a href="attr-coercion.html#cb58-2" aria-hidden="true" tabindex="-1"></a>my_logi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb58-3"><a href="attr-coercion.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_char)</span>
+<span id="cb58-4"><a href="attr-coercion.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_logi)</span>
+<span id="cb58-5"><a href="attr-coercion.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_char)</span>
+<span id="cb58-6"><a href="attr-coercion.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_logi)</span></code></pre></div>
+<p>The results are align with our expectations with character vectors stored as <code>"character"</code> and logical vectors stored as <code>"logical"</code>.</p>
 </div>
 <div id="named-vectors" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Named Vectors and Attributes</h3>
 <p>In addition to storing the values of a vector, you can also create <strong>named vectors</strong>. To do that, the first option is to give each element a name in the processing of creating the vector using the form of <code>name = value</code>.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="attr-coercion.html#cb58-1" aria-hidden="true" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
-<span id="cb58-2"><a href="attr-coercion.html#cb58-2" aria-hidden="true" tabindex="-1"></a>x_wo_name</span>
-<span id="cb58-3"><a href="attr-coercion.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 165  60  22</span></span>
-<span id="cb58-4"><a href="attr-coercion.html#cb58-4" aria-hidden="true" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
-<span id="cb58-5"><a href="attr-coercion.html#cb58-5" aria-hidden="true" tabindex="-1"></a>x_w_name</span>
-<span id="cb58-6"><a href="attr-coercion.html#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
-<span id="cb58-7"><a href="attr-coercion.html#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    165     60     22</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="attr-coercion.html#cb59-1" aria-hidden="true" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
+<span id="cb59-2"><a href="attr-coercion.html#cb59-2" aria-hidden="true" tabindex="-1"></a>x_wo_name</span>
+<span id="cb59-3"><a href="attr-coercion.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 165  60  22</span></span>
+<span id="cb59-4"><a href="attr-coercion.html#cb59-4" aria-hidden="true" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
+<span id="cb59-5"><a href="attr-coercion.html#cb59-5" aria-hidden="true" tabindex="-1"></a>x_w_name</span>
+<span id="cb59-6"><a href="attr-coercion.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
+<span id="cb59-7"><a href="attr-coercion.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    165     60     22</span></span></code></pre></div>
+<p>For a named vector, you can access its elements via the names, and update the values via the assignment operator.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="attr-coercion.html#cb60-1" aria-hidden="true" tabindex="-1"></a>x_w_name[<span class="st">&quot;height&quot;</span>]</span>
+<span id="cb60-2"><a href="attr-coercion.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; height </span></span>
+<span id="cb60-3"><a href="attr-coercion.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    165</span></span>
+<span id="cb60-4"><a href="attr-coercion.html#cb60-4" aria-hidden="true" tabindex="-1"></a>x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="ot">&lt;-</span> x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb60-5"><a href="attr-coercion.html#cb60-5" aria-hidden="true" tabindex="-1"></a>x_w_name</span>
+<span id="cb60-6"><a href="attr-coercion.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
+<span id="cb60-7"><a href="attr-coercion.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    165     70     22</span></span></code></pre></div>
 <p>A second way to assign names to a vector is to use the <code>names()</code> function. For example, if we want to represent whether it snows on each day using a logical vector.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="attr-coercion.html#cb59-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb59-2"><a href="attr-coercion.html#cb59-2" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb59-3"><a href="attr-coercion.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
-<span id="cb59-4"><a href="attr-coercion.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>)</span>
-<span id="cb59-5"><a href="attr-coercion.html#cb59-5" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb59-6"><a href="attr-coercion.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jan 1 Jan 2 Jan 3 </span></span>
-<span id="cb59-7"><a href="attr-coercion.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="attr-coercion.html#cb61-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb61-2"><a href="attr-coercion.html#cb61-2" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb61-3"><a href="attr-coercion.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
+<span id="cb61-4"><a href="attr-coercion.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>)</span>
+<span id="cb61-5"><a href="attr-coercion.html#cb61-5" aria-hidden="true" tabindex="-1"></a>y</span>
+<span id="cb61-6"><a href="attr-coercion.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Jan 1 Jan 2 Jan 3 </span></span>
+<span id="cb61-7"><a href="attr-coercion.html#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>Note that the assignment operation looks similar to the object assignment operation. The values for names need to be a character vector.</p>
 <p>The names of a vector is a type of <strong>attributes</strong> of R Objects. We will introduce other types of attributes as we encounter them. The name attribute provides additional information regarding the meaning of each element, and enables us to extract values using the names (to be discussed in Section <a href="comparison-vector-subsetting.html#vector-subsetting">2.6.3</a>).</p>
 <p>To examine the attributes of an R object, you can use the <code>attributes()</code> function. The <code>str()</code> also displays the attributes.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="attr-coercion.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(x_w_name)</span>
-<span id="cb60-2"><a href="attr-coercion.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
-<span id="cb60-3"><a href="attr-coercion.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
-<span id="cb60-4"><a href="attr-coercion.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
-<span id="cb60-5"><a href="attr-coercion.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Named num [1:3] 165 60 22</span></span>
-<span id="cb60-6"><a href="attr-coercion.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;names&quot;)= chr [1:3] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
-<span id="cb60-7"><a href="attr-coercion.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span>
-<span id="cb60-8"><a href="attr-coercion.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num [1:3] 165 60 22</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="attr-coercion.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(x_w_name)</span>
+<span id="cb62-2"><a href="attr-coercion.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
+<span id="cb62-3"><a href="attr-coercion.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
+<span id="cb62-4"><a href="attr-coercion.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
+<span id="cb62-5"><a href="attr-coercion.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Named num [1:3] 165 70 22</span></span>
+<span id="cb62-6"><a href="attr-coercion.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;names&quot;)= chr [1:3] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
+<span id="cb62-7"><a href="attr-coercion.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span>
+<span id="cb62-8"><a href="attr-coercion.html#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num [1:3] 165 60 22</span></span></code></pre></div>
 <p>You can see that <code>x_w_name</code> is a named numeric vector, with the names attribute. In contrast, <code>str()</code> function tells us <code>x_wo_name</code> is a plain numeric vector with no attributes.</p>
 <p>To directly extract certain attributes of an R object, you can use the <code>attr()</code> function on it with the second argument being the specific attribute you wish to extract.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="attr-coercion.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span>
-<span id="cb61-2"><a href="attr-coercion.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="attr-coercion.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span>
+<span id="cb63-2"><a href="attr-coercion.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span></code></pre></div>
 </div>
 <div id="coercion" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> The Coercion Rule</h3>
 <p>So far, you know that vectors are objects that have values of the same type, including numeric values (integers or doubles), strings, or logical values. But in practice, you may have values with a mix of different types. If you still want to combine them into a <strong>vector</strong>, R will <em>unify</em> all values into the <strong>most complex</strong> one, which is usually called the <strong>coercion rule</strong>. Specifically, R uses the following order of complexity (from simple to complex).
 <span class="math display">\[\mbox{logical} &lt; \mbox{numeric} &lt; \mbox{character}\]</span></p>
 <p>Let’s see a few examples to learn how the coercion works. The first example mixes logical values with numbers.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="attr-coercion.html#cb62-1" aria-hidden="true" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">24</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb62-2"><a href="attr-coercion.html#cb62-2" aria-hidden="true" tabindex="-1"></a>mix_1 </span>
-<span id="cb62-3"><a href="attr-coercion.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  7 24  0</span></span>
-<span id="cb62-4"><a href="attr-coercion.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mix_1)</span>
-<span id="cb62-5"><a href="attr-coercion.html#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb62-6"><a href="attr-coercion.html#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span>
-<span id="cb62-7"><a href="attr-coercion.html#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="attr-coercion.html#cb64-1" aria-hidden="true" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">24</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb64-2"><a href="attr-coercion.html#cb64-2" aria-hidden="true" tabindex="-1"></a>mix_1 </span>
+<span id="cb64-3"><a href="attr-coercion.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  7 24  0</span></span>
+<span id="cb64-4"><a href="attr-coercion.html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mix_1)</span>
+<span id="cb64-5"><a href="attr-coercion.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb64-6"><a href="attr-coercion.html#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span>
+<span id="cb64-7"><a href="attr-coercion.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
 <p>You can see that the logical values are converted to numbers, in particular, <code>TRUE</code> will be converted to 1 and <code>FALSE</code> will be converted to 0 when they appear with numbers, that’s because numbers are more complex than logical values, and R will unify all values into the most complex one. Then you will see that <code>mix_1</code> is a numeric vector with four numbers. This is the <strong>most commonly</strong> usage of coercion rule in R.</p>
 <p>Besides the coercion rule which automatically converts all elements into the most complex type, you can also use functions to do the conversion manually. In particular, <code>as.numeric()</code> converts its argument into numeric type. And <code>as.logical()</code> converts its argument into logical values.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="attr-coercion.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb63-2"><a href="attr-coercion.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
-<span id="cb63-3"><a href="attr-coercion.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb63-4"><a href="attr-coercion.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span>
-<span id="cb63-5"><a href="attr-coercion.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>))</span>
-<span id="cb63-6"><a href="attr-coercion.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="attr-coercion.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb65-2"><a href="attr-coercion.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
+<span id="cb65-3"><a href="attr-coercion.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb65-4"><a href="attr-coercion.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span>
+<span id="cb65-5"><a href="attr-coercion.html#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>))</span>
+<span id="cb65-6"><a href="attr-coercion.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span></code></pre></div>
+<p>In addition to using the combine function <code>c()</code>, the coercion rule also applies with you apply other operators or functions between two types of value.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="attr-coercion.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">7</span> <span class="sc">*</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-2"><a href="attr-coercion.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb66-3"><a href="attr-coercion.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">5</span> <span class="sc">^</span> <span class="cn">FALSE</span>)</span>
+<span id="cb66-4"><a href="attr-coercion.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb66-5"><a href="attr-coercion.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">7</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb66-6"><a href="attr-coercion.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;7 TRUE&quot;</span></span>
+<span id="cb66-7"><a href="attr-coercion.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb66-8"><a href="attr-coercion.html#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;7 1&quot;</span></span></code></pre></div>
+<p>It is worth noting the mechanism of <code>paste()</code>. It automatically converts all the arguments into strings and then concatenate them. In the second <code>paste()</code> code, the coercion occurred during the creation of <code>c(7, TRUE)</code>, resulting in a <code>1</code> instead of <code>TRUE</code> in the final string.</p>
 <p>The second example mixes numbers with strings.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="attr-coercion.html#cb64-1" aria-hidden="true" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="st">&quot;happy&quot;</span>, <span class="dv">26</span>, <span class="st">&quot;string&quot;</span>)</span>
-<span id="cb64-2"><a href="attr-coercion.html#cb64-2" aria-hidden="true" tabindex="-1"></a>mix_2 </span>
-<span id="cb64-3"><a href="attr-coercion.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;8&quot;      &quot;happy&quot;  &quot;26&quot;     &quot;string&quot;</span></span>
-<span id="cb64-4"><a href="attr-coercion.html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
-<span id="cb64-5"><a href="attr-coercion.html#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
-<p>You can see that both <code>8</code> and <code>26</code> are converted into strings since strings are more complex than numbers. Then <code>mix_2</code> will be a character vector. To manually converts an input into a character type, you can use the <code>as.character()</code> function.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="attr-coercion.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb65-2"><a href="attr-coercion.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="attr-coercion.html#cb67-1" aria-hidden="true" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="st">&quot;happy&quot;</span>, <span class="dv">26</span>, <span class="st">&quot;string&quot;</span>)</span>
+<span id="cb67-2"><a href="attr-coercion.html#cb67-2" aria-hidden="true" tabindex="-1"></a>mix_2 </span>
+<span id="cb67-3"><a href="attr-coercion.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;8&quot;      &quot;happy&quot;  &quot;26&quot;     &quot;string&quot;</span></span>
+<span id="cb67-4"><a href="attr-coercion.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
+<span id="cb67-5"><a href="attr-coercion.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb67-6"><a href="attr-coercion.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">paste</span>(<span class="dv">8</span>, <span class="st">&quot;happy&quot;</span>))</span>
+<span id="cb67-7"><a href="attr-coercion.html#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<p>You can see that both <code>8</code> and <code>26</code> are converted into strings since strings are more complex than numbers. Then <code>mix_2</code> will be a character vector.
+The same thing happens when you use the <code>paste()</code> function with arguments being a number and a string.</p>
+<p>To manually converts an input into a character type, you can use the <code>as.character()</code> function.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="attr-coercion.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb68-2"><a href="attr-coercion.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;</span></span></code></pre></div>
 <p>The next example mixes logical values, numbers and strings.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="attr-coercion.html#cb66-1" aria-hidden="true" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb66-2"><a href="attr-coercion.html#cb66-2" aria-hidden="true" tabindex="-1"></a>mix_3</span>
-<span id="cb66-3"><a href="attr-coercion.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span>
-<span id="cb66-4"><a href="attr-coercion.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_3)</span>
-<span id="cb66-5"><a href="attr-coercion.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
-<p>You can see in <code>mix_3</code>, both <code>97</code> and <code>TRUE</code> are converted to strings! That’s because values of character type are the most complex among all values.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="attr-coercion.html#cb69-1" aria-hidden="true" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb69-2"><a href="attr-coercion.html#cb69-2" aria-hidden="true" tabindex="-1"></a>mix_3</span>
+<span id="cb69-3"><a href="attr-coercion.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span>
+<span id="cb69-4"><a href="attr-coercion.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_3)</span>
+<span id="cb69-5"><a href="attr-coercion.html#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb69-6"><a href="attr-coercion.html#cb69-6" aria-hidden="true" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb69-7"><a href="attr-coercion.html#cb69-7" aria-hidden="true" tabindex="-1"></a>mix_4</span>
+<span id="cb69-8"><a href="attr-coercion.html#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16 TRUE pig&quot;</span></span>
+<span id="cb69-9"><a href="attr-coercion.html#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mix_4)</span>
+<span id="cb69-10"><a href="attr-coercion.html#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<p>You can see in both <code>mix_3</code> and <code>mix_4</code>, both <code>97</code> and <code>TRUE</code> are converted to strings! That’s because values of character type are the most complex among all values.</p>
 <p>Here, you can use <code>as.character()</code> on the logical values.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="attr-coercion.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb67-2"><a href="attr-coercion.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="attr-coercion.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb70-2"><a href="attr-coercion.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot;</span></span></code></pre></div>
 <p>Next, let’s see an interesting example in which we have two layers of coercion.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="attr-coercion.html#cb68-1" aria-hidden="true" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb68-2"><a href="attr-coercion.html#cb68-2" aria-hidden="true" tabindex="-1"></a>mix_4</span>
-<span id="cb68-3"><a href="attr-coercion.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="attr-coercion.html#cb71-1" aria-hidden="true" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb71-2"><a href="attr-coercion.html#cb71-2" aria-hidden="true" tabindex="-1"></a>mix_5</span>
+<span id="cb71-3"><a href="attr-coercion.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
 <p>However, if you create another vector <code>mix_4</code>, you first have <code>c(16, TRUE)</code> which will be converted to <code>c(16, 1)</code> since numbers are more complex than logical values. Then, <code>c(16, 1)</code> will be converted to <code>c("16", "1")</code> when you combine it with <code>"pig"</code>, leading to the results of <code>mix_4</code>.</p>
 <p>Lastly, let’s talk about the coercion within numeric values. In particular, we have learned that there are two kinds of types numeric values are stored: namely <code>integers</code> and <code>doubles</code>. In the coercion rule, we have
 <span class="math display">\[\mbox{integer} &lt; \mbox{double}.\]</span></p>
 <p>Let’s see the following examples.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="attr-coercion.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">1</span>, 5L))</span>
-<span id="cb69-2"><a href="attr-coercion.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb69-3"><a href="attr-coercion.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, 5L))</span>
-<span id="cb69-4"><a href="attr-coercion.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="attr-coercion.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">1</span>, 5L))</span>
+<span id="cb72-2"><a href="attr-coercion.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb72-3"><a href="attr-coercion.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, 5L))</span>
+<span id="cb72-4"><a href="attr-coercion.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
+<span id="cb72-5"><a href="attr-coercion.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span> <span class="sc">+</span> 5L)</span>
+<span id="cb72-6"><a href="attr-coercion.html#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>Let’s now summarize the coercion rule of all types we have learned.
 <span class="math display">\[\mbox{logical} &lt; \mbox{integer} &lt; \mbox{double} &lt; \mbox{character}\]</span></p>
 </div>
 <div id="complex-vectors" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Complex Vectors</h3>
 <p>Another vector classes in R is <strong>complex</strong>, which stores complex numbers.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="attr-coercion.html#cb70-1" aria-hidden="true" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">+</span> 2i, <span class="dv">3</span> <span class="sc">+</span> 4i, <span class="sc">-</span><span class="dv">3</span> <span class="sc">-</span> 4i)</span>
-<span id="cb70-2"><a href="attr-coercion.html#cb70-2" aria-hidden="true" tabindex="-1"></a>my_complex</span>
-<span id="cb70-3"><a href="attr-coercion.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i</span></span>
-<span id="cb70-4"><a href="attr-coercion.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_complex)</span>
-<span id="cb70-5"><a href="attr-coercion.html#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
-<span id="cb70-6"><a href="attr-coercion.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_complex)</span>
-<span id="cb70-7"><a href="attr-coercion.html#cb70-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
-<span id="cb70-8"><a href="attr-coercion.html#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_complex)</span>
-<span id="cb70-9"><a href="attr-coercion.html#cb70-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  cplx [1:3] 1+2i 3+4i -3-4i</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="attr-coercion.html#cb73-1" aria-hidden="true" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">+</span> 2i, <span class="dv">3</span> <span class="sc">+</span> 4i, <span class="sc">-</span><span class="dv">3</span> <span class="sc">-</span> 4i)</span>
+<span id="cb73-2"><a href="attr-coercion.html#cb73-2" aria-hidden="true" tabindex="-1"></a>my_complex</span>
+<span id="cb73-3"><a href="attr-coercion.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i</span></span>
+<span id="cb73-4"><a href="attr-coercion.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_complex)</span>
+<span id="cb73-5"><a href="attr-coercion.html#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
+<span id="cb73-6"><a href="attr-coercion.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_complex)</span>
+<span id="cb73-7"><a href="attr-coercion.html#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
+<span id="cb73-8"><a href="attr-coercion.html#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_complex)</span>
+<span id="cb73-9"><a href="attr-coercion.html#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  cplx [1:3] 1+2i 3+4i -3-4i</span></span></code></pre></div>
 <p>You can use the functions <code>Re()</code>, <code>Im()</code>, and <code>Mod()</code> to get the real part, imaginary part, and the modulus of the complex vector, respectively.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="attr-coercion.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Re</span>(my_complex)</span>
-<span id="cb71-2"><a href="attr-coercion.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  3 -3</span></span>
-<span id="cb71-3"><a href="attr-coercion.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Im</span>(my_complex)</span>
-<span id="cb71-4"><a href="attr-coercion.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  2  4 -4</span></span>
-<span id="cb71-5"><a href="attr-coercion.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Mod</span>(my_complex)</span>
-<span id="cb71-6"><a href="attr-coercion.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.236068 5.000000 5.000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="attr-coercion.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Re</span>(my_complex)</span>
+<span id="cb74-2"><a href="attr-coercion.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  3 -3</span></span>
+<span id="cb74-3"><a href="attr-coercion.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Im</span>(my_complex)</span>
+<span id="cb74-4"><a href="attr-coercion.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  2  4 -4</span></span>
+<span id="cb74-5"><a href="attr-coercion.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Mod</span>(my_complex)</span>
+<span id="cb74-6"><a href="attr-coercion.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.236068 5.000000 5.000000</span></span></code></pre></div>
 </div>
 <div id="exercises-4" class="section level3" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> Exercises</h3>
 <ol style="list-style-type: decimal">
-<li><p>If there are 3 lions, 5 tigers, 7 birds and 2 monkeys in the zoo, please write R code to create a <strong>named</strong> numeric vector <code>zoo1</code> to represent the information.</p></li>
-<li></li>
+<li>After running the following code, what do you think are the storage types of <code>z</code> and <code>w</code>? Explain the reason.</li>
 </ol>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="attr-coercion.html#cb75-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 5L</span>
+<span id="cb75-2"><a href="attr-coercion.html#cb75-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> 6L</span>
+<span id="cb75-3"><a href="attr-coercion.html#cb75-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">+</span> y </span>
+<span id="cb75-4"><a href="attr-coercion.html#cb75-4" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fl">1.1</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>If there are 3 lions, 5 tigers, 7 birds and 2 monkeys in the zoo, please write R code to create a <strong>named</strong> numeric vector <code>zoo_1</code> to represent the information. Then, get its <code>"names"</code> attribute.</p></li>
+<li><p>The zoo manager found out a tiger ran away. Use assignment operator to update the named vector <code>zoo_1</code>.</p></li>
+<li><p>Looking at the following codes without running in R, what are the storage types of <code>mix_1</code>, <code>mix_2</code>, <code>mix_3</code>, <code>mix_4</code>, <code>mix_5</code>, <code>mix_6</code>, and <code>mix_7</code>? Verify your answers by running the code in R and explain the reason.</p></li>
+</ol>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="attr-coercion.html#cb76-1" aria-hidden="true" tabindex="-1"></a>int_1 <span class="ot">&lt;-</span> 5L</span>
+<span id="cb76-2"><a href="attr-coercion.html#cb76-2" aria-hidden="true" tabindex="-1"></a>int_2 <span class="ot">&lt;-</span> 6L</span>
+<span id="cb76-3"><a href="attr-coercion.html#cb76-3" aria-hidden="true" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb76-4"><a href="attr-coercion.html#cb76-4" aria-hidden="true" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="st">&quot;pig&quot;</span></span>
+<span id="cb76-5"><a href="attr-coercion.html#cb76-5" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb76-6"><a href="attr-coercion.html#cb76-6" aria-hidden="true" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> int_2 </span>
+<span id="cb76-7"><a href="attr-coercion.html#cb76-7" aria-hidden="true" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> num_1</span>
+<span id="cb76-8"><a href="attr-coercion.html#cb76-8" aria-hidden="true" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> int_1<span class="sc">/</span>int_2</span>
+<span id="cb76-9"><a href="attr-coercion.html#cb76-9" aria-hidden="true" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1)</span>
+<span id="cb76-10"><a href="attr-coercion.html#cb76-10" aria-hidden="true" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, logi_1)</span>
+<span id="cb76-11"><a href="attr-coercion.html#cb76-11" aria-hidden="true" tabindex="-1"></a>mix_6 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1, logi_1)</span>
+<span id="cb76-12"><a href="attr-coercion.html#cb76-12" aria-hidden="true" tabindex="-1"></a>mix_7 <span class="ot">&lt;-</span> <span class="fu">paste</span>(int_1, logi_1)</span></code></pre></div>
 
 </div>
 </div>

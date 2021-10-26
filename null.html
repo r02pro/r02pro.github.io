@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-25" />
+<meta name="date" content="2021-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -633,126 +633,126 @@ div.csl-indent {
 <div id="null-1" class="section level3" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> NULL</h3>
 <p>First, let’s take a look at <code>str()</code>, <code>typeof()</code> and <code>length()</code> of <code>NULL</code>.</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="null.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NULL</span>)</span>
-<span id="cb346-2"><a href="null.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  NULL</span></span>
-<span id="cb346-3"><a href="null.html#cb346-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NULL</span>)</span>
-<span id="cb346-4"><a href="null.html#cb346-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;NULL&quot;</span></span>
-<span id="cb346-5"><a href="null.html#cb346-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NULL</span>)</span>
-<span id="cb346-6"><a href="null.html#cb346-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="null.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NULL</span>)</span>
+<span id="cb351-2"><a href="null.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  NULL</span></span>
+<span id="cb351-3"><a href="null.html#cb351-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NULL</span>)</span>
+<span id="cb351-4"><a href="null.html#cb351-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;NULL&quot;</span></span>
+<span id="cb351-5"><a href="null.html#cb351-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NULL</span>)</span>
+<span id="cb351-6"><a href="null.html#cb351-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>As you can see <code>NULL</code> only has class <code>NULL</code> with no values inside, hence the length is 0. It is worth to have comparison with <code>NA</code> regarding these items.</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="null.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NA</span>)</span>
-<span id="cb347-2"><a href="null.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  logi NA</span></span>
-<span id="cb347-3"><a href="null.html#cb347-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA</span>)</span>
-<span id="cb347-4"><a href="null.html#cb347-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
-<span id="cb347-5"><a href="null.html#cb347-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NA</span>)</span>
-<span id="cb347-6"><a href="null.html#cb347-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="null.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NA</span>)</span>
+<span id="cb352-2"><a href="null.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  logi NA</span></span>
+<span id="cb352-3"><a href="null.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NA</span>)</span>
+<span id="cb352-4"><a href="null.html#cb352-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
+<span id="cb352-5"><a href="null.html#cb352-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NA</span>)</span>
+<span id="cb352-6"><a href="null.html#cb352-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p><code>NULL</code> is often returned by expressions and functions whose value is undefined.</p>
 <p><strong><em>a. Undefined field of a list</em></strong></p>
 <p>The first scenario of <code>NULL</code> is when you try to access an element of a list that is undefined.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="null.html#cb348-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">char =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))</span>
-<span id="cb348-2"><a href="null.html#cb348-2" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>logi</span>
-<span id="cb348-3"><a href="null.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="null.html#cb353-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">char =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))</span>
+<span id="cb353-2"><a href="null.html#cb353-2" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>logi</span>
+<span id="cb353-3"><a href="null.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>Here, the result is <code>NULL</code> since logi is not a defined field in <code>my_list</code>.</p>
 <p><strong><em>b. Remove an element from a list</em></strong></p>
 <p>You can remove an element from a list by assign it the <code>NULL</code> value.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="null.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_list)</span>
-<span id="cb349-2"><a href="null.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb349-3"><a href="null.html#cb349-3" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>num <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb349-4"><a href="null.html#cb349-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_list)</span>
-<span id="cb349-5"><a href="null.html#cb349-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb349-6"><a href="null.html#cb349-6" aria-hidden="true" tabindex="-1"></a>my_list</span>
-<span id="cb349-7"><a href="null.html#cb349-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $char</span></span>
-<span id="cb349-8"><a href="null.html#cb349-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="null.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_list)</span>
+<span id="cb354-2"><a href="null.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb354-3"><a href="null.html#cb354-3" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>num <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb354-4"><a href="null.html#cb354-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_list)</span>
+<span id="cb354-5"><a href="null.html#cb354-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb354-6"><a href="null.html#cb354-6" aria-hidden="true" tabindex="-1"></a>my_list</span>
+<span id="cb354-7"><a href="null.html#cb354-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $char</span></span>
+<span id="cb354-8"><a href="null.html#cb354-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;a&quot; &quot;b&quot;</span></span></code></pre></div>
 <p>As you can see from the output, the element <code>num</code> is removed from <code>my_list</code>, leading to the length of <code>my_list</code> reduced by 1.</p>
 <p><strong><em>c. Initialize a list of certain length</em></strong></p>
 <p>The <code>NULL</code> value is useful to serve as the default initial value when you want to create a list of certain length using the <code>vector()</code> function.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="null.html#cb350-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
-<span id="cb350-2"><a href="null.html#cb350-2" aria-hidden="true" tabindex="-1"></a>my_list</span>
-<span id="cb350-3"><a href="null.html#cb350-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb350-4"><a href="null.html#cb350-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb350-5"><a href="null.html#cb350-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb350-6"><a href="null.html#cb350-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb350-7"><a href="null.html#cb350-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb350-8"><a href="null.html#cb350-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb350-9"><a href="null.html#cb350-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb350-10"><a href="null.html#cb350-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="null.html#cb355-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
+<span id="cb355-2"><a href="null.html#cb355-2" aria-hidden="true" tabindex="-1"></a>my_list</span>
+<span id="cb355-3"><a href="null.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb355-4"><a href="null.html#cb355-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb355-5"><a href="null.html#cb355-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb355-6"><a href="null.html#cb355-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb355-7"><a href="null.html#cb355-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb355-8"><a href="null.html#cb355-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb355-9"><a href="null.html#cb355-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb355-10"><a href="null.html#cb355-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>It is worth mentioning that the <code>vector()</code> function is also useful to initialize a vector of given mode and length.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="null.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
-<span id="cb351-2"><a href="null.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
-<span id="cb351-3"><a href="null.html#cb351-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is FALSE</span></span>
-<span id="cb351-4"><a href="null.html#cb351-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE</span></span>
-<span id="cb351-5"><a href="null.html#cb351-5" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
-<span id="cb351-6"><a href="null.html#cb351-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
-<span id="cb351-7"><a href="null.html#cb351-7" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;character&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)    <span class="do">##default is empty string</span></span>
-<span id="cb351-8"><a href="null.html#cb351-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot; &quot;&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="null.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
+<span id="cb356-2"><a href="null.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
+<span id="cb356-3"><a href="null.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is FALSE</span></span>
+<span id="cb356-4"><a href="null.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE</span></span>
+<span id="cb356-5"><a href="null.html#cb356-5" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
+<span id="cb356-6"><a href="null.html#cb356-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
+<span id="cb356-7"><a href="null.html#cb356-7" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;character&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)    <span class="do">##default is empty string</span></span>
+<span id="cb356-8"><a href="null.html#cb356-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot; &quot;&quot;</span></span></code></pre></div>
 <p>To check if an element is <code>NULL</code>, you can’t use the logical comparison <code>== NULL</code>. Instead, you need to use the <code>is.null()</code> function.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="null.html#cb352-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb352-2"><a href="null.html#cb352-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NULL</span>      </span>
-<span id="cb352-3"><a href="null.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; logical(0)</span></span>
-<span id="cb352-4"><a href="null.html#cb352-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(a)</span>
-<span id="cb352-5"><a href="null.html#cb352-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="null.html#cb357-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb357-2"><a href="null.html#cb357-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NULL</span>      </span>
+<span id="cb357-3"><a href="null.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; logical(0)</span></span>
+<span id="cb357-4"><a href="null.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(a)</span>
+<span id="cb357-5"><a href="null.html#cb357-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>It is worth explaining the result of <code>a == NULL</code> is <code>logical(0)</code>, representing a logical vector of length 0. The underlying reason is that <code>NULL</code> contains no value and is of length 0. As the <code>==</code> comparison returns a logical type object, hencing leading to a logical vector of length 0.</p>
 <p><strong><em>d. <code>NULL</code> values when creating a vector</em></strong></p>
 <p>If you create a vector with <code>NULL</code> values, all <code>NULL</code> values will be removed if there exists at least one regular values. If all of them are <code>NULL</code> values, only one of them will be kept. Note that there is fundamentally different from <code>NA</code> values. <code>NA</code> means the value is there, but the exact value is not available to us.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="null.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="dv">1</span>, <span class="cn">NULL</span>)</span>
-<span id="cb353-2"><a href="null.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb353-3"><a href="null.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NULL</span>, <span class="cn">NULL</span>)</span>
-<span id="cb353-4"><a href="null.html#cb353-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
-<span id="cb353-5"><a href="null.html#cb353-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>)</span>
-<span id="cb353-6"><a href="null.html#cb353-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="null.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="dv">1</span>, <span class="cn">NULL</span>)</span>
+<span id="cb358-2"><a href="null.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb358-3"><a href="null.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NULL</span>, <span class="cn">NULL</span>)</span>
+<span id="cb358-4"><a href="null.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
+<span id="cb358-5"><a href="null.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>)</span>
+<span id="cb358-6"><a href="null.html#cb358-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA NA</span></span></code></pre></div>
 </div>
 <div id="NaN" class="section level3" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> NaN</h3>
 <p><code>NaN</code>, represents <strong>Not a Number</strong>, usually appears when you divide 0 by 0.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="null.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span>
-<span id="cb354-2"><a href="null.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="null.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span>
+<span id="cb359-2"><a href="null.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
 <p>Again, it is worth to look at <code>str()</code>, <code>typeof()</code> and <code>length()</code> of <code>NaN</code>.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="null.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NaN</span>)</span>
-<span id="cb355-2"><a href="null.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num NaN</span></span>
-<span id="cb355-3"><a href="null.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NaN</span>)</span>
-<span id="cb355-4"><a href="null.html#cb355-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb355-5"><a href="null.html#cb355-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NaN</span>)</span>
-<span id="cb355-6"><a href="null.html#cb355-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="null.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">NaN</span>)</span>
+<span id="cb360-2"><a href="null.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num NaN</span></span>
+<span id="cb360-3"><a href="null.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">NaN</span>)</span>
+<span id="cb360-4"><a href="null.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb360-5"><a href="null.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NaN</span>)</span>
+<span id="cb360-6"><a href="null.html#cb360-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>As you can see from the results, <code>NaN</code> is a numeric vector of length 1, with the value <code>NaN</code>.</p>
 <p>To check if a value is <code>NaN</code>, you can’t use the <code>== NaN</code> similar to checking missing values, instead you need to use the function <code>is.nan()</code>.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="null.html#cb356-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
-<span id="cb356-2"><a href="null.html#cb356-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NaN</span>       <span class="do">##resulting an NA value</span></span>
-<span id="cb356-3"><a href="null.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb356-4"><a href="null.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(a)      <span class="do">##the correct way to check if the value is NaN</span></span>
-<span id="cb356-5"><a href="null.html#cb356-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb356-6"><a href="null.html#cb356-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NaN</span>))</span>
-<span id="cb356-7"><a href="null.html#cb356-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="null.html#cb361-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb361-2"><a href="null.html#cb361-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NaN</span>       <span class="do">##resulting an NA value</span></span>
+<span id="cb361-3"><a href="null.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb361-4"><a href="null.html#cb361-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(a)      <span class="do">##the correct way to check if the value is NaN</span></span>
+<span id="cb361-5"><a href="null.html#cb361-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb361-6"><a href="null.html#cb361-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NaN</span>))</span>
+<span id="cb361-7"><a href="null.html#cb361-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
 </div>
 <div id="Inf" class="section level3" number="3.6.3">
 <h3><span class="header-section-number">3.6.3</span> Inf</h3>
 <p>The last special we want to introduce in this section is <code>Inf</code>, representing the value is positive <strong>infinity</strong> (<span class="math inline">\(\infty\)</span>), corresponding to a proper mathematical limit. Similarly, we also have negative infinity: <code>-Inf</code>.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="null.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span></span>
-<span id="cb357-2"><a href="null.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
-<span id="cb357-3"><a href="null.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="dv">0</span></span>
-<span id="cb357-4"><a href="null.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -Inf</span></span>
-<span id="cb357-5"><a href="null.html#cb357-5" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">&gt;</span> <span class="dv">3</span></span>
-<span id="cb357-6"><a href="null.html#cb357-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb357-7"><a href="null.html#cb357-7" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb357-8"><a href="null.html#cb357-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb357-9"><a href="null.html#cb357-9" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">+</span> <span class="cn">Inf</span></span>
-<span id="cb357-10"><a href="null.html#cb357-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
-<span id="cb357-11"><a href="null.html#cb357-11" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="fl">1e10</span></span>
-<span id="cb357-12"><a href="null.html#cb357-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -Inf</span></span>
-<span id="cb357-13"><a href="null.html#cb357-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>        <span class="co">#it equals 0/0, hencing NaN</span></span>
-<span id="cb357-14"><a href="null.html#cb357-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="null.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span></span>
+<span id="cb362-2"><a href="null.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
+<span id="cb362-3"><a href="null.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="dv">0</span></span>
+<span id="cb362-4"><a href="null.html#cb362-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -Inf</span></span>
+<span id="cb362-5"><a href="null.html#cb362-5" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb362-6"><a href="null.html#cb362-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb362-7"><a href="null.html#cb362-7" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb362-8"><a href="null.html#cb362-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb362-9"><a href="null.html#cb362-9" aria-hidden="true" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">+</span> <span class="cn">Inf</span></span>
+<span id="cb362-10"><a href="null.html#cb362-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
+<span id="cb362-11"><a href="null.html#cb362-11" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="fl">1e10</span></span>
+<span id="cb362-12"><a href="null.html#cb362-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -Inf</span></span>
+<span id="cb362-13"><a href="null.html#cb362-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>        <span class="co">#it equals 0/0, hencing NaN</span></span>
+<span id="cb362-14"><a href="null.html#cb362-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
 <p>Again, it is worth to look at <code>str()</code>, <code>typeof()</code> and <code>length()</code> of <code>Inf</code>.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="null.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">Inf</span>)</span>
-<span id="cb358-2"><a href="null.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num Inf</span></span>
-<span id="cb358-3"><a href="null.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">Inf</span>)</span>
-<span id="cb358-4"><a href="null.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb358-5"><a href="null.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">Inf</span>)</span>
-<span id="cb358-6"><a href="null.html#cb358-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="null.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">Inf</span>)</span>
+<span id="cb363-2"><a href="null.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num Inf</span></span>
+<span id="cb363-3"><a href="null.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">Inf</span>)</span>
+<span id="cb363-4"><a href="null.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb363-5"><a href="null.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">Inf</span>)</span>
+<span id="cb363-6"><a href="null.html#cb363-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>As you can see from the results, similar to <code>NaN</code>, <code>Inf</code> is a numeric vector of length 1, but with the value <code>Inf</code>.</p>
 <p>To check whether a value is finite or infinite, you can use the <code>is.finite()</code> and <code>is.infinite()</code> function.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="null.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>)</span>
-<span id="cb359-2"><a href="null.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb359-3"><a href="null.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.infinite</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">/</span><span class="dv">0</span>)</span>
-<span id="cb359-4"><a href="null.html#cb359-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="null.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.finite</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>)</span>
+<span id="cb364-2"><a href="null.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb364-3"><a href="null.html#cb364-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.infinite</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">/</span><span class="dv">0</span>)</span>
+<span id="cb364-4"><a href="null.html#cb364-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
 <div id="a-comparison-of-the-four-special-values-in-r" class="section level3" number="3.6.4">
 <h3><span class="header-section-number">3.6.4</span> A comparison of the four special values in R</h3>
