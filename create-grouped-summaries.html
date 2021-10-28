@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.6 Create Grouped Summaries via group_by() and summarize() | R Programming: Zero to Pro</title>
   <meta name="description" content="6.6 Create Grouped Summaries via group_by() and summarize() | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.6 Create Grouped Summaries via group_by() and summarize() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="create-variables.html"/>
 <link rel="next" href="grouped-mutate-filter.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -656,7 +656,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="create-grouped-summaries.html#cb651-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
 <span id="cb651-2"><a href="create-grouped-summaries.html#cb651-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
 <span id="cb651-3"><a href="create-grouped-summaries.html#cb651-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_houses =</span> <span class="fu">n</span>(), <span class="at">ave_liv_area =</span> <span class="fu">mean</span>(liv_area), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">q_price =</span> <span class="fu">quantile</span>(sale_price, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb651-4"><a href="create-grouped-summaries.html#cb651-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span></code></pre></div>
+<span id="cb651-4"><a href="create-grouped-summaries.html#cb651-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span></code></pre></div>
 <p>From the output, you can see that for each value of <code>oa_qual</code>, we have two rows representing different quantile values. It is interesting to visualize the relationship between the <code>oa_qual</code> and the quantile price (<code>q_price</code>), with different colors for the 1st and 3rd quantile.</p>
 <div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="create-grouped-summaries.html#cb652-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
 <span id="cb652-2"><a href="create-grouped-summaries.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(oa_qual) <span class="sc">%&gt;%</span> </span>
@@ -664,9 +664,9 @@ div.csl-indent {
 <span id="cb652-4"><a href="create-grouped-summaries.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> oa_qual, <span class="at">y =</span> q_price, <span class="at">color =</span> <span class="fu">factor</span>(prob))) <span class="sc">+</span></span>
 <span id="cb652-5"><a href="create-grouped-summaries.html#cb652-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb652-6"><a href="create-grouped-summaries.html#cb652-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb652-7"><a href="create-grouped-summaries.html#cb652-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;oa_qual&#39; (override with `.groups` argument)</span></span>
+<span id="cb652-7"><a href="create-grouped-summaries.html#cb652-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;oa_qual&#39;. You can override using the `.groups` argument.</span></span>
 <span id="cb652-8"><a href="create-grouped-summaries.html#cb652-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-683-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-685-1.png" width="576" /></p>
 <p>This figure is very informative, showing that both the 1st quartile and 3rd quantile of the sale price increases as the overall quality increases.</p>
 </div>
 <div id="exercises-35" class="section level3" number="6.6.3">
@@ -674,7 +674,7 @@ div.csl-indent {
 <p>Using the <code>ahp</code> dataset and the pipe operator for the following exercises.</p>
 <ol style="list-style-type: decimal">
 <li><p>For each month when the house was sold, summarize the 1st and 3rd quartile of the sale price. Then, create a scatterplot between the month (x-axis) and the quartile of the sale price with different colors for 1st and 3rd quantile. Explain the findings from the figure.</p></li>
-<li><p>Someone has a conjecture that that the houses that are less than 30 years old have a higher sale price than the houses that are more than 30 years old. Show whether this is true in terms of maximum price, median price, and the minimum price for the houses in each group.</p></li>
+<li><p>Someone has a conjecture that when sold, the houses that are less than or equal to 30 years old have a higher sale price than the houses that are more than 30 years old. Show whether this is true in terms of maximum price, median price, and the minimum price for the houses in each group.</p></li>
 </ol>
 
 </div>
@@ -689,6 +689,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -728,10 +729,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

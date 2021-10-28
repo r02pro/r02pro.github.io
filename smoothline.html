@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.4 Smoothline Fits | R Programming: Zero to Pro</title>
   <meta name="description" content="4.4 Smoothline Fits | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.4 Smoothline Fits | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="aes.html"/>
 <link rel="next" href="multi-geom.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -644,7 +644,7 @@ div.csl-indent {
 <span id="cb413-3"><a href="smoothline.html#cb413-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb413-4"><a href="smoothline.html#cb413-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
 <span id="cb413-5"><a href="smoothline.html#cb413-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-435-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-437-1.png" width="576" /></p>
 <p>Perhaps it is helpful to review the code for generating a scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="smoothline.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p>We can see that the only difference is the use of different geoms. In fact, the mechanism of <code>geom_smooth()</code> is that it fits a smooth line according to the points of the given variable pair. By default, it uses the <strong>loess</strong> method (locally estimated scatterplot smoothing), which is a popular nonparametric regression technique. In addition to the smoothline, it also generates a shaded area, representing the confidence interval around the fitted smoothline. To hide this shaded area, you can add the argument <code>se = FALSE</code> as a global aesthetic.</p>
@@ -652,7 +652,7 @@ div.csl-indent {
 <p>In addition to the default loess method for smoothline fit, <code>geom_smooth()</code> also provides other smoothing methods. For example, we can set <code>method = "lm"</code> to fit a linear line.</p>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="smoothline.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
 <span id="cb416-2"><a href="smoothline.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-438-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-440-1.png" width="576" /></p>
 </div>
 <div id="aesthetics-in-smoothline-fits" class="section level3" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Aesthetics in Smoothline Fits</h3>
@@ -662,34 +662,34 @@ div.csl-indent {
 <p>When we map a variable to the <code>group</code> aesthetic, <code>geom_smooth</code> will first divide all the data points into different <em>groups</em> according to the variable value, and then fit a separate smoothline for each group.</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="smoothline.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">group =</span> good_qual))</span>
 <span id="cb418-2"><a href="smoothline.html#cb418-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-440-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-442-1.png" width="576" /></p>
 <p>You can see that two smoothlines are generated. However, it is not clear from the plot which group each smoothline corresponds to. To make the two smoothlines different, you can map the variable to other aesthetics.</p>
 <p><strong><em>b. Color</em></strong></p>
 <p>As in <code>geom_point()</code>, we can map the variable to the color aesthetic.</p>
 <div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="smoothline.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual))</span>
 <span id="cb419-2"><a href="smoothline.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-441-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-443-1.png" width="576" />
 This is a more informative plot than the one using <code>group</code> aesthetic as you can see the two smoothlines have different colors according to the <code>good_qual</code> variable.ß</p>
 <p><strong><em>c. Linetype</em></strong></p>
 <p>Another useful aesthetic that was not applicable in <code>geom_point()</code> is <code>linetype</code>, which controls the linetypes for each smoothline.</p>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="smoothline.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">linetype =</span> good_qual))</span>
 <span id="cb420-2"><a href="smoothline.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-442-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-444-1.png" width="576" />
 The plot shows a dashed line for the smoothline corresponding to <code>good_qual == TRUE</code>, and a solid line for the smoothline corresponding to <code>good_qual == FALSE</code>.</p>
 <p><strong><em>d. Size</em></strong></p>
 <p>You can also map <code>good_qual</code> to the <code>size</code> aesthetic, which controls the width of each smoothline fit.</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="smoothline.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">size =</span> good_qual))</span>
 <span id="cb421-2"><a href="smoothline.html#cb421-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-443-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-445-1.png" width="576" /></p>
 <p>It is worth to mention that <code>shape</code> is not a valid aesthetic for <code>geom_smooth</code> as it doesn’t make sense to talk about the shape of a line.</p>
 <div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="smoothline.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">shape =</span> good_qual))</span>
 <span id="cb422-2"><a href="smoothline.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-444-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-446-1.png" width="576" /></p>
 <p>When you try to map a variable to the <code>shape</code> aesthetic, <code>geom_smooth()</code> will show a warning message “Warning: Ignoring unknown aesthetics: shape,” and use the <code>group</code> aesthetic instead.</p>
 <p>Naturally, you can also have global aesthetic and it is straightforward to combine multiple aesthetics in the same plot.</p>
 <div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="smoothline.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">linetype =</span> <span class="dv">2</span>)</span>
 <span id="cb423-2"><a href="smoothline.html#cb423-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-445-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-447-1.png" width="576" /></p>
 </div>
 <div id="exercises-17" class="section level3" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Exercises</h3>
@@ -712,6 +712,7 @@ The plot shows a dashed line for the smoothline corresponding to <code>good_qual
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -751,10 +752,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

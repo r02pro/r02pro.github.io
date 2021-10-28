@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.17 Arrange Multiple Plots | R Programming: Zero to Pro</title>
   <meta name="description" content="4.17 Arrange Multiple Plots | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.17 Arrange Multiple Plots | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="errorbar.html"/>
 <link rel="next" href="customization.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -646,18 +646,18 @@ div.csl-indent {
 <p>The first function is called <code>facet_wrap()</code>, which generate separate plots for each category and wrap the plots into 2d panels.</p>
 <p>Let’s first divide to data according to <code>oa_qual</code>.</p>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="arrange-multi-plots.html#cb544-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-567-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-569-1.png" width="576" /></p>
 <p>You can see that there are nine different scatterplots between <code>sale_price</code> and <code>liv_area</code> according to the value of <code>oa_qual</code>. The scatterplots are nicely arranged in a 3-by-3 grid with the value of <code>oa_qual</code> on top of each subplot.</p>
 <p>Note that the scales of all nine plots are the same, which make it straightforward to compare between different groups. On the other hand, the points for some of the groups (e.g., <code>oa_qual == 5</code>) are scrambled together, making us difficult to see the details. To make the subplots having their own scales, you can set <code>scales = "free"</code>.</p>
 <div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="arrange-multi-plots.html#cb545-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;oa_qual&quot;</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-568-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-570-1.png" width="576" /></p>
 <p>From the plot, it is clear that each subplot has its own scale depending on the data range in the subset of the data. If you want to make the subplots to have fixed scale only on the x-axis or the y-axis, you can set <code>scales = "free_y"</code> or <code>scales = "free_x"</code> respectively.</p>
 <p>In addition to the default layout, you can set the desired number of rows or columns. For example, to arrange the plots in two rows for the variable <code>kit_qual</code>, you can use</p>
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="arrange-multi-plots.html#cb546-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;kit_qual&quot;</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-569-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-571-1.png" width="576" /></p>
 <p>In addition to using one variable to form the subgroups, you can also use multiple variables by using a vector of their names in the <code>facet_wrap()</code> function.</p>
 <div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="arrange-multi-plots.html#cb547-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;kit_qual&quot;</span>,<span class="st">&quot;central_air&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-570-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-572-1.png" width="576" /></p>
 <p>This will show the plots for combinations of <code>kit_qual</code> and <code>central_air</code>. For example, the top left plot is the scatterplot between <code>liv_area</code> and <code>sale_price</code> for houses with <code>kit_qual == "Average"</code> and <code>central_air == "Y"</code>. Let’s find out how many different values are there for <code>kit_qual</code> and <code>central_air</code>.</p>
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="arrange-multi-plots.html#cb548-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
 <span id="cb548-2"><a href="arrange-multi-plots.html#cb548-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span>
@@ -670,17 +670,17 @@ div.csl-indent {
 <div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="arrange-multi-plots.html#cb550-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb550-2"><a href="arrange-multi-plots.html#cb550-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual))</span>
 <span id="cb550-3"><a href="arrange-multi-plots.html#cb550-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="st">&quot;house_style&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-573-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-575-1.png" width="576" /></p>
 </div>
 <div id="facet-grid" class="section level3" number="4.17.2">
 <h3><span class="header-section-number">4.17.2</span> Facet grid</h3>
 <div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="arrange-multi-plots.html#cb551-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-574-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-576-1.png" width="576" /></p>
 <p>In addition to facet wrap, you can also use the function <code>facet_grid()</code> to form a matrix of plots defined by row and column faceting variables. It is mostly useful when you have two discrete variables, and most combinations of the variables exist in the data.</p>
 <p>Comparing with the plot generated by <code>facet_wrap()</code>, <code>facet_grid()</code> will also show empty plots if there are no observations with certain combinations, e.g. <code>kit_qual == "Excellent"</code> and <code>central_air == "N"</code>. This particular way to arrange plots is very informative.</p>
 <p>Similar to <code>facet_wrap()</code>, you can also allow the scales of each subplot to be different by setting the <code>scales</code> argument.</p>
 <div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="arrange-multi-plots.html#cb552-1" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(kit_qual), <span class="at">cols =</span> <span class="fu">vars</span>(central_air), <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-575-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-577-1.png" width="576" /></p>
 </div>
 <div id="exercises-28" class="section level3" number="4.17.3">
 <h3><span class="header-section-number">4.17.3</span> Exercises</h3>
@@ -703,6 +703,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -742,10 +743,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

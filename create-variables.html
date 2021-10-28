@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro</title>
   <meta name="description" content="6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="select-variables.html"/>
 <link rel="next" href="create-grouped-summaries.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -678,9 +678,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="create-variables.html#cb646-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
 <span id="cb646-2"><a href="create-variables.html#cb646-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
 <span id="cb646-3"><a href="create-variables.html#cb646-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb646-4"><a href="create-variables.html#cb646-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` input `area`.</span></span>
-<span id="cb646-5"><a href="create-variables.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span>
-<span id="cb646-6"><a href="create-variables.html#cb646-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Input `area` is `lot_area + liv_area`.</span></span></code></pre></div>
+<span id="cb646-4"><a href="create-variables.html#cb646-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` column `area`.</span></span>
+<span id="cb646-5"><a href="create-variables.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ `area = lot_area + liv_area`.</span></span>
+<span id="cb646-6"><a href="create-variables.html#cb646-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span></code></pre></div>
 <p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the order of each house in terms of sale price, you can use <code>mutate(sale_price_order = order(sale_price))</code>. To create a variable as the mean of the sale prices of all houses, you can add <code>sale_price_ave = mean(sale_price)</code> as an argument in the <code>mutate()</code> function.</p>
 <div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="create-variables.html#cb647-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span></span>
 <span id="cb647-2"><a href="create-variables.html#cb647-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">%&gt;%</span></span>
@@ -701,7 +701,7 @@ div.csl-indent {
 <span id="cb648-2"><a href="create-variables.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area) <span class="sc">%&gt;%</span></span>
 <span id="cb648-3"><a href="create-variables.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb648-4"><a href="create-variables.html#cb648-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> ave_price, <span class="at">color =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-679-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-681-1.png" width="576" /></p>
 <p>This plots shows that the average sale price does not have a trend when the total area changes. In addition, the “good” quality houses (<code>oa_qual &gt; 5</code>) has a higher <code>ave_price</code> in general when the total area is the same.</p>
 <p>Using the <code>mutate()</code> function, we add newly created variable while keeping all the existing ones. If you want to only keep the newly created variables, you can use the <code>transmute()</code> function.</p>
 <div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="create-variables.html#cb649-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
@@ -739,6 +739,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -778,10 +779,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

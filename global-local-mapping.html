@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.6 Global and Local Aesthetic Mappings | R Programming: Zero to Pro</title>
   <meta name="description" content="4.6 Global and Local Aesthetic Mappings | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.6 Global and Local Aesthetic Mappings | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="multi-geom.html"/>
 <link rel="next" href="line-plot.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -641,7 +641,7 @@ div.csl-indent {
 <span id="cb430-3"><a href="global-local-mapping.html#cb430-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb430-4"><a href="global-local-mapping.html#cb430-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
 <span id="cb430-5"><a href="global-local-mapping.html#cb430-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-451-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-453-1.png" width="576" /></p>
 <p>You may notice that the arguments inside <code>geom_point()</code> and <code>geom_smooth()</code> are identical. Now, thinking about if we want to generate another plot by replacing the <code>liv_area</code> with <code>lot_area</code> (the size of lot area), both instances of <code>liv_area</code> need to be changed to <code>lot_area</code>, which is a bit cumbersome. It turns out we can use the so-called <strong>global mapping</strong> to simplify the code. Correspondingly, we call a mapping inside a specific geom <strong>local mapping</strong>.</p>
 <p>To use the global mapping, we move the <code>mapping</code> argument from the geoms into the <code>ggplot()</code> function.</p>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="global-local-mapping.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
@@ -651,19 +651,19 @@ div.csl-indent {
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="global-local-mapping.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span></span>
 <span id="cb432-2"><a href="global-local-mapping.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb432-3"><a href="global-local-mapping.html#cb432-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-453-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
 <p>Clearly, the use of global mapping greatly simplify our code as we would need to repeat the same mapping argument in both geoms.</p>
 <p>In addition to using the same mapping in each geom as the global mapping, we can also extend or overwrite the global mapping in each geom.</p>
 <div id="extend-global-aesthetic-mappings" class="section level3" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Extend Global Aesthetic Mappings</h3>
 <p>In addition to the global aesthetic mappings, you can add additional mappings in each geom.</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="global-local-mapping.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">linetype =</span> kit_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-454-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-456-1.png" width="576" /></p>
 <p>Here, both <code>geom_point()</code> and <code>geom_smooth()</code> will first inherit the global mappings, then add the <code>shape</code> and <code>linetype</code> aesthetics, respectively. As you can see from the legend, there are some missing values for the variable <code>gar_car</code>. If you want to remove the observations that has a missing <code>gar_car</code>, you can use the function <code>remove_missing()</code>.</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="global-local-mapping.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;gar_car&quot;</span>), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span></span>
 <span id="cb434-2"><a href="global-local-mapping.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
 <span id="cb434-3"><a href="global-local-mapping.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">linetype =</span> kit_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-457-1.png" width="576" /></p>
 <p>In the <code>remove_missing()</code> function, we use the argument <code>vars = "gar_car"</code> to indicate that only the observaitons with a missing <code>gar_car</code> are removed. Note that you may be tempting to use the function <code>na.omit()</code> on the data <code>sahp</code>. However, it is not recommended as the function will remove all observations whenever there is missing value for one variable, even if the variable is not used in the visualization process.</p>
 </div>
 <div id="overwrite-global-aesthetic-mappings" class="section level3" number="4.6.2">
@@ -672,18 +672,18 @@ div.csl-indent {
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="global-local-mapping.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span></span>
 <span id="cb435-2"><a href="global-local-mapping.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
 <span id="cb435-3"><a href="global-local-mapping.html#cb435-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gar_car <span class="sc">&gt;</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-456-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-458-1.png" width="576" /></p>
 <p>Here, you can see that the <code>color</code> aesthetic mapping corresponding to the logical variable <code>gar_car &gt; 1</code>.</p>
 <p>It is worth to note the difference between <em>global aesthetics</em> (introduced in Section <a href="aes.html#aes">4.3</a>) and the <em>global aesthetic mappings</em> introduced here. The <em>global aesthetics</em> set the aesthetic for all points/lines on the graph while the <em>global aesthetic mapping</em> represents the mapping which will be passed to all geoms. Although we can set <em>global aesthetic mappings</em>, it is impossible to set <em>global global aesthetics</em>. Let’s try to set all points and lines to be red.</p>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="global-local-mapping.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb436-2"><a href="global-local-mapping.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb436-3"><a href="global-local-mapping.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-457-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-459-1.png" width="576" /></p>
 <p>As you can see the <code>color = "red"</code> argument was ignored during the plotting process. To achieve this, you need to use <code>color = "red"</code> as global aesthetics for both geoms as below.</p>
 <div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="global-local-mapping.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lot_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
 <span id="cb437-2"><a href="global-local-mapping.html#cb437-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb437-3"><a href="global-local-mapping.html#cb437-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-458-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-460-1.png" width="576" /></p>
 </div>
 <div id="mix" class="section level3" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> Mix</h3>
@@ -691,7 +691,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="global-local-mapping.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;kit_qual&quot;</span>), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> kit_qual)) <span class="sc">+</span></span>
 <span id="cb438-2"><a href="global-local-mapping.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb438-3"><a href="global-local-mapping.html#cb438-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-459-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-461-1.png" width="576" /></p>
 <p>Note that we again use the <code>remove_missing()</code> function to remove observations with missing <code>kit_qual</code>.</p>
 </div>
 <div id="exercises-19" class="section level3" number="4.6.4">
@@ -716,6 +716,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -755,10 +756,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

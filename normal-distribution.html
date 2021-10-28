@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.1 Normal Distribution | R Programming: Zero to Pro</title>
   <meta name="description" content="9.1 Normal Distribution | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.1 Normal Distribution | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="statistics.html"/>
 <link rel="next" href="other-distributions.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -726,7 +726,7 @@ random number generator
 <span id="cb691-2"><a href="normal-distribution.html#cb691-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
 <span id="cb691-3"><a href="normal-distribution.html#cb691-3" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x))</span>
 <span id="cb691-4"><a href="normal-distribution.html#cb691-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pdf))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-724-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-726-1.png" width="576" /></p>
 <p>Next, you can take a step further to visualize three different normal distributions in the same plot, <span class="math inline">\(N(0,1)\)</span>, <span class="math inline">\(N(1,4)\)</span>, and <span class="math inline">\(N(-1, 0.25)\)</span>. You can use the same vector <code>x</code> and compute the three pdfs on each element of <code>x</code>. <code>geom_line</code> is still used with the variable <code>dist</code> mapped to the <code>color</code> aesthetic.</p>
 <div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="normal-distribution.html#cb692-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
 <span id="cb692-2"><a href="normal-distribution.html#cb692-2" aria-hidden="true" tabindex="-1"></a>norm_dat_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(0,1)&quot;</span>, <span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x))</span>
@@ -734,7 +734,7 @@ random number generator
 <span id="cb692-4"><a href="normal-distribution.html#cb692-4" aria-hidden="true" tabindex="-1"></a>norm_dat_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(-1, 0.25)&quot;</span>, <span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>))</span>
 <span id="cb692-5"><a href="normal-distribution.html#cb692-5" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(norm_dat_1, norm_dat_2, norm_dat_3)</span>
 <span id="cb692-6"><a href="normal-distribution.html#cb692-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pdf, <span class="at">color =</span> dist))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-725-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-727-1.png" width="576" /></p>
 </div>
 <div id="cdf" class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Cumulative distribution function (cdf)</h3>
@@ -746,7 +746,7 @@ random number generator
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="normal-distribution.html#cb694-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
 <span id="cb694-2"><a href="normal-distribution.html#cb694-2" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">q =</span> q, <span class="at">cdf =</span> <span class="fu">pnorm</span>(q))</span>
 <span id="cb694-3"><a href="normal-distribution.html#cb694-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">y =</span> cdf))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-727-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-729-1.png" width="576" /></p>
 </div>
 <div id="qf" class="section level3" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> Quantile function</h3>
@@ -762,7 +762,7 @@ Let’s see a few examples for computing the quantiles.</p>
 <div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="normal-distribution.html#cb697-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span>  <span class="fl">0.01</span>, <span class="at">to =</span> <span class="fl">0.99</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
 <span id="cb697-2"><a href="normal-distribution.html#cb697-2" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
 <span id="cb697-3"><a href="normal-distribution.html#cb697-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-730-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-732-1.png" width="576" /></p>
 </div>
 <div id="rng" class="section level3" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Random Number Generator</h3>
@@ -807,6 +807,7 @@ Let’s see a few examples for computing the quantiles.</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -846,10 +847,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }

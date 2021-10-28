@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Aesthetics in ggplot | R Programming: Zero to Pro</title>
   <meta name="description" content="4.3 Aesthetics in ggplot | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Aesthetics in ggplot | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-26" />
+<meta name="date" content="2021-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="scatterplots.html"/>
 <link rel="next" href="smoothline.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -588,9 +588,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -645,35 +645,35 @@ div.csl-indent {
 <span id="cb391-2"><a href="aes.html#cb391-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb391-3"><a href="aes.html#cb391-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb391-4"><a href="aes.html#cb391-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-414-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-416-1.png" width="576" /></p>
 <p>Now, let’s see how to set <strong>global aethetics</strong> in <code>geom_point()</code>.</p>
 <p><strong><em>a. Color</em></strong></p>
 <p>To change the color of all points, you can set the <code>color</code> argument in the <code>geom_point()</code> function. Note that it is placed outside of the <code>aes()</code> function.</p>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="aes.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb392-2"><a href="aes.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-415-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-417-1.png" width="576" /></p>
 <p>Clearly, all points are changed to red.</p>
 <p><strong><em>b. Size</em></strong></p>
 <p>Similarly, you can set the <code>size</code> element in the <code>geom_point()</code> function to change the size of the all points.</p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="aes.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb393-2"><a href="aes.html#cb393-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-416-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-418-1.png" width="576" /></p>
 <p>You may notice that the points are now bigger than before. Looking at the plot, many points are overlapping with each other, which is sometimes called <strong>overplotting</strong>. To solve this issue, you can change the transparency level of the points by setting the <code>alpha</code> argument.</p>
 <p><strong><em>c. Transparency</em></strong></p>
 <div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="aes.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb394-2"><a href="aes.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-417-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-419-1.png" width="576" /></p>
 <p>By setting <code>alpha = 0.5</code>, the points become more visible and the overplotting problem is largely alleviated.</p>
 <p><strong><em>d. Shape</em></strong></p>
 <p>Lastly, we can also change the shape of the points from the default one (circle) to other shapes by the <code>shape</code> argument in <code>geom_point()</code>.</p>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="aes.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb395-2"><a href="aes.html#cb395-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">shape =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-418-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-420-1.png" width="576" /></p>
 <p><strong><em>e. Multiple Aesthetics</em></strong></p>
 <p>Of course, we can combine multiple global aesthetics in the same plot.</p>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="aes.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb396-2"><a href="aes.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-419-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-421-1.png" width="576" /></p>
 <p>Here, we have all points red, size of 3, and of triangle shape.</p>
 </div>
 <div id="map-discrete-aes" class="section level3" number="4.3.2">
@@ -688,30 +688,30 @@ div.csl-indent {
 <p>Sometimes, you may want to use specific colors for different values of the factor. To customize the colors, you can add a layer to the ggplot with function <code>scale_colour_manual</code> with argument <code>values</code> containing a character vector consisting of the colors.</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="aes.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb398-2"><a href="aes.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> house_style), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-420-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-422-1.png" width="576" /></p>
 <p>Similarly, you can also map <code>central_air</code> to <code>color</code>.</p>
 <div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="aes.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb399-2"><a href="aes.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> central_air), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-421-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-423-1.png" width="576" /></p>
 <p>The plot tells us the majority of the houses have central AC and the ones without it have relatively lower sale price.</p>
 <p><strong><em>b. Size</em></strong></p>
 <p>In addition to color, you can also map a discrete variable to the size aesthetic.</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="aes.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb400-2"><a href="aes.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">size =</span> house_style), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-422-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-424-1.png" width="576" />
 You can see from the plot that the sizes of the points are now different according to the <code>house_style</code>. To alleviate the overplotting issue, we added a global aesthetic <code>alpha = 0.5</code>, making all points more transparent.</p>
 <p>There is a warning message: “Using size for a discrete variable is not advised.” The reason is that different sizes may implicitly indicate a particular ordering of the groups, which are usually not clear for a discrete variable.</p>
 <p><strong><em>c. Shape</em></strong></p>
 <p>We can also map a discrete variable to the <code>shape</code> aesthetic.</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="aes.html#cb401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb401-2"><a href="aes.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">shape =</span> house_style), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-423-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-425-1.png" width="576" />
 Again, we added global aesthetics <code>size</code> and <code>alpha</code> to make the points more visible.</p>
 <p><strong><em>d. Multiple mappings</em></strong></p>
 <p>Just like global aesthetics, you can also have multiple mappings for aesthetics, and mix them with the global aesthetic when necessary.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="aes.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb402-2"><a href="aes.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> house_style, <span class="at">shape =</span> central_air), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-424-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-426-1.png" width="576" /></p>
 <p>Here, we can see the points have different colors according to <code>house_style</code> and are of different shapes depending on the value of <code>central_air</code>. Note that there are two legends on the plot showing the color and shape, respectively.</p>
 </div>
 <div id="change-legend-order-via-factors" class="section level3" number="4.3.3">
@@ -719,12 +719,12 @@ Again, we added global aesthetics <code>size</code> and <code>alpha</code> to ma
 <p>Let’s first generate a scatterplot between <code>liv_area</code> and <code>sale_price</code> where we map the <code>heat_qual</code> (heating quality) to the <code>color</code> aesthetic.</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="aes.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb403-2"><a href="aes.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> heat_qual), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-425-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-427-1.png" width="576" />
 Looking at the legend, you can see that different <code>heat_qual</code> values are in alphabetical order as introduced in Section <a href="sort-vector.html#sort-vector">2.4</a> when we introduced the ordering of character vectors. Sometimes, you may want to arrange these values in a different order in the plot, for example from the worst to the best. To achieve this, you can use the <code>factor()</code> function with the argument <code>levels</code> which specifies the desired order.</p>
 <div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="aes.html#cb404-1" aria-hidden="true" tabindex="-1"></a>sahp<span class="sc">$</span>heat_qual <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>heat_qual, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>,<span class="st">&quot;Average&quot;</span>,<span class="st">&quot;Good&quot;</span>,<span class="st">&quot;Excellent&quot;</span>))</span>
 <span id="cb404-2"><a href="aes.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb404-3"><a href="aes.html#cb404-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> heat_qual), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-426-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-428-1.png" width="576" />
 After changing the <code>heat_qual</code> variable to a factor with desired levels, you can see the order in the legend changes accordingly.</p>
 </div>
 <div id="map-continous-aes" class="section level3" number="4.3.4">
@@ -734,12 +734,12 @@ After changing the <code>heat_qual</code> variable to a factor with desired leve
 Let’s again start with the color aesthetic by mapping <code>oa_qual</code> to <code>color</code>.</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="aes.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb405-2"><a href="aes.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> oa_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-427-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-429-1.png" width="576" />
 Here, we can see the color of all points vary from dark blue to light blue, depending on the value of <code>oa_qual</code>. Instead of showing different colors in the discrete variable case, the legend now displays a bar showing a continuous color scale according to the value of <code>oa_qual</code>. To customize the color scale, you can add another lay using the function <code>scale_color_continuous</code> with arguments <code>low</code> and <code>high</code> being two colors corresponding to the colors when the variable is of low and high values, respectively.</p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="aes.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb406-2"><a href="aes.html#cb406-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> oa_qual)) <span class="sc">+</span> </span>
 <span id="cb406-3"><a href="aes.html#cb406-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">low =</span> <span class="st">&quot;green&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-428-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-430-1.png" width="576" />
 Here, the low value of <code>oa_qual</code> is mapped to green color and the high value of <code>oa_qual</code> is mapped to red color. You can also try out the following examples.</p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="aes.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb407-2"><a href="aes.html#cb407-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> oa_qual)) <span class="sc">+</span> </span>
@@ -751,7 +751,7 @@ Here, the low value of <code>oa_qual</code> is mapped to green color and the hig
 <p>In addition to the color aesthetic, we can also map continuous variables to the size aesthetic.</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="aes.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb409-2"><a href="aes.html#cb409-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">size =</span> lot_area))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-431-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-433-1.png" width="576" />
 In this example, you can see the points corresponding to larger <code>lot_area</code> values are larger than those corresponding to smaller <code>lot_area</code> values. Note that although the legend only shows three different sizes, the actual size of the point is continuous corresponding to the value of <code>lot_area</code>.</p>
 <p>How about the shape aesthetic? Can we map a continuous variable to it? Let’s try it.</p>
 <div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="aes.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
@@ -763,12 +763,12 @@ In this example, you can see the points corresponding to larger <code>lot_area</
 <p>Lastly, you can also create logical variables on the fly and map them to aesthetics. For example, if you want to differentiate the points according to whether the value of <code>lot_area</code> is larger than 1e4, a logical variable <code>lot_area &gt; 1e4</code> can be created.</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="aes.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb411-2"><a href="aes.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">shape =</span> lot_area <span class="sc">&gt;</span> <span class="fl">1e4</span>), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-433-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-435-1.png" width="576" /></p>
 <p>We can see the houses with <code>lot_area</code> larger than 1e4 are of different shapes from those with less than 1e4 in lot area.</p>
 <p>Let’s see another example where we want to highlight the different between two-story houses from the other types.</p>
 <div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="aes.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb412-2"><a href="aes.html#cb412-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-434-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-436-1.png" width="576" /></p>
 <p>Now, the two-story houses are triangles and other houses are circles.</p>
 <p>Clearly, you can easily create new logical variables using any logical operations on existing variables, and map them into any aesthetics just like the existing categorical variables.</p>
 </div>
@@ -795,6 +795,7 @@ In this example, you can see the points corresponding to larger <code>lot_area</
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -834,10 +835,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
