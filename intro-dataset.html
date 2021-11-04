@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.1 Introduction to the Ames Housing Price Data Set | R Programming: Zero to Pro</title>
   <meta name="description" content="4.1 Introduction to the Ames Housing Price Data Set | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.1 Introduction to the Ames Housing Price Data Set | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-10-28" />
+<meta name="date" content="2021-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="data-visualization.html"/>
 <link rel="next" href="scatterplots.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -312,18 +312,21 @@ div.csl-indent {
 <li class="chapter" data-level="3.2.2" data-path="array.html"><a href="array.html#array-subsetting"><i class="fa fa-check"></i><b>3.2.2</b> Array subsetting</a></li>
 <li class="chapter" data-level="3.2.3" data-path="array.html"><a href="array.html#operators-and-functions-on-arrays"><i class="fa fa-check"></i><b>3.2.3</b> Operators and functions on arrays</a></li>
 <li class="chapter" data-level="3.2.4" data-path="array.html"><a href="array.html#apply-functions-along-certain-dimensions"><i class="fa fa-check"></i><b>3.2.4</b> Apply functions along certain dimension(s)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="array.html"><a href="array.html#exercises-15"><i class="fa fa-check"></i><b>3.2.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>3.3</b> Data Frame</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="dataframe.html"><a href="dataframe.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.3.1</b> Introduction to Data Frames</a></li>
 <li class="chapter" data-level="3.3.2" data-path="dataframe.html"><a href="dataframe.html#adding-observations-or-variables-in-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Adding Observations or Variables in Data Frames</a></li>
 <li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subset_df"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting Data Frames</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataframe.html"><a href="dataframe.html#exercises-16"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>3.4</b> Tibble</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="tibble.html"><a href="tibble.html#introduction-to-tibbles"><i class="fa fa-check"></i><b>3.4.1</b> Introduction to tibbles</a></li>
 <li class="chapter" data-level="3.4.2" data-path="tibble.html"><a href="tibble.html#adding-observations-or-variables-in-tibbles"><i class="fa fa-check"></i><b>3.4.2</b> Adding Observations or Variables in Tibbles</a></li>
 <li class="chapter" data-level="3.4.3" data-path="tibble.html"><a href="tibble.html#tibble-subsetting"><i class="fa fa-check"></i><b>3.4.3</b> Tibble subsetting</a></li>
+<li class="chapter" data-level="3.4.4" data-path="tibble.html"><a href="tibble.html#exercises-17"><i class="fa fa-check"></i><b>3.4.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>3.5</b> List</a>
 <ul>
@@ -332,6 +335,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.5.3" data-path="list.html"><a href="list.html#list-inside-a-list"><i class="fa fa-check"></i><b>3.5.3</b> List inside a list</a></li>
 <li class="chapter" data-level="3.5.4" data-path="list.html"><a href="list.html#unlist-a-list"><i class="fa fa-check"></i><b>3.5.4</b> Unlist a list</a></li>
 <li class="chapter" data-level="3.5.5" data-path="list.html"><a href="list.html#apply-functions-for-each-element-of-a-list"><i class="fa fa-check"></i><b>3.5.5</b> Apply functions for each element of a list</a></li>
+<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#exercises-18"><i class="fa fa-check"></i><b>3.5.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>3.6</b> NULL, NaN, and Inf</a>
 <ul>
@@ -339,8 +343,12 @@ div.csl-indent {
 <li class="chapter" data-level="3.6.2" data-path="null.html"><a href="null.html#NaN"><i class="fa fa-check"></i><b>3.6.2</b> NaN</a></li>
 <li class="chapter" data-level="3.6.3" data-path="null.html"><a href="null.html#Inf"><i class="fa fa-check"></i><b>3.6.3</b> Inf</a></li>
 <li class="chapter" data-level="3.6.4" data-path="null.html"><a href="null.html#a-comparison-of-the-four-special-values-in-r"><i class="fa fa-check"></i><b>3.6.4</b> A comparison of the four special values in R</a></li>
+<li class="chapter" data-level="3.6.5" data-path="null.html"><a href="null.html#exercises-19"><i class="fa fa-check"></i><b>3.6.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="summary-r-objects.html"><a href="summary-r-objects.html"><i class="fa fa-check"></i><b>3.7</b> Summary of R Objects</a></li>
+<li class="chapter" data-level="3.7" data-path="summary-r-objects.html"><a href="summary-r-objects.html"><i class="fa fa-check"></i><b>3.7</b> Summary of R Objects</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="summary-r-objects.html"><a href="summary-r-objects.html#exercises-20"><i class="fa fa-check"></i><b>3.7.1</b> Exercises</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>4</b> Data Visualization</a>
 <ul>
@@ -354,7 +362,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="scatterplots.html"><a href="scatterplots.html#using-the-plot-function"><i class="fa fa-check"></i><b>4.2.1</b> Using the <code>plot()</code> function</a></li>
 <li class="chapter" data-level="4.2.2" data-path="scatterplots.html"><a href="scatterplots.html#point"><i class="fa fa-check"></i><b>4.2.2</b> Using the <code>ggplot()</code> function</a></li>
-<li class="chapter" data-level="4.2.3" data-path="scatterplots.html"><a href="scatterplots.html#exercises-15"><i class="fa fa-check"></i><b>4.2.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.2.3" data-path="scatterplots.html"><a href="scatterplots.html#exercises-21"><i class="fa fa-check"></i><b>4.2.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="aes.html"><a href="aes.html"><i class="fa fa-check"></i><b>4.3</b> Aesthetics in ggplot</a>
 <ul>
@@ -363,58 +371,58 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.3" data-path="aes.html"><a href="aes.html#change-legend-order-via-factors"><i class="fa fa-check"></i><b>4.3.3</b> Change Legend Order via Factors</a></li>
 <li class="chapter" data-level="4.3.4" data-path="aes.html"><a href="aes.html#map-continous-aes"><i class="fa fa-check"></i><b>4.3.4</b> Map Continuous Variables to Aesthetics</a></li>
 <li class="chapter" data-level="4.3.5" data-path="aes.html"><a href="aes.html#map-converted-logical-variable-to-aesthetics"><i class="fa fa-check"></i><b>4.3.5</b> Map Converted Logical Variable to Aesthetics</a></li>
-<li class="chapter" data-level="4.3.6" data-path="aes.html"><a href="aes.html#exercises-16"><i class="fa fa-check"></i><b>4.3.6</b> Exercises</a></li>
+<li class="chapter" data-level="4.3.6" data-path="aes.html"><a href="aes.html#exercises-22"><i class="fa fa-check"></i><b>4.3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="smoothline.html"><a href="smoothline.html"><i class="fa fa-check"></i><b>4.4</b> Smoothline Fits</a>
 <ul>
 <li class="chapter" data-level="4.4.1" data-path="smoothline.html"><a href="smoothline.html#creating-smoothline-fits-using-geom_smooth"><i class="fa fa-check"></i><b>4.4.1</b> Creating Smoothline Fits using <code>geom_smooth()</code></a></li>
 <li class="chapter" data-level="4.4.2" data-path="smoothline.html"><a href="smoothline.html#aesthetics-in-smoothline-fits"><i class="fa fa-check"></i><b>4.4.2</b> Aesthetics in Smoothline Fits</a></li>
-<li class="chapter" data-level="4.4.3" data-path="smoothline.html"><a href="smoothline.html#exercises-17"><i class="fa fa-check"></i><b>4.4.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.4.3" data-path="smoothline.html"><a href="smoothline.html#exercises-23"><i class="fa fa-check"></i><b>4.4.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="multi-geom.html"><a href="multi-geom.html"><i class="fa fa-check"></i><b>4.5</b> Multiple geoms and Aesthetics</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="multi-geom.html"><a href="multi-geom.html#exercises-18"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
+<li class="chapter" data-level="4.5.1" data-path="multi-geom.html"><a href="multi-geom.html#exercises-24"><i class="fa fa-check"></i><b>4.5.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="global-local-mapping.html"><a href="global-local-mapping.html"><i class="fa fa-check"></i><b>4.6</b> Global and Local Aesthetic Mappings</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="global-local-mapping.html"><a href="global-local-mapping.html#extend-global-aesthetic-mappings"><i class="fa fa-check"></i><b>4.6.1</b> Extend Global Aesthetic Mappings</a></li>
 <li class="chapter" data-level="4.6.2" data-path="global-local-mapping.html"><a href="global-local-mapping.html#overwrite-global-aesthetic-mappings"><i class="fa fa-check"></i><b>4.6.2</b> Overwrite Global Aesthetic Mappings</a></li>
 <li class="chapter" data-level="4.6.3" data-path="global-local-mapping.html"><a href="global-local-mapping.html#mix"><i class="fa fa-check"></i><b>4.6.3</b> Mix</a></li>
-<li class="chapter" data-level="4.6.4" data-path="global-local-mapping.html"><a href="global-local-mapping.html#exercises-19"><i class="fa fa-check"></i><b>4.6.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.6.4" data-path="global-local-mapping.html"><a href="global-local-mapping.html#exercises-25"><i class="fa fa-check"></i><b>4.6.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>4.7</b> Line Plots</a>
 <ul>
 <li class="chapter" data-level="4.7.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>4.7.1</b> Line Plots via <code>plot()</code></a></li>
 <li class="chapter" data-level="4.7.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>4.7.2</b> Line Plots via <code>geom_line()</code></a></li>
 <li class="chapter" data-level="4.7.3" data-path="line-plot.html"><a href="line-plot.html#aesthetics-in-line-plots"><i class="fa fa-check"></i><b>4.7.3</b> Aesthetics in Line Plots</a></li>
-<li class="chapter" data-level="4.7.4" data-path="line-plot.html"><a href="line-plot.html#exercises-20"><i class="fa fa-check"></i><b>4.7.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.7.4" data-path="line-plot.html"><a href="line-plot.html#exercises-26"><i class="fa fa-check"></i><b>4.7.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.8" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>4.8</b> Add Auxiliary Lines</a>
 <ul>
 <li class="chapter" data-level="4.8.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>4.8.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
 <li class="chapter" data-level="4.8.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>4.8.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
-<li class="chapter" data-level="4.8.3" data-path="add-auxiliary.html"><a href="add-auxiliary.html#exercises-21"><i class="fa fa-check"></i><b>4.8.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.8.3" data-path="add-auxiliary.html"><a href="add-auxiliary.html#exercises-27"><i class="fa fa-check"></i><b>4.8.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.9" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>4.9</b> Jitter and Count Plots</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>4.9.1</b> Overplotting</a></li>
 <li class="chapter" data-level="4.9.2" data-path="jitter-count.html"><a href="jitter-count.html#jitter"><i class="fa fa-check"></i><b>4.9.2</b> Jittering</a></li>
 <li class="chapter" data-level="4.9.3" data-path="jitter-count.html"><a href="jitter-count.html#count"><i class="fa fa-check"></i><b>4.9.3</b> Counts Plots</a></li>
-<li class="chapter" data-level="4.9.4" data-path="jitter-count.html"><a href="jitter-count.html#exercises-22"><i class="fa fa-check"></i><b>4.9.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.9.4" data-path="jitter-count.html"><a href="jitter-count.html#exercises-28"><i class="fa fa-check"></i><b>4.9.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts via geom_bar()</a>
 <ul>
 <li class="chapter" data-level="4.10.1" data-path="bar-charts.html"><a href="bar-charts.html#an-introduction-to-bar-chart"><i class="fa fa-check"></i><b>4.10.1</b> An Introduction to Bar Chart</a></li>
 <li class="chapter" data-level="4.10.2" data-path="bar-charts.html"><a href="bar-charts.html#reordering-bar-chart"><i class="fa fa-check"></i><b>4.10.2</b> Reordering Bars in Bar Charts</a></li>
 <li class="chapter" data-level="4.10.3" data-path="bar-charts.html"><a href="bar-charts.html#aesthetics-in-bar-charts"><i class="fa fa-check"></i><b>4.10.3</b> Aesthetics in Bar Charts</a></li>
-<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#exercises-23"><i class="fa fa-check"></i><b>4.10.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#exercises-29"><i class="fa fa-check"></i><b>4.10.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.11" data-path="customization-axes.html"><a href="customization-axes.html"><i class="fa fa-check"></i><b>4.11</b> Customization of x and y Axes</a>
 <ul>
 <li class="chapter" data-level="4.11.1" data-path="customization-axes.html"><a href="customization-axes.html#customizing-the-breaks-on-the-x-and-y-axes"><i class="fa fa-check"></i><b>4.11.1</b> Customizing the Breaks on the x and y Axes</a></li>
 <li class="chapter" data-level="4.11.2" data-path="customization-axes.html"><a href="customization-axes.html#zoom-in-to-a-specific-region-of-the-data"><i class="fa fa-check"></i><b>4.11.2</b> Zoom In to a Specific Region of the Data</a></li>
 <li class="chapter" data-level="4.11.3" data-path="customization-axes.html"><a href="customization-axes.html#plot-with-transformed-variables-and-log-scale-plot"><i class="fa fa-check"></i><b>4.11.3</b> Plot with Transformed Variables and Log-scale Plot</a></li>
-<li class="chapter" data-level="4.11.4" data-path="customization-axes.html"><a href="customization-axes.html#exercises-24"><i class="fa fa-check"></i><b>4.11.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.11.4" data-path="customization-axes.html"><a href="customization-axes.html#exercises-30"><i class="fa fa-check"></i><b>4.11.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.12" data-path="histogram.html"><a href="histogram.html"><i class="fa fa-check"></i><b>4.12</b> Histograms</a>
 <ul>
@@ -422,12 +430,12 @@ div.csl-indent {
 <li class="chapter" data-level="4.12.2" data-path="histogram.html"><a href="histogram.html#using-the-geom_histogram-function"><i class="fa fa-check"></i><b>4.12.2</b> Using the <code>geom_histogram()</code> function</a></li>
 <li class="chapter" data-level="4.12.3" data-path="histogram.html"><a href="histogram.html#aesthetics-in-geom_histogram"><i class="fa fa-check"></i><b>4.12.3</b> Aesthetics in <code>geom_histogram()</code></a></li>
 <li class="chapter" data-level="4.12.4" data-path="histogram.html"><a href="histogram.html#density-estimate-using-histograms"><i class="fa fa-check"></i><b>4.12.4</b> Density Estimate Using Histograms</a></li>
-<li class="chapter" data-level="4.12.5" data-path="histogram.html"><a href="histogram.html#exercises-25"><i class="fa fa-check"></i><b>4.12.5</b> Exercises</a></li>
+<li class="chapter" data-level="4.12.5" data-path="histogram.html"><a href="histogram.html#exercises-31"><i class="fa fa-check"></i><b>4.12.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.13" data-path="density-plot.html"><a href="density-plot.html"><i class="fa fa-check"></i><b>4.13</b> Density Plots</a>
 <ul>
 <li class="chapter" data-level="4.13.1" data-path="density-plot.html"><a href="density-plot.html#aesthetics-in-density-plots"><i class="fa fa-check"></i><b>4.13.1</b> Aesthetics in Density Plots</a></li>
-<li class="chapter" data-level="4.13.2" data-path="density-plot.html"><a href="density-plot.html#exercises-26"><i class="fa fa-check"></i><b>4.13.2</b> Exercises</a></li>
+<li class="chapter" data-level="4.13.2" data-path="density-plot.html"><a href="density-plot.html#exercises-32"><i class="fa fa-check"></i><b>4.13.2</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.14" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>4.14</b> Boxplots</a>
 <ul>
@@ -436,7 +444,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.14.3" data-path="boxplots.html"><a href="boxplots.html#boxplot-2"><i class="fa fa-check"></i><b>4.14.3</b> Compare distributions in different groups</a></li>
 <li class="chapter" data-level="4.14.4" data-path="boxplots.html"><a href="boxplots.html#map-aesthetics-to-boxplot"><i class="fa fa-check"></i><b>4.14.4</b> Map aesthetics to boxplot</a></li>
 <li class="chapter" data-level="4.14.5" data-path="boxplots.html"><a href="boxplots.html#notched-boxplots"><i class="fa fa-check"></i><b>4.14.5</b> Notched Boxplots</a></li>
-<li class="chapter" data-level="4.14.6" data-path="boxplots.html"><a href="boxplots.html#exercises-27"><i class="fa fa-check"></i><b>4.14.6</b> Exercises</a></li>
+<li class="chapter" data-level="4.14.6" data-path="boxplots.html"><a href="boxplots.html#exercises-33"><i class="fa fa-check"></i><b>4.14.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.15" data-path="violin.html"><a href="violin.html"><i class="fa fa-check"></i><b>4.15</b> Violin Plots</a>
 <ul>
@@ -448,7 +456,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.17.1" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-wrap"><i class="fa fa-check"></i><b>4.17.1</b> Facet wrap</a></li>
 <li class="chapter" data-level="4.17.2" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-grid"><i class="fa fa-check"></i><b>4.17.2</b> Facet grid</a></li>
-<li class="chapter" data-level="4.17.3" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#exercises-28"><i class="fa fa-check"></i><b>4.17.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.17.3" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#exercises-34"><i class="fa fa-check"></i><b>4.17.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.18" data-path="customization.html"><a href="customization.html"><i class="fa fa-check"></i><b>4.18</b> Customization of Labels and Titles</a></li>
 <li class="chapter" data-level="4.19" data-path="summary-geom.html"><a href="summary-geom.html"><i class="fa fa-check"></i><b>4.19</b> Summary of Geoms &amp; Grammatical Structure of <code>ggplot()</code></a>
@@ -466,7 +474,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.1.2" data-path="export-data.html"><a href="export-data.html#delimited-files"><i class="fa fa-check"></i><b>5.1.2</b> Delimited files</a></li>
 <li class="chapter" data-level="5.1.3" data-path="export-data.html"><a href="export-data.html#write-csv"><i class="fa fa-check"></i><b>5.1.3</b> Write an object into a .csv file</a></li>
 <li class="chapter" data-level="5.1.4" data-path="export-data.html"><a href="export-data.html#write-delim"><i class="fa fa-check"></i><b>5.1.4</b> Write an object into a general delimited file</a></li>
-<li class="chapter" data-level="5.1.5" data-path="export-data.html"><a href="export-data.html#exercises-29"><i class="fa fa-check"></i><b>5.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.1.5" data-path="export-data.html"><a href="export-data.html#exercises-35"><i class="fa fa-check"></i><b>5.1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>5.2</b> Importing Data from Delimited Files</a>
 <ul>
@@ -475,14 +483,14 @@ div.csl-indent {
 <li class="chapter" data-level="5.2.3" data-path="import-data.html"><a href="import-data.html#handling-missing-values"><i class="fa fa-check"></i><b>5.2.3</b> Handling Missing Values</a></li>
 <li class="chapter" data-level="5.2.4" data-path="import-data.html"><a href="import-data.html#importing-data-from-a-delimited-file"><i class="fa fa-check"></i><b>5.2.4</b> Importing Data From a Delimited File</a></li>
 <li class="chapter" data-level="5.2.5" data-path="import-data.html"><a href="import-data.html#import-menu"><i class="fa fa-check"></i><b>5.2.5</b> Import Data Using the Menu</a></li>
-<li class="chapter" data-level="5.2.6" data-path="import-data.html"><a href="import-data.html#exercises-30"><i class="fa fa-check"></i><b>5.2.6</b> Exercises</a></li>
+<li class="chapter" data-level="5.2.6" data-path="import-data.html"><a href="import-data.html#exercises-36"><i class="fa fa-check"></i><b>5.2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="import-excel.html"><a href="import-excel.html"><i class="fa fa-check"></i><b>5.3</b> Exporting and Importing Data from Excel Files</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="import-excel.html"><a href="import-excel.html#export-data-into-excel-files"><i class="fa fa-check"></i><b>5.3.1</b> Export data into Excel files</a></li>
 <li class="chapter" data-level="5.3.2" data-path="import-excel.html"><a href="import-excel.html#import-excel-files-.xls-and-.xlsx-using-read_excel"><i class="fa fa-check"></i><b>5.3.2</b> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></a></li>
 <li class="chapter" data-level="5.3.3" data-path="import-excel.html"><a href="import-excel.html#import-excel-file-using-the-menu"><i class="fa fa-check"></i><b>5.3.3</b> Import Excel file using the menu</a></li>
-<li class="chapter" data-level="5.3.4" data-path="import-excel.html"><a href="import-excel.html#exercises-31"><i class="fa fa-check"></i><b>5.3.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.3.4" data-path="import-excel.html"><a href="import-excel.html#exercises-37"><i class="fa fa-check"></i><b>5.3.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="import-other.html"><a href="import-other.html"><i class="fa fa-check"></i><b>5.4</b> Working with Data from SPSS, SAS, and Stata Files</a>
 <ul>
@@ -496,7 +504,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>5.5.1</b> Save and Restore Objects using .RData</a></li>
 <li class="chapter" data-level="5.5.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>5.5.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
-<li class="chapter" data-level="5.5.3" data-path="save-object.html"><a href="save-object.html#exercises-32"><i class="fa fa-check"></i><b>5.5.3</b> Exercises</a></li>
+<li class="chapter" data-level="5.5.3" data-path="save-object.html"><a href="save-object.html#exercises-38"><i class="fa fa-check"></i><b>5.5.3</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data Manipulation</a>
@@ -509,7 +517,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="reorder-observations.html"><a href="reorder-observations.html"><i class="fa fa-check"></i><b>6.2</b> Reorder Observations</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="reorder-observations.html"><a href="reorder-observations.html#exercises-33"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+<li class="chapter" data-level="6.2.1" data-path="reorder-observations.html"><a href="reorder-observations.html#exercises-39"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>6.3</b> Pipe: Combining Multiple Operations</a>
 <ul>
@@ -525,13 +533,13 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="create-variables.html"><a href="create-variables.html"><i class="fa fa-check"></i><b>6.5</b> Create New Variables via mutate() and transmute()</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="create-variables.html"><a href="create-variables.html#exercises-34"><i class="fa fa-check"></i><b>6.5.1</b> Exercises</a></li>
+<li class="chapter" data-level="6.5.1" data-path="create-variables.html"><a href="create-variables.html#exercises-40"><i class="fa fa-check"></i><b>6.5.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="create-grouped-summaries.html"><a href="create-grouped-summaries.html"><i class="fa fa-check"></i><b>6.6</b> Create Grouped Summaries via <code>group_by()</code> and <code>summarize()</code></a>
 <ul>
 <li class="chapter" data-level="6.6.1" data-path="create-grouped-summaries.html"><a href="create-grouped-summaries.html#create-summaries"><i class="fa fa-check"></i><b>6.6.1</b> Create Summaries</a></li>
 <li class="chapter" data-level="6.6.2" data-path="create-grouped-summaries.html"><a href="create-grouped-summaries.html#create-grouped-summaries-1"><i class="fa fa-check"></i><b>6.6.2</b> Create Grouped Summaries</a></li>
-<li class="chapter" data-level="6.6.3" data-path="create-grouped-summaries.html"><a href="create-grouped-summaries.html#exercises-35"><i class="fa fa-check"></i><b>6.6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.6.3" data-path="create-grouped-summaries.html"><a href="create-grouped-summaries.html#exercises-41"><i class="fa fa-check"></i><b>6.6.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="grouped-mutate-filter.html"><a href="grouped-mutate-filter.html"><i class="fa fa-check"></i><b>6.7</b> Grouped Mutate and Filter via <code>group_by()</code></a></li>
 <li class="chapter" data-level="6.8" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>6.8</b> Joins</a>
@@ -588,9 +596,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="covariance_correlation.html"><a href="covariance_correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
@@ -638,68 +646,68 @@ div.csl-indent {
 <p>Before generating any beautiful plots, let’s first introduce the data set that will be used throughout this chapter. The data set is a part of the Ames Housing Price data, containing 165 observations and 12 features including the sale date and price.</p>
 <p>The data set <code>sahp</code> is located in the R package <strong>r02pro</strong>, the companion package of this book.
 Besides the <strong>r02pro</strong> package, we will also extensively use the <strong>ggplot2</strong> package for visualization in this chapter. Like the <strong>tibble</strong> package, <strong>ggplot2</strong> is another member of the <strong>tidyverse</strong> package. You can install the <strong>ggplot2</strong> package if you haven’t done so.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="intro-dataset.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="intro-dataset.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>First, let’s load the <strong>r02pro</strong>, <strong>ggplot2</strong>, and <strong>tibble</strong> packages.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="intro-dataset.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb367-2"><a href="intro-dataset.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb367-3"><a href="intro-dataset.html#cb367-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="intro-dataset.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb371-2"><a href="intro-dataset.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb371-3"><a href="intro-dataset.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
 <p>After loading the three packages, you can type <code>sahp</code> to have a quick look of the dataset.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="intro-dataset.html#cb368-1" aria-hidden="true" tabindex="-1"></a>sahp</span>
-<span id="cb368-2"><a href="intro-dataset.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 12</span></span>
-<span id="cb368-3"><a href="intro-dataset.html#cb368-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    bedroom bathroom gar_car oa_qual liv_area lot_area house_style</span></span>
-<span id="cb368-4"><a href="intro-dataset.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      </span></span>
-<span id="cb368-5"><a href="intro-dataset.html#cb368-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       3      2.5       2       6     1479    13517 2Story     </span></span>
-<span id="cb368-6"><a href="intro-dataset.html#cb368-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       4      3.5       2       7     2122    11492 2Story     </span></span>
-<span id="cb368-7"><a href="intro-dataset.html#cb368-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       3      2         1       5     1057     7922 1Story     </span></span>
-<span id="cb368-8"><a href="intro-dataset.html#cb368-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       3      2.5       2       5     1444     9802 2Story     </span></span>
-<span id="cb368-9"><a href="intro-dataset.html#cb368-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       3      2         2       6     1445    14235 1.5Fin     </span></span>
-<span id="cb368-10"><a href="intro-dataset.html#cb368-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2      2.5       2       6     1888    16492 1Story     </span></span>
-<span id="cb368-11"><a href="intro-dataset.html#cb368-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2      3         2       6     1072     3675 SFoyer     </span></span>
-<span id="cb368-12"><a href="intro-dataset.html#cb368-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       3      2         2       5     1188    12160 1Story     </span></span>
-<span id="cb368-13"><a href="intro-dataset.html#cb368-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       2      1         1       5      924    15783 1Story     </span></span>
-<span id="cb368-14"><a href="intro-dataset.html#cb368-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       5      2.5       2       5     2080    11606 2Story     </span></span>
-<span id="cb368-15"><a href="intro-dataset.html#cb368-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 4 more variables: kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;,</span></span>
-<span id="cb368-16"><a href="intro-dataset.html#cb368-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
-<p>You can see that <code>sahp</code> is a <em>tibble</em> with 165 observations and 12 variables. By default, the output only shows the first 10 observations in the tibble along with the first few variables that can fit the window. To view the full dataset, you can use the <code>view()</code> function, which will open the dataset in a new window.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="intro-dataset.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sahp)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="intro-dataset.html#cb372-1" aria-hidden="true" tabindex="-1"></a>sahp</span>
+<span id="cb372-2"><a href="intro-dataset.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 12</span></span>
+<span id="cb372-3"><a href="intro-dataset.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    bedroom bathroom gar_car oa_qual liv_area lot_area house_style</span></span>
+<span id="cb372-4"><a href="intro-dataset.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      </span></span>
+<span id="cb372-5"><a href="intro-dataset.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       3      2.5       2       6     1479    13517 2Story     </span></span>
+<span id="cb372-6"><a href="intro-dataset.html#cb372-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       4      3.5       2       7     2122    11492 2Story     </span></span>
+<span id="cb372-7"><a href="intro-dataset.html#cb372-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       3      2         1       5     1057     7922 1Story     </span></span>
+<span id="cb372-8"><a href="intro-dataset.html#cb372-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       3      2.5       2       5     1444     9802 2Story     </span></span>
+<span id="cb372-9"><a href="intro-dataset.html#cb372-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       3      2         2       6     1445    14235 1.5Fin     </span></span>
+<span id="cb372-10"><a href="intro-dataset.html#cb372-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2      2.5       2       6     1888    16492 1Story     </span></span>
+<span id="cb372-11"><a href="intro-dataset.html#cb372-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2      3         2       6     1072     3675 SFoyer     </span></span>
+<span id="cb372-12"><a href="intro-dataset.html#cb372-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       3      2         2       5     1188    12160 1Story     </span></span>
+<span id="cb372-13"><a href="intro-dataset.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       2      1         1       5      924    15783 1Story     </span></span>
+<span id="cb372-14"><a href="intro-dataset.html#cb372-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       5      2.5       2       5     2080    11606 2Story     </span></span>
+<span id="cb372-15"><a href="intro-dataset.html#cb372-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 4 more variables: kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;,</span></span>
+<span id="cb372-16"><a href="intro-dataset.html#cb372-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<p>You can see that <code>sahp</code> is a <em>tibble</em> with 165 observations and 12 variables. By default, the output only shows the first 10 observations in the tibble along with the first few variables that can fit the window. To view the full dataset, you can use the <code>View()</code> function, which will open the dataset in a new window.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="intro-dataset.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(sahp)</span></code></pre></div>
 <p>To view the top rows of the dataset, you can
 use the <code>head()</code> function, which produces the first 6 observations by default. You can also set an optional second argument to pick any given number of observations.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="intro-dataset.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp)</span>
-<span id="cb370-2"><a href="intro-dataset.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp, <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="intro-dataset.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp)</span>
+<span id="cb374-2"><a href="intro-dataset.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sahp, <span class="dv">15</span>)</span></code></pre></div>
 <p>To get a first impression on the dataset, you can use the <code>summary()</code> function introduced in Section <a href="vector-functions.html#vector-functions">2.5</a>.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="intro-dataset.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="intro-dataset.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp)</span></code></pre></div>
 <p>In the output, we get the summary statistics for each variable. For numeric variables, we get the minimum, 1st quartile, median, mean, 3rd quartile, and the maximum. It also shows the number of <code>NA</code>s for a particular variable. For character variables, we only get the length of the vector, the class, and the mode.</p>
 <p>Although the types of each variable are shown in the result when typing <code>sahp</code>, a more detailed list can be found with the function <code>str()</code>.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="intro-dataset.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sahp)</span>
-<span id="cb372-2"><a href="intro-dataset.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [165 × 12] (S3: tbl_df/tbl/data.frame)</span></span>
-<span id="cb372-3"><a href="intro-dataset.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dt_sold    : Date[1:165], format: &quot;2010-03-25&quot; &quot;2009-04-10&quot; ...</span></span>
-<span id="cb372-4"><a href="intro-dataset.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bedroom    : num [1:165] 3 4 3 3 3 2 2 3 2 5 ...</span></span>
-<span id="cb372-5"><a href="intro-dataset.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bathroom   : num [1:165] 2.5 3.5 2 2.5 2 2.5 3 2 1 2.5 ...</span></span>
-<span id="cb372-6"><a href="intro-dataset.html#cb372-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gar_car    : num [1:165] 2 2 1 2 2 2 2 2 1 2 ...</span></span>
-<span id="cb372-7"><a href="intro-dataset.html#cb372-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ oa_qual    : num [1:165] 6 7 5 5 6 6 6 5 5 5 ...</span></span>
-<span id="cb372-8"><a href="intro-dataset.html#cb372-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ liv_area   : num [1:165] 1479 2122 1057 1444 1445 ...</span></span>
-<span id="cb372-9"><a href="intro-dataset.html#cb372-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lot_area   : num [1:165] 13517 11492 7922 9802 14235 ...</span></span>
-<span id="cb372-10"><a href="intro-dataset.html#cb372-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ house_style: chr [1:165] &quot;2Story&quot; &quot;2Story&quot; &quot;1Story&quot; &quot;2Story&quot; ...</span></span>
-<span id="cb372-11"><a href="intro-dataset.html#cb372-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ kit_qual   : chr [1:165] &quot;Good&quot; &quot;Good&quot; &quot;Good&quot; &quot;Average&quot; ...</span></span>
-<span id="cb372-12"><a href="intro-dataset.html#cb372-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ heat_qual  : chr [1:165] &quot;Excellent&quot; &quot;Excellent&quot; &quot;Average&quot; &quot;Good&quot; ...</span></span>
-<span id="cb372-13"><a href="intro-dataset.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ central_air: chr [1:165] &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; ...</span></span>
-<span id="cb372-14"><a href="intro-dataset.html#cb372-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sale_price : num [1:165] 130 NA 109 174 138 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="intro-dataset.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sahp)</span>
+<span id="cb376-2"><a href="intro-dataset.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [165 × 12] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb376-3"><a href="intro-dataset.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dt_sold    : Date[1:165], format: &quot;2010-03-25&quot; &quot;2009-04-10&quot; ...</span></span>
+<span id="cb376-4"><a href="intro-dataset.html#cb376-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bedroom    : num [1:165] 3 4 3 3 3 2 2 3 2 5 ...</span></span>
+<span id="cb376-5"><a href="intro-dataset.html#cb376-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ bathroom   : num [1:165] 2.5 3.5 2 2.5 2 2.5 3 2 1 2.5 ...</span></span>
+<span id="cb376-6"><a href="intro-dataset.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gar_car    : num [1:165] 2 2 1 2 2 2 2 2 1 2 ...</span></span>
+<span id="cb376-7"><a href="intro-dataset.html#cb376-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ oa_qual    : num [1:165] 6 7 5 5 6 6 6 5 5 5 ...</span></span>
+<span id="cb376-8"><a href="intro-dataset.html#cb376-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ liv_area   : num [1:165] 1479 2122 1057 1444 1445 ...</span></span>
+<span id="cb376-9"><a href="intro-dataset.html#cb376-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ lot_area   : num [1:165] 13517 11492 7922 9802 14235 ...</span></span>
+<span id="cb376-10"><a href="intro-dataset.html#cb376-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ house_style: chr [1:165] &quot;2Story&quot; &quot;2Story&quot; &quot;1Story&quot; &quot;2Story&quot; ...</span></span>
+<span id="cb376-11"><a href="intro-dataset.html#cb376-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ kit_qual   : chr [1:165] &quot;Good&quot; &quot;Good&quot; &quot;Good&quot; &quot;Average&quot; ...</span></span>
+<span id="cb376-12"><a href="intro-dataset.html#cb376-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ heat_qual  : chr [1:165] &quot;Excellent&quot; &quot;Excellent&quot; &quot;Average&quot; &quot;Good&quot; ...</span></span>
+<span id="cb376-13"><a href="intro-dataset.html#cb376-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ central_air: chr [1:165] &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; &quot;Y&quot; ...</span></span>
+<span id="cb376-14"><a href="intro-dataset.html#cb376-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sale_price : num [1:165] 130 NA 109 174 138 ...</span></span></code></pre></div>
 <p>The <code>str()</code> function gives a list of each component, the corresponding type, the length, and the first several values.</p>
 <div id="are-two-story-houses-more-expensive-than-one-story-ones" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Are two-story houses more expensive than one-story ones?</h3>
 <p>Let’s try to answer this question by doing some analysis. First, let’s create the logical vectors corresponding to two-story and one-story houses.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="intro-dataset.html#cb373-1" aria-hidden="true" tabindex="-1"></a>story_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span></span>
-<span id="cb373-2"><a href="intro-dataset.html#cb373-2" aria-hidden="true" tabindex="-1"></a>story_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="intro-dataset.html#cb377-1" aria-hidden="true" tabindex="-1"></a>story_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span></span>
+<span id="cb377-2"><a href="intro-dataset.html#cb377-2" aria-hidden="true" tabindex="-1"></a>story_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span></span></code></pre></div>
 <p>Then, we create two vectors containing the prices of the two groups, respectively.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="intro-dataset.html#cb374-1" aria-hidden="true" tabindex="-1"></a>sale_price_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_2]</span>
-<span id="cb374-2"><a href="intro-dataset.html#cb374-2" aria-hidden="true" tabindex="-1"></a>sale_price_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_1]</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="intro-dataset.html#cb378-1" aria-hidden="true" tabindex="-1"></a>sale_price_2 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_2]</span>
+<span id="cb378-2"><a href="intro-dataset.html#cb378-2" aria-hidden="true" tabindex="-1"></a>sale_price_1 <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[story_1]</span></code></pre></div>
 <p>Finally, we can run the <code>summary()</code> function on both vectors.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="intro-dataset.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_2)</span>
-<span id="cb375-2"><a href="intro-dataset.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
-<span id="cb375-3"><a href="intro-dataset.html#cb375-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    55.0   137.9   174.0   197.8   231.5   545.2       1</span></span>
-<span id="cb375-4"><a href="intro-dataset.html#cb375-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_1)</span>
-<span id="cb375-5"><a href="intro-dataset.html#cb375-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb375-6"><a href="intro-dataset.html#cb375-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    44.0   129.0   160.0   183.0   224.2   465.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="intro-dataset.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_2)</span>
+<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb379-3"><a href="intro-dataset.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    55.0   137.9   174.0   197.8   231.5   545.2       1</span></span>
+<span id="cb379-4"><a href="intro-dataset.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sale_price_1)</span>
+<span id="cb379-5"><a href="intro-dataset.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb379-6"><a href="intro-dataset.html#cb379-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    44.0   129.0   160.0   183.0   224.2   465.0</span></span></code></pre></div>
 <p>From these summaries, it is clear that the corresponding statistic is larger for two-story houses compared with one-story ones, for all 6 measures. As a result, we can draw the conclusion that the two-story houses indeed have a higher sale price than the one-story ones.</p>
 </div>
 <div id="converting-data-types" class="section level3" number="4.1.2">
@@ -707,67 +715,67 @@ use the <code>head()</code> function, which produces the first 6 observations by
 <p>When you import a data set into R, some variables may not have the desired types. In this case, it would be useful to convert them into the types you want before conducting further data analysis.</p>
 <p><strong><em>a. Convert a character vector to an unordered factor</em></strong></p>
 <p>Let’s look at the variable <code>house_style</code> in <code>sahp</code>. We can see from the output of <code>str(sahp)</code> that it is of <code>chr</code> type. Let’s confirm this and get it summary.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="intro-dataset.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb376-2"><a href="intro-dataset.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb376-3"><a href="intro-dataset.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb376-4"><a href="intro-dataset.html#cb376-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Length     Class      Mode </span></span>
-<span id="cb376-5"><a href="intro-dataset.html#cb376-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       165 character character</span></span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="intro-dataset.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb380-2"><a href="intro-dataset.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb380-3"><a href="intro-dataset.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb380-4"><a href="intro-dataset.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Length     Class      Mode </span></span>
+<span id="cb380-5"><a href="intro-dataset.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       165 character character</span></span></code></pre></div>
 <p>As briefly mentioned before, using the <code>summary()</code> function on a character vector doesn’t provide us much useful information. Let’s find the unique values of this vector and get the frequency table.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="intro-dataset.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb377-2"><a href="intro-dataset.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2Story&quot; &quot;1Story&quot; &quot;1.5Fin&quot; &quot;SFoyer&quot; &quot;SLvl&quot;</span></span>
-<span id="cb377-3"><a href="intro-dataset.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb377-4"><a href="intro-dataset.html#cb377-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb377-5"><a href="intro-dataset.html#cb377-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
-<span id="cb377-6"><a href="intro-dataset.html#cb377-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="intro-dataset.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb381-2"><a href="intro-dataset.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2Story&quot; &quot;1Story&quot; &quot;1.5Fin&quot; &quot;SFoyer&quot; &quot;SLvl&quot;</span></span>
+<span id="cb381-3"><a href="intro-dataset.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb381-4"><a href="intro-dataset.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb381-5"><a href="intro-dataset.html#cb381-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
+<span id="cb381-6"><a href="intro-dataset.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
 <p>We can see that there are five house styles along with their frequencies. It turns out to be particularly useful to convert this type of variable into a <em>factor</em> type. Let’s use the function <code>as.factor()</code> and run the summary function again.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="intro-dataset.html#cb378-1" aria-hidden="true" tabindex="-1"></a>house_style_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>house_style)</span>
-<span id="cb378-2"><a href="intro-dataset.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(house_style_factor)</span>
-<span id="cb378-3"><a href="intro-dataset.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
-<span id="cb378-4"><a href="intro-dataset.html#cb378-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="intro-dataset.html#cb382-1" aria-hidden="true" tabindex="-1"></a>house_style_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>house_style)</span>
+<span id="cb382-2"><a href="intro-dataset.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(house_style_factor)</span>
+<span id="cb382-3"><a href="intro-dataset.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.5Fin 1Story 2Story SFoyer   SLvl </span></span>
+<span id="cb382-4"><a href="intro-dataset.html#cb382-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     21     81     50      5      8</span></span></code></pre></div>
 <p><strong><em>b. Convert a character vector to an ordered factor</em></strong></p>
 <p>Now, let’s take a look at another variable called <code>kit_qual</code>, measuring the kitchen quality. Again, let’s check the unique values.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="intro-dataset.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
-<span id="cb379-2"><a href="intro-dataset.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="intro-dataset.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>kit_qual)</span>
+<span id="cb383-2"><a href="intro-dataset.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Good&quot;      &quot;Average&quot;   &quot;Fair&quot;      &quot;Excellent&quot;</span></span></code></pre></div>
 <p>In addition to having four different quality values, they have an internal ordering among them. In particular, we know Fair &lt; Average &lt; Good &lt; Excellent. To reflect this, you can convert this variable in to an <em>ordered factor</em> using the <code>factor()</code> function. In particular, the <code>ordered = TRUE</code> argument reflects that we want to create an ordered factor.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="intro-dataset.html#cb380-1" aria-hidden="true" tabindex="-1"></a>kit_qual_ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>kit_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))<span class="co">#covert to ordered factor</span></span>
-<span id="cb380-2"><a href="intro-dataset.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(kit_qual_ordered_factor)</span>
-<span id="cb380-3"><a href="intro-dataset.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Fair   Average      Good Excellent </span></span>
-<span id="cb380-4"><a href="intro-dataset.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         9        85        57        14</span></span>
-<span id="cb380-5"><a href="intro-dataset.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kit_qual_ordered_factor)</span>
-<span id="cb380-6"><a href="intro-dataset.html#cb380-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Ord.factor w/ 4 levels &quot;Fair&quot;&lt;&quot;Average&quot;&lt;..: 3 3 3 2 2 3 2 2 2 1 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="intro-dataset.html#cb384-1" aria-hidden="true" tabindex="-1"></a>kit_qual_ordered_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(sahp<span class="sc">$</span>kit_qual, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))<span class="co">#covert to ordered factor</span></span>
+<span id="cb384-2"><a href="intro-dataset.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(kit_qual_ordered_factor)</span>
+<span id="cb384-3"><a href="intro-dataset.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Fair   Average      Good Excellent </span></span>
+<span id="cb384-4"><a href="intro-dataset.html#cb384-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         9        85        57        14</span></span>
+<span id="cb384-5"><a href="intro-dataset.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kit_qual_ordered_factor)</span>
+<span id="cb384-6"><a href="intro-dataset.html#cb384-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Ord.factor w/ 4 levels &quot;Fair&quot;&lt;&quot;Average&quot;&lt;..: 3 3 3 2 2 3 2 2 2 1 ...</span></span></code></pre></div>
 <p><strong><em>c. Convert a character vector to a logical vector</em></strong></p>
 <p>Lastly, let’s look at the variable <code>central_air</code>, representing whether the house has central AC or not. As before, let’s get the unique elements.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="intro-dataset.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span>
-<span id="cb381-2"><a href="intro-dataset.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Y&quot; &quot;N&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="intro-dataset.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(sahp<span class="sc">$</span>central_air)</span>
+<span id="cb385-2"><a href="intro-dataset.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Y&quot; &quot;N&quot;</span></span></code></pre></div>
 <p>Intuitively, you can create a logical vector representing whether the house has central AC.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="intro-dataset.html#cb382-1" aria-hidden="true" tabindex="-1"></a>central_air_logi <span class="ot">&lt;-</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;Y&quot;</span></span>
-<span id="cb382-2"><a href="intro-dataset.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(central_air_logi)</span>
-<span id="cb382-3"><a href="intro-dataset.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(central_air_logi)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="intro-dataset.html#cb386-1" aria-hidden="true" tabindex="-1"></a>central_air_logi <span class="ot">&lt;-</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;Y&quot;</span></span>
+<span id="cb386-2"><a href="intro-dataset.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(central_air_logi)</span>
+<span id="cb386-3"><a href="intro-dataset.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(central_air_logi)</span></code></pre></div>
 <p>Sometimes, you may also want to create additional variables from the existing ones. For example, we know the overall quality of the house ranges from 2 to 10.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="intro-dataset.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>oa_qual)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="intro-dataset.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sahp<span class="sc">$</span>oa_qual)</span></code></pre></div>
 <p>Maybe we want to call a house of good quality if <code>oa_qual</code> is larger than 5. We can then create a new logical variable as follows.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="intro-dataset.html#cb384-1" aria-hidden="true" tabindex="-1"></a>good_qual <span class="ot">&lt;-</span> sahp<span class="sc">$</span>oa_qual <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="intro-dataset.html#cb388-1" aria-hidden="true" tabindex="-1"></a>good_qual <span class="ot">&lt;-</span> sahp<span class="sc">$</span>oa_qual <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
 </div>
 <div id="recover-modified-values" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Recover Modified Values</h3>
 <p>When you are working with a data set inside a package, you may accidentally modified some values in place by mistake. In this situation, you don’t need to panic as you can easily recover the data set into a faculty setting (i.e. the original version inside the package). To do this, you just need to use the <code>data()</code> function with the data set name as its argument. Let’s try to modify one value of <code>sahp</code> and recover the data set afterward.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="intro-dataset.html#cb385-1" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#get the original value</span></span>
-<span id="cb385-2"><a href="intro-dataset.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb385-3"><a href="intro-dataset.html#cb385-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb385-4"><a href="intro-dataset.html#cb385-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb385-5"><a href="intro-dataset.html#cb385-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span>
-<span id="cb385-6"><a href="intro-dataset.html#cb385-6" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">5</span>         <span class="co">#modify the value</span></span>
-<span id="cb385-7"><a href="intro-dataset.html#cb385-7" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the modified value</span></span>
-<span id="cb385-8"><a href="intro-dataset.html#cb385-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb385-9"><a href="intro-dataset.html#cb385-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb385-10"><a href="intro-dataset.html#cb385-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb385-11"><a href="intro-dataset.html#cb385-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5</span></span>
-<span id="cb385-12"><a href="intro-dataset.html#cb385-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sahp)             <span class="co">#recover the data</span></span>
-<span id="cb385-13"><a href="intro-dataset.html#cb385-13" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the value is recovered</span></span>
-<span id="cb385-14"><a href="intro-dataset.html#cb385-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
-<span id="cb385-15"><a href="intro-dataset.html#cb385-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
-<span id="cb385-16"><a href="intro-dataset.html#cb385-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
-<span id="cb385-17"><a href="intro-dataset.html#cb385-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="intro-dataset.html#cb389-1" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#get the original value</span></span>
+<span id="cb389-2"><a href="intro-dataset.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb389-3"><a href="intro-dataset.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb389-4"><a href="intro-dataset.html#cb389-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb389-5"><a href="intro-dataset.html#cb389-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span>
+<span id="cb389-6"><a href="intro-dataset.html#cb389-6" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">5</span>         <span class="co">#modify the value</span></span>
+<span id="cb389-7"><a href="intro-dataset.html#cb389-7" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the modified value</span></span>
+<span id="cb389-8"><a href="intro-dataset.html#cb389-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb389-9"><a href="intro-dataset.html#cb389-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb389-10"><a href="intro-dataset.html#cb389-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb389-11"><a href="intro-dataset.html#cb389-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       5</span></span>
+<span id="cb389-12"><a href="intro-dataset.html#cb389-12" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(sahp)             <span class="co">#recover the data</span></span>
+<span id="cb389-13"><a href="intro-dataset.html#cb389-13" aria-hidden="true" tabindex="-1"></a>sahp[<span class="dv">1</span>,<span class="dv">2</span>]              <span class="co">#verify the value is recovered</span></span>
+<span id="cb389-14"><a href="intro-dataset.html#cb389-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb389-15"><a href="intro-dataset.html#cb389-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   bedroom</span></span>
+<span id="cb389-16"><a href="intro-dataset.html#cb389-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;</span></span>
+<span id="cb389-17"><a href="intro-dataset.html#cb389-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       3</span></span></code></pre></div>
 
 </div>
 </div>
@@ -781,7 +789,6 @@ use the <code>head()</code> function, which produces the first 6 observations by
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -821,6 +828,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
