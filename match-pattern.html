@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -572,7 +572,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.1.1" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#concatenate-strings"><i class="fa fa-check"></i><b>8.1.1</b> Concatenate Strings</a></li>
 <li class="chapter" data-level="8.1.2" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#create-and-modify-substrings"><i class="fa fa-check"></i><b>8.1.2</b> Create and Modify Substrings</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="match-pattern.html"><a href="match-pattern.html"><i class="fa fa-check"></i><b>8.2</b> Matching Pattern with Regular Expressions</a></li>
+<li class="chapter" data-level="8.2" data-path="match-pattern.html"><a href="match-pattern.html"><i class="fa fa-check"></i><b>8.2</b> Matching Pattern with Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="match-pattern.html"><a href="match-pattern.html#basic-matches"><i class="fa fa-check"></i><b>8.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="8.2.2" data-path="match-pattern.html"><a href="match-pattern.html#character-classes-matches"><i class="fa fa-check"></i><b>8.2.2</b> Character Classes Matches</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>9</b> Statistics</a>
 <ul>
@@ -601,7 +605,14 @@ div.csl-indent {
 <li class="chapter" data-level="9.4.1" data-path="covariance_correlation.html"><a href="covariance_correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a></li>
+<li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ifelse.html"><a href="ifelse.html"><i class="fa fa-check"></i><b>10.1</b> Conditional Statements via <code>if</code>, <code>else</code>, and <code>switch()</code></a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="ifelse.html"><a href="ifelse.html#conditional-statements"><i class="fa fa-check"></i><b>10.1.1</b> Conditional Statements</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ifelse.html"><a href="ifelse.html#logical-operators-in-if-statement"><i class="fa fa-check"></i><b>10.1.2</b> Logical Operators in <code>if</code> Statement</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>11</b> Loops</a></li>
 <li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a>
 <ul>
@@ -643,17 +654,70 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="match-pattern" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Matching Pattern with Regular Expressions</h2>
-<p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>ahp</code> data set from <strong>r02pro</strong> package.</p>
+<p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>sahp</code> data set from <strong>r02pro</strong> package.</p>
 <div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="match-pattern.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb689-2"><a href="match-pattern.html#cb689-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb689-3"><a href="match-pattern.html#cb689-3" aria-hidden="true" tabindex="-1"></a>ahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ahp)</span></code></pre></div>
-<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. Let’s describe a few commonly usd patterns.</p>
+<span id="cb689-3"><a href="match-pattern.html#cb689-3" aria-hidden="true" tabindex="-1"></a>sahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(sahp)</span></code></pre></div>
+<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern.</p>
+<div id="basic-matches" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Basic Matches</h3>
+<p>Let’s describe a few commonly used patterns.</p>
 <p><strong><em>a. contain a given string</em></strong>
-To find all strings that contain <code>"yr"</code>, you can run the following code.</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="match-pattern.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(ahp_names, <span class="st">&quot;yr&quot;</span>)</span></code></pre></div>
+To find all strings that contain <code>"room"</code>, you can run the following code.</p>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="match-pattern.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;room&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-ffcf6cfe32332af90121" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ffcf6cfe32332af90121">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li><span class='match'>yr<\/span>_sold<\/li>\n  <li>mo_sold<\/li>\n  <li><span class='match'>yr<\/span>_built<\/li>\n  <li><span class='match'>yr<\/span>_remodel<\/li>\n  <li>bldg_class<\/li>\n  <li>bldg_type<\/li>\n  <li>house_style<\/li>\n  <li>zoning<\/li>\n  <li>neighborhd<\/li>\n  <li>oa_cond<\/li>\n  <li>oa_qual<\/li>\n  <li>func<\/li>\n  <li>liv_area<\/li>\n  <li>1fl_area<\/li>\n  <li>2fl_area<\/li>\n  <li>tot_rms<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>kit<\/li>\n  <li>kit_qual<\/li>\n  <li>central_air<\/li>\n  <li>elect<\/li>\n  <li>bsmt_area<\/li>\n  <li>bsmt_cond<\/li>\n  <li>bsmt_exp<\/li>\n  <li>bsmt_fin_qual<\/li>\n  <li>bsmt_ht<\/li>\n  <li>ext_cond<\/li>\n  <li>ext_cover<\/li>\n  <li>ext_qual<\/li>\n  <li>fdn<\/li>\n  <li>fence<\/li>\n  <li>fp<\/li>\n  <li>fp_qual<\/li>\n  <li>gar_area<\/li>\n  <li>gar_car<\/li>\n  <li>gar_cond<\/li>\n  <li>gar_fin<\/li>\n  <li>gar_qual<\/li>\n  <li>gar_type<\/li>\n  <li>gar_<span class='match'>yr<\/span><\/li>\n  <li>heat_qual<\/li>\n  <li>land_contour<\/li>\n  <li>land_slope<\/li>\n  <li>lot_area<\/li>\n  <li>lot_config<\/li>\n  <li>lot_frontage<\/li>\n  <li>lot_shape<\/li>\n  <li>pave_dr<\/li>\n  <li>roof_matl<\/li>\n  <li>roof_style<\/li>\n  <li>op_area<\/li>\n  <li>ep_area<\/li>\n  <li>wd_area<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-ffcf6cfe32332af90121">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bed<span class='match'>room<\/span><\/li>\n  <li>bath<span class='match'>room<\/span><\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>From the result, we can see that <code>"bedroom"</code> and <code>"bathroom"</code> are highlighted, since they both contain the string <code>"room"</code>.</p>
+<p><strong><em>b. including <code>.</code> in the pattern</em></strong>
+In addition to specifying the exact string for matching, you can also use the wild symbol <code>.</code> to represent <strong>any character</strong>.</p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="match-pattern.html#cb691-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;.h&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-7b158366f581f398e8d0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7b158366f581f398e8d0">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bedroom<\/li>\n  <li>ba<span class='match'>th<\/span>room<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+str_view(sahp_names, ".s.")
+<div id="htmlwidget-def6e48dac64e2b0e68b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-def6e48dac64e2b0e68b">{"x":{"html":"<ul>\n  <li>dt<span class='match'>_so<\/span>ld<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>ho<span class='match'>use<\/span>_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>The first pattern <code>".h"</code> represents any character plus the letter h. Note that <code>"house_style"</code> is not a match since it doesn’t have any character before the letter <code>"h"</code>.</p>
+<p>The second patter <code>".s."</code> represents a length-3 substring, with any two characters around <code>"h"</code>. Again, here <code>"sale_price"</code> is not a match since <code>"s"</code> is a first character.</p>
+<p><strong><em>c. including anchors in the pattern</em></strong>
+Sometimes, we may want to match the <strong>start</strong> of the string (<code>"^"</code>), or the <strong>end</strong> of the string (<code>"$"</code>).</p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="match-pattern.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;^l&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-502f43fd57e1a9e3506f" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-502f43fd57e1a9e3506f">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li><span class='match'>l<\/span>iv_area<\/li>\n  <li><span class='match'>l<\/span>ot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>The highlighted strings <code>"liv_area"</code> and <code>"lot_area"</code> both start with letter <code>"l"</code>. Although <code>"oa_qual"</code> and <code>"house_style"</code> contain <code>"l"</code>, they are not selected since <code>"l"</code> is not the start of the strings. Now, let’s find the strings the end with <code>"l"</code>.</p>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="match-pattern.html#cb693-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;l$&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-f044d8d09c8ca2a32784" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f044d8d09c8ca2a32784">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qua<span class='match'>l<\/span><\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qua<span class='match'>l<\/span><\/li>\n  <li>heat_qua<span class='match'>l<\/span><\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>We now see <code>"oa_qual"</code>, <code>"kit_qual"</code>, and <code>"heat_qual"</code> all selected.</p>
+</div>
+<div id="character-classes-matches" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Character Classes Matches</h3>
+<p>Sometimes, we may want to match the characters with a specific class or a group of values instead of exact values. Here is a list of the commonly used classes.</p>
+<ul>
+<li><code>\d</code>: matches any digit. In other words, numbers from 0 to 9.</li>
+<li><code>\s</code>: matches any whitespace (e.g. space, tab, newline). For example, <code></code>, <code>\t</code>, <code>\n</code>.</li>
+<li><code>[xyz]</code>: matches x, y, or z.</li>
+<li><code>[^xyz]</code>: matches anything except x, y, or z. (The opposite of <code>[xyz]</code>)</li>
+</ul>
+<p>Let’s see some examples.</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="match-pattern.html#cb694-1" aria-hidden="true" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;2b&quot;</span>,<span class="st">&quot;33c&quot;</span>,<span class="st">&quot;d 2&quot;</span>, <span class="st">&quot;d f  3&quot;</span>)</span>
+<span id="cb694-2"><a href="match-pattern.html#cb694-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-d7074ae5fc19b15019bb" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7074ae5fc19b15019bb">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>1<\/span><\/li>\n  <li><span class='match'>2<\/span>b<\/li>\n  <li><span class='match'>3<\/span>3c<\/li>\n  <li>d <span class='match'>2<\/span><\/li>\n  <li>d f  <span class='match'>3<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>First of all, we need to have <code>"\\"</code> since <code>"\"</code> is a special character that needs the <strong>espace</strong> character <code>"\"</code>. Here, as long as the string contains at least one digits, it will be matched.</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="match-pattern.html#cb695-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-f1a57ca8934ac77e1312" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f1a57ca8934ac77e1312">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a1<\/li>\n  <li>2b<\/li>\n  <li>33c<\/li>\n  <li>d<span class='match'> 2<\/span><\/li>\n  <li>d f <span class='match'> 3<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>Here, the pattern <code>"\s\d"</code> represents a pattern of a whitespace followed by a digit. Here, only <code>"d 2"</code> and <code>"d f  3"</code> match this pattern.</p>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="match-pattern.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[ac3]&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-1e7d99130fff05d3dc00" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1e7d99130fff05d3dc00">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>bc<\/li>\n  <li><span class='match'>a<\/span>1<\/li>\n  <li>2b<\/li>\n  <li><span class='match'>3<\/span>3c<\/li>\n  <li>d 2<\/li>\n  <li>d f  <span class='match'>3<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>Here, <code>"[ac3]"</code> indicates that as long as the string contains <code>"a"</code>, <code>"c"</code>, or <code>"3"</code>, it will be matched.</p>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="match-pattern.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[^abc3]&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-23d335b590605a419415" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-23d335b590605a419415">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>1<\/span><\/li>\n  <li><span class='match'>2<\/span>b<\/li>\n  <li>33c<\/li>\n  <li><span class='match'>d<\/span> 2<\/li>\n  <li><span class='match'>d<\/span> f  3<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p>Here, <code>"[^abc3]"</code> indicates that as long as the string contains any character that is not one of <code>"a"</code>, <code>"b"</code>, <code>"c"</code>, and <code>"3"</code>, it will be matched.</p>
 
+</div>
 </div>
 <!-- </div> -->
             </section>

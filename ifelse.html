@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Introduction | R Programming: Zero to Pro</title>
-  <meta name="description" content="Chapter 1 Introduction | R Programming: Zero to Pro" />
+  <title>10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro</title>
+  <meta name="description" content="10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Introduction | R Programming: Zero to Pro" />
+  <meta property="og:title" content="10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 1 Introduction | R Programming: Zero to Pro" />
+  <meta property="og:description" content="10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Introduction | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="Chapter 1 Introduction | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="10.1 Conditional Statements via if, else, and switch() | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="building-environment.html"/>
-<link rel="next" href="Installation.html"/>
+<link rel="prev" href="control-statements.html"/>
+<link rel="next" href="loop.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -652,18 +652,78 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>This chapter begins with the installation of R, RStudio, and R Packages in Section <a href="Installation.html#Installation">1.1</a>, shows how to use R as a fancy calculator in Section <a href="Calculator.html#Calculator">1.2</a>, and introduce how to do object assignments in Section <a href="Object-Assignment.html#Object-Assignment">1.3</a>.</p>
-<!--chapter:end:01_Introduction.Rmd-->
+<div id="ifelse" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Conditional Statements via <code>if</code>, <code>else</code>, and <code>switch()</code></h2>
+<p>The first type of control statement is <strong>conditional statements</strong>, which execute a portion of codes depending on the value of a <strong>condition</strong>.</p>
+<div id="conditional-statements" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Conditional Statements</h3>
+<p>The general structure of a simple conditional statement is as below.</p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="ifelse.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(condition) {   </span>
+<span id="cb729-2"><a href="ifelse.html#cb729-2" aria-hidden="true" tabindex="-1"></a>  true_code_1</span>
+<span id="cb729-3"><a href="ifelse.html#cb729-3" aria-hidden="true" tabindex="-1"></a>  true_code_2</span>
+<span id="cb729-4"><a href="ifelse.html#cb729-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb729-5"><a href="ifelse.html#cb729-5" aria-hidden="true" tabindex="-1"></a>  false_code_1</span>
+<span id="cb729-6"><a href="ifelse.html#cb729-6" aria-hidden="true" tabindex="-1"></a>  false_code_2</span>
+<span id="cb729-7"><a href="ifelse.html#cb729-7" aria-hidden="true" tabindex="-1"></a>  false_code_3</span>
+<span id="cb729-8"><a href="ifelse.html#cb729-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here, the <code>condition</code> is usually a <strong>logical statement</strong>, the true_code_1 and true_code_2 represent the codes to run when <code>condition == TRUE</code>, and the false_code_1, false_code_2, false_code_3 represent the codes to run when <code>condition == FALSE</code>. Note that the <code>else</code> keyword is optional.</p>
+<p>Let’s first see an example where we check whether <code>x</code> is an even number of an odd number, and print out the corresponding messages.</p>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="ifelse.html#cb730-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb730-2"><a href="ifelse.html#cb730-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>) { </span>
+<span id="cb730-3"><a href="ifelse.html#cb730-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;x is an even number&quot;</span>)</span>
+<span id="cb730-4"><a href="ifelse.html#cb730-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb730-5"><a href="ifelse.html#cb730-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;x is an odd number&quot;</span>)</span>
+<span id="cb730-6"><a href="ifelse.html#cb730-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb730-7"><a href="ifelse.html#cb730-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x is an odd number</span></span></code></pre></div>
+<p>We can also use the <code>ifelse()</code> function to choose a value depending on whether the condition is <code>TRUE</code> or <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="ifelse.html#cb731-1" aria-hidden="true" tabindex="-1"></a>x_type <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x<span class="sc">%%</span><span class="dv">2</span>, <span class="st">&quot;even&quot;</span>, <span class="st">&quot;odd&quot;</span>)</span>
+<span id="cb731-2"><a href="ifelse.html#cb731-2" aria-hidden="true" tabindex="-1"></a>x_type</span>
+<span id="cb731-3"><a href="ifelse.html#cb731-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;even&quot;</span></span></code></pre></div>
+<p>In addition to a single <code>if</code> and <code>else</code> pair, we can have more than two options. Let’s see the following example.</p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="ifelse.html#cb732-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb732-2"><a href="ifelse.html#cb732-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb732-3"><a href="ifelse.html#cb732-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;the remainder of x divided by 3 is 1.&quot;</span>)</span>
+<span id="cb732-4"><a href="ifelse.html#cb732-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb732-5"><a href="ifelse.html#cb732-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;the remainder of x divided by 3 is 2.&quot;</span>)</span>
+<span id="cb732-6"><a href="ifelse.html#cb732-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb732-7"><a href="ifelse.html#cb732-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;x is divisible by 3.&quot;</span>)</span>
+<span id="cb732-8"><a href="ifelse.html#cb732-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb732-9"><a href="ifelse.html#cb732-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x is divisible by 3.</span></span></code></pre></div>
+<p>Next, let’s introduce the <code>switch()</code> function which can <strong>switch</strong> to a particular value depending on the value of the <strong>expression</strong>, which is the first argument.</p>
+<p>If the first argument is an integer, the function will return the value corresponding to the location of the options.</p>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="ifelse.html#cb733-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(<span class="dv">2</span>, <span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span>
+<span id="cb733-2"><a href="ifelse.html#cb733-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;pig&quot;</span></span>
+<span id="cb733-3"><a href="ifelse.html#cb733-3" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(<span class="dv">4</span>, <span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>)</span></code></pre></div>
+<p>The first statement returns the second option with value <code>"pig"</code>, and the second statement returns nothing as there is no 4th option.</p>
+<p>If the first argument is a character, it will be matched to the names of the elements in the options, and return the corresponding value.</p>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="ifelse.html#cb734-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(<span class="st">&quot;pig&quot;</span>, <span class="at">sheep =</span> <span class="dv">2</span>, <span class="at">pig =</span> <span class="dv">3</span>, <span class="at">monkey =</span> <span class="dv">4</span>)</span>
+<span id="cb734-2"><a href="ifelse.html#cb734-2" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(<span class="st">&quot;pi&quot;</span>, <span class="at">sheep =</span> <span class="dv">2</span>, <span class="at">pig =</span> <span class="dv">3</span>, <span class="at">monkey =</span> <span class="dv">4</span>)</span>
+<span id="cb734-3"><a href="ifelse.html#cb734-3" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(<span class="st">&quot;monkey&quot;</span>, <span class="at">sheep =</span> <span class="dv">2</span>, <span class="at">pig =</span> <span class="dv">3</span>, <span class="at">monkey =</span> <span class="st">&quot;mona&quot;</span>)</span></code></pre></div>
 </div>
+<div id="logical-operators-in-if-statement" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Logical Operators in <code>if</code> Statement</h3>
+<p>Recall we have learned logical operators on logical vectors in Section <a href="logical-operators.html#logical-operators">2.7</a>. The most commonly used logical operators are the AND operation with <code>&amp;</code> and OR operation with <code>|</code>. Both operators conducts element-wise operations. In the <code>if</code> statement, we usually use another set of AND and OR operations, namely <code>&amp;&amp;</code> and <code>||</code>. Let’s use some examples to understand how they work.</p>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="ifelse.html#cb735-1" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, T, F)</span>
+<span id="cb735-2"><a href="ifelse.html#cb735-2" aria-hidden="true" tabindex="-1"></a>logi_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(F, T, T, F)</span>
+<span id="cb735-3"><a href="ifelse.html#cb735-3" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="sc">&amp;</span> logi_2</span>
+<span id="cb735-4"><a href="ifelse.html#cb735-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE FALSE</span></span>
+<span id="cb735-5"><a href="ifelse.html#cb735-5" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="sc">&amp;&amp;</span> logi_2</span>
+<span id="cb735-6"><a href="ifelse.html#cb735-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb735-7"><a href="ifelse.html#cb735-7" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="sc">|</span> logi_2</span>
+<span id="cb735-8"><a href="ifelse.html#cb735-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE</span></span>
+<span id="cb735-9"><a href="ifelse.html#cb735-9" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="sc">||</span> logi_2</span>
+<span id="cb735-10"><a href="ifelse.html#cb735-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="building-environment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Installation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="control-statements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
