@@ -713,6 +713,22 @@ div.csl-indent {
 <span id="cb735-8"><a href="ifelse.html#cb735-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE</span></span>
 <span id="cb735-9"><a href="ifelse.html#cb735-9" aria-hidden="true" tabindex="-1"></a>logi_1 <span class="sc">||</span> logi_2</span>
 <span id="cb735-10"><a href="ifelse.html#cb735-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Compare to the <code>&amp;</code> and <code>|</code>, the <code>&amp;&amp;</code> and <code>||</code> examine only the first element of the input logical vectors and the results are also a single logical value.</p>
+<p>Another important difference is that <code>&amp;&amp;</code> and <code>||</code> are <strong>short-circuit</strong>, skipping the evaluation of arguments if the result is <strong>determined</strong>.</p>
+<p>Let’s see an example. Let’s use an undefined object named <code>undefined_object</code>.</p>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="ifelse.html#cb736-1" aria-hidden="true" tabindex="-1"></a>undefined_object</span>
+<span id="cb736-2"><a href="ifelse.html#cb736-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;undefined_object&#39; not found</span></span>
+<span id="cb736-3"><a href="ifelse.html#cb736-3" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">||</span> undefined_object</span>
+<span id="cb736-4"><a href="ifelse.html#cb736-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb736-5"><a href="ifelse.html#cb736-5" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> undefined_object</span>
+<span id="cb736-6"><a href="ifelse.html#cb736-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;undefined_object&#39; not found</span></span></code></pre></div>
+<p>Here, we can see that even though <code>undefined_object</code> is not found, <code>TRUE || undefined_object</code> still returns <code>TRUE</code>, due to that the result of <code>||</code> operator between <code>TRUE</code> and any other value is always <code>TRUE</code>, hence determined. In particular, both <code>TRUE | FALSE</code> and <code>TRUE | TRUE</code> have the value <code>TRUE</code>. Note that the <code>|</code> operator will throw an error as it will always faithfully perform the logical operations.</p>
+<p>Let’s see another example of the AND operator between <code>FALSE</code> and another argument.</p>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="ifelse.html#cb737-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> undefined_object</span>
+<span id="cb737-2"><a href="ifelse.html#cb737-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb737-3"><a href="ifelse.html#cb737-3" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">&amp;</span> undefined_object</span>
+<span id="cb737-4"><a href="ifelse.html#cb737-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;undefined_object&#39; not found</span></span></code></pre></div>
+<p>Similarly, the <code>&amp;&amp;</code> operator between <code>FALSE</code> and an undefined object is <code>FALSE</code> since the evaluation stops once the result is determined since we know both <code>FALSE &amp; FALSE</code> and <code>FALSE &amp; TRUE</code> have the value <code>FALSE</code>. The <code>&amp;</code> operator will again throw an error since <code>undefined_object</code> is not found.</p>
 
 </div>
 </div>

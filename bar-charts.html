@@ -663,7 +663,7 @@ div.csl-indent {
 <span id="cb467-2"><a href="bar-charts.html#cb467-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb467-3"><a href="bar-charts.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb467-4"><a href="bar-charts.html#cb467-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-492-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-493-1.png" width="576" /></p>
 <p>In the bar chart, the x-axis displays different values of <code>kit_qual</code>, and the y-axis displays the number of observations with each <code>kit_qual</code> value. To verify this, let’s check how many house have <code>kit_qual</code> equals Excellent.</p>
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="bar-charts.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>kit_qual <span class="sc">==</span> <span class="st">&quot;Excellent&quot;</span>)</span>
 <span id="cb468-2"><a href="bar-charts.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span></code></pre></div>
@@ -672,7 +672,7 @@ div.csl-indent {
 <p>Sometimes, we would like to find out the proportion for each value of <code>x</code>, then we can display a bar chart of proportion, rather than count. To do this, we need to add <code>y = stat(prop)</code> and <code>group = 1</code> as additional arguments in the <code>aes()</code> function. The <code>stat(prop)</code> is a statistical function used to calculate proportions. The <code>group = 1</code> implies that all the observations belong to one single group when calculating the proportions. We will try to set <code>group</code> to another variable in the next part.</p>
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="bar-charts.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb469-2"><a href="bar-charts.html#cb469-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> <span class="fu">stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-494-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-495-1.png" width="576" /></p>
 </div>
 <div id="reordering-bar-chart" class="section level3" number="4.10.2">
 <h3><span class="header-section-number">4.10.2</span> Reordering Bars in Bar Charts</h3>
@@ -682,7 +682,7 @@ To order the bars in ascending/descending order of their heights, you can use th
 <div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="bar-charts.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
 <span id="cb470-2"><a href="bar-charts.html#cb470-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb470-3"><a href="bar-charts.html#cb470-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual, kit_qual, length))) <span class="co">#increasing order</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-495-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-496-1.png" width="576" /></p>
 <p>The above code reorders the bar chart to the increasing order of their heights. The <code>fct_reorder()</code> is a very powerful function used to record the levels of a factor. The function <code>fct_reorder(.f, .x, .fun = median)</code> has three arguments:</p>
 <ul>
 <li><code>.f</code>: the discrete variable/factor to reorder</li>
@@ -693,12 +693,12 @@ To order the bars in ascending/descending order of their heights, you can use th
 <p>To reorder in descending order of heights, you can add and additional argument <code>.desc = TRUE</code> in the <code>fct_reorder()</code> function.</p>
 <div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="bar-charts.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb471-2"><a href="bar-charts.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual, kit_qual, length, <span class="at">.desc =</span> <span class="cn">TRUE</span>))) <span class="co">#decreasing order</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-496-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-497-1.png" width="576" /></p>
 <p><strong><em>b. Manual Reorder</em></strong></p>
 <p>In addition to reordering according to certain function values, you can use the function <code>fct_relevel()</code> to <strong>manually reorder</strong> the bars in a bar chart. In our example of <code>kit_qual</code>, perhaps a common thought is to order the levels from the worst quality to the best quality.</p>
 <div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="bar-charts.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span></span>
 <span id="cb472-2"><a href="bar-charts.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_relevel</span>(kit_qual, <span class="fu">c</span>(<span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-497-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-498-1.png" width="576" /></p>
 <p>As you can imagine, the second argument of <code>fct_relevel()</code> contains the desired order of the factors, which will be reflected in the order of the bars.</p>
 </div>
 <div id="aesthetics-in-bar-charts" class="section level3" number="4.10.3">
@@ -707,7 +707,7 @@ To order the bars in ascending/descending order of their heights, you can use th
 <p>First, let’s look at a new aesthetic called <strong>fill</strong>, which fills the bar with different colors according to the value of the mapped variable (usually another discrete variable). Here, we want to look at the distribution of <code>kit_qual</code> for different values of <code>central_air</code>.</p>
 <div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="bar-charts.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb473-2"><a href="bar-charts.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">fill =</span> central_air))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-498-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-499-1.png" width="576" /></p>
 <p>We can see that each bar is divided into stacked sub-bars with different colors. The different colors in each sub-bar correspond to the value of <code>central_air</code>. And the height of each sub-bar represents the count for the cases with a particular value of <code>kit_qual</code> and another value of <code>central_air</code>.</p>
 <p>Let’s verify the first bar.</p>
 <div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="bar-charts.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sahp<span class="sc">$</span>kit_qual <span class="sc">==</span> <span class="st">&quot;Average&quot;</span> <span class="sc">&amp;</span> sahp<span class="sc">$</span>central_air <span class="sc">==</span> <span class="st">&quot;Y&quot;</span>)</span>
@@ -722,18 +722,18 @@ To order the bars in ascending/descending order of their heights, you can use th
 <p>Using the stacked bars, it is sometimes difficult to compare the counts for different subbars. To make the comparison easier, you can use <code>position = "dodge"</code>.</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="bar-charts.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb476-2"><a href="bar-charts.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">fill =</span> central_air), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-501-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-502-1.png" width="576" /></p>
 <p>Now, the plot places the sub-bars beside one another, which makes it easier to compare individual counts for each combination of <code>kit_qual</code> and <code>central_air</code>.</p>
 <p><strong><em>c. filled bars</em></strong></p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="bar-charts.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb477-2"><a href="bar-charts.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">fill =</span> central_air), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-502-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-503-1.png" width="576" /></p>
 <p><code>position = "fill"</code> works like stacking, but makes each set of stacked bars the same height. The <code>y</code> axis should be labeled as “proportion” rather than “count.” This makes it easier to compare proportions of different values of <code>central_air</code> for different values of <code>kit_qual</code>. For example, we can see that the proportion of <code>central_air = TRUE</code> is much higher for <code>kit_qual = "Good"</code> than that for <code>kit_qual = "Fair"</code>.</p>
 <p>Lastly, you can also use the polar coordinates.</p>
 <div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="bar-charts.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb478-2"><a href="bar-charts.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual)) <span class="sc">+</span></span>
 <span id="cb478-3"><a href="bar-charts.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-503-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-504-1.png" width="576" /></p>
 </div>
 <div id="exercises-29" class="section level3" number="4.10.4">
 <h3><span class="header-section-number">4.10.4</span> Exercises</h3>

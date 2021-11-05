@@ -745,7 +745,7 @@ random number generator
 <span id="cb702-2"><a href="normal-distribution.html#cb702-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
 <span id="cb702-3"><a href="normal-distribution.html#cb702-3" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x))</span>
 <span id="cb702-4"><a href="normal-distribution.html#cb702-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pdf))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-737-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-738-1.png" width="576" /></p>
 <p>Next, you can take a step further to visualize three different normal distributions in the same plot, <span class="math inline">\(N(0,1)\)</span>, <span class="math inline">\(N(1,4)\)</span>, and <span class="math inline">\(N(-1, 0.25)\)</span>. You can use the same vector <code>x</code> and compute the three pdfs on each element of <code>x</code>. <code>geom_line</code> is still used with the variable <code>dist</code> mapped to the <code>color</code> aesthetic.</p>
 <div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="normal-distribution.html#cb703-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
 <span id="cb703-2"><a href="normal-distribution.html#cb703-2" aria-hidden="true" tabindex="-1"></a>norm_dat_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(0,1)&quot;</span>, <span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x))</span>
@@ -753,7 +753,7 @@ random number generator
 <span id="cb703-4"><a href="normal-distribution.html#cb703-4" aria-hidden="true" tabindex="-1"></a>norm_dat_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(-1, 0.25)&quot;</span>, <span class="at">x =</span> x, <span class="at">pdf =</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.5</span>))</span>
 <span id="cb703-5"><a href="normal-distribution.html#cb703-5" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(norm_dat_1, norm_dat_2, norm_dat_3)</span>
 <span id="cb703-6"><a href="normal-distribution.html#cb703-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> pdf, <span class="at">color =</span> dist))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-738-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-739-1.png" width="576" /></p>
 </div>
 <div id="cdf" class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Cumulative distribution function (cdf)</h3>
@@ -765,7 +765,7 @@ random number generator
 <div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="normal-distribution.html#cb705-1" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
 <span id="cb705-2"><a href="normal-distribution.html#cb705-2" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">q =</span> q, <span class="at">cdf =</span> <span class="fu">pnorm</span>(q))</span>
 <span id="cb705-3"><a href="normal-distribution.html#cb705-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> q, <span class="at">y =</span> cdf))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-740-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-741-1.png" width="576" /></p>
 </div>
 <div id="qf" class="section level3" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> Quantile function</h3>
@@ -781,7 +781,7 @@ Let’s see a few examples for computing the quantiles.</p>
 <div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="normal-distribution.html#cb708-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span>  <span class="fl">0.01</span>, <span class="at">to =</span> <span class="fl">0.99</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
 <span id="cb708-2"><a href="normal-distribution.html#cb708-2" aria-hidden="true" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
 <span id="cb708-3"><a href="normal-distribution.html#cb708-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-743-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-744-1.png" width="576" /></p>
 </div>
 <div id="rng" class="section level3" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Random Number Generator</h3>
