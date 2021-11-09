@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-05" />
+<meta name="date" content="2021-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedback"><i class="fa fa-check"></i>Submitting Questions or Feedback</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
@@ -299,7 +299,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="matrix.html"><a href="matrix.html#create-a-matrix-from-a-vector"><i class="fa fa-check"></i><b>3.1.1</b> Create a matrix from a vector</a></li>
-<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors-or-matrices-into-a-matrix"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
+<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
 <li class="chapter" data-level="3.1.3" data-path="matrix.html"><a href="matrix.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrix subsetting</a></li>
 <li class="chapter" data-level="3.1.4" data-path="matrix.html"><a href="matrix.html#update-values-in-sub-matrices"><i class="fa fa-check"></i><b>3.1.4</b> Update values in sub-matrices</a></li>
 <li class="chapter" data-level="3.1.5" data-path="matrix.html"><a href="matrix.html#operators-and-functions-on-matrices"><i class="fa fa-check"></i><b>3.1.5</b> Operators and functions on matrices</a></li>
@@ -335,7 +335,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.5.3" data-path="list.html"><a href="list.html#list-inside-a-list"><i class="fa fa-check"></i><b>3.5.3</b> List inside a list</a></li>
 <li class="chapter" data-level="3.5.4" data-path="list.html"><a href="list.html#unlist-a-list"><i class="fa fa-check"></i><b>3.5.4</b> Unlist a list</a></li>
 <li class="chapter" data-level="3.5.5" data-path="list.html"><a href="list.html#apply-functions-for-each-element-of-a-list"><i class="fa fa-check"></i><b>3.5.5</b> Apply functions for each element of a list</a></li>
-<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#exercises-18"><i class="fa fa-check"></i><b>3.5.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#list-matrix"><i class="fa fa-check"></i><b>3.5.6</b> List Matrix</a></li>
+<li class="chapter" data-level="3.5.7" data-path="list.html"><a href="list.html#exercises-18"><i class="fa fa-check"></i><b>3.5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>3.6</b> NULL, NaN, and Inf</a>
 <ul>
@@ -658,71 +659,71 @@ div.csl-indent {
 <div id="select-variables-via-names" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Select Variables via Names</h3>
 <p>Let’s again consider the <code>ahp</code> data set, which contains 56 variables in total. If we want to focus on the sold date, house style, living area, and sale price, we can use the <code>select()</code> function in the <strong>dplyr</strong> package. We will be using the pipe introduced in Section <a href="pipe.html#pipe">6.3</a> throughout the rest of this Chapter. Inside the <code>select()</code> function, you can include the variables to select as different arguments. Note that the quotation marks are not necessary.</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="select-variables.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb636-2"><a href="select-variables.html#cb636-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb636-3"><a href="select-variables.html#cb636-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(dt_sold, house_style, liv_area, sale_price)</span>
-<span id="cb636-4"><a href="select-variables.html#cb636-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 4</span></span>
-<span id="cb636-5"><a href="select-variables.html#cb636-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    house_style liv_area sale_price</span></span>
-<span id="cb636-6"><a href="select-variables.html#cb636-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb636-7"><a href="select-variables.html#cb636-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25 2Story          1479       130.</span></span>
-<span id="cb636-8"><a href="select-variables.html#cb636-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10 2Story          2122        NA </span></span>
-<span id="cb636-9"><a href="select-variables.html#cb636-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15 1Story          1057       109 </span></span>
-<span id="cb636-10"><a href="select-variables.html#cb636-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19 2Story          1444       174 </span></span>
-<span id="cb636-11"><a href="select-variables.html#cb636-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22 1.5Fin          1445       138.</span></span>
-<span id="cb636-12"><a href="select-variables.html#cb636-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06 1Story          1888       190 </span></span>
-<span id="cb636-13"><a href="select-variables.html#cb636-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14 SFoyer          1072       140 </span></span>
-<span id="cb636-14"><a href="select-variables.html#cb636-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08 1Story          1188       142 </span></span>
-<span id="cb636-15"><a href="select-variables.html#cb636-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14 1Story           924       112.</span></span>
-<span id="cb636-16"><a href="select-variables.html#cb636-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01 2Story          2080       135 </span></span>
-<span id="cb636-17"><a href="select-variables.html#cb636-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="select-variables.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb639-2"><a href="select-variables.html#cb639-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb639-3"><a href="select-variables.html#cb639-3" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(dt_sold, house_style, liv_area, sale_price)</span>
+<span id="cb639-4"><a href="select-variables.html#cb639-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 4</span></span>
+<span id="cb639-5"><a href="select-variables.html#cb639-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    house_style liv_area sale_price</span></span>
+<span id="cb639-6"><a href="select-variables.html#cb639-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb639-7"><a href="select-variables.html#cb639-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25 2Story          1479       130.</span></span>
+<span id="cb639-8"><a href="select-variables.html#cb639-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10 2Story          2122        NA </span></span>
+<span id="cb639-9"><a href="select-variables.html#cb639-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15 1Story          1057       109 </span></span>
+<span id="cb639-10"><a href="select-variables.html#cb639-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19 2Story          1444       174 </span></span>
+<span id="cb639-11"><a href="select-variables.html#cb639-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22 1.5Fin          1445       138.</span></span>
+<span id="cb639-12"><a href="select-variables.html#cb639-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06 1Story          1888       190 </span></span>
+<span id="cb639-13"><a href="select-variables.html#cb639-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14 SFoyer          1072       140 </span></span>
+<span id="cb639-14"><a href="select-variables.html#cb639-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08 1Story          1188       142 </span></span>
+<span id="cb639-15"><a href="select-variables.html#cb639-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14 1Story           924       112.</span></span>
+<span id="cb639-16"><a href="select-variables.html#cb639-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01 2Story          2080       135 </span></span>
+<span id="cb639-17"><a href="select-variables.html#cb639-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>As you can see from the output, the <code>select()</code> function returns another tibble with all the observations and the selected variables.</p>
 </div>
 <div id="rename-variables" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Rename Variables</h3>
 <p>In the <code>select()</code> function, you can also <strong>rename the variables</strong> in the form of <code>new_name = old_name</code> as the arguments. Let’s see the following example where we want to rename <code>dt_sold</code> as <code>sold_date</code> and <code>liv_area</code> as <code>living_area</code>.</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="select-variables.html#cb637-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area, sale_price)</span>
-<span id="cb637-2"><a href="select-variables.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
-<span id="cb637-3"><a href="select-variables.html#cb637-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sold_date  living_area sale_price</span></span>
-<span id="cb637-4"><a href="select-variables.html#cb637-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;           &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb637-5"><a href="select-variables.html#cb637-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25        1479       130.</span></span>
-<span id="cb637-6"><a href="select-variables.html#cb637-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10        2122        NA </span></span>
-<span id="cb637-7"><a href="select-variables.html#cb637-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15        1057       109 </span></span>
-<span id="cb637-8"><a href="select-variables.html#cb637-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19        1444       174 </span></span>
-<span id="cb637-9"><a href="select-variables.html#cb637-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22        1445       138.</span></span>
-<span id="cb637-10"><a href="select-variables.html#cb637-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06        1888       190 </span></span>
-<span id="cb637-11"><a href="select-variables.html#cb637-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14        1072       140 </span></span>
-<span id="cb637-12"><a href="select-variables.html#cb637-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08        1188       142 </span></span>
-<span id="cb637-13"><a href="select-variables.html#cb637-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14         924       112.</span></span>
-<span id="cb637-14"><a href="select-variables.html#cb637-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01        2080       135 </span></span>
-<span id="cb637-15"><a href="select-variables.html#cb637-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="select-variables.html#cb640-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area, sale_price)</span>
+<span id="cb640-2"><a href="select-variables.html#cb640-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
+<span id="cb640-3"><a href="select-variables.html#cb640-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sold_date  living_area sale_price</span></span>
+<span id="cb640-4"><a href="select-variables.html#cb640-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;           &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb640-5"><a href="select-variables.html#cb640-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25        1479       130.</span></span>
+<span id="cb640-6"><a href="select-variables.html#cb640-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10        2122        NA </span></span>
+<span id="cb640-7"><a href="select-variables.html#cb640-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15        1057       109 </span></span>
+<span id="cb640-8"><a href="select-variables.html#cb640-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19        1444       174 </span></span>
+<span id="cb640-9"><a href="select-variables.html#cb640-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22        1445       138.</span></span>
+<span id="cb640-10"><a href="select-variables.html#cb640-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06        1888       190 </span></span>
+<span id="cb640-11"><a href="select-variables.html#cb640-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14        1072       140 </span></span>
+<span id="cb640-12"><a href="select-variables.html#cb640-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08        1188       142 </span></span>
+<span id="cb640-13"><a href="select-variables.html#cb640-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14         924       112.</span></span>
+<span id="cb640-14"><a href="select-variables.html#cb640-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01        2080       135 </span></span>
+<span id="cb640-15"><a href="select-variables.html#cb640-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>Note that in this renaming operations, only the variables mentioned in the <code>select()</code> function are kept. If you want to generate a tibble with some variables renamed while keeping all variables, you can use the <code>rename()</code> function.</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="select-variables.html#cb638-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area)</span>
-<span id="cb638-2"><a href="select-variables.html#cb638-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 56</span></span>
-<span id="cb638-3"><a href="select-variables.html#cb638-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sold_date  yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
-<span id="cb638-4"><a href="select-variables.html#cb638-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
-<span id="cb638-5"><a href="select-variables.html#cb638-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25    2010       3     1976       2005         60 1Fam     </span></span>
-<span id="cb638-6"><a href="select-variables.html#cb638-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10    2009       4     1996       1997         60 1Fam     </span></span>
-<span id="cb638-7"><a href="select-variables.html#cb638-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15    2010       1     1953       2007         20 1Fam     </span></span>
-<span id="cb638-8"><a href="select-variables.html#cb638-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19    2010       4     2006       2007         60 1Fam     </span></span>
-<span id="cb638-9"><a href="select-variables.html#cb638-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22    2010       3     1900       1993         50 1Fam     </span></span>
-<span id="cb638-10"><a href="select-variables.html#cb638-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06    2010       6     1966       2002         20 1Fam     </span></span>
-<span id="cb638-11"><a href="select-variables.html#cb638-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14    2006       6     2005       2006        180 TwnhsE   </span></span>
-<span id="cb638-12"><a href="select-variables.html#cb638-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08    2010       5     1959       1959         20 1Fam     </span></span>
-<span id="cb638-13"><a href="select-variables.html#cb638-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14    2007       6     1952       1952         20 1Fam     </span></span>
-<span id="cb638-14"><a href="select-variables.html#cb638-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01    2007       9     1969       1969         60 1Fam     </span></span>
-<span id="cb638-15"><a href="select-variables.html#cb638-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: house_style &lt;chr&gt;,</span></span>
-<span id="cb638-16"><a href="select-variables.html#cb638-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;,</span></span>
-<span id="cb638-17"><a href="select-variables.html#cb638-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   living_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;, `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;,</span></span>
-<span id="cb638-18"><a href="select-variables.html#cb638-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;, kit_qual &lt;chr&gt;,</span></span>
-<span id="cb638-19"><a href="select-variables.html#cb638-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;, bsmt_cond &lt;chr&gt;,</span></span>
-<span id="cb638-20"><a href="select-variables.html#cb638-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;, ext_cond &lt;chr&gt;,</span></span>
-<span id="cb638-21"><a href="select-variables.html#cb638-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;, fp &lt;dbl&gt;,</span></span>
-<span id="cb638-22"><a href="select-variables.html#cb638-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
-<span id="cb638-23"><a href="select-variables.html#cb638-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
-<span id="cb638-24"><a href="select-variables.html#cb638-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
-<span id="cb638-25"><a href="select-variables.html#cb638-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
-<span id="cb638-26"><a href="select-variables.html#cb638-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
-<span id="cb638-27"><a href="select-variables.html#cb638-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="select-variables.html#cb641-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">sold_date =</span> dt_sold, <span class="at">living_area =</span> liv_area)</span>
+<span id="cb641-2"><a href="select-variables.html#cb641-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 56</span></span>
+<span id="cb641-3"><a href="select-variables.html#cb641-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sold_date  yr_sold mo_sold yr_built yr_remodel bldg_class bldg_type</span></span>
+<span id="cb641-4"><a href="select-variables.html#cb641-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span id="cb641-5"><a href="select-variables.html#cb641-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25    2010       3     1976       2005         60 1Fam     </span></span>
+<span id="cb641-6"><a href="select-variables.html#cb641-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10    2009       4     1996       1997         60 1Fam     </span></span>
+<span id="cb641-7"><a href="select-variables.html#cb641-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15    2010       1     1953       2007         20 1Fam     </span></span>
+<span id="cb641-8"><a href="select-variables.html#cb641-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19    2010       4     2006       2007         60 1Fam     </span></span>
+<span id="cb641-9"><a href="select-variables.html#cb641-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22    2010       3     1900       1993         50 1Fam     </span></span>
+<span id="cb641-10"><a href="select-variables.html#cb641-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06    2010       6     1966       2002         20 1Fam     </span></span>
+<span id="cb641-11"><a href="select-variables.html#cb641-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14    2006       6     2005       2006        180 TwnhsE   </span></span>
+<span id="cb641-12"><a href="select-variables.html#cb641-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08    2010       5     1959       1959         20 1Fam     </span></span>
+<span id="cb641-13"><a href="select-variables.html#cb641-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14    2007       6     1952       1952         20 1Fam     </span></span>
+<span id="cb641-14"><a href="select-variables.html#cb641-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01    2007       9     1969       1969         60 1Fam     </span></span>
+<span id="cb641-15"><a href="select-variables.html#cb641-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: house_style &lt;chr&gt;,</span></span>
+<span id="cb641-16"><a href="select-variables.html#cb641-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;, oa_qual &lt;dbl&gt;, func &lt;chr&gt;,</span></span>
+<span id="cb641-17"><a href="select-variables.html#cb641-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   living_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;, `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;,</span></span>
+<span id="cb641-18"><a href="select-variables.html#cb641-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;, kit_qual &lt;chr&gt;,</span></span>
+<span id="cb641-19"><a href="select-variables.html#cb641-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;, bsmt_cond &lt;chr&gt;,</span></span>
+<span id="cb641-20"><a href="select-variables.html#cb641-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;, ext_cond &lt;chr&gt;,</span></span>
+<span id="cb641-21"><a href="select-variables.html#cb641-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;, fp &lt;dbl&gt;,</span></span>
+<span id="cb641-22"><a href="select-variables.html#cb641-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb641-23"><a href="select-variables.html#cb641-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb641-24"><a href="select-variables.html#cb641-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb641-25"><a href="select-variables.html#cb641-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb641-26"><a href="select-variables.html#cb641-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb641-27"><a href="select-variables.html#cb641-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;, sale_price &lt;dbl&gt;</span></span></code></pre></div>
 <p>From this example, you can see the different behavior between <code>select()</code> and <code>rename()</code> when renaming variables.</p>
 </div>
 <div id="select-variables-with-patterns" class="section level3" number="6.4.3">
@@ -731,217 +732,217 @@ div.csl-indent {
 <p><strong><em>a. select consecutive variables</em></strong></p>
 <p>The first type of variable patterns is <strong>consecutive variables</strong> in a tibble.</p>
 <p>To get started, you can use <code>select(1:m)</code> to get the first <code>m</code> variables. To get the last column, you can use <code>select(last_col())</code>. To get the last <code>m</code> variables, you can use <code>select(last_col(m-1):last_col())</code>.</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="select-variables.html#cb639-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)                    <span class="co"># the first 3 columns</span></span>
-<span id="cb639-2"><a href="select-variables.html#cb639-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
-<span id="cb639-3"><a href="select-variables.html#cb639-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    yr_sold mo_sold</span></span>
-<span id="cb639-4"><a href="select-variables.html#cb639-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb639-5"><a href="select-variables.html#cb639-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25    2010       3</span></span>
-<span id="cb639-6"><a href="select-variables.html#cb639-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10    2009       4</span></span>
-<span id="cb639-7"><a href="select-variables.html#cb639-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15    2010       1</span></span>
-<span id="cb639-8"><a href="select-variables.html#cb639-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19    2010       4</span></span>
-<span id="cb639-9"><a href="select-variables.html#cb639-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22    2010       3</span></span>
-<span id="cb639-10"><a href="select-variables.html#cb639-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06    2010       6</span></span>
-<span id="cb639-11"><a href="select-variables.html#cb639-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14    2006       6</span></span>
-<span id="cb639-12"><a href="select-variables.html#cb639-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08    2010       5</span></span>
-<span id="cb639-13"><a href="select-variables.html#cb639-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14    2007       6</span></span>
-<span id="cb639-14"><a href="select-variables.html#cb639-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01    2007       9</span></span>
-<span id="cb639-15"><a href="select-variables.html#cb639-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
-<span id="cb639-16"><a href="select-variables.html#cb639-16" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>())             <span class="co"># the last column</span></span>
-<span id="cb639-17"><a href="select-variables.html#cb639-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 1</span></span>
-<span id="cb639-18"><a href="select-variables.html#cb639-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sale_price</span></span>
-<span id="cb639-19"><a href="select-variables.html#cb639-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt;</span></span>
-<span id="cb639-20"><a href="select-variables.html#cb639-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       130.</span></span>
-<span id="cb639-21"><a href="select-variables.html#cb639-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2        NA </span></span>
-<span id="cb639-22"><a href="select-variables.html#cb639-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       109 </span></span>
-<span id="cb639-23"><a href="select-variables.html#cb639-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       174 </span></span>
-<span id="cb639-24"><a href="select-variables.html#cb639-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       138.</span></span>
-<span id="cb639-25"><a href="select-variables.html#cb639-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       190 </span></span>
-<span id="cb639-26"><a href="select-variables.html#cb639-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       140 </span></span>
-<span id="cb639-27"><a href="select-variables.html#cb639-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       142 </span></span>
-<span id="cb639-28"><a href="select-variables.html#cb639-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       112.</span></span>
-<span id="cb639-29"><a href="select-variables.html#cb639-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       135 </span></span>
-<span id="cb639-30"><a href="select-variables.html#cb639-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
-<span id="cb639-31"><a href="select-variables.html#cb639-31" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>(<span class="dv">1</span>))            <span class="co"># the second to last column</span></span>
-<span id="cb639-32"><a href="select-variables.html#cb639-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 1</span></span>
-<span id="cb639-33"><a href="select-variables.html#cb639-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    wd_area</span></span>
-<span id="cb639-34"><a href="select-variables.html#cb639-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;</span></span>
-<span id="cb639-35"><a href="select-variables.html#cb639-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       0</span></span>
-<span id="cb639-36"><a href="select-variables.html#cb639-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       0</span></span>
-<span id="cb639-37"><a href="select-variables.html#cb639-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       0</span></span>
-<span id="cb639-38"><a href="select-variables.html#cb639-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     100</span></span>
-<span id="cb639-39"><a href="select-variables.html#cb639-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       0</span></span>
-<span id="cb639-40"><a href="select-variables.html#cb639-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       0</span></span>
-<span id="cb639-41"><a href="select-variables.html#cb639-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       0</span></span>
-<span id="cb639-42"><a href="select-variables.html#cb639-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       0</span></span>
-<span id="cb639-43"><a href="select-variables.html#cb639-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       0</span></span>
-<span id="cb639-44"><a href="select-variables.html#cb639-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     335</span></span>
-<span id="cb639-45"><a href="select-variables.html#cb639-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
-<span id="cb639-46"><a href="select-variables.html#cb639-46" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>(<span class="dv">2</span>)<span class="sc">:</span><span class="fu">last_col</span>()) <span class="co"># the last 3 columns</span></span>
-<span id="cb639-47"><a href="select-variables.html#cb639-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
-<span id="cb639-48"><a href="select-variables.html#cb639-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ep_area wd_area sale_price</span></span>
-<span id="cb639-49"><a href="select-variables.html#cb639-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb639-50"><a href="select-variables.html#cb639-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       0       0       130.</span></span>
-<span id="cb639-51"><a href="select-variables.html#cb639-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       0       0        NA </span></span>
-<span id="cb639-52"><a href="select-variables.html#cb639-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       0       0       109 </span></span>
-<span id="cb639-53"><a href="select-variables.html#cb639-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       0     100       174 </span></span>
-<span id="cb639-54"><a href="select-variables.html#cb639-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       0       0       138.</span></span>
-<span id="cb639-55"><a href="select-variables.html#cb639-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       0       0       190 </span></span>
-<span id="cb639-56"><a href="select-variables.html#cb639-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       0       0       140 </span></span>
-<span id="cb639-57"><a href="select-variables.html#cb639-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       0       0       142 </span></span>
-<span id="cb639-58"><a href="select-variables.html#cb639-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       0       0       112.</span></span>
-<span id="cb639-59"><a href="select-variables.html#cb639-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       0     335       135 </span></span>
-<span id="cb639-60"><a href="select-variables.html#cb639-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="select-variables.html#cb642-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)                    <span class="co"># the first 3 columns</span></span>
+<span id="cb642-2"><a href="select-variables.html#cb642-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
+<span id="cb642-3"><a href="select-variables.html#cb642-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    yr_sold mo_sold</span></span>
+<span id="cb642-4"><a href="select-variables.html#cb642-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb642-5"><a href="select-variables.html#cb642-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25    2010       3</span></span>
+<span id="cb642-6"><a href="select-variables.html#cb642-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10    2009       4</span></span>
+<span id="cb642-7"><a href="select-variables.html#cb642-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15    2010       1</span></span>
+<span id="cb642-8"><a href="select-variables.html#cb642-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19    2010       4</span></span>
+<span id="cb642-9"><a href="select-variables.html#cb642-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22    2010       3</span></span>
+<span id="cb642-10"><a href="select-variables.html#cb642-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06    2010       6</span></span>
+<span id="cb642-11"><a href="select-variables.html#cb642-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14    2006       6</span></span>
+<span id="cb642-12"><a href="select-variables.html#cb642-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08    2010       5</span></span>
+<span id="cb642-13"><a href="select-variables.html#cb642-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14    2007       6</span></span>
+<span id="cb642-14"><a href="select-variables.html#cb642-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01    2007       9</span></span>
+<span id="cb642-15"><a href="select-variables.html#cb642-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
+<span id="cb642-16"><a href="select-variables.html#cb642-16" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>())             <span class="co"># the last column</span></span>
+<span id="cb642-17"><a href="select-variables.html#cb642-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 1</span></span>
+<span id="cb642-18"><a href="select-variables.html#cb642-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    sale_price</span></span>
+<span id="cb642-19"><a href="select-variables.html#cb642-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt;</span></span>
+<span id="cb642-20"><a href="select-variables.html#cb642-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       130.</span></span>
+<span id="cb642-21"><a href="select-variables.html#cb642-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2        NA </span></span>
+<span id="cb642-22"><a href="select-variables.html#cb642-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       109 </span></span>
+<span id="cb642-23"><a href="select-variables.html#cb642-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       174 </span></span>
+<span id="cb642-24"><a href="select-variables.html#cb642-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       138.</span></span>
+<span id="cb642-25"><a href="select-variables.html#cb642-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       190 </span></span>
+<span id="cb642-26"><a href="select-variables.html#cb642-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       140 </span></span>
+<span id="cb642-27"><a href="select-variables.html#cb642-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       142 </span></span>
+<span id="cb642-28"><a href="select-variables.html#cb642-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       112.</span></span>
+<span id="cb642-29"><a href="select-variables.html#cb642-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       135 </span></span>
+<span id="cb642-30"><a href="select-variables.html#cb642-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
+<span id="cb642-31"><a href="select-variables.html#cb642-31" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>(<span class="dv">1</span>))            <span class="co"># the second to last column</span></span>
+<span id="cb642-32"><a href="select-variables.html#cb642-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 1</span></span>
+<span id="cb642-33"><a href="select-variables.html#cb642-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    wd_area</span></span>
+<span id="cb642-34"><a href="select-variables.html#cb642-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;</span></span>
+<span id="cb642-35"><a href="select-variables.html#cb642-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       0</span></span>
+<span id="cb642-36"><a href="select-variables.html#cb642-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       0</span></span>
+<span id="cb642-37"><a href="select-variables.html#cb642-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       0</span></span>
+<span id="cb642-38"><a href="select-variables.html#cb642-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     100</span></span>
+<span id="cb642-39"><a href="select-variables.html#cb642-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       0</span></span>
+<span id="cb642-40"><a href="select-variables.html#cb642-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       0</span></span>
+<span id="cb642-41"><a href="select-variables.html#cb642-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       0</span></span>
+<span id="cb642-42"><a href="select-variables.html#cb642-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       0</span></span>
+<span id="cb642-43"><a href="select-variables.html#cb642-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       0</span></span>
+<span id="cb642-44"><a href="select-variables.html#cb642-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     335</span></span>
+<span id="cb642-45"><a href="select-variables.html#cb642-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span>
+<span id="cb642-46"><a href="select-variables.html#cb642-46" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">last_col</span>(<span class="dv">2</span>)<span class="sc">:</span><span class="fu">last_col</span>()) <span class="co"># the last 3 columns</span></span>
+<span id="cb642-47"><a href="select-variables.html#cb642-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 3</span></span>
+<span id="cb642-48"><a href="select-variables.html#cb642-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ep_area wd_area sale_price</span></span>
+<span id="cb642-49"><a href="select-variables.html#cb642-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb642-50"><a href="select-variables.html#cb642-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       0       0       130.</span></span>
+<span id="cb642-51"><a href="select-variables.html#cb642-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       0       0        NA </span></span>
+<span id="cb642-52"><a href="select-variables.html#cb642-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       0       0       109 </span></span>
+<span id="cb642-53"><a href="select-variables.html#cb642-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       0     100       174 </span></span>
+<span id="cb642-54"><a href="select-variables.html#cb642-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       0       0       138.</span></span>
+<span id="cb642-55"><a href="select-variables.html#cb642-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       0       0       190 </span></span>
+<span id="cb642-56"><a href="select-variables.html#cb642-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       0       0       140 </span></span>
+<span id="cb642-57"><a href="select-variables.html#cb642-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       0       0       142 </span></span>
+<span id="cb642-58"><a href="select-variables.html#cb642-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       0       0       112.</span></span>
+<span id="cb642-59"><a href="select-variables.html#cb642-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       0     335       135 </span></span>
+<span id="cb642-60"><a href="select-variables.html#cb642-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>If you want to select all variables from <code>yr_sold</code> to <code>yr_remodel</code> in the tibble, you can use <code>yr_sold:yr_remodel</code> as a single argument in the <code>select()</code> function. Note that the result highly depends on the particular ordering of variables in the tibble.</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="select-variables.html#cb640-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold<span class="sc">:</span>yr_remodel, sale_price)</span>
-<span id="cb640-2"><a href="select-variables.html#cb640-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 5</span></span>
-<span id="cb640-3"><a href="select-variables.html#cb640-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold mo_sold yr_built yr_remodel sale_price</span></span>
-<span id="cb640-4"><a href="select-variables.html#cb640-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb640-5"><a href="select-variables.html#cb640-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010       3     1976       2005       130.</span></span>
-<span id="cb640-6"><a href="select-variables.html#cb640-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009       4     1996       1997        NA </span></span>
-<span id="cb640-7"><a href="select-variables.html#cb640-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010       1     1953       2007       109 </span></span>
-<span id="cb640-8"><a href="select-variables.html#cb640-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010       4     2006       2007       174 </span></span>
-<span id="cb640-9"><a href="select-variables.html#cb640-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010       3     1900       1993       138.</span></span>
-<span id="cb640-10"><a href="select-variables.html#cb640-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010       6     1966       2002       190 </span></span>
-<span id="cb640-11"><a href="select-variables.html#cb640-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006       6     2005       2006       140 </span></span>
-<span id="cb640-12"><a href="select-variables.html#cb640-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010       5     1959       1959       142 </span></span>
-<span id="cb640-13"><a href="select-variables.html#cb640-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007       6     1952       1952       112.</span></span>
-<span id="cb640-14"><a href="select-variables.html#cb640-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007       9     1969       1969       135 </span></span>
-<span id="cb640-15"><a href="select-variables.html#cb640-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="select-variables.html#cb643-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold<span class="sc">:</span>yr_remodel, sale_price)</span>
+<span id="cb643-2"><a href="select-variables.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 5</span></span>
+<span id="cb643-3"><a href="select-variables.html#cb643-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold mo_sold yr_built yr_remodel sale_price</span></span>
+<span id="cb643-4"><a href="select-variables.html#cb643-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb643-5"><a href="select-variables.html#cb643-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010       3     1976       2005       130.</span></span>
+<span id="cb643-6"><a href="select-variables.html#cb643-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009       4     1996       1997        NA </span></span>
+<span id="cb643-7"><a href="select-variables.html#cb643-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010       1     1953       2007       109 </span></span>
+<span id="cb643-8"><a href="select-variables.html#cb643-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010       4     2006       2007       174 </span></span>
+<span id="cb643-9"><a href="select-variables.html#cb643-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010       3     1900       1993       138.</span></span>
+<span id="cb643-10"><a href="select-variables.html#cb643-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010       6     1966       2002       190 </span></span>
+<span id="cb643-11"><a href="select-variables.html#cb643-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006       6     2005       2006       140 </span></span>
+<span id="cb643-12"><a href="select-variables.html#cb643-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010       5     1959       1959       142 </span></span>
+<span id="cb643-13"><a href="select-variables.html#cb643-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007       6     1952       1952       112.</span></span>
+<span id="cb643-14"><a href="select-variables.html#cb643-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007       9     1969       1969       135 </span></span>
+<span id="cb643-15"><a href="select-variables.html#cb643-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p><strong><em>b. select variables with names that start with, end with, or contain a string</em></strong>
 Another commonly used pattern is to select all variables with names that start with, end with, or contain a string. To select all variables that begin with <code>"yr"</code> (representing year information) in the <code>ahp</code> data set, you can use the <code>starts_with()</code> function in the <code>select()</code> function.</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="select-variables.html#cb641-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;yr&quot;</span>), sale_price)</span>
-<span id="cb641-2"><a href="select-variables.html#cb641-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 4</span></span>
-<span id="cb641-3"><a href="select-variables.html#cb641-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold yr_built yr_remodel sale_price</span></span>
-<span id="cb641-4"><a href="select-variables.html#cb641-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb641-5"><a href="select-variables.html#cb641-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010     1976       2005       130.</span></span>
-<span id="cb641-6"><a href="select-variables.html#cb641-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009     1996       1997        NA </span></span>
-<span id="cb641-7"><a href="select-variables.html#cb641-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010     1953       2007       109 </span></span>
-<span id="cb641-8"><a href="select-variables.html#cb641-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010     2006       2007       174 </span></span>
-<span id="cb641-9"><a href="select-variables.html#cb641-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010     1900       1993       138.</span></span>
-<span id="cb641-10"><a href="select-variables.html#cb641-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010     1966       2002       190 </span></span>
-<span id="cb641-11"><a href="select-variables.html#cb641-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006     2005       2006       140 </span></span>
-<span id="cb641-12"><a href="select-variables.html#cb641-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010     1959       1959       142 </span></span>
-<span id="cb641-13"><a href="select-variables.html#cb641-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007     1952       1952       112.</span></span>
-<span id="cb641-14"><a href="select-variables.html#cb641-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007     1969       1969       135 </span></span>
-<span id="cb641-15"><a href="select-variables.html#cb641-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="select-variables.html#cb644-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;yr&quot;</span>), sale_price)</span>
+<span id="cb644-2"><a href="select-variables.html#cb644-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 4</span></span>
+<span id="cb644-3"><a href="select-variables.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold yr_built yr_remodel sale_price</span></span>
+<span id="cb644-4"><a href="select-variables.html#cb644-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb644-5"><a href="select-variables.html#cb644-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010     1976       2005       130.</span></span>
+<span id="cb644-6"><a href="select-variables.html#cb644-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009     1996       1997        NA </span></span>
+<span id="cb644-7"><a href="select-variables.html#cb644-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010     1953       2007       109 </span></span>
+<span id="cb644-8"><a href="select-variables.html#cb644-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010     2006       2007       174 </span></span>
+<span id="cb644-9"><a href="select-variables.html#cb644-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010     1900       1993       138.</span></span>
+<span id="cb644-10"><a href="select-variables.html#cb644-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010     1966       2002       190 </span></span>
+<span id="cb644-11"><a href="select-variables.html#cb644-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006     2005       2006       140 </span></span>
+<span id="cb644-12"><a href="select-variables.html#cb644-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010     1959       1959       142 </span></span>
+<span id="cb644-13"><a href="select-variables.html#cb644-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007     1952       1952       112.</span></span>
+<span id="cb644-14"><a href="select-variables.html#cb644-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007     1969       1969       135 </span></span>
+<span id="cb644-15"><a href="select-variables.html#cb644-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>In the output, we can see three variables that begins with <code>"yr"</code> including the sold year, built year, and remodel year. We also include the <code>sale_price</code> in the <code>select()</code> function.</p>
 <p>You can also use <code>ends_with()</code> to select all variables with names that end with a particular string.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="select-variables.html#cb642-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&quot;qual&quot;</span>))   <span class="co">#ending with qual</span></span>
-<span id="cb642-2"><a href="select-variables.html#cb642-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 7</span></span>
-<span id="cb642-3"><a href="select-variables.html#cb642-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual kit_qual bsmt_fin_qual ext_qual fp_qual gar_qual heat_qual</span></span>
-<span id="cb642-4"><a href="select-variables.html#cb642-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;    </span></span>
-<span id="cb642-5"><a href="select-variables.html#cb642-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6 Good     GLQ           Good     &lt;NA&gt;    Average  Excellent</span></span>
-<span id="cb642-6"><a href="select-variables.html#cb642-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7 Good     GLQ           Good     Average Average  Excellent</span></span>
-<span id="cb642-7"><a href="select-variables.html#cb642-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5 Good     GLQ           Average  &lt;NA&gt;    Average  Average  </span></span>
-<span id="cb642-8"><a href="select-variables.html#cb642-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5 Average  Unf           Average  &lt;NA&gt;    Average  Good     </span></span>
-<span id="cb642-9"><a href="select-variables.html#cb642-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6 Average  Unf           Average  &lt;NA&gt;    Average  Average  </span></span>
-<span id="cb642-10"><a href="select-variables.html#cb642-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6 Good     ALQ           Good     Good    Average  Excellent</span></span>
-<span id="cb642-11"><a href="select-variables.html#cb642-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6 Average  GLQ           Average  &lt;NA&gt;    Average  Good     </span></span>
-<span id="cb642-12"><a href="select-variables.html#cb642-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5 Average  Rec           Average  &lt;NA&gt;    Average  Fair     </span></span>
-<span id="cb642-13"><a href="select-variables.html#cb642-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5 Average  Rec           Average  &lt;NA&gt;    Average  Average  </span></span>
-<span id="cb642-14"><a href="select-variables.html#cb642-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5 Fair     Rec           Average  Average Average  Average  </span></span>
-<span id="cb642-15"><a href="select-variables.html#cb642-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="select-variables.html#cb645-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&quot;qual&quot;</span>))   <span class="co">#ending with qual</span></span>
+<span id="cb645-2"><a href="select-variables.html#cb645-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 7</span></span>
+<span id="cb645-3"><a href="select-variables.html#cb645-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual kit_qual bsmt_fin_qual ext_qual fp_qual gar_qual heat_qual</span></span>
+<span id="cb645-4"><a href="select-variables.html#cb645-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;    </span></span>
+<span id="cb645-5"><a href="select-variables.html#cb645-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6 Good     GLQ           Good     &lt;NA&gt;    Average  Excellent</span></span>
+<span id="cb645-6"><a href="select-variables.html#cb645-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7 Good     GLQ           Good     Average Average  Excellent</span></span>
+<span id="cb645-7"><a href="select-variables.html#cb645-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5 Good     GLQ           Average  &lt;NA&gt;    Average  Average  </span></span>
+<span id="cb645-8"><a href="select-variables.html#cb645-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5 Average  Unf           Average  &lt;NA&gt;    Average  Good     </span></span>
+<span id="cb645-9"><a href="select-variables.html#cb645-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6 Average  Unf           Average  &lt;NA&gt;    Average  Average  </span></span>
+<span id="cb645-10"><a href="select-variables.html#cb645-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6 Good     ALQ           Good     Good    Average  Excellent</span></span>
+<span id="cb645-11"><a href="select-variables.html#cb645-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6 Average  GLQ           Average  &lt;NA&gt;    Average  Good     </span></span>
+<span id="cb645-12"><a href="select-variables.html#cb645-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5 Average  Rec           Average  &lt;NA&gt;    Average  Fair     </span></span>
+<span id="cb645-13"><a href="select-variables.html#cb645-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5 Average  Rec           Average  &lt;NA&gt;    Average  Average  </span></span>
+<span id="cb645-14"><a href="select-variables.html#cb645-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5 Fair     Rec           Average  Average Average  Average  </span></span>
+<span id="cb645-15"><a href="select-variables.html#cb645-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>This produces a tibble with all quality related variables (ending with <code>qual</code>).</p>
 <p>If you want to select all variables with names containing a string (not necessarily starts with or ends with), you can use the <code>contains()</code> function with the string as its argument.</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="select-variables.html#cb643-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;mo&quot;</span>))</span>
-<span id="cb643-2"><a href="select-variables.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 2</span></span>
-<span id="cb643-3"><a href="select-variables.html#cb643-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    mo_sold yr_remodel</span></span>
-<span id="cb643-4"><a href="select-variables.html#cb643-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb643-5"><a href="select-variables.html#cb643-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       3       2005</span></span>
-<span id="cb643-6"><a href="select-variables.html#cb643-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       4       1997</span></span>
-<span id="cb643-7"><a href="select-variables.html#cb643-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       1       2007</span></span>
-<span id="cb643-8"><a href="select-variables.html#cb643-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       4       2007</span></span>
-<span id="cb643-9"><a href="select-variables.html#cb643-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       3       1993</span></span>
-<span id="cb643-10"><a href="select-variables.html#cb643-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6       2002</span></span>
-<span id="cb643-11"><a href="select-variables.html#cb643-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6       2006</span></span>
-<span id="cb643-12"><a href="select-variables.html#cb643-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5       1959</span></span>
-<span id="cb643-13"><a href="select-variables.html#cb643-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       6       1952</span></span>
-<span id="cb643-14"><a href="select-variables.html#cb643-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       9       1969</span></span>
-<span id="cb643-15"><a href="select-variables.html#cb643-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="select-variables.html#cb646-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;mo&quot;</span>))</span>
+<span id="cb646-2"><a href="select-variables.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 2</span></span>
+<span id="cb646-3"><a href="select-variables.html#cb646-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    mo_sold yr_remodel</span></span>
+<span id="cb646-4"><a href="select-variables.html#cb646-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb646-5"><a href="select-variables.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       3       2005</span></span>
+<span id="cb646-6"><a href="select-variables.html#cb646-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       4       1997</span></span>
+<span id="cb646-7"><a href="select-variables.html#cb646-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       1       2007</span></span>
+<span id="cb646-8"><a href="select-variables.html#cb646-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       4       2007</span></span>
+<span id="cb646-9"><a href="select-variables.html#cb646-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       3       1993</span></span>
+<span id="cb646-10"><a href="select-variables.html#cb646-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6       2002</span></span>
+<span id="cb646-11"><a href="select-variables.html#cb646-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6       2006</span></span>
+<span id="cb646-12"><a href="select-variables.html#cb646-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5       1959</span></span>
+<span id="cb646-13"><a href="select-variables.html#cb646-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       6       1952</span></span>
+<span id="cb646-14"><a href="select-variables.html#cb646-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       9       1969</span></span>
+<span id="cb646-15"><a href="select-variables.html#cb646-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p>This outputs two variables named <code>mo_sold</code> and <code>yr_remodel</code>, both containing <code>mo</code>.</p>
 <p>You can also combine multiple conditions using logical operators. First of all, the multiple arguments in the <code>select()</code> function are combined with **or operations (<code>|</code>). For example, to get all variables that begins with <code>b</code> or ends with <code>m</code>, you can do the following.</p>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="select-variables.html#cb644-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;b&quot;</span>), <span class="fu">ends_with</span>(<span class="st">&quot;m&quot;</span>))</span>
-<span id="cb644-2"><a href="select-variables.html#cb644-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 9</span></span>
-<span id="cb644-3"><a href="select-variables.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    bldg_class bldg_type bedroom bathroom bsmt_area bsmt_cond bsmt_exp</span></span>
-<span id="cb644-4"><a href="select-variables.html#cb644-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   </span></span>
-<span id="cb644-5"><a href="select-variables.html#cb644-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1         60 1Fam            3      2.5       725 Average   No      </span></span>
-<span id="cb644-6"><a href="select-variables.html#cb644-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2         60 1Fam            4      3.5       913 Average   No      </span></span>
-<span id="cb644-7"><a href="select-variables.html#cb644-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3         20 1Fam            3      2        1057 Average   No      </span></span>
-<span id="cb644-8"><a href="select-variables.html#cb644-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4         60 1Fam            3      2.5       384 Average   No      </span></span>
-<span id="cb644-9"><a href="select-variables.html#cb644-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5         50 1Fam            3      2         676 Good      No      </span></span>
-<span id="cb644-10"><a href="select-variables.html#cb644-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6         20 1Fam            2      2.5      1517 Average   No      </span></span>
-<span id="cb644-11"><a href="select-variables.html#cb644-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7        180 TwnhsE          2      3         547 Average   Gd      </span></span>
-<span id="cb644-12"><a href="select-variables.html#cb644-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8         20 1Fam            3      2        1188 Average   No      </span></span>
-<span id="cb644-13"><a href="select-variables.html#cb644-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9         20 1Fam            2      1         924 Average   No      </span></span>
-<span id="cb644-14"><a href="select-variables.html#cb644-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10         60 1Fam            5      2.5      1040 Average   Av      </span></span>
-<span id="cb644-15"><a href="select-variables.html#cb644-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 2 more variables: bsmt_fin_qual &lt;chr&gt;,</span></span>
-<span id="cb644-16"><a href="select-variables.html#cb644-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_ht &lt;chr&gt;</span></span>
-<span id="cb644-17"><a href="select-variables.html#cb644-17" aria-hidden="true" tabindex="-1"></a><span class="co">#ahp %&gt;% select(starts_with(&quot;b&quot;) | ends_with(&quot;m&quot;)) #equivalent</span></span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="select-variables.html#cb647-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;b&quot;</span>), <span class="fu">ends_with</span>(<span class="st">&quot;m&quot;</span>))</span>
+<span id="cb647-2"><a href="select-variables.html#cb647-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 9</span></span>
+<span id="cb647-3"><a href="select-variables.html#cb647-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    bldg_class bldg_type bedroom bathroom bsmt_area bsmt_cond bsmt_exp</span></span>
+<span id="cb647-4"><a href="select-variables.html#cb647-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   </span></span>
+<span id="cb647-5"><a href="select-variables.html#cb647-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1         60 1Fam            3      2.5       725 Average   No      </span></span>
+<span id="cb647-6"><a href="select-variables.html#cb647-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2         60 1Fam            4      3.5       913 Average   No      </span></span>
+<span id="cb647-7"><a href="select-variables.html#cb647-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3         20 1Fam            3      2        1057 Average   No      </span></span>
+<span id="cb647-8"><a href="select-variables.html#cb647-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4         60 1Fam            3      2.5       384 Average   No      </span></span>
+<span id="cb647-9"><a href="select-variables.html#cb647-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5         50 1Fam            3      2         676 Good      No      </span></span>
+<span id="cb647-10"><a href="select-variables.html#cb647-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6         20 1Fam            2      2.5      1517 Average   No      </span></span>
+<span id="cb647-11"><a href="select-variables.html#cb647-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7        180 TwnhsE          2      3         547 Average   Gd      </span></span>
+<span id="cb647-12"><a href="select-variables.html#cb647-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8         20 1Fam            3      2        1188 Average   No      </span></span>
+<span id="cb647-13"><a href="select-variables.html#cb647-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9         20 1Fam            2      1         924 Average   No      </span></span>
+<span id="cb647-14"><a href="select-variables.html#cb647-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10         60 1Fam            5      2.5      1040 Average   Av      </span></span>
+<span id="cb647-15"><a href="select-variables.html#cb647-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 2 more variables: bsmt_fin_qual &lt;chr&gt;,</span></span>
+<span id="cb647-16"><a href="select-variables.html#cb647-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_ht &lt;chr&gt;</span></span>
+<span id="cb647-17"><a href="select-variables.html#cb647-17" aria-hidden="true" tabindex="-1"></a><span class="co">#ahp %&gt;% select(starts_with(&quot;b&quot;) | ends_with(&quot;m&quot;)) #equivalent</span></span></code></pre></div>
 <p>For example, to get all variables that begins with <code>b</code> and ends with <code>m</code>, you can do the following.</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="select-variables.html#cb645-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;b&quot;</span>) <span class="sc">&amp;</span> <span class="fu">ends_with</span>(<span class="st">&quot;m&quot;</span>))</span>
-<span id="cb645-2"><a href="select-variables.html#cb645-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 2</span></span>
-<span id="cb645-3"><a href="select-variables.html#cb645-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    bedroom bathroom</span></span>
-<span id="cb645-4"><a href="select-variables.html#cb645-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb645-5"><a href="select-variables.html#cb645-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       3      2.5</span></span>
-<span id="cb645-6"><a href="select-variables.html#cb645-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       4      3.5</span></span>
-<span id="cb645-7"><a href="select-variables.html#cb645-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       3      2  </span></span>
-<span id="cb645-8"><a href="select-variables.html#cb645-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       3      2.5</span></span>
-<span id="cb645-9"><a href="select-variables.html#cb645-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       3      2  </span></span>
-<span id="cb645-10"><a href="select-variables.html#cb645-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       2      2.5</span></span>
-<span id="cb645-11"><a href="select-variables.html#cb645-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       2      3  </span></span>
-<span id="cb645-12"><a href="select-variables.html#cb645-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       3      2  </span></span>
-<span id="cb645-13"><a href="select-variables.html#cb645-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       2      1  </span></span>
-<span id="cb645-14"><a href="select-variables.html#cb645-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5      2.5</span></span>
-<span id="cb645-15"><a href="select-variables.html#cb645-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="select-variables.html#cb648-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;b&quot;</span>) <span class="sc">&amp;</span> <span class="fu">ends_with</span>(<span class="st">&quot;m&quot;</span>))</span>
+<span id="cb648-2"><a href="select-variables.html#cb648-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 2</span></span>
+<span id="cb648-3"><a href="select-variables.html#cb648-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    bedroom bathroom</span></span>
+<span id="cb648-4"><a href="select-variables.html#cb648-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb648-5"><a href="select-variables.html#cb648-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       3      2.5</span></span>
+<span id="cb648-6"><a href="select-variables.html#cb648-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       4      3.5</span></span>
+<span id="cb648-7"><a href="select-variables.html#cb648-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       3      2  </span></span>
+<span id="cb648-8"><a href="select-variables.html#cb648-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       3      2.5</span></span>
+<span id="cb648-9"><a href="select-variables.html#cb648-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       3      2  </span></span>
+<span id="cb648-10"><a href="select-variables.html#cb648-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       2      2.5</span></span>
+<span id="cb648-11"><a href="select-variables.html#cb648-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       2      3  </span></span>
+<span id="cb648-12"><a href="select-variables.html#cb648-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       3      2  </span></span>
+<span id="cb648-13"><a href="select-variables.html#cb648-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       2      1  </span></span>
+<span id="cb648-14"><a href="select-variables.html#cb648-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5      2.5</span></span>
+<span id="cb648-15"><a href="select-variables.html#cb648-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows</span></span></code></pre></div>
 <p><strong><em>c. select variables except for the specified ones</em></strong></p>
 <p>Sometimes, instead of specifying the variables to select, you want to keep all the variables except a few given ones. It works similar to the vector subsetting where you can add the negation sign <code>!</code> before the indices. For example, to keep all variables except the ones of names ending with <code>"room"</code> in the <code>sahp</code> data set, you can use <code>select(!ends_with("room"))</code>.</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="select-variables.html#cb646-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;room&quot;</span>))</span>
-<span id="cb646-2"><a href="select-variables.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 10</span></span>
-<span id="cb646-3"><a href="select-variables.html#cb646-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    gar_car oa_qual liv_area lot_area house_style kit_qual heat_qual</span></span>
-<span id="cb646-4"><a href="select-variables.html#cb646-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;    </span></span>
-<span id="cb646-5"><a href="select-variables.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       2       6     1479    13517 2Story      Good     Excellent</span></span>
-<span id="cb646-6"><a href="select-variables.html#cb646-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       2       7     2122    11492 2Story      Good     Excellent</span></span>
-<span id="cb646-7"><a href="select-variables.html#cb646-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       1       5     1057     7922 1Story      Good     Average  </span></span>
-<span id="cb646-8"><a href="select-variables.html#cb646-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       2       5     1444     9802 2Story      Average  Good     </span></span>
-<span id="cb646-9"><a href="select-variables.html#cb646-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       2       6     1445    14235 1.5Fin      Average  Average  </span></span>
-<span id="cb646-10"><a href="select-variables.html#cb646-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2       6     1888    16492 1Story      Good     Excellent</span></span>
-<span id="cb646-11"><a href="select-variables.html#cb646-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2       6     1072     3675 SFoyer      Average  Good     </span></span>
-<span id="cb646-12"><a href="select-variables.html#cb646-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       2       5     1188    12160 1Story      Average  Fair     </span></span>
-<span id="cb646-13"><a href="select-variables.html#cb646-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       1       5      924    15783 1Story      Average  Average  </span></span>
-<span id="cb646-14"><a href="select-variables.html#cb646-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       2       5     2080    11606 2Story      Fair     Average  </span></span>
-<span id="cb646-15"><a href="select-variables.html#cb646-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 2 more variables: central_air &lt;chr&gt;,</span></span>
-<span id="cb646-16"><a href="select-variables.html#cb646-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="select-variables.html#cb649-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;room&quot;</span>))</span>
+<span id="cb649-2"><a href="select-variables.html#cb649-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 10</span></span>
+<span id="cb649-3"><a href="select-variables.html#cb649-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    dt_sold    gar_car oa_qual liv_area lot_area house_style kit_qual heat_qual</span></span>
+<span id="cb649-4"><a href="select-variables.html#cb649-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;    </span></span>
+<span id="cb649-5"><a href="select-variables.html#cb649-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2010-03-25       2       6     1479    13517 2Story      Good     Excellent</span></span>
+<span id="cb649-6"><a href="select-variables.html#cb649-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2009-04-10       2       7     2122    11492 2Story      Good     Excellent</span></span>
+<span id="cb649-7"><a href="select-variables.html#cb649-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2010-01-15       1       5     1057     7922 1Story      Good     Average  </span></span>
+<span id="cb649-8"><a href="select-variables.html#cb649-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2010-04-19       2       5     1444     9802 2Story      Average  Good     </span></span>
+<span id="cb649-9"><a href="select-variables.html#cb649-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2010-03-22       2       6     1445    14235 1.5Fin      Average  Average  </span></span>
+<span id="cb649-10"><a href="select-variables.html#cb649-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2010-06-06       2       6     1888    16492 1Story      Good     Excellent</span></span>
+<span id="cb649-11"><a href="select-variables.html#cb649-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2006-06-14       2       6     1072     3675 SFoyer      Average  Good     </span></span>
+<span id="cb649-12"><a href="select-variables.html#cb649-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2010-05-08       2       5     1188    12160 1Story      Average  Fair     </span></span>
+<span id="cb649-13"><a href="select-variables.html#cb649-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2007-06-14       1       5      924    15783 1Story      Average  Average  </span></span>
+<span id="cb649-14"><a href="select-variables.html#cb649-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2007-09-01       2       5     2080    11606 2Story      Fair     Average  </span></span>
+<span id="cb649-15"><a href="select-variables.html#cb649-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows, and 2 more variables: central_air &lt;chr&gt;,</span></span>
+<span id="cb649-16"><a href="select-variables.html#cb649-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 <div id="reorder-variables-via-names" class="section level3" number="6.4.4">
 <h3><span class="header-section-number">6.4.4</span> Reorder Variables via Names</h3>
 <p>Knowing how to select and rename variables, let’s learn how to reorder variables in a tibble. The first approach to reordering variables is to use the <code>select()</code> function by listing all the variables in the desired order. However, you may realized that it would be time consuming if there are many variables in the tibble and we only want to move a few to the beginning. It turns out we can utilize the <code>everything()</code> function as an argument in the <code>select()</code> function, which will select all the remaining variables. Let’s say we want to move <code>yr_sold</code> and <code>sale_price</code> to the beginning of the tibble.</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="select-variables.html#cb647-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold, sale_price, <span class="fu">everything</span>())</span>
-<span id="cb647-2"><a href="select-variables.html#cb647-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 56</span></span>
-<span id="cb647-3"><a href="select-variables.html#cb647-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold sale_price dt_sold    mo_sold yr_built yr_remodel bldg_class</span></span>
-<span id="cb647-4"><a href="select-variables.html#cb647-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb647-5"><a href="select-variables.html#cb647-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010       130. 2010-03-25       3     1976       2005         60</span></span>
-<span id="cb647-6"><a href="select-variables.html#cb647-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009        NA  2009-04-10       4     1996       1997         60</span></span>
-<span id="cb647-7"><a href="select-variables.html#cb647-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010       109  2010-01-15       1     1953       2007         20</span></span>
-<span id="cb647-8"><a href="select-variables.html#cb647-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010       174  2010-04-19       4     2006       2007         60</span></span>
-<span id="cb647-9"><a href="select-variables.html#cb647-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010       138. 2010-03-22       3     1900       1993         50</span></span>
-<span id="cb647-10"><a href="select-variables.html#cb647-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010       190  2010-06-06       6     1966       2002         20</span></span>
-<span id="cb647-11"><a href="select-variables.html#cb647-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006       140  2006-06-14       6     2005       2006        180</span></span>
-<span id="cb647-12"><a href="select-variables.html#cb647-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010       142  2010-05-08       5     1959       1959         20</span></span>
-<span id="cb647-13"><a href="select-variables.html#cb647-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007       112. 2007-06-14       6     1952       1952         20</span></span>
-<span id="cb647-14"><a href="select-variables.html#cb647-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007       135  2007-09-01       9     1969       1969         60</span></span>
-<span id="cb647-15"><a href="select-variables.html#cb647-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: bldg_type &lt;chr&gt;,</span></span>
-<span id="cb647-16"><a href="select-variables.html#cb647-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;,</span></span>
-<span id="cb647-17"><a href="select-variables.html#cb647-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
-<span id="cb647-18"><a href="select-variables.html#cb647-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
-<span id="cb647-19"><a href="select-variables.html#cb647-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
-<span id="cb647-20"><a href="select-variables.html#cb647-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
-<span id="cb647-21"><a href="select-variables.html#cb647-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
-<span id="cb647-22"><a href="select-variables.html#cb647-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
-<span id="cb647-23"><a href="select-variables.html#cb647-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
-<span id="cb647-24"><a href="select-variables.html#cb647-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
-<span id="cb647-25"><a href="select-variables.html#cb647-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
-<span id="cb647-26"><a href="select-variables.html#cb647-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
-<span id="cb647-27"><a href="select-variables.html#cb647-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="select-variables.html#cb650-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> <span class="fu">select</span>(yr_sold, sale_price, <span class="fu">everything</span>())</span>
+<span id="cb650-2"><a href="select-variables.html#cb650-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2,048 x 56</span></span>
+<span id="cb650-3"><a href="select-variables.html#cb650-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    yr_sold sale_price dt_sold    mo_sold yr_built yr_remodel bldg_class</span></span>
+<span id="cb650-4"><a href="select-variables.html#cb650-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;       &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb650-5"><a href="select-variables.html#cb650-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2010       130. 2010-03-25       3     1976       2005         60</span></span>
+<span id="cb650-6"><a href="select-variables.html#cb650-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2009        NA  2009-04-10       4     1996       1997         60</span></span>
+<span id="cb650-7"><a href="select-variables.html#cb650-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2010       109  2010-01-15       1     1953       2007         20</span></span>
+<span id="cb650-8"><a href="select-variables.html#cb650-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2010       174  2010-04-19       4     2006       2007         60</span></span>
+<span id="cb650-9"><a href="select-variables.html#cb650-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2010       138. 2010-03-22       3     1900       1993         50</span></span>
+<span id="cb650-10"><a href="select-variables.html#cb650-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2010       190  2010-06-06       6     1966       2002         20</span></span>
+<span id="cb650-11"><a href="select-variables.html#cb650-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2006       140  2006-06-14       6     2005       2006        180</span></span>
+<span id="cb650-12"><a href="select-variables.html#cb650-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2010       142  2010-05-08       5     1959       1959         20</span></span>
+<span id="cb650-13"><a href="select-variables.html#cb650-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2007       112. 2007-06-14       6     1952       1952         20</span></span>
+<span id="cb650-14"><a href="select-variables.html#cb650-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2007       135  2007-09-01       9     1969       1969         60</span></span>
+<span id="cb650-15"><a href="select-variables.html#cb650-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 2,038 more rows, and 49 more variables: bldg_type &lt;chr&gt;,</span></span>
+<span id="cb650-16"><a href="select-variables.html#cb650-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   house_style &lt;chr&gt;, zoning &lt;chr&gt;, neighborhd &lt;chr&gt;, oa_cond &lt;dbl&gt;,</span></span>
+<span id="cb650-17"><a href="select-variables.html#cb650-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   oa_qual &lt;dbl&gt;, func &lt;chr&gt;, liv_area &lt;dbl&gt;, `1fl_area` &lt;dbl&gt;,</span></span>
+<span id="cb650-18"><a href="select-variables.html#cb650-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   `2fl_area` &lt;dbl&gt;, tot_rms &lt;dbl&gt;, bedroom &lt;dbl&gt;, bathroom &lt;dbl&gt;, kit &lt;dbl&gt;,</span></span>
+<span id="cb650-19"><a href="select-variables.html#cb650-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   kit_qual &lt;chr&gt;, central_air &lt;chr&gt;, elect &lt;chr&gt;, bsmt_area &lt;dbl&gt;,</span></span>
+<span id="cb650-20"><a href="select-variables.html#cb650-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   bsmt_cond &lt;chr&gt;, bsmt_exp &lt;chr&gt;, bsmt_fin_qual &lt;chr&gt;, bsmt_ht &lt;chr&gt;,</span></span>
+<span id="cb650-21"><a href="select-variables.html#cb650-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ext_cond &lt;chr&gt;, ext_cover &lt;chr&gt;, ext_qual &lt;chr&gt;, fdn &lt;chr&gt;, fence &lt;chr&gt;,</span></span>
+<span id="cb650-22"><a href="select-variables.html#cb650-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   fp &lt;dbl&gt;, fp_qual &lt;chr&gt;, gar_area &lt;dbl&gt;, gar_car &lt;dbl&gt;, gar_cond &lt;chr&gt;,</span></span>
+<span id="cb650-23"><a href="select-variables.html#cb650-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   gar_fin &lt;chr&gt;, gar_qual &lt;chr&gt;, gar_type &lt;chr&gt;, gar_yr &lt;dbl&gt;,</span></span>
+<span id="cb650-24"><a href="select-variables.html#cb650-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   heat_qual &lt;chr&gt;, land_contour &lt;chr&gt;, land_slope &lt;chr&gt;, lot_area &lt;dbl&gt;,</span></span>
+<span id="cb650-25"><a href="select-variables.html#cb650-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   lot_config &lt;chr&gt;, lot_frontage &lt;dbl&gt;, lot_shape &lt;chr&gt;, pave_dr &lt;chr&gt;,</span></span>
+<span id="cb650-26"><a href="select-variables.html#cb650-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   roof_matl &lt;chr&gt;, roof_style &lt;chr&gt;, op_area &lt;dbl&gt;, ep_area &lt;dbl&gt;,</span></span>
+<span id="cb650-27"><a href="select-variables.html#cb650-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   wd_area &lt;dbl&gt;</span></span></code></pre></div>
 <p>You can see the result is another tibble of 56 columns, with the first two columns being <code>yr_sold</code> and <code>sale_price</code>, followed by the remaining variables in the same order as in the original tibble <code>ahp</code>.</p>
 </div>
 <div id="exercise-3" class="section level3" number="6.4.5">

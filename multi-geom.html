@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-05" />
+<meta name="date" content="2021-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -169,7 +169,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedbacks"><i class="fa fa-check"></i>Submitting Questions or Feedbacks</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedback"><i class="fa fa-check"></i>Submitting Questions or Feedback</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
@@ -299,7 +299,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix</a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="matrix.html"><a href="matrix.html#create-a-matrix-from-a-vector"><i class="fa fa-check"></i><b>3.1.1</b> Create a matrix from a vector</a></li>
-<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors-or-matrices-into-a-matrix"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
+<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
 <li class="chapter" data-level="3.1.3" data-path="matrix.html"><a href="matrix.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrix subsetting</a></li>
 <li class="chapter" data-level="3.1.4" data-path="matrix.html"><a href="matrix.html#update-values-in-sub-matrices"><i class="fa fa-check"></i><b>3.1.4</b> Update values in sub-matrices</a></li>
 <li class="chapter" data-level="3.1.5" data-path="matrix.html"><a href="matrix.html#operators-and-functions-on-matrices"><i class="fa fa-check"></i><b>3.1.5</b> Operators and functions on matrices</a></li>
@@ -335,7 +335,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.5.3" data-path="list.html"><a href="list.html#list-inside-a-list"><i class="fa fa-check"></i><b>3.5.3</b> List inside a list</a></li>
 <li class="chapter" data-level="3.5.4" data-path="list.html"><a href="list.html#unlist-a-list"><i class="fa fa-check"></i><b>3.5.4</b> Unlist a list</a></li>
 <li class="chapter" data-level="3.5.5" data-path="list.html"><a href="list.html#apply-functions-for-each-element-of-a-list"><i class="fa fa-check"></i><b>3.5.5</b> Apply functions for each element of a list</a></li>
-<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#exercises-18"><i class="fa fa-check"></i><b>3.5.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#list-matrix"><i class="fa fa-check"></i><b>3.5.6</b> List Matrix</a></li>
+<li class="chapter" data-level="3.5.7" data-path="list.html"><a href="list.html#exercises-18"><i class="fa fa-check"></i><b>3.5.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>3.6</b> NULL, NaN, and Inf</a>
 <ul>
@@ -656,49 +657,49 @@ div.csl-indent {
 <h2><span class="header-section-number">4.5</span> Multiple geoms and Aesthetics</h2>
 <p>So far, you have learned to create scatterplots using <code>geom_point()</code> and smoothline fits using <code>geom_smooth()</code>. It is sometimes useful to combine multiple geoms in the same plot.</p>
 <p>Let’s first review the scatterplot and smoothline fit between <code>liv_area</code> and <code>sale_price</code>.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="multi-geom.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb428-2"><a href="multi-geom.html#cb428-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb428-3"><a href="multi-geom.html#cb428-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</span></span>
-<span id="cb428-4"><a href="multi-geom.html#cb428-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ tidyr   1.1.2     ✓ stringr 1.4.0</span></span>
-<span id="cb428-5"><a href="multi-geom.html#cb428-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ readr   1.4.0     ✓ forcats 0.5.0</span></span>
-<span id="cb428-6"><a href="multi-geom.html#cb428-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ purrr   0.3.4</span></span>
-<span id="cb428-7"><a href="multi-geom.html#cb428-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span id="cb428-8"><a href="multi-geom.html#cb428-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></span>
-<span id="cb428-9"><a href="multi-geom.html#cb428-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></span>
-<span id="cb428-10"><a href="multi-geom.html#cb428-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb428-11"><a href="multi-geom.html#cb428-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-453-1.png" width="576" /></p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="multi-geom.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb429-2"><a href="multi-geom.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
-<span id="cb429-3"><a href="multi-geom.html#cb429-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-453-2.png" width="576" /></p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="multi-geom.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb431-2"><a href="multi-geom.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb431-3"><a href="multi-geom.html#cb431-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</span></span>
+<span id="cb431-4"><a href="multi-geom.html#cb431-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ tidyr   1.1.2     ✓ stringr 1.4.0</span></span>
+<span id="cb431-5"><a href="multi-geom.html#cb431-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ readr   1.4.0     ✓ forcats 0.5.0</span></span>
+<span id="cb431-6"><a href="multi-geom.html#cb431-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✓ purrr   0.3.4</span></span>
+<span id="cb431-7"><a href="multi-geom.html#cb431-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb431-8"><a href="multi-geom.html#cb431-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb431-9"><a href="multi-geom.html#cb431-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb431-10"><a href="multi-geom.html#cb431-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb431-11"><a href="multi-geom.html#cb431-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-456-1.png" width="576" /></p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="multi-geom.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb432-2"><a href="multi-geom.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
+<span id="cb432-3"><a href="multi-geom.html#cb432-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-456-2.png" width="576" /></p>
 <p>To combine multiple geoms, you can simply use <code>+</code> to add them.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="multi-geom.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb430-2"><a href="multi-geom.html#cb430-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb430-3"><a href="multi-geom.html#cb430-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
-<span id="cb430-4"><a href="multi-geom.html#cb430-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-454-1.png" width="576" /></p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="multi-geom.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb433-2"><a href="multi-geom.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb433-3"><a href="multi-geom.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span>
+<span id="cb433-4"><a href="multi-geom.html#cb433-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-457-1.png" width="576" /></p>
 <p>As expected, you see all the points and the smoothline fit on the same plot, which contains very rich information.</p>
 <p>As usual, you can add aesthetics to both geoms.</p>
 <p>Let’s first map <code>good_qual</code> (defined as <code>oa_qual &gt; 5</code> in Section <a href="smoothline.html#smoothline">4.4</a>) to the color aesthetic for <code>geom_smooth()</code>.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="multi-geom.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb431-2"><a href="multi-geom.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb431-3"><a href="multi-geom.html#cb431-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual))</span>
-<span id="cb431-4"><a href="multi-geom.html#cb431-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-455-1.png" width="576" /></p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="multi-geom.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb434-2"><a href="multi-geom.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb434-3"><a href="multi-geom.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual))</span>
+<span id="cb434-4"><a href="multi-geom.html#cb434-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-458-1.png" width="576" /></p>
 <p>To verify the two smoothline fits are indeed fitted from the data points in the two groups, you can map <code>good_qual</code> to the color aesthetic for <code>geom_point()</code> as well.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="multi-geom.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb432-2"><a href="multi-geom.html#cb432-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual)) <span class="sc">+</span></span>
-<span id="cb432-3"><a href="multi-geom.html#cb432-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb432-4"><a href="multi-geom.html#cb432-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-456-1.png" width="576" />
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="multi-geom.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb435-2"><a href="multi-geom.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual)) <span class="sc">+</span></span>
+<span id="cb435-3"><a href="multi-geom.html#cb435-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb435-4"><a href="multi-geom.html#cb435-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-459-1.png" width="576" />
 The plot is reassuring that the two smoothline fits indeed correspond to the data points in the two groups defined by <code>good_qual</code>. Note that the legend also shows a <code>NA</code> category since there is a missing value in the variable <code>good_qual</code>.</p>
 <p>In addition to mapping variables to aesthetics, you can also use global aesthetics.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="multi-geom.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb433-2"><a href="multi-geom.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual, <span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb433-3"><a href="multi-geom.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb433-4"><a href="multi-geom.html#cb433-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-457-1.png" width="576" /></p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="multi-geom.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb436-2"><a href="multi-geom.html#cb436-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual, <span class="at">shape =</span> house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb436-3"><a href="multi-geom.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price, <span class="at">color =</span> good_qual), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb436-4"><a href="multi-geom.html#cb436-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-460-1.png" width="576" /></p>
 <div id="exercises-24" class="section level3" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Exercises</h3>
 <p>Using the <code>sahp</code> dataset with the <strong>ggplot2</strong> package, answer the following questions.</p>
