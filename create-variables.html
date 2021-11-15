@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-12" />
+<meta name="date" content="2021-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -411,12 +411,13 @@ div.csl-indent {
 <li class="chapter" data-level="4.9.3" data-path="jitter-count.html"><a href="jitter-count.html#count"><i class="fa fa-check"></i><b>4.9.3</b> Counts Plots</a></li>
 <li class="chapter" data-level="4.9.4" data-path="jitter-count.html"><a href="jitter-count.html#exercises-28"><i class="fa fa-check"></i><b>4.9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts via geom_bar()</a>
+<li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts and Pie Charts via geom_bar()</a>
 <ul>
 <li class="chapter" data-level="4.10.1" data-path="bar-charts.html"><a href="bar-charts.html#an-introduction-to-bar-chart"><i class="fa fa-check"></i><b>4.10.1</b> An Introduction to Bar Chart</a></li>
 <li class="chapter" data-level="4.10.2" data-path="bar-charts.html"><a href="bar-charts.html#reordering-bar-chart"><i class="fa fa-check"></i><b>4.10.2</b> Reordering Bars in Bar Charts</a></li>
 <li class="chapter" data-level="4.10.3" data-path="bar-charts.html"><a href="bar-charts.html#aesthetics-in-bar-charts"><i class="fa fa-check"></i><b>4.10.3</b> Aesthetics in Bar Charts</a></li>
-<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#exercises-29"><i class="fa fa-check"></i><b>4.10.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#pie-chart"><i class="fa fa-check"></i><b>4.10.4</b> Pie Charts</a></li>
+<li class="chapter" data-level="4.10.5" data-path="bar-charts.html"><a href="bar-charts.html#exercises-29"><i class="fa fa-check"></i><b>4.10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.11" data-path="customization-axes.html"><a href="customization-axes.html"><i class="fa fa-check"></i><b>4.11</b> Customization of x and y Axes</a>
 <ul>
@@ -657,89 +658,89 @@ div.csl-indent {
 <h2><span class="header-section-number">6.5</span> Create New Variables via mutate() and transmute()</h2>
 <p>You are now an expert in filtering observations (Section <a href="filter-observations.html#filter-observations">6.1</a>), reordering observations (Section <a href="reorder-observations.html#reorder-observations">6.2</a>), and selecting, renaming &amp; reordering variables (Section <a href="select-variables.html#select-variables">6.4</a>). In many applications, you may want to <strong>create new variables</strong> as functions of the existing ones. In this section, we will learn how to do this using the <strong>dplyr</strong> package.</p>
 <p>Let’s say you want to compute the average sale price per square foot for each house in the <code>sahp</code> data set. To highlight the useful columns, we first use <code>select()</code> to select the <code>oa_qual</code>, <code>liv_area</code>, and <code>sale_price</code>. Then, use the <code>mutate()</code> function to add a new variable named <code>ave_price</code> with the value <code>sale_price/liv_area</code> to the end.</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="create-variables.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb651-2"><a href="create-variables.html#cb651-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb651-3"><a href="create-variables.html#cb651-3" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
-<span id="cb651-4"><a href="create-variables.html#cb651-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
-<span id="cb651-5"><a href="create-variables.html#cb651-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area) </span>
-<span id="cb651-6"><a href="create-variables.html#cb651-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 4</span></span>
-<span id="cb651-7"><a href="create-variables.html#cb651-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual liv_area sale_price ave_price</span></span>
-<span id="cb651-8"><a href="create-variables.html#cb651-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb651-9"><a href="create-variables.html#cb651-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6     1479       130.    0.0882</span></span>
-<span id="cb651-10"><a href="create-variables.html#cb651-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7     2122        NA    NA     </span></span>
-<span id="cb651-11"><a href="create-variables.html#cb651-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5     1057       109     0.103 </span></span>
-<span id="cb651-12"><a href="create-variables.html#cb651-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5     1444       174     0.120 </span></span>
-<span id="cb651-13"><a href="create-variables.html#cb651-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6     1445       138.    0.0958</span></span>
-<span id="cb651-14"><a href="create-variables.html#cb651-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6     1888       190     0.101 </span></span>
-<span id="cb651-15"><a href="create-variables.html#cb651-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6     1072       140     0.131 </span></span>
-<span id="cb651-16"><a href="create-variables.html#cb651-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5     1188       142     0.120 </span></span>
-<span id="cb651-17"><a href="create-variables.html#cb651-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5      924       112.    0.122 </span></span>
-<span id="cb651-18"><a href="create-variables.html#cb651-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5     2080       135     0.0649</span></span>
-<span id="cb651-19"><a href="create-variables.html#cb651-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="create-variables.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb657-2"><a href="create-variables.html#cb657-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb657-3"><a href="create-variables.html#cb657-3" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
+<span id="cb657-4"><a href="create-variables.html#cb657-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
+<span id="cb657-5"><a href="create-variables.html#cb657-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area) </span>
+<span id="cb657-6"><a href="create-variables.html#cb657-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 4</span></span>
+<span id="cb657-7"><a href="create-variables.html#cb657-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual liv_area sale_price ave_price</span></span>
+<span id="cb657-8"><a href="create-variables.html#cb657-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb657-9"><a href="create-variables.html#cb657-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6     1479       130.    0.0882</span></span>
+<span id="cb657-10"><a href="create-variables.html#cb657-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7     2122        NA    NA     </span></span>
+<span id="cb657-11"><a href="create-variables.html#cb657-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5     1057       109     0.103 </span></span>
+<span id="cb657-12"><a href="create-variables.html#cb657-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5     1444       174     0.120 </span></span>
+<span id="cb657-13"><a href="create-variables.html#cb657-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6     1445       138.    0.0958</span></span>
+<span id="cb657-14"><a href="create-variables.html#cb657-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6     1888       190     0.101 </span></span>
+<span id="cb657-15"><a href="create-variables.html#cb657-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6     1072       140     0.131 </span></span>
+<span id="cb657-16"><a href="create-variables.html#cb657-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5     1188       142     0.120 </span></span>
+<span id="cb657-17"><a href="create-variables.html#cb657-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5      924       112.    0.122 </span></span>
+<span id="cb657-18"><a href="create-variables.html#cb657-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5     2080       135     0.0649</span></span>
+<span id="cb657-19"><a href="create-variables.html#cb657-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
 <p>From the result, you can check that the resulting tibble has 4 columns, with the last column being the newly created variable <code>ave_price</code>. You can use <code>mutate()</code> to create multiple variables at the same time following the same format.</p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="create-variables.html#cb652-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
-<span id="cb652-2"><a href="create-variables.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price, lot_area) <span class="sc">%&gt;%</span></span>
-<span id="cb652-3"><a href="create-variables.html#cb652-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb652-4"><a href="create-variables.html#cb652-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 6</span></span>
-<span id="cb652-5"><a href="create-variables.html#cb652-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual liv_area sale_price lot_area ave_price  area</span></span>
-<span id="cb652-6"><a href="create-variables.html#cb652-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb652-7"><a href="create-variables.html#cb652-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6     1479       130.    13517    0.0882 14996</span></span>
-<span id="cb652-8"><a href="create-variables.html#cb652-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7     2122        NA     11492   NA      13614</span></span>
-<span id="cb652-9"><a href="create-variables.html#cb652-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5     1057       109      7922    0.103   8979</span></span>
-<span id="cb652-10"><a href="create-variables.html#cb652-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5     1444       174      9802    0.120  11246</span></span>
-<span id="cb652-11"><a href="create-variables.html#cb652-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6     1445       138.    14235    0.0958 15680</span></span>
-<span id="cb652-12"><a href="create-variables.html#cb652-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6     1888       190     16492    0.101  18380</span></span>
-<span id="cb652-13"><a href="create-variables.html#cb652-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6     1072       140      3675    0.131   4747</span></span>
-<span id="cb652-14"><a href="create-variables.html#cb652-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5     1188       142     12160    0.120  13348</span></span>
-<span id="cb652-15"><a href="create-variables.html#cb652-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5      924       112.    15783    0.122  16707</span></span>
-<span id="cb652-16"><a href="create-variables.html#cb652-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5     2080       135     11606    0.0649 13686</span></span>
-<span id="cb652-17"><a href="create-variables.html#cb652-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="create-variables.html#cb658-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
+<span id="cb658-2"><a href="create-variables.html#cb658-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price, lot_area) <span class="sc">%&gt;%</span></span>
+<span id="cb658-3"><a href="create-variables.html#cb658-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
+<span id="cb658-4"><a href="create-variables.html#cb658-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 6</span></span>
+<span id="cb658-5"><a href="create-variables.html#cb658-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    oa_qual liv_area sale_price lot_area ave_price  area</span></span>
+<span id="cb658-6"><a href="create-variables.html#cb658-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb658-7"><a href="create-variables.html#cb658-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1       6     1479       130.    13517    0.0882 14996</span></span>
+<span id="cb658-8"><a href="create-variables.html#cb658-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2       7     2122        NA     11492   NA      13614</span></span>
+<span id="cb658-9"><a href="create-variables.html#cb658-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3       5     1057       109      7922    0.103   8979</span></span>
+<span id="cb658-10"><a href="create-variables.html#cb658-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4       5     1444       174      9802    0.120  11246</span></span>
+<span id="cb658-11"><a href="create-variables.html#cb658-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5       6     1445       138.    14235    0.0958 15680</span></span>
+<span id="cb658-12"><a href="create-variables.html#cb658-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6       6     1888       190     16492    0.101  18380</span></span>
+<span id="cb658-13"><a href="create-variables.html#cb658-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7       6     1072       140      3675    0.131   4747</span></span>
+<span id="cb658-14"><a href="create-variables.html#cb658-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8       5     1188       142     12160    0.120  13348</span></span>
+<span id="cb658-15"><a href="create-variables.html#cb658-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9       5      924       112.    15783    0.122  16707</span></span>
+<span id="cb658-16"><a href="create-variables.html#cb658-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10       5     2080       135     11606    0.0649 13686</span></span>
+<span id="cb658-17"><a href="create-variables.html#cb658-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
 <p>This operation adds two new columns <code>ave_price</code> and <code>area</code> to the existing tibble. Note that the <code>mutate()</code> function can <strong>only</strong> use the variables inside the <code>select()</code> function. The following code will show an error since <code>lot_area</code> is not included in the <code>select()</code> function.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="create-variables.html#cb653-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
-<span id="cb653-2"><a href="create-variables.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
-<span id="cb653-3"><a href="create-variables.html#cb653-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb653-4"><a href="create-variables.html#cb653-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` input `area`.</span></span>
-<span id="cb653-5"><a href="create-variables.html#cb653-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span>
-<span id="cb653-6"><a href="create-variables.html#cb653-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Input `area` is `lot_area + liv_area`.</span></span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="create-variables.html#cb659-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
+<span id="cb659-2"><a href="create-variables.html#cb659-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
+<span id="cb659-3"><a href="create-variables.html#cb659-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
+<span id="cb659-4"><a href="create-variables.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` input `area`.</span></span>
+<span id="cb659-5"><a href="create-variables.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span>
+<span id="cb659-6"><a href="create-variables.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Input `area` is `lot_area + liv_area`.</span></span></code></pre></div>
 <p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the order of each house in terms of sale price, you can use <code>mutate(sale_price_order = order(sale_price))</code>. To create a variable as the mean of the sale prices of all houses, you can add <code>sale_price_ave = mean(sale_price)</code> as an argument in the <code>mutate()</code> function.</p>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="create-variables.html#cb654-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span></span>
-<span id="cb654-2"><a href="create-variables.html#cb654-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb654-3"><a href="create-variables.html#cb654-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sale_price) <span class="sc">%&gt;%</span> </span>
-<span id="cb654-4"><a href="create-variables.html#cb654-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sale_price_order =</span> <span class="fu">order</span>(sale_price),</span>
-<span id="cb654-5"><a href="create-variables.html#cb654-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sale_price_ave =</span> <span class="fu">mean</span>(sale_price))</span>
-<span id="cb654-6"><a href="create-variables.html#cb654-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 x 3</span></span>
-<span id="cb654-7"><a href="create-variables.html#cb654-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sale_price sale_price_order sale_price_ave</span></span>
-<span id="cb654-8"><a href="create-variables.html#cb654-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt;            &lt;int&gt;          &lt;dbl&gt;</span></span>
-<span id="cb654-9"><a href="create-variables.html#cb654-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       465                 5           466.</span></span>
-<span id="cb654-10"><a href="create-variables.html#cb654-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       545.                4           466.</span></span>
-<span id="cb654-11"><a href="create-variables.html#cb654-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       457.                3           466.</span></span>
-<span id="cb654-12"><a href="create-variables.html#cb654-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       442.                1           466.</span></span>
-<span id="cb654-13"><a href="create-variables.html#cb654-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       421.                2           466.</span></span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="create-variables.html#cb660-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span></span>
+<span id="cb660-2"><a href="create-variables.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb660-3"><a href="create-variables.html#cb660-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sale_price) <span class="sc">%&gt;%</span> </span>
+<span id="cb660-4"><a href="create-variables.html#cb660-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sale_price_order =</span> <span class="fu">order</span>(sale_price),</span>
+<span id="cb660-5"><a href="create-variables.html#cb660-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sale_price_ave =</span> <span class="fu">mean</span>(sale_price))</span>
+<span id="cb660-6"><a href="create-variables.html#cb660-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 x 3</span></span>
+<span id="cb660-7"><a href="create-variables.html#cb660-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sale_price sale_price_order sale_price_ave</span></span>
+<span id="cb660-8"><a href="create-variables.html#cb660-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt;            &lt;int&gt;          &lt;dbl&gt;</span></span>
+<span id="cb660-9"><a href="create-variables.html#cb660-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       465                 5           466.</span></span>
+<span id="cb660-10"><a href="create-variables.html#cb660-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       545.                4           466.</span></span>
+<span id="cb660-11"><a href="create-variables.html#cb660-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       457.                3           466.</span></span>
+<span id="cb660-12"><a href="create-variables.html#cb660-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       442.                1           466.</span></span>
+<span id="cb660-13"><a href="create-variables.html#cb660-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       421.                2           466.</span></span></code></pre></div>
 <p>From the result, you can see that <code>sale_price_order</code> represent the order for each house in terms of sale price while the <code>sale_price_ave</code> has a constant value for all houses. The different behavior lies in the fact that the function <code>order()</code> returns another vector of the same length as the input, while <code>mean()</code> always returns a vector of length 1, which is recycled to fill in the new variable <code>sale_price_ave</code>.</p>
 <p>Once creating the new variables, you can immediately use them to do visualization. Let’s say we want to create a scatterplot between <code>area</code> and <code>ave_price</code>, using different colors to represent whether <code>oa_qual &gt; 5</code>.</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="create-variables.html#cb655-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
-<span id="cb655-2"><a href="create-variables.html#cb655-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area) <span class="sc">%&gt;%</span></span>
-<span id="cb655-3"><a href="create-variables.html#cb655-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb655-4"><a href="create-variables.html#cb655-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> ave_price, <span class="at">color =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-689-1.png" width="576" /></p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="create-variables.html#cb661-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
+<span id="cb661-2"><a href="create-variables.html#cb661-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area) <span class="sc">%&gt;%</span></span>
+<span id="cb661-3"><a href="create-variables.html#cb661-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb661-4"><a href="create-variables.html#cb661-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> ave_price, <span class="at">color =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-694-1.png" width="576" /></p>
 <p>This plots shows that the average sale price does not have a trend when the total area changes. In addition, the “good” quality houses (<code>oa_qual &gt; 5</code>) has a higher <code>ave_price</code> in general when the total area is the same.</p>
 <p>Using the <code>mutate()</code> function, we add newly created variable while keeping all the existing ones. If you want to only keep the newly created variables, you can use the <code>transmute()</code> function.</p>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="create-variables.html#cb656-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
-<span id="cb656-2"><a href="create-variables.html#cb656-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb656-3"><a href="create-variables.html#cb656-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 2</span></span>
-<span id="cb656-4"><a href="create-variables.html#cb656-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ave_price  area</span></span>
-<span id="cb656-5"><a href="create-variables.html#cb656-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb656-6"><a href="create-variables.html#cb656-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    0.0882 14996</span></span>
-<span id="cb656-7"><a href="create-variables.html#cb656-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2   NA      13614</span></span>
-<span id="cb656-8"><a href="create-variables.html#cb656-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    0.103   8979</span></span>
-<span id="cb656-9"><a href="create-variables.html#cb656-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    0.120  11246</span></span>
-<span id="cb656-10"><a href="create-variables.html#cb656-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    0.0958 15680</span></span>
-<span id="cb656-11"><a href="create-variables.html#cb656-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    0.101  18380</span></span>
-<span id="cb656-12"><a href="create-variables.html#cb656-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    0.131   4747</span></span>
-<span id="cb656-13"><a href="create-variables.html#cb656-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    0.120  13348</span></span>
-<span id="cb656-14"><a href="create-variables.html#cb656-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    0.122  16707</span></span>
-<span id="cb656-15"><a href="create-variables.html#cb656-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    0.0649 13686</span></span>
-<span id="cb656-16"><a href="create-variables.html#cb656-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="create-variables.html#cb662-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
+<span id="cb662-2"><a href="create-variables.html#cb662-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
+<span id="cb662-3"><a href="create-variables.html#cb662-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 165 x 2</span></span>
+<span id="cb662-4"><a href="create-variables.html#cb662-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ave_price  area</span></span>
+<span id="cb662-5"><a href="create-variables.html#cb662-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb662-6"><a href="create-variables.html#cb662-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    0.0882 14996</span></span>
+<span id="cb662-7"><a href="create-variables.html#cb662-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2   NA      13614</span></span>
+<span id="cb662-8"><a href="create-variables.html#cb662-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    0.103   8979</span></span>
+<span id="cb662-9"><a href="create-variables.html#cb662-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    0.120  11246</span></span>
+<span id="cb662-10"><a href="create-variables.html#cb662-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    0.0958 15680</span></span>
+<span id="cb662-11"><a href="create-variables.html#cb662-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    0.101  18380</span></span>
+<span id="cb662-12"><a href="create-variables.html#cb662-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    0.131   4747</span></span>
+<span id="cb662-13"><a href="create-variables.html#cb662-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    0.120  13348</span></span>
+<span id="cb662-14"><a href="create-variables.html#cb662-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    0.122  16707</span></span>
+<span id="cb662-15"><a href="create-variables.html#cb662-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    0.0649 13686</span></span>
+<span id="cb662-16"><a href="create-variables.html#cb662-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 155 more rows</span></span></code></pre></div>
 <div id="exercises-40" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Exercises</h3>
 <p>Using the <code>ahp</code> dataset and the pipe operator for the following exercises.</p>

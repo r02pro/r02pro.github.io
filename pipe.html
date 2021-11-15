@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-12" />
+<meta name="date" content="2021-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -411,12 +411,13 @@ div.csl-indent {
 <li class="chapter" data-level="4.9.3" data-path="jitter-count.html"><a href="jitter-count.html#count"><i class="fa fa-check"></i><b>4.9.3</b> Counts Plots</a></li>
 <li class="chapter" data-level="4.9.4" data-path="jitter-count.html"><a href="jitter-count.html#exercises-28"><i class="fa fa-check"></i><b>4.9.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts via geom_bar()</a>
+<li class="chapter" data-level="4.10" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>4.10</b> Bar Charts and Pie Charts via geom_bar()</a>
 <ul>
 <li class="chapter" data-level="4.10.1" data-path="bar-charts.html"><a href="bar-charts.html#an-introduction-to-bar-chart"><i class="fa fa-check"></i><b>4.10.1</b> An Introduction to Bar Chart</a></li>
 <li class="chapter" data-level="4.10.2" data-path="bar-charts.html"><a href="bar-charts.html#reordering-bar-chart"><i class="fa fa-check"></i><b>4.10.2</b> Reordering Bars in Bar Charts</a></li>
 <li class="chapter" data-level="4.10.3" data-path="bar-charts.html"><a href="bar-charts.html#aesthetics-in-bar-charts"><i class="fa fa-check"></i><b>4.10.3</b> Aesthetics in Bar Charts</a></li>
-<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#exercises-29"><i class="fa fa-check"></i><b>4.10.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.10.4" data-path="bar-charts.html"><a href="bar-charts.html#pie-chart"><i class="fa fa-check"></i><b>4.10.4</b> Pie Charts</a></li>
+<li class="chapter" data-level="4.10.5" data-path="bar-charts.html"><a href="bar-charts.html#exercises-29"><i class="fa fa-check"></i><b>4.10.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4.11" data-path="customization-axes.html"><a href="customization-axes.html"><i class="fa fa-check"></i><b>4.11</b> Customization of x and y Axes</a>
 <ul>
@@ -657,21 +658,21 @@ div.csl-indent {
 <h2><span class="header-section-number">6.3</span> Pipe: Combining Multiple Operations</h2>
 <p>We have now learned how to filter observations according to a set of conditions (Section <a href="filter-observations.html#filter-observations">6.1</a>) and how to rearrange observations according to a set of variables (Section <a href="reorder-observations.html#reorder-observations">6.2</a>). In practical applications, we usually need to apply <strong>multiple operations sequentially</strong> on a given data.</p>
 <p>Let’s consider the <code>ahp</code> dataset again. Say we want to first find the houses that were sold in Jan 2009 and with over all condition 5. Then, arrange the houses from the oldest to the newest. Finally, create a scatterplot on the <code>sale_price</code> vs. <code>liv_area</code>.</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="pipe.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb636-2"><a href="pipe.html#cb636-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb636-3"><a href="pipe.html#cb636-3" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
-<span id="cb636-4"><a href="pipe.html#cb636-4" aria-hidden="true" tabindex="-1"></a>jan09_yr <span class="ot">&lt;-</span> <span class="fu">arrange</span>(jan09, yr_built)                              <span class="co">#find the oldest houses</span></span>
-<span id="cb636-5"><a href="pipe.html#cb636-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jan09_yr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-670-1.png" width="576" /></p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="pipe.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb642-2"><a href="pipe.html#cb642-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb642-3"><a href="pipe.html#cb642-3" aria-hidden="true" tabindex="-1"></a>jan09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#filtering</span></span>
+<span id="cb642-4"><a href="pipe.html#cb642-4" aria-hidden="true" tabindex="-1"></a>jan09_yr <span class="ot">&lt;-</span> <span class="fu">arrange</span>(jan09, yr_built)                              <span class="co">#find the oldest houses</span></span>
+<span id="cb642-5"><a href="pipe.html#cb642-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(jan09_yr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-675-1.png" width="576" /></p>
 <p>You may notice that we created two intermediate objects named <code>jan09</code> and <code>jan09_yr</code> which may be unnecessary. Let’s say what happens to the code if we are not allowed to define such intermediate objects.</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="pipe.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>), yr_built),</span>
-<span id="cb637-2"><a href="pipe.html#cb637-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="pipe.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">arrange</span>(<span class="fu">filter</span>(ahp, yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>), yr_built),</span>
+<span id="cb643-2"><a href="pipe.html#cb643-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_point</span>() </span></code></pre></div>
 <p>We hope you agree that while the code gets the work done, it is not pretty. To make the code more streamlined and intuitive, you can take advantage of the <strong>pipe</strong> operator <code>%&gt;%</code> in the <strong>dplyr</strong> package. Let’s take a look at the code using pipes before going to the details.</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="pipe.html#cb638-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb638-2"><a href="pipe.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb638-3"><a href="pipe.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built) <span class="sc">%&gt;%</span></span>
-<span id="cb638-4"><a href="pipe.html#cb638-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb638-5"><a href="pipe.html#cb638-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="pipe.html#cb644-1" aria-hidden="true" tabindex="-1"></a>ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb644-2"><a href="pipe.html#cb644-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yr_sold <span class="sc">==</span> <span class="dv">2009</span>, mo_sold <span class="sc">==</span> <span class="dv">1</span>, oa_cond <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb644-3"><a href="pipe.html#cb644-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(yr_built) <span class="sc">%&gt;%</span></span>
+<span id="cb644-4"><a href="pipe.html#cb644-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb644-5"><a href="pipe.html#cb644-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p>We hope you agree this code looks more intuitive than the previous version. The working mechanism of <code>%&gt;%</code> is as follows. When you use <code>data %&gt;% some_function(argA, argB)</code>, this is equivalent to <code>some_function(data, argA, argB)</code>. As a result, you can use multiple <code>%&gt;%</code> operators in a row, if the first function provides an output which is the input data of the second function, etc.</p>
 <div id="exercise-2" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Exercise</h3>
