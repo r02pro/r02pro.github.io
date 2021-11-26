@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="import-other.html"/>
 <link rel="next" href="data-manipulation.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -598,9 +602,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -657,70 +661,70 @@ div.csl-indent {
 <h2><span class="header-section-number">5.5</span> Save and Restore Objects and Workspace</h2>
 <p>Now, you know how to export and import data frames (or tibbles) to and from various types of file. In this section, you will learn how to save and restore one or more objects that can be <strong>of any types</strong>, and even the <strong>whole workspace</strong> that includes all the named objects.</p>
 <p>To get started, let’s first clear our workspace using <code>rm(list = ls())</code> and create a few objects with different types.</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="save-object.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb614-2"><a href="save-object.html#cb614-2" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb614-3"><a href="save-object.html#cb614-3" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="save-object.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb612-2"><a href="save-object.html#cb612-2" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb612-3"><a href="save-object.html#cb612-3" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span></code></pre></div>
 <p>Recall that we can use <code>ls()</code> to get a vector of strings giving the names of the objects in the current environment.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="save-object.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb615-2"><a href="save-object.html#cb615-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="save-object.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb613-2"><a href="save-object.html#cb613-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;</span></span></code></pre></div>
 <div id="save-and-restore-objects-using-.rdata" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Save and Restore Objects using .RData</h3>
 <p>In R, you can use the function <code>save()</code> to save one or more objects into an .RData file. Note that you want to make sure to change the working directory as needed. Let’s see the following example where we save the object <code>dig_num</code> into a file named “dig_num.RData.”</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="save-object.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dig_num, <span class="at">file =</span> <span class="st">&quot;dig_num.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="save-object.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dig_num, <span class="at">file =</span> <span class="st">&quot;dig_num.RData&quot;</span>)</span></code></pre></div>
 <p>Before introducing how to restore objects, let’s first remove <code>dig_num</code> from our workspace using the <code>rm()</code> function and check its value.</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="save-object.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(dig_num)</span>
-<span id="cb617-2"><a href="save-object.html#cb617-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb617-3"><a href="save-object.html#cb617-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;dig_num&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="save-object.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(dig_num)</span>
+<span id="cb615-2"><a href="save-object.html#cb615-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb615-3"><a href="save-object.html#cb615-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;dig_num&#39; not found</span></span></code></pre></div>
 <p>You can see an error since <code>dig_num</code> has been removed from the workspace. To restore it, you can use the function <code>load()</code> with the corresponding .RData file in double quotes as its argument.</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="save-object.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;dig_num.RData&quot;</span>)</span>
-<span id="cb618-2"><a href="save-object.html#cb618-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb618-3"><a href="save-object.html#cb618-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="save-object.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;dig_num.RData&quot;</span>)</span>
+<span id="cb616-2"><a href="save-object.html#cb616-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb616-3"><a href="save-object.html#cb616-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
 <p>You can verify from the value of <code>dig_num</code> that we have successfully restored the object <code>dig_num</code> from the file “dig_num.RData.”</p>
 <p>To save more than one objects into one file, you just need to enter them as additional arguments in the <code>save()</code> function.</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="save-object.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dig_num, ani_char, <span class="at">file =</span> <span class="st">&quot;dig_num_and_ani_char.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="save-object.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(dig_num, ani_char, <span class="at">file =</span> <span class="st">&quot;dig_num_and_ani_char.RData&quot;</span>)</span></code></pre></div>
 <p>To save everything in the workspace, you can use the function <code>save.image()</code> with the desired file name in double quotes as the argument.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="save-object.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">&quot;all.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="save-object.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">&quot;all.RData&quot;</span>)</span></code></pre></div>
 <p>To verify that “all.RData” indeed contains all the named object, let’s do the following.</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="save-object.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co">#remove everything from the workspace.</span></span>
-<span id="cb621-2"><a href="save-object.html#cb621-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()             <span class="co">#confirm the workspace is empty.</span></span>
-<span id="cb621-3"><a href="save-object.html#cb621-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb621-4"><a href="save-object.html#cb621-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;all.RData&quot;</span>)<span class="co">#restore from &quot;all.RData&quot;.</span></span>
-<span id="cb621-5"><a href="save-object.html#cb621-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()             <span class="co">#check what&#39;s in the workspace.</span></span>
-<span id="cb621-6"><a href="save-object.html#cb621-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;  &quot;my_list&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="save-object.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co">#remove everything from the workspace.</span></span>
+<span id="cb619-2"><a href="save-object.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()             <span class="co">#confirm the workspace is empty.</span></span>
+<span id="cb619-3"><a href="save-object.html#cb619-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb619-4"><a href="save-object.html#cb619-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;all.RData&quot;</span>)<span class="co">#restore from &quot;all.RData&quot;.</span></span>
+<span id="cb619-5"><a href="save-object.html#cb619-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()             <span class="co">#check what&#39;s in the workspace.</span></span>
+<span id="cb619-6"><a href="save-object.html#cb619-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;  &quot;my_list&quot;</span></span></code></pre></div>
 </div>
 <div id="save-and-restore-a-single-object-using-saverds-and-loadrds" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></h3>
 <p>Before introducing the new method, there is one drawback of <code>load()</code> worth noting: if the imported .RData file contains objects with the same names as in the current workspace, <strong>all</strong> these objects in the current workspace will be silently <strong>overwritten</strong> without any warning! Let’s see the following example.</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="save-object.html#cb622-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">724</span></span>
-<span id="cb622-2"><a href="save-object.html#cb622-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb622-3"><a href="save-object.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 724</span></span>
-<span id="cb622-4"><a href="save-object.html#cb622-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;all.RData&quot;</span>)</span>
-<span id="cb622-5"><a href="save-object.html#cb622-5" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb622-6"><a href="save-object.html#cb622-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="save-object.html#cb620-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">724</span></span>
+<span id="cb620-2"><a href="save-object.html#cb620-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb620-3"><a href="save-object.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 724</span></span>
+<span id="cb620-4"><a href="save-object.html#cb620-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;all.RData&quot;</span>)</span>
+<span id="cb620-5"><a href="save-object.html#cb620-5" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb620-6"><a href="save-object.html#cb620-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
 <p>We can see that the value of <code>dig_num</code> was indeed silently <em>overwritten</em> by the <code>load()</code> function, which could be sometimes dangerous.</p>
 <p>To avoid this issue, another pair of functions to save and restore a single object is <code>saveRDS()</code> and <code>loadRDS()</code>. The usage of <code>saveRDS()</code> is almost identical to <code>save()</code> except we usually use a file with extension “.rds” to store the object.</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="save-object.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dig_num, <span class="at">file =</span> <span class="st">&quot;dig_num.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="save-object.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dig_num, <span class="at">file =</span> <span class="st">&quot;dig_num.rds&quot;</span>)</span></code></pre></div>
 <p>To highlight the different behaviors of <code>readRDS()</code> and <code>load()</code>, let’s change the <code>dig_num</code> again.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="save-object.html#cb624-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">826</span></span>
-<span id="cb624-2"><a href="save-object.html#cb624-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb624-3"><a href="save-object.html#cb624-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 826</span></span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="save-object.html#cb622-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">826</span></span>
+<span id="cb622-2"><a href="save-object.html#cb622-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb622-3"><a href="save-object.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 826</span></span></code></pre></div>
 <p>To restore the object in an “rds” file, we use the <code>readRDS()</code> in the following way.</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="save-object.html#cb625-1" aria-hidden="true" tabindex="-1"></a>dig_num_new <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;dig_num.rds&quot;</span>)</span>
-<span id="cb625-2"><a href="save-object.html#cb625-2" aria-hidden="true" tabindex="-1"></a>dig_num_new</span>
-<span id="cb625-3"><a href="save-object.html#cb625-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span>
-<span id="cb625-4"><a href="save-object.html#cb625-4" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb625-5"><a href="save-object.html#cb625-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 826</span></span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="save-object.html#cb623-1" aria-hidden="true" tabindex="-1"></a>dig_num_new <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;dig_num.rds&quot;</span>)</span>
+<span id="cb623-2"><a href="save-object.html#cb623-2" aria-hidden="true" tabindex="-1"></a>dig_num_new</span>
+<span id="cb623-3"><a href="save-object.html#cb623-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span>
+<span id="cb623-4"><a href="save-object.html#cb623-4" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb623-5"><a href="save-object.html#cb623-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 826</span></span></code></pre></div>
 <p>As it is clear from this example, you need to assign the value of the <code>readRDS()</code> function to a name, which helps to prevent any objects been overwritten silently. In fact, the <code>saveRDS()</code> only saves the value of the object <strong>without the object name</strong>.</p>
 <p>For this reason, you are recommended to use the function pair <code>saveRDS()</code> and <code>readRDS()</code> if you want to save and load a single R object.</p>
 <p>While <code>save()</code> and <code>load()</code> may be simplier to use when saving and loading multiple objects, you want to be extremely careful with the overwriting issues we discussed here. In fact, you can also use <code>saveRDS()</code> and <code>readRDS()</code> for multiple objects if you create a list containing all the objects.</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="save-object.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="fu">list</span>(<span class="at">dig_num =</span> dig_num, <span class="at">ani_char =</span> ani_char), <span class="at">file =</span> <span class="st">&quot;multi.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="save-object.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="fu">list</span>(<span class="at">dig_num =</span> dig_num, <span class="at">ani_char =</span> ani_char), <span class="at">file =</span> <span class="st">&quot;multi.rds&quot;</span>)</span></code></pre></div>
 <p>Now, let’s try to change the value of <code>dig_num</code>, and recover its original value using <code>readRDS()</code>.</p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="save-object.html#cb627-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">724</span></span>
-<span id="cb627-2"><a href="save-object.html#cb627-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
-<span id="cb627-3"><a href="save-object.html#cb627-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 724</span></span>
-<span id="cb627-4"><a href="save-object.html#cb627-4" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;multi.rds&quot;</span>)</span>
-<span id="cb627-5"><a href="save-object.html#cb627-5" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>dig_num</span>
-<span id="cb627-6"><a href="save-object.html#cb627-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="save-object.html#cb625-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">724</span></span>
+<span id="cb625-2"><a href="save-object.html#cb625-2" aria-hidden="true" tabindex="-1"></a>dig_num</span>
+<span id="cb625-3"><a href="save-object.html#cb625-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 724</span></span>
+<span id="cb625-4"><a href="save-object.html#cb625-4" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;multi.rds&quot;</span>)</span>
+<span id="cb625-5"><a href="save-object.html#cb625-5" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>dig_num</span>
+<span id="cb625-6"><a href="save-object.html#cb625-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
 </div>
 <div id="exercises-38" class="section level3" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> Exercises</h3>

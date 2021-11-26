@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="boxplots.html"/>
 <link rel="next" href="errorbar.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -598,9 +602,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -661,51 +665,67 @@ div.csl-indent {
 <p>Let’s say we want to generate a basic violin plot for the variable <code>sale_price</code> in the <code>sahp</code> dataset.</p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="violin.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb540-2"><a href="violin.html#cb540-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb540-3"><a href="violin.html#cb540-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb540-4"><a href="violin.html#cb540-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<span id="cb540-3"><a href="violin.html#cb540-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb540-4"><a href="violin.html#cb540-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb540-5"><a href="violin.html#cb540-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-565-1.png" width="576" /></p>
 <p>To introduce the detail of the generation process of violin plot, it is helpful to review the density plot.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="violin.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb541-2"><a href="violin.html#cb541-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="violin.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb541-2"><a href="violin.html#cb541-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
+<span id="cb541-3"><a href="violin.html#cb541-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-566-1.png" width="576" /></p>
 <p>Looking at these two plots, it is easy to see that the basic violin plot is nothing but a Mirrored Density plot with the kernel density estimates on each side.</p>
 </div>
 <div id="violin-plot-with-boxplot" class="section level3" number="4.15.2">
 <h3><span class="header-section-number">4.15.2</span> Violin plot with boxplot</h3>
 <p>Usually, the violin plot includes the boxplot inside it, providing extra information about the data. To do this, we just add the boxplot layer on top of the violin plot.</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="violin.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb542-2"><a href="violin.html#cb542-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb542-3"><a href="violin.html#cb542-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="violin.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb542-2"><a href="violin.html#cb542-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb542-3"><a href="violin.html#cb542-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb542-4"><a href="violin.html#cb542-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-567-1.png" width="576" /></p>
 <p>Here, we set the aesthetic <code>width = 0.1</code> in the boxplot to make it thinner.</p>
 <p>Just like in the boxplot, we can compare the distributions of a continuous variable for different values of a discrete variable. We can achieve this by mapping the discrete variable to the x axis.</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="violin.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb543-2"><a href="violin.html#cb543-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb543-3"><a href="violin.html#cb543-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="violin.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb543-2"><a href="violin.html#cb543-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb543-3"><a href="violin.html#cb543-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb543-4"><a href="violin.html#cb543-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-568-1.png" width="576" /></p>
 <p>We can restrict the x-axis to a subset of the possible <code>house_style</code> values.</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="violin.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price, <span class="at">color =</span> house_style)) <span class="sc">+</span> </span>
-<span id="cb544-2"><a href="violin.html#cb544-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb544-3"><a href="violin.html#cb544-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
-<span id="cb544-4"><a href="violin.html#cb544-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="violin.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb544-2"><a href="violin.html#cb544-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
+<span id="cb544-3"><a href="violin.html#cb544-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> sale_price, </span>
+<span id="cb544-4"><a href="violin.html#cb544-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> house_style)) <span class="sc">+</span> </span>
+<span id="cb544-5"><a href="violin.html#cb544-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb544-6"><a href="violin.html#cb544-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb544-7"><a href="violin.html#cb544-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-569-1.png" width="576" /></p>
 <p>Similarly, we can map a third variable to an aesthetic.</p>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="violin.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars=</span><span class="st">&quot;oa_qual&quot;</span>), <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price, <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
-<span id="cb545-2"><a href="violin.html#cb545-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb545-3"><a href="violin.html#cb545-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
-<span id="cb545-4"><a href="violin.html#cb545-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="violin.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars=</span><span class="st">&quot;oa_qual&quot;</span>), </span>
+<span id="cb545-2"><a href="violin.html#cb545-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
+<span id="cb545-3"><a href="violin.html#cb545-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> sale_price, </span>
+<span id="cb545-4"><a href="violin.html#cb545-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
+<span id="cb545-5"><a href="violin.html#cb545-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb545-6"><a href="violin.html#cb545-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb545-7"><a href="violin.html#cb545-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-570-1.png" width="576" /></p>
 <p>As you can see, the boxplot doesn’t align well inside the violin plot. To fix this issue, you can add the global aesthetic <code>position = position_dodge(0.9)</code> to both geoms.</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="violin.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars=</span><span class="st">&quot;oa_qual&quot;</span>), <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price, <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
-<span id="cb546-2"><a href="violin.html#cb546-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb546-3"><a href="violin.html#cb546-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>)) <span class="sc">+</span>  </span>
-<span id="cb546-4"><a href="violin.html#cb546-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="violin.html#cb546-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars=</span><span class="st">&quot;oa_qual&quot;</span>), </span>
+<span id="cb546-2"><a href="violin.html#cb546-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
+<span id="cb546-3"><a href="violin.html#cb546-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> sale_price, </span>
+<span id="cb546-4"><a href="violin.html#cb546-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> oa_qual <span class="sc">&gt;</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
+<span id="cb546-5"><a href="violin.html#cb546-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb546-6"><a href="violin.html#cb546-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>)) <span class="sc">+</span>  </span>
+<span id="cb546-7"><a href="violin.html#cb546-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-571-1.png" width="576" /></p>
 <p>You can also try to add other global aesthetics to both geoms to change their appearances.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="violin.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price, <span class="at">fill =</span> house_style)) <span class="sc">+</span> </span>
-<span id="cb547-2"><a href="violin.html#cb547-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb547-3"><a href="violin.html#cb547-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb547-4"><a href="violin.html#cb547-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="violin.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb547-2"><a href="violin.html#cb547-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
+<span id="cb547-3"><a href="violin.html#cb547-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> sale_price, </span>
+<span id="cb547-4"><a href="violin.html#cb547-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> house_style)) <span class="sc">+</span> </span>
+<span id="cb547-5"><a href="violin.html#cb547-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb547-6"><a href="violin.html#cb547-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb547-7"><a href="violin.html#cb547-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-572-1.png" width="576" /></p>
 
 </div>

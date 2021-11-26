@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="arrange-multi-plots.html"/>
 <link rel="next" href="summary-geom.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -598,9 +602,9 @@ div.csl-indent {
 <li class="chapter" data-level="9.3.4" data-path="sampling.html"><a href="sampling.html#random-sampling-with-unequal-probabilities"><i class="fa fa-check"></i><b>9.3.4</b> Random Sampling with Unequal Probabilities</a></li>
 <li class="chapter" data-level="9.3.5" data-path="sampling.html"><a href="sampling.html#exercise-6"><i class="fa fa-check"></i><b>9.3.5</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="covariance-correlation.html"><a href="covariance-correlation.html"><i class="fa fa-check"></i><b>9.4</b> Covariance and Correlation</a>
+<li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="covariance-correlation.html"><a href="covariance-correlation.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -659,8 +663,9 @@ div.csl-indent {
 <p>Let’s first review the scatterplot we created between <code>liv_area</code> and <code>sale_price</code> and save it into as an object <code>g</code>.</p>
 <div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="customization.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb566-2"><a href="customization.html#cb566-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb566-3"><a href="customization.html#cb566-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb566-4"><a href="customization.html#cb566-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<span id="cb566-3"><a href="customization.html#cb566-3" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb566-4"><a href="customization.html#cb566-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb566-5"><a href="customization.html#cb566-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><strong><em>a. customize x and y labels and title</em></strong></p>
 <p>By default, the x and y labels are the variables names, and there is no title for the plot. You can customize the x and y labels using the <code>xlab()</code> and <code>ylab()</code> function, and add a title with the <code>ggtitle()</code> function.</p>
 <div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="customization.html#cb567-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> g <span class="sc">+</span> </span>
@@ -675,23 +680,46 @@ div.csl-indent {
 <p><img src="r02pro_files/figure-html/unnamed-chunk-593-1.png" width="576" /></p>
 <p><strong><em>c. customize the font of labels</em></strong></p>
 <p>To customize the font, you can use <code>axis.title</code> argument to change the size, color, and face of the labels.</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="customization.html#cb569-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="customization.html#cb569-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, </span>
+<span id="cb569-2"><a href="customization.html#cb569-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb569-3"><a href="customization.html#cb569-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-594-1.png" width="576" /></p>
 <p><strong><em>d. customize the font of the title</em></strong></p>
 <p>Similarly, you can use the <code>plot.title</code> argument to customize the font of the title.</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="customization.html#cb570-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="customization.html#cb570-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, </span>
+<span id="cb570-2"><a href="customization.html#cb570-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, </span>
+<span id="cb570-3"><a href="customization.html#cb570-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-595-1.png" width="576" /></p>
 <p><strong><em>e. center the title</em></strong></p>
 <p>Sometimes, we may want to center the title. We can achieve this by setting the <code>hjust</code> parameter.</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="customization.html#cb571-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="customization.html#cb571-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, </span>
+<span id="cb571-2"><a href="customization.html#cb571-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, </span>
+<span id="cb571-3"><a href="customization.html#cb571-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb571-4"><a href="customization.html#cb571-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">hjust =</span> <span class="fl">0.5</span>)) </span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-596-1.png" width="576" /></p>
 <p><strong><em>f. mix</em></strong></p>
 <p>Apparently, you are free to mix all the different customizations. Let’s see an example as below.</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="customization.html#cb572-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>), <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="customization.html#cb572-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, </span>
+<span id="cb572-2"><a href="customization.html#cb572-2" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb572-3"><a href="customization.html#cb572-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>), </span>
+<span id="cb572-4"><a href="customization.html#cb572-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, </span>
+<span id="cb572-5"><a href="customization.html#cb572-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>), </span>
+<span id="cb572-6"><a href="customization.html#cb572-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, </span>
+<span id="cb572-7"><a href="customization.html#cb572-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, </span>
+<span id="cb572-8"><a href="customization.html#cb572-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, </span>
+<span id="cb572-9"><a href="customization.html#cb572-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-597-1.png" width="576" /></p>
 <p><strong><em>g. save as a theme</em></strong></p>
 <p>As you can see from the code, the code gets complicated if we want to customize many things at the same time. To save time, you can actually save the desired into an R object and reuse it later.</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="customization.html#cb573-1" aria-hidden="true" tabindex="-1"></a>mytheme <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>), <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="customization.html#cb573-1" aria-hidden="true" tabindex="-1"></a>mytheme <span class="ot">&lt;-</span> <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, </span>
+<span id="cb573-2"><a href="customization.html#cb573-2" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb573-3"><a href="customization.html#cb573-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">face =</span> <span class="st">&quot;italic&quot;</span>), </span>
+<span id="cb573-4"><a href="customization.html#cb573-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, </span>
+<span id="cb573-5"><a href="customization.html#cb573-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>), </span>
+<span id="cb573-6"><a href="customization.html#cb573-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">24</span>, </span>
+<span id="cb573-7"><a href="customization.html#cb573-7" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>, </span>
+<span id="cb573-8"><a href="customization.html#cb573-8" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, </span>
+<span id="cb573-9"><a href="customization.html#cb573-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
 <p>Then, we can generate the same plot with <code>mytheme</code> using</p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="customization.html#cb574-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">+</span> mytheme</span></code></pre></div>
 <p>Similarly, you can add another layer of smoothline fit and apply <code>mytheme</code>.</p>
