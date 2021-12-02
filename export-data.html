@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.1 Exporting Data to Delimited Files | R Programming: Zero to Pro</title>
   <meta name="description" content="5.1 Exporting Data to Delimited Files | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.1 Exporting Data to Delimited Files | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-11-25" />
+<meta name="date" content="2021-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="import-export.html"/>
 <link rel="next" href="import-data.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,16 +51,8 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
-<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
@@ -166,14 +159,11 @@ div.csl-indent {
 <li><a href="./">R Programming: Zero to Pro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#submitting-questions-or-feedback"><i class="fa fa-check"></i>Submitting Questions or Feedback</a></li>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#submitting-questions-or-feedback"><i class="fa fa-check"></i>Submitting Questions or Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contributing-exercises"><i class="fa fa-check"></i>Contributing Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
-<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -663,7 +653,7 @@ div.csl-indent {
 <div id="setwd" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Set the working directory</h3>
 <p>First, we will introduce an important concept called <strong>Working Directory</strong>. To do <strong>data export</strong> and <strong>import</strong>, you are recommended to set the <em>working directory</em> since we usually use a path relative to the working directory for interacting with files on the computer in R. To set the working directory, you can click <em>Session</em> on the menu and click <em>Set Working Directory</em>.</p>
-<div class="figure" style="text-align: center"><span id="fig:setwd1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:setwd1"></span>
 <img src="pics/5_setwd.png" alt="Set Working Directory" width="90%" />
 <p class="caption">
 Figure 5.1: Set Working Directory
@@ -676,7 +666,7 @@ Figure 5.1: Set Working Directory
 <li><em>Choose Directory…</em>: this will open up a window from which you can choose any desired directory.</li>
 </ul>
 After selecting any of the three options, we can see a line of code containing the function <code>setwd()</code> executed in the console.
-<div class="figure" style="text-align: center"><span id="fig:setwd2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:setwd2"></span>
 <img src="pics/5setwd2.png" alt="Set Working Directory (2)" width="90%" />
 <p class="caption">
 Figure 5.2: Set Working Directory (2)
@@ -684,58 +674,34 @@ Figure 5.2: Set Working Directory (2)
 </div>
 <p>Indeed, this menu operation is equivalent to using the <code>setwd()</code> function with the argument being the full path or relative path of the desired directory.</p>
 <p>Another related function is <code>getwd()</code> which tells us the absolute path representing the current working directory.</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="export-data.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="export-data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 </div>
 <div id="delimited-files" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Delimited files</h3>
 <p>In most applications, you will use a specific file type called <strong>delimited</strong> file. In a delimited file, each row represents a single observation, and it has values separated by the <strong>delimiter</strong>. In principle, <em>any character (including letters, numbers, or symbols)</em> can be used as a delimiter, with the most commonly used ones being the following.</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Delimiter
-</th>
-<th style="text-align:left;">
-Symbol
-</th>
-<th style="text-align:left;">
-Common File Extension
-</th>
+<tr class="header">
+<th align="left">Delimiter</th>
+<th align="left">Symbol</th>
+<th align="left">Common File Extension</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-comma
-</td>
-<td style="text-align:left;">
-<code>,</code>
-</td>
-<td style="text-align:left;">
-.csv
-</td>
+<tr class="odd">
+<td align="left">comma</td>
+<td align="left"><code>,</code></td>
+<td align="left">.csv</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-space
-</td>
-<td style="text-align:left;">
-<code></code>
-</td>
-<td style="text-align:left;">
-.txt
-</td>
+<tr class="even">
+<td align="left">space</td>
+<td align="left"><code></code></td>
+<td align="left">.txt</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-tab
-</td>
-<td style="text-align:left;">
-<code>\t</code>
-</td>
-<td style="text-align:left;">
-.tsv
-</td>
+<tr class="odd">
+<td align="left">tab</td>
+<td align="left"><code>\t</code></td>
+<td align="left">.tsv</td>
 </tr>
 </tbody>
 </table>
@@ -744,43 +710,51 @@ tab
 <h3><span class="header-section-number">5.1.3</span> Write an object into a .csv file</h3>
 <p>First, let’s work with one popular kind of <em>delimited</em> files called <em>comma-separated value</em> file, usually with the file extension .csv. In a .csv file, the <em>delimiter</em> is <em>comma</em> (<code>,</code>) .</p>
 <p>Let’s first create a data frame.</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="export-data.html#cb579-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb579-2"><a href="export-data.html#cb579-2" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb579-3"><a href="export-data.html#cb579-3" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
-<span id="cb579-4"><a href="export-data.html#cb579-4" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dig_num, ani_char, conditions)</span>
-<span id="cb579-5"><a href="export-data.html#cb579-5" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="export-data.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb2-2"><a href="export-data.html#cb2-2" aria-hidden="true" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb2-3"><a href="export-data.html#cb2-3" aria-hidden="true" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
+<span id="cb2-4"><a href="export-data.html#cb2-4" aria-hidden="true" tabindex="-1"></a>my_animals<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dig_num, ani_char, conditions)</span>
+<span id="cb2-5"><a href="export-data.html#cb2-5" aria-hidden="true" tabindex="-1"></a>my_animals</span></code></pre></div>
+<pre><code>##   dig_num ani_char conditions
+## 1       7    sheep  Excellent
+## 2       6      pig       Good
+## 3       5   monkey          N
+## 4       4      pig       Fair
+## 5       3   monkey       Good
+## 6       2     &lt;NA&gt;       Good
+## 7       1      pig  Excellent</code></pre>
 <p>Now, let’s write the data frame <code>my_animals</code> into a file called “my_animals.csv” in the currently working directory. To write an object into a .csv file, you can use the <code>write_csv()</code> function in the <strong>readr</strong> package. Since <strong>readr</strong> is a sub-package of <strong>tidyverse</strong>, you can load the package directly if the <strong>tidyverse</strong> package is installed.</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="export-data.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb580-2"><a href="export-data.html#cb580-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="export-data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb4-2"><a href="export-data.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals.csv&quot;</span>)</span></code></pre></div>
 <p>You can verify the .csv file has been indeed created and open the file with RStudio or any text editor to verify its contents.</p>
-<div class="figure" style="text-align: center"><span id="fig:csv"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:csv"></span>
 <img src="pics/5-csvcontents.png" alt="File Contents" width="90%" />
 <p class="caption">
 Figure 5.3: File Contents
 </p>
 </div>
 <p>We can see that all the information has been written in the .csv file, which has <em>commas</em> separating the values on each line. In particular, you may find out the first row of the file corresponds to the column names. If you don’t want to include the column names, you can set the argument <code>col_names = FALSE</code>.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="export-data.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_no_colname.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="export-data.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_no_colname.csv&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>By default, <code>write_csv()</code> writes the data into a file in which <code>NA</code> is used to represent all the missing values, just like in the tibble. If you want to use another string to represent the missing values in the file, you can set the argument <code>na</code> to be the string.</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="export-data.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_missing.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;This value is missing!&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="export-data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(my_animals, <span class="st">&quot;my_animals_missing.csv&quot;</span>, <span class="at">na =</span> <span class="st">&quot;This value is missing!&quot;</span>)</span></code></pre></div>
 </div>
 <div id="write-delim" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Write an object into a general delimited file</h3>
 <p>As introduced at the beginning, there are different types of <em>delimited files</em> depending on the specific <em>delimiter</em>. The function <code>write_delim()</code> enables us to write an object into a delimited file with any chosen delimiter. The usage of <code>write_delim()</code> is almost identical to <code>write_csv()</code>, except that it has an additional argument <code>delim</code>, which specifies the delimiter to be used. Let’s see the following example with <code>*</code> as the delimiter.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="export-data.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(my_animals, <span class="st">&quot;my_animals_star.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="export-data.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_delim</span>(my_animals, <span class="st">&quot;my_animals_star.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercises-35" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> Exercises</h3>
 <p>Use R to create the following data frame and assign it to the name <code>my_data</code>.</p>
-<pre><code>#&gt;   word number letter
-#&gt; 1  one      1      a
-#&gt; 2  two     NA      b
-#&gt; 3 &lt;NA&gt;      3      c
-#&gt; 4 four      4      d
-#&gt; 5 five      5      e</code></pre>
+<pre><code>##   word number letter
+## 1  one      1      a
+## 2  two     NA      b
+## 3 &lt;NA&gt;      3      c
+## 4 four      4      d
+## 5 five      5      e</code></pre>
 <ol style="list-style-type: decimal">
-<li><p>Write R code to set working directory to desktop and write <code>my_data</code> into a .csv file named “my_data_no_name.csv” without column names.</p></li>
-<li><p>Write R code to write <code>my_data</code> into a delimited file called “my_data_na.csv” with <code>#</code> as the delimiter and use <code>999</code> as the indicator for missing values.</p></li>
+<li><p>Write R code to set working directory to the location of your .R or .Rmd file, and export <code>my_data</code> into a .csv file named “my_data_no_name.csv” without column names.</p></li>
+<li><p>Write R code to export <code>my_data</code> into a delimited file called “my_data_na.csv” with <code>#</code> as the delimiter and use <code>999</code> as the indicator for missing values.</p></li>
 </ol>
 
 </div>
@@ -795,7 +769,6 @@ Figure 5.3: File Contents
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -835,6 +808,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -842,20 +819,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
