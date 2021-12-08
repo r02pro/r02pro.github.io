@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro</title>
   <meta name="description" content="6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.5 Create New Variables via mutate() and transmute() | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -33,9 +33,8 @@
   
 <link rel="prev" href="select-variables.html"/>
 <link rel="next" href="create-grouped-summaries.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -43,6 +42,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -716,9 +716,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="create-variables.html#cb659-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span> </span>
 <span id="cb659-2"><a href="create-variables.html#cb659-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(oa_qual, liv_area, sale_price) <span class="sc">%&gt;%</span></span>
 <span id="cb659-3"><a href="create-variables.html#cb659-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_price =</span> sale_price<span class="sc">/</span>liv_area, <span class="at">area =</span> lot_area <span class="sc">+</span> liv_area)</span>
-<span id="cb659-4"><a href="create-variables.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` input `area`.</span></span>
-<span id="cb659-5"><a href="create-variables.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span>
-<span id="cb659-6"><a href="create-variables.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Input `area` is `lot_area + liv_area`.</span></span></code></pre></div>
+<span id="cb659-4"><a href="create-variables.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error: Problem with `mutate()` column `area`.</span></span>
+<span id="cb659-5"><a href="create-variables.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ `area = lot_area + liv_area`.</span></span>
+<span id="cb659-6"><a href="create-variables.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x object &#39;lot_area&#39; not found</span></span></code></pre></div>
 <p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the order of each house in terms of sale price, you can use <code>mutate(sale_price_order = order(sale_price))</code>. To create a variable as the mean of the sale prices of all houses, you can add <code>sale_price_ave = mean(sale_price)</code> as an argument in the <code>mutate()</code> function.</p>
 <div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="create-variables.html#cb660-1" aria-hidden="true" tabindex="-1"></a>sahp <span class="sc">%&gt;%</span></span>
 <span id="cb660-2"><a href="create-variables.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sale_price <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">%&gt;%</span></span>
@@ -777,6 +777,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -816,10 +817,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
