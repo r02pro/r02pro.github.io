@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.11 Customization of x and y Axes | R Programming: Zero to Pro</title>
-  <meta name="description" content="4.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <title>12.3 Solve 24 | R Programming: Zero to Pro</title>
+  <meta name="description" content="12.3 Solve 24 | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta property="og:title" content="12.3 Solve 24 | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="4.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta property="og:description" content="12.3 Solve 24 | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="12.3 Solve 24 | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="4.11 Customization of x and y Axes | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="12.3 Solve 24 | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bar-charts.html"/>
-<link rel="next" href="histogram.html"/>
+<link rel="prev" href="composite-operator.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -671,84 +671,129 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="customization-axes" class="section level2" number="4.11">
-<h2><span class="header-section-number">4.11</span> Customization of x and y Axes</h2>
-<p>In this section, we would like to digress a little bit to learn some possible customizations of the x and y axes.</p>
-<p>First, let’s review the scatterplot between <code>liv_area</code> and <code>sale_price</code>.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="customization-axes.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb488-2"><a href="customization-axes.html#cb488-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb488-3"><a href="customization-axes.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb488-4"><a href="customization-axes.html#cb488-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-513-1.png" width="576" /></p>
-<div id="customizing-the-breaks-on-the-x-and-y-axes" class="section level3" number="4.11.1">
-<h3><span class="header-section-number">4.11.1</span> Customizing the Breaks on the x and y Axes</h3>
-<p>In the above plot, the breaks on the x axis are 1000, 2000, and 3000. The breaks on the y axis are 100, 200, 300, 400, and 500. Sometimes, we may want to customize the breaks, e.g. to show a finer scale. To do this, we can use the <code>scale_x_continous()</code> and <code>scale_y_continuous()</code> functions. Both functions take an argument called <code>breaks</code> which is a numeric vector specifying the desired breaks on the x and y axes.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="customization-axes.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb489-2"><a href="customization-axes.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb489-3"><a href="customization-axes.html#cb489-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">500</span>, <span class="at">to =</span> <span class="dv">3500</span>, <span class="at">by =</span> <span class="dv">500</span>)) <span class="sc">+</span></span>
-<span id="cb489-4"><a href="customization-axes.html#cb489-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">50</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-514-1.png" width="576" /></p>
-<p>In this example, we have customized the breaks for <code>liv_area</code> to be a equally-spaced sequence from 500 to 3500 with increment 500, and the breaks for <code>sale_price</code> to be another equally-spaced sequence from 50 to 600 with increment 50.</p>
-<p>When the specified breaks do not cover the full range of the data, you will see the breaks changed but all the data points are still visible.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="customization-axes.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb490-2"><a href="customization-axes.html#cb490-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb490-3"><a href="customization-axes.html#cb490-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">300</span>, <span class="at">to =</span> <span class="dv">600</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-515-1.png" width="576" /></p>
-<p>On the other hand, if the specified breaks go beyond the value of the data, <code>ggplot()</code> will only show the breaks values within the data range.</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="customization-axes.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb491-2"><a href="customization-axes.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb491-3"><a href="customization-axes.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">500</span>, <span class="at">to =</span> <span class="dv">5000</span>, <span class="at">by =</span> <span class="dv">500</span>)) <span class="sc">+</span></span>
-<span id="cb491-4"><a href="customization-axes.html#cb491-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">200</span>, <span class="at">to =</span> <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-516-1.png" width="576" /></p>
-</div>
-<div id="zoom-in-to-a-specific-region-of-the-data" class="section level3" number="4.11.2">
-<h3><span class="header-section-number">4.11.2</span> Zoom In to a Specific Region of the Data</h3>
-<p>Sometimes, you want to zoom in to the specific region of the data to see a finer detail. To do this, you can use the <code>coord_cartesian()</code> function with arguments <code>xlim</code> and <code>ylim</code> for specifying the desired region.</p>
-<p>Let’s say we want to focus on the houses with <code>liv_area</code> between 1000 and 2000.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="customization-axes.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb492-2"><a href="customization-axes.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))  <span class="sc">+</span></span>
-<span id="cb492-3"><a href="customization-axes.html#cb492-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-517-1.png" width="576" /></p>
-<p>Let’s narrow down further to only the houses with <code>liv_area</code> between 1000 and 2000, and <code>sale_price</code> between 200 and 300.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="customization-axes.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb493-2"><a href="customization-axes.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price))  <span class="sc">+</span></span>
-<span id="cb493-3"><a href="customization-axes.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">2000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">300</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-518-1.png" width="576" /></p>
-</div>
-<div id="plot-with-transformed-variables-and-log-scale-plot" class="section level3" number="4.11.3">
-<h3><span class="header-section-number">4.11.3</span> Plot with Transformed Variables and Log-scale Plot</h3>
-<p>In some applications, instead of using the original variables, you may want to generate a plot with certain transformations of them.</p>
-<p>In our scatterplot, maybe we want to change the y-axis to the logarithm of the sale price.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="customization-axes.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb494-2"><a href="customization-axes.html#cb494-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> <span class="fu">log10</span>(sale_price)))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-519-1.png" width="576" /></p>
-<p>The working mechanism is to first generate a temporary variable <code>log10(sale_price)</code> on the fly, and then generate a scatterplot between <code>liv_area</code> and the transformed variable.</p>
-<p>For this particular <code>log10()</code> transformation, an alternative is to generate a <strong>Log-scale Plot</strong> by setting the <code>trans</code> argument in the <code>scale_y_continous()</code> function. The <code>log-scale plot</code> is a popular way for displaying numerical data over a very wide range of values in a compact fashion.</p>
-<p>The default value of <code>trans</code> is <code>"identity"</code> meaning no transformation. There are many different <code>trans</code> choices including <code>log</code>, <code>exp</code>, <code>log10</code>, <code>sqrt</code>, and others.</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="customization-axes.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb495-2"><a href="customization-axes.html#cb495-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb495-3"><a href="customization-axes.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-520-1.png" width="576" /></p>
-<p>This works in a very different way by change the scale of the y-axis.</p>
-</div>
-<div id="exercises-30" class="section level3" number="4.11.4">
-<h3><span class="header-section-number">4.11.4</span> Exercises</h3>
-<p>Use the <code>sahp</code> data set to answer the following questions.</p>
+<div id="solve24" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Solve 24</h2>
+<p>Let’s first review the helper functions we created.</p>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="solve24.html#cb771-1" aria-hidden="true" tabindex="-1"></a><span class="co"># single step operation</span></span>
+<span id="cb771-2"><a href="solve24.html#cb771-2" aria-hidden="true" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, op){ </span>
+<span id="cb771-3"><a href="solve24.html#cb771-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, x <span class="sc">+</span> y, x <span class="sc">-</span> y, x <span class="sc">*</span> y, x <span class="sc">/</span> y, y <span class="sc">-</span> x, y <span class="sc">/</span> x)</span>
+<span id="cb771-4"><a href="solve24.html#cb771-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb771-5"><a href="solve24.html#cb771-5" aria-hidden="true" tabindex="-1"></a><span class="co"># multi-step operations</span></span>
+<span id="cb771-6"><a href="solve24.html#cb771-6" aria-hidden="true" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)){</span>
+<span id="cb771-7"><a href="solve24.html#cb771-7" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> num</span>
+<span id="cb771-8"><a href="solve24.html#cb771-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>))</span>
+<span id="cb771-9"><a href="solve24.html#cb771-9" aria-hidden="true" tabindex="-1"></a>  sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step<span class="sc">+</span><span class="dv">1</span>], op[step])</span>
+<span id="cb771-10"><a href="solve24.html#cb771-10" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(sol)</span>
+<span id="cb771-11"><a href="solve24.html#cb771-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb771-12"><a href="solve24.html#cb771-12" aria-hidden="true" tabindex="-1"></a><span class="co"># print a single step</span></span>
+<span id="cb771-13"><a href="solve24.html#cb771-13" aria-hidden="true" tabindex="-1"></a>print_op <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z, op){</span>
+<span id="cb771-14"><a href="solve24.html#cb771-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, <span class="fu">paste</span>(x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-15"><a href="solve24.html#cb771-15" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;-&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-16"><a href="solve24.html#cb771-16" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;*&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-17"><a href="solve24.html#cb771-17" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;/&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-18"><a href="solve24.html#cb771-18" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;-&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-19"><a href="solve24.html#cb771-19" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;/&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb771-20"><a href="solve24.html#cb771-20" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb771-21"><a href="solve24.html#cb771-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb771-22"><a href="solve24.html#cb771-22" aria-hidden="true" tabindex="-1"></a><span class="co"># print multi-steps (the solution)</span></span>
+<span id="cb771-23"><a href="solve24.html#cb771-23" aria-hidden="true" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op){</span>
+<span id="cb771-24"><a href="solve24.html#cb771-24" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)        <span class="co">#Only keep 3 digits to make it better looking.</span></span>
+<span id="cb771-25"><a href="solve24.html#cb771-25" aria-hidden="true" tabindex="-1"></a>  n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
+<span id="cb771-26"><a href="solve24.html#cb771-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>)){</span>
+<span id="cb771-27"><a href="solve24.html#cb771-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step<span class="sc">+</span><span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb771-28"><a href="solve24.html#cb771-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb771-29"><a href="solve24.html#cb771-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>With all the preparations, we are ready to present the final function to solve 24. In the <code>solve_24()</code> function, the first argument <code>nums</code> contains the numbers, <code>goal</code> is the target value with default 24, and <code>n_sols_max</code> represents the maximum number of solutions to search for, with a default value of 3.</p>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="solve24.html#cb772-1" aria-hidden="true" tabindex="-1"></a>solve_24 <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, <span class="at">goal =</span> <span class="dv">24</span>, <span class="at">n_sols_max =</span> <span class="dv">3</span>){</span>
+<span id="cb772-2"><a href="solve24.html#cb772-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(gtools)</span>
+<span id="cb772-3"><a href="solve24.html#cb772-3" aria-hidden="true" tabindex="-1"></a>n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
+<span id="cb772-4"><a href="solve24.html#cb772-4" aria-hidden="true" tabindex="-1"></a><span class="do">##Getting all number permutations</span></span>
+<span id="cb772-5"><a href="solve24.html#cb772-5" aria-hidden="true" tabindex="-1"></a>nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))  </span>
+<span id="cb772-6"><a href="solve24.html#cb772-6" aria-hidden="true" tabindex="-1"></a><span class="do">##Getting all operator sequences</span></span>
+<span id="cb772-7"><a href="solve24.html#cb772-7" aria-hidden="true" tabindex="-1"></a>n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb772-8"><a href="solve24.html#cb772-8" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums<span class="dv">-1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb772-9"><a href="solve24.html#cb772-9" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> op_mat[op_mat[,<span class="dv">1</span>]<span class="sc">&lt;=</span><span class="dv">4</span>, ]</span>
+<span id="cb772-10"><a href="solve24.html#cb772-10" aria-hidden="true" tabindex="-1"></a>n_sols <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="do">##Initialize the number of solutions to be 0</span></span>
+<span id="cb772-11"><a href="solve24.html#cb772-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm))  <span class="co">#Loop over all possible permutations</span></span>
+<span id="cb772-12"><a href="solve24.html#cb772-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)){ <span class="co">#Loop over all possible operator sequences</span></span>
+<span id="cb772-13"><a href="solve24.html#cb772-13" aria-hidden="true" tabindex="-1"></a>  num_cur <span class="ot">&lt;-</span> nums_perm[i, ] <span class="co">#get the current permutation</span></span>
+<span id="cb772-14"><a href="solve24.html#cb772-14" aria-hidden="true" tabindex="-1"></a>  op_cur <span class="ot">&lt;-</span> op_mat[j, ] <span class="co">#get the current operator sequence</span></span>
+<span id="cb772-15"><a href="solve24.html#cb772-15" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur) <span class="co">#get the steps</span></span>
+<span id="cb772-16"><a href="solve24.html#cb772-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span> <span class="sc">&amp;</span> <span class="fu">all</span>(sol <span class="sc">&gt;=</span> <span class="dv">0</span>)){ <span class="co">#check if it is a solution</span></span>
+<span id="cb772-17"><a href="solve24.html#cb772-17" aria-hidden="true" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span> <span class="co">#increase the solution counter</span></span>
+<span id="cb772-18"><a href="solve24.html#cb772-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb772-19"><a href="solve24.html#cb772-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print_sol</span>(num_cur, sol, op_cur) <span class="co">#print the solution</span></span>
+<span id="cb772-20"><a href="solve24.html#cb772-20" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb772-21"><a href="solve24.html#cb772-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(n_sols <span class="sc">&gt;=</span> n_sols_max){</span>
+<span id="cb772-22"><a href="solve24.html#cb772-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
+<span id="cb772-23"><a href="solve24.html#cb772-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb772-24"><a href="solve24.html#cb772-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb772-25"><a href="solve24.html#cb772-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(n_sols <span class="sc">==</span> <span class="dv">0</span>){ <span class="co">#fail to find a solution</span></span>
+<span id="cb772-26"><a href="solve24.html#cb772-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
+<span id="cb772-27"><a href="solve24.html#cb772-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb772-28"><a href="solve24.html#cb772-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb772-29"><a href="solve24.html#cb772-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now, we are reading to look at some examples.</p>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="solve24.html#cb773-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb773-2"><a href="solve24.html#cb773-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb773-3"><a href="solve24.html#cb773-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 + 2 = 3 </span></span>
+<span id="cb773-4"><a href="solve24.html#cb773-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 + 3 = 6 </span></span>
+<span id="cb773-5"><a href="solve24.html#cb773-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
+<span id="cb773-6"><a href="solve24.html#cb773-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 2 </span></span>
+<span id="cb773-7"><a href="solve24.html#cb773-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 * 2 = 2 </span></span>
+<span id="cb773-8"><a href="solve24.html#cb773-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 * 3 = 6 </span></span>
+<span id="cb773-9"><a href="solve24.html#cb773-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
+<span id="cb773-10"><a href="solve24.html#cb773-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 3 </span></span>
+<span id="cb773-11"><a href="solve24.html#cb773-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 / 2 = 0.5 </span></span>
+<span id="cb773-12"><a href="solve24.html#cb773-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5 / 3 = 0.167 </span></span>
+<span id="cb773-13"><a href="solve24.html#cb773-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 / 0.167 = 24</span></span>
+<span id="cb773-14"><a href="solve24.html#cb773-14" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb773-15"><a href="solve24.html#cb773-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb773-16"><a href="solve24.html#cb773-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
+<span id="cb773-17"><a href="solve24.html#cb773-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
+<span id="cb773-18"><a href="solve24.html#cb773-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
+<span id="cb773-19"><a href="solve24.html#cb773-19" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">7</span>))</span>
+<span id="cb773-20"><a href="solve24.html#cb773-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb773-21"><a href="solve24.html#cb773-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 / 7 = 0.429 </span></span>
+<span id="cb773-22"><a href="solve24.html#cb773-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.429 + 3 = 3.429 </span></span>
+<span id="cb773-23"><a href="solve24.html#cb773-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3.429 * 7 = 24</span></span>
+<span id="cb773-24"><a href="solve24.html#cb773-24" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">8</span>))</span>
+<span id="cb773-25"><a href="solve24.html#cb773-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb773-26"><a href="solve24.html#cb773-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 / 3 = 2.667 </span></span>
+<span id="cb773-27"><a href="solve24.html#cb773-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 - 2.667 = 0.333 </span></span>
+<span id="cb773-28"><a href="solve24.html#cb773-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 / 0.333 = 24</span></span>
+<span id="cb773-29"><a href="solve24.html#cb773-29" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb773-30"><a href="solve24.html#cb773-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution not exist!</span></span></code></pre></div>
+<p>Note that the function is more powerful than merely solving 24. It contains two extensions.</p>
 <ol style="list-style-type: decimal">
-<li><p>Create a scatterplot between <code>lot_area</code> (x-axis) and <code>sale_price</code> (y-axis), with the breaks on the x-axis being an equally-spaced sequence from 0 to 40000 with increment 5000, and the breaks on the y-axis being (0, 200, 300, 550).</p></li>
-<li><p>For the plot in Q1, create a zoom-in plot where <code>lot_area</code> is between 10000 and 15000, and <code>sale_price</code> is between 200 and 300.</p></li>
-<li><p>For the plot in Q1, create a corresponding log-log plot, where both the x-axis and y-axis are in log-scale.</p></li>
+<li>The target value can be any number, for example, 25, or 100.</li>
+<li>The input can contain more or less than 4 numbers.</li>
 </ol>
+<p>Let’s look at two interesting examples.</p>
+<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="solve24.html#cb774-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">25</span>), <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
+<span id="cb774-2"><a href="solve24.html#cb774-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb774-3"><a href="solve24.html#cb774-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 + 13 = 25 </span></span>
+<span id="cb774-4"><a href="solve24.html#cb774-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25 * 23 = 575 </span></span>
+<span id="cb774-5"><a href="solve24.html#cb774-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575 + 25 = 600 </span></span>
+<span id="cb774-6"><a href="solve24.html#cb774-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 600 / 25 = 24</span></span>
+<span id="cb774-7"><a href="solve24.html#cb774-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">16</span>, <span class="dv">100</span>, <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
+<span id="cb774-8"><a href="solve24.html#cb774-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb774-9"><a href="solve24.html#cb774-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 * 12 = 132 </span></span>
+<span id="cb774-10"><a href="solve24.html#cb774-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 132 + 13 = 145 </span></span>
+<span id="cb774-11"><a href="solve24.html#cb774-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 145 - 14 = 131 </span></span>
+<span id="cb774-12"><a href="solve24.html#cb774-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 131 - 15 = 116 </span></span>
+<span id="cb774-13"><a href="solve24.html#cb774-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 116 - 16 = 100</span></span></code></pre></div>
+<p>There are other possible extensions of the function we wrote. For example, you can add additional possible operators (e.g. the exponention <code>^</code>, factorial <code>!</code>) by changing the <code>cal()</code> and <code>print_op</code> as well as some constants in the <code>solve_24()</code> function.</p>
 
 </div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="bar-charts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="histogram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="composite-operator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
