@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -604,7 +604,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#generate-multivate-normal-distribution"><i class="fa fa-check"></i><b>9.4.1</b> Generate Multivate Normal Distribution</a></li>
+<li class="chapter" data-level="9.4.2" data-path="multivariate-normal.html"><a href="multivariate-normal.html#sample-mean-and-sample-covariance-matrix"><i class="fa fa-check"></i><b>9.4.2</b> Sample Mean and Sample Covariance Matrix</a></li>
+<li class="chapter" data-level="9.4.3" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -678,21 +680,21 @@ div.csl-indent {
 <h3><span class="header-section-number">10.2.1</span> <code>for</code> loops with known sequence</h3>
 <p>The first type of loops is the repeat with a <strong>known sequence</strong>.</p>
 <p>For example, if you want to find the first ten values of the Fibonacci sequence. It is known that the first two values in a Fibonacci sequence is <span class="math inline">\(F_1 = 0\)</span> and <span class="math inline">\(F_2 = 1\)</span>. Then, we have <span class="math inline">\(F_3 = F_1 + F_2 = 0 + 1 = 1\)</span> and in general <span class="math inline">\(F_i = F_{i-2} + F_{i-1}\)</span>.</p>
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="loop.html#cb748-1" aria-hidden="true" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>)   <span class="do">##Initialize the sequence</span></span>
-<span id="cb748-2"><a href="loop.html#cb748-2" aria-hidden="true" tabindex="-1"></a>fib_seq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="do">##Initialize the first element</span></span>
-<span id="cb748-3"><a href="loop.html#cb748-3" aria-hidden="true" tabindex="-1"></a>fib_seq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>        <span class="do">##Initialize the second element</span></span>
-<span id="cb748-4"><a href="loop.html#cb748-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>){        <span class="do">##Loop to get the remaining 8 elements</span></span>
-<span id="cb748-5"><a href="loop.html#cb748-5" aria-hidden="true" tabindex="-1"></a>  fib_seq[i] <span class="ot">&lt;-</span> fib_seq[i<span class="dv">-2</span>] <span class="sc">+</span> fib_seq[i<span class="dv">-1</span>] </span>
-<span id="cb748-6"><a href="loop.html#cb748-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb748-7"><a href="loop.html#cb748-7" aria-hidden="true" tabindex="-1"></a>fib_seq                <span class="do">##Print the sequence</span></span>
-<span id="cb748-8"><a href="loop.html#cb748-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34</span></span></code></pre></div>
-<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="loop.html#cb749-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
-<span id="cb749-2"><a href="loop.html#cb749-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="st">&quot;+&quot;</span>,y,<span class="st">&quot;=&quot;</span>,x<span class="sc">+</span>y)})</span>
-<span id="cb749-3"><a href="loop.html#cb749-3" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
-<span id="cb749-4"><a href="loop.html#cb749-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5</span><span class="sc">^</span>(<span class="fu">abs</span>(x<span class="sc">-</span>y))})</span>
-<span id="cb749-5"><a href="loop.html#cb749-5" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb749-6"><a href="loop.html#cb749-6" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(x,x,paste)</span>
-<span id="cb749-7"><a href="loop.html#cb749-7" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;^&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="loop.html#cb754-1" aria-hidden="true" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>)   <span class="do">##Initialize the sequence</span></span>
+<span id="cb754-2"><a href="loop.html#cb754-2" aria-hidden="true" tabindex="-1"></a>fib_seq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="do">##Initialize the first element</span></span>
+<span id="cb754-3"><a href="loop.html#cb754-3" aria-hidden="true" tabindex="-1"></a>fib_seq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>        <span class="do">##Initialize the second element</span></span>
+<span id="cb754-4"><a href="loop.html#cb754-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>){        <span class="do">##Loop to get the remaining 8 elements</span></span>
+<span id="cb754-5"><a href="loop.html#cb754-5" aria-hidden="true" tabindex="-1"></a>  fib_seq[i] <span class="ot">&lt;-</span> fib_seq[i<span class="dv">-2</span>] <span class="sc">+</span> fib_seq[i<span class="dv">-1</span>] </span>
+<span id="cb754-6"><a href="loop.html#cb754-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb754-7"><a href="loop.html#cb754-7" aria-hidden="true" tabindex="-1"></a>fib_seq                <span class="do">##Print the sequence</span></span>
+<span id="cb754-8"><a href="loop.html#cb754-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34</span></span></code></pre></div>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="loop.html#cb755-1" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
+<span id="cb755-2"><a href="loop.html#cb755-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="st">&quot;+&quot;</span>,y,<span class="st">&quot;=&quot;</span>,x<span class="sc">+</span>y)})</span>
+<span id="cb755-3"><a href="loop.html#cb755-3" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
+<span id="cb755-4"><a href="loop.html#cb755-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.5</span><span class="sc">^</span>(<span class="fu">abs</span>(x<span class="sc">-</span>y))})</span>
+<span id="cb755-5"><a href="loop.html#cb755-5" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb755-6"><a href="loop.html#cb755-6" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(x,x,paste)</span>
+<span id="cb755-7"><a href="loop.html#cb755-7" aria-hidden="true" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;^&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

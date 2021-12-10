@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -604,7 +604,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#generate-multivate-normal-distribution"><i class="fa fa-check"></i><b>9.4.1</b> Generate Multivate Normal Distribution</a></li>
+<li class="chapter" data-level="9.4.2" data-path="multivariate-normal.html"><a href="multivariate-normal.html#sample-mean-and-sample-covariance-matrix"><i class="fa fa-check"></i><b>9.4.2</b> Sample Mean and Sample Covariance Matrix</a></li>
+<li class="chapter" data-level="9.4.3" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -690,16 +692,16 @@ div.csl-indent {
 <div id="getting-all-permutations" class="section level3" number="12.1.1">
 <h3><span class="header-section-number">12.1.1</span> Getting All Permutations</h3>
 <p>The three steps imply a specific order of the original four numbers. In this case, we have 1, 5, 5, 5. In our exhaustive search, we need to enumerate all possible permutations of the original four number, which at most is <span class="math inline">\(4! = 24\)</span>. We can find all the possible permutations using the <code>permutations()</code> function in the <strong>gtools</strong> package. We also apply the <code>unique()</code> function outside to remove the duplicated permutations.</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="permutation-operator.html#cb760-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtools)</span>
-<span id="cb760-2"><a href="permutation-operator.html#cb760-2" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb760-3"><a href="permutation-operator.html#cb760-3" aria-hidden="true" tabindex="-1"></a>n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
-<span id="cb760-4"><a href="permutation-operator.html#cb760-4" aria-hidden="true" tabindex="-1"></a>nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb760-5"><a href="permutation-operator.html#cb760-5" aria-hidden="true" tabindex="-1"></a>nums_perm</span>
-<span id="cb760-6"><a href="permutation-operator.html#cb760-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb760-7"><a href="permutation-operator.html#cb760-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    5    5    5</span></span>
-<span id="cb760-8"><a href="permutation-operator.html#cb760-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    5    1    5    5</span></span>
-<span id="cb760-9"><a href="permutation-operator.html#cb760-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    5    5    1    5</span></span>
-<span id="cb760-10"><a href="permutation-operator.html#cb760-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,]    5    5    5    1</span></span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="permutation-operator.html#cb766-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtools)</span>
+<span id="cb766-2"><a href="permutation-operator.html#cb766-2" aria-hidden="true" tabindex="-1"></a>nums <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb766-3"><a href="permutation-operator.html#cb766-3" aria-hidden="true" tabindex="-1"></a>n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
+<span id="cb766-4"><a href="permutation-operator.html#cb766-4" aria-hidden="true" tabindex="-1"></a>nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb766-5"><a href="permutation-operator.html#cb766-5" aria-hidden="true" tabindex="-1"></a>nums_perm</span>
+<span id="cb766-6"><a href="permutation-operator.html#cb766-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb766-7"><a href="permutation-operator.html#cb766-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    5    5    5</span></span>
+<span id="cb766-8"><a href="permutation-operator.html#cb766-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    5    1    5    5</span></span>
+<span id="cb766-9"><a href="permutation-operator.html#cb766-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    5    5    1    5</span></span>
+<span id="cb766-10"><a href="permutation-operator.html#cb766-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,]    5    5    5    1</span></span></code></pre></div>
 <p>Now, <code>nums_perm</code> is a matrix, where each row contains a particular permutation of the original numbers.</p>
 </div>
 <div id="getting-all-operators" class="section level3" number="12.1.2">
@@ -789,34 +791,34 @@ y / x
 </tbody>
 </table>
 <p>Now, we need to make this process automatic. Let’s write the following function <code>cal()</code> which takes arguments <code>x</code>, <code>y</code>, and <code>op</code> (a value from 1 to 6).</p>
-<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="permutation-operator.html#cb761-1" aria-hidden="true" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, op){</span>
-<span id="cb761-2"><a href="permutation-operator.html#cb761-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, x <span class="sc">+</span> y, x <span class="sc">-</span> y, x <span class="sc">*</span> y, x <span class="sc">/</span> y, y <span class="sc">-</span> x, y <span class="sc">/</span> x)</span>
-<span id="cb761-3"><a href="permutation-operator.html#cb761-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="permutation-operator.html#cb767-1" aria-hidden="true" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, op){</span>
+<span id="cb767-2"><a href="permutation-operator.html#cb767-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, x <span class="sc">+</span> y, x <span class="sc">-</span> y, x <span class="sc">*</span> y, x <span class="sc">/</span> y, y <span class="sc">-</span> x, y <span class="sc">/</span> x)</span>
+<span id="cb767-3"><a href="permutation-operator.html#cb767-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>To output the intermediate steps, it is useful to write a print function. The following function <code>print_op(x, y, z, op)</code> will generate a string that represent the operation <code>op</code> between <code>x</code> and <code>y</code> generates <code>z</code>.</p>
-<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="permutation-operator.html#cb762-1" aria-hidden="true" tabindex="-1"></a>print_op <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z, op){</span>
-<span id="cb762-2"><a href="permutation-operator.html#cb762-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, <span class="fu">paste</span>(x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-3"><a href="permutation-operator.html#cb762-3" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;-&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-4"><a href="permutation-operator.html#cb762-4" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;*&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-5"><a href="permutation-operator.html#cb762-5" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;/&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-6"><a href="permutation-operator.html#cb762-6" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;-&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-7"><a href="permutation-operator.html#cb762-7" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;/&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
-<span id="cb762-8"><a href="permutation-operator.html#cb762-8" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb762-9"><a href="permutation-operator.html#cb762-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="permutation-operator.html#cb768-1" aria-hidden="true" tabindex="-1"></a>print_op <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z, op){</span>
+<span id="cb768-2"><a href="permutation-operator.html#cb768-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(op, <span class="fu">paste</span>(x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-3"><a href="permutation-operator.html#cb768-3" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;-&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-4"><a href="permutation-operator.html#cb768-4" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;*&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-5"><a href="permutation-operator.html#cb768-5" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(x, <span class="st">&quot;/&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-6"><a href="permutation-operator.html#cb768-6" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;-&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-7"><a href="permutation-operator.html#cb768-7" aria-hidden="true" tabindex="-1"></a>           , <span class="fu">paste</span>(y, <span class="st">&quot;/&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z)</span>
+<span id="cb768-8"><a href="permutation-operator.html#cb768-8" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb768-9"><a href="permutation-operator.html#cb768-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Since we have three steps and each step has 6 possible operators, there are in total <span class="math inline">\(6^3 = 216\)</span> possible combinations of the operator sequence. Let’s get all the combinations as below.</p>
-<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="permutation-operator.html#cb763-1" aria-hidden="true" tabindex="-1"></a>n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb763-2"><a href="permutation-operator.html#cb763-2" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums<span class="dv">-1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb763-3"><a href="permutation-operator.html#cb763-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(op_mat, <span class="dv">10</span>)</span>
-<span id="cb763-4"><a href="permutation-operator.html#cb763-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]</span></span>
-<span id="cb763-5"><a href="permutation-operator.html#cb763-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,]    1    1    1</span></span>
-<span id="cb763-6"><a href="permutation-operator.html#cb763-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,]    1    1    2</span></span>
-<span id="cb763-7"><a href="permutation-operator.html#cb763-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,]    1    1    3</span></span>
-<span id="cb763-8"><a href="permutation-operator.html#cb763-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,]    1    1    4</span></span>
-<span id="cb763-9"><a href="permutation-operator.html#cb763-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,]    1    1    5</span></span>
-<span id="cb763-10"><a href="permutation-operator.html#cb763-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,]    1    1    6</span></span>
-<span id="cb763-11"><a href="permutation-operator.html#cb763-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,]    1    2    1</span></span>
-<span id="cb763-12"><a href="permutation-operator.html#cb763-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,]    1    2    2</span></span>
-<span id="cb763-13"><a href="permutation-operator.html#cb763-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,]    1    2    3</span></span>
-<span id="cb763-14"><a href="permutation-operator.html#cb763-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,]    1    2    4</span></span></code></pre></div>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="permutation-operator.html#cb769-1" aria-hidden="true" tabindex="-1"></a>n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb769-2"><a href="permutation-operator.html#cb769-2" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums<span class="dv">-1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb769-3"><a href="permutation-operator.html#cb769-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(op_mat, <span class="dv">10</span>)</span>
+<span id="cb769-4"><a href="permutation-operator.html#cb769-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]</span></span>
+<span id="cb769-5"><a href="permutation-operator.html#cb769-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,]    1    1    1</span></span>
+<span id="cb769-6"><a href="permutation-operator.html#cb769-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,]    1    1    2</span></span>
+<span id="cb769-7"><a href="permutation-operator.html#cb769-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,]    1    1    3</span></span>
+<span id="cb769-8"><a href="permutation-operator.html#cb769-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,]    1    1    4</span></span>
+<span id="cb769-9"><a href="permutation-operator.html#cb769-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,]    1    1    5</span></span>
+<span id="cb769-10"><a href="permutation-operator.html#cb769-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,]    1    1    6</span></span>
+<span id="cb769-11"><a href="permutation-operator.html#cb769-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,]    1    2    1</span></span>
+<span id="cb769-12"><a href="permutation-operator.html#cb769-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,]    1    2    2</span></span>
+<span id="cb769-13"><a href="permutation-operator.html#cb769-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,]    1    2    3</span></span>
+<span id="cb769-14"><a href="permutation-operator.html#cb769-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,]    1    2    4</span></span></code></pre></div>
 <p>Let’s look at some possible row for the example <code>(1, 5, 5, 5)</code>.</p>
 <table>
 <thead>
@@ -893,7 +895,7 @@ Value
 </tbody>
 </table>
 <p>Out of all possible operator sequence, it turns out some of there are redundant when we also consider all permutations of the numbers. The most obvious ones are the operator sequence that starts with 5 or 6. To see this, note that <code>cal(x, y, 5)</code> and <code>cal(y, x, 2)</code> both equal <code>y - x</code>, and <code>cal(x, y, 6)</code> and <code>cal(y, x, 4)</code> both equal to <code>y/x</code>. Therefore, we can safely remove all operator sequences that start with 5 or 6.</p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="permutation-operator.html#cb764-1" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> op_mat[op_mat[,<span class="dv">1</span>]<span class="sc">&lt;=</span><span class="dv">4</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="permutation-operator.html#cb770-1" aria-hidden="true" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> op_mat[op_mat[,<span class="dv">1</span>]<span class="sc">&lt;=</span><span class="dv">4</span>, ]</span></code></pre></div>
 <p>There are in total 144 possible operator sequences for each number sequence.</p>
 
 </div>

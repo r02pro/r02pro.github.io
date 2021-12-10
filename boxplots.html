@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -604,7 +604,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#generate-multivate-normal-distribution"><i class="fa fa-check"></i><b>9.4.1</b> Generate Multivate Normal Distribution</a></li>
+<li class="chapter" data-level="9.4.2" data-path="multivariate-normal.html"><a href="multivariate-normal.html#sample-mean-and-sample-covariance-matrix"><i class="fa fa-check"></i><b>9.4.2</b> Sample Mean and Sample Covariance Matrix</a></li>
+<li class="chapter" data-level="9.4.3" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -695,15 +697,15 @@ div.csl-indent {
 <li>The <strong>lower whisker</strong> is the smallest observation value that is greater than or equal to Q1 - 1.5 * IQR. To find this value, we first calculate Q1 - 1.5 * IQR = 22.54375.
 Then, the smallest observation larger than 22.54375 is</li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="boxplots.html#cb518-1" aria-hidden="true" tabindex="-1"></a>lower_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which.min</span>(sale_price <span class="sc">&gt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.25</span>) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
-<span id="cb518-2"><a href="boxplots.html#cb518-2" aria-hidden="true" tabindex="-1"></a>sale_price[lower_whisker_loc]</span>
-<span id="cb518-3"><a href="boxplots.html#cb518-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 130.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="boxplots.html#cb518-1" aria-hidden="true" tabindex="-1"></a>lower_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&gt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.25</span>) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
+<span id="cb518-2"><a href="boxplots.html#cb518-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(sale_price[lower_whisker_loc])</span>
+<span id="cb518-3"><a href="boxplots.html#cb518-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 44</span></span></code></pre></div>
 <ul>
 <li>The <strong>upper whisker</strong> is the largest observation value that is smaller than or equal to Q3 + 1.5 * IQR. Similarly, the value is</li>
 </ul>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="boxplots.html#cb519-1" aria-hidden="true" tabindex="-1"></a>upper_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which.max</span>(sale_price <span class="sc">&lt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
-<span id="cb519-2"><a href="boxplots.html#cb519-2" aria-hidden="true" tabindex="-1"></a>sale_price[upper_whisker_loc]</span>
-<span id="cb519-3"><a href="boxplots.html#cb519-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 130.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="boxplots.html#cb519-1" aria-hidden="true" tabindex="-1"></a>upper_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&lt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
+<span id="cb519-2"><a href="boxplots.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sale_price[upper_whisker_loc])</span>
+<span id="cb519-3"><a href="boxplots.html#cb519-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 308.03</span></span></code></pre></div>
 <p>To summarize, the five lines on the boxplot, from the top to bottom, are</p>
 <ul>
 <li>upper whisker (&lt;= Q3 + 1.5*IQR)</li>

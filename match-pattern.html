@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -604,7 +604,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#generate-multivate-normal-distribution"><i class="fa fa-check"></i><b>9.4.1</b> Generate Multivate Normal Distribution</a></li>
+<li class="chapter" data-level="9.4.2" data-path="multivariate-normal.html"><a href="multivariate-normal.html#sample-mean-and-sample-covariance-matrix"><i class="fa fa-check"></i><b>9.4.2</b> Sample Mean and Sample Covariance Matrix</a></li>
+<li class="chapter" data-level="9.4.3" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -677,18 +679,21 @@ div.csl-indent {
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="match-pattern.html#cb698-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb698-2"><a href="match-pattern.html#cb698-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb698-3"><a href="match-pattern.html#cb698-3" aria-hidden="true" tabindex="-1"></a>sahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(sahp)</span></code></pre></div>
-<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern.</p>
+<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. To create a logical vector that reflect this match, you can use the <code>str_detect()</code> function.</p>
 <div id="basic-matches" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Basic Matches</h3>
 <p>Let’s describe a few commonly used patterns.</p>
-<p><strong><em>a. contain a given string</em></strong>
-To find all strings that contain <code>"room"</code>, you can run the following code.</p>
+<p><strong><em>a. contain a given string</em></strong></p>
+<p>To find all strings that contain <code>"room"</code>, you can run the following code.</p>
 <div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="match-pattern.html#cb699-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;room&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-ffcf6cfe32332af90121" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-ffcf6cfe32332af90121">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bed<span class='match'>room<\/span><\/li>\n  <li>bath<span class='match'>room<\/span><\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+str_detect(sahp_names, "room")
+#>  [1] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+<p>You can see that the <code>str_detect()</code> function returns a logical vector that reflects whether this is a match. In the rest of this section, we will be focusing on demonstration with <code>str_view()</code>.</p>
 <p>From the result, we can see that <code>"bedroom"</code> and <code>"bathroom"</code> are highlighted, since they both contain the string <code>"room"</code>.</p>
-<p><strong><em>b. including <code>.</code> in the pattern</em></strong>
-In addition to specifying the exact string for matching, you can also use the wild symbol <code>.</code> to represent <strong>any character</strong>.</p>
+<p><strong><em>b. including <code>.</code> in the pattern</em></strong></p>
+<p>In addition to specifying the exact string for matching, you can also use the wild symbol <code>.</code> to represent <strong>any character</strong>.</p>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="match-pattern.html#cb700-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;.h&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-7b158366f581f398e8d0" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-7b158366f581f398e8d0">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bedroom<\/li>\n  <li>ba<span class='match'>th<\/span>room<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
@@ -697,8 +702,8 @@ str_view(sahp_names, ".s.")
 <script type="application/json" data-for="htmlwidget-def6e48dac64e2b0e68b">{"x":{"html":"<ul>\n  <li>dt<span class='match'>_so<\/span>ld<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li>liv_area<\/li>\n  <li>lot_area<\/li>\n  <li>ho<span class='match'>use<\/span>_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>The first pattern <code>".h"</code> represents any character plus the letter h. Note that <code>"house_style"</code> is not a match since it doesn’t have any character before the letter <code>"h"</code>.</p>
 <p>The second patter <code>".s."</code> represents a length-3 substring, with any two characters around <code>"h"</code>. Again, here <code>"sale_price"</code> is not a match since <code>"s"</code> is a first character.</p>
-<p><strong><em>c. including anchors in the pattern</em></strong>
-Sometimes, we may want to match the <strong>start</strong> of the string (<code>"^"</code>), or the <strong>end</strong> of the string (<code>"$"</code>).</p>
+<p><strong><em>c. including anchors in the pattern</em></strong></p>
+<p>Sometimes, we may want to match the <strong>start</strong> of the string (<code>"^"</code>), or the <strong>end</strong> of the string (<code>"$"</code>).</p>
 <div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="match-pattern.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;^l&quot;</span>)</span></code></pre></div>
 <div id="htmlwidget-502f43fd57e1a9e3506f" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-502f43fd57e1a9e3506f">{"x":{"html":"<ul>\n  <li>dt_sold<\/li>\n  <li>bedroom<\/li>\n  <li>bathroom<\/li>\n  <li>gar_car<\/li>\n  <li>oa_qual<\/li>\n  <li><span class='match'>l<\/span>iv_area<\/li>\n  <li><span class='match'>l<\/span>ot_area<\/li>\n  <li>house_style<\/li>\n  <li>kit_qual<\/li>\n  <li>heat_qual<\/li>\n  <li>central_air<\/li>\n  <li>sale_price<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
@@ -710,13 +715,17 @@ Sometimes, we may want to match the <strong>start</strong> of the string (<code>
 </div>
 <div id="character-classes-matches" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Character Classes Matches</h3>
+<p><strong><em>a. Single character match</em></strong></p>
 <p>Sometimes, we may want to match the characters with a specific class or a group of values instead of exact values. Here is a list of the commonly used classes.</p>
 <ul>
 <li><code>\d</code>: matches any digit. In other words, numbers from 0 to 9.</li>
 <li><code>\s</code>: matches any whitespace (e.g. space, tab, newline). For example, <code></code>, <code>\t</code>, <code>\n</code>.</li>
 <li><code>[xyz]</code>: matches x, y, or z.</li>
 <li><code>[^xyz]</code>: matches anything except x, y, or z. (The opposite of <code>[xyz]</code>)</li>
+<li><code>[a-z]</code> or <code>[:lower:]</code>: matches every character between a and z.</li>
+<li><code>[A-Z]</code> or <code>[:upper:]</code>: matches every character between A and Z.</li>
 </ul>
+<p>Note that all of these are detecting a single character from the candidate ones.</p>
 <p>Let’s see some examples.</p>
 <div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="match-pattern.html#cb703-1" aria-hidden="true" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;2b&quot;</span>,<span class="st">&quot;33c&quot;</span>,<span class="st">&quot;d 2&quot;</span>, <span class="st">&quot;d f  3&quot;</span>)</span>
 <span id="cb703-2"><a href="match-pattern.html#cb703-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span></code></pre></div>
@@ -735,6 +744,25 @@ Sometimes, we may want to match the <strong>start</strong> of the string (<code>
 <div id="htmlwidget-23d335b590605a419415" style="width:960px;height:100%;" class="str_view html-widget"></div>
 <script type="application/json" data-for="htmlwidget-23d335b590605a419415">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a<span class='match'>1<\/span><\/li>\n  <li><span class='match'>2<\/span>b<\/li>\n  <li>33c<\/li>\n  <li><span class='match'>d<\/span> 2<\/li>\n  <li><span class='match'>d<\/span> f  3<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Here, <code>"[^abc3]"</code> indicates that as long as the string contains any character that is not one of <code>"a"</code>, <code>"b"</code>, <code>"c"</code>, and <code>"3"</code>, it will be matched.</p>
+<p><strong><em>b. Repeated characters match</em></strong>
+Sometimes, you may want to match a pattern multiple times consecutively. While you can do it manually by repeating the pattern, there is an easier way to do this by using the <code>{}</code> with the number inside. Let’s create a string and see some examples.</p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="match-pattern.html#cb707-1" aria-hidden="true" tabindex="-1"></a>my_str_rep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bbbb&quot;</span>, <span class="st">&quot;1234a&quot;</span>,</span>
+<span id="cb707-2"><a href="match-pattern.html#cb707-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;bbb&quot;</span>, <span class="st">&quot;abcdef&quot;</span>,</span>
+<span id="cb707-3"><a href="match-pattern.html#cb707-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;bb ee&quot;</span>, <span class="st">&quot;123456789&quot;</span>)</span></code></pre></div>
+<p><code>b{3}</code> will match 3 b’s.</p>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="match-pattern.html#cb708-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;b{3}&quot;</span>)</span></code></pre></div>
+<p>To match a 9-digit number, you can use <code>[1-9]{9}</code>.</p>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="match-pattern.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[1-9]{9}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-32315ce56be65180e1b0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-32315ce56be65180e1b0">{"x":{"html":"<ul>\n  <li>bbbb<\/li>\n  <li>1234a<\/li>\n  <li>bbb<\/li>\n  <li>abcdef<\/li>\n  <li>bb ee<\/li>\n  <li><span class='match'>123456789<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p><code>[a-z]{4}</code> matches all four-letter word.</p>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="match-pattern.html#cb710-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z]{4}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-66c04b287392ee17ea12" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-66c04b287392ee17ea12">{"x":{"html":"<ul>\n  <li><span class='match'>bbbb<\/span><\/li>\n  <li>1234a<\/li>\n  <li>bbb<\/li>\n  <li><span class='match'>abcd<\/span>ef<\/li>\n  <li>bb ee<\/li>\n  <li>123456789<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<p><code>[a-z1-9]{4,}</code> will match all strings which has at least 4 lower case letters or numbers.</p>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="match-pattern.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z1-9]{4,}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-92fe6b009c73f59a219e" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92fe6b009c73f59a219e">{"x":{"html":"<ul>\n  <li><span class='match'>bbbb<\/span><\/li>\n  <li><span class='match'>1234a<\/span><\/li>\n  <li>bbb<\/li>\n  <li><span class='match'>abcdef<\/span><\/li>\n  <li>bb ee<\/li>\n  <li><span class='match'>123456789<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 </div>
 </div>

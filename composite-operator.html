@@ -24,7 +24,7 @@
 <meta name="author" content="Yang Feng and Jianan Zhu" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -604,7 +604,9 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="multivariate-normal.html"><a href="multivariate-normal.html"><i class="fa fa-check"></i><b>9.4</b> Multivariate Normal Distribution</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.1</b> Exercise</a></li>
+<li class="chapter" data-level="9.4.1" data-path="multivariate-normal.html"><a href="multivariate-normal.html#generate-multivate-normal-distribution"><i class="fa fa-check"></i><b>9.4.1</b> Generate Multivate Normal Distribution</a></li>
+<li class="chapter" data-level="9.4.2" data-path="multivariate-normal.html"><a href="multivariate-normal.html#sample-mean-and-sample-covariance-matrix"><i class="fa fa-check"></i><b>9.4.2</b> Sample Mean and Sample Covariance Matrix</a></li>
+<li class="chapter" data-level="9.4.3" data-path="multivariate-normal.html"><a href="multivariate-normal.html#exercise-7"><i class="fa fa-check"></i><b>9.4.3</b> Exercise</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="control-statements.html"><a href="control-statements.html"><i class="fa fa-check"></i><b>10</b> Control Statements</a>
@@ -676,77 +678,77 @@ div.csl-indent {
 <div id="composite-operators" class="section level3" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> Composite Operators</h3>
 <p>Now, we are ready to automate the three-step composite operators process. Let’s say we consider the number sequence in the second row of <code>nums_perm</code>: 5, 1, 5, 5, with the ninth row of <code>op_mat</code>: 1, 2, 3. We know the composite operation goes as below along with the corresponding steps printed.</p>
-<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="composite-operator.html#cb765-1" aria-hidden="true" tabindex="-1"></a>re_1 <span class="ot">&lt;-</span> <span class="fu">cal</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>],  nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
-<span id="cb765-2"><a href="composite-operator.html#cb765-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>],  nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], re_1, op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
-<span id="cb765-3"><a href="composite-operator.html#cb765-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;5 + 1 = 6&quot;</span></span>
-<span id="cb765-4"><a href="composite-operator.html#cb765-4" aria-hidden="true" tabindex="-1"></a>re_2 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_1,  nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
-<span id="cb765-5"><a href="composite-operator.html#cb765-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(re_1,  nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], re_2, op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
-<span id="cb765-6"><a href="composite-operator.html#cb765-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;6 - 5 = 1&quot;</span></span>
-<span id="cb765-7"><a href="composite-operator.html#cb765-7" aria-hidden="true" tabindex="-1"></a>re_3 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_2,  nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
-<span id="cb765-8"><a href="composite-operator.html#cb765-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(re_2,  nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], re_3, op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
-<span id="cb765-9"><a href="composite-operator.html#cb765-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1 * 5 = 5&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="composite-operator.html#cb771-1" aria-hidden="true" tabindex="-1"></a>re_1 <span class="ot">&lt;-</span> <span class="fu">cal</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>],  nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
+<span id="cb771-2"><a href="composite-operator.html#cb771-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>],  nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], re_1, op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
+<span id="cb771-3"><a href="composite-operator.html#cb771-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;5 + 1 = 6&quot;</span></span>
+<span id="cb771-4"><a href="composite-operator.html#cb771-4" aria-hidden="true" tabindex="-1"></a>re_2 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_1,  nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
+<span id="cb771-5"><a href="composite-operator.html#cb771-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(re_1,  nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], re_2, op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
+<span id="cb771-6"><a href="composite-operator.html#cb771-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;6 - 5 = 1&quot;</span></span>
+<span id="cb771-7"><a href="composite-operator.html#cb771-7" aria-hidden="true" tabindex="-1"></a>re_3 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_2,  nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
+<span id="cb771-8"><a href="composite-operator.html#cb771-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_op</span>(re_2,  nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], re_3, op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
+<span id="cb771-9"><a href="composite-operator.html#cb771-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1 * 5 = 5&quot;</span></span></code></pre></div>
 <p>To make our code more compact, we can write a loop over the three operators.</p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="composite-operator.html#cb766-1" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_nums)</span>
-<span id="cb766-2"><a href="composite-operator.html#cb766-2" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">1</span>] <span class="ot">&lt;-</span> nums_perm[<span class="dv">2</span>, <span class="dv">1</span>]</span>
-<span id="cb766-3"><a href="composite-operator.html#cb766-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>)){</span>
-<span id="cb766-4"><a href="composite-operator.html#cb766-4" aria-hidden="true" tabindex="-1"></a>  sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], nums_perm[<span class="dv">2</span>, step<span class="sc">+</span><span class="dv">1</span>], op_mat[<span class="dv">9</span>, step])</span>
-<span id="cb766-5"><a href="composite-operator.html#cb766-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums_perm[<span class="dv">2</span>, step<span class="sc">+</span><span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op_mat[<span class="dv">9</span>, step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb766-6"><a href="composite-operator.html#cb766-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb766-7"><a href="composite-operator.html#cb766-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 + 1 = 6 </span></span>
-<span id="cb766-8"><a href="composite-operator.html#cb766-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 - 5 = 1 </span></span>
-<span id="cb766-9"><a href="composite-operator.html#cb766-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 * 5 = 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="composite-operator.html#cb772-1" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_nums)</span>
+<span id="cb772-2"><a href="composite-operator.html#cb772-2" aria-hidden="true" tabindex="-1"></a>sol[<span class="dv">1</span>] <span class="ot">&lt;-</span> nums_perm[<span class="dv">2</span>, <span class="dv">1</span>]</span>
+<span id="cb772-3"><a href="composite-operator.html#cb772-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>)){</span>
+<span id="cb772-4"><a href="composite-operator.html#cb772-4" aria-hidden="true" tabindex="-1"></a>  sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], nums_perm[<span class="dv">2</span>, step<span class="sc">+</span><span class="dv">1</span>], op_mat[<span class="dv">9</span>, step])</span>
+<span id="cb772-5"><a href="composite-operator.html#cb772-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums_perm[<span class="dv">2</span>, step<span class="sc">+</span><span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op_mat[<span class="dv">9</span>, step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb772-6"><a href="composite-operator.html#cb772-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb772-7"><a href="composite-operator.html#cb772-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 + 1 = 6 </span></span>
+<span id="cb772-8"><a href="composite-operator.html#cb772-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 - 5 = 1 </span></span>
+<span id="cb772-9"><a href="composite-operator.html#cb772-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 * 5 = 5</span></span></code></pre></div>
 <p>To prepare this step as a standalone function for computing all the steps, let’s write a function.</p>
-<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="composite-operator.html#cb767-1" aria-hidden="true" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)){</span>
-<span id="cb767-2"><a href="composite-operator.html#cb767-2" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> num</span>
-<span id="cb767-3"><a href="composite-operator.html#cb767-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>))</span>
-<span id="cb767-4"><a href="composite-operator.html#cb767-4" aria-hidden="true" tabindex="-1"></a>  sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step<span class="sc">+</span><span class="dv">1</span>], op[step])</span>
-<span id="cb767-5"><a href="composite-operator.html#cb767-5" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(sol)</span>
-<span id="cb767-6"><a href="composite-operator.html#cb767-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb767-7"><a href="composite-operator.html#cb767-7" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(nums_perm[<span class="dv">2</span>, ], op_mat[<span class="dv">9</span>, ])</span>
-<span id="cb767-8"><a href="composite-operator.html#cb767-8" aria-hidden="true" tabindex="-1"></a>sol</span></code></pre></div>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="composite-operator.html#cb773-1" aria-hidden="true" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)){</span>
+<span id="cb773-2"><a href="composite-operator.html#cb773-2" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> num</span>
+<span id="cb773-3"><a href="composite-operator.html#cb773-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>))</span>
+<span id="cb773-4"><a href="composite-operator.html#cb773-4" aria-hidden="true" tabindex="-1"></a>  sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step<span class="sc">+</span><span class="dv">1</span>], op[step])</span>
+<span id="cb773-5"><a href="composite-operator.html#cb773-5" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(sol)</span>
+<span id="cb773-6"><a href="composite-operator.html#cb773-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb773-7"><a href="composite-operator.html#cb773-7" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(nums_perm[<span class="dv">2</span>, ], op_mat[<span class="dv">9</span>, ])</span>
+<span id="cb773-8"><a href="composite-operator.html#cb773-8" aria-hidden="true" tabindex="-1"></a>sol</span></code></pre></div>
 </div>
 <div id="check-if-solution-is-found" class="section level3" number="12.2.2">
 <h3><span class="header-section-number">12.2.2</span> Check if Solution is Found</h3>
 <p>Once we finish the composite operations, we can check whether our final result is equal to the target value, 24.</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="composite-operator.html#cb768-1" aria-hidden="true" tabindex="-1"></a>goal <span class="ot">&lt;-</span> <span class="dv">24</span></span>
-<span id="cb768-2"><a href="composite-operator.html#cb768-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span>){</span>
-<span id="cb768-3"><a href="composite-operator.html#cb768-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Found a solution!&quot;</span>)</span>
-<span id="cb768-4"><a href="composite-operator.html#cb768-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb768-5"><a href="composite-operator.html#cb768-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;This is not a solution.&quot;</span>)</span>
-<span id="cb768-6"><a href="composite-operator.html#cb768-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb768-7"><a href="composite-operator.html#cb768-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; This is not a solution.</span></span></code></pre></div>
+<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="composite-operator.html#cb774-1" aria-hidden="true" tabindex="-1"></a>goal <span class="ot">&lt;-</span> <span class="dv">24</span></span>
+<span id="cb774-2"><a href="composite-operator.html#cb774-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span>){</span>
+<span id="cb774-3"><a href="composite-operator.html#cb774-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Found a solution!&quot;</span>)</span>
+<span id="cb774-4"><a href="composite-operator.html#cb774-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb774-5"><a href="composite-operator.html#cb774-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;This is not a solution.&quot;</span>)</span>
+<span id="cb774-6"><a href="composite-operator.html#cb774-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb774-7"><a href="composite-operator.html#cb774-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; This is not a solution.</span></span></code></pre></div>
 <p>If it does, we can print the solution. Let’s write another function to print all the intermediate steps.</p>
-<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="composite-operator.html#cb769-1" aria-hidden="true" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op){</span>
-<span id="cb769-2"><a href="composite-operator.html#cb769-2" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)        <span class="co">#Only keep 3 digits to make it better looking.</span></span>
-<span id="cb769-3"><a href="composite-operator.html#cb769-3" aria-hidden="true" tabindex="-1"></a>  n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
-<span id="cb769-4"><a href="composite-operator.html#cb769-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>)){</span>
-<span id="cb769-5"><a href="composite-operator.html#cb769-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step<span class="sc">+</span><span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb769-6"><a href="composite-operator.html#cb769-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb769-7"><a href="composite-operator.html#cb769-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb769-8"><a href="composite-operator.html#cb769-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_sol</span>(nums_perm[<span class="dv">2</span>, ], sol, op_mat[<span class="dv">9</span>, ])</span></code></pre></div>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="composite-operator.html#cb775-1" aria-hidden="true" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op){</span>
+<span id="cb775-2"><a href="composite-operator.html#cb775-2" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)        <span class="co">#Only keep 3 digits to make it better looking.</span></span>
+<span id="cb775-3"><a href="composite-operator.html#cb775-3" aria-hidden="true" tabindex="-1"></a>  n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
+<span id="cb775-4"><a href="composite-operator.html#cb775-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums<span class="dv">-1</span>)){</span>
+<span id="cb775-5"><a href="composite-operator.html#cb775-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step<span class="sc">+</span><span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb775-6"><a href="composite-operator.html#cb775-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb775-7"><a href="composite-operator.html#cb775-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb775-8"><a href="composite-operator.html#cb775-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_sol</span>(nums_perm[<span class="dv">2</span>, ], sol, op_mat[<span class="dv">9</span>, ])</span></code></pre></div>
 </div>
 <div id="looping-over-all-number-sequences-and-all-operator-sequences" class="section level3" number="12.2.3">
 <h3><span class="header-section-number">12.2.3</span> Looping Over All Number Sequences and All Operator Sequences</h3>
 <p>Now, we know how to compute the final value given a number sequence and a operator sequence. Let’s write double loop over the number sequences and the operator sequences. Note that we only want to print the steps when we have found a solution.</p>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="composite-operator.html#cb770-1" aria-hidden="true" tabindex="-1"></a>n_sols <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb770-2"><a href="composite-operator.html#cb770-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm))</span>
-<span id="cb770-3"><a href="composite-operator.html#cb770-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)){</span>
-<span id="cb770-4"><a href="composite-operator.html#cb770-4" aria-hidden="true" tabindex="-1"></a>  num_cur <span class="ot">&lt;-</span> nums_perm[i, ]</span>
-<span id="cb770-5"><a href="composite-operator.html#cb770-5" aria-hidden="true" tabindex="-1"></a>  op_cur <span class="ot">&lt;-</span> op_mat[j, ]</span>
-<span id="cb770-6"><a href="composite-operator.html#cb770-6" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)</span>
-<span id="cb770-7"><a href="composite-operator.html#cb770-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span>){</span>
-<span id="cb770-8"><a href="composite-operator.html#cb770-8" aria-hidden="true" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb770-9"><a href="composite-operator.html#cb770-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb770-10"><a href="composite-operator.html#cb770-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print_sol</span>(num_cur, sol, op_cur)</span>
-<span id="cb770-11"><a href="composite-operator.html#cb770-11" aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb770-12"><a href="composite-operator.html#cb770-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb770-13"><a href="composite-operator.html#cb770-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb770-14"><a href="composite-operator.html#cb770-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
-<span id="cb770-15"><a href="composite-operator.html#cb770-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
-<span id="cb770-16"><a href="composite-operator.html#cb770-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
-<span id="cb770-17"><a href="composite-operator.html#cb770-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(n_sols <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb770-18"><a href="composite-operator.html#cb770-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
-<span id="cb770-19"><a href="composite-operator.html#cb770-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="composite-operator.html#cb776-1" aria-hidden="true" tabindex="-1"></a>n_sols <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb776-2"><a href="composite-operator.html#cb776-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm))</span>
+<span id="cb776-3"><a href="composite-operator.html#cb776-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)){</span>
+<span id="cb776-4"><a href="composite-operator.html#cb776-4" aria-hidden="true" tabindex="-1"></a>  num_cur <span class="ot">&lt;-</span> nums_perm[i, ]</span>
+<span id="cb776-5"><a href="composite-operator.html#cb776-5" aria-hidden="true" tabindex="-1"></a>  op_cur <span class="ot">&lt;-</span> op_mat[j, ]</span>
+<span id="cb776-6"><a href="composite-operator.html#cb776-6" aria-hidden="true" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)</span>
+<span id="cb776-7"><a href="composite-operator.html#cb776-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span>){</span>
+<span id="cb776-8"><a href="composite-operator.html#cb776-8" aria-hidden="true" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb776-9"><a href="composite-operator.html#cb776-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb776-10"><a href="composite-operator.html#cb776-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print_sol</span>(num_cur, sol, op_cur)</span>
+<span id="cb776-11"><a href="composite-operator.html#cb776-11" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb776-12"><a href="composite-operator.html#cb776-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb776-13"><a href="composite-operator.html#cb776-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb776-14"><a href="composite-operator.html#cb776-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
+<span id="cb776-15"><a href="composite-operator.html#cb776-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
+<span id="cb776-16"><a href="composite-operator.html#cb776-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
+<span id="cb776-17"><a href="composite-operator.html#cb776-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(n_sols <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb776-18"><a href="composite-operator.html#cb776-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
+<span id="cb776-19"><a href="composite-operator.html#cb776-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>From the result, we can see that there is one solution to this difficult problem.</p>
 
 </div>
