@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Statistics | R Programming: Zero to Pro</title>
-  <meta name="description" content="Chapter 9 Statistics | R Programming: Zero to Pro" />
+  <title>10.3 While Loops and Repeat | R Programming: Zero to Pro</title>
+  <meta name="description" content="10.3 While Loops and Repeat | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Statistics | R Programming: Zero to Pro" />
+  <meta property="og:title" content="10.3 While Loops and Repeat | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 9 Statistics | R Programming: Zero to Pro" />
+  <meta property="og:description" content="10.3 While Loops and Repeat | R Programming: Zero to Pro" />
   <meta name="github-repo" content="r02pro/r02pro.github.io" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Statistics | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="10.3 While Loops and Repeat | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="Chapter 9 Statistics | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="10.3 While Loops and Repeat | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and Jianan Zhu" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="match-pattern.html"/>
-<link rel="next" href="normal-distribution.html"/>
+<link rel="prev" href="loop.html"/>
+<link rel="next" href="r-markdown.html"/>
 <script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -683,18 +683,75 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="statistics" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Statistics</h1>
-<p>In this chapter, you will dive into the world of statistics. As a language initially designed for statistical computing, R undoubtedly provides a wide range of functions related to all aspects of probability and statistics. You will start with functions related to normal distribution in Section <a href="normal-distribution.html#normal-distribution">9.1</a>.</p>
-<!--chapter:end:09_Statistics.Rmd-->
+<div id="while-loop" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> While Loops and Repeat</h2>
+<p>In addition to <code>for</code> loop where you have to specify the range of values to iterate, it is sometimes more convenient to use another type of loop: the <strong>while loop</strong>.</p>
+<div id="while-loop-1" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> <code>while</code> loop</h3>
+<p>Let’s first review the syntax of <code>for</code> loops.</p>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="while-loop.html#cb764-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> val_seq){</span>
+<span id="cb764-2"><a href="while-loop.html#cb764-2" aria-hidden="true" tabindex="-1"></a>  statement1</span>
+<span id="cb764-3"><a href="while-loop.html#cb764-3" aria-hidden="true" tabindex="-1"></a>  statement2</span>
+<span id="cb764-4"><a href="while-loop.html#cb764-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here, we have to specify the <code>val_seq</code> along which we will assign each element to <code>val</code> and execute the statements, unless <code>break</code> is called. Sometimes, it is not clear what the <code>val_seq</code> would be. For example, if we want to find the Fibonacci sequence up to 100, it is not clear how many elements we will have in the <code>val_seq</code>. In this case, the <code>while</code> loop comes to rescue. Let’s take a look of the syntax of <code>while</code> loop.</p>
+<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="while-loop.html#cb765-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(cond_expr){</span>
+<span id="cb765-2"><a href="while-loop.html#cb765-2" aria-hidden="true" tabindex="-1"></a>  statement1</span>
+<span id="cb765-3"><a href="while-loop.html#cb765-3" aria-hidden="true" tabindex="-1"></a>  statement2</span>
+<span id="cb765-4"><a href="while-loop.html#cb765-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>In the <code>while</code> loop, we put a logical statement in the <code>cond_expr</code>. The loop will continue as long as <code>cond_expr</code> take the value of <code>TRUE</code>. Let’s see the actual code in action.</p>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="while-loop.html#cb766-1" aria-hidden="true" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb766-2"><a href="while-loop.html#cb766-2" aria-hidden="true" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb766-3"><a href="while-loop.html#cb766-3" aria-hidden="true" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb766-4"><a href="while-loop.html#cb766-4" aria-hidden="true" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb766-5"><a href="while-loop.html#cb766-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>){      </span>
+<span id="cb766-6"><a href="while-loop.html#cb766-6" aria-hidden="true" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb766-7"><a href="while-loop.html#cb766-7" aria-hidden="true" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb766-8"><a href="while-loop.html#cb766-8" aria-hidden="true" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb766-9"><a href="while-loop.html#cb766-9" aria-hidden="true" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb766-10"><a href="while-loop.html#cb766-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb766-11"><a href="while-loop.html#cb766-11" aria-hidden="true" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb766-12"><a href="while-loop.html#cb766-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
 </div>
+<div id="repeat-loop" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> <code>repeat</code> Loop</h3>
+<p>The last type of loops is the <code>repeat</code> loop, which doesn’t have neither the range of values, nor the logical expression. The syntax is as below.</p>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="while-loop.html#cb767-1" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span>{</span>
+<span id="cb767-2"><a href="while-loop.html#cb767-2" aria-hidden="true" tabindex="-1"></a>  expr1</span>
+<span id="cb767-3"><a href="while-loop.html#cb767-3" aria-hidden="true" tabindex="-1"></a>  expr2</span>
+<span id="cb767-4"><a href="while-loop.html#cb767-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(cond_expr){</span>
+<span id="cb767-5"><a href="while-loop.html#cb767-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb767-6"><a href="while-loop.html#cb767-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb767-7"><a href="while-loop.html#cb767-7" aria-hidden="true" tabindex="-1"></a>  expr3</span>
+<span id="cb767-8"><a href="while-loop.html#cb767-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>As you can see in the syntax of the <code>repeat</code> loop, you always need to put a conditional <code>break</code> statement to avoid infinite loops.</p>
+<p>Let’s rewrite the previous example using <code>repeat</code> loop.</p>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="while-loop.html#cb768-1" aria-hidden="true" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb768-2"><a href="while-loop.html#cb768-2" aria-hidden="true" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb768-3"><a href="while-loop.html#cb768-3" aria-hidden="true" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb768-4"><a href="while-loop.html#cb768-4" aria-hidden="true" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb768-5"><a href="while-loop.html#cb768-5" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span>{      </span>
+<span id="cb768-6"><a href="while-loop.html#cb768-6" aria-hidden="true" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb768-7"><a href="while-loop.html#cb768-7" aria-hidden="true" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb768-8"><a href="while-loop.html#cb768-8" aria-hidden="true" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb768-9"><a href="while-loop.html#cb768-9" aria-hidden="true" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb768-10"><a href="while-loop.html#cb768-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fib_next_value <span class="sc">&gt;=</span> <span class="dv">100</span>){</span>
+<span id="cb768-11"><a href="while-loop.html#cb768-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb768-12"><a href="while-loop.html#cb768-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb768-13"><a href="while-loop.html#cb768-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb768-14"><a href="while-loop.html#cb768-14" aria-hidden="true" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb768-15"><a href="while-loop.html#cb768-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
+<p>You can see that the same sequence was generated using the <code>repeat</code> loop.</p>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="match-pattern.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="normal-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loop.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
