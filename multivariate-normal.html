@@ -23,7 +23,7 @@
 <meta name="author" content="r02pro-ers" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -704,28 +708,28 @@ f({\bf x}) = \frac{1}{(2\pi)^{p/2}\sqrt{|{\bf \Sigma}|}}\exp\left[-\frac{1}{2}({
 1&amp;0.5\\
 0.5&amp;1
 \end{matrix}\right]\]</span></p>
-<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="multivariate-normal.html#cb741-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb741-2"><a href="multivariate-normal.html#cb741-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb741-3"><a href="multivariate-normal.html#cb741-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;MASS&#39;</span></span>
-<span id="cb741-4"><a href="multivariate-normal.html#cb741-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:dplyr&#39;:</span></span>
-<span id="cb741-5"><a href="multivariate-normal.html#cb741-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb741-6"><a href="multivariate-normal.html#cb741-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     select</span></span>
-<span id="cb741-7"><a href="multivariate-normal.html#cb741-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb741-8"><a href="multivariate-normal.html#cb741-8" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb741-9"><a href="multivariate-normal.html#cb741-9" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb741-10"><a href="multivariate-normal.html#cb741-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, mu, Sigma)</span>
-<span id="cb741-11"><a href="multivariate-normal.html#cb741-11" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb741-12"><a href="multivariate-normal.html#cb741-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            [,1]     [,2]</span></span>
-<span id="cb741-13"><a href="multivariate-normal.html#cb741-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,] 0.5317478 1.591908</span></span>
-<span id="cb741-14"><a href="multivariate-normal.html#cb741-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,] 2.4575530 2.868658</span></span>
-<span id="cb741-15"><a href="multivariate-normal.html#cb741-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,] 0.5484207 2.079917</span></span>
-<span id="cb741-16"><a href="multivariate-normal.html#cb741-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,] 1.6036965 1.085302</span></span>
-<span id="cb741-17"><a href="multivariate-normal.html#cb741-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,] 0.7599533 2.066511</span></span>
-<span id="cb741-18"><a href="multivariate-normal.html#cb741-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,] 2.3854120 1.848962</span></span>
-<span id="cb741-19"><a href="multivariate-normal.html#cb741-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,] 1.0867794 1.785803</span></span>
-<span id="cb741-20"><a href="multivariate-normal.html#cb741-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,] 1.2315478 1.703268</span></span>
-<span id="cb741-21"><a href="multivariate-normal.html#cb741-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,] 0.7357121 1.083617</span></span>
-<span id="cb741-22"><a href="multivariate-normal.html#cb741-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,] 0.7476221 1.690725</span></span></code></pre></div>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="multivariate-normal.html#cb738-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb738-2"><a href="multivariate-normal.html#cb738-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb738-3"><a href="multivariate-normal.html#cb738-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;MASS&#39;</span></span>
+<span id="cb738-4"><a href="multivariate-normal.html#cb738-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:dplyr&#39;:</span></span>
+<span id="cb738-5"><a href="multivariate-normal.html#cb738-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb738-6"><a href="multivariate-normal.html#cb738-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     select</span></span>
+<span id="cb738-7"><a href="multivariate-normal.html#cb738-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb738-8"><a href="multivariate-normal.html#cb738-8" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb738-9"><a href="multivariate-normal.html#cb738-9" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb738-10"><a href="multivariate-normal.html#cb738-10" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, mu, Sigma)</span>
+<span id="cb738-11"><a href="multivariate-normal.html#cb738-11" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb738-12"><a href="multivariate-normal.html#cb738-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            [,1]     [,2]</span></span>
+<span id="cb738-13"><a href="multivariate-normal.html#cb738-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,] 0.5317478 1.591908</span></span>
+<span id="cb738-14"><a href="multivariate-normal.html#cb738-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,] 2.4575530 2.868658</span></span>
+<span id="cb738-15"><a href="multivariate-normal.html#cb738-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,] 0.5484207 2.079917</span></span>
+<span id="cb738-16"><a href="multivariate-normal.html#cb738-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,] 1.6036965 1.085302</span></span>
+<span id="cb738-17"><a href="multivariate-normal.html#cb738-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,] 0.7599533 2.066511</span></span>
+<span id="cb738-18"><a href="multivariate-normal.html#cb738-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,] 2.3854120 1.848962</span></span>
+<span id="cb738-19"><a href="multivariate-normal.html#cb738-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,] 1.0867794 1.785803</span></span>
+<span id="cb738-20"><a href="multivariate-normal.html#cb738-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,] 1.2315478 1.703268</span></span>
+<span id="cb738-21"><a href="multivariate-normal.html#cb738-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,] 0.7357121 1.083617</span></span>
+<span id="cb738-22"><a href="multivariate-normal.html#cb738-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,] 0.7476221 1.690725</span></span></code></pre></div>
 <p><code>x</code> contains <span class="math inline">\(n=10\)</span> two-dimensional normal distributed variable, where each row represents one observation.</p>
 </div>
 <div id="sample-mean-and-sample-covariance-matrix" class="section level3 hasAnchor" number="9.4.2">
@@ -734,27 +738,27 @@ f({\bf x}) = \frac{1}{(2\pi)^{p/2}\sqrt{|{\bf \Sigma}|}}\exp\left[-\frac{1}{2}({
 <p>For the <span class="math inline">\({\bf \mu}\)</span>, you can directly use the sample mean as the estimate which is unbiased.
 <span class="math display">\[\hat {\bf\mu} = [\hat\mu_j],\]</span>
 where <span class="math display">\[\hat\mu_j = \frac{1}{n}\sum_{i=1}^nx_{ij}.\]</span></p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="multivariate-normal.html#cb742-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean)</span>
-<span id="cb742-2"><a href="multivariate-normal.html#cb742-2" aria-hidden="true" tabindex="-1"></a>mu_hat</span>
-<span id="cb742-3"><a href="multivariate-normal.html#cb742-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.208844 1.780467</span></span></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="multivariate-normal.html#cb739-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean)</span>
+<span id="cb739-2"><a href="multivariate-normal.html#cb739-2" aria-hidden="true" tabindex="-1"></a>mu_hat</span>
+<span id="cb739-3"><a href="multivariate-normal.html#cb739-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.208844 1.780467</span></span></code></pre></div>
 <p>To estimate <span class="math inline">\({\bf\Sigma}\)</span>, we will use the sample covariance matrix estimate:
 <span class="math display">\[\hat{\bf \Sigma} = [\hat\Sigma_{jk}],\]</span>
 where <span class="math display">\[\hat\Sigma_{jk} = \frac{1}{n-1}\sum_{i=1}^n(x_{ij}-\hat\mu_j)(x_{ik}-\hat\mu_k).\]</span></p>
 <p>To compute this matrix, we can use the function <code>cov()</code> on the matrix <code>x</code>.</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="multivariate-normal.html#cb743-1" aria-hidden="true" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">cov</span>(x)</span>
-<span id="cb743-2"><a href="multivariate-normal.html#cb743-2" aria-hidden="true" tabindex="-1"></a>sigma_hat</span>
-<span id="cb743-3"><a href="multivariate-normal.html#cb743-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span id="cb743-4"><a href="multivariate-normal.html#cb743-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.5164012 0.1483479</span></span>
-<span id="cb743-5"><a href="multivariate-normal.html#cb743-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.1483479 0.2643104</span></span>
-<span id="cb743-6"><a href="multivariate-normal.html#cb743-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>(n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">sum</span>((x[,<span class="dv">1</span>]<span class="sc">-</span>mu_hat[<span class="dv">1</span>])<span class="sc">*</span>(x[,<span class="dv">2</span>]<span class="sc">-</span>mu_hat[<span class="dv">2</span>])) <span class="co">#compute \hat\Sigma_{12} by formula</span></span>
-<span id="cb743-7"><a href="multivariate-normal.html#cb743-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span></code></pre></div>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="multivariate-normal.html#cb740-1" aria-hidden="true" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">cov</span>(x)</span>
+<span id="cb740-2"><a href="multivariate-normal.html#cb740-2" aria-hidden="true" tabindex="-1"></a>sigma_hat</span>
+<span id="cb740-3"><a href="multivariate-normal.html#cb740-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span id="cb740-4"><a href="multivariate-normal.html#cb740-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.5164012 0.1483479</span></span>
+<span id="cb740-5"><a href="multivariate-normal.html#cb740-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.1483479 0.2643104</span></span>
+<span id="cb740-6"><a href="multivariate-normal.html#cb740-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>(n<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">sum</span>((x[,<span class="dv">1</span>]<span class="sc">-</span>mu_hat[<span class="dv">1</span>])<span class="sc">*</span>(x[,<span class="dv">2</span>]<span class="sc">-</span>mu_hat[<span class="dv">2</span>])) <span class="co">#compute \hat\Sigma_{12} by formula</span></span>
+<span id="cb740-7"><a href="multivariate-normal.html#cb740-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span></code></pre></div>
 <p>For <code>cov()</code> function, in addition to computing the sample covariance matrix, you can also use it to compute the covariance among two vectors <span class="math inline">\(y\)</span> and <span class="math inline">\(z\)</span>.
 <span class="math display">\[cov(y, z) = \frac{1}{n-1}\sum_{i=1}^n(y_{i}-\bar y)(z_i-\bar z).\]</span></p>
 <p>Let’s try to compute the covariance between the first and second column of <span class="math inline">\(x\)</span>.</p>
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="multivariate-normal.html#cb744-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>])</span>
-<span id="cb744-2"><a href="multivariate-normal.html#cb744-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span>
-<span id="cb744-3"><a href="multivariate-normal.html#cb744-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x)[<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb744-4"><a href="multivariate-normal.html#cb744-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="multivariate-normal.html#cb741-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>])</span>
+<span id="cb741-2"><a href="multivariate-normal.html#cb741-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span>
+<span id="cb741-3"><a href="multivariate-normal.html#cb741-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x)[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb741-4"><a href="multivariate-normal.html#cb741-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1483479</span></span></code></pre></div>
 <p>You can see that this is exactly the same as <span class="math inline">\(\hat\Sigma_{12}\)</span>.</p>
 </div>
 <div id="sample-correlation-matrix" class="section level3 hasAnchor" number="9.4.3">
@@ -764,17 +768,17 @@ where <span class="math display">\[\hat\Sigma_{jk} = \frac{1}{n-1}\sum_{i=1}^n(x
 where <span class="math display">\[\widehat{corr}(x)_{jk} = \frac{\hat\Sigma_{jk}}
 {\sqrt{\hat\Sigma_{jj}\hat\Sigma_{kk}}}. \]</span></p>
 <p>You can use <code>cor()</code> on the matrix <code>x</code> to get its sample correlation matrix.</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="multivariate-normal.html#cb745-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x)</span>
-<span id="cb745-2"><a href="multivariate-normal.html#cb745-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]      [,2]</span></span>
-<span id="cb745-3"><a href="multivariate-normal.html#cb745-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 1.0000000 0.4015417</span></span>
-<span id="cb745-4"><a href="multivariate-normal.html#cb745-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.4015417 1.0000000</span></span>
-<span id="cb745-5"><a href="multivariate-normal.html#cb745-5" aria-hidden="true" tabindex="-1"></a>sigma_hat[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">/</span> <span class="fu">sqrt</span>(sigma_hat[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">*</span> sigma_hat[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="co">#verify the [1,2] element</span></span>
-<span id="cb745-6"><a href="multivariate-normal.html#cb745-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="multivariate-normal.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x)</span>
+<span id="cb742-2"><a href="multivariate-normal.html#cb742-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span id="cb742-3"><a href="multivariate-normal.html#cb742-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 1.0000000 0.4015417</span></span>
+<span id="cb742-4"><a href="multivariate-normal.html#cb742-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.4015417 1.0000000</span></span>
+<span id="cb742-5"><a href="multivariate-normal.html#cb742-5" aria-hidden="true" tabindex="-1"></a>sigma_hat[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">/</span> <span class="fu">sqrt</span>(sigma_hat[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">*</span> sigma_hat[<span class="dv">2</span>, <span class="dv">2</span>]) <span class="co">#verify the [1,2] element</span></span>
+<span id="cb742-6"><a href="multivariate-normal.html#cb742-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span></code></pre></div>
 <p>Similar to the <code>cov()</code> function, you can also us the <code>cor()</code> function to compute the sample correlation between two vectors.</p>
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="multivariate-normal.html#cb746-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>])</span>
-<span id="cb746-2"><a href="multivariate-normal.html#cb746-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span>
-<span id="cb746-3"><a href="multivariate-normal.html#cb746-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x)[<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb746-4"><a href="multivariate-normal.html#cb746-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span></code></pre></div>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="multivariate-normal.html#cb743-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>])</span>
+<span id="cb743-2"><a href="multivariate-normal.html#cb743-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span>
+<span id="cb743-3"><a href="multivariate-normal.html#cb743-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x)[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb743-4"><a href="multivariate-normal.html#cb743-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4015417</span></span></code></pre></div>
 <p>You can see that the sample correlation matrix include all the pairwise sample correlations between any of the two columns.</p>
 </div>
 <div id="exercise-7" class="section level3 hasAnchor" number="9.4.4">

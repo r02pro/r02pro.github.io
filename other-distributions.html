@@ -23,7 +23,7 @@
 <meta name="author" content="r02pro-ers" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -688,97 +692,200 @@ div.csl-indent {
 <p>In Section <a href="normal-distribution.html#normal-distribution">9.1</a>, we gave a detailed introduction to the four functions for a normal distribution, which is a popular <em>continuous</em> distribution. In particular, we now know that <code>dnorm()</code> produces the pdf of a normal distribution. In the case of <em>discrete</em> distributions, however, we would have <strong>probability mass function (pmf)</strong> instead of the pdf. Let’s use the <strong>binomial</strong> distribution as a representative example of discrete distributions with the four functions as below.</p>
 <table>
 <thead>
-<tr class="header">
-<th align="left">Code</th>
-<th align="left">Name</th>
+<tr>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+Name
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left"><code>dbinom(3, size, prob)</code></td>
-<td align="left">probability mass function</td>
+<tr>
+<td style="text-align:left;">
+<code>dbinom(3, size, prob)</code>
+</td>
+<td style="text-align:left;">
+probability mass function
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>pbinom(3, size, prob)</code></td>
-<td align="left">cumulative distribution function</td>
+<tr>
+<td style="text-align:left;">
+<code>pbinom(3, size, prob)</code>
+</td>
+<td style="text-align:left;">
+cumulative distribution function
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>qbinom(3, size, prob)</code></td>
-<td align="left">quantile function</td>
+<tr>
+<td style="text-align:left;">
+<code>qbinom(3, size, prob)</code>
+</td>
+<td style="text-align:left;">
+quantile function
+</td>
 </tr>
-<tr class="even">
-<td align="left"><code>rbinom(3, size, prob)</code></td>
-<td align="left">random number generator</td>
+<tr>
+<td style="text-align:left;">
+<code>rbinom(3, size, prob)</code>
+</td>
+<td style="text-align:left;">
+random number generator
+</td>
 </tr>
 </tbody>
 </table>
 <p>Now, let’s look at a few other commonly used distributions. For simplicity, let’s just use the random number generator for each distribution in the following table.</p>
 <table>
 <thead>
-<tr class="header">
-<th align="left">Name</th>
-<th align="left">Code</th>
-<th align="left">para_1</th>
-<th align="left">para_2</th>
+<tr>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+para_1
+</th>
+<th style="text-align:left;">
+para_2
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">exponential</td>
-<td align="left"><code>rexp(3, rate = 0.5)</code></td>
-<td align="left">rate</td>
-<td align="left">-</td>
+<tr>
+<td style="text-align:left;">
+exponential
+</td>
+<td style="text-align:left;">
+<code>rexp(3, rate = 0.5)</code>
+</td>
+<td style="text-align:left;">
+rate
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
 </tr>
-<tr class="even">
-<td align="left">uniform</td>
-<td align="left"><code>runif(3, min = 1, max = 2)</code></td>
-<td align="left">min</td>
-<td align="left">max</td>
+<tr>
+<td style="text-align:left;">
+uniform
+</td>
+<td style="text-align:left;">
+<code>runif(3, min = 1, max = 2)</code>
+</td>
+<td style="text-align:left;">
+min
+</td>
+<td style="text-align:left;">
+max
+</td>
 </tr>
-<tr class="odd">
-<td align="left">t</td>
-<td align="left"><code>rt(3, df = 4)</code></td>
-<td align="left">df</td>
-<td align="left">-</td>
+<tr>
+<td style="text-align:left;">
+t
+</td>
+<td style="text-align:left;">
+<code>rt(3, df = 4)</code>
+</td>
+<td style="text-align:left;">
+df
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
 </tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="left"><code>rf(3, df1 = 3, df2 = 6)</code></td>
-<td align="left">df1</td>
-<td align="left">df2</td>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<code>rf(3, df1 = 3, df2 = 6)</code>
+</td>
+<td style="text-align:left;">
+df1
+</td>
+<td style="text-align:left;">
+df2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">beta</td>
-<td align="left"><code>rbeta(3, shape1 = 2, shape2 = 3)</code></td>
-<td align="left">shape1</td>
-<td align="left">shape2</td>
+<tr>
+<td style="text-align:left;">
+beta
+</td>
+<td style="text-align:left;">
+<code>rbeta(3, shape1 = 2, shape2 = 3)</code>
+</td>
+<td style="text-align:left;">
+shape1
+</td>
+<td style="text-align:left;">
+shape2
+</td>
 </tr>
-<tr class="even">
-<td align="left">gamma</td>
-<td align="left"><code>rgamma(3, shape = 2, rate = 3)</code></td>
-<td align="left">shape</td>
-<td align="left">rate</td>
+<tr>
+<td style="text-align:left;">
+gamma
+</td>
+<td style="text-align:left;">
+<code>rgamma(3, shape = 2, rate = 3)</code>
+</td>
+<td style="text-align:left;">
+shape
+</td>
+<td style="text-align:left;">
+rate
+</td>
 </tr>
-<tr class="odd">
-<td align="left">poisson</td>
-<td align="left"><code>rpois(3, lambda = 5)</code></td>
-<td align="left">lambda</td>
-<td align="left">-</td>
+<tr>
+<td style="text-align:left;">
+poisson
+</td>
+<td style="text-align:left;">
+<code>rpois(3, lambda = 5)</code>
+</td>
+<td style="text-align:left;">
+lambda
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
 </tr>
-<tr class="even">
-<td align="left">binomial</td>
-<td align="left"><code>rbinom(3, size = 3, prob = 0.3)</code></td>
-<td align="left">size</td>
-<td align="left">prob</td>
+<tr>
+<td style="text-align:left;">
+binomial
+</td>
+<td style="text-align:left;">
+<code>rbinom(3, size = 3, prob = 0.3)</code>
+</td>
+<td style="text-align:left;">
+size
+</td>
+<td style="text-align:left;">
+prob
+</td>
 </tr>
-<tr class="odd">
-<td align="left">bernoulli</td>
-<td align="left"><code>rbinom(3, size = 1, prob = 0.5)</code></td>
-<td align="left">size</td>
-<td align="left">prob</td>
+<tr>
+<td style="text-align:left;">
+bernoulli
+</td>
+<td style="text-align:left;">
+<code>rbinom(3, size = 1, prob = 0.5)</code>
+</td>
+<td style="text-align:left;">
+size
+</td>
+<td style="text-align:left;">
+prob
+</td>
 </tr>
 </tbody>
-</table>
+</table></li>
+</ul></li>
+</ul></li>
+</ul>
 <p>As we can see from this table, all random number generator functions are formed by the letter <code>r</code> followed by the name of the distribution we would like to generate from. For the other three functions, we just need to change the initial letter <code>r</code>:</p>
 <ul>
 <li>to <code>d</code> for pdf (continuous distribution) or pmf (discrete distribution),</li>

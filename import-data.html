@@ -23,7 +23,7 @@
 <meta name="author" content="r02pro-ers" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -690,83 +694,83 @@ div.csl-indent {
 <h3><span class="header-section-number">5.2.1</span> Import .csv Files using <code>read_csv()</code><a href="import-data.html#import-.csv-files-using-read_csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To import .csv files, we can use the function <code>read_csv()</code> in the <strong>readr</strong> package, which is a sub-package of <strong>tidyverse</strong>. If you have already installed <strong>tidyverse</strong>, you can directly load the <strong>readr</strong> package.</p>
 <p>After loading the <strong>readr</strong> package, you can try to import the data from “my_animals.csv,” which we created in Section <a href="export-data.html#write-csv">5.1.3</a>. Please make sure the .csv file is located in the current working directory. Otherwise, you need to change the working directory to where the file is located by the methods introduced in Section <a href="export-data.html#setwd">5.1.1</a>.</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="import-data.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb587-2"><a href="import-data.html#cb587-2" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;my_animals.csv&quot;</span>)</span>
-<span id="cb587-3"><a href="import-data.html#cb587-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 7 Columns: 3</span></span>
-<span id="cb587-4"><a href="import-data.html#cb587-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb587-5"><a href="import-data.html#cb587-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb587-6"><a href="import-data.html#cb587-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr (2): ani_char, conditions</span></span>
-<span id="cb587-7"><a href="import-data.html#cb587-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (1): dig_num</span></span>
-<span id="cb587-8"><a href="import-data.html#cb587-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb587-9"><a href="import-data.html#cb587-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb587-10"><a href="import-data.html#cb587-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="import-data.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb585-2"><a href="import-data.html#cb585-2" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;my_animals.csv&quot;</span>)</span>
+<span id="cb585-3"><a href="import-data.html#cb585-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 7 Columns: 3</span></span>
+<span id="cb585-4"><a href="import-data.html#cb585-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb585-5"><a href="import-data.html#cb585-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb585-6"><a href="import-data.html#cb585-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr (2): ani_char, conditions</span></span>
+<span id="cb585-7"><a href="import-data.html#cb585-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (1): dig_num</span></span>
+<span id="cb585-8"><a href="import-data.html#cb585-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb585-9"><a href="import-data.html#cb585-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb585-10"><a href="import-data.html#cb585-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>We can see that there is a message showing the <strong>Column specification</strong> during the import process. In particular, we see <code>dig_num</code> is of type <em>double</em>, and both <code>ani_char</code> and <code>cond_fac</code> are both of type <em>character</em>. We can also check the value of <code>my_animals</code> and its structure.</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="import-data.html#cb588-1" aria-hidden="true" tabindex="-1"></a>my_animals</span>
-<span id="cb588-2"><a href="import-data.html#cb588-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
-<span id="cb588-3"><a href="import-data.html#cb588-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
-<span id="cb588-4"><a href="import-data.html#cb588-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
-<span id="cb588-5"><a href="import-data.html#cb588-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 sheep    Excellent </span></span>
-<span id="cb588-6"><a href="import-data.html#cb588-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 pig      Good      </span></span>
-<span id="cb588-7"><a href="import-data.html#cb588-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 monkey   N         </span></span>
-<span id="cb588-8"><a href="import-data.html#cb588-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 pig      Fair      </span></span>
-<span id="cb588-9"><a href="import-data.html#cb588-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 monkey   Good      </span></span>
-<span id="cb588-10"><a href="import-data.html#cb588-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &lt;NA&gt;     Good      </span></span>
-<span id="cb588-11"><a href="import-data.html#cb588-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7       1 pig      Excellent</span></span>
-<span id="cb588-12"><a href="import-data.html#cb588-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_animals)</span>
-<span id="cb588-13"><a href="import-data.html#cb588-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; spec_tbl_df [7 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span></span>
-<span id="cb588-14"><a href="import-data.html#cb588-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dig_num   : num [1:7] 7 6 5 4 3 2 1</span></span>
-<span id="cb588-15"><a href="import-data.html#cb588-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ani_char  : chr [1:7] &quot;sheep&quot; &quot;pig&quot; &quot;monkey&quot; &quot;pig&quot; ...</span></span>
-<span id="cb588-16"><a href="import-data.html#cb588-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ conditions: chr [1:7] &quot;Excellent&quot; &quot;Good&quot; &quot;N&quot; &quot;Fair&quot; ...</span></span>
-<span id="cb588-17"><a href="import-data.html#cb588-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;spec&quot;)=</span></span>
-<span id="cb588-18"><a href="import-data.html#cb588-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   .. cols(</span></span>
-<span id="cb588-19"><a href="import-data.html#cb588-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   dig_num = col_double(),</span></span>
-<span id="cb588-20"><a href="import-data.html#cb588-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   ani_char = col_character(),</span></span>
-<span id="cb588-21"><a href="import-data.html#cb588-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   conditions = col_character()</span></span>
-<span id="cb588-22"><a href="import-data.html#cb588-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   .. )</span></span>
-<span id="cb588-23"><a href="import-data.html#cb588-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="import-data.html#cb586-1" aria-hidden="true" tabindex="-1"></a>my_animals</span>
+<span id="cb586-2"><a href="import-data.html#cb586-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span id="cb586-3"><a href="import-data.html#cb586-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions</span></span>
+<span id="cb586-4"><a href="import-data.html#cb586-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     </span></span>
+<span id="cb586-5"><a href="import-data.html#cb586-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       7 sheep    Excellent </span></span>
+<span id="cb586-6"><a href="import-data.html#cb586-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       6 pig      Good      </span></span>
+<span id="cb586-7"><a href="import-data.html#cb586-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       5 monkey   N         </span></span>
+<span id="cb586-8"><a href="import-data.html#cb586-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       4 pig      Fair      </span></span>
+<span id="cb586-9"><a href="import-data.html#cb586-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       3 monkey   Good      </span></span>
+<span id="cb586-10"><a href="import-data.html#cb586-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       2 &lt;NA&gt;     Good      </span></span>
+<span id="cb586-11"><a href="import-data.html#cb586-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7       1 pig      Excellent</span></span>
+<span id="cb586-12"><a href="import-data.html#cb586-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_animals)</span>
+<span id="cb586-13"><a href="import-data.html#cb586-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; spec_tbl_df [7 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span></span>
+<span id="cb586-14"><a href="import-data.html#cb586-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ dig_num   : num [1:7] 7 6 5 4 3 2 1</span></span>
+<span id="cb586-15"><a href="import-data.html#cb586-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ ani_char  : chr [1:7] &quot;sheep&quot; &quot;pig&quot; &quot;monkey&quot; &quot;pig&quot; ...</span></span>
+<span id="cb586-16"><a href="import-data.html#cb586-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ conditions: chr [1:7] &quot;Excellent&quot; &quot;Good&quot; &quot;N&quot; &quot;Fair&quot; ...</span></span>
+<span id="cb586-17"><a href="import-data.html#cb586-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;spec&quot;)=</span></span>
+<span id="cb586-18"><a href="import-data.html#cb586-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   .. cols(</span></span>
+<span id="cb586-19"><a href="import-data.html#cb586-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   dig_num = col_double(),</span></span>
+<span id="cb586-20"><a href="import-data.html#cb586-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   ani_char = col_character(),</span></span>
+<span id="cb586-21"><a href="import-data.html#cb586-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ..   conditions = col_character()</span></span>
+<span id="cb586-22"><a href="import-data.html#cb586-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   .. )</span></span>
+<span id="cb586-23"><a href="import-data.html#cb586-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</span></span></code></pre></div>
 <p>We can see that the tibble <code>my_animals</code> is generated along with the correct column types. In order to introduce the various options associated with <code>read_csv()</code> function, let’s move on to the topic of <strong>inline</strong> .csv files next.</p>
 </div>
 <div id="read-inline-.csv-files" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Read Inline .csv Files<a href="import-data.html#read-inline-.csv-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>read_csv()</code> function not only can read files into R, it also accept <strong>inline input</strong> as its argument. While the inline input may not be commonly used in practice, it is particularly useful for learning how to use the function. Let’s see an example.</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="import-data.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb589-2"><a href="import-data.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
-<span id="cb589-3"><a href="import-data.html#cb589-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>)</span>
-<span id="cb589-4"><a href="import-data.html#cb589-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
-<span id="cb589-5"><a href="import-data.html#cb589-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb589-6"><a href="import-data.html#cb589-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb589-7"><a href="import-data.html#cb589-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
-<span id="cb589-8"><a href="import-data.html#cb589-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb589-9"><a href="import-data.html#cb589-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb589-10"><a href="import-data.html#cb589-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="import-data.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb587-2"><a href="import-data.html#cb587-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
+<span id="cb587-3"><a href="import-data.html#cb587-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>)</span>
+<span id="cb587-4"><a href="import-data.html#cb587-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
+<span id="cb587-5"><a href="import-data.html#cb587-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb587-6"><a href="import-data.html#cb587-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb587-7"><a href="import-data.html#cb587-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
+<span id="cb587-8"><a href="import-data.html#cb587-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb587-9"><a href="import-data.html#cb587-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb587-10"><a href="import-data.html#cb587-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>You can see that a tibble is generated with 2 rows and 3 columns with the column names being <code>x</code>, <code>y</code> and <code>z</code>. From the argument, we can see that by default, the <strong>first row</strong> of the input data will be interpreted as the column names.</p>
 <p><strong><em>a. No column names</em></strong></p>
 <p>If the first row of the input data doesn’t correspond to the variable names, you need to set <code>col_names = FALSE</code> as an additional argument in <code>read_csv()</code>.</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="import-data.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb590-2"><a href="import-data.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
-<span id="cb590-3"><a href="import-data.html#cb590-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb590-4"><a href="import-data.html#cb590-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 3 Columns: 3</span></span>
-<span id="cb590-5"><a href="import-data.html#cb590-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb590-6"><a href="import-data.html#cb590-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb590-7"><a href="import-data.html#cb590-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr (3): X1, X2, X3</span></span>
-<span id="cb590-8"><a href="import-data.html#cb590-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb590-9"><a href="import-data.html#cb590-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb590-10"><a href="import-data.html#cb590-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="import-data.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb588-2"><a href="import-data.html#cb588-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
+<span id="cb588-3"><a href="import-data.html#cb588-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb588-4"><a href="import-data.html#cb588-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 3 Columns: 3</span></span>
+<span id="cb588-5"><a href="import-data.html#cb588-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb588-6"><a href="import-data.html#cb588-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb588-7"><a href="import-data.html#cb588-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr (3): X1, X2, X3</span></span>
+<span id="cb588-8"><a href="import-data.html#cb588-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb588-9"><a href="import-data.html#cb588-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb588-10"><a href="import-data.html#cb588-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>Now, a tibble of 3 rows and 3 columns was generated, with the column names being <code>X1</code>, <code>X2</code>, and <code>X3</code>. Note that these are the naming convention in the function when you don’t supply the column names in the file. Another thing worth mentioning is that all three variables are of <strong>character</strong> types, due to the fact that there are character values for all variables (<code>x</code>, <code>y</code>, and <code>z</code>).</p>
 <p><strong><em>b. Skip the first few lines</em></strong></p>
 <p>Sometimes, the first few lines of your data file may be descriptions of the data, which you want to skip when importing into R. We can set the <code>skip</code> argument in the <code>read_csv()</code> function to skip a certain number of lines.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="import-data.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;The first line </span></span>
-<span id="cb591-2"><a href="import-data.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="st">          The second line</span></span>
-<span id="cb591-3"><a href="import-data.html#cb591-3" aria-hidden="true" tabindex="-1"></a><span class="st">          The third line</span></span>
-<span id="cb591-4"><a href="import-data.html#cb591-4" aria-hidden="true" tabindex="-1"></a><span class="st">          x,y,z</span></span>
-<span id="cb591-5"><a href="import-data.html#cb591-5" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5&quot;</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
-<span id="cb591-6"><a href="import-data.html#cb591-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 1 Columns: 3</span></span>
-<span id="cb591-7"><a href="import-data.html#cb591-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb591-8"><a href="import-data.html#cb591-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb591-9"><a href="import-data.html#cb591-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
-<span id="cb591-10"><a href="import-data.html#cb591-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb591-11"><a href="import-data.html#cb591-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb591-12"><a href="import-data.html#cb591-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="import-data.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;The first line </span></span>
+<span id="cb589-2"><a href="import-data.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="st">          The second line</span></span>
+<span id="cb589-3"><a href="import-data.html#cb589-3" aria-hidden="true" tabindex="-1"></a><span class="st">          The third line</span></span>
+<span id="cb589-4"><a href="import-data.html#cb589-4" aria-hidden="true" tabindex="-1"></a><span class="st">          x,y,z</span></span>
+<span id="cb589-5"><a href="import-data.html#cb589-5" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5&quot;</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
+<span id="cb589-6"><a href="import-data.html#cb589-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 1 Columns: 3</span></span>
+<span id="cb589-7"><a href="import-data.html#cb589-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb589-8"><a href="import-data.html#cb589-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb589-9"><a href="import-data.html#cb589-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
+<span id="cb589-10"><a href="import-data.html#cb589-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb589-11"><a href="import-data.html#cb589-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb589-12"><a href="import-data.html#cb589-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>It is clear from the result that the first 3 lines of the input data is skipped.</p>
 <!-- ***c. Skip the comments*** -->
 <!-- Another useful argument to when we have comments in the data file is the `comment` argument, which tells R to skip all text after the string specified in the `comment` argument.  -->
@@ -779,47 +783,47 @@ div.csl-indent {
 <div id="handling-missing-values" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Handling Missing Values<a href="import-data.html#handling-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In many real data sets, we may have missing values. You may recall that R uses <code>NA</code> to represent the missing values. If the data set was prepared by an R user, it probably already uses <code>NA</code> to represent all missing values. In this case, life is easy since <code>read_csv()</code> will automatically interpret all <code>NA</code>s as missing values.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="import-data.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb592-2"><a href="import-data.html#cb592-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
-<span id="cb592-3"><a href="import-data.html#cb592-3" aria-hidden="true" tabindex="-1"></a><span class="st">         NA,-999,6&quot;</span>)</span>
-<span id="cb592-4"><a href="import-data.html#cb592-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
-<span id="cb592-5"><a href="import-data.html#cb592-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb592-6"><a href="import-data.html#cb592-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb592-7"><a href="import-data.html#cb592-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
-<span id="cb592-8"><a href="import-data.html#cb592-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb592-9"><a href="import-data.html#cb592-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb592-10"><a href="import-data.html#cb592-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="import-data.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb590-2"><a href="import-data.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
+<span id="cb590-3"><a href="import-data.html#cb590-3" aria-hidden="true" tabindex="-1"></a><span class="st">         NA,-999,6&quot;</span>)</span>
+<span id="cb590-4"><a href="import-data.html#cb590-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
+<span id="cb590-5"><a href="import-data.html#cb590-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb590-6"><a href="import-data.html#cb590-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb590-7"><a href="import-data.html#cb590-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (3): x, y, z</span></span>
+<span id="cb590-8"><a href="import-data.html#cb590-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb590-9"><a href="import-data.html#cb590-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb590-10"><a href="import-data.html#cb590-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>In a typical application, however, the person who prepared the data may use other strings to represent missing values. For example, if 999 and -999 are used as the indicators for missing values, you can set the argument <code>na</code> to be the vector containing those values, along with the default <code>NA</code>.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="import-data.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb593-2"><a href="import-data.html#cb593-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
-<span id="cb593-3"><a href="import-data.html#cb593-3" aria-hidden="true" tabindex="-1"></a><span class="st">         999,-999,6&quot;</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;999&quot;</span>,<span class="st">&quot;-999&quot;</span>, <span class="cn">NA</span>))</span>
-<span id="cb593-4"><a href="import-data.html#cb593-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
-<span id="cb593-5"><a href="import-data.html#cb593-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span id="cb593-6"><a href="import-data.html#cb593-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
-<span id="cb593-7"><a href="import-data.html#cb593-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (2): y, z</span></span>
-<span id="cb593-8"><a href="import-data.html#cb593-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lgl (1): x</span></span>
-<span id="cb593-9"><a href="import-data.html#cb593-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb593-10"><a href="import-data.html#cb593-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span id="cb593-11"><a href="import-data.html#cb593-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span id="cb593-12"><a href="import-data.html#cb593-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
-<span id="cb593-13"><a href="import-data.html#cb593-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   x         y     z</span></span>
-<span id="cb593-14"><a href="import-data.html#cb593-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;lgl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb593-15"><a href="import-data.html#cb593-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 NA        3     5</span></span>
-<span id="cb593-16"><a href="import-data.html#cb593-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 NA       NA     6</span></span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="import-data.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb591-2"><a href="import-data.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
+<span id="cb591-3"><a href="import-data.html#cb591-3" aria-hidden="true" tabindex="-1"></a><span class="st">         999,-999,6&quot;</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">&quot;999&quot;</span>,<span class="st">&quot;-999&quot;</span>, <span class="cn">NA</span>))</span>
+<span id="cb591-4"><a href="import-data.html#cb591-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 2 Columns: 3</span></span>
+<span id="cb591-5"><a href="import-data.html#cb591-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb591-6"><a href="import-data.html#cb591-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb591-7"><a href="import-data.html#cb591-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dbl (2): y, z</span></span>
+<span id="cb591-8"><a href="import-data.html#cb591-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lgl (1): x</span></span>
+<span id="cb591-9"><a href="import-data.html#cb591-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb591-10"><a href="import-data.html#cb591-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb591-11"><a href="import-data.html#cb591-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span id="cb591-12"><a href="import-data.html#cb591-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
+<span id="cb591-13"><a href="import-data.html#cb591-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   x         y     z</span></span>
+<span id="cb591-14"><a href="import-data.html#cb591-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;lgl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb591-15"><a href="import-data.html#cb591-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 NA        3     5</span></span>
+<span id="cb591-16"><a href="import-data.html#cb591-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 NA       NA     6</span></span></code></pre></div>
 <p>You can see from the output tibble that all the missing values are now denoted as <code>NA</code>.</p>
 <div class="infobox caution">
 <p>Note that the quotation marks around 999 and -999 are necessary since the <code>na</code> argument is expecting a character vector.</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="import-data.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb594-2"><a href="import-data.html#cb594-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
-<span id="cb594-3"><a href="import-data.html#cb594-3" aria-hidden="true" tabindex="-1"></a><span class="st">         999,-999,6&quot;</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="dv">999</span>,<span class="sc">-</span><span class="dv">999</span>, <span class="cn">NA</span>))</span>
-<span id="cb594-4"><a href="import-data.html#cb594-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in enc2utf8(na): argument is not a character vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="import-data.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb592-2"><a href="import-data.html#cb592-2" aria-hidden="true" tabindex="-1"></a><span class="st">          999,3,5</span></span>
+<span id="cb592-3"><a href="import-data.html#cb592-3" aria-hidden="true" tabindex="-1"></a><span class="st">         999,-999,6&quot;</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="dv">999</span>,<span class="sc">-</span><span class="dv">999</span>, <span class="cn">NA</span>))</span>
+<span id="cb592-4"><a href="import-data.html#cb592-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in enc2utf8(na): argument is not a character vector</span></span></code></pre></div>
 <p>You can see an error message, stating that it is expecting character values, but got double values.</p>
 </div>
 </div>
 <div id="importing-data-from-a-delimited-file" class="section level3 hasAnchor" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Importing Data From a Delimited File<a href="import-data.html#importing-data-from-a-delimited-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You now know how to import data from a .csv file using the <code>read_csv()</code> function. More generally, <code>read_delim()</code> allows us to import data from a delimited file with any chosen <em>delimiter</em>. The usage of <code>read_delim()</code> is almost identical to <code>read_csv()</code>, except that it has an additional argument <code>delim</code>, which specifies the delimiter to be used. Let’s see the following example with <code>*</code> as the delimiter. Note that we are using the “my_animals_star.csv” file generated in Section <a href="export-data.html#write-delim">5.1.4</a>.</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="import-data.html#cb595-1" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;my_animals_star.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="import-data.html#cb593-1" aria-hidden="true" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;my_animals_star.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
 </div>
 <div id="import-menu" class="section level3 hasAnchor" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Import Data Using the Menu<a href="import-data.html#import-menu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -833,33 +837,59 @@ Figure 5.4: Import Dataset Menu
 </div>
 <p>Here, you can see quite a few options which are summarized in the following table.</p>
 <table>
-<caption><span id="tab:importMenu">Table 5.1: </span>Import Data from Menu</caption>
+<caption>
+<span id="tab:importMenu">Table 5.1: </span>Import Data from Menu
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Choice</th>
-<th align="left">Name</th>
+<tr>
+<th style="text-align:left;">
+Choice
+</th>
+<th style="text-align:left;">
+Name
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">From Text (readr)</td>
-<td align="left">Delimited Files (.csv, .txt, and others)</td>
+<tr>
+<td style="text-align:left;">
+From Text (readr)
+</td>
+<td style="text-align:left;">
+Delimited Files (.csv, .txt, and others)
+</td>
 </tr>
-<tr class="even">
-<td align="left">From Excel</td>
-<td align="left">Excel Files (.xls and .xlsx)</td>
+<tr>
+<td style="text-align:left;">
+From Excel
+</td>
+<td style="text-align:left;">
+Excel Files (.xls and .xlsx)
+</td>
 </tr>
-<tr class="odd">
-<td align="left">From SPSS</td>
-<td align="left">SPSS Files (.sav)</td>
+<tr>
+<td style="text-align:left;">
+From SPSS
+</td>
+<td style="text-align:left;">
+SPSS Files (.sav)
+</td>
 </tr>
-<tr class="even">
-<td align="left">From SAS</td>
-<td align="left">SAS Files (.sas7bdat and.sas7bcat)</td>
+<tr>
+<td style="text-align:left;">
+From SAS
+</td>
+<td style="text-align:left;">
+SAS Files (.sas7bdat and.sas7bcat)
+</td>
 </tr>
-<tr class="odd">
-<td align="left">From Stata</td>
-<td align="left">Stata Files (.dta)</td>
+<tr>
+<td style="text-align:left;">
+From Stata
+</td>
+<td style="text-align:left;">
+Stata Files (.dta)
+</td>
 </tr>
 </tbody>
 </table>
@@ -890,57 +920,104 @@ Figure 5.7: Import Options
 </div>
 <p>Let’s summarize a few commonly used options, their corresponding arguments in the <code>read_csv()</code> or <code>read_delim()</code> function, and meanings.</p>
 <table>
-<caption><span id="tab:importOptions">Table 5.2: </span>Menu Options and its Corresponding Arguments in <code>read_delim()</code> and Meanings</caption>
-<colgroup>
-<col width="12%" />
-<col width="7%" />
-<col width="79%" />
-</colgroup>
+<caption>
+<span id="tab:importOptions">Table 5.2: </span>Menu Options and its Corresponding Arguments in <code>read_delim()</code> and Meanings
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Option</th>
-<th align="left">Argument</th>
-<th align="left">Meaning</th>
+<tr>
+<th style="text-align:left;">
+Option
+</th>
+<th style="text-align:left;">
+Argument
+</th>
+<th style="text-align:left;">
+Meaning
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">-</td>
-<td align="left">The object name you would like to assign to.</td>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+The object name you would like to assign to.
+</td>
 </tr>
-<tr class="even">
-<td align="left">Skip</td>
-<td align="left"><code>skip</code></td>
-<td align="left">The number of rows to skip at the beginning of the file.</td>
+<tr>
+<td style="text-align:left;">
+Skip
+</td>
+<td style="text-align:left;">
+<code>skip</code>
+</td>
+<td style="text-align:left;">
+The number of rows to skip at the beginning of the file.
+</td>
 </tr>
-<tr class="odd">
-<td align="left">First Row as Names</td>
-<td align="left"><code>col_names</code></td>
-<td align="left">Whether you want to use the first row as column names. <code>TRUE</code> or <code>FALSE</code>.</td>
+<tr>
+<td style="text-align:left;">
+First Row as Names
+</td>
+<td style="text-align:left;">
+<code>col_names</code>
+</td>
+<td style="text-align:left;">
+Whether you want to use the first row as column names. <code>TRUE</code> or <code>FALSE</code>.
+</td>
 </tr>
-<tr class="even">
-<td align="left">Delimiter</td>
-<td align="left"><code>delim</code></td>
-<td align="left">The delimiter of the data file.</td>
+<tr>
+<td style="text-align:left;">
+Delimiter
+</td>
+<td style="text-align:left;">
+<code>delim</code>
+</td>
+<td style="text-align:left;">
+The delimiter of the data file.
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Comment</td>
-<td align="left"><code>comment</code></td>
-<td align="left">The character indicating the starting of comment. The contents after the comment character will be ignore in each line.</td>
+<tr>
+<td style="text-align:left;">
+Comment
+</td>
+<td style="text-align:left;">
+<code>comment</code>
+</td>
+<td style="text-align:left;">
+The character indicating the starting of comment. The contents after the comment character will be ignore in each line.
+</td>
 </tr>
-<tr class="even">
-<td align="left">NA</td>
-<td align="left"><code>na</code></td>
-<td align="left">The way NA is represented in the data file.</td>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<code>na</code>
+</td>
+<td style="text-align:left;">
+The way NA is represented in the data file.
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Code Preview</td>
-<td align="left">-</td>
-<td align="left">The R code to be executed for importing the data</td>
+<tr>
+<td style="text-align:left;">
+Code Preview
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+<td style="text-align:left;">
+The R code to be executed for importing the data
+</td>
 </tr>
 </tbody>
-</table>
+</table></li>
+</ul></li>
+</ul>
 <p>In our case, we will change the value of “Delimiter” to “*” (Note that you need to select “Other..” and enter “*” manually.)</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-626"></span>
 <img src="pics/5-import-options-star.png" alt="Import Options (Star)" width="90%" />
@@ -957,10 +1034,10 @@ Figure 5.9: Data Preview (Star)
 </div>
 <p>After changing the delimiter to <code>\*</code>, we are seeing the expected data with three columns: <code>dig_num</code>, <code>ani_char</code>, and <code>conditions</code>.</p>
 <p>The code in the <em>Code Preview</em> window will change accordingly, which is a great way to learn on how they work. The new codes in the <em>Code Preview</em> window is as below.</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="import-data.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb596-2"><a href="import-data.html#cb596-2" aria-hidden="true" tabindex="-1"></a>my_animals_star <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;~/Dropbox/R/my_animals_star.csv&quot;</span>, </span>
-<span id="cb596-3"><a href="import-data.html#cb596-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;*&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb596-4"><a href="import-data.html#cb596-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(my_animals_star)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="import-data.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb594-2"><a href="import-data.html#cb594-2" aria-hidden="true" tabindex="-1"></a>my_animals_star <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;~/Dropbox/R/my_animals_star.csv&quot;</span>, </span>
+<span id="cb594-3"><a href="import-data.html#cb594-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;*&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb594-4"><a href="import-data.html#cb594-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(my_animals_star)</span></code></pre></div>
 </div>
 <div id="exercises-36" class="section level3 hasAnchor" number="5.2.6">
 <h3><span class="header-section-number">5.2.6</span> Exercises<a href="import-data.html#exercises-36" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -968,9 +1045,9 @@ Figure 5.9: Data Preview (Star)
 <li><p>For the “my_data_na.csv” file you created in Exercise 2 in Section <a href="export-data.html#export-data">5.1</a>, write R code to read the file into an object with name <code>my_data</code>.</p></li>
 <li><p>First, look at the code below.</p></li>
 </ol>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="import-data.html#cb597-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
-<span id="cb597-2"><a href="import-data.html#cb597-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
-<span id="cb597-3"><a href="import-data.html#cb597-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="import-data.html#cb595-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;x,y,z</span></span>
+<span id="cb595-2"><a href="import-data.html#cb595-2" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5</span></span>
+<span id="cb595-3"><a href="import-data.html#cb595-3" aria-hidden="true" tabindex="-1"></a><span class="st">          2,4,6&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Which of the following are the column names of the <code>d1</code>?</p>
 <ul>
 <li><code>X1</code>, <code>X2</code>, and <code>X3</code></li>
@@ -979,11 +1056,11 @@ Figure 5.9: Data Preview (Star)
 <ol start="3" style="list-style-type: decimal">
 <li>First, look at the code below.</li>
 </ol>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="import-data.html#cb598-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;The first line </span></span>
-<span id="cb598-2"><a href="import-data.html#cb598-2" aria-hidden="true" tabindex="-1"></a><span class="st">          The second line</span></span>
-<span id="cb598-3"><a href="import-data.html#cb598-3" aria-hidden="true" tabindex="-1"></a><span class="st">          The third line</span></span>
-<span id="cb598-4"><a href="import-data.html#cb598-4" aria-hidden="true" tabindex="-1"></a><span class="st">          x,y,z</span></span>
-<span id="cb598-5"><a href="import-data.html#cb598-5" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="import-data.html#cb596-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;The first line </span></span>
+<span id="cb596-2"><a href="import-data.html#cb596-2" aria-hidden="true" tabindex="-1"></a><span class="st">          The second line</span></span>
+<span id="cb596-3"><a href="import-data.html#cb596-3" aria-hidden="true" tabindex="-1"></a><span class="st">          The third line</span></span>
+<span id="cb596-4"><a href="import-data.html#cb596-4" aria-hidden="true" tabindex="-1"></a><span class="st">          x,y,z</span></span>
+<span id="cb596-5"><a href="import-data.html#cb596-5" aria-hidden="true" tabindex="-1"></a><span class="st">          1,3,5&quot;</span>)</span></code></pre></div>
 <p>What will be the column name(s) of the <code>d1</code>?</p>
 
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="r02pro-ers" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,10 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
@@ -686,14 +690,14 @@ div.csl-indent {
 <div id="joins" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Joins<a href="joins.html#joins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, we have been working on a single data set. In applications, however, we often have the need to combine multiple data sets into a single one before doing data analysis. Let’s prepare two data sets to show the various ways we can <strong>join two data sets</strong>.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="joins.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb671-2"><a href="joins.html#cb671-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb671-3"><a href="joins.html#cb671-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb671-4"><a href="joins.html#cb671-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
-<span id="cb671-5"><a href="joins.html#cb671-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb671-6"><a href="joins.html#cb671-6" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
-<span id="cb671-7"><a href="joins.html#cb671-7" aria-hidden="true" tabindex="-1"></a>d1</span>
-<span id="cb671-8"><a href="joins.html#cb671-8" aria-hidden="true" tabindex="-1"></a>d2</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="joins.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb669-2"><a href="joins.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb669-3"><a href="joins.html#cb669-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb669-4"><a href="joins.html#cb669-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
+<span id="cb669-5"><a href="joins.html#cb669-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb669-6"><a href="joins.html#cb669-6" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
+<span id="cb669-7"><a href="joins.html#cb669-7" aria-hidden="true" tabindex="-1"></a>d1</span>
+<span id="cb669-8"><a href="joins.html#cb669-8" aria-hidden="true" tabindex="-1"></a>d2</span></code></pre></div>
 <p>From the results, we know <code>d1</code> is a tibble of
 5 observations and 3 variables including <code>dt_sold</code>, <code>bsmt_area</code>, and <code>bsmt_ht</code>. <code>d2</code> is another tibble of 4 observations and 2 variales including <code>bsmt_ht</code> and <code>height</code>.</p>
 <p>It is clear that the two tibbles share a variable named <code>bsmt_ht</code>. It could be interesting to join the two tibbles into a single one by including all variables while matching the values of <code>bsmt_ht</code>. The bridging variable <code>bsmt_ht</code> is usually called the <strong>key</strong> to the joining operation.</p>
@@ -701,63 +705,63 @@ div.csl-indent {
 <div id="inner-join" class="section level3 hasAnchor" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Inner Join<a href="joins.html#inner-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>inner join</strong>. You can use the <code>inner_join()</code> function, which returns all rows in <code>d1</code> such that there are matching values of all keys in <code>d2</code>.</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="joins.html#cb672-1" aria-hidden="true" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb672-2"><a href="joins.html#cb672-2" aria-hidden="true" tabindex="-1"></a>inner</span>
-<span id="cb672-3"><a href="joins.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
-<span id="cb672-4"><a href="joins.html#cb672-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
-<span id="cb672-5"><a href="joins.html#cb672-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
-<span id="cb672-6"><a href="joins.html#cb672-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
-<span id="cb672-7"><a href="joins.html#cb672-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
-<span id="cb672-8"><a href="joins.html#cb672-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
-<span id="cb672-9"><a href="joins.html#cb672-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="joins.html#cb670-1" aria-hidden="true" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb670-2"><a href="joins.html#cb670-2" aria-hidden="true" tabindex="-1"></a>inner</span>
+<span id="cb670-3"><a href="joins.html#cb670-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb670-4"><a href="joins.html#cb670-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb670-5"><a href="joins.html#cb670-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb670-6"><a href="joins.html#cb670-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb670-7"><a href="joins.html#cb670-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb670-8"><a href="joins.html#cb670-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb670-9"><a href="joins.html#cb670-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span></code></pre></div>
 <p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>d1</code> that has a matching value in <code>d2</code> for <code>bsmt_ht</code>. The 5th observation in <code>d1</code> is dropped in the result since its <code>bsmt_ht</code> value is <code>"Fair"</code>, which doesn’t have a matched observation in <code>d2</code>.</p>
 </div>
 <div id="left-join" class="section level3 hasAnchor" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> Left Join<a href="joins.html#left-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The second type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>left join</strong>. You can use the <code>left_join()</code> function, which returns all rows in <code>d1</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d2</code> or not.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="joins.html#cb673-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb673-2"><a href="joins.html#cb673-2" aria-hidden="true" tabindex="-1"></a>left</span>
-<span id="cb673-3"><a href="joins.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span id="cb673-4"><a href="joins.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
-<span id="cb673-5"><a href="joins.html#cb673-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
-<span id="cb673-6"><a href="joins.html#cb673-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
-<span id="cb673-7"><a href="joins.html#cb673-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
-<span id="cb673-8"><a href="joins.html#cb673-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
-<span id="cb673-9"><a href="joins.html#cb673-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span>
-<span id="cb673-10"><a href="joins.html#cb673-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="joins.html#cb671-1" aria-hidden="true" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb671-2"><a href="joins.html#cb671-2" aria-hidden="true" tabindex="-1"></a>left</span>
+<span id="cb671-3"><a href="joins.html#cb671-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb671-4"><a href="joins.html#cb671-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht height      </span></span>
+<span id="cb671-5"><a href="joins.html#cb671-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       </span></span>
+<span id="cb671-6"><a href="joins.html#cb671-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average 80-89 inches</span></span>
+<span id="cb671-7"><a href="joins.html#cb671-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good    90-99 inches</span></span>
+<span id="cb671-8"><a href="joins.html#cb671-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average 80-89 inches</span></span>
+<span id="cb671-9"><a href="joins.html#cb671-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good    90-99 inches</span></span>
+<span id="cb671-10"><a href="joins.html#cb671-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair    &lt;NA&gt;</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>d1</code> is kept, even though the last row doesn’t have a matching observation in <code>d2</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding value for <code>height</code> is <code>NA</code>.</p>
 </div>
 <div id="right-join" class="section level3 hasAnchor" number="6.8.3">
 <h3><span class="header-section-number">6.8.3</span> Right Join<a href="joins.html#right-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The third type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>right join</strong>, which works in a similar fashion as left join. You can use the <code>right_join()</code> function, which returns all rows in <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in <code>d1</code> or not.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="joins.html#cb674-1" aria-hidden="true" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb674-2"><a href="joins.html#cb674-2" aria-hidden="true" tabindex="-1"></a>right</span>
-<span id="cb674-3"><a href="joins.html#cb674-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
-<span id="cb674-4"><a href="joins.html#cb674-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
-<span id="cb674-5"><a href="joins.html#cb674-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
-<span id="cb674-6"><a href="joins.html#cb674-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
-<span id="cb674-7"><a href="joins.html#cb674-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
-<span id="cb674-8"><a href="joins.html#cb674-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
-<span id="cb674-9"><a href="joins.html#cb674-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
-<span id="cb674-10"><a href="joins.html#cb674-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 NA                NA Excellent 100+ inches </span></span>
-<span id="cb674-11"><a href="joins.html#cb674-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="joins.html#cb672-1" aria-hidden="true" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb672-2"><a href="joins.html#cb672-2" aria-hidden="true" tabindex="-1"></a>right</span>
+<span id="cb672-3"><a href="joins.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span id="cb672-4"><a href="joins.html#cb672-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
+<span id="cb672-5"><a href="joins.html#cb672-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb672-6"><a href="joins.html#cb672-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
+<span id="cb672-7"><a href="joins.html#cb672-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
+<span id="cb672-8"><a href="joins.html#cb672-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
+<span id="cb672-9"><a href="joins.html#cb672-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
+<span id="cb672-10"><a href="joins.html#cb672-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 NA                NA Excellent 100+ inches </span></span>
+<span id="cb672-11"><a href="joins.html#cb672-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>d2</code> is kept, even though the last two rows don’t have a matching observation in <code>d1</code> for the variable <code>bsmt_ht</code>. In this case, the corresponding values for <code>dt_sold</code> and <code>bsmt_area</code> are <code>NA</code>.</p>
 </div>
 <div id="full-join" class="section level3 hasAnchor" number="6.8.4">
 <h3><span class="header-section-number">6.8.4</span> Full Join<a href="joins.html#full-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The fourth type of <strong>join</strong> operation on two tables (<code>d1</code> and <code>d2</code>) with a set of keys is called <strong>full join</strong>. You can use the <code>full_join()</code> function, which returns all rows in both <code>d1</code> and <code>d2</code>, <strong>no matter</strong> whether there are matching values of all keys in either <code>d1</code> or <code>d2</code>.</p>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="joins.html#cb675-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb675-2"><a href="joins.html#cb675-2" aria-hidden="true" tabindex="-1"></a>full</span>
-<span id="cb675-3"><a href="joins.html#cb675-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 4</span></span>
-<span id="cb675-4"><a href="joins.html#cb675-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
-<span id="cb675-5"><a href="joins.html#cb675-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
-<span id="cb675-6"><a href="joins.html#cb675-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
-<span id="cb675-7"><a href="joins.html#cb675-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
-<span id="cb675-8"><a href="joins.html#cb675-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
-<span id="cb675-9"><a href="joins.html#cb675-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
-<span id="cb675-10"><a href="joins.html#cb675-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair      &lt;NA&gt;        </span></span>
-<span id="cb675-11"><a href="joins.html#cb675-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Excellent 100+ inches </span></span>
-<span id="cb675-12"><a href="joins.html#cb675-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="joins.html#cb673-1" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb673-2"><a href="joins.html#cb673-2" aria-hidden="true" tabindex="-1"></a>full</span>
+<span id="cb673-3"><a href="joins.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 4</span></span>
+<span id="cb673-4"><a href="joins.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht   height      </span></span>
+<span id="cb673-5"><a href="joins.html#cb673-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb673-6"><a href="joins.html#cb673-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average   80-89 inches</span></span>
+<span id="cb673-7"><a href="joins.html#cb673-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good      90-99 inches</span></span>
+<span id="cb673-8"><a href="joins.html#cb673-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average   80-89 inches</span></span>
+<span id="cb673-9"><a href="joins.html#cb673-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good      90-99 inches</span></span>
+<span id="cb673-10"><a href="joins.html#cb673-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair      &lt;NA&gt;        </span></span>
+<span id="cb673-11"><a href="joins.html#cb673-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 NA                NA Excellent 100+ inches </span></span>
+<span id="cb673-12"><a href="joins.html#cb673-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 NA                NA Poor      &lt;70 inches</span></span></code></pre></div>
 <p>As you can tell from the result, it includes all observations from both <code>d1</code> and <code>d2</code>. You can view it as the union of <code>left_join()</code> and <code>right_join()</code>.</p>
 </div>
 <div id="filtering-join" class="section level3 hasAnchor" number="6.8.5">
@@ -765,30 +769,112 @@ div.csl-indent {
 <p>For the previous four types of joins, the resulting table contains columns from both input tables. Sometimes, you may want to only keep the columns from one of the input tables. This is called <strong>filtering joins</strong>, meaning that it is actually doing the filtering operations like the <code>filter()</code> function we learned in Section <a href="filter-observations.html#filter-observations">6.1</a>.</p>
 <p><strong><em>a. Semi Join</em></strong></p>
 <p>The first type of filtering joins is called <strong>semi join</strong>, which returns all rows from <code>d1</code> where there are matching values in <code>d2</code> on the <strong>keys</strong>.</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="joins.html#cb676-1" aria-hidden="true" tabindex="-1"></a>semi <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb676-2"><a href="joins.html#cb676-2" aria-hidden="true" tabindex="-1"></a>semi</span>
-<span id="cb676-3"><a href="joins.html#cb676-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
-<span id="cb676-4"><a href="joins.html#cb676-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
-<span id="cb676-5"><a href="joins.html#cb676-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
-<span id="cb676-6"><a href="joins.html#cb676-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average</span></span>
-<span id="cb676-7"><a href="joins.html#cb676-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good   </span></span>
-<span id="cb676-8"><a href="joins.html#cb676-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average</span></span>
-<span id="cb676-9"><a href="joins.html#cb676-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good</span></span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="joins.html#cb674-1" aria-hidden="true" tabindex="-1"></a>semi <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb674-2"><a href="joins.html#cb674-2" aria-hidden="true" tabindex="-1"></a>semi</span>
+<span id="cb674-3"><a href="joins.html#cb674-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span id="cb674-4"><a href="joins.html#cb674-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
+<span id="cb674-5"><a href="joins.html#cb674-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb674-6"><a href="joins.html#cb674-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average</span></span>
+<span id="cb674-7"><a href="joins.html#cb674-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good   </span></span>
+<span id="cb674-8"><a href="joins.html#cb674-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average</span></span>
+<span id="cb674-9"><a href="joins.html#cb674-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good</span></span></code></pre></div>
 <p>As expected, the output is the first four rows of <code>d1</code> where there are matching values of <code>bsmt_area</code> in <code>d2</code>. Note that only the columns of <code>d1</code> are kept in the output, making it a filtering operation.</p>
 <p><strong><em>b. Anti Join</em></strong></p>
 <p>Another type of filtering joins is called <strong>anti join</strong>, which returns all rows from <code>d1</code> where there <strong>don’t exist</strong> matching values in <code>d2</code> on the <strong>keys</strong>.</p>
-<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="joins.html#cb677-1" aria-hidden="true" tabindex="-1"></a>anti <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
-<span id="cb677-2"><a href="joins.html#cb677-2" aria-hidden="true" tabindex="-1"></a>anti</span>
-<span id="cb677-3"><a href="joins.html#cb677-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span id="cb677-4"><a href="joins.html#cb677-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
-<span id="cb677-5"><a href="joins.html#cb677-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
-<span id="cb677-6"><a href="joins.html#cb677-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-22       676 Fair</span></span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="joins.html#cb675-1" aria-hidden="true" tabindex="-1"></a>anti <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(d1, d2, <span class="at">by =</span> <span class="st">&quot;bsmt_ht&quot;</span>)</span>
+<span id="cb675-2"><a href="joins.html#cb675-2" aria-hidden="true" tabindex="-1"></a>anti</span>
+<span id="cb675-3"><a href="joins.html#cb675-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb675-4"><a href="joins.html#cb675-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
+<span id="cb675-5"><a href="joins.html#cb675-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb675-6"><a href="joins.html#cb675-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-22       676 Fair</span></span></code></pre></div>
 <p>The output only contains rows of <code>d1</code> where there are <strong>no</strong> matching values of <code>bsmt_area</code> in <code>d2</code>, which contains only the last row of <code>d1</code>. Again, only the columns of <code>d1</code> are kept in the output, making it another filtering operation.</p>
 </div>
 <div id="a-summary-of-all-joins" class="section level3 hasAnchor" number="6.8.6">
 <h3><span class="header-section-number">6.8.6</span> A Summary of All Joins<a href="joins.html#a-summary-of-all-joins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we summarize all the six joins in the following table, in terms of which rows and columns are selected in the final output.</p>
-<pre><code>#&gt; Error in loadNamespace(x): there is no package called &#39;kableExtra&#39;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+Rows
+</th>
+<th style="text-align:left;">
+Columns
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>inner_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+All in <code>d1</code> and <code>d2</code>
+</td>
+<td style="text-align:left;">
+All columns in <code>d1</code> and <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>left_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+All in <code>d1</code>
+</td>
+<td style="text-align:left;">
+All columns in <code>d1</code> and <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>right_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+All in <code>d2</code>
+</td>
+<td style="text-align:left;">
+All columns in <code>d1</code> and <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>full_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+All in <code>d1</code> or <code>d2</code>
+</td>
+<td style="text-align:left;">
+All columns in <code>d1</code> and <code>d2</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>semi_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+Only in <code>d1</code> with matching keys in <code>d2</code>
+</td>
+<td style="text-align:left;">
+Only columns in <code>d1</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>anti_join(d1, d2, by)</code>
+</td>
+<td style="text-align:left;">
+Only in <code>d1</code> with no matching keys in <code>d2</code>
+</td>
+<td style="text-align:left;">
+Only columns in <code>d1</code>
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
