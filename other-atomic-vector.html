@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.17 Other Atomic Vector Types | R Programming: Zero to Pro</title>
+  <meta name="description" content="2.17 Other Atomic Vector Types | R Programming: Zero to Pro" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.17 Other Atomic Vector Types | R Programming: Zero to Pro" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="2.17 Other Atomic Vector Types | R Programming: Zero to Pro" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.17 Other Atomic Vector Types | R Programming: Zero to Pro" />
+  
+  <meta name="twitter:description" content="2.17 Other Atomic Vector Types | R Programming: Zero to Pro" />
+  
+
+<meta name="author" content="Yang Feng and r02proers" />
+
+
+<meta name="date" content="2023-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="date-time.html"/>
+<link rel="next" href="object-other-type.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Programming: Zero to Pro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
+<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="Installation.html"><a href="Installation.html#download-and-install"><i class="fa fa-check"></i><b>1.1.1</b> Download and Install</a></li>
+<li class="chapter" data-level="1.1.2" data-path="Installation.html"><a href="Installation.html#rstudio-interface"><i class="fa fa-check"></i><b>1.1.2</b> RStudio Interface</a></li>
+<li class="chapter" data-level="1.1.3" data-path="Installation.html"><a href="Installation.html#install-and-load-r-packages"><i class="fa fa-check"></i><b>1.1.3</b> Install and load R packages</a></li>
+<li class="chapter" data-level="1.1.4" data-path="Installation.html"><a href="Installation.html#exercises"><i class="fa fa-check"></i><b>1.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="Calculator.html"><a href="Calculator.html"><i class="fa fa-check"></i><b>1.2</b> Use R as a Fancy Calculator</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="Calculator.html"><a href="Calculator.html#add-comments-using"><i class="fa fa-check"></i><b>1.2.1</b> Add comments using “#”</a></li>
+<li class="chapter" data-level="1.2.2" data-path="Calculator.html"><a href="Calculator.html#basic-calculation"><i class="fa fa-check"></i><b>1.2.2</b> Basic calculation</a></li>
+<li class="chapter" data-level="1.2.3" data-path="Calculator.html"><a href="Calculator.html#get-help-in-r"><i class="fa fa-check"></i><b>1.2.3</b> Get help in R</a></li>
+<li class="chapter" data-level="1.2.4" data-path="Calculator.html"><a href="Calculator.html#approximation"><i class="fa fa-check"></i><b>1.2.4</b> Approximation</a></li>
+<li class="chapter" data-level="1.2.5" data-path="Calculator.html"><a href="Calculator.html#power-logarithm"><i class="fa fa-check"></i><b>1.2.5</b> Power &amp; logarithm</a></li>
+<li class="chapter" data-level="1.2.6" data-path="Calculator.html"><a href="Calculator.html#trigonometric-function"><i class="fa fa-check"></i><b>1.2.6</b> Trigonometric function</a></li>
+<li class="chapter" data-level="1.2.7" data-path="Calculator.html"><a href="Calculator.html#exercises-1"><i class="fa fa-check"></i><b>1.2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="Object-Assignment.html"><a href="Object-Assignment.html"><i class="fa fa-check"></i><b>1.3</b> Object Assignment</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="Object-Assignment.html"><a href="Object-Assignment.html#what-is-an-r-object"><i class="fa fa-check"></i><b>1.3.1</b> What is an R Object?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="Object-Assignment.html"><a href="Object-Assignment.html#assignment"><i class="fa fa-check"></i><b>1.3.2</b> Assignment Operation with <code>&lt;-</code></a></li>
+<li class="chapter" data-level="1.3.3" data-path="Object-Assignment.html"><a href="Object-Assignment.html#Naming"><i class="fa fa-check"></i><b>1.3.3</b> Object naming rule</a></li>
+<li class="chapter" data-level="1.3.4" data-path="Object-Assignment.html"><a href="Object-Assignment.html#review-objects-in-environment"><i class="fa fa-check"></i><b>1.3.4</b> Review objects in environment</a></li>
+<li class="chapter" data-level="1.3.5" data-path="Object-Assignment.html"><a href="Object-Assignment.html#object-types"><i class="fa fa-check"></i><b>1.3.5</b> Object types</a></li>
+<li class="chapter" data-level="1.3.6" data-path="Object-Assignment.html"><a href="Object-Assignment.html#exercises-2"><i class="fa fa-check"></i><b>1.3.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-objects.html"><a href="r-objects.html"><i class="fa fa-check"></i><b>2</b> R Objects (I): Atomic Vectors</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-num-vector.html"><a href="intro-num-vector.html"><i class="fa fa-check"></i><b>2.1</b> Introduction to Numeric Vectors</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-num-vector.html"><a href="intro-num-vector.html#create-numeric-vector"><i class="fa fa-check"></i><b>2.1.1</b> Creation and class</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-num-vector.html"><a href="intro-num-vector.html#operation-recycling"><i class="fa fa-check"></i><b>2.1.2</b> Operations and recycling rule</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro-num-vector.html"><a href="intro-num-vector.html#storage-type"><i class="fa fa-check"></i><b>2.1.3</b> Storage types (doubles and intergers)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro-num-vector.html"><a href="intro-num-vector.html#printing"><i class="fa fa-check"></i><b>2.1.4</b> Printing</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intro-num-vector.html"><a href="intro-num-vector.html#exercises-3"><i class="fa fa-check"></i><b>2.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro-char-vector.html"><a href="intro-char-vector.html"><i class="fa fa-check"></i><b>2.2</b> Introduction to Character Vectors</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro-char-vector.html"><a href="intro-char-vector.html#create-character-vector"><i class="fa fa-check"></i><b>2.2.1</b> Creation, class and storage type</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro-char-vector.html"><a href="intro-char-vector.html#case"><i class="fa fa-check"></i><b>2.2.2</b> Change case</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro-char-vector.html"><a href="intro-char-vector.html#review-of-getting-help-in-r"><i class="fa fa-check"></i><b>2.2.3</b> Review of getting help in R</a></li>
+<li class="chapter" data-level="2.2.4" data-path="intro-char-vector.html"><a href="intro-char-vector.html#exercises-4"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html"><i class="fa fa-check"></i><b>2.3</b> Introduction to Logical Vectors</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html#create-logical-vector"><i class="fa fa-check"></i><b>2.3.1</b> Logical vectors: creation by comparisons, class, and storage type</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html#logical-vectors-creation-when-testing-for-types"><i class="fa fa-check"></i><b>2.3.2</b> Logical vectors: creation when testing for types</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html#exercises-5"><i class="fa fa-check"></i><b>2.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="coercion-rule.html"><a href="coercion-rule.html"><i class="fa fa-check"></i><b>2.4</b> Coercion Rule</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="coercion-rule.html"><a href="coercion-rule.html#coercion-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Coercion with <code>c()</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="coercion-rule.html"><a href="coercion-rule.html#cocercion-in-operators"><i class="fa fa-check"></i><b>2.4.2</b> Cocercion in operators</a></li>
+<li class="chapter" data-level="2.4.3" data-path="coercion-rule.html"><a href="coercion-rule.html#explicit-coercion"><i class="fa fa-check"></i><b>2.4.3</b> Explicit Coercion</a></li>
+<li class="chapter" data-level="2.4.4" data-path="coercion-rule.html"><a href="coercion-rule.html#exercises-6"><i class="fa fa-check"></i><b>2.4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html"><i class="fa fa-check"></i><b>2.5</b> Vector Subsetting and Modifying Values</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#named-vectors"><i class="fa fa-check"></i><b>2.5.1</b> Named Vectors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#vector-subsetting"><i class="fa fa-check"></i><b>2.5.2</b> Vector subsetting</a></li>
+<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html"><i class="fa fa-check"></i><b>2.6</b> Numeric Vectors: Creating numeric vectors with patterns</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#the-colon-operator-equally-spaced-numeric-vectors-with-increment-of-1-or--1"><i class="fa fa-check"></i><b>2.6.1</b> The colon operator <code>:</code> – Equally-spaced numeric vectors with increment of 1 or -1</a></li>
+<li class="chapter" data-level="2.6.2" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#the-seq-function-equally-spaced-numeric-vectors-with-any-increment"><i class="fa fa-check"></i><b>2.6.2</b> The <code>seq()</code> function – Equally-spaced numeric vectors with any increment</a></li>
+<li class="chapter" data-level="2.6.3" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#the-sequence-generator-seq_along-matching-numeric-vectors"><i class="fa fa-check"></i><b>2.6.3</b> The sequence generator <code>seq_along()</code> – Matching numeric vectors</a></li>
+<li class="chapter" data-level="2.6.4" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#the-rep-function-numeric-vectors-with-repeated-values"><i class="fa fa-check"></i><b>2.6.4</b> The <code>rep()</code> Function – Numeric vectors with repeated values</a></li>
+<li class="chapter" data-level="2.6.5" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#the-unique-and-table-functions-getting-unique-elements-and-their-frequencies"><i class="fa fa-check"></i><b>2.6.5</b> The <code>unique()</code> and <code>table()</code> Functions – Getting unique elements and their frequencies</a></li>
+<li class="chapter" data-level="2.6.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html#exercises-8"><i class="fa fa-check"></i><b>2.6.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="numeric-sort-rank-order.html"><a href="numeric-sort-rank-order.html"><i class="fa fa-check"></i><b>2.7</b> Numeric Vectors: Sort, Rank, Order</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="numeric-sort-rank-order.html"><a href="numeric-sort-rank-order.html#sort-vectors-with-sort"><i class="fa fa-check"></i><b>2.7.1</b> Sort vectors with <code>sort()</code></a></li>
+<li class="chapter" data-level="2.7.2" data-path="numeric-sort-rank-order.html"><a href="numeric-sort-rank-order.html#get-ranks-in-vectors-with-rank"><i class="fa fa-check"></i><b>2.7.2</b> Get ranks in vectors with <code>rank()</code></a></li>
+<li class="chapter" data-level="2.7.3" data-path="numeric-sort-rank-order.html"><a href="numeric-sort-rank-order.html#get-the-ordering-permutation-via-order"><i class="fa fa-check"></i><b>2.7.3</b> Get the ordering permutation via `order()</a></li>
+<li class="chapter" data-level="2.7.4" data-path="numeric-sort-rank-order.html"><a href="numeric-sort-rank-order.html#exercises-9"><i class="fa fa-check"></i><b>2.7.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html"><i class="fa fa-check"></i><b>2.8</b> Numeric vector: Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#minimum-and-maximum"><i class="fa fa-check"></i><b>2.8.1</b> Minimum and Maximum</a></li>
+<li class="chapter" data-level="2.8.2" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#sum-and-product"><i class="fa fa-check"></i><b>2.8.2</b> Sum and Product</a></li>
+<li class="chapter" data-level="2.8.3" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#mean-and-median"><i class="fa fa-check"></i><b>2.8.3</b> Mean and median</a></li>
+<li class="chapter" data-level="2.8.4" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#quantiles"><i class="fa fa-check"></i><b>2.8.4</b> Quantiles</a></li>
+<li class="chapter" data-level="2.8.5" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#summary-statistics"><i class="fa fa-check"></i><b>2.8.5</b> Summary statistics</a></li>
+<li class="chapter" data-level="2.8.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-10"><i class="fa fa-check"></i><b>2.8.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="char-concatenate.html"><a href="char-concatenate.html"><i class="fa fa-check"></i><b>2.9</b> Character Vectors: Create with Repetition and Concatenate</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="char-concatenate.html"><a href="char-concatenate.html#create-character-vectors-with-repetition"><i class="fa fa-check"></i><b>2.9.1</b> Create character vectors with repetition</a></li>
+<li class="chapter" data-level="2.9.2" data-path="char-concatenate.html"><a href="char-concatenate.html#concatenate-strings-with-paste"><i class="fa fa-check"></i><b>2.9.2</b> Concatenate strings with <code>paste()</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="char-concatenate.html"><a href="char-concatenate.html#output-via-cat"><i class="fa fa-check"></i><b>2.9.3</b> Output via <code>cat()</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="char-concatenate.html"><a href="char-concatenate.html#exercises-11"><i class="fa fa-check"></i><b>2.9.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html"><i class="fa fa-check"></i><b>2.10</b> Character Vectors: Sort, Rank, Order</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#ordering-rules"><i class="fa fa-check"></i><b>2.10.1</b> Ordering rules</a></li>
+<li class="chapter" data-level="2.10.2" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#sort-vectors-with-sort-1"><i class="fa fa-check"></i><b>2.10.2</b> Sort vectors with <code>sort()</code></a></li>
+<li class="chapter" data-level="2.10.3" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#get-ranks-in-vectors-with-rank-1"><i class="fa fa-check"></i><b>2.10.3</b> Get ranks in vectors with <code>rank()</code></a></li>
+<li class="chapter" data-level="2.10.4" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#get-the-ordering-permutation-via-order-1"><i class="fa fa-check"></i><b>2.10.4</b> Get the ordering permutation via <code>order()</code></a></li>
+<li class="chapter" data-level="2.10.5" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#summary-and-comparisons"><i class="fa fa-check"></i><b>2.10.5</b> Summary and comparisons</a></li>
+<li class="chapter" data-level="2.10.6" data-path="character-sort-rank-order.html"><a href="character-sort-rank-order.html#exercises-12"><i class="fa fa-check"></i><b>2.10.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="factors.html"><a href="factors.html"><i class="fa fa-check"></i><b>2.11</b> Character Vectors, Factors &amp; Ordered Factors</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="factors.html"><a href="factors.html#create-a-factor-from-a-vector"><i class="fa fa-check"></i><b>2.11.1</b> Create a factor from a vector</a></li>
+<li class="chapter" data-level="2.11.2" data-path="factors.html"><a href="factors.html#set-the-factor-levels-and-labels"><i class="fa fa-check"></i><b>2.11.2</b> Set the factor levels and labels</a></li>
+<li class="chapter" data-level="2.11.3" data-path="factors.html"><a href="factors.html#ordered-factors"><i class="fa fa-check"></i><b>2.11.3</b> Ordered factors</a></li>
+<li class="chapter" data-level="2.11.4" data-path="factors.html"><a href="factors.html#exercises-13"><i class="fa fa-check"></i><b>2.11.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="logical-patterns.html"><a href="logical-patterns.html"><i class="fa fa-check"></i><b>2.12</b> Logical Vectors: Create with Repetitions and Summary Functions</a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="logical-patterns.html"><a href="logical-patterns.html#create-logical-vectors-with-repetitions"><i class="fa fa-check"></i><b>2.12.1</b> Create logical vectors with repetitions</a></li>
+<li class="chapter" data-level="2.12.2" data-path="logical-patterns.html"><a href="logical-patterns.html#functions-logi"><i class="fa fa-check"></i><b>2.12.2</b> Statistical Functions on Logical Vectors</a></li>
+<li class="chapter" data-level="2.12.3" data-path="logical-patterns.html"><a href="logical-patterns.html#exercises-14"><i class="fa fa-check"></i><b>2.12.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="logical_operators.html"><a href="logical_operators.html"><i class="fa fa-check"></i><b>2.13</b> Logical Vectors: Logical Operators</a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="logical_operators.html"><a href="logical_operators.html#not-operator-by"><i class="fa fa-check"></i><b>2.13.1</b> NOT operator by <code>!</code></a></li>
+<li class="chapter" data-level="2.13.2" data-path="logical_operators.html"><a href="logical_operators.html#and-operator-by"><i class="fa fa-check"></i><b>2.13.2</b> AND operator by <code>&amp;</code></a></li>
+<li class="chapter" data-level="2.13.3" data-path="logical_operators.html"><a href="logical_operators.html#or-operator-by"><i class="fa fa-check"></i><b>2.13.3</b> OR operator by <code>|</code></a></li>
+<li class="chapter" data-level="2.13.4" data-path="logical_operators.html"><a href="logical_operators.html#exclusive-or-by-xor"><i class="fa fa-check"></i><b>2.13.4</b> Exclusive OR by <code>xor</code></a></li>
+<li class="chapter" data-level="2.13.5" data-path="logical_operators.html"><a href="logical_operators.html#summary-of-logical-operators"><i class="fa fa-check"></i><b>2.13.5</b> Summary of Logical Operators</a></li>
+<li class="chapter" data-level="2.13.6" data-path="logical_operators.html"><a href="logical_operators.html#exercises-15"><i class="fa fa-check"></i><b>2.13.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="set-operations.html"><a href="set-operations.html"><i class="fa fa-check"></i><b>2.14</b> Set Operations</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="set-operations.html"><a href="set-operations.html#set-operations-1"><i class="fa fa-check"></i><b>2.14.1</b> Set operations</a></li>
+<li class="chapter" data-level="2.14.2" data-path="set-operations.html"><a href="set-operations.html#applicance-of-the-coercion-rule"><i class="fa fa-check"></i><b>2.14.2</b> Applicance of the coercion rule</a></li>
+<li class="chapter" data-level="2.14.3" data-path="set-operations.html"><a href="set-operations.html#summary"><i class="fa fa-check"></i><b>2.14.3</b> Summary</a></li>
+<li class="chapter" data-level="2.14.4" data-path="set-operations.html"><a href="set-operations.html#exercises-16"><i class="fa fa-check"></i><b>2.14.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>2.15</b> Missing Values (<code>NA</code>)</a>
+<ul>
+<li class="chapter" data-level="2.15.1" data-path="missing-values.html"><a href="missing-values.html#na-and-nan-are-contagious"><i class="fa fa-check"></i><b>2.15.1</b> <code>NA</code> and <code>NaN</code> are contagious</a></li>
+<li class="chapter" data-level="2.15.2" data-path="missing-values.html"><a href="missing-values.html#work-with-na-values"><i class="fa fa-check"></i><b>2.15.2</b> Work with <code>NA</code> values</a></li>
+<li class="chapter" data-level="2.15.3" data-path="missing-values.html"><a href="missing-values.html#exercises-17"><i class="fa fa-check"></i><b>2.15.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.16" data-path="date-time.html"><a href="date-time.html"><i class="fa fa-check"></i><b>2.16</b> Dates and Times</a>
+<ul>
+<li class="chapter" data-level="2.16.1" data-path="date-time.html"><a href="date-time.html#dates"><i class="fa fa-check"></i><b>2.16.1</b> Dates</a></li>
+<li class="chapter" data-level="2.16.2" data-path="date-time.html"><a href="date-time.html#times"><i class="fa fa-check"></i><b>2.16.2</b> Times</a></li>
+<li class="chapter" data-level="2.16.3" data-path="date-time.html"><a href="date-time.html#exercises-18"><i class="fa fa-check"></i><b>2.16.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.17" data-path="other-atomic-vector.html"><a href="other-atomic-vector.html"><i class="fa fa-check"></i><b>2.17</b> Other Atomic Vector Types</a>
+<ul>
+<li class="chapter" data-level="2.17.1" data-path="other-atomic-vector.html"><a href="other-atomic-vector.html#complex-vectors"><i class="fa fa-check"></i><b>2.17.1</b> Complex Vectors</a></li>
+<li class="chapter" data-level="2.17.2" data-path="other-atomic-vector.html"><a href="other-atomic-vector.html#raw-vectors"><i class="fa fa-check"></i><b>2.17.2</b> Raw Vectors</a></li>
+<li class="chapter" data-level="2.17.3" data-path="other-atomic-vector.html"><a href="other-atomic-vector.html#full-coercion-ordering"><i class="fa fa-check"></i><b>2.17.3</b> Full Coercion Ordering</a></li>
+<li class="chapter" data-level="2.17.4" data-path="other-atomic-vector.html"><a href="other-atomic-vector.html#exercises-19"><i class="fa fa-check"></i><b>2.17.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="object-other-type.html"><a href="object-other-type.html"><i class="fa fa-check"></i><b>3</b> R Objects (II): Other Types</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="matrix.html"><a href="matrix.html#create-a-matrix-from-a-vector"><i class="fa fa-check"></i><b>3.1.1</b> Create a matrix from a vector</a></li>
+<li class="chapter" data-level="3.1.2" data-path="matrix.html"><a href="matrix.html#combine-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Combine vectors or matrices into a matrix</a></li>
+<li class="chapter" data-level="3.1.3" data-path="matrix.html"><a href="matrix.html#matrix-subsetting"><i class="fa fa-check"></i><b>3.1.3</b> Matrix subsetting</a></li>
+<li class="chapter" data-level="3.1.4" data-path="matrix.html"><a href="matrix.html#modify-values-in-sub-matrices"><i class="fa fa-check"></i><b>3.1.4</b> Modify values in sub-matrices</a></li>
+<li class="chapter" data-level="3.1.5" data-path="matrix.html"><a href="matrix.html#operators-and-functions-on-matrices"><i class="fa fa-check"></i><b>3.1.5</b> Operators and functions on matrices</a></li>
+<li class="chapter" data-level="3.1.6" data-path="matrix.html"><a href="matrix.html#apply-matrix"><i class="fa fa-check"></i><b>3.1.6</b> Apply functions on each row or each column</a></li>
+<li class="chapter" data-level="3.1.7" data-path="matrix.html"><a href="matrix.html#exercises-20"><i class="fa fa-check"></i><b>3.1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="array.html"><a href="array.html"><i class="fa fa-check"></i><b>3.2</b> Array</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="array.html"><a href="array.html#create-an-array-from-a-vector"><i class="fa fa-check"></i><b>3.2.1</b> Create an array from a vector</a></li>
+<li class="chapter" data-level="3.2.2" data-path="array.html"><a href="array.html#array-subsetting"><i class="fa fa-check"></i><b>3.2.2</b> Array subsetting</a></li>
+<li class="chapter" data-level="3.2.3" data-path="array.html"><a href="array.html#operators-and-functions-on-arrays"><i class="fa fa-check"></i><b>3.2.3</b> Operators and functions on arrays</a></li>
+<li class="chapter" data-level="3.2.4" data-path="array.html"><a href="array.html#apply-functions-along-certain-dimensions"><i class="fa fa-check"></i><b>3.2.4</b> Apply functions along certain dimension(s)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="array.html"><a href="array.html#exercises-21"><i class="fa fa-check"></i><b>3.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dataframe.html"><a href="dataframe.html"><i class="fa fa-check"></i><b>3.3</b> Data Frame</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="dataframe.html"><a href="dataframe.html#introduction-to-data-frames"><i class="fa fa-check"></i><b>3.3.1</b> Introduction to Data Frames</a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataframe.html"><a href="dataframe.html#adding-observations-or-variables-in-data-frames"><i class="fa fa-check"></i><b>3.3.2</b> Adding Observations or Variables in Data Frames</a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataframe.html"><a href="dataframe.html#subset_df"><i class="fa fa-check"></i><b>3.3.3</b> Subsetting and Modifying Data Frames</a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataframe.html"><a href="dataframe.html#exercises-22"><i class="fa fa-check"></i><b>3.3.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="tibble.html"><a href="tibble.html"><i class="fa fa-check"></i><b>3.4</b> Tibble</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="tibble.html"><a href="tibble.html#introduction-to-tibbles"><i class="fa fa-check"></i><b>3.4.1</b> Introduction to tibbles</a></li>
+<li class="chapter" data-level="3.4.2" data-path="tibble.html"><a href="tibble.html#adding-observations-or-variables-in-tibbles"><i class="fa fa-check"></i><b>3.4.2</b> Adding Observations or Variables in Tibbles</a></li>
+<li class="chapter" data-level="3.4.3" data-path="tibble.html"><a href="tibble.html#tibble-subsetting-and-modifying"><i class="fa fa-check"></i><b>3.4.3</b> Tibble subsetting and modifying</a></li>
+<li class="chapter" data-level="3.4.4" data-path="tibble.html"><a href="tibble.html#exercises-23"><i class="fa fa-check"></i><b>3.4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="list.html"><a href="list.html"><i class="fa fa-check"></i><b>3.5</b> List</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="list.html"><a href="list.html#create-a-list"><i class="fa fa-check"></i><b>3.5.1</b> Create a list</a></li>
+<li class="chapter" data-level="3.5.2" data-path="list.html"><a href="list.html#extract-a-list-element-and-list-subsetting"><i class="fa fa-check"></i><b>3.5.2</b> Extract a list element and list subsetting</a></li>
+<li class="chapter" data-level="3.5.3" data-path="list.html"><a href="list.html#list-inside-a-list"><i class="fa fa-check"></i><b>3.5.3</b> List inside a list</a></li>
+<li class="chapter" data-level="3.5.4" data-path="list.html"><a href="list.html#unlist-a-list"><i class="fa fa-check"></i><b>3.5.4</b> Unlist a list</a></li>
+<li class="chapter" data-level="3.5.5" data-path="list.html"><a href="list.html#apply-functions-for-each-element-of-a-list"><i class="fa fa-check"></i><b>3.5.5</b> Apply functions for each element of a list</a></li>
+<li class="chapter" data-level="3.5.6" data-path="list.html"><a href="list.html#list-matrix"><i class="fa fa-check"></i><b>3.5.6</b> List Matrix</a></li>
+<li class="chapter" data-level="3.5.7" data-path="list.html"><a href="list.html#exercises-24"><i class="fa fa-check"></i><b>3.5.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="null.html"><a href="null.html"><i class="fa fa-check"></i><b>3.6</b> NULL, NaN, and Inf</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="null.html"><a href="null.html#null-1"><i class="fa fa-check"></i><b>3.6.1</b> NULL</a></li>
+<li class="chapter" data-level="3.6.2" data-path="null.html"><a href="null.html#NaN"><i class="fa fa-check"></i><b>3.6.2</b> NaN</a></li>
+<li class="chapter" data-level="3.6.3" data-path="null.html"><a href="null.html#Inf"><i class="fa fa-check"></i><b>3.6.3</b> Inf</a></li>
+<li class="chapter" data-level="3.6.4" data-path="null.html"><a href="null.html#a-comparison-of-the-four-special-values-in-r"><i class="fa fa-check"></i><b>3.6.4</b> A comparison of the four special values in R</a></li>
+<li class="chapter" data-level="3.6.5" data-path="null.html"><a href="null.html#exercises-25"><i class="fa fa-check"></i><b>3.6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="summary-r-objects.html"><a href="summary-r-objects.html"><i class="fa fa-check"></i><b>3.7</b> Summary of R Objects</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="summary-r-objects.html"><a href="summary-r-objects.html#exercises-26"><i class="fa fa-check"></i><b>3.7.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="import-export.html"><a href="import-export.html"><i class="fa fa-check"></i><b>4</b> Data Import and Export</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="intro-dataset.html"><a href="intro-dataset.html"><i class="fa fa-check"></i><b>4.1</b> Introduction to Data Sets</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="intro-dataset.html"><a href="intro-dataset.html#intro-gapminder"><i class="fa fa-check"></i><b>4.1.1</b> Gapminder Data Set</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intro-dataset.html"><a href="intro-dataset.html#sahp"><i class="fa fa-check"></i><b>4.1.2</b> Small Ames Housing Price Data Set</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intro-dataset.html"><a href="intro-dataset.html#converting-data-types"><i class="fa fa-check"></i><b>4.1.3</b> Converting Data Types</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intro-dataset.html"><a href="intro-dataset.html#recover-modified-values"><i class="fa fa-check"></i><b>4.1.4</b> Recover Modified Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="export-data.html"><a href="export-data.html"><i class="fa fa-check"></i><b>4.2</b> Exporting Data to Delimited Files</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="export-data.html"><a href="export-data.html#setwd"><i class="fa fa-check"></i><b>4.2.1</b> Set the working directory</a></li>
+<li class="chapter" data-level="4.2.2" data-path="export-data.html"><a href="export-data.html#delimited-files"><i class="fa fa-check"></i><b>4.2.2</b> Delimited files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="export-data.html"><a href="export-data.html#write-csv"><i class="fa fa-check"></i><b>4.2.3</b> Write an object into a .csv file</a></li>
+<li class="chapter" data-level="4.2.4" data-path="export-data.html"><a href="export-data.html#write-delim"><i class="fa fa-check"></i><b>4.2.4</b> Write an object into a general delimited file</a></li>
+<li class="chapter" data-level="4.2.5" data-path="export-data.html"><a href="export-data.html#exercises-27"><i class="fa fa-check"></i><b>4.2.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="import-data.html"><a href="import-data.html"><i class="fa fa-check"></i><b>4.3</b> Importing Data from Delimited Files</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="import-data.html"><a href="import-data.html#import-.csv-files-using-read_csv"><i class="fa fa-check"></i><b>4.3.1</b> Import .csv Files using <code>read_csv()</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="import-data.html"><a href="import-data.html#read-inline-.csv-files"><i class="fa fa-check"></i><b>4.3.2</b> Read Inline .csv Files</a></li>
+<li class="chapter" data-level="4.3.3" data-path="import-data.html"><a href="import-data.html#handling-missing-values"><i class="fa fa-check"></i><b>4.3.3</b> Handling Missing Values</a></li>
+<li class="chapter" data-level="4.3.4" data-path="import-data.html"><a href="import-data.html#importing-data-from-a-delimited-file"><i class="fa fa-check"></i><b>4.3.4</b> Importing Data From a Delimited File</a></li>
+<li class="chapter" data-level="4.3.5" data-path="import-data.html"><a href="import-data.html#import-menu"><i class="fa fa-check"></i><b>4.3.5</b> Import Data Using the Menu</a></li>
+<li class="chapter" data-level="4.3.6" data-path="import-data.html"><a href="import-data.html#exercises-28"><i class="fa fa-check"></i><b>4.3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="import-excel.html"><a href="import-excel.html"><i class="fa fa-check"></i><b>4.4</b> Exporting to and Importing from Excel Files</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="import-excel.html"><a href="import-excel.html#export-data-into-excel-files"><i class="fa fa-check"></i><b>4.4.1</b> Export data into Excel files</a></li>
+<li class="chapter" data-level="4.4.2" data-path="import-excel.html"><a href="import-excel.html#import-excel-files-.xls-and-.xlsx-using-read_excel"><i class="fa fa-check"></i><b>4.4.2</b> Import Excel Files (.xls and .xlsx ) using <code>read_excel()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="import-excel.html"><a href="import-excel.html#import-excel-file-using-the-menu"><i class="fa fa-check"></i><b>4.4.3</b> Import Excel file using the menu</a></li>
+<li class="chapter" data-level="4.4.4" data-path="import-excel.html"><a href="import-excel.html#exercises-29"><i class="fa fa-check"></i><b>4.4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="import-other.html"><a href="import-other.html"><i class="fa fa-check"></i><b>4.5</b> Exporting to and Importing from SPSS, SAS, and Stata Files</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="import-other.html"><a href="import-other.html#export-and-import-spss-files"><i class="fa fa-check"></i><b>4.5.1</b> Export and Import SPSS Files</a></li>
+<li class="chapter" data-level="4.5.2" data-path="import-other.html"><a href="import-other.html#export-and-import-sas-files"><i class="fa fa-check"></i><b>4.5.2</b> Export and Import SAS Files</a></li>
+<li class="chapter" data-level="4.5.3" data-path="import-other.html"><a href="import-other.html#export-and-import-stata-files"><i class="fa fa-check"></i><b>4.5.3</b> Export and Import Stata Files</a></li>
+<li class="chapter" data-level="4.5.4" data-path="import-other.html"><a href="import-other.html#import-using-the-menu"><i class="fa fa-check"></i><b>4.5.4</b> Import using the menu</a></li>
+<li class="chapter" data-level="4.5.5" data-path="import-other.html"><a href="import-other.html#exercise"><i class="fa fa-check"></i><b>4.5.5</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="save-object.html"><a href="save-object.html"><i class="fa fa-check"></i><b>4.6</b> Save and Restore Objects and Workspace</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>4.6.1</b> Save and Restore Objects using .RData</a></li>
+<li class="chapter" data-level="4.6.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>4.6.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="save-object.html"><a href="save-object.html#exercises-30"><i class="fa fa-check"></i><b>4.6.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic Data Visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="scatterplot.html"><a href="scatterplot.html"><i class="fa fa-check"></i><b>5.1</b> Scatterplot</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scatterplot.html"><a href="scatterplot.html#using-the-plot-function"><i class="fa fa-check"></i><b>5.1.1</b> Using the <code>plot()</code> function</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scatterplot.html"><a href="scatterplot.html#interacting-and-saving-the-plot-from-plot"><i class="fa fa-check"></i><b>5.1.2</b> Interacting and Saving the plot from <code>plot()</code></a></li>
+<li class="chapter" data-level="5.1.3" data-path="scatterplot.html"><a href="scatterplot.html#point"><i class="fa fa-check"></i><b>5.1.3</b> Using the <code>ggplot()</code> function</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scatterplot.html"><a href="scatterplot.html#interact-and-save-the-plot-from-ggplot"><i class="fa fa-check"></i><b>5.1.4</b> Interact and Save the plot from <code>ggplot()</code></a></li>
+<li class="chapter" data-level="5.1.5" data-path="scatterplot.html"><a href="scatterplot.html#exercises-31"><i class="fa fa-check"></i><b>5.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="aes-constant-value.html"><a href="aes-constant-value.html"><i class="fa fa-check"></i><b>5.2</b> ggplot Aesthetics (I): Constant-Valued Aesthetics</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="aes-constant-value.html"><a href="aes-constant-value.html#exercises-32"><i class="fa fa-check"></i><b>5.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="aes-local-map.html"><a href="aes-local-map.html"><i class="fa fa-check"></i><b>5.3</b> ggplot Aesthetics (II): Local Aesthetics Mapping</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="aes-local-map.html"><a href="aes-local-map.html#basic-local-aesthetics-mapping"><i class="fa fa-check"></i><b>5.3.1</b> Basic Local Aesthetics Mapping</a></li>
+<li class="chapter" data-level="5.3.2" data-path="aes-local-map.html"><a href="aes-local-map.html#customize-the-local-aesthetics-mapping"><i class="fa fa-check"></i><b>5.3.2</b> Customize the Local Aesthetics Mapping</a></li>
+<li class="chapter" data-level="5.3.3" data-path="aes-local-map.html"><a href="aes-local-map.html#customize-the-legend-order-for-discrete-variables"><i class="fa fa-check"></i><b>5.3.3</b> Customize the legend order for discrete variables</a></li>
+<li class="chapter" data-level="5.3.4" data-path="aes-local-map.html"><a href="aes-local-map.html#create-logical-variables-and-map-to-aesthetics"><i class="fa fa-check"></i><b>5.3.4</b> Create Logical Variables and Map to Aesthetics</a></li>
+<li class="chapter" data-level="5.3.5" data-path="aes-local-map.html"><a href="aes-local-map.html#exercises-33"><i class="fa fa-check"></i><b>5.3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="customization.html"><a href="customization.html"><i class="fa fa-check"></i><b>5.4</b> Customization in ggplot</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="customization.html"><a href="customization.html#customization-of-labels-and-titles"><i class="fa fa-check"></i><b>5.4.1</b> Customization of Labels and Titles</a></li>
+<li class="chapter" data-level="5.4.2" data-path="customization.html"><a href="customization.html#customizing-the-breaks-on-the-x-and-y-axes"><i class="fa fa-check"></i><b>5.4.2</b> Customizing the Breaks on the x and y Axes</a></li>
+<li class="chapter" data-level="5.4.3" data-path="customization.html"><a href="customization.html#zoom-in-to-a-specific-region-of-the-data"><i class="fa fa-check"></i><b>5.4.3</b> Zoom In to a Specific Region of the Data</a></li>
+<li class="chapter" data-level="5.4.4" data-path="customization.html"><a href="customization.html#generate-log-scale-plot"><i class="fa fa-check"></i><b>5.4.4</b> Generate Log-Scale Plot</a></li>
+<li class="chapter" data-level="5.4.5" data-path="customization.html"><a href="customization.html#coordinate-flip"><i class="fa fa-check"></i><b>5.4.5</b> Coordinate Flip</a></li>
+<li class="chapter" data-level="5.4.6" data-path="customization.html"><a href="customization.html#exercises-34"><i class="fa fa-check"></i><b>5.4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="line-plot.html"><a href="line-plot.html"><i class="fa fa-check"></i><b>5.5</b> Line Plots</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-plot"><i class="fa fa-check"></i><b>5.5.1</b> Line Plots via <code>plot()</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="line-plot.html"><a href="line-plot.html#line-plots-via-geom_line"><i class="fa fa-check"></i><b>5.5.2</b> Line Plots via <code>geom_line()</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="line-plot.html"><a href="line-plot.html#constant-valued-aesthetics-in-line-plots"><i class="fa fa-check"></i><b>5.5.3</b> Constant-Valued Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="5.5.4" data-path="line-plot.html"><a href="line-plot.html#mapping-variables-to-aesthetics-in-line-plots"><i class="fa fa-check"></i><b>5.5.4</b> Mapping Variables to Aesthetics in Line Plots</a></li>
+<li class="chapter" data-level="5.5.5" data-path="line-plot.html"><a href="line-plot.html#exercises-35"><i class="fa fa-check"></i><b>5.5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="smoothline.html"><a href="smoothline.html"><i class="fa fa-check"></i><b>5.6</b> Smoothline Fits</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="smoothline.html"><a href="smoothline.html#creating-smoothline-fits-using-geom_smooth"><i class="fa fa-check"></i><b>5.6.1</b> Creating Smoothline Fits using <code>geom_smooth()</code></a></li>
+<li class="chapter" data-level="5.6.2" data-path="smoothline.html"><a href="smoothline.html#constant-valued-aesthetics-in-smoothline-fits"><i class="fa fa-check"></i><b>5.6.2</b> Constant-Valued Aesthetics in Smoothline Fits</a></li>
+<li class="chapter" data-level="5.6.3" data-path="smoothline.html"><a href="smoothline.html#local-aesthetics-mapping-in-smoothline-fits"><i class="fa fa-check"></i><b>5.6.3</b> Local Aesthetics Mapping in Smoothline Fits</a></li>
+<li class="chapter" data-level="5.6.4" data-path="smoothline.html"><a href="smoothline.html#exercises-36"><i class="fa fa-check"></i><b>5.6.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="multi-geom.html"><a href="multi-geom.html"><i class="fa fa-check"></i><b>5.7</b> ggplot Aesthetics (III): Global Aesthetic Mapping</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="multi-geom.html"><a href="multi-geom.html#multiple-geoms"><i class="fa fa-check"></i><b>5.7.1</b> Multiple geoms</a></li>
+<li class="chapter" data-level="5.7.2" data-path="multi-geom.html"><a href="multi-geom.html#global-aes-map"><i class="fa fa-check"></i><b>5.7.2</b> Global Aesthetic Mapping</a></li>
+<li class="chapter" data-level="5.7.3" data-path="multi-geom.html"><a href="multi-geom.html#exercises-37"><i class="fa fa-check"></i><b>5.7.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="bar-charts.html"><a href="bar-charts.html"><i class="fa fa-check"></i><b>5.8</b> Bar Charts and Pie Charts via geom_bar()</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="bar-charts.html"><a href="bar-charts.html#intro-bar-chart"><i class="fa fa-check"></i><b>5.8.1</b> An Introduction to Bar Chart</a></li>
+<li class="chapter" data-level="5.8.2" data-path="bar-charts.html"><a href="bar-charts.html#reordering-bar-chart"><i class="fa fa-check"></i><b>5.8.2</b> Reordering Bars in Bar Charts</a></li>
+<li class="chapter" data-level="5.8.3" data-path="bar-charts.html"><a href="bar-charts.html#bar-aes"><i class="fa fa-check"></i><b>5.8.3</b> Aesthetics in Bar Charts</a></li>
+<li class="chapter" data-level="5.8.4" data-path="bar-charts.html"><a href="bar-charts.html#pie-charts"><i class="fa fa-check"></i><b>5.8.4</b> Pie Charts</a></li>
+<li class="chapter" data-level="5.8.5" data-path="bar-charts.html"><a href="bar-charts.html#exercises-38"><i class="fa fa-check"></i><b>5.8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="histogram.html"><a href="histogram.html"><i class="fa fa-check"></i><b>5.9</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="histogram.html"><a href="histogram.html#using-the-hist-function"><i class="fa fa-check"></i><b>5.9.1</b> Using the <code>hist()</code> function</a></li>
+<li class="chapter" data-level="5.9.2" data-path="histogram.html"><a href="histogram.html#using-the-geom_histogram-function"><i class="fa fa-check"></i><b>5.9.2</b> Using the <code>geom_histogram()</code> function</a></li>
+<li class="chapter" data-level="5.9.3" data-path="histogram.html"><a href="histogram.html#aesthetics-in-geom_histogram"><i class="fa fa-check"></i><b>5.9.3</b> Aesthetics in <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="5.9.4" data-path="histogram.html"><a href="histogram.html#density-estimate-using-histograms"><i class="fa fa-check"></i><b>5.9.4</b> Density Estimate Using Histograms</a></li>
+<li class="chapter" data-level="5.9.5" data-path="histogram.html"><a href="histogram.html#exercises-39"><i class="fa fa-check"></i><b>5.9.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="density-plot.html"><a href="density-plot.html"><i class="fa fa-check"></i><b>5.10</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="density-plot.html"><a href="density-plot.html#aesthetics-in-density-plots"><i class="fa fa-check"></i><b>5.10.1</b> Aesthetics in Density Plots</a></li>
+<li class="chapter" data-level="5.10.2" data-path="density-plot.html"><a href="density-plot.html#exercises-40"><i class="fa fa-check"></i><b>5.10.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>5.11</b> Boxplots</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="boxplots.html"><a href="boxplots.html#using-the-boxplot-function"><i class="fa fa-check"></i><b>5.11.1</b> Using the <code>boxplot()</code> function</a></li>
+<li class="chapter" data-level="5.11.2" data-path="boxplots.html"><a href="boxplots.html#boxplot-1"><i class="fa fa-check"></i><b>5.11.2</b> Using the <code>geom_boxplot()</code> function</a></li>
+<li class="chapter" data-level="5.11.3" data-path="boxplots.html"><a href="boxplots.html#boxplot-2"><i class="fa fa-check"></i><b>5.11.3</b> Compare distributions in different groups</a></li>
+<li class="chapter" data-level="5.11.4" data-path="boxplots.html"><a href="boxplots.html#aesthetics-in-boxplot"><i class="fa fa-check"></i><b>5.11.4</b> Aesthetics in boxplot</a></li>
+<li class="chapter" data-level="5.11.5" data-path="boxplots.html"><a href="boxplots.html#notched-boxplots"><i class="fa fa-check"></i><b>5.11.5</b> Notched Boxplots</a></li>
+<li class="chapter" data-level="5.11.6" data-path="boxplots.html"><a href="boxplots.html#exercises-41"><i class="fa fa-check"></i><b>5.11.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html"><i class="fa fa-check"></i><b>5.12</b> Arrange Multiple Plots</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-wrap"><i class="fa fa-check"></i><b>5.12.1</b> Facet wrap</a></li>
+<li class="chapter" data-level="5.12.2" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#facet-grid"><i class="fa fa-check"></i><b>5.12.2</b> Facet grid</a></li>
+<li class="chapter" data-level="5.12.3" data-path="arrange-multi-plots.html"><a href="arrange-multi-plots.html#exercises-42"><i class="fa fa-check"></i><b>5.12.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="review-basic-visualization.html"><a href="review-basic-visualization.html"><i class="fa fa-check"></i><b>5.13</b> Review of Basic Visualization</a>
+<ul>
+<li class="chapter" data-level="5.13.1" data-path="review-basic-visualization.html"><a href="review-basic-visualization.html#summary-of-geoms"><i class="fa fa-check"></i><b>5.13.1</b> Summary of geoms</a></li>
+<li class="chapter" data-level="5.13.2" data-path="review-basic-visualization.html"><a href="review-basic-visualization.html#the-grammatical-structure-of-ggplot"><i class="fa fa-check"></i><b>5.13.2</b> The grammatical structure of <code>ggplot()</code></a></li>
+<li class="chapter" data-level="5.13.3" data-path="review-basic-visualization.html"><a href="review-basic-visualization.html#a-complex-ggplot-example"><i class="fa fa-check"></i><b>5.13.3</b> A complex <code>ggplot()</code> example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="adv-visual.html"><a href="adv-visual.html"><i class="fa fa-check"></i><b>6</b> Advanced Data Visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="jitter-count.html"><a href="jitter-count.html"><i class="fa fa-check"></i><b>6.1</b> Jitter and Count Plots</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="jitter-count.html"><a href="jitter-count.html#overplotting"><i class="fa fa-check"></i><b>6.1.1</b> Overplotting</a></li>
+<li class="chapter" data-level="6.1.2" data-path="jitter-count.html"><a href="jitter-count.html#jitter"><i class="fa fa-check"></i><b>6.1.2</b> Jittering</a></li>
+<li class="chapter" data-level="6.1.3" data-path="jitter-count.html"><a href="jitter-count.html#count"><i class="fa fa-check"></i><b>6.1.3</b> Counts Plots</a></li>
+<li class="chapter" data-level="6.1.4" data-path="jitter-count.html"><a href="jitter-count.html#exercises-43"><i class="fa fa-check"></i><b>6.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="violin.html"><a href="violin.html"><i class="fa fa-check"></i><b>6.2</b> Violin Plots</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="violin.html"><a href="violin.html#the-basic-violin-plot"><i class="fa fa-check"></i><b>6.2.1</b> The basic violin plot</a></li>
+<li class="chapter" data-level="6.2.2" data-path="violin.html"><a href="violin.html#violin-plot-with-boxplot"><i class="fa fa-check"></i><b>6.2.2</b> Violin plot with boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="add-auxiliary.html"><a href="add-auxiliary.html"><i class="fa fa-check"></i><b>6.3</b> Line Segments</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-abline-with-plot"><i class="fa fa-check"></i><b>6.3.1</b> Using <code>abline()</code> with <code>plot()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="add-auxiliary.html"><a href="add-auxiliary.html#using-geom_hline-geom_vline-and-geom_abline"><i class="fa fa-check"></i><b>6.3.2</b> Using <code>geom_hline()</code>, <code>geom_vline()</code> and <code>geom_abline()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="add-auxiliary.html"><a href="add-auxiliary.html#exercises-44"><i class="fa fa-check"></i><b>6.3.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="heat-map.html"><a href="heat-map.html"><i class="fa fa-check"></i><b>6.4</b> Heat Map</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="heat-map.html"><a href="heat-map.html#using-the-heatmap-function"><i class="fa fa-check"></i><b>6.4.1</b> Using the <code>heatmap()</code> function</a></li>
+<li class="chapter" data-level="6.4.2" data-path="heat-map.html"><a href="heat-map.html#using-geom_tile-in-ggplot2"><i class="fa fa-check"></i><b>6.4.2</b> Using <code>geom_tile()</code> in <strong>ggplot2</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="errorbar.html"><a href="errorbar.html"><i class="fa fa-check"></i><b>6.5</b> Error Bars</a></li>
+<li class="chapter" data-level="6.6" data-path="plotly.html"><a href="plotly.html"><i class="fa fa-check"></i><b>6.6</b> Interative Plot with <code>plotly()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="filter-observations.html"><a href="filter-observations.html"><i class="fa fa-check"></i><b>7.1</b> Filter Observations and Objects Masking</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>7.1.1</b> Objects Masking</a></li>
+<li class="chapter" data-level="7.1.2" data-path="filter-observations.html"><a href="filter-observations.html#filter-observations-1"><i class="fa fa-check"></i><b>7.1.2</b> Filter Observations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="filter-observations.html"><a href="filter-observations.html#exercise-1"><i class="fa fa-check"></i><b>7.1.3</b> Exercise</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming: Zero to Pro</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="other-atomic-vector" class="section level2 hasAnchor" number="2.17">
+<h2><span class="header-section-number">2.17</span> Other Atomic Vector Types<a href="other-atomic-vector.html#other-atomic-vector" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we have covered the most commonly used atomic vector types, including logical, integer, numeric, and character, when we order by complexity. In this section, we will introduce two more atomic vector types: <strong>complex</strong> vectors and <strong>raw</strong> vectors.</p>
+<div id="complex-vectors" class="section level3 hasAnchor" number="2.17.1">
+<h3><span class="header-section-number">2.17.1</span> Complex Vectors<a href="other-atomic-vector.html#complex-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Another atomic vector type in R is <strong>complex</strong>, which stores complex numbers. Let’s create a complex vector using the <code>c()</code> function.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="other-atomic-vector.html#cb289-1" aria-hidden="true" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">+</span> 2i, <span class="dv">3</span> <span class="sc">+</span> 4i, <span class="sc">-</span><span class="dv">3</span> <span class="sc">-</span> 4i)</span>
+<span id="cb289-2"><a href="other-atomic-vector.html#cb289-2" aria-hidden="true" tabindex="-1"></a>my_complex</span>
+<span id="cb289-3"><a href="other-atomic-vector.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i</span></span>
+<span id="cb289-4"><a href="other-atomic-vector.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_complex)</span>
+<span id="cb289-5"><a href="other-atomic-vector.html#cb289-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
+<span id="cb289-6"><a href="other-atomic-vector.html#cb289-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_complex)</span>
+<span id="cb289-7"><a href="other-atomic-vector.html#cb289-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;complex&quot;</span></span>
+<span id="cb289-8"><a href="other-atomic-vector.html#cb289-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(my_complex)</span>
+<span id="cb289-9"><a href="other-atomic-vector.html#cb289-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  cplx [1:3] 1+2i 3+4i -3-4i</span></span></code></pre></div>
+<p>You can do operations on complex vectors. Like integers and doubles, the operations are performed componentwisely. Keep in mind that <span class="math inline">\(i \times i = -1\)</span>.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="other-atomic-vector.html#cb290-1" aria-hidden="true" tabindex="-1"></a>my_complex_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span> <span class="sc">+</span> 1i,   2i, <span class="dv">2</span> <span class="sc">+</span> 3i)</span>
+<span id="cb290-2"><a href="other-atomic-vector.html#cb290-2" aria-hidden="true" tabindex="-1"></a>my_complex <span class="sc">+</span> my_complex_2</span>
+<span id="cb290-3"><a href="other-atomic-vector.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  3+3i  3+6i -1-1i</span></span>
+<span id="cb290-4"><a href="other-atomic-vector.html#cb290-4" aria-hidden="true" tabindex="-1"></a>my_complex <span class="sc">*</span> my_complex_2</span>
+<span id="cb290-5"><a href="other-atomic-vector.html#cb290-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  0+ 5i -8+ 6i  6-17i</span></span>
+<span id="cb290-6"><a href="other-atomic-vector.html#cb290-6" aria-hidden="true" tabindex="-1"></a>my_complex <span class="sc">/</span> my_complex_2</span>
+<span id="cb290-7"><a href="other-atomic-vector.html#cb290-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  0.800000+0.600000i  2.000000-1.500000i -1.384615+0.076923i</span></span></code></pre></div>
+<p>It is worth to emphasize that for complex vectors, <code>is.numeric()</code> returns <code>FALSE</code> and <code>is.complex()</code> returns <code>TRUE</code>.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="other-atomic-vector.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(my_complex)</span>
+<span id="cb291-2"><a href="other-atomic-vector.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb291-3"><a href="other-atomic-vector.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.complex</span>(my_complex)</span>
+<span id="cb291-4"><a href="other-atomic-vector.html#cb291-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>For a complex vector <span class="math inline">\(z = x + i y\)</span> with real <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we have the following table for variable components along with the functions in R.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operation</th>
+<th align="left">Explanation</th>
+<th align="left">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Re(z)</td>
+<td align="left">the real part</td>
+<td align="left"><span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Im(z)</td>
+<td align="left">the imaginary part</td>
+<td align="left"><span class="math inline">\(y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Mod(z)</td>
+<td align="left">the modulus</td>
+<td align="left"><span class="math inline">\(\sqrt{x^2 + y^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Arg(z)</td>
+<td align="left">the argument</td>
+<td align="left"><span class="math inline">\(arccos(\frac{x}{\sqrt{x^2 + y^2}})\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Conj(z)</td>
+<td align="left">the conjugate vector</td>
+<td align="left"><span class="math inline">\(x - i y\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here, the modulus and argument are also called the <strong>polar coordinates</strong>. For <span class="math inline">\(r = Mod(z)\)</span>, and <span class="math inline">\(\phi = Arg(z)\)</span>, we have <span class="math inline">\(x = r*\cos(\phi)\)</span> and <span class="math inline">\(y = r*\sin(\phi)\)</span>.</p>
+<p>Now, let’s try these functions on our complex vector <code>my_complex</code>.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="other-atomic-vector.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Re</span>(my_complex)</span>
+<span id="cb292-2"><a href="other-atomic-vector.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1  3 -3</span></span>
+<span id="cb292-3"><a href="other-atomic-vector.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Im</span>(my_complex)</span>
+<span id="cb292-4"><a href="other-atomic-vector.html#cb292-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  2  4 -4</span></span>
+<span id="cb292-5"><a href="other-atomic-vector.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Mod</span>(my_complex)</span>
+<span id="cb292-6"><a href="other-atomic-vector.html#cb292-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.236068 5.000000 5.000000</span></span>
+<span id="cb292-7"><a href="other-atomic-vector.html#cb292-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Arg</span>(my_complex)</span>
+<span id="cb292-8"><a href="other-atomic-vector.html#cb292-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1.1071487  0.9272952 -2.2142974</span></span>
+<span id="cb292-9"><a href="other-atomic-vector.html#cb292-9" aria-hidden="true" tabindex="-1"></a><span class="fu">Conj</span>(my_complex)</span>
+<span id="cb292-10"><a href="other-atomic-vector.html#cb292-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1-2i  3-4i -3+4i</span></span></code></pre></div>
+<p>Another way to create complex vectors is to use the <code>complex()</code> function where you can specify two out of the four arguments, namely the real part, the imaginary part, the modulus, and the argument. Usually, we use a combination of <code>real</code> and <code>imaginary</code>, or <code>modulus</code> and <code>argument</code>.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="other-atomic-vector.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complex</span>(<span class="at">real =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">imaginary =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb293-2"><a href="other-atomic-vector.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1+5i 2+4i 3+3i 4+2i 5+1i</span></span>
+<span id="cb293-3"><a href="other-atomic-vector.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="fu">complex</span>(<span class="at">modulus =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">argument =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb293-4"><a href="other-atomic-vector.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  0.5403023+0.841471i -0.8322937+1.818595i -2.9699775+0.423360i</span></span>
+<span id="cb293-5"><a href="other-atomic-vector.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] -2.6145745-3.027210i  1.4183109-4.794621i</span></span></code></pre></div>
+<p>Finally, you can use the <code>vector(mode, length)</code> function to create a complex vector of certain length.</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="other-atomic-vector.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;complex&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb294-2"><a href="other-atomic-vector.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0+0i 0+0i 0+0i 0+0i</span></span></code></pre></div>
+<p>Note that the default value is <code>0+0i</code>.</p>
+</div>
+<div id="raw-vectors" class="section level3 hasAnchor" number="2.17.2">
+<h3><span class="header-section-number">2.17.2</span> Raw Vectors<a href="other-atomic-vector.html#raw-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>raw</strong> type of vector holds raw bytes. To create a raw vector, you can use the <code>raw()</code> function with the desired length as its argument, which will be initialized as a zero vector. You can check the class and storage type of the created object are indeed raw.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="other-atomic-vector.html#cb295-1" aria-hidden="true" tabindex="-1"></a>my_raw <span class="ot">&lt;-</span> <span class="fu">raw</span>(<span class="dv">2</span>)</span>
+<span id="cb295-2"><a href="other-atomic-vector.html#cb295-2" aria-hidden="true" tabindex="-1"></a>my_raw</span>
+<span id="cb295-3"><a href="other-atomic-vector.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 00 00</span></span>
+<span id="cb295-4"><a href="other-atomic-vector.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(my_raw)</span>
+<span id="cb295-5"><a href="other-atomic-vector.html#cb295-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;raw&quot;</span></span>
+<span id="cb295-6"><a href="other-atomic-vector.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_raw)</span>
+<span id="cb295-7"><a href="other-atomic-vector.html#cb295-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;raw&quot;</span></span></code></pre></div>
+<p>Working with the raw vector type is not as easy as the other types we have covered so far. In particular, the implicit coercion doesn’t work here and leads to an error if you try to assign a number to a raw type vector.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="other-atomic-vector.html#cb296-1" aria-hidden="true" tabindex="-1"></a>my_raw[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb296-2"><a href="other-atomic-vector.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in my_raw[1] &lt;- 20: incompatible types (from double to raw) in subassignment type fix</span></span></code></pre></div>
+<p>You may be wondering, how do we modify the values of a raw type vector? To do that, you can use the <code>as.raw()</code> function with an integer vector as its argument.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="other-atomic-vector.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.raw</span>(<span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">135</span>, <span class="dv">255</span>))</span>
+<span id="cb297-2"><a href="other-atomic-vector.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11 12 13 14 87 ff</span></span></code></pre></div>
+<p>It is worth to explain the mechanism of this explicit coercion. The input integer is converted to a length-two string-like value, taking the numeric values 0-9, and the lower case letters a-f. In fact, the representation can be viewed as a <strong>Hexadecimal System</strong>, which is the numbering system with base 16. The numeric values 0-9 coincide with the corresponding numbers 0-9, while the lower case letters a-f correspond to numbers 10-15. Let’s look at a few examples.
+<span class="math display">\[\begin{align}
+0b &amp;= 0*16 + 11 = 11\\
+87 &amp;= 8*16 + 7 = 135\\
+ff &amp;= 15*16 + 15 = 255
+\end{align}\]</span></p>
+<p>Note that when the input is less than 0 or larger than 255, the output will be always <code>00</code> with a warning displayed.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="other-atomic-vector.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.raw</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb298-2"><a href="other-atomic-vector.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: out-of-range values treated as 0 in coercion to raw</span></span>
+<span id="cb298-3"><a href="other-atomic-vector.html#cb298-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 00</span></span>
+<span id="cb298-4"><a href="other-atomic-vector.html#cb298-4" aria-hidden="true" tabindex="-1"></a><span class="fu">as.raw</span>(<span class="dv">256</span>)</span>
+<span id="cb298-5"><a href="other-atomic-vector.html#cb298-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: out-of-range values treated as 0 in coercion to raw</span></span>
+<span id="cb298-6"><a href="other-atomic-vector.html#cb298-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 00</span></span></code></pre></div>
+<p>Once you have a raw vector, you can use <code>as.integer()</code> to coerce it to an integer vector. In addition, you can use <code>is.raw()</code> to check whether the input is a raw vector.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="other-atomic-vector.html#cb299-1" aria-hidden="true" tabindex="-1"></a>my_raw[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">as.raw</span>(<span class="dv">200</span>)</span>
+<span id="cb299-2"><a href="other-atomic-vector.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(my_raw)</span>
+<span id="cb299-3"><a href="other-atomic-vector.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 200   0</span></span>
+<span id="cb299-4"><a href="other-atomic-vector.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="fu">is.raw</span>(my_raw)</span>
+<span id="cb299-5"><a href="other-atomic-vector.html#cb299-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb299-6"><a href="other-atomic-vector.html#cb299-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.raw</span>(<span class="dv">200</span>)</span>
+<span id="cb299-7"><a href="other-atomic-vector.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Interesting, the integer values 0-255 has a correspondence with the <strong>ASCII characters</strong>. However, note that the first 32 values correspond to ASCII control characters, which are not printable. Therefore, the most useful ones are values 32-255. For more details, you can find the corresponding table of the ASCII code and the characters via <a href="https://www.ascii-code.com/" class="uri">https://www.ascii-code.com/</a>.</p>
+<p>You can use the function <code>charToRaw()</code> to convert a string to a raw vector. And its inverse function <code>rawToChar()</code> will decode a raw vector into the corresponding string. This pair of operations can be viewed as an interesting example of <strong>encryption</strong> and <strong>decryption</strong>.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="other-atomic-vector.html#cb300-1" aria-hidden="true" tabindex="-1"></a>r02pro_str <span class="ot">&lt;-</span> <span class="st">&quot;I love r02pro!&quot;</span></span>
+<span id="cb300-2"><a href="other-atomic-vector.html#cb300-2" aria-hidden="true" tabindex="-1"></a>r02pro_raw <span class="ot">&lt;-</span> <span class="fu">charToRaw</span>(r02pro_str)</span>
+<span id="cb300-3"><a href="other-atomic-vector.html#cb300-3" aria-hidden="true" tabindex="-1"></a>r02pro_raw</span>
+<span id="cb300-4"><a href="other-atomic-vector.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 49 20 6c 6f 76 65 20 72 30 32 70 72 6f 21</span></span>
+<span id="cb300-5"><a href="other-atomic-vector.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rawToChar</span>(r02pro_raw)</span>
+<span id="cb300-6"><a href="other-atomic-vector.html#cb300-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;I love r02pro!&quot;</span></span></code></pre></div>
+<p>For example, the character <code>I</code> corresponds to raw value 49, and number 111, the space corresponds to raw value 20, and number 32, and the <code>!</code> corresponds to raw value 21, and number 33.</p>
+<p>Now, let’s try something interesting.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="other-atomic-vector.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rawToChar</span>(<span class="fu">as.raw</span>(<span class="dv">32</span><span class="sc">:</span><span class="dv">126</span>))</span>
+<span id="cb301-2"><a href="other-atomic-vector.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot; !\&quot;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~&quot;</span></span></code></pre></div>
+<p>You can see that the numbers, lower and upper case letters, and commonly used symbols correspond to values from 32 to 126.</p>
+</div>
+<div id="full-coercion-ordering" class="section level3 hasAnchor" number="2.17.3">
+<h3><span class="header-section-number">2.17.3</span> Full Coercion Ordering<a href="other-atomic-vector.html#full-coercion-ordering" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In Section <a href="coercion-rule.html#coercion-rule">2.4</a>, we learned the following coercion rule:
+<span class="math display">\[\mbox{logical} &lt; \mbox{integer} &lt; \mbox{double} &lt; \mbox{character}\]</span></p>
+<p>You may be wondering where do the complex and raw vectors lie in this sequence. Let’s first present the rule and show some examples.</p>
+<p><span class="math display">\[\mbox{raw} &lt; \mbox{logical} &lt; \mbox{integer} &lt; 
+\mbox{double} &lt; \mbox{complex} &lt; \mbox{character}\]</span></p>
+<p>Let’s mix <code>my_raw</code> with logical, integer, and character values, respectively.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="other-atomic-vector.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, <span class="cn">TRUE</span>)</span>
+<span id="cb302-2"><a href="other-atomic-vector.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
+<span id="cb302-3"><a href="other-atomic-vector.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, 2L)</span>
+<span id="cb302-4"><a href="other-atomic-vector.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 200   0   2</span></span>
+<span id="cb302-5"><a href="other-atomic-vector.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, <span class="st">&quot;test&quot;</span>)</span>
+<span id="cb302-6"><a href="other-atomic-vector.html#cb302-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;c8&quot;   &quot;00&quot;   &quot;test&quot;</span></span></code></pre></div>
+<p>Now, let’s mix <code>my_complex</code> with raw, logical, integer, and character, respectively.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="other-atomic-vector.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_complex, my_raw)</span>
+<span id="cb303-2"><a href="other-atomic-vector.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   1+2i   3+4i  -3-4i 200+0i   0+0i</span></span>
+<span id="cb303-3"><a href="other-atomic-vector.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_complex, <span class="cn">TRUE</span>)</span>
+<span id="cb303-4"><a href="other-atomic-vector.html#cb303-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i  1+0i</span></span>
+<span id="cb303-5"><a href="other-atomic-vector.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_complex, 8L)</span>
+<span id="cb303-6"><a href="other-atomic-vector.html#cb303-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i  8+0i</span></span>
+<span id="cb303-7"><a href="other-atomic-vector.html#cb303-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_complex, <span class="fl">3.14</span>)</span>
+<span id="cb303-8"><a href="other-atomic-vector.html#cb303-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  1.00+2i  3.00+4i -3.00-4i  3.14+0i</span></span>
+<span id="cb303-9"><a href="other-atomic-vector.html#cb303-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_complex, <span class="st">&quot;test&quot;</span>)</span>
+<span id="cb303-10"><a href="other-atomic-vector.html#cb303-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1+2i&quot;  &quot;3+4i&quot;  &quot;-3-4i&quot; &quot;test&quot;</span></span></code></pre></div>
+</div>
+<div id="exercises-19" class="section level3 hasAnchor" number="2.17.4">
+<h3><span class="header-section-number">2.17.4</span> Exercises<a href="other-atomic-vector.html#exercises-19" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Use complex vectors to verify Euler’s formula:
+<span class="math display">\[e^{iy} = \cos(y) + i sin(y).\]</span>
+Hint: for a sequence of <code>y</code> values (eg. <code>y_seq &lt;- pi *seq(from = -2, to = 2, by = 0.1)</code>), compute the left hand side and right hand side respectively, and compare them.
+<!--
+
+```r
+y_seq <- pi *seq(from = -2, to = 2, by = 0.1)
+left_side <- exp(complex(real = 0, imaginary = y_seq))
+right_side <- complex(real = cos(y_seq), imaginary = sin(y_seq))
+left_side - right_side
+#>  [1] 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i
+#> [16] 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i
+#> [31] 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i 0+0i
+```
+--></p></li>
+<li><p>Tom wants to send out a message and he want to encypt it using raw vectors. He first convert the message into raw vectors, and then convert the raw vector into an integer vector. Suppose he got the following integer vector: 72, 97, 118, 101, 32, 97, 32, 110, 105, 99, 101, 32, 100, 97, 121, 33, please write R code to recover the message.</p></li>
+<li><p>Suppose we have the following vectors of different types.</p></li>
+</ol>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="other-atomic-vector.html#cb304-1" aria-hidden="true" tabindex="-1"></a>my_raw <span class="ot">&lt;-</span> <span class="fu">as.raw</span>(<span class="dv">62</span>)</span>
+<span id="cb304-2"><a href="other-atomic-vector.html#cb304-2" aria-hidden="true" tabindex="-1"></a>my_logi <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb304-3"><a href="other-atomic-vector.html#cb304-3" aria-hidden="true" tabindex="-1"></a>my_int <span class="ot">&lt;-</span> 6L</span>
+<span id="cb304-4"><a href="other-atomic-vector.html#cb304-4" aria-hidden="true" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> 14i</span>
+<span id="cb304-5"><a href="other-atomic-vector.html#cb304-5" aria-hidden="true" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="st">&quot;Good luck!&quot;</span></span></code></pre></div>
+<p>Guess the values of the following operations and confirm them in R.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="other-atomic-vector.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_logi), my_int)</span>
+<span id="cb305-2"><a href="other-atomic-vector.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, <span class="fu">c</span>(my_logi, my_int))</span>
+<span id="cb305-3"><a href="other-atomic-vector.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_logi), my_char)</span>
+<span id="cb305-4"><a href="other-atomic-vector.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, <span class="fu">c</span>(my_logi, my_char))</span>
+<span id="cb305-5"><a href="other-atomic-vector.html#cb305-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_complex), my_char)</span>
+<span id="cb305-6"><a href="other-atomic-vector.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, my_complex, my_char)</span>
+<span id="cb305-7"><a href="other-atomic-vector.html#cb305-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_logi), <span class="fu">c</span>(my_int, my_complex), my_char)</span>
+<span id="cb305-8"><a href="other-atomic-vector.html#cb305-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_logi), my_int, my_complex, my_char)</span>
+<span id="cb305-9"><a href="other-atomic-vector.html#cb305-9" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, my_logi, my_int, my_complex, my_char)</span>
+<span id="cb305-10"><a href="other-atomic-vector.html#cb305-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(my_raw, my_logi, <span class="fu">c</span>(my_int, my_complex), my_char)</span></code></pre></div>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="date-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="object-other-type.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yangfengstat/r02pro_source/edit/main/02.17_Other_Atomic_Vector_Types.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
