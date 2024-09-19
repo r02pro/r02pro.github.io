@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-18" />
+<meta name="date" content="2024-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -681,7 +681,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1,]    1    4    7   10
 ## [2,]    2    5    8   11
 ## [3,]    3    6    9   12</code></pre>
-<p>Note that when we supply the arguments in the default order of an R function, we can omit the argument names. As a result, the following expression could be simplified and generate the same matrix.</p>
+<p>Note that when we supply the arguments in the default order of an R function, we can omit the argument names. As a result, the following expression generates the same matrix.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="matrix.html#cb3-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
 <p>Typically, the length of the supplied vector <strong>equals</strong> the number of rows multiplied by the number of columns. Otherwise, R will use the recycling rule we learned in Section <a href="intro-num-vector.html#operation-recycling">2.1.2</a> on the vector to fill in the matrix. This recycling rule is particularly useful to create matrix consisting elements of the same value.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="matrix.html#cb4-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span></code></pre></div>
@@ -689,17 +689,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1,]    6    6    6
 ## [2,]    6    6    6
 ## [3,]    6    6    6</code></pre>
-<p>As mentioned before, some arguments of the function could be omitted for simpler expression and clean coding. In this case, you can just specify <code>nrow</code> or <code>ncol</code> if the value of the other one can be implied, and still get the exact same matrices as shown below.</p>
+<p>As mentioned before, some arguments of the function could be omitted for simpler expression and cleaner coding. In this case, you can just specify <code>nrow</code> or <code>ncol</code> if the value of the other one can be implied, and still get the exact same matrices as shown below.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="matrix.html#cb6-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
 <span id="cb6-2"><a href="matrix.html#cb6-2" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p>Looking at the resulting matrix, you may notice that the matrix is created by filling the columns sequentially with the elements from the input vector. That is, it first fills the first column, then the second column, and so on. If you want to fill rows instead, you can add the argument <code>byrow = TRUE</code>.</p>
+<p>Looking at the resulting matrix, you may notice that the matrix is created by filling the columns sequentially with the elements from the input vector. That is, it first fills the first column, then the second column, and so on. If you want to fill by rows instead, you can add the argument <code>byrow = TRUE</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="matrix.html#cb7-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    4    5    6
 ## [3,]    7    8    9
 ## [4,]   10   11   12</code></pre>
-<p>After defining a matrix, we can apply various functions on it.</p>
+<p>After defining a matrix, we can apply various functions to it.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="matrix.html#cb9-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span>
 <span id="cb9-2"><a href="matrix.html#cb9-2" tabindex="-1"></a><span class="fu">dim</span>(x)            <span class="co">#the dimension        </span></span></code></pre></div>
 <pre><code>## [1] 4 3</code></pre>
@@ -737,10 +737,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To set the names of a matrix, you can use <code>rownames()</code> and <code>colnames()</code> to set the row names and column names, respectively.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="matrix.html#cb26-1" tabindex="-1"></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>)     <span class="co">#row names</span></span>
 <span id="cb26-2"><a href="matrix.html#cb26-2" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>)         <span class="co">#column names</span></span></code></pre></div>
-<p>Interesting, you can use the same functions <code>rownames()</code> and <code>colnames()</code> to extract the row and column names.</p>
+<p>In addition, you can use the same functions <code>rownames()</code> and <code>colnames()</code> to extract the row and column names.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="matrix.html#cb27-1" tabindex="-1"></a><span class="fu">rownames</span>(x)</span>
 <span id="cb27-2"><a href="matrix.html#cb27-2" tabindex="-1"></a><span class="fu">colnames</span>(x)</span></code></pre></div>
-<p>We can also convert a matrix to a vector, which will take the elements of the matrix column by column.</p>
+<p>We can also convert a matrix to a vector, which will arrange the elements of the matrix column by column.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="matrix.html#cb28-1" tabindex="-1"></a><span class="fu">as.vector</span>(x)      <span class="co">#convert matrix to a vector</span></span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
 <p>In addition to numeric matrices, you can also create character matrices from a character vector.</p>
@@ -765,11 +765,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To combine two vectors into a matrix, you can use the <code>rbind()</code> or <code>cbind()</code> function to stack the vectors together by row or by column, respectively.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="matrix.html#cb36-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb36-2"><a href="matrix.html#cb36-2" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span></span>
-<span id="cb36-3"><a href="matrix.html#cb36-3" tabindex="-1"></a><span class="fu">rbind</span>(z,w)</span></code></pre></div>
+<span id="cb36-3"><a href="matrix.html#cb36-3" tabindex="-1"></a><span class="fu">rbind</span>(z, w)</span></code></pre></div>
 <pre><code>##   [,1] [,2] [,3] [,4]
 ## z    1    2    3    4
 ## w    5    6    7    8</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="matrix.html#cb38-1" tabindex="-1"></a><span class="fu">cbind</span>(z,w)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="matrix.html#cb38-1" tabindex="-1"></a><span class="fu">cbind</span>(z, w)</span></code></pre></div>
 <pre><code>##      z w
 ## [1,] 1 5
 ## [2,] 2 6
@@ -803,7 +803,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##   y  z
 ## a 5  9
 ## b 6 10</code></pre>
-<p>To keep all the rows or columns, you can leave the index location empty.</p>
+<p>To keep all the rows or columns, you can leave the corresponding index location empty.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="matrix.html#cb50-1" tabindex="-1"></a>x[<span class="dv">2</span>, ]       <span class="co">#all elements on the second row</span></span></code></pre></div>
 <pre><code>##  x  y  z 
 ##  2  6 10</code></pre>
@@ -997,7 +997,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="matrix.html#cb128-1" tabindex="-1"></a><span class="fu">apply</span>(x, <span class="dv">1</span>, max)    <span class="co">#calculate the max of each row</span></span></code></pre></div>
 <pre><code>##  a  b  c  d 
 ##  9 10 11 12</code></pre>
-<p>In addition to the default three arguments for the <code>apply()</code> function, you can add more arguments that will be passed when applying the specified function, i.e. the orginal third argeument. For example, to calculate the first quantile of each column,</p>
+<p>In addition to the three default arguments for the <code>apply()</code> function, you can add more arguments that will be passed when applying the specified function, i.e. the original third argument. For example, to calculate the first quantile of each column,</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="matrix.html#cb130-1" tabindex="-1"></a><span class="fu">apply</span>(x, <span class="dv">2</span>, quantile, <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>##    x    y    z 
 ## 1.75 5.75 9.75</code></pre>
