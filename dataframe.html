@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-17" />
+<meta name="date" content="2024-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -268,7 +268,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.2" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#sum-and-product"><i class="fa fa-check"></i><b>2.8.2</b> Sum and Product</a></li>
 <li class="chapter" data-level="2.8.3" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#mean-and-median"><i class="fa fa-check"></i><b>2.8.3</b> Mean and median</a></li>
 <li class="chapter" data-level="2.8.4" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#quantiles"><i class="fa fa-check"></i><b>2.8.4</b> Quantiles</a></li>
-<li class="chapter" data-level="2.8.5" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#summary-statistics"><i class="fa fa-check"></i><b>2.8.5</b> Summary statistics</a></li>
+<li class="chapter" data-level="2.8.5" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#vector-summary"><i class="fa fa-check"></i><b>2.8.5</b> Summary statistics</a></li>
 <li class="chapter" data-level="2.8.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-10"><i class="fa fa-check"></i><b>2.8.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="char-concatenate.html"><a href="char-concatenate.html"><i class="fa fa-check"></i><b>2.9</b> Character Vectors: Create with Repetition and Concatenate</a>
@@ -708,10 +708,10 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dataframe" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Data Frame<a href="dataframe.html#dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far, we have learned atomic vectors (Chapter <a href="r-objects.html#r-objects">2</a>), matrices (Section <a href="matrix.html#matrix">3.1</a>), and arrays (Section <a href="array.html#array">3.2</a>). Regardless of their dimensionality, the three different object types share an important features: they all contain elements of the same type (i.e., numeric, character, or logical). In real applications, it is common to have mixed variable types. To accommodate this, let’s introduce a new two-dimensional object type: <strong>data frame</strong>.</p>
+<p>So far, we have learned atomic vectors (Chapter <a href="r-objects.html#r-objects">2</a>), matrices (Section <a href="matrix.html#matrix">3.1</a>), and arrays (Section <a href="array.html#array">3.2</a>). Regardless of their dimensionality, the three different object types share an important features: they all contain elements of the <strong>same</strong> type (i.e., numeric, character, or logical). In real applications, it is common to have mixed variable types. To accommodate this, let’s introduce a new two-dimensional object type: <strong>data frame</strong>.</p>
 <div id="introduction-to-data-frames" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Introduction to Data Frames<a href="dataframe.html#introduction-to-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To create a data frame, you can use the <code>data.frame()</code> function to collect several vectors of the same length. Let’s see an example of some health conditions of a sheep and a pig over the years 2019, 2020 and 2021.</p>
+<p>To create a data frame, you can use the <code>data.frame()</code> function to combine several vectors of the same length into a single object. Let’s see an example of some health conditions of a sheep and a pig over the years 2019, 2020 and 2021.</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="dataframe.html#cb359-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb359-2"><a href="dataframe.html#cb359-2" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
 <span id="cb359-3"><a href="dataframe.html#cb359-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
@@ -778,7 +778,7 @@ div.csl-indent {
 <span id="cb364-16"><a href="dataframe.html#cb364-16" tabindex="-1"></a><span class="co">#&gt;                 </span></span>
 <span id="cb364-17"><a href="dataframe.html#cb364-17" tabindex="-1"></a><span class="co">#&gt; </span></span></code></pre></div>
 <p>From the results, you can see that depending on the variable type, you get different forms of summary.</p>
-<p>In real world, it is very common to encounter missing values, and you may want to jettison those missing values or observations with them. In the object <code>my_data_frame</code>, there are two missing values represented by <code>NA</code>. To remove the observations (rows) with <code>NA</code> values, you can use the <code>na.omit()</code> on the data frame.</p>
+<p>In real world, it is very common to encounter missing values, and you may want to discard the observations with them. In the object <code>my_data_frame</code>, there are two missing values represented by <code>NA</code>. To remove the observations (rows) with <code>NA</code> values, you can use the <code>na.omit()</code> on the data frame.</p>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="dataframe.html#cb365-1" tabindex="-1"></a>my_df_nona <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(my_data_frame)</span>
 <span id="cb365-2"><a href="dataframe.html#cb365-2" tabindex="-1"></a>my_df_nona</span>
 <span id="cb365-3"><a href="dataframe.html#cb365-3" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy</span></span>
