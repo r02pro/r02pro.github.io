@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-22" />
+<meta name="date" content="2024-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -710,24 +710,26 @@ div.csl-indent {
 <h2><span class="header-section-number">7.3</span> Reorder Observations<a href="reorder-observations.html#reorder-observations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s look at the second task: find the 10 countries with the highest life expectancy in 2008. To order observations, you can use the function <code>arrange()</code> in the <strong>dplyr</strong> package.</p>
 <p>First, let’s create a new dataset called <code>gm_2008</code> that only contains the observations in 2008.</p>
-<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="reorder-observations.html#cb743-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb743-2"><a href="reorder-observations.html#cb743-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb743-3"><a href="reorder-observations.html#cb743-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb743-4"><a href="reorder-observations.html#cb743-4" tabindex="-1"></a>gm_2008 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gm, year <span class="sc">==</span> <span class="dv">2008</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="reorder-observations.html#cb742-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb742-2"><a href="reorder-observations.html#cb742-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb742-3"><a href="reorder-observations.html#cb742-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb742-4"><a href="reorder-observations.html#cb742-4" tabindex="-1"></a>gm_2008 <span class="ot">&lt;-</span> <span class="fu">filter</span>(gm, year <span class="sc">==</span> <span class="dv">2008</span>)</span></code></pre></div>
 <p>To arrange the observations in the ascending order of the life expectancy (<code>life_expectancy</code>), you just need to add <code>life_expectancy</code> as a second argument of the <code>arrange()</code> function. To arrange the descending order, you can add <code>desc()</code> around the variable.</p>
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="reorder-observations.html#cb744-1" tabindex="-1"></a><span class="fu">arrange</span>(gm_2008, yr_built)         <span class="co">#arrange in the ascending order of life_expectancy</span></span>
-<span id="cb744-2"><a href="reorder-observations.html#cb744-2" tabindex="-1"></a><span class="co">#&gt; Error in `arrange()`:</span></span>
-<span id="cb744-3"><a href="reorder-observations.html#cb744-3" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `..1 = yr_built`.</span></span>
-<span id="cb744-4"><a href="reorder-observations.html#cb744-4" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
-<span id="cb744-5"><a href="reorder-observations.html#cb744-5" tabindex="-1"></a><span class="co">#&gt; ! object &#39;yr_built&#39; not found</span></span>
-<span id="cb744-6"><a href="reorder-observations.html#cb744-6" tabindex="-1"></a><span class="fu">arrange</span>(gm_2008, <span class="fu">desc</span>(yr_built))   <span class="co">#arrange in the descending order of life_expectancy</span></span>
-<span id="cb744-7"><a href="reorder-observations.html#cb744-7" tabindex="-1"></a><span class="co">#&gt; Error in `arrange()`:</span></span>
-<span id="cb744-8"><a href="reorder-observations.html#cb744-8" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `..1 = yr_built`.</span></span>
-<span id="cb744-9"><a href="reorder-observations.html#cb744-9" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
-<span id="cb744-10"><a href="reorder-observations.html#cb744-10" tabindex="-1"></a><span class="co">#&gt; ! object &#39;yr_built&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="reorder-observations.html#cb743-1" tabindex="-1"></a><span class="fu">arrange</span>(gm_2008, yr_built)         <span class="co">#arrange in the ascending order of life_expectancy</span></span>
+<span id="cb743-2"><a href="reorder-observations.html#cb743-2" tabindex="-1"></a><span class="co">#&gt; Error in `arrange()`:</span></span>
+<span id="cb743-3"><a href="reorder-observations.html#cb743-3" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `..1 =</span></span>
+<span id="cb743-4"><a href="reorder-observations.html#cb743-4" tabindex="-1"></a><span class="co">#&gt;   yr_built`.</span></span>
+<span id="cb743-5"><a href="reorder-observations.html#cb743-5" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
+<span id="cb743-6"><a href="reorder-observations.html#cb743-6" tabindex="-1"></a><span class="co">#&gt; ! object &#39;yr_built&#39; not found</span></span>
+<span id="cb743-7"><a href="reorder-observations.html#cb743-7" tabindex="-1"></a><span class="fu">arrange</span>(gm_2008, <span class="fu">desc</span>(yr_built))   <span class="co">#arrange in the descending order of life_expectancy</span></span>
+<span id="cb743-8"><a href="reorder-observations.html#cb743-8" tabindex="-1"></a><span class="co">#&gt; Error in `arrange()`:</span></span>
+<span id="cb743-9"><a href="reorder-observations.html#cb743-9" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `..1 =</span></span>
+<span id="cb743-10"><a href="reorder-observations.html#cb743-10" tabindex="-1"></a><span class="co">#&gt;   yr_built`.</span></span>
+<span id="cb743-11"><a href="reorder-observations.html#cb743-11" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
+<span id="cb743-12"><a href="reorder-observations.html#cb743-12" tabindex="-1"></a><span class="co">#&gt; ! object &#39;yr_built&#39; not found</span></span></code></pre></div>
 <p>You may observe from the results that there are several houses with the same <code>yr_built</code> value, leading to a tie. To break the tie, you can supply additional variables in the <code>arrange()</code> function, which will arrange the observations in the tie according to the additional variables sequentially.</p>
-<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="reorder-observations.html#cb745-1" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built), bldg_class)</span>
-<span id="cb745-2"><a href="reorder-observations.html#cb745-2" tabindex="-1"></a><span class="co">#&gt; Error in arrange(jan09, desc(yr_built), bldg_class): object &#39;jan09&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="reorder-observations.html#cb744-1" tabindex="-1"></a><span class="fu">arrange</span>(jan09, <span class="fu">desc</span>(yr_built), bldg_class)</span>
+<span id="cb744-2"><a href="reorder-observations.html#cb744-2" tabindex="-1"></a><span class="co">#&gt; Error in arrange(jan09, desc(yr_built), bldg_class): object &#39;jan09&#39; not found</span></span></code></pre></div>
 <p>Here, the observations are arranged in the descending order of <code>yr_built</code>, and the ties are broken in the ascending order of <code>bldg_class</code>. Clearly, you can supply as many arguments as needed in the <code>arrange()</code> function. It is also important to note that the observations that has an <code>NA</code> value in the specified variable will always be arranged at the end of the output.</p>
 <div id="exercises-45" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Exercises<a href="reorder-observations.html#exercises-45" class="anchor-section" aria-label="Anchor link to header"></a></h3>

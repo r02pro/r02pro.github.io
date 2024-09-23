@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-22" />
+<meta name="date" content="2024-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -715,7 +715,7 @@ div.csl-indent {
 <p>Let’s first look at a vector in the date format. First, to get today’s date, you can use the <code>Sys.Date()</code> function. Similarly, you can verify its class by using the <code>class()</code> function.</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="date-time.html#cb264-1" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
 <span id="cb264-2"><a href="date-time.html#cb264-2" tabindex="-1"></a>today</span>
-<span id="cb264-3"><a href="date-time.html#cb264-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22&quot;</span></span>
+<span id="cb264-3"><a href="date-time.html#cb264-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23&quot;</span></span>
 <span id="cb264-4"><a href="date-time.html#cb264-4" tabindex="-1"></a><span class="fu">class</span>(today)</span>
 <span id="cb264-5"><a href="date-time.html#cb264-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Date&quot;</span></span></code></pre></div>
 <p>Looking at the output, we know that <code>today</code> is a vector of the <strong>Date</strong> class. You may be wondering how are the dates stored in R. To get this information, you can use the <code>typeof()</code> function on a date object.</p>
@@ -723,12 +723,12 @@ div.csl-indent {
 <span id="cb265-2"><a href="date-time.html#cb265-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 <p>This may look a bit surprising to you. Indeed, dates objects are stored as numeric values (in “double” to be precise), representing the (signed) number of days that has passed since Jan 1, 1970 (The reference date in R). To get this information, you can convert it to a number by <code>as.numeric()</code>.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="date-time.html#cb266-1" tabindex="-1"></a><span class="fu">as.numeric</span>(today)</span>
-<span id="cb266-2"><a href="date-time.html#cb266-2" tabindex="-1"></a><span class="co">#&gt; [1] 19988</span></span></code></pre></div>
+<span id="cb266-2"><a href="date-time.html#cb266-2" tabindex="-1"></a><span class="co">#&gt; [1] 19989</span></span></code></pre></div>
 <p>Storing the dates as numbers makes it handy to perform additions and subtractions. For example, you can use <code>today - 1</code> to get the date of yesterday, and use <code>today + 1</code> to get the date of tomorrow.</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="date-time.html#cb267-1" tabindex="-1"></a>today <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb267-2"><a href="date-time.html#cb267-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-21&quot;</span></span>
+<span id="cb267-2"><a href="date-time.html#cb267-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22&quot;</span></span>
 <span id="cb267-3"><a href="date-time.html#cb267-3" tabindex="-1"></a>today <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb267-4"><a href="date-time.html#cb267-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23&quot;</span></span></code></pre></div>
+<span id="cb267-4"><a href="date-time.html#cb267-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-24&quot;</span></span></code></pre></div>
 <p>The computation in R is done by adding or subtracting one to the number of days since Jan 1, 1970.</p>
 <div class="infobox caution">
 <p>Although the output of <code>today</code> looks similar to a string, you will get a character vector if you assign value(s) like <code>"2021-09-09"</code> to a name. You you can verify its class by using <code>class()</code>.
@@ -762,7 +762,7 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <tr class="even">
 <td align="left">%d</td>
 <td align="left">2-digit day</td>
-<td align="left">22</td>
+<td align="left">23</td>
 </tr>
 <tr class="odd">
 <td align="left">%y</td>
@@ -777,12 +777,12 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <tr class="odd">
 <td align="left">%a</td>
 <td align="left">abbreviated weekday</td>
-<td align="left">Sun</td>
+<td align="left">Mon</td>
 </tr>
 <tr class="even">
 <td align="left">%A</td>
 <td align="left">full weekday</td>
-<td align="left">Sunday</td>
+<td align="left">Monday</td>
 </tr>
 <tr class="odd">
 <td align="left">%b</td>
@@ -798,7 +798,7 @@ Of course, an error will show up if you try to do addition or subtraction operat
 </table>
 <p>Then, for a Date class object, we can create a <strong>format string</strong> that contains any number of the <strong>conversion specifications</strong> in the previous table. The working mechanism of <code>format()</code> is that, it will scan through the <strong>format string</strong>, look for all the conversion specifications, and convert the conversion specifications into their corresponding values for the given date. Any character in the format string that is not part of a conversion specification is interpreted literally (and <code>%%</code> gives <code>%</code>). Let’s see an example.</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="date-time.html#cb270-1" tabindex="-1"></a><span class="fu">format</span>(today, <span class="st">&quot;Today is %A (%a for short), %b %d, %Y. It is also %m/%d/%Y&quot;</span>)</span>
-<span id="cb270-2"><a href="date-time.html#cb270-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Today is Sunday (Sun for short), Sep 22, 2024. It is also 09/22/2024&quot;</span></span></code></pre></div>
+<span id="cb270-2"><a href="date-time.html#cb270-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Today is Monday (Mon for short), Sep 23, 2024. It is also 09/23/2024&quot;</span></span></code></pre></div>
 <p>On the other hand, we can also convert a string back into a Date class object. To do that, you can use the <code>as.Date()</code> function with the string along with the corresponding format string in the <code>fomat</code> argument.</p>
 <p>You can also specify the <code>tryFormats</code> argument, which contains a character vector with all possible formats to try.</p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="date-time.html#cb271-1" tabindex="-1"></a>Aug <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;08-01-2021&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%m-%d-%Y&quot;</span>)</span>
@@ -851,12 +851,12 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="date-time.html#cb279-1" tabindex="-1"></a>ref_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970/01/01&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y/%m/%d&quot;</span>)</span>
 <span id="cb279-2"><a href="date-time.html#cb279-2" tabindex="-1"></a>days_diff <span class="ot">&lt;-</span> today <span class="sc">-</span> ref_date           <span class="co">#the time difference between two dates</span></span>
 <span id="cb279-3"><a href="date-time.html#cb279-3" tabindex="-1"></a>days_diff</span>
-<span id="cb279-4"><a href="date-time.html#cb279-4" tabindex="-1"></a><span class="co">#&gt; Time difference of 19988 days</span></span>
+<span id="cb279-4"><a href="date-time.html#cb279-4" tabindex="-1"></a><span class="co">#&gt; Time difference of 19989 days</span></span>
 <span id="cb279-5"><a href="date-time.html#cb279-5" tabindex="-1"></a><span class="fu">class</span>(days_diff)</span>
 <span id="cb279-6"><a href="date-time.html#cb279-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;difftime&quot;</span></span></code></pre></div>
 <p>To learn more about the <code>difftime</code> class, let’s look at its structure.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="date-time.html#cb280-1" tabindex="-1"></a><span class="fu">str</span>(days_diff)</span>
-<span id="cb280-2"><a href="date-time.html#cb280-2" tabindex="-1"></a><span class="co">#&gt;  &#39;difftime&#39; num 19988</span></span>
+<span id="cb280-2"><a href="date-time.html#cb280-2" tabindex="-1"></a><span class="co">#&gt;  &#39;difftime&#39; num 19989</span></span>
 <span id="cb280-3"><a href="date-time.html#cb280-3" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;units&quot;)= chr &quot;days&quot;</span></span></code></pre></div>
 <p>You can see that it is stored as a number, with an attribute named <code>"units"</code> and the value <code>"days"</code>. This attribute shows the units of the difference. To create a time difference in other units, you can use the <code>difftime()</code> function and specify the <code>units</code> argument to the desired units.</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="date-time.html#cb281-1" tabindex="-1"></a>hours_diff <span class="ot">&lt;-</span> <span class="fu">difftime</span>(today, ref_date, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>)</span>
@@ -864,27 +864,27 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <p>You can also use the <code>as.difftime()</code> function to help getting date. For example, to get the date of 10 weeks and 3 days from <code>today</code>, you can use the following code.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="date-time.html#cb282-1" tabindex="-1"></a>ten_week <span class="ot">&lt;-</span> <span class="fu">as.difftime</span>(<span class="dv">10</span>, <span class="at">units =</span> <span class="st">&quot;weeks&quot;</span>)</span>
 <span id="cb282-2"><a href="date-time.html#cb282-2" tabindex="-1"></a>today <span class="sc">+</span> ten_week <span class="sc">+</span> <span class="dv">3</span></span>
-<span id="cb282-3"><a href="date-time.html#cb282-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-12-04&quot;</span></span></code></pre></div>
+<span id="cb282-3"><a href="date-time.html#cb282-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-12-05&quot;</span></span></code></pre></div>
 </div>
 <div id="times" class="section level3 hasAnchor" number="2.16.2">
 <h3><span class="header-section-number">2.16.2</span> Times<a href="date-time.html#times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After talking about dates, it is natural to introduce how <strong>times</strong> are represented in R. Just like dates, let’s first get the time at the current moment using the <code>Sys.time()</code> function. You can also check its class, internal storage type, and structure by the <code>class()</code>, <code>typeof()</code>, and <code>str()</code> functions.</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="date-time.html#cb283-1" tabindex="-1"></a>now <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb283-2"><a href="date-time.html#cb283-2" tabindex="-1"></a>now</span>
-<span id="cb283-3"><a href="date-time.html#cb283-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 18:12:58 EDT&quot;</span></span>
+<span id="cb283-3"><a href="date-time.html#cb283-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 10:13:39 EDT&quot;</span></span>
 <span id="cb283-4"><a href="date-time.html#cb283-4" tabindex="-1"></a><span class="fu">class</span>(now)</span>
 <span id="cb283-5"><a href="date-time.html#cb283-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</span></span>
 <span id="cb283-6"><a href="date-time.html#cb283-6" tabindex="-1"></a><span class="fu">typeof</span>(now)</span>
 <span id="cb283-7"><a href="date-time.html#cb283-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
 <span id="cb283-8"><a href="date-time.html#cb283-8" tabindex="-1"></a><span class="fu">str</span>(now)</span>
-<span id="cb283-9"><a href="date-time.html#cb283-9" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2024-09-22 18:12:58&quot;</span></span></code></pre></div>
+<span id="cb283-9"><a href="date-time.html#cb283-9" tabindex="-1"></a><span class="co">#&gt;  POSIXct[1:1], format: &quot;2024-09-23 10:13:39&quot;</span></span></code></pre></div>
 <p>The object <code>now</code> is of class <code>POSIXct</code>. The second element of <code>class(now)</code> is <code>POSIXt</code>, which is a parent class for class <code>POSIXct</code> and class <code>PISIXlt</code>. This parent class <code>POSIXt</code> is used to allow operations such as subtraction to mix the two classes.</p>
 <p>From the result of <code>typeof(now)</code>, we know that similar to dates, the <code>POSIXct</code> class used to represent times is also stored as <code>double</code>. Indeed, the class <code>POSIXct</code> represents the (signed) number of seconds since the beginning of 1970 as a numeric vector.</p>
 <p>You can also get the time of an hour ago or a minute later. Now, here the difference is in the unit of seconds instead of days for the date class.</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="date-time.html#cb284-1" tabindex="-1"></a>now <span class="sc">-</span> <span class="dv">3600</span></span>
-<span id="cb284-2"><a href="date-time.html#cb284-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 17:12:58 EDT&quot;</span></span>
+<span id="cb284-2"><a href="date-time.html#cb284-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 09:13:39 EDT&quot;</span></span>
 <span id="cb284-3"><a href="date-time.html#cb284-3" tabindex="-1"></a>now <span class="sc">+</span> <span class="dv">60</span></span>
-<span id="cb284-4"><a href="date-time.html#cb284-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 18:13:58 EDT&quot;</span></span></code></pre></div>
+<span id="cb284-4"><a href="date-time.html#cb284-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 10:14:39 EDT&quot;</span></span></code></pre></div>
 <p>Besides all the elements for dates you can use for the time class object, a list of other commonly used elements of times and the corresponding conversion specifications is summarized in the following table.</p>
 <table>
 <thead>
@@ -898,17 +898,17 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <tr class="odd">
 <td align="left">%H</td>
 <td align="left">hours</td>
-<td align="left">18</td>
+<td align="left">10</td>
 </tr>
 <tr class="even">
 <td align="left">%M</td>
 <td align="left">minutes</td>
-<td align="left">12</td>
+<td align="left">13</td>
 </tr>
 <tr class="odd">
 <td align="left">%S</td>
 <td align="left">seconds</td>
-<td align="left">58</td>
+<td align="left">39</td>
 </tr>
 <tr class="even">
 <td align="left">%Z</td>
@@ -919,16 +919,16 @@ Of course, an error will show up if you try to do addition or subtraction operat
 </table>
 <p>Just like dates, you can format the time into characters via the <code>format()</code> function.</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="date-time.html#cb285-1" tabindex="-1"></a><span class="fu">format</span>(now, <span class="st">&quot;Hi! The current time in %Z (Time Zone) is %A (weekday), year %Y, month %m, day %d, hour %H, min %M, second %S. &quot;</span>)</span>
-<span id="cb285-2"><a href="date-time.html#cb285-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Sunday (weekday), year 2024, month 09, day 22, hour 18, min 12, second 58. &quot;</span></span></code></pre></div>
+<span id="cb285-2"><a href="date-time.html#cb285-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hi! The current time in EDT (Time Zone) is Monday (weekday), year 2024, month 09, day 23, hour 10, min 13, second 39. &quot;</span></span></code></pre></div>
 <p>You can also display the time in a different time zone by setting the <code>tz</code> argument in the <code>format()</code> function.</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="date-time.html#cb286-1" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;UTC&quot;</span>)                 <span class="co">#Coordinated Universal Time</span></span>
-<span id="cb286-2"><a href="date-time.html#cb286-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 22:12:58&quot;</span></span>
+<span id="cb286-2"><a href="date-time.html#cb286-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 14:13:39&quot;</span></span>
 <span id="cb286-3"><a href="date-time.html#cb286-3" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/Los_Angeles&quot;</span>) <span class="co">#Pacific Standard Time</span></span>
-<span id="cb286-4"><a href="date-time.html#cb286-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 15:12:58&quot;</span></span>
+<span id="cb286-4"><a href="date-time.html#cb286-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 07:13:39&quot;</span></span>
 <span id="cb286-5"><a href="date-time.html#cb286-5" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)    <span class="co">#Eastern Standard Time</span></span>
-<span id="cb286-6"><a href="date-time.html#cb286-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 18:12:58&quot;</span></span>
+<span id="cb286-6"><a href="date-time.html#cb286-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 10:13:39&quot;</span></span>
 <span id="cb286-7"><a href="date-time.html#cb286-7" tabindex="-1"></a><span class="fu">format</span>(now, <span class="at">tz =</span> <span class="st">&quot;Europe/London&quot;</span>)       <span class="co">#Greenwich Mean Time </span></span>
-<span id="cb286-8"><a href="date-time.html#cb286-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-22 23:12:58&quot;</span></span></code></pre></div>
+<span id="cb286-8"><a href="date-time.html#cb286-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-23 15:13:39&quot;</span></span></code></pre></div>
 <p>To create a time object from a character, you can use the <code>as.POSIXlt()</code> function with the optional <code>format</code> argument.</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="date-time.html#cb287-1" tabindex="-1"></a><span class="fu">as.POSIXct</span>(<span class="st">&quot;2021-09-21 13:14:15&quot;</span>, <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span>
 <span id="cb287-2"><a href="date-time.html#cb287-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span>
@@ -936,7 +936,7 @@ Of course, an error will show up if you try to do addition or subtraction operat
 <span id="cb287-4"><a href="date-time.html#cb287-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2021-09-21 13:14:15 EDT&quot;</span></span></code></pre></div>
 <p>Similar as the difference of dates, the difference of two times is also an object of class <code>difftime</code>. You can again use the <code>as.difftime()</code> function to help with getting a time difference object in the given unit. For example, to get the time 2 days 3 hours and 4 minutes later, you can use the following.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="date-time.html#cb288-1" tabindex="-1"></a>now <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">2</span>, <span class="at">units =</span> <span class="st">&quot;days&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">3</span>, <span class="at">units =</span> <span class="st">&quot;hours&quot;</span>) <span class="sc">+</span> <span class="fu">as.difftime</span>(<span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;mins&quot;</span>) </span>
-<span id="cb288-2"><a href="date-time.html#cb288-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-24 21:16:58 EDT&quot;</span></span></code></pre></div>
+<span id="cb288-2"><a href="date-time.html#cb288-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;2024-09-25 13:17:39 EDT&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-18" class="section level3 hasAnchor" number="2.16.3">
 <h3><span class="header-section-number">2.16.3</span> Exercises<a href="date-time.html#exercises-18" class="anchor-section" aria-label="Anchor link to header"></a></h3>

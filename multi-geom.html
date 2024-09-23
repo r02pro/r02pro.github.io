@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-22" />
+<meta name="date" content="2024-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -710,141 +710,148 @@ div.csl-indent {
 <h2><span class="header-section-number">5.7</span> ggplot Aesthetics (III): Global Aesthetic Mapping<a href="multi-geom.html#multi-geom" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, you have learned how to create scatterplots using <code>geom_point()</code>, line plots using <code>geom_line()</code>, and smoothline fits using <code>geom_smooth()</code>. It is sometimes useful to combine multiple geoms in the same plot.</p>
 <p>Let’s first review the scatterplot and smoothline fit between <code>sugar</code> and <code>cholesterol</code>.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="multi-geom.html#cb583-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb583-2"><a href="multi-geom.html#cb583-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb583-3"><a href="multi-geom.html#cb583-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb583-4"><a href="multi-geom.html#cb583-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb583-5"><a href="multi-geom.html#cb583-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-612-1.png" width="576" /></p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="multi-geom.html#cb584-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb584-2"><a href="multi-geom.html#cb584-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb584-3"><a href="multi-geom.html#cb584-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-612-2.png" width="576" /></p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="multi-geom.html#cb582-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb582-2"><a href="multi-geom.html#cb582-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb582-3"><a href="multi-geom.html#cb582-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb582-4"><a href="multi-geom.html#cb582-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb582-5"><a href="multi-geom.html#cb582-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-611-1.png" width="576" /></p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="multi-geom.html#cb583-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb583-2"><a href="multi-geom.html#cb583-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb583-3"><a href="multi-geom.html#cb583-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-611-2.png" width="576" /></p>
 <div id="multiple-geoms" class="section level3 hasAnchor" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Multiple geoms<a href="multi-geom.html#multiple-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To combine multiple geoms, you can simply use <code>+</code> to add them.</p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="multi-geom.html#cb584-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb584-2"><a href="multi-geom.html#cb584-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb584-3"><a href="multi-geom.html#cb584-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
+<span id="cb584-4"><a href="multi-geom.html#cb584-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb584-5"><a href="multi-geom.html#cb584-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span>
+<span id="cb584-6"><a href="multi-geom.html#cb584-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb584-7"><a href="multi-geom.html#cb584-7" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb584-8"><a href="multi-geom.html#cb584-8" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-612-1.png" width="576" /></p>
+<p>As expected, you see all the points and the smoothline fit on the same plot, which contains very rich information.</p>
+<p>As usual, you can add aesthetics to both geoms.</p>
+<p>Let’s first map <code>gender</code> to the color aesthetic for <code>geom_smooth()</code>.</p>
 <div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="multi-geom.html#cb585-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
 <span id="cb585-2"><a href="multi-geom.html#cb585-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
 <span id="cb585-3"><a href="multi-geom.html#cb585-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
 <span id="cb585-4"><a href="multi-geom.html#cb585-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb585-5"><a href="multi-geom.html#cb585-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span>
-<span id="cb585-6"><a href="multi-geom.html#cb585-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb585-7"><a href="multi-geom.html#cb585-7" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<span id="cb585-5"><a href="multi-geom.html#cb585-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb585-6"><a href="multi-geom.html#cb585-6" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span>
+<span id="cb585-7"><a href="multi-geom.html#cb585-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb585-8"><a href="multi-geom.html#cb585-8" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb585-9"><a href="multi-geom.html#cb585-9" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-613-1.png" width="576" /></p>
-<p>As expected, you see all the points and the smoothline fit on the same plot, which contains very rich information.</p>
-<p>As usual, you can add aesthetics to both geoms.</p>
-<p>Let’s first map <code>gender</code> to the color aesthetic for <code>geom_smooth()</code>.</p>
+<p>To verify the two smoothline fits are indeed fitted from the data points in the two groups, you can map <code>gender</code> to the color aesthetic for <code>geom_point()</code> as well. In addition, let’s also map <code>population</code> to the size aesthetic.</p>
 <div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="multi-geom.html#cb586-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
 <span id="cb586-2"><a href="multi-geom.html#cb586-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb586-3"><a href="multi-geom.html#cb586-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
-<span id="cb586-4"><a href="multi-geom.html#cb586-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb586-5"><a href="multi-geom.html#cb586-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb586-6"><a href="multi-geom.html#cb586-6" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span>
-<span id="cb586-7"><a href="multi-geom.html#cb586-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb586-8"><a href="multi-geom.html#cb586-8" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<span id="cb586-3"><a href="multi-geom.html#cb586-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb586-4"><a href="multi-geom.html#cb586-4" tabindex="-1"></a>                           <span class="at">color =</span> gender,</span>
+<span id="cb586-5"><a href="multi-geom.html#cb586-5" tabindex="-1"></a>                           <span class="at">size =</span> population)) <span class="sc">+</span> </span>
+<span id="cb586-6"><a href="multi-geom.html#cb586-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb586-7"><a href="multi-geom.html#cb586-7" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb586-8"><a href="multi-geom.html#cb586-8" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span>
+<span id="cb586-9"><a href="multi-geom.html#cb586-9" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb586-10"><a href="multi-geom.html#cb586-10" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb586-11"><a href="multi-geom.html#cb586-11" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-614-1.png" width="576" /></p>
-<p>To verify the two smoothline fits are indeed fitted from the data points in the two groups, you can map <code>gender</code> to the color aesthetic for <code>geom_point()</code> as well. In addition, let’s also map <code>population</code> to the size aesthetic.</p>
+<p>The plot is reassuring that the two smoothline fits indeed correspond to the data points in the two groups defined by <code>gender</code>.</p>
+<p>In addition to mapping variables to aesthetics, you can also add Constant-Valued aesthetics for each geom.</p>
 <div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="multi-geom.html#cb587-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
 <span id="cb587-2"><a href="multi-geom.html#cb587-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
 <span id="cb587-3"><a href="multi-geom.html#cb587-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
 <span id="cb587-4"><a href="multi-geom.html#cb587-4" tabindex="-1"></a>                           <span class="at">color =</span> gender,</span>
-<span id="cb587-5"><a href="multi-geom.html#cb587-5" tabindex="-1"></a>                           <span class="at">size =</span> population)) <span class="sc">+</span> </span>
-<span id="cb587-6"><a href="multi-geom.html#cb587-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb587-7"><a href="multi-geom.html#cb587-7" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb587-8"><a href="multi-geom.html#cb587-8" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span>
-<span id="cb587-9"><a href="multi-geom.html#cb587-9" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb587-10"><a href="multi-geom.html#cb587-10" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<span id="cb587-5"><a href="multi-geom.html#cb587-5" tabindex="-1"></a>                           <span class="at">size =</span> population),</span>
+<span id="cb587-6"><a href="multi-geom.html#cb587-6" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">2</span>,</span>
+<span id="cb587-7"><a href="multi-geom.html#cb587-7" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb587-8"><a href="multi-geom.html#cb587-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb587-9"><a href="multi-geom.html#cb587-9" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb587-10"><a href="multi-geom.html#cb587-10" tabindex="-1"></a>                           <span class="at">color =</span> gender),</span>
+<span id="cb587-11"><a href="multi-geom.html#cb587-11" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>,</span>
+<span id="cb587-12"><a href="multi-geom.html#cb587-12" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb587-13"><a href="multi-geom.html#cb587-13" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb587-14"><a href="multi-geom.html#cb587-14" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb587-15"><a href="multi-geom.html#cb587-15" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-615-1.png" width="576" /></p>
-<p>The plot is reassuring that the two smoothline fits indeed correspond to the data points in the two groups defined by <code>gender</code>.</p>
-<p>In addition to mapping variables to aesthetics, you can also add Constant-Valued aesthetics for each geom.</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="multi-geom.html#cb588-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb588-2"><a href="multi-geom.html#cb588-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb588-3"><a href="multi-geom.html#cb588-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb588-4"><a href="multi-geom.html#cb588-4" tabindex="-1"></a>                           <span class="at">color =</span> gender,</span>
-<span id="cb588-5"><a href="multi-geom.html#cb588-5" tabindex="-1"></a>                           <span class="at">size =</span> population),</span>
-<span id="cb588-6"><a href="multi-geom.html#cb588-6" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">2</span>,</span>
-<span id="cb588-7"><a href="multi-geom.html#cb588-7" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
-<span id="cb588-8"><a href="multi-geom.html#cb588-8" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb588-9"><a href="multi-geom.html#cb588-9" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb588-10"><a href="multi-geom.html#cb588-10" tabindex="-1"></a>                           <span class="at">color =</span> gender),</span>
-<span id="cb588-11"><a href="multi-geom.html#cb588-11" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>,</span>
-<span id="cb588-12"><a href="multi-geom.html#cb588-12" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb588-13"><a href="multi-geom.html#cb588-13" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb588-14"><a href="multi-geom.html#cb588-14" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-616-1.png" width="576" /></p>
 <p>Now, let’s see an example of combining the scatterplot with the line plot using the <code>sahp</code> dataset. Let’s focus on the houses that were sold before 2007.</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="multi-geom.html#cb589-1" tabindex="-1"></a>sahp_2006 <span class="ot">&lt;-</span> sahp[<span class="fu">format</span>(sahp<span class="sc">$</span>dt_sold, <span class="st">&quot;%Y&quot;</span>) <span class="sc">&lt;</span> <span class="dv">2007</span>, ] <span class="co">#all houses sold before 2007</span></span>
-<span id="cb589-2"><a href="multi-geom.html#cb589-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006) <span class="sc">+</span> </span>
-<span id="cb589-3"><a href="multi-geom.html#cb589-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb589-4"><a href="multi-geom.html#cb589-4" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-617-1.png" width="576" /></p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="multi-geom.html#cb588-1" tabindex="-1"></a>sahp_2006 <span class="ot">&lt;-</span> sahp[<span class="fu">format</span>(sahp<span class="sc">$</span>dt_sold, <span class="st">&quot;%Y&quot;</span>) <span class="sc">&lt;</span> <span class="dv">2007</span>, ] <span class="co">#all houses sold before 2007</span></span>
+<span id="cb588-2"><a href="multi-geom.html#cb588-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006) <span class="sc">+</span> </span>
+<span id="cb588-3"><a href="multi-geom.html#cb588-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb588-4"><a href="multi-geom.html#cb588-4" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-616-1.png" width="576" /></p>
 <p>Next, we will add the line plot on top of the scatterplot.</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="multi-geom.html#cb590-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006) <span class="sc">+</span> </span>
-<span id="cb590-2"><a href="multi-geom.html#cb590-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb590-3"><a href="multi-geom.html#cb590-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb590-4"><a href="multi-geom.html#cb590-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb590-5"><a href="multi-geom.html#cb590-5" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-618-1.png" width="576" /></p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="multi-geom.html#cb589-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006) <span class="sc">+</span> </span>
+<span id="cb589-2"><a href="multi-geom.html#cb589-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb589-3"><a href="multi-geom.html#cb589-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb589-4"><a href="multi-geom.html#cb589-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb589-5"><a href="multi-geom.html#cb589-5" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-617-1.png" width="576" /></p>
 <p>Clearly, having both the scatterplot and the line plot make the plot more informative.</p>
 </div>
 <div id="global-aes-map" class="section level3 hasAnchor" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Global Aesthetic Mapping<a href="multi-geom.html#global-aes-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In Sections <a href="aes-constant-value.html#aes-constant-value">5.2</a> and <a href="aes-local-map.html#aes-local-map">5.3</a>, we introduced the Constant-Valued Aesthetics and Local Aesthetic Mapping. Now, we are going to introduce the final way of specifying aesthetics, namely the <strong>Global Aesthetic Mapping</strong>. In contrast to the local aesthetic mapping where the mapping only works at the local level, the global aesthetic mapping will impact all the geoms considered in the entire ggplot.</p>
 <p>Let’s take another look at the example where we have a scatterplot and a smoothline fit for the relationship between <code>cholesterol</code> and <code>sugar</code>.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="multi-geom.html#cb591-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb591-2"><a href="multi-geom.html#cb591-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb591-3"><a href="multi-geom.html#cb591-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
-<span id="cb591-4"><a href="multi-geom.html#cb591-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb591-5"><a href="multi-geom.html#cb591-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="multi-geom.html#cb590-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb590-2"><a href="multi-geom.html#cb590-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb590-3"><a href="multi-geom.html#cb590-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
+<span id="cb590-4"><a href="multi-geom.html#cb590-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb590-5"><a href="multi-geom.html#cb590-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
 <p>You may notice that the arguments inside <code>geom_point()</code> and <code>geom_smooth()</code> are identical. The global aesthetic mapping allows us to simplify codes by specifying the mapping only once at the <code>ggplot()</code> level. Let’s take a look at how it works.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="multi-geom.html#cb592-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
-<span id="cb592-2"><a href="multi-geom.html#cb592-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb592-3"><a href="multi-geom.html#cb592-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
-<span id="cb592-4"><a href="multi-geom.html#cb592-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb592-5"><a href="multi-geom.html#cb592-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="multi-geom.html#cb591-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
+<span id="cb591-2"><a href="multi-geom.html#cb591-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
+<span id="cb591-3"><a href="multi-geom.html#cb591-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
+<span id="cb591-4"><a href="multi-geom.html#cb591-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb591-5"><a href="multi-geom.html#cb591-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <p>Clearly, this code is simpler to read and avoid repetition.</p>
 <p>As another example, for the combination of scatterplot and line plot, we can also take advantage of the global aesthetic mapping.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="multi-geom.html#cb593-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006,</span>
-<span id="cb593-2"><a href="multi-geom.html#cb593-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb593-3"><a href="multi-geom.html#cb593-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb593-4"><a href="multi-geom.html#cb593-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb593-5"><a href="multi-geom.html#cb593-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="multi-geom.html#cb592-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp_2006,</span>
+<span id="cb592-2"><a href="multi-geom.html#cb592-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb592-3"><a href="multi-geom.html#cb592-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb592-4"><a href="multi-geom.html#cb592-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb592-5"><a href="multi-geom.html#cb592-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p>Naturally, we can add additional aesthetic mappings to the <code>aes()</code> function.</p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="multi-geom.html#cb593-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
+<span id="cb593-2"><a href="multi-geom.html#cb593-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
+<span id="cb593-3"><a href="multi-geom.html#cb593-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol,</span>
+<span id="cb593-4"><a href="multi-geom.html#cb593-4" tabindex="-1"></a>                     <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb593-5"><a href="multi-geom.html#cb593-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb593-6"><a href="multi-geom.html#cb593-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb593-7"><a href="multi-geom.html#cb593-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb593-8"><a href="multi-geom.html#cb593-8" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb593-9"><a href="multi-geom.html#cb593-9" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-621-1.png" width="576" /></p>
+<div id="extend-global-aesthetic-mappings" class="section level4 hasAnchor" number="5.7.2.1">
+<h4><span class="header-section-number">5.7.2.1</span> Extend Global Aesthetic Mappings<a href="multi-geom.html#extend-global-aesthetic-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In addition to the global aesthetic mappings, you can add additional local aesthetic mappings to each geom.</p>
 <div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="multi-geom.html#cb594-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
 <span id="cb594-2"><a href="multi-geom.html#cb594-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
 <span id="cb594-3"><a href="multi-geom.html#cb594-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol,</span>
 <span id="cb594-4"><a href="multi-geom.html#cb594-4" tabindex="-1"></a>                     <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
-<span id="cb594-5"><a href="multi-geom.html#cb594-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb594-5"><a href="multi-geom.html#cb594-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> population)) <span class="sc">+</span> </span>
 <span id="cb594-6"><a href="multi-geom.html#cb594-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb594-7"><a href="multi-geom.html#cb594-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb594-8"><a href="multi-geom.html#cb594-8" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<span id="cb594-7"><a href="multi-geom.html#cb594-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb594-8"><a href="multi-geom.html#cb594-8" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb594-9"><a href="multi-geom.html#cb594-9" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-622-1.png" width="576" /></p>
-<div id="extend-global-aesthetic-mappings" class="section level4 hasAnchor" number="5.7.2.1">
-<h4><span class="header-section-number">5.7.2.1</span> Extend Global Aesthetic Mappings<a href="multi-geom.html#extend-global-aesthetic-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In addition to the global aesthetic mappings, you can add additional local aesthetic mappings to each geom.</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="multi-geom.html#cb595-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
-<span id="cb595-2"><a href="multi-geom.html#cb595-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb595-3"><a href="multi-geom.html#cb595-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol,</span>
-<span id="cb595-4"><a href="multi-geom.html#cb595-4" tabindex="-1"></a>                     <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
-<span id="cb595-5"><a href="multi-geom.html#cb595-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> population)) <span class="sc">+</span> </span>
-<span id="cb595-6"><a href="multi-geom.html#cb595-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb595-7"><a href="multi-geom.html#cb595-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb595-8"><a href="multi-geom.html#cb595-8" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-623-1.png" width="576" /></p>
 <p>Here, the global aesthetic mapping <code>x = sugar</code>, <code>y = cholesterol</code>, and <code>color = gender</code> are passed to <code>geom_point()</code> and <code>geom_smooth()</code>. And we have an additional local aesthetic mapping <code>size = population</code> for <code>geom_point()</code>.</p>
 </div>
 <div id="overwrite-global-aesthetic-mappings" class="section level4 hasAnchor" number="5.7.2.2">
 <h4><span class="header-section-number">5.7.2.2</span> Overwrite Global Aesthetic Mappings<a href="multi-geom.html#overwrite-global-aesthetic-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>When you add the same aesthetic mapping in the local geom as one of the global mappings, the corresponding global aesthetic mapping will be <strong>overwritten</strong>.</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="multi-geom.html#cb596-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
-<span id="cb596-2"><a href="multi-geom.html#cb596-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb596-3"><a href="multi-geom.html#cb596-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol,</span>
-<span id="cb596-4"><a href="multi-geom.html#cb596-4" tabindex="-1"></a>                     <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
-<span id="cb596-5"><a href="multi-geom.html#cb596-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> continent)) <span class="sc">+</span> </span>
-<span id="cb596-6"><a href="multi-geom.html#cb596-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb596-7"><a href="multi-geom.html#cb596-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb596-8"><a href="multi-geom.html#cb596-8" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-624-1.png" width="576" /></p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="multi-geom.html#cb595-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
+<span id="cb595-2"><a href="multi-geom.html#cb595-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
+<span id="cb595-3"><a href="multi-geom.html#cb595-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol,</span>
+<span id="cb595-4"><a href="multi-geom.html#cb595-4" tabindex="-1"></a>                     <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb595-5"><a href="multi-geom.html#cb595-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> continent)) <span class="sc">+</span> </span>
+<span id="cb595-6"><a href="multi-geom.html#cb595-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb595-7"><a href="multi-geom.html#cb595-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb595-8"><a href="multi-geom.html#cb595-8" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb595-9"><a href="multi-geom.html#cb595-9" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-623-1.png" width="576" /></p>
 <p>Here, the global aesthetic mapping <code>color = gender</code> is first passed to both <code>geom_point()</code> and <code>geom_smooth()</code>. However, since there is a local aesthetic mapping for color (<code>color = continent</code>) in <code>geom_point()</code>, the local aesthetic mapping will <strong>overwrite</strong> the global one, resulting countries in different continents having different colors. Note that the legend may look a bit weird as it contains a mix of values for continent and gender under the name gender. This is an artifact of the <code>ggplot</code> implementation. As a result, it is recommended to avoid this kind of overwriting behavior.</p>
 </div>
 <div id="no-global-constant-valued-aesthetics" class="section level4 hasAnchor" number="5.7.2.3">
@@ -855,38 +862,41 @@ div.csl-indent {
 <li>The global aesthetic mapping is an aesthetic mapping (for example, <code>color = gender</code> will use different colors for different gender values) that will be passed into all available geoms considered in the single plot.</li>
 </ul>
 <p>It is worth noting that we can’t set the constant-valued aesthetic at the global level, i.e.there is no <strong>Global Constant-Valued Aesthetics</strong>. Let’s try to change all the points and lines to purple by adding <code>color = "purple"</code> in <code>ggplot()</code>.</p>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="multi-geom.html#cb596-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
+<span id="cb596-2"><a href="multi-geom.html#cb596-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
+<span id="cb596-3"><a href="multi-geom.html#cb596-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol),</span>
+<span id="cb596-4"><a href="multi-geom.html#cb596-4" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb596-5"><a href="multi-geom.html#cb596-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb596-6"><a href="multi-geom.html#cb596-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb596-7"><a href="multi-geom.html#cb596-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb596-8"><a href="multi-geom.html#cb596-8" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb596-9"><a href="multi-geom.html#cb596-9" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-624-1.png" width="576" /></p>
+<p>As you can see from the output, the argument <code>color = "purple"</code> was ignored during the plotting process. To achieve this, you need to use <code>color = "purple"</code> as constant-valued aesthetics for both geoms as below.</p>
 <div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="multi-geom.html#cb597-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
 <span id="cb597-2"><a href="multi-geom.html#cb597-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb597-3"><a href="multi-geom.html#cb597-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol),</span>
-<span id="cb597-4"><a href="multi-geom.html#cb597-4" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb597-5"><a href="multi-geom.html#cb597-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb597-6"><a href="multi-geom.html#cb597-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb597-7"><a href="multi-geom.html#cb597-7" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb597-8"><a href="multi-geom.html#cb597-8" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<span id="cb597-3"><a href="multi-geom.html#cb597-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
+<span id="cb597-4"><a href="multi-geom.html#cb597-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb597-5"><a href="multi-geom.html#cb597-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span>
+<span id="cb597-6"><a href="multi-geom.html#cb597-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb597-7"><a href="multi-geom.html#cb597-7" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb597-8"><a href="multi-geom.html#cb597-8" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-625-1.png" width="576" /></p>
-<p>As you can see from the output, the argument <code>color = "purple"</code> was ignored during the plotting process. To achieve this, you need to use <code>color = "purple"</code> as constant-valued aesthetics for both geoms as below.</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="multi-geom.html#cb598-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
-<span id="cb598-2"><a href="multi-geom.html#cb598-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb598-3"><a href="multi-geom.html#cb598-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
-<span id="cb598-4"><a href="multi-geom.html#cb598-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb598-5"><a href="multi-geom.html#cb598-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">&quot;purple&quot;</span>)</span>
-<span id="cb598-6"><a href="multi-geom.html#cb598-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb598-7"><a href="multi-geom.html#cb598-7" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-626-1.png" width="576" /></p>
 </div>
 <div id="mixing-the-three-types-of-aesthetics" class="section level4 hasAnchor" number="5.7.2.4">
 <h4><span class="header-section-number">5.7.2.4</span> Mixing the three types of aesthetics<a href="multi-geom.html#mixing-the-three-types-of-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Now, let’s see an example where all three types of aesthetics are used.</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="multi-geom.html#cb599-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
-<span id="cb599-2"><a href="multi-geom.html#cb599-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
-<span id="cb599-3"><a href="multi-geom.html#cb599-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
-<span id="cb599-4"><a href="multi-geom.html#cb599-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> population),</span>
-<span id="cb599-5"><a href="multi-geom.html#cb599-5" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb599-6"><a href="multi-geom.html#cb599-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gender),</span>
-<span id="cb599-7"><a href="multi-geom.html#cb599-7" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb599-8"><a href="multi-geom.html#cb599-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39;</span></span>
-<span id="cb599-9"><a href="multi-geom.html#cb599-9" tabindex="-1"></a><span class="co">#&gt; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-627-1.png" width="576" /></p>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="multi-geom.html#cb598-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004,</span>
+<span id="cb598-2"><a href="multi-geom.html#cb598-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar,</span>
+<span id="cb598-3"><a href="multi-geom.html#cb598-3" tabindex="-1"></a>                     <span class="at">y =</span> cholesterol)) <span class="sc">+</span> </span>
+<span id="cb598-4"><a href="multi-geom.html#cb598-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">size =</span> population),</span>
+<span id="cb598-5"><a href="multi-geom.html#cb598-5" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb598-6"><a href="multi-geom.html#cb598-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> gender),</span>
+<span id="cb598-7"><a href="multi-geom.html#cb598-7" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb598-8"><a href="multi-geom.html#cb598-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method</span></span>
+<span id="cb598-9"><a href="multi-geom.html#cb598-9" tabindex="-1"></a><span class="co">#&gt; = &#39;loess&#39; and formula = &#39;y ~</span></span>
+<span id="cb598-10"><a href="multi-geom.html#cb598-10" tabindex="-1"></a><span class="co">#&gt; x&#39;</span></span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-626-1.png" width="576" /></p>
 </div>
 </div>
 <div id="exercises-37" class="section level3 hasAnchor" number="5.7.3">
@@ -898,22 +908,22 @@ div.csl-indent {
 <li>In the plot from Q2, using different colors for both the scatterplot and the smoothline fit to distinguish whether the house has more than 3 bedrooms and make all points to be size 2.</li>
 <li>If you run the following code</li>
 </ol>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="multi-geom.html#cb600-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
-<span id="cb600-2"><a href="multi-geom.html#cb600-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, </span>
-<span id="cb600-3"><a href="multi-geom.html#cb600-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price), </span>
-<span id="cb600-4"><a href="multi-geom.html#cb600-4" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb600-5"><a href="multi-geom.html#cb600-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb600-6"><a href="multi-geom.html#cb600-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="multi-geom.html#cb599-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb599-2"><a href="multi-geom.html#cb599-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, </span>
+<span id="cb599-3"><a href="multi-geom.html#cb599-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price), </span>
+<span id="cb599-4"><a href="multi-geom.html#cb599-4" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb599-5"><a href="multi-geom.html#cb599-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb599-6"><a href="multi-geom.html#cb599-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
 <p>Do you think all the points and the smoothline will be green? If not, explain the reason and make them green.</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Run</li>
 </ol>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="multi-geom.html#cb601-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
-<span id="cb601-2"><a href="multi-geom.html#cb601-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, </span>
-<span id="cb601-3"><a href="multi-geom.html#cb601-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price, </span>
-<span id="cb601-4"><a href="multi-geom.html#cb601-4" tabindex="-1"></a>                     <span class="at">color =</span> house_style)) <span class="sc">+</span> </span>
-<span id="cb601-5"><a href="multi-geom.html#cb601-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> bedroom <span class="sc">&gt;</span> <span class="dv">3</span>)) <span class="sc">+</span></span>
-<span id="cb601-6"><a href="multi-geom.html#cb601-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> bedroom <span class="sc">&gt;</span> <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="multi-geom.html#cb600-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb600-2"><a href="multi-geom.html#cb600-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> liv_area, </span>
+<span id="cb600-3"><a href="multi-geom.html#cb600-3" tabindex="-1"></a>                     <span class="at">y =</span> sale_price, </span>
+<span id="cb600-4"><a href="multi-geom.html#cb600-4" tabindex="-1"></a>                     <span class="at">color =</span> house_style)) <span class="sc">+</span> </span>
+<span id="cb600-5"><a href="multi-geom.html#cb600-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> bedroom <span class="sc">&gt;</span> <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb600-6"><a href="multi-geom.html#cb600-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> bedroom <span class="sc">&gt;</span> <span class="dv">3</span>))</span></code></pre></div>
 <p>Explain why you only see two colors in the plot although the <code>house_style</code> is mapped to color?</p>
 
 </div>

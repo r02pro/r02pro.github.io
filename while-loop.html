@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-22" />
+<meta name="date" content="2024-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -712,57 +712,57 @@ div.csl-indent {
 <div id="while-loop-1" class="section level3 hasAnchor" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> <code>while</code> loop<a href="while-loop.html#while-loop-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s first review the syntax of <code>for</code> loops.</p>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="while-loop.html#cb822-1" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> val_seq){</span>
+<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="while-loop.html#cb821-1" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> val_seq){</span>
+<span id="cb821-2"><a href="while-loop.html#cb821-2" tabindex="-1"></a>  statement1</span>
+<span id="cb821-3"><a href="while-loop.html#cb821-3" tabindex="-1"></a>  statement2</span>
+<span id="cb821-4"><a href="while-loop.html#cb821-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here, we have to specify the <code>val_seq</code> along which we will assign each element to <code>val</code> and execute the statements, unless <code>break</code> is called. Sometimes, it is not clear what the <code>val_seq</code> would be. For example, if we want to find the Fibonacci sequence up to 100, it is not clear how many elements we will have in the <code>val_seq</code>. In this case, the <code>while</code> loop comes to rescue. Let’s take a look of the syntax of <code>while</code> loop.</p>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="while-loop.html#cb822-1" tabindex="-1"></a><span class="cf">while</span>(cond_expr){</span>
 <span id="cb822-2"><a href="while-loop.html#cb822-2" tabindex="-1"></a>  statement1</span>
 <span id="cb822-3"><a href="while-loop.html#cb822-3" tabindex="-1"></a>  statement2</span>
 <span id="cb822-4"><a href="while-loop.html#cb822-4" tabindex="-1"></a>}</span></code></pre></div>
-<p>Here, we have to specify the <code>val_seq</code> along which we will assign each element to <code>val</code> and execute the statements, unless <code>break</code> is called. Sometimes, it is not clear what the <code>val_seq</code> would be. For example, if we want to find the Fibonacci sequence up to 100, it is not clear how many elements we will have in the <code>val_seq</code>. In this case, the <code>while</code> loop comes to rescue. Let’s take a look of the syntax of <code>while</code> loop.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="while-loop.html#cb823-1" tabindex="-1"></a><span class="cf">while</span>(cond_expr){</span>
-<span id="cb823-2"><a href="while-loop.html#cb823-2" tabindex="-1"></a>  statement1</span>
-<span id="cb823-3"><a href="while-loop.html#cb823-3" tabindex="-1"></a>  statement2</span>
-<span id="cb823-4"><a href="while-loop.html#cb823-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>In the <code>while</code> loop, we put a logical statement in the <code>cond_expr</code>. The loop will continue as long as <code>cond_expr</code> take the value of <code>TRUE</code>. Let’s see the actual code in action.</p>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="while-loop.html#cb824-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb824-2"><a href="while-loop.html#cb824-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb824-3"><a href="while-loop.html#cb824-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb824-4"><a href="while-loop.html#cb824-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb824-5"><a href="while-loop.html#cb824-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>){      </span>
-<span id="cb824-6"><a href="while-loop.html#cb824-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb824-7"><a href="while-loop.html#cb824-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb824-8"><a href="while-loop.html#cb824-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb824-9"><a href="while-loop.html#cb824-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb824-10"><a href="while-loop.html#cb824-10" tabindex="-1"></a>}</span>
-<span id="cb824-11"><a href="while-loop.html#cb824-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
-<span id="cb824-12"><a href="while-loop.html#cb824-12" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="while-loop.html#cb823-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb823-2"><a href="while-loop.html#cb823-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb823-3"><a href="while-loop.html#cb823-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb823-4"><a href="while-loop.html#cb823-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb823-5"><a href="while-loop.html#cb823-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>){      </span>
+<span id="cb823-6"><a href="while-loop.html#cb823-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb823-7"><a href="while-loop.html#cb823-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb823-8"><a href="while-loop.html#cb823-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb823-9"><a href="while-loop.html#cb823-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb823-10"><a href="while-loop.html#cb823-10" tabindex="-1"></a>}</span>
+<span id="cb823-11"><a href="while-loop.html#cb823-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb823-12"><a href="while-loop.html#cb823-12" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
 </div>
 <div id="repeat-loop" class="section level3 hasAnchor" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> <code>repeat</code> Loop<a href="while-loop.html#repeat-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The last type of loops is the <code>repeat</code> loop, which doesn’t have neither the range of values, nor the logical expression. The syntax is as below.</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="while-loop.html#cb825-1" tabindex="-1"></a><span class="cf">repeat</span>{</span>
-<span id="cb825-2"><a href="while-loop.html#cb825-2" tabindex="-1"></a>  expr1</span>
-<span id="cb825-3"><a href="while-loop.html#cb825-3" tabindex="-1"></a>  expr2</span>
-<span id="cb825-4"><a href="while-loop.html#cb825-4" tabindex="-1"></a>  <span class="cf">if</span>(cond_expr){</span>
-<span id="cb825-5"><a href="while-loop.html#cb825-5" tabindex="-1"></a>    <span class="cf">break</span></span>
-<span id="cb825-6"><a href="while-loop.html#cb825-6" tabindex="-1"></a>  }</span>
-<span id="cb825-7"><a href="while-loop.html#cb825-7" tabindex="-1"></a>  expr3</span>
-<span id="cb825-8"><a href="while-loop.html#cb825-8" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="while-loop.html#cb824-1" tabindex="-1"></a><span class="cf">repeat</span>{</span>
+<span id="cb824-2"><a href="while-loop.html#cb824-2" tabindex="-1"></a>  expr1</span>
+<span id="cb824-3"><a href="while-loop.html#cb824-3" tabindex="-1"></a>  expr2</span>
+<span id="cb824-4"><a href="while-loop.html#cb824-4" tabindex="-1"></a>  <span class="cf">if</span>(cond_expr){</span>
+<span id="cb824-5"><a href="while-loop.html#cb824-5" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb824-6"><a href="while-loop.html#cb824-6" tabindex="-1"></a>  }</span>
+<span id="cb824-7"><a href="while-loop.html#cb824-7" tabindex="-1"></a>  expr3</span>
+<span id="cb824-8"><a href="while-loop.html#cb824-8" tabindex="-1"></a>}</span></code></pre></div>
 <p>As you can see in the syntax of the <code>repeat</code> loop, you always need to put a conditional <code>break</code> statement to avoid infinite loops.</p>
 <p>Let’s rewrite the previous example using <code>repeat</code> loop.</p>
-<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="while-loop.html#cb826-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb826-2"><a href="while-loop.html#cb826-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb826-3"><a href="while-loop.html#cb826-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb826-4"><a href="while-loop.html#cb826-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb826-5"><a href="while-loop.html#cb826-5" tabindex="-1"></a><span class="cf">repeat</span>{      </span>
-<span id="cb826-6"><a href="while-loop.html#cb826-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb826-7"><a href="while-loop.html#cb826-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb826-8"><a href="while-loop.html#cb826-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb826-9"><a href="while-loop.html#cb826-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb826-10"><a href="while-loop.html#cb826-10" tabindex="-1"></a>  <span class="cf">if</span>(fib_next_value <span class="sc">&gt;=</span> <span class="dv">100</span>){</span>
-<span id="cb826-11"><a href="while-loop.html#cb826-11" tabindex="-1"></a>    <span class="cf">break</span></span>
-<span id="cb826-12"><a href="while-loop.html#cb826-12" tabindex="-1"></a>  }</span>
-<span id="cb826-13"><a href="while-loop.html#cb826-13" tabindex="-1"></a>}</span>
-<span id="cb826-14"><a href="while-loop.html#cb826-14" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
-<span id="cb826-15"><a href="while-loop.html#cb826-15" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="while-loop.html#cb825-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb825-2"><a href="while-loop.html#cb825-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb825-3"><a href="while-loop.html#cb825-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb825-4"><a href="while-loop.html#cb825-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb825-5"><a href="while-loop.html#cb825-5" tabindex="-1"></a><span class="cf">repeat</span>{      </span>
+<span id="cb825-6"><a href="while-loop.html#cb825-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb825-7"><a href="while-loop.html#cb825-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb825-8"><a href="while-loop.html#cb825-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb825-9"><a href="while-loop.html#cb825-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb825-10"><a href="while-loop.html#cb825-10" tabindex="-1"></a>  <span class="cf">if</span>(fib_next_value <span class="sc">&gt;=</span> <span class="dv">100</span>){</span>
+<span id="cb825-11"><a href="while-loop.html#cb825-11" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb825-12"><a href="while-loop.html#cb825-12" tabindex="-1"></a>  }</span>
+<span id="cb825-13"><a href="while-loop.html#cb825-13" tabindex="-1"></a>}</span>
+<span id="cb825-14"><a href="while-loop.html#cb825-14" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb825-15"><a href="while-loop.html#cb825-15" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
 <p>You can see that the same sequence was generated using the <code>repeat</code> loop.</p>
 
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-22" />
+<meta name="date" content="2024-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -709,7 +709,7 @@ div.csl-indent {
 <div id="filter-observations" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Filter Observations and Objects Masking<a href="filter-observations.html#filter-observations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s start with the first task outlined at the beginning of this chapter. Suppose we want to find the observations that represent countries in Europe (<code>continent</code>), years between 2006 and 2010 (<code>year</code>), and Low Human Development Index (<code>HDI_category</code>). You can use the function <code>filter()</code> in the <strong>dplyr</strong> package, a member of the <strong>tidyverse</strong> package. If you haven’t installed the <strong>tidyverse</strong> package, you need to install it. Let’s first load the <strong>dplyr</strong> package.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="filter-observations.html#cb722-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="filter-observations.html#cb721-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div id="objects-masking" class="section level3 hasAnchor" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Objects Masking<a href="filter-observations.html#objects-masking" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After loading the package <strong>dplyr</strong> for the first time, you can see the following message</p>
@@ -718,74 +718,74 @@ div.csl-indent {
     filter, lag</code></pre>
 <p>The message appears because <strong>dplyr</strong> contains the functions <code>filter()</code> and <code>lag()</code> which are already defined and preloaded in the R package <strong>stats</strong>. As a result, the original functions are masked by the new definition in <strong>dplyr</strong>.</p>
 <p>In this scenario when the same function name is shared by multiple packages, we can add the package name as a prefix to the function name with <em>double colon</em> (<code>::</code>). For example, <code>stats::filter()</code> represents the <code>filter()</code> function in the <strong>stats</strong> package, while <code>dplyr::filter()</code> represents the <code>filter()</code> function in the <strong>dplyr</strong> package. You can also look at their documentations.</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="filter-observations.html#cb724-1" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
-<span id="cb724-2"><a href="filter-observations.html#cb724-2" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="filter-observations.html#cb723-1" tabindex="-1"></a>?stats<span class="sc">::</span>filter</span>
+<span id="cb723-2"><a href="filter-observations.html#cb723-2" tabindex="-1"></a>?dplyr<span class="sc">::</span>filter</span></code></pre></div>
 <p>It is helpful to verify which version of <code>filter()</code> you are using by typing the function name <code>filter</code>.</p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="filter-observations.html#cb725-1" tabindex="-1"></a>filter</span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="filter-observations.html#cb724-1" tabindex="-1"></a>filter</span></code></pre></div>
 <p>Usually, R will use the function in the package that is loaded at a later time. To verify the search path, you can use the <code>search()</code> function. R will show a list of attached packages and R objects.</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="filter-observations.html#cb726-1" tabindex="-1"></a><span class="fu">search</span>()</span>
-<span id="cb726-2"><a href="filter-observations.html#cb726-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:plotly&quot;     &quot;package:kableExtra&quot;</span></span>
-<span id="cb726-3"><a href="filter-observations.html#cb726-3" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;package:lubridate&quot;  &quot;package:forcats&quot;    &quot;package:stringr&quot;   </span></span>
-<span id="cb726-4"><a href="filter-observations.html#cb726-4" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:purrr&quot;      &quot;package:tidyr&quot;      &quot;package:tidyverse&quot; </span></span>
-<span id="cb726-5"><a href="filter-observations.html#cb726-5" tabindex="-1"></a><span class="co">#&gt; [10] &quot;package:ggplot2&quot;    &quot;package:haven&quot;      &quot;package:readxl&quot;    </span></span>
-<span id="cb726-6"><a href="filter-observations.html#cb726-6" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:readr&quot;      &quot;package:tibble&quot;     &quot;package:r02pro&quot;    </span></span>
-<span id="cb726-7"><a href="filter-observations.html#cb726-7" tabindex="-1"></a><span class="co">#&gt; [16] &quot;package:dplyr&quot;      &quot;package:stats&quot;      &quot;package:graphics&quot;  </span></span>
-<span id="cb726-8"><a href="filter-observations.html#cb726-8" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:grDevices&quot;  &quot;package:utils&quot;      &quot;package:datasets&quot;  </span></span>
-<span id="cb726-9"><a href="filter-observations.html#cb726-9" tabindex="-1"></a><span class="co">#&gt; [22] &quot;package:methods&quot;    &quot;Autoloads&quot;          &quot;package:base&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="filter-observations.html#cb725-1" tabindex="-1"></a><span class="fu">search</span>()</span>
+<span id="cb725-2"><a href="filter-observations.html#cb725-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;.GlobalEnv&quot;         &quot;package:plotly&quot;     &quot;package:kableExtra&quot;</span></span>
+<span id="cb725-3"><a href="filter-observations.html#cb725-3" tabindex="-1"></a><span class="co">#&gt;  [4] &quot;package:lubridate&quot;  &quot;package:forcats&quot;    &quot;package:stringr&quot;   </span></span>
+<span id="cb725-4"><a href="filter-observations.html#cb725-4" tabindex="-1"></a><span class="co">#&gt;  [7] &quot;package:purrr&quot;      &quot;package:tidyr&quot;      &quot;package:tidyverse&quot; </span></span>
+<span id="cb725-5"><a href="filter-observations.html#cb725-5" tabindex="-1"></a><span class="co">#&gt; [10] &quot;package:ggplot2&quot;    &quot;package:haven&quot;      &quot;package:readxl&quot;    </span></span>
+<span id="cb725-6"><a href="filter-observations.html#cb725-6" tabindex="-1"></a><span class="co">#&gt; [13] &quot;package:readr&quot;      &quot;package:tibble&quot;     &quot;package:r02pro&quot;    </span></span>
+<span id="cb725-7"><a href="filter-observations.html#cb725-7" tabindex="-1"></a><span class="co">#&gt; [16] &quot;package:dplyr&quot;      &quot;package:stats&quot;      &quot;package:graphics&quot;  </span></span>
+<span id="cb725-8"><a href="filter-observations.html#cb725-8" tabindex="-1"></a><span class="co">#&gt; [19] &quot;package:grDevices&quot;  &quot;package:utils&quot;      &quot;package:datasets&quot;  </span></span>
+<span id="cb725-9"><a href="filter-observations.html#cb725-9" tabindex="-1"></a><span class="co">#&gt; [22] &quot;package:methods&quot;    &quot;Autoloads&quot;          &quot;package:base&quot;</span></span></code></pre></div>
 </div>
 <div id="filter-observations-1" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Filter Observations<a href="filter-observations.html#filter-observations-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let’s introduce how to use <code>filter()</code> to get the subset of <code>gm</code> which consists of the rows that represent countries in Europe (<code>continent</code>), years between 2004 and 2006 (<code>year</code>), and very high Human Development Index (<code>HDI_category</code>).</p>
 <p>To use the <code>filter()</code> function, you put the dataset in the first argument, and put the <strong>logical statements</strong> as individual arguments after that.</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="filter-observations.html#cb727-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb727-2"><a href="filter-observations.html#cb727-2" tabindex="-1"></a><span class="fu">filter</span>(gm, </span>
-<span id="cb727-3"><a href="filter-observations.html#cb727-3" tabindex="-1"></a>       continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>, </span>
-<span id="cb727-4"><a href="filter-observations.html#cb727-4" tabindex="-1"></a>       year <span class="sc">&gt;=</span> <span class="dv">2004</span>,</span>
-<span id="cb727-5"><a href="filter-observations.html#cb727-5" tabindex="-1"></a>       year <span class="sc">&lt;=</span> <span class="dv">2006</span>,</span>
-<span id="cb727-6"><a href="filter-observations.html#cb727-6" tabindex="-1"></a>       HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>) </span>
-<span id="cb727-7"><a href="filter-observations.html#cb727-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 81 × 33</span></span>
-<span id="cb727-8"><a href="filter-observations.html#cb727-8" tabindex="-1"></a><span class="co">#&gt;    country  year smoki…¹ smoki…² lungc…³ lungc…⁴ owid_…⁵ food_…⁶ avera…⁷ sanit…⁸</span></span>
-<span id="cb727-9"><a href="filter-observations.html#cb727-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb727-10"><a href="filter-observations.html#cb727-10" tabindex="-1"></a><span class="co">#&gt;  1 Austria  2004    40.1    46.4   19.4     50.5    66      3640    49.9   100  </span></span>
-<span id="cb727-11"><a href="filter-observations.html#cb727-11" tabindex="-1"></a><span class="co">#&gt;  2 Belgium  2004    24.1    30.1   18.4     72.3    71.3    3720    47.2    99.5</span></span>
-<span id="cb727-12"><a href="filter-observations.html#cb727-12" tabindex="-1"></a><span class="co">#&gt;  3 Switze…  2004    22.2    30.7   19.6     47.6    80      3390    65.3    99.9</span></span>
-<span id="cb727-13"><a href="filter-observations.html#cb727-13" tabindex="-1"></a><span class="co">#&gt;  4 Czech …  2004    25.4    36.6   18.6     69.3    79.3    3320    24.3    99.1</span></span>
-<span id="cb727-14"><a href="filter-observations.html#cb727-14" tabindex="-1"></a><span class="co">#&gt;  5 Germany  2004    25.8    37.4   22.4     63.8    88.7    3450    51.4    99.2</span></span>
-<span id="cb727-15"><a href="filter-observations.html#cb727-15" tabindex="-1"></a><span class="co">#&gt;  6 Denmark  2004    30.6    36.1   43.7     59.6    85.3    3410    48      99.6</span></span>
-<span id="cb727-16"><a href="filter-observations.html#cb727-16" tabindex="-1"></a><span class="co">#&gt;  7 Spain    2004    30.9    36.4    8.99    65.4    59.3    3220    34.4    99.9</span></span>
-<span id="cb727-17"><a href="filter-observations.html#cb727-17" tabindex="-1"></a><span class="co">#&gt;  8 Estonia  2004    27.5    49.9   11.1     68.6    80.7    3170    18.7    99.6</span></span>
-<span id="cb727-18"><a href="filter-observations.html#cb727-18" tabindex="-1"></a><span class="co">#&gt;  9 Finland  2004    24.4    31.8   14.3     45.6    80      3200    45.4    99.4</span></span>
-<span id="cb727-19"><a href="filter-observations.html#cb727-19" tabindex="-1"></a><span class="co">#&gt; 10 France   2004    26.7    36.6   15.4     65.6    69.3    3540    43.7    98.7</span></span>
-<span id="cb727-20"><a href="filter-observations.html#cb727-20" tabindex="-1"></a><span class="co">#&gt; # … with 71 more rows, 23 more variables: child_mortality &lt;dbl&gt;,</span></span>
-<span id="cb727-21"><a href="filter-observations.html#cb727-21" tabindex="-1"></a><span class="co">#&gt; #   income_per_person &lt;dbl&gt;, HDI &lt;dbl&gt;, alcohol_male &lt;dbl&gt;,</span></span>
-<span id="cb727-22"><a href="filter-observations.html#cb727-22" tabindex="-1"></a><span class="co">#&gt; #   alcohol_female &lt;dbl&gt;, livercancer_newcases_male &lt;dbl&gt;,</span></span>
-<span id="cb727-23"><a href="filter-observations.html#cb727-23" tabindex="-1"></a><span class="co">#&gt; #   livercancer_newcases_female &lt;dbl&gt;, mortality_male &lt;dbl&gt;,</span></span>
-<span id="cb727-24"><a href="filter-observations.html#cb727-24" tabindex="-1"></a><span class="co">#&gt; #   mortality_female &lt;dbl&gt;, cholesterol_fat_in_blood_male &lt;dbl&gt;,</span></span>
-<span id="cb727-25"><a href="filter-observations.html#cb727-25" tabindex="-1"></a><span class="co">#&gt; #   cholesterol_fat_in_blood_female &lt;dbl&gt;, continent &lt;chr&gt;, region &lt;chr&gt;,</span></span>
-<span id="cb727-26"><a href="filter-observations.html#cb727-26" tabindex="-1"></a><span class="co">#&gt; #   population &lt;dbl&gt;, life_expectancy &lt;dbl&gt;, sugar &lt;dbl&gt;, BMI_female &lt;dbl&gt;, …</span></span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="filter-observations.html#cb726-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb726-2"><a href="filter-observations.html#cb726-2" tabindex="-1"></a><span class="fu">filter</span>(gm, </span>
+<span id="cb726-3"><a href="filter-observations.html#cb726-3" tabindex="-1"></a>       continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>, </span>
+<span id="cb726-4"><a href="filter-observations.html#cb726-4" tabindex="-1"></a>       year <span class="sc">&gt;=</span> <span class="dv">2004</span>,</span>
+<span id="cb726-5"><a href="filter-observations.html#cb726-5" tabindex="-1"></a>       year <span class="sc">&lt;=</span> <span class="dv">2006</span>,</span>
+<span id="cb726-6"><a href="filter-observations.html#cb726-6" tabindex="-1"></a>       HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>) </span>
+<span id="cb726-7"><a href="filter-observations.html#cb726-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 81 × 33</span></span>
+<span id="cb726-8"><a href="filter-observations.html#cb726-8" tabindex="-1"></a><span class="co">#&gt;    country  year smoki…¹ smoki…² lungc…³ lungc…⁴ owid_…⁵ food_…⁶ avera…⁷ sanit…⁸</span></span>
+<span id="cb726-9"><a href="filter-observations.html#cb726-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb726-10"><a href="filter-observations.html#cb726-10" tabindex="-1"></a><span class="co">#&gt;  1 Austria  2004    40.1    46.4   19.4     50.5    66      3640    49.9   100  </span></span>
+<span id="cb726-11"><a href="filter-observations.html#cb726-11" tabindex="-1"></a><span class="co">#&gt;  2 Belgium  2004    24.1    30.1   18.4     72.3    71.3    3720    47.2    99.5</span></span>
+<span id="cb726-12"><a href="filter-observations.html#cb726-12" tabindex="-1"></a><span class="co">#&gt;  3 Switze…  2004    22.2    30.7   19.6     47.6    80      3390    65.3    99.9</span></span>
+<span id="cb726-13"><a href="filter-observations.html#cb726-13" tabindex="-1"></a><span class="co">#&gt;  4 Czech …  2004    25.4    36.6   18.6     69.3    79.3    3320    24.3    99.1</span></span>
+<span id="cb726-14"><a href="filter-observations.html#cb726-14" tabindex="-1"></a><span class="co">#&gt;  5 Germany  2004    25.8    37.4   22.4     63.8    88.7    3450    51.4    99.2</span></span>
+<span id="cb726-15"><a href="filter-observations.html#cb726-15" tabindex="-1"></a><span class="co">#&gt;  6 Denmark  2004    30.6    36.1   43.7     59.6    85.3    3410    48      99.6</span></span>
+<span id="cb726-16"><a href="filter-observations.html#cb726-16" tabindex="-1"></a><span class="co">#&gt;  7 Spain    2004    30.9    36.4    8.99    65.4    59.3    3220    34.4    99.9</span></span>
+<span id="cb726-17"><a href="filter-observations.html#cb726-17" tabindex="-1"></a><span class="co">#&gt;  8 Estonia  2004    27.5    49.9   11.1     68.6    80.7    3170    18.7    99.6</span></span>
+<span id="cb726-18"><a href="filter-observations.html#cb726-18" tabindex="-1"></a><span class="co">#&gt;  9 Finland  2004    24.4    31.8   14.3     45.6    80      3200    45.4    99.4</span></span>
+<span id="cb726-19"><a href="filter-observations.html#cb726-19" tabindex="-1"></a><span class="co">#&gt; 10 France   2004    26.7    36.6   15.4     65.6    69.3    3540    43.7    98.7</span></span>
+<span id="cb726-20"><a href="filter-observations.html#cb726-20" tabindex="-1"></a><span class="co">#&gt; # … with 71 more rows, 23 more variables: child_mortality &lt;dbl&gt;,</span></span>
+<span id="cb726-21"><a href="filter-observations.html#cb726-21" tabindex="-1"></a><span class="co">#&gt; #   income_per_person &lt;dbl&gt;, HDI &lt;dbl&gt;, alcohol_male &lt;dbl&gt;,</span></span>
+<span id="cb726-22"><a href="filter-observations.html#cb726-22" tabindex="-1"></a><span class="co">#&gt; #   alcohol_female &lt;dbl&gt;, livercancer_newcases_male &lt;dbl&gt;,</span></span>
+<span id="cb726-23"><a href="filter-observations.html#cb726-23" tabindex="-1"></a><span class="co">#&gt; #   livercancer_newcases_female &lt;dbl&gt;, mortality_male &lt;dbl&gt;,</span></span>
+<span id="cb726-24"><a href="filter-observations.html#cb726-24" tabindex="-1"></a><span class="co">#&gt; #   mortality_female &lt;dbl&gt;, cholesterol_fat_in_blood_male &lt;dbl&gt;,</span></span>
+<span id="cb726-25"><a href="filter-observations.html#cb726-25" tabindex="-1"></a><span class="co">#&gt; #   cholesterol_fat_in_blood_female &lt;dbl&gt;, continent &lt;chr&gt;, region &lt;chr&gt;,</span></span>
+<span id="cb726-26"><a href="filter-observations.html#cb726-26" tabindex="-1"></a><span class="co">#&gt; #   population &lt;dbl&gt;, life_expectancy &lt;dbl&gt;, sugar &lt;dbl&gt;, BMI_female &lt;dbl&gt;, …</span></span></code></pre></div>
 <p>In the <code>filter()</code> function, each logical statement will be computed, which leads to a logical vector of the same length as the number of observations. Then, only the observations that have <code>TRUE</code> values in all logical vectors are kept.</p>
 <p>It is helpful to learn the mechanism of <code>filter()</code> by reproducing the results using what we learned on data frame subsetting in Section @ref(subset_df).</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="filter-observations.html#cb728-1" tabindex="-1"></a>gm[<span class="fu">which</span>(gm<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">&amp;</span> </span>
-<span id="cb728-2"><a href="filter-observations.html#cb728-2" tabindex="-1"></a>   gm<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2004</span> <span class="sc">&amp;</span></span>
-<span id="cb728-3"><a href="filter-observations.html#cb728-3" tabindex="-1"></a>   gm<span class="sc">$</span>year <span class="sc">&lt;=</span> <span class="dv">2006</span> <span class="sc">&amp;</span></span>
-<span id="cb728-4"><a href="filter-observations.html#cb728-4" tabindex="-1"></a>   gm<span class="sc">$</span>HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>), ]</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="filter-observations.html#cb727-1" tabindex="-1"></a>gm[<span class="fu">which</span>(gm<span class="sc">$</span>continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">&amp;</span> </span>
+<span id="cb727-2"><a href="filter-observations.html#cb727-2" tabindex="-1"></a>   gm<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2004</span> <span class="sc">&amp;</span></span>
+<span id="cb727-3"><a href="filter-observations.html#cb727-3" tabindex="-1"></a>   gm<span class="sc">$</span>year <span class="sc">&lt;=</span> <span class="dv">2006</span> <span class="sc">&amp;</span></span>
+<span id="cb727-4"><a href="filter-observations.html#cb727-4" tabindex="-1"></a>   gm<span class="sc">$</span>HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>), ]</span></code></pre></div>
 <p>Although we got the same answer, we hope you agree with us that the <code>filter()</code> function provides more intuitive and simpler codes than the raw data frame subsetting. For example, the tibble name <code>gm</code> appeared five times in the data frame subsetting while it only appears once in the <code>filter()</code> function.</p>
 <div class="infobox caution">
 <p>This is an example of the power of creating new R functions and R packages. They usually enable us to do tasks that couldn’t be done using the existing functions in base R, or making coding easier than just using the existing functions. Recall that the same thing happened in the visualization where we compared the visualization functions in base R with the <code>ggplot()</code> function. No matter how complicated the figure we want to create is, we only need to put the data set name once in the <code>ggplot()</code> function if all the layers are using the same data set.</p>
 </div>
 <p>It is worth noting that the <code>filter()</code> function only returns the observations when the conditions are all <code>TRUE</code>, excluding the observations that are missing in the variables associated with the filter conditions.</p>
 <p>Using the <code>filter()</code> function, the original tibble is <strong>unchanged</strong>, which is an important feature of many functions we will learn in this Chapter. To save the filtered tibble, you can either assign the value to the original tibble name, which will overwrite it; or assign the value to a new name, which will create a new tibble with the new values. Let’s save the filtering results in a new tibble.</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="filter-observations.html#cb729-1" tabindex="-1"></a>gm_europe <span class="ot">&lt;-</span> <span class="fu">filter</span>(gm, </span>
-<span id="cb729-2"><a href="filter-observations.html#cb729-2" tabindex="-1"></a>                    continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>,</span>
-<span id="cb729-3"><a href="filter-observations.html#cb729-3" tabindex="-1"></a>                    year <span class="sc">&gt;=</span> <span class="dv">2004</span>,</span>
-<span id="cb729-4"><a href="filter-observations.html#cb729-4" tabindex="-1"></a>                    year <span class="sc">&lt;=</span> <span class="dv">2006</span>,</span>
-<span id="cb729-5"><a href="filter-observations.html#cb729-5" tabindex="-1"></a>                    HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>) </span>
-<span id="cb729-6"><a href="filter-observations.html#cb729-6" tabindex="-1"></a>gm_europe</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="filter-observations.html#cb728-1" tabindex="-1"></a>gm_europe <span class="ot">&lt;-</span> <span class="fu">filter</span>(gm, </span>
+<span id="cb728-2"><a href="filter-observations.html#cb728-2" tabindex="-1"></a>                    continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>,</span>
+<span id="cb728-3"><a href="filter-observations.html#cb728-3" tabindex="-1"></a>                    year <span class="sc">&gt;=</span> <span class="dv">2004</span>,</span>
+<span id="cb728-4"><a href="filter-observations.html#cb728-4" tabindex="-1"></a>                    year <span class="sc">&lt;=</span> <span class="dv">2006</span>,</span>
+<span id="cb728-5"><a href="filter-observations.html#cb728-5" tabindex="-1"></a>                    HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span>) </span>
+<span id="cb728-6"><a href="filter-observations.html#cb728-6" tabindex="-1"></a>gm_europe</span></code></pre></div>
 <p>In addition to using separate logical statements, you can also have logical operations between multiple logical vectors inside each statement. This makes the <code>filter()</code> function very flexible in expressing different kinds of filtering operation. Let’s say we want to find records that are in either Europe or Asia with <code>HDI_category</code> being “high” and “very high” in year 2004.</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="filter-observations.html#cb730-1" tabindex="-1"></a><span class="fu">filter</span>(gm, </span>
-<span id="cb730-2"><a href="filter-observations.html#cb730-2" tabindex="-1"></a>       continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">&quot;Asia&quot;</span> ,</span>
-<span id="cb730-3"><a href="filter-observations.html#cb730-3" tabindex="-1"></a>       year <span class="sc">==</span> <span class="dv">2004</span>,</span>
-<span id="cb730-4"><a href="filter-observations.html#cb730-4" tabindex="-1"></a>       HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span> <span class="sc">|</span> HDI_category <span class="sc">==</span> <span class="st">&quot;high&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="filter-observations.html#cb729-1" tabindex="-1"></a><span class="fu">filter</span>(gm, </span>
+<span id="cb729-2"><a href="filter-observations.html#cb729-2" tabindex="-1"></a>       continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">&quot;Asia&quot;</span> ,</span>
+<span id="cb729-3"><a href="filter-observations.html#cb729-3" tabindex="-1"></a>       year <span class="sc">==</span> <span class="dv">2004</span>,</span>
+<span id="cb729-4"><a href="filter-observations.html#cb729-4" tabindex="-1"></a>       HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span> <span class="sc">|</span> HDI_category <span class="sc">==</span> <span class="st">&quot;high&quot;</span> )</span></code></pre></div>
 </div>
 <div id="exercise-1" class="section level3 hasAnchor" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Exercise<a href="filter-observations.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
