@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-23" />
+<meta name="date" content="2024-09-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,17 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -134,28 +123,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -173,14 +140,11 @@ div.csl-indent {
 <li><a href="./">R Programming: Zero to Pro</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
-<li class="chapter" data-level="" data-path="building-environment.html"><a href="building-environment.html"><i class="fa fa-check"></i>Building Environment</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation of R, RStudio and R Packages</a>
@@ -710,38 +674,43 @@ div.csl-indent {
 <h2><span class="header-section-number">5.3</span> ggplot Aesthetics (II): Local Aesthetics Mapping<a href="aes-local-map.html#aes-local-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In Section <a href="aes-constant-value.html#aes-constant-value">5.2</a>, we introduced the first kind of aesthetics, namely <strong>Constant-Valued Aesthetics</strong>, where we set constant values to aesthetics that change features of the plot globally. In some applications, however, you may want to highlight different groups of the data with different values of aesthetics. In this section, we will dive deep into this topic: <strong>Local Aesthetics Mapping</strong>.</p>
 <p>Believe it or not, we’ve already seen this kind of aesthetic mapping when we first introduced ggplot in Section <a href="scatterplot.html#point">5.1.3</a>.</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="aes-local-map.html#cb517-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb517-2"><a href="aes-local-map.html#cb517-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb517-3"><a href="aes-local-map.html#cb517-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb517-4"><a href="aes-local-map.html#cb517-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb517-5"><a href="aes-local-map.html#cb517-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-547-1.png" width="576" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="aes-local-map.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="aes-local-map.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb1-3"><a href="aes-local-map.html#cb1-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb1-4"><a href="aes-local-map.html#cb1-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb1-5"><a href="aes-local-map.html#cb1-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol)) </span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>In the <code>aes()</code> function, <code>x</code> and <code>y</code> can also be viewed as aesthetics. It is clear to see that we are not setting <code>x</code> and <code>y</code> as constants. Instead, we map the variable <code>sugar</code> to <code>x</code> and the variable <code>cholesterol</code> to <code>y</code>. The <code>x</code> and <code>y</code> coordinates control the location of each data points depending on the variables of <code>sugar</code> and <code>cholesterol</code>, which is the essence of scatterplot. Now, let’s see how to do local aesthetic mappings for color, size, shape, and so on.</p>
 <div id="basic-local-aesthetics-mapping" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Basic Local Aesthetics Mapping<a href="aes-local-map.html#basic-local-aesthetics-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><em>a. Color</em></strong></p>
 <p>Let’s say you want to use different colors for <code>male</code> and <code>female</code> on the scatterplot. To do this, you can map the discrete variable <code>gender</code> to the <code>color</code> aesthetic by setting <code>color = gender</code> as an argument in the <code>aes()</code> function.</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="aes-local-map.html#cb518-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb518-2"><a href="aes-local-map.html#cb518-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb518-3"><a href="aes-local-map.html#cb518-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb518-4"><a href="aes-local-map.html#cb518-4" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-548-1.png" width="576" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="aes-local-map.html#cb3-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="aes-local-map.html#cb3-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb3-3"><a href="aes-local-map.html#cb3-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb3-4"><a href="aes-local-map.html#cb3-4" tabindex="-1"></a>                           <span class="at">color =</span> gender))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>From this figure, we can clearly see that different genders are shown in distinct colors. Also, for the same value of <code>sugar</code>, it appears that the value of <code>cholestrol</code> could be a bit smaller for male than that for female. In addition, <code>ggplot()</code> automatically created a legend to show the correspondence between the genders and colors.</p>
 <p>Can we map a continuous variable to the color aesthetic? The answer is positive.</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="aes-local-map.html#cb519-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb519-2"><a href="aes-local-map.html#cb519-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb519-3"><a href="aes-local-map.html#cb519-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb519-4"><a href="aes-local-map.html#cb519-4" tabindex="-1"></a>                           <span class="at">color =</span> population))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/scatterplot-color-1.png" width="576" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="aes-local-map.html#cb5-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="aes-local-map.html#cb5-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb5-3"><a href="aes-local-map.html#cb5-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb5-4"><a href="aes-local-map.html#cb5-4" tabindex="-1"></a>                           <span class="at">color =</span> population))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/scatterplot-color-1.png" width="672" /></p>
 <p>Here, you can see that the color of the points changes smoothly according to the value of <code>population</code>, the details of which is shown in the legend. In particular, the darker points represent smaller populations while the lighter ones correspond to bigger populations.</p>
 <p><strong><em>b. Size</em></strong></p>
 <p>In addition to color, you can also map a discrete variable to the size aesthetic.</p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="aes-local-map.html#cb520-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb520-2"><a href="aes-local-map.html#cb520-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb520-3"><a href="aes-local-map.html#cb520-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb520-4"><a href="aes-local-map.html#cb520-4" tabindex="-1"></a>                           <span class="at">size =</span> gender),</span>
-<span id="cb520-5"><a href="aes-local-map.html#cb520-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-549-1.png" width="576" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="aes-local-map.html#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="aes-local-map.html#cb7-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb7-3"><a href="aes-local-map.html#cb7-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb7-4"><a href="aes-local-map.html#cb7-4" tabindex="-1"></a>                           <span class="at">size =</span> gender),</span>
+<span id="cb7-5"><a href="aes-local-map.html#cb7-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>You can see from the plot that the sizes of the points are now different according to the <code>gender</code>.</p>
 <p>To alleviate the overplotting issue, we added a <strong>contant-valued aesthetic</strong> <code>alpha = 0.5</code> to the <code>geom_point()</code> function, making all points more transparent. Please pay close attention to the location where we put the argument:</p>
 <ol style="list-style-type: decimal">
@@ -750,35 +719,38 @@ div.csl-indent {
 </ol>
 <p>There is a warning message: “Using size for a discrete variable is not advised.” The reason is that different sizes may implicitly indicate a particular ordering of the groups, which are usually not clear for a discrete variable.</p>
 <p>Now, let’s try to map a continuous variable <code>BMI</code> to the size aesthetic.</p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="aes-local-map.html#cb521-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb521-2"><a href="aes-local-map.html#cb521-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb521-3"><a href="aes-local-map.html#cb521-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb521-4"><a href="aes-local-map.html#cb521-4" tabindex="-1"></a>                           <span class="at">size =</span> BMI),</span>
-<span id="cb521-5"><a href="aes-local-map.html#cb521-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-550-1.png" width="576" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="aes-local-map.html#cb10-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="aes-local-map.html#cb10-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb10-3"><a href="aes-local-map.html#cb10-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb10-4"><a href="aes-local-map.html#cb10-4" tabindex="-1"></a>                           <span class="at">size =</span> BMI),</span>
+<span id="cb10-5"><a href="aes-local-map.html#cb10-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Note that now the size of the points changes according to the corresponding <code>BMI</code> value, i.e. the larger points represent higher BMIs values and the smaller ones correspond to lower BMI values. It is worth noting that the legend only shows three representative <code>BMI</code> values (20, 25, an 30) and their corresponding sizes, however, we have other sizes show on the plot depending on exact BMI values.</p>
 <p><strong><em>c. Shape</em></strong></p>
 <p>We can also map a discrete variable to the <code>shape</code> aesthetic.</p>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="aes-local-map.html#cb522-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb522-2"><a href="aes-local-map.html#cb522-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb522-3"><a href="aes-local-map.html#cb522-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb522-4"><a href="aes-local-map.html#cb522-4" tabindex="-1"></a>                           <span class="at">shape =</span> continent))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-551-1.png" width="576" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="aes-local-map.html#cb12-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="aes-local-map.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb12-3"><a href="aes-local-map.html#cb12-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb12-4"><a href="aes-local-map.html#cb12-4" tabindex="-1"></a>                           <span class="at">shape =</span> continent))</span></code></pre></div>
+<pre><code>## Warning: Removed 150 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Now, the shape of the points are different for each continent.</p>
 <p>Can we map a continuous variable to the shape aesthetic? Let’s try it out.</p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="aes-local-map.html#cb523-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb523-2"><a href="aes-local-map.html#cb523-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb523-3"><a href="aes-local-map.html#cb523-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb523-4"><a href="aes-local-map.html#cb523-4" tabindex="-1"></a>                           <span class="at">shape =</span> BMI))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="aes-local-map.html#cb14-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="aes-local-map.html#cb14-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb14-3"><a href="aes-local-map.html#cb14-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb14-4"><a href="aes-local-map.html#cb14-4" tabindex="-1"></a>                           <span class="at">shape =</span> BMI))</span></code></pre></div>
 <p>You will see an error message: “A continuous variable can not be mapped to shape”. This is because shape is of a discrete nature in the sense that different shapes have no natural ordering and the number of possible shapes is finite where the continuous variable could take infinitely many different values.</p>
 <p><strong><em>d. Multiple Aesthetic Mappings</em></strong></p>
 <p>Just like Constant Valued Aesthetics, you can have multiple aesthetic mappings in ggplot, which can involve multiple mapped variables.</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="aes-local-map.html#cb524-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb524-2"><a href="aes-local-map.html#cb524-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb524-3"><a href="aes-local-map.html#cb524-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb524-4"><a href="aes-local-map.html#cb524-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender,</span>
-<span id="cb524-5"><a href="aes-local-map.html#cb524-5" tabindex="-1"></a>                           <span class="at">color =</span> HDI_category))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-553-1.png" width="576" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="aes-local-map.html#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="aes-local-map.html#cb15-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb15-3"><a href="aes-local-map.html#cb15-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb15-4"><a href="aes-local-map.html#cb15-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender,</span>
+<span id="cb15-5"><a href="aes-local-map.html#cb15-5" tabindex="-1"></a>                           <span class="at">color =</span> HDI_category))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Here, we differentiate <code>gender</code> by different shapes and differentiate <code>HDI_category</code> by different colors. Note that <code>HDI_category</code> represent the Human Development Index for each country. We can see that countries with low HDI has smaller values of sugar and cholesterol in general. Also note that there are two legends on the plot showing the color and shape, respectively.</p>
 </div>
 <div id="customize-the-local-aesthetics-mapping" class="section level3 hasAnchor" number="5.3.2">
@@ -786,98 +758,112 @@ div.csl-indent {
 <p>So far, we have introduced the basic local aesthetics mapping, where the default aesthetic values are used. Sometimes, you may want to use specific aesthetic values (colors, shapes) for particular values of the mapped variable.</p>
 <p><strong><em>a. Customize colors for discrete variables</em></strong></p>
 <p>Let’s start with the color aesthetic. To customize the colors with discrete variable, you can add a layer to the ggplot with function <code>scale_colour_manual</code> with argument <code>values</code> containing a character vector consisting of the desired colors in order.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="aes-local-map.html#cb525-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb525-2"><a href="aes-local-map.html#cb525-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb525-3"><a href="aes-local-map.html#cb525-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb525-4"><a href="aes-local-map.html#cb525-4" tabindex="-1"></a>                           <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
-<span id="cb525-5"><a href="aes-local-map.html#cb525-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-554-1.png" width="576" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="aes-local-map.html#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="aes-local-map.html#cb17-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb17-3"><a href="aes-local-map.html#cb17-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb17-4"><a href="aes-local-map.html#cb17-4" tabindex="-1"></a>                           <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb17-5"><a href="aes-local-map.html#cb17-5" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Now, the female group has color orange and the male group has color purple.</p>
 <p><strong><em>b. Remove the <code>NA</code> level</em></strong></p>
 <p>Let’s try to map <code>continent</code> to <code>color</code>.</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="aes-local-map.html#cb526-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb526-2"><a href="aes-local-map.html#cb526-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb526-3"><a href="aes-local-map.html#cb526-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb526-4"><a href="aes-local-map.html#cb526-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-555-1.png" width="576" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="aes-local-map.html#cb19-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="aes-local-map.html#cb19-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb19-3"><a href="aes-local-map.html#cb19-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb19-4"><a href="aes-local-map.html#cb19-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>The plot shows us the Africa countries in general have a lower value of <code>sugar</code> as well as a small value of <code>cholestrol</code>. On the other hand, the American and European countries have large values of <code>sugar</code> and <code>cholestrol</code>.</p>
 <p>You may noticed that this is a level <code>NA</code> for the continent due to missing values. To address this issue, you can use the <code>remove_missing()</code> function to remove observations with a missing value of <code>continent</code>.</p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="aes-local-map.html#cb527-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb527-2"><a href="aes-local-map.html#cb527-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb527-3"><a href="aes-local-map.html#cb527-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb527-4"><a href="aes-local-map.html#cb527-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-556-1.png" width="576" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="aes-local-map.html#cb21-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="aes-local-map.html#cb21-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb21-3"><a href="aes-local-map.html#cb21-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb21-4"><a href="aes-local-map.html#cb21-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
+<pre><code>## Warning: Removed 108 rows containing missing values.</code></pre>
+<pre><code>## Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Now, only the five continents are displayed.</p>
 <div class="infobox caution">
 <p>Note that here, we add the argument <code>vars = "continent"</code> in the <code>remove_missing()</code> function. This works by removing the observations only if the <code>continent</code> variable is missing. Without such an argument, an observation will be removed as long as there is at least one variable missing. For a dataset like <code>gm2004</code> that contain many variables, we recommend explicitly specify the variables that need to be considered for missingness. Here, the <code>vars</code> can take the value of a character vector, containing all variables that you want to consider for missingness.</p>
 </div>
 <p><strong><em>c. Customize color for continuous variables</em></strong></p>
 <p>To customize the color for continuous variables, you can add a layer <code>scale_color_continuous()</code> which specify the lower-value color and the high-value color for the variable.</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="aes-local-map.html#cb528-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb528-2"><a href="aes-local-map.html#cb528-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb528-3"><a href="aes-local-map.html#cb528-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb528-4"><a href="aes-local-map.html#cb528-4" tabindex="-1"></a>                           <span class="at">color =</span> BMI)) <span class="sc">+</span> </span>
-<span id="cb528-5"><a href="aes-local-map.html#cb528-5" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">low =</span> <span class="st">&quot;green&quot;</span>, </span>
-<span id="cb528-6"><a href="aes-local-map.html#cb528-6" tabindex="-1"></a>                         <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/color-discrete-customize-1.png" width="576" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="aes-local-map.html#cb24-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="aes-local-map.html#cb24-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb24-3"><a href="aes-local-map.html#cb24-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb24-4"><a href="aes-local-map.html#cb24-4" tabindex="-1"></a>                           <span class="at">color =</span> BMI)) <span class="sc">+</span> </span>
+<span id="cb24-5"><a href="aes-local-map.html#cb24-5" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">low =</span> <span class="st">&quot;green&quot;</span>, </span>
+<span id="cb24-6"><a href="aes-local-map.html#cb24-6" tabindex="-1"></a>                         <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/color-discrete-customize-1.png" width="672" /></p>
 <p>Now, we mapped the <code>BMI</code> to the color aesthetic and the lower values of <code>BMI</code> are mapped to green while the higher values are mapped to red.</p>
 <p><strong><em>d. Customize the shape for discrete variables</em></strong></p>
 <p>Similarly, you can also customize the shapes for each level of the discrete variable.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="aes-local-map.html#cb529-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb529-2"><a href="aes-local-map.html#cb529-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb529-3"><a href="aes-local-map.html#cb529-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb529-4"><a href="aes-local-map.html#cb529-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender)) <span class="sc">+</span></span>
-<span id="cb529-5"><a href="aes-local-map.html#cb529-5" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-557-1.png" width="576" /></p>
-<p>Here, we have the female and male being mapped to shape 6 and 3, respectively. Recall that all possible shapes are shown in Figure <a href="scatterplot.html#fig:all-shapes">5.1</a>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="aes-local-map.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="aes-local-map.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb26-3"><a href="aes-local-map.html#cb26-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb26-4"><a href="aes-local-map.html#cb26-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="aes-local-map.html#cb26-5" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Here, we have the female and male being mapped to shape 6 and 3, respectively. Recall that all possible shapes are shown in Figure <a href="#fig:all-shapes"><strong>??</strong></a>.</p>
 </div>
 <div id="customize-the-legend-order-for-discrete-variables" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Customize the legend order for discrete variables<a href="aes-local-map.html#customize-the-legend-order-for-discrete-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s review the following plot where we map <code>continent</code> to the color aesthetic.</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="aes-local-map.html#cb530-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb530-2"><a href="aes-local-map.html#cb530-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb530-3"><a href="aes-local-map.html#cb530-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb530-4"><a href="aes-local-map.html#cb530-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-558-1.png" width="576" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="aes-local-map.html#cb28-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb28-2"><a href="aes-local-map.html#cb28-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb28-3"><a href="aes-local-map.html#cb28-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb28-4"><a href="aes-local-map.html#cb28-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))</span></code></pre></div>
+<pre><code>## Warning: Removed 108 rows containing missing values.</code></pre>
+<pre><code>## Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Looking at the legend, you can see that different <code>continent</code> values are in alphabetical order as introduced in Section <a href="character-sort-rank-order.html#character-sort-rank-order">2.10</a> when you learned the ordering of character vectors. Sometimes, you may want to arrange these values in a different order in the plot. To achieve this, you can add a layers <code>scale_color_discrete()</code> with the argument <code>breaks</code> that specifies the desired order on the legend.</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="aes-local-map.html#cb531-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb531-2"><a href="aes-local-map.html#cb531-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb531-3"><a href="aes-local-map.html#cb531-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb531-4"><a href="aes-local-map.html#cb531-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))  <span class="sc">+</span></span>
-<span id="cb531-5"><a href="aes-local-map.html#cb531-5" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;Oceania&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Americas&quot;</span>,<span class="st">&quot;Africa&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-559-1.png" width="576" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="aes-local-map.html#cb31-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="st">&quot;continent&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb31-2"><a href="aes-local-map.html#cb31-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb31-3"><a href="aes-local-map.html#cb31-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb31-4"><a href="aes-local-map.html#cb31-4" tabindex="-1"></a>                           <span class="at">color =</span> continent))  <span class="sc">+</span></span>
+<span id="cb31-5"><a href="aes-local-map.html#cb31-5" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;Oceania&quot;</span>, <span class="st">&quot;Europe&quot;</span>, <span class="st">&quot;Asia&quot;</span>, <span class="st">&quot;Americas&quot;</span>,<span class="st">&quot;Africa&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 108 rows containing missing values.</code></pre>
+<pre><code>## Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Note that only the legend order changed with the corresponding mapped values unchanges.</p>
 <p>Now, let’s map <code>gender</code> to the shape aesthetic.</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="aes-local-map.html#cb532-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb532-2"><a href="aes-local-map.html#cb532-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb532-3"><a href="aes-local-map.html#cb532-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb532-4"><a href="aes-local-map.html#cb532-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-560-1.png" width="576" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="aes-local-map.html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="aes-local-map.html#cb34-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb34-3"><a href="aes-local-map.html#cb34-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb34-4"><a href="aes-local-map.html#cb34-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>To customize the legend order, you can add another layers called <code>scale_shape_discrete()</code> with the desired legend order.</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="aes-local-map.html#cb533-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb533-2"><a href="aes-local-map.html#cb533-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb533-3"><a href="aes-local-map.html#cb533-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb533-4"><a href="aes-local-map.html#cb533-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender)) <span class="sc">+</span></span>
-<span id="cb533-5"><a href="aes-local-map.html#cb533-5" tabindex="-1"></a>  <span class="fu">scale_shape_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-561-1.png" width="576" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="aes-local-map.html#cb36-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb36-2"><a href="aes-local-map.html#cb36-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb36-3"><a href="aes-local-map.html#cb36-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb36-4"><a href="aes-local-map.html#cb36-4" tabindex="-1"></a>                           <span class="at">shape =</span> gender)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="aes-local-map.html#cb36-5" tabindex="-1"></a>  <span class="fu">scale_shape_discrete</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>You may find a pattern here that to customize a ggplot where a certain aesthetic is considered, we need to use the corresponding customization function like <code>scale_color_discrete()</code> for the color aesthetic and <code>scale_shape_discrete()</code> for the shape aesthetic.</p>
 </div>
 <div id="create-logical-variables-and-map-to-aesthetics" class="section level3 hasAnchor" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> Create Logical Variables and Map to Aesthetics<a href="aes-local-map.html#create-logical-variables-and-map-to-aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lastly, you can also create logical variables on the fly and map them to aesthetics, without defining them as new variables. For example, if you want to differentiate the points according to whether the value of <code>BMI</code> is larger than 25, a logical variable <code>BMI &gt; 25</code> can be created.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="aes-local-map.html#cb534-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb534-2"><a href="aes-local-map.html#cb534-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb534-3"><a href="aes-local-map.html#cb534-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb534-4"><a href="aes-local-map.html#cb534-4" tabindex="-1"></a>                           <span class="at">color =</span> BMI <span class="sc">&gt;</span> <span class="dv">25</span>),</span>
-<span id="cb534-5"><a href="aes-local-map.html#cb534-5" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-562-1.png" width="576" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="aes-local-map.html#cb38-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb38-2"><a href="aes-local-map.html#cb38-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb38-3"><a href="aes-local-map.html#cb38-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb38-4"><a href="aes-local-map.html#cb38-4" tabindex="-1"></a>                           <span class="at">color =</span> BMI <span class="sc">&gt;</span> <span class="dv">25</span>),</span>
+<span id="cb38-5"><a href="aes-local-map.html#cb38-5" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 128 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Now, let’s see another example where we want differentiate countries in Africa vs. other continents.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="aes-local-map.html#cb535-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb535-2"><a href="aes-local-map.html#cb535-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb535-3"><a href="aes-local-map.html#cb535-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
-<span id="cb535-4"><a href="aes-local-map.html#cb535-4" tabindex="-1"></a>                           <span class="at">shape =</span> continent <span class="sc">!=</span> <span class="st">&quot;Africa&quot;</span>),</span>
-<span id="cb535-5"><a href="aes-local-map.html#cb535-5" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-563-1.png" width="576" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="aes-local-map.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb40-2"><a href="aes-local-map.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb40-3"><a href="aes-local-map.html#cb40-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol,</span>
+<span id="cb40-4"><a href="aes-local-map.html#cb40-4" tabindex="-1"></a>                           <span class="at">shape =</span> continent <span class="sc">!=</span> <span class="st">&quot;Africa&quot;</span>),</span>
+<span id="cb40-5"><a href="aes-local-map.html#cb40-5" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 150 rows containing missing values (`geom_point()`).</code></pre>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Clearly, you can easily create new logical variables using any logical operations on existing variables, and map them into any aesthetics just like the existing categorical variables.</p>
 </div>
 <div id="exercises-33" class="section level3 hasAnchor" number="5.3.5">
@@ -885,7 +871,7 @@ div.csl-indent {
 <p>Use <strong>ggplot2</strong> package to answer the following questions.</p>
 <ol style="list-style-type: decimal">
 <li><p>Using the <code>sahp</code> dataset, create a scatterplot to visualize the relationship between <code>liv_area</code> (on the x-axis) and <code>sale_price</code> (on the y-axis). Use different colors for different <code>house_style</code>, different shapes to distinguish <code>central_air</code>, and points are of the size 2.</p></li>
-<li><p>Using the <code>gm2004</code> dataset, create a scatterplot to visualize the relationship between <code>alcohol</code> (on the x-axis) and <code>liver_cancer</code> (on the y-axis) where the points are purple and the size of the points are determined by the <code>BMI</code> values.</p></li>
+<li><p>Using the <code>gm2004</code> dataset, create a scatterplot to visualize the relationship between <code>BMI</code> (on the x-axis) and <code>cholesterol</code> (on the y-axis) where the points are purple and the size of the points are determined by the <code>BMI</code> values.</p></li>
 <li><p>Using the <code>gm2004</code> dataset, create a scatterplot to visualize the relationship between <code>sugar</code> (on the x-axis) and <code>cholesterol</code> (on the y-axis) where the points are red when <code>HDI_category</code> is high or very high and the points are purple when <code>HDI_category</code> is low or medium and the size depend on the value of <code>population</code>. Please also remove the <code>NA</code> level in <code>HDI_category</code>. Discuss your findings.</p></li>
 </ol>
 

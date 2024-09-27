@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-23" />
+<meta name="date" content="2024-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -730,7 +730,7 @@ div.csl-indent {
 <span id="cb74-5"><a href="coercion-rule.html#cb74-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
 <span id="cb74-6"><a href="coercion-rule.html#cb74-6" tabindex="-1"></a><span class="fu">typeof</span>(mix_2)</span>
 <span id="cb74-7"><a href="coercion-rule.html#cb74-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
-<p>You can see that both <code>15</code> and <code>2022</code> are converted into strings since strings are more complex than numbers. Then <code>mix_2</code> will be a character vector.</p>
+<p>You can see that both <code>15</code> and <code>2022</code> are converted into strings since strings are more complex than numbers. Then, <code>mix_2</code> will be a character vector.</p>
 <p>The next example mixes logical values, numbers and strings.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="coercion-rule.html#cb75-1" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
 <span id="cb75-2"><a href="coercion-rule.html#cb75-2" tabindex="-1"></a>mix_3</span>
@@ -742,7 +742,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="coercion-rule.html#cb76-1" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
 <span id="cb76-2"><a href="coercion-rule.html#cb76-2" tabindex="-1"></a>mix_4</span>
 <span id="cb76-3"><a href="coercion-rule.html#cb76-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
-<p>Nested <code>c()</code> will collapse into a single vector recursively and during the process, the coercion rule will apply whenever needed. First, <code>c(16, TRUE)</code> will be converted to <code>c(16, 1)</code> since numbers are more complex than logical values. Then, the expression becomes <code>c(c(16, 1), "pig")</code>. Since character is more complex than numbers, <code>c(16, 1)</code> will be converted to <code>c("16", "1")</code> when you combine it with <code>"pig"</code>, leading to the results of <code>mix_5</code>. To help you understand the process, let’s look at another example.</p>
+<p>Nested <code>c()</code> will collapse into a single vector recursively and during the process, the coercion rule will apply whenever needed. First, <code>c(16, TRUE)</code> will be converted to <code>c(16, 1)</code> since numbers are more complex than logical values. Then, the expression becomes <code>c(c(16, 1), "pig")</code>. Since characters are more complex than numbers, <code>c(16, 1)</code> will be converted to <code>c("16", "1")</code> when you combine it with <code>"pig"</code>, leading to the results of <code>mix_5</code>. To help you understand the process, let’s look at another example.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="coercion-rule.html#cb77-1" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>))</span>
 <span id="cb77-2"><a href="coercion-rule.html#cb77-2" tabindex="-1"></a>mix_5</span>
 <span id="cb77-3"><a href="coercion-rule.html#cb77-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span></code></pre></div>
