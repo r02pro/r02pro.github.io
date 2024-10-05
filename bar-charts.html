@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-09-29" />
+<meta name="date" content="2024-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -741,7 +741,7 @@ div.csl-indent {
 <span id="cb604-9"><a href="bar-charts.html#cb604-9" tabindex="-1"></a><span class="co">#&gt; 2 Excellent   14 0.08484848</span></span>
 <span id="cb604-10"><a href="bar-charts.html#cb604-10" tabindex="-1"></a><span class="co">#&gt; 3      Fair    9 0.05454545</span></span>
 <span id="cb604-11"><a href="bar-charts.html#cb604-11" tabindex="-1"></a><span class="co">#&gt; 4      Good   57 0.34545455</span></span></code></pre></div>
-<p>Now, you can directly use the data frame <code>kit_freq</code> to generate the bar chart. Here, you need to set <code>x = kit_qual</code> and <code>y = freq</code> in <code>aes()</code>, and <code>stat = "identity"</code> as an argument in the <code>geom_bar()</code> function. To use proportions instead of frequencies, you can use <code>y = prop</code> instead of <code>y = freq</code>.</p>
+<p>Now, you can directly use the data frame <code>kit_qual_stat</code> to generate the bar chart. Here, you need to set <code>x = kit_qual</code> and <code>y = freq</code> in <code>aes()</code>, and <code>stat = "identity"</code> as an argument in the <code>geom_bar()</code> function. To use proportions instead of frequencies, you can use <code>y = prop</code> instead of <code>y = freq</code>.</p>
 <div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="bar-charts.html#cb605-1" tabindex="-1"></a><span class="fu">ggplot</span>(kit_qual_stat) <span class="sc">+</span> </span>
 <span id="cb605-2"><a href="bar-charts.html#cb605-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> freq), </span>
 <span id="cb605-3"><a href="bar-charts.html#cb605-3" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
@@ -770,7 +770,7 @@ div.csl-indent {
 <li><code>.fun</code>: the function to be applied to <code>.x</code></li>
 </ul>
 <p>The levels of <code>f</code> are reordered so that the values of <code>.fun(.x)</code> are in ascending order. In our example, we reorder the levels of <code>kit_qual</code> such that the length of <code>kit_qual</code> is in ascending order, i.e. the bars are in ascending order of their heights.</p>
-<p>To reorder in descending order of heights, you can add and additional argument <code>.desc = TRUE</code> in the <code>fct_reorder()</code> function.</p>
+<p>To reorder in descending order of heights, you can add an additional argument <code>.desc = TRUE</code> in the <code>fct_reorder()</code> function.</p>
 <div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="bar-charts.html#cb608-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb608-2"><a href="bar-charts.html#cb608-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual, </span>
 <span id="cb608-3"><a href="bar-charts.html#cb608-3" tabindex="-1"></a>                                         kit_qual, </span>
