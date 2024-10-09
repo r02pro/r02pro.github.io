@@ -437,7 +437,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.6" data-path="save-object.html"><a href="save-object.html"><i class="fa fa-check"></i><b>4.6</b> Save and Restore Objects and Workspace</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>4.6.1</b> Save and Restore Objects using .RData</a></li>
-<li class="chapter" data-level="4.6.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>4.6.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
+<li class="chapter" data-level="4.6.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-readrds"><i class="fa fa-check"></i><b>4.6.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>readRDS()</code></a></li>
 <li class="chapter" data-level="4.6.3" data-path="save-object.html"><a href="save-object.html#exercises-30"><i class="fa fa-check"></i><b>4.6.3</b> Exercises</a></li>
 </ul></li>
 </ul></li>
@@ -732,25 +732,39 @@ div.csl-indent {
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="import-excel.html#cb476-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb476-2"><a href="import-excel.html#cb476-2" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/two_data.xlsx&quot;</span>)</span>
 <span id="cb476-3"><a href="import-excel.html#cb476-3" tabindex="-1"></a><span class="fu">head</span>(my_df)</span>
-<span id="cb476-4"><a href="import-excel.html#cb476-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
-<span id="cb476-5"><a href="import-excel.html#cb476-5" tabindex="-1"></a><span class="co">#&gt;   country               year    HDI</span></span>
-<span id="cb476-6"><a href="import-excel.html#cb476-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb476-7"><a href="import-excel.html#cb476-7" tabindex="-1"></a><span class="co">#&gt; 1 Afghanistan           2007  0.447</span></span>
-<span id="cb476-8"><a href="import-excel.html#cb476-8" tabindex="-1"></a><span class="co">#&gt; 2 Angola                2007  0.501</span></span>
-<span id="cb476-9"><a href="import-excel.html#cb476-9" tabindex="-1"></a><span class="co">#&gt; 3 Albania               2007 NA    </span></span>
-<span id="cb476-10"><a href="import-excel.html#cb476-10" tabindex="-1"></a><span class="co">#&gt; 4 Andorra               2007  0.84 </span></span>
-<span id="cb476-11"><a href="import-excel.html#cb476-11" tabindex="-1"></a><span class="co">#&gt; 5 United Arab Emirates  2007  0.821</span></span></code></pre></div>
+<span id="cb476-4"><a href="import-excel.html#cb476-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb476-5"><a href="import-excel.html#cb476-5" tabindex="-1"></a><span class="co">#&gt;   country               year gender continent</span></span>
+<span id="cb476-6"><a href="import-excel.html#cb476-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    </span></span>
+<span id="cb476-7"><a href="import-excel.html#cb476-7" tabindex="-1"></a><span class="co">#&gt; 1 Albania               2004 female Europe   </span></span>
+<span id="cb476-8"><a href="import-excel.html#cb476-8" tabindex="-1"></a><span class="co">#&gt; 2 Andorra               2004 female &lt;NA&gt;     </span></span>
+<span id="cb476-9"><a href="import-excel.html#cb476-9" tabindex="-1"></a><span class="co">#&gt; 3 United Arab Emirates  2004 female Asia     </span></span>
+<span id="cb476-10"><a href="import-excel.html#cb476-10" tabindex="-1"></a><span class="co">#&gt; 4 Argentina             2004 female Americas </span></span>
+<span id="cb476-11"><a href="import-excel.html#cb476-11" tabindex="-1"></a><span class="co">#&gt; 5 Armenia               2004 female Asia</span></span></code></pre></div>
 <p>We can see from the result that although the file contains two sheets, the function will import the first sheet by default. To import the second sheet, you can set the <code>sheet</code> argument to the sheet name (<code>sahp</code>) or the position of the sheet (2).</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="import-excel.html#cb477-1" tabindex="-1"></a>sahp_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
-<span id="cb477-2"><a href="import-excel.html#cb477-2" tabindex="-1"></a><span class="co">#&gt; Error: `path` does not exist: &#39;two_data.xlsx&#39;</span></span>
-<span id="cb477-3"><a href="import-excel.html#cb477-3" tabindex="-1"></a><span class="co">#sahp_1 &lt;- read_excel(&quot;two_data.xlsx&quot;, sheet = 2)     #same result as the previous line</span></span>
-<span id="cb477-4"><a href="import-excel.html#cb477-4" tabindex="-1"></a><span class="fu">head</span>(sahp_1)</span>
-<span id="cb477-5"><a href="import-excel.html#cb477-5" tabindex="-1"></a><span class="co">#&gt; Error in head(sahp_1): object &#39;sahp_1&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="import-excel.html#cb477-1" tabindex="-1"></a>sahp_1 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>)</span>
+<span id="cb477-2"><a href="import-excel.html#cb477-2" tabindex="-1"></a><span class="co">#sahp_1 &lt;- read_excel(&quot;two_data.xlsx&quot;, sheet = 2)     #same result as the previous line</span></span>
+<span id="cb477-3"><a href="import-excel.html#cb477-3" tabindex="-1"></a><span class="fu">head</span>(sahp_1)</span>
+<span id="cb477-4"><a href="import-excel.html#cb477-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 12</span></span>
+<span id="cb477-5"><a href="import-excel.html#cb477-5" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car oa_qual liv_area lot_area house…¹</span></span>
+<span id="cb477-6"><a href="import-excel.html#cb477-6" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb477-7"><a href="import-excel.html#cb477-7" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2       6     1479    13517 2Story </span></span>
+<span id="cb477-8"><a href="import-excel.html#cb477-8" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2       7     2122    11492 2Story </span></span>
+<span id="cb477-9"><a href="import-excel.html#cb477-9" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1       5     1057     7922 1Story </span></span>
+<span id="cb477-10"><a href="import-excel.html#cb477-10" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2       5     1444     9802 2Story </span></span>
+<span id="cb477-11"><a href="import-excel.html#cb477-11" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22 00:00:00       3      2         2       6     1445    14235 1.5Fin </span></span>
+<span id="cb477-12"><a href="import-excel.html#cb477-12" tabindex="-1"></a><span class="co">#&gt; 6 2010-06-06 00:00:00       2      2.5       2       6     1888    16492 1Story </span></span>
+<span id="cb477-13"><a href="import-excel.html#cb477-13" tabindex="-1"></a><span class="co">#&gt; # … with 4 more variables: kit_qual &lt;chr&gt;, heat_qual &lt;chr&gt;, central_air &lt;chr&gt;,</span></span>
+<span id="cb477-14"><a href="import-excel.html#cb477-14" tabindex="-1"></a><span class="co">#&gt; #   sale_price &lt;dbl&gt;, and abbreviated variable name ¹​house_style</span></span></code></pre></div>
 <p>If we only want to import a portion of the data, say the first 5 rows and the first 4 columns, then we can set the argument <code>range = "A1:D5"</code>, just like the range in an excel file. Note that the index starts with the first row, which may correspond to the column names.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="import-excel.html#cb478-1" tabindex="-1"></a>sahp_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
-<span id="cb478-2"><a href="import-excel.html#cb478-2" tabindex="-1"></a><span class="co">#&gt; Error: `path` does not exist: &#39;two_data.xlsx&#39;</span></span>
-<span id="cb478-3"><a href="import-excel.html#cb478-3" tabindex="-1"></a>sahp_2</span>
-<span id="cb478-4"><a href="import-excel.html#cb478-4" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;sahp_2&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="import-excel.html#cb478-1" tabindex="-1"></a>sahp_2 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/two_data.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;sahp&quot;</span>, <span class="at">range =</span> <span class="st">&quot;A1:D5&quot;</span>)</span>
+<span id="cb478-2"><a href="import-excel.html#cb478-2" tabindex="-1"></a>sahp_2</span>
+<span id="cb478-3"><a href="import-excel.html#cb478-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb478-4"><a href="import-excel.html#cb478-4" tabindex="-1"></a><span class="co">#&gt;   dt_sold             bedroom bathroom gar_car</span></span>
+<span id="cb478-5"><a href="import-excel.html#cb478-5" tabindex="-1"></a><span class="co">#&gt;   &lt;dttm&gt;                &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb478-6"><a href="import-excel.html#cb478-6" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25 00:00:00       3      2.5       2</span></span>
+<span id="cb478-7"><a href="import-excel.html#cb478-7" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10 00:00:00       4      3.5       2</span></span>
+<span id="cb478-8"><a href="import-excel.html#cb478-8" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15 00:00:00       3      2         1</span></span>
+<span id="cb478-9"><a href="import-excel.html#cb478-9" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19 00:00:00       3      2.5       2</span></span></code></pre></div>
 <p>Note that <code>read_excel()</code> can read both .xls and xlsx file types.</p>
 </div>
 <div id="import-excel-file-using-the-menu" class="section level3 hasAnchor" number="4.4.3">
@@ -831,7 +845,7 @@ div.csl-indent {
 #&gt; 3  five       5</code></pre>
 <p>Then create a list named <code>my_list</code> with <code>df1</code> as the first element and <code>df2</code> as the second element.</p>
 <ol style="list-style-type: decimal">
-<li><p>Write R code to set working directory to the desktop, then export <code>my_list</code> into an excel file named <code>list.xlsx</code>. How many sheets are there in the excel file? What’s in each sheet?</p></li>
+<li><p>Write R code to set working directory to the desktop, then export <code>my_list</code> into an excel file named <code>list.xlsx</code>. How many sheets are there in the excel file? What are the contents in each sheet?</p></li>
 <li><p>Write R code to import the first two rows and the first column of the second sheet from the excel file you just created. And verify the object value.</p></li>
 </ol>
 

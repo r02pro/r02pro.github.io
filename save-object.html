@@ -437,7 +437,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.6" data-path="save-object.html"><a href="save-object.html"><i class="fa fa-check"></i><b>4.6</b> Save and Restore Objects and Workspace</a>
 <ul>
 <li class="chapter" data-level="4.6.1" data-path="save-object.html"><a href="save-object.html#save-and-restore-objects-using-.rdata"><i class="fa fa-check"></i><b>4.6.1</b> Save and Restore Objects using .RData</a></li>
-<li class="chapter" data-level="4.6.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds"><i class="fa fa-check"></i><b>4.6.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code></a></li>
+<li class="chapter" data-level="4.6.2" data-path="save-object.html"><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-readrds"><i class="fa fa-check"></i><b>4.6.2</b> Save and Restore a Single Object using <code>saveRDS()</code> and <code>readRDS()</code></a></li>
 <li class="chapter" data-level="4.6.3" data-path="save-object.html"><a href="save-object.html#exercises-30"><i class="fa fa-check"></i><b>4.6.3</b> Exercises</a></li>
 </ul></li>
 </ul></li>
@@ -742,8 +742,8 @@ div.csl-indent {
 <span id="cb495-5"><a href="save-object.html#cb495-5" tabindex="-1"></a><span class="fu">ls</span>()                   <span class="co">#check what&#39;s in the workspace.</span></span>
 <span id="cb495-6"><a href="save-object.html#cb495-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;</span></span></code></pre></div>
 </div>
-<div id="save-and-restore-a-single-object-using-saverds-and-loadrds" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> Save and Restore a Single Object using <code>saveRDS()</code> and <code>loadRDS()</code><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-loadrds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="save-and-restore-a-single-object-using-saverds-and-readrds" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Save and Restore a Single Object using <code>saveRDS()</code> and <code>readRDS()</code><a href="save-object.html#save-and-restore-a-single-object-using-saverds-and-readrds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before introducing the new method, there is one drawback of <code>load()</code> worth noting: if the imported .RData file contains objects with the same names as in the current workspace, <strong>all</strong> these objects in the current workspace will be <strong>silently overwritten</strong> without any warning! Let’s see the following example.</p>
 <div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="save-object.html#cb496-1" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="fl">3.14</span></span>
 <span id="cb496-2"><a href="save-object.html#cb496-2" tabindex="-1"></a>dig_num</span>
@@ -752,7 +752,7 @@ div.csl-indent {
 <span id="cb496-5"><a href="save-object.html#cb496-5" tabindex="-1"></a>dig_num</span>
 <span id="cb496-6"><a href="save-object.html#cb496-6" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
 <p>We can see that the value of <code>dig_num</code> was indeed silently <em>overwritten</em> by the <code>load()</code> function, which could be sometimes dangerous.</p>
-<p>To avoid this issue, another pair of functions to save and restore a single object is <code>saveRDS()</code> and <code>loadRDS()</code>. The usage of <code>saveRDS()</code> is almost identical to <code>save()</code> except we usually use a file with extension “.rds” to store the object.</p>
+<p>To avoid this issue, another pair of functions to save and restore a single object is <code>saveRDS()</code> and <code>readRDS()</code>. The usage of <code>saveRDS()</code> is almost identical to <code>save()</code> except we usually use a file with extension “.rds” to store the object.</p>
 <div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="save-object.html#cb497-1" tabindex="-1"></a><span class="fu">saveRDS</span>(dig_num, <span class="at">file =</span> <span class="st">&quot;data/dig_num.rds&quot;</span>)</span></code></pre></div>
 <p>To highlight the different behaviors of <code>readRDS()</code> and <code>load()</code>, let’s change the <code>dig_num</code> again.</p>
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="save-object.html#cb498-1" tabindex="-1"></a>dig_num <span class="ot">&lt;-</span> <span class="dv">666</span></span>
