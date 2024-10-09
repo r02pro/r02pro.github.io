@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-04" />
+<meta name="date" content="2024-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -723,10 +723,10 @@ div.csl-indent {
 <span id="cb602-2"><a href="bar-charts.html#cb602-2" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span></code></pre></div>
 <p>We can see the answer 14 matches the value on the bar chart.</p>
 <p>You may have noticed that the y-axis count is not a variable in <code>sahp</code>! This is also the reason that we <strong>don’t</strong> need to specify the <code>y</code> argument in the <code>aes()</code> function. In this sense, bar charts are very different from many other graphs like scatterplots, which plot the raw values of datasets.</p>
-<p>Sometimes, we would like to find out the proportion for each value of <code>x</code>, then we can display a bar chart of proportion, rather than count. To do this, we need to add <code>y = stat(prop)</code> and <code>group = 1</code> as additional arguments in the <code>aes()</code> function. The <code>stat(prop)</code> is a statistical function used to calculate proportions. The <code>group = 1</code> implies that all the observations belong to one single group when calculating the proportions. We will try to set <code>group</code> to another variable in the next part.</p>
+<p>Sometimes, we would like to find out the proportion for each value of <code>x</code>, then we can display a bar chart of proportion, rather than count. To do this, we need to add <code>y = after_stat(prop)</code> and <code>group = 1</code> as additional arguments in the <code>aes()</code> function. The <code>after_stat(prop)</code> is a statistical function used to calculate proportions. The <code>group = 1</code> implies that all the observations belong to one single group when calculating the proportions. We will try to set <code>group</code> to another variable in the next part.</p>
 <div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="bar-charts.html#cb603-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
 <span id="cb603-2"><a href="bar-charts.html#cb603-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> kit_qual, </span>
-<span id="cb603-3"><a href="bar-charts.html#cb603-3" tabindex="-1"></a>                         <span class="at">y =</span> <span class="fu">stat</span>(prop), </span>
+<span id="cb603-3"><a href="bar-charts.html#cb603-3" tabindex="-1"></a>                         <span class="at">y =</span> <span class="fu">after_stat</span>(prop), </span>
 <span id="cb603-4"><a href="bar-charts.html#cb603-4" tabindex="-1"></a>                         <span class="at">group =</span> <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-631-1.png" width="576" /></p>
 <p>In addition to relying on <code>geom_bar()</code> to compute the frequencies or the proportions, we can also manually use the frequencies or proportions if we have the information in a data frame. Let’s first create a data frame that contains the frequencies and proportions of each <code>kit_qual</code> value.</p>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-04" />
+<meta name="date" content="2024-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -766,21 +766,25 @@ Figure 4.1: Set Working Directory
 <div id="write-csv" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Write an object into a .csv file<a href="export-data.html#write-csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First, let’s work with one popular kind of <em>delimited</em> files called <em>comma-separated value</em> file, usually with the file extension <code>.csv</code>. In a <code>.csv</code> file, the <em>delimiter</em> is <em>comma</em> (<code>,</code>).</p>
-<p>Let’s work with the <code>gm2007</code> dataset and export a part of it (first five rows and three columns) to a .csv file. To illustrate how the missing data affects data export, let’s set the (3, 3) element to be <code>NA</code>. We have the country name, year, HDI for each of the 5 country we have here.</p>
+<p>Let’s work with the <code>gm2004</code> dataset and export a part of it (first five rows and first four columns) to a .csv file.</p>
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="export-data.html#cb453-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb453-2"><a href="export-data.html#cb453-2" tabindex="-1"></a>gm_small <span class="ot">&lt;-</span> gm2007[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb453-3"><a href="export-data.html#cb453-3" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;gm2007&#39; not found</span></span>
-<span id="cb453-4"><a href="export-data.html#cb453-4" tabindex="-1"></a>gm_small[<span class="dv">3</span>, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb453-5"><a href="export-data.html#cb453-5" tabindex="-1"></a><span class="co">#&gt; Error in gm_small[3, 3] &lt;- NA: object &#39;gm_small&#39; not found</span></span>
-<span id="cb453-6"><a href="export-data.html#cb453-6" tabindex="-1"></a>gm_small</span>
-<span id="cb453-7"><a href="export-data.html#cb453-7" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;gm_small&#39; not found</span></span></code></pre></div>
+<span id="cb453-2"><a href="export-data.html#cb453-2" tabindex="-1"></a>gm_small <span class="ot">&lt;-</span> gm2004[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb453-3"><a href="export-data.html#cb453-3" tabindex="-1"></a>gm_small</span>
+<span id="cb453-4"><a href="export-data.html#cb453-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb453-5"><a href="export-data.html#cb453-5" tabindex="-1"></a><span class="co">#&gt;   country               year gender continent</span></span>
+<span id="cb453-6"><a href="export-data.html#cb453-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    </span></span>
+<span id="cb453-7"><a href="export-data.html#cb453-7" tabindex="-1"></a><span class="co">#&gt; 1 Albania               2004 female Europe   </span></span>
+<span id="cb453-8"><a href="export-data.html#cb453-8" tabindex="-1"></a><span class="co">#&gt; 2 Andorra               2004 female &lt;NA&gt;     </span></span>
+<span id="cb453-9"><a href="export-data.html#cb453-9" tabindex="-1"></a><span class="co">#&gt; 3 United Arab Emirates  2004 female Asia     </span></span>
+<span id="cb453-10"><a href="export-data.html#cb453-10" tabindex="-1"></a><span class="co">#&gt; 4 Argentina             2004 female Americas </span></span>
+<span id="cb453-11"><a href="export-data.html#cb453-11" tabindex="-1"></a><span class="co">#&gt; 5 Armenia               2004 female Asia</span></span></code></pre></div>
 <p>Now, let’s write the data frame <code>gm_small</code> into a file called “gm_small.csv” in the currently working directory. To write an object into a .csv file, you can use the <code>write_csv()</code> function in the <strong>readr</strong> package. Since <strong>readr</strong> is a sub-package of <strong>tidyverse</strong>, you can load the package directly if the <strong>tidyverse</strong> package is installed.</p>
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="export-data.html#cb454-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb454-2"><a href="export-data.html#cb454-2" tabindex="-1"></a><span class="fu">write_csv</span>(gm_small, <span class="st">&quot;data/gm_small.csv&quot;</span>)</span></code></pre></div>
 <p>Note here, we are writing the tibble <code>gm_small</code> into a file named “gm_small.csv” in the folder “data”. “data/gm_small.csv” is an example of <strong>relative file path</strong>. You can also use the <strong>absolute file path</strong> on your computer, though it is not as collaboration friendly as the relative path, since your collaborator may have a different file structure from yours.</p>
 <p>You can verify the .csv file has been indeed created and open the file with RStudio or any text editor to verify its contents.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:csv"></span>
-<img src="pics/4.2_csv_content.png" alt="File Contents" width="90%" />
+<img src="pics/4.2_csv_content.jpg" alt="File Contents" width="90%" />
 <p class="caption">
 Figure 4.2: File Contents
 </p>
