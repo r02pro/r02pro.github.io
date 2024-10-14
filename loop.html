@@ -601,6 +601,16 @@ div.csl-indent {
 <li class="chapter" data-level="7.6.2" data-path="grouped-mutate-filter.html"><a href="grouped-mutate-filter.html#grouped-mutate"><i class="fa fa-check"></i><b>7.6.2</b> Grouped Mutate</a></li>
 <li class="chapter" data-level="7.6.3" data-path="grouped-mutate-filter.html"><a href="grouped-mutate-filter.html#exercises-48"><i class="fa fa-check"></i><b>7.6.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="7.7" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>7.7</b> Joins</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="joins.html"><a href="joins.html#inner-join"><i class="fa fa-check"></i><b>7.7.1</b> Inner Join</a></li>
+<li class="chapter" data-level="7.7.2" data-path="joins.html"><a href="joins.html#left-join"><i class="fa fa-check"></i><b>7.7.2</b> Left Join</a></li>
+<li class="chapter" data-level="7.7.3" data-path="joins.html"><a href="joins.html#right-join"><i class="fa fa-check"></i><b>7.7.3</b> Right Join</a></li>
+<li class="chapter" data-level="7.7.4" data-path="joins.html"><a href="joins.html#full-join"><i class="fa fa-check"></i><b>7.7.4</b> Full Join</a></li>
+<li class="chapter" data-level="7.7.5" data-path="joins.html"><a href="joins.html#filtering-join"><i class="fa fa-check"></i><b>7.7.5</b> Filtering Joins</a></li>
+<li class="chapter" data-level="7.7.6" data-path="joins.html"><a href="joins.html#a-summary-of-all-joins"><i class="fa fa-check"></i><b>7.7.6</b> A Summary of All Joins</a></li>
+<li class="chapter" data-level="7.7.7" data-path="joins.html"><a href="joins.html#exercises-49"><i class="fa fa-check"></i><b>7.7.7</b> Exercises</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a>
 <ul>
@@ -729,180 +739,180 @@ div.csl-indent {
 <div id="for-loop" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> <code>for</code> loops with known sequence<a href="loop.html#for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first type of loops is to repeat a segment of codes with a <strong>known sequence</strong>. Let’s look at its syntax first.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="loop.html#cb823-1" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> val_seq){</span>
-<span id="cb823-2"><a href="loop.html#cb823-2" tabindex="-1"></a>  statement1</span>
-<span id="cb823-3"><a href="loop.html#cb823-3" tabindex="-1"></a>  statement2</span>
-<span id="cb823-4"><a href="loop.html#cb823-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="loop.html#cb831-1" tabindex="-1"></a><span class="cf">for</span> (val <span class="cf">in</span> val_seq){</span>
+<span id="cb831-2"><a href="loop.html#cb831-2" tabindex="-1"></a>  statement1</span>
+<span id="cb831-3"><a href="loop.html#cb831-3" tabindex="-1"></a>  statement2</span>
+<span id="cb831-4"><a href="loop.html#cb831-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>The <code>for</code> loop will sequentially assign each value of the <code>val_seq</code> to <code>val</code> and run the body of the loop.</p>
 <p>For example, if you want to find the first ten values of the Fibonacci sequence. It is known that the first two values in a Fibonacci sequence is <span class="math inline">\(F_1 = 0\)</span> and <span class="math inline">\(F_2 = 1\)</span>. Then, we have <span class="math inline">\(F_3 = F_1 + F_2 = 0 + 1 = 1\)</span> and in general <span class="math inline">\(F_i = F_{i-2} + F_{i-1}\)</span>.</p>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="loop.html#cb824-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>)   <span class="co">#initialize the sequence</span></span>
-<span id="cb824-2"><a href="loop.html#cb824-2" tabindex="-1"></a>fib_seq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="co">#initialize the first element</span></span>
-<span id="cb824-3"><a href="loop.html#cb824-3" tabindex="-1"></a>fib_seq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>        <span class="co">#initialize the second element</span></span>
-<span id="cb824-4"><a href="loop.html#cb824-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>){        <span class="co">#loop i from 3 to 10</span></span>
-<span id="cb824-5"><a href="loop.html#cb824-5" tabindex="-1"></a>  fib_seq[i] <span class="ot">&lt;-</span> fib_seq[i<span class="dv">-2</span>] <span class="sc">+</span> fib_seq[i<span class="dv">-1</span>] <span class="co">#compute the i-th element of fib_seq as the sum of the previous two elements</span></span>
-<span id="cb824-6"><a href="loop.html#cb824-6" tabindex="-1"></a>}</span>
-<span id="cb824-7"><a href="loop.html#cb824-7" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
-<span id="cb824-8"><a href="loop.html#cb824-8" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34</span></span></code></pre></div>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="loop.html#cb832-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>)   <span class="co">#initialize the sequence</span></span>
+<span id="cb832-2"><a href="loop.html#cb832-2" tabindex="-1"></a>fib_seq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>        <span class="co">#initialize the first element</span></span>
+<span id="cb832-3"><a href="loop.html#cb832-3" tabindex="-1"></a>fib_seq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>        <span class="co">#initialize the second element</span></span>
+<span id="cb832-4"><a href="loop.html#cb832-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>){        <span class="co">#loop i from 3 to 10</span></span>
+<span id="cb832-5"><a href="loop.html#cb832-5" tabindex="-1"></a>  fib_seq[i] <span class="ot">&lt;-</span> fib_seq[i<span class="dv">-2</span>] <span class="sc">+</span> fib_seq[i<span class="dv">-1</span>] <span class="co">#compute the i-th element of fib_seq as the sum of the previous two elements</span></span>
+<span id="cb832-6"><a href="loop.html#cb832-6" tabindex="-1"></a>}</span>
+<span id="cb832-7"><a href="loop.html#cb832-7" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb832-8"><a href="loop.html#cb832-8" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34</span></span></code></pre></div>
 <p>Here, we first initialize the desired sequence to be a zero vector of length 10. Then, initialize the first element to be 0 and second element of 1. After that, the <code>for</code> loop is will initially set <code>i</code> to the value of 3, and go over all the values in the sequence <code>3:10</code>. At the end, we get the length-10 Fibonacci sequence.</p>
 </div>
 <div id="combine-the-conditional-statements-with-loops" class="section level3 hasAnchor" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> Combine the conditional statements with loops<a href="loop.html#combine-the-conditional-statements-with-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the body of the loop, you usually want to do different tasks depending on the conditions. In this case, you can add conditional statements in the body of the loop. Let’s print out all the numbers in <code>fib_seq</code> and add the information whether it is even or odd, and count the number of even values and odd values.</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="loop.html#cb825-1" tabindex="-1"></a>count_even <span class="ot">&lt;-</span> count_odd <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the counts of even and odd values to be 0</span></span>
-<span id="cb825-2"><a href="loop.html#cb825-2" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
-<span id="cb825-3"><a href="loop.html#cb825-3" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){  <span class="co">#check if the current value is even</span></span>
-<span id="cb825-4"><a href="loop.html#cb825-4" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot;: even</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if so, print the value</span></span>
-<span id="cb825-5"><a href="loop.html#cb825-5" tabindex="-1"></a>    count_even <span class="ot">&lt;-</span> count_even <span class="sc">+</span> <span class="dv">1</span>    <span class="co">#then, add 1 to the even count</span></span>
-<span id="cb825-6"><a href="loop.html#cb825-6" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
-<span id="cb825-7"><a href="loop.html#cb825-7" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot;: odd</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if not, print the value</span></span>
-<span id="cb825-8"><a href="loop.html#cb825-8" tabindex="-1"></a>    count_odd <span class="ot">&lt;-</span> count_odd <span class="sc">+</span> <span class="dv">1</span>    <span class="co">#then, add 1 to the odd count</span></span>
-<span id="cb825-9"><a href="loop.html#cb825-9" tabindex="-1"></a>  }</span>
-<span id="cb825-10"><a href="loop.html#cb825-10" tabindex="-1"></a>}</span>
-<span id="cb825-11"><a href="loop.html#cb825-11" tabindex="-1"></a><span class="co">#&gt; 0 : even</span></span>
-<span id="cb825-12"><a href="loop.html#cb825-12" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
-<span id="cb825-13"><a href="loop.html#cb825-13" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
-<span id="cb825-14"><a href="loop.html#cb825-14" tabindex="-1"></a><span class="co">#&gt; 2 : even</span></span>
-<span id="cb825-15"><a href="loop.html#cb825-15" tabindex="-1"></a><span class="co">#&gt; 3 : odd</span></span>
-<span id="cb825-16"><a href="loop.html#cb825-16" tabindex="-1"></a><span class="co">#&gt; 5 : odd</span></span>
-<span id="cb825-17"><a href="loop.html#cb825-17" tabindex="-1"></a><span class="co">#&gt; 8 : even</span></span>
-<span id="cb825-18"><a href="loop.html#cb825-18" tabindex="-1"></a><span class="co">#&gt; 13 : odd</span></span>
-<span id="cb825-19"><a href="loop.html#cb825-19" tabindex="-1"></a><span class="co">#&gt; 21 : odd</span></span>
-<span id="cb825-20"><a href="loop.html#cb825-20" tabindex="-1"></a><span class="co">#&gt; 34 : even</span></span>
-<span id="cb825-21"><a href="loop.html#cb825-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, count_even, <span class="st">&quot; even values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count of even values</span></span>
-<span id="cb825-22"><a href="loop.html#cb825-22" tabindex="-1"></a><span class="co">#&gt; There are  4  even values.</span></span>
-<span id="cb825-23"><a href="loop.html#cb825-23" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, count_odd, <span class="st">&quot; odd values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count  of odd values</span></span>
-<span id="cb825-24"><a href="loop.html#cb825-24" tabindex="-1"></a><span class="co">#&gt; There are  6  odd values.</span></span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="loop.html#cb833-1" tabindex="-1"></a>count_even <span class="ot">&lt;-</span> count_odd <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the counts of even and odd values to be 0</span></span>
+<span id="cb833-2"><a href="loop.html#cb833-2" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
+<span id="cb833-3"><a href="loop.html#cb833-3" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){  <span class="co">#check if the current value is even</span></span>
+<span id="cb833-4"><a href="loop.html#cb833-4" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot;: even</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if so, print the value</span></span>
+<span id="cb833-5"><a href="loop.html#cb833-5" tabindex="-1"></a>    count_even <span class="ot">&lt;-</span> count_even <span class="sc">+</span> <span class="dv">1</span>    <span class="co">#then, add 1 to the even count</span></span>
+<span id="cb833-6"><a href="loop.html#cb833-6" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb833-7"><a href="loop.html#cb833-7" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot;: odd</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if not, print the value</span></span>
+<span id="cb833-8"><a href="loop.html#cb833-8" tabindex="-1"></a>    count_odd <span class="ot">&lt;-</span> count_odd <span class="sc">+</span> <span class="dv">1</span>    <span class="co">#then, add 1 to the odd count</span></span>
+<span id="cb833-9"><a href="loop.html#cb833-9" tabindex="-1"></a>  }</span>
+<span id="cb833-10"><a href="loop.html#cb833-10" tabindex="-1"></a>}</span>
+<span id="cb833-11"><a href="loop.html#cb833-11" tabindex="-1"></a><span class="co">#&gt; 0 : even</span></span>
+<span id="cb833-12"><a href="loop.html#cb833-12" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
+<span id="cb833-13"><a href="loop.html#cb833-13" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
+<span id="cb833-14"><a href="loop.html#cb833-14" tabindex="-1"></a><span class="co">#&gt; 2 : even</span></span>
+<span id="cb833-15"><a href="loop.html#cb833-15" tabindex="-1"></a><span class="co">#&gt; 3 : odd</span></span>
+<span id="cb833-16"><a href="loop.html#cb833-16" tabindex="-1"></a><span class="co">#&gt; 5 : odd</span></span>
+<span id="cb833-17"><a href="loop.html#cb833-17" tabindex="-1"></a><span class="co">#&gt; 8 : even</span></span>
+<span id="cb833-18"><a href="loop.html#cb833-18" tabindex="-1"></a><span class="co">#&gt; 13 : odd</span></span>
+<span id="cb833-19"><a href="loop.html#cb833-19" tabindex="-1"></a><span class="co">#&gt; 21 : odd</span></span>
+<span id="cb833-20"><a href="loop.html#cb833-20" tabindex="-1"></a><span class="co">#&gt; 34 : even</span></span>
+<span id="cb833-21"><a href="loop.html#cb833-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, count_even, <span class="st">&quot; even values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count of even values</span></span>
+<span id="cb833-22"><a href="loop.html#cb833-22" tabindex="-1"></a><span class="co">#&gt; There are  4  even values.</span></span>
+<span id="cb833-23"><a href="loop.html#cb833-23" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, count_odd, <span class="st">&quot; odd values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count  of odd values</span></span>
+<span id="cb833-24"><a href="loop.html#cb833-24" tabindex="-1"></a><span class="co">#&gt; There are  6  odd values.</span></span></code></pre></div>
 <p>It is worth noting that for this task, we can actually avoid the loop using vectorize operations on the vector.</p>
-<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="loop.html#cb826-1" tabindex="-1"></a>even_ind <span class="ot">&lt;-</span> fib_seq <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>     <span class="co">#check whether each value is even</span></span>
-<span id="cb826-2"><a href="loop.html#cb826-2" tabindex="-1"></a>even_odd <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(even_ind, <span class="st">&quot;even&quot;</span>, <span class="st">&quot;odd&quot;</span>) <span class="co">#convert the logical vector to a character vector</span></span>
-<span id="cb826-3"><a href="loop.html#cb826-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(fib_seq, <span class="st">&quot;: &quot;</span>, even_odd, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)) <span class="co">#create the string and print</span></span>
-<span id="cb826-4"><a href="loop.html#cb826-4" tabindex="-1"></a><span class="co">#&gt; 0: even</span></span>
-<span id="cb826-5"><a href="loop.html#cb826-5" tabindex="-1"></a><span class="co">#&gt;  1: odd</span></span>
-<span id="cb826-6"><a href="loop.html#cb826-6" tabindex="-1"></a><span class="co">#&gt;  1: odd</span></span>
-<span id="cb826-7"><a href="loop.html#cb826-7" tabindex="-1"></a><span class="co">#&gt;  2: even</span></span>
-<span id="cb826-8"><a href="loop.html#cb826-8" tabindex="-1"></a><span class="co">#&gt;  3: odd</span></span>
-<span id="cb826-9"><a href="loop.html#cb826-9" tabindex="-1"></a><span class="co">#&gt;  5: odd</span></span>
-<span id="cb826-10"><a href="loop.html#cb826-10" tabindex="-1"></a><span class="co">#&gt;  8: even</span></span>
-<span id="cb826-11"><a href="loop.html#cb826-11" tabindex="-1"></a><span class="co">#&gt;  13: odd</span></span>
-<span id="cb826-12"><a href="loop.html#cb826-12" tabindex="-1"></a><span class="co">#&gt;  21: odd</span></span>
-<span id="cb826-13"><a href="loop.html#cb826-13" tabindex="-1"></a><span class="co">#&gt;  34: even</span></span>
-<span id="cb826-14"><a href="loop.html#cb826-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">sum</span>(even_ind), <span class="st">&quot; even values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count of even values</span></span>
-<span id="cb826-15"><a href="loop.html#cb826-15" tabindex="-1"></a><span class="co">#&gt; There are  4  even values.</span></span>
-<span id="cb826-16"><a href="loop.html#cb826-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">sum</span>(<span class="sc">!</span>even_ind), <span class="st">&quot; odd values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count  of odd values</span></span>
-<span id="cb826-17"><a href="loop.html#cb826-17" tabindex="-1"></a><span class="co">#&gt; There are  6  odd values.</span></span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="loop.html#cb834-1" tabindex="-1"></a>even_ind <span class="ot">&lt;-</span> fib_seq <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>     <span class="co">#check whether each value is even</span></span>
+<span id="cb834-2"><a href="loop.html#cb834-2" tabindex="-1"></a>even_odd <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(even_ind, <span class="st">&quot;even&quot;</span>, <span class="st">&quot;odd&quot;</span>) <span class="co">#convert the logical vector to a character vector</span></span>
+<span id="cb834-3"><a href="loop.html#cb834-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(fib_seq, <span class="st">&quot;: &quot;</span>, even_odd, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)) <span class="co">#create the string and print</span></span>
+<span id="cb834-4"><a href="loop.html#cb834-4" tabindex="-1"></a><span class="co">#&gt; 0: even</span></span>
+<span id="cb834-5"><a href="loop.html#cb834-5" tabindex="-1"></a><span class="co">#&gt;  1: odd</span></span>
+<span id="cb834-6"><a href="loop.html#cb834-6" tabindex="-1"></a><span class="co">#&gt;  1: odd</span></span>
+<span id="cb834-7"><a href="loop.html#cb834-7" tabindex="-1"></a><span class="co">#&gt;  2: even</span></span>
+<span id="cb834-8"><a href="loop.html#cb834-8" tabindex="-1"></a><span class="co">#&gt;  3: odd</span></span>
+<span id="cb834-9"><a href="loop.html#cb834-9" tabindex="-1"></a><span class="co">#&gt;  5: odd</span></span>
+<span id="cb834-10"><a href="loop.html#cb834-10" tabindex="-1"></a><span class="co">#&gt;  8: even</span></span>
+<span id="cb834-11"><a href="loop.html#cb834-11" tabindex="-1"></a><span class="co">#&gt;  13: odd</span></span>
+<span id="cb834-12"><a href="loop.html#cb834-12" tabindex="-1"></a><span class="co">#&gt;  21: odd</span></span>
+<span id="cb834-13"><a href="loop.html#cb834-13" tabindex="-1"></a><span class="co">#&gt;  34: even</span></span>
+<span id="cb834-14"><a href="loop.html#cb834-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">sum</span>(even_ind), <span class="st">&quot; even values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count of even values</span></span>
+<span id="cb834-15"><a href="loop.html#cb834-15" tabindex="-1"></a><span class="co">#&gt; There are  4  even values.</span></span>
+<span id="cb834-16"><a href="loop.html#cb834-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;There are &quot;</span>, <span class="fu">sum</span>(<span class="sc">!</span>even_ind), <span class="st">&quot; odd values.</span><span class="sc">\n</span><span class="st">&quot;</span>)   <span class="co">#print the count  of odd values</span></span>
+<span id="cb834-17"><a href="loop.html#cb834-17" tabindex="-1"></a><span class="co">#&gt; There are  6  odd values.</span></span></code></pre></div>
 </div>
 <div id="control-loop-flow-with-next-and-break" class="section level3 hasAnchor" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> Control Loop Flow With <code>next</code> and <code>break</code><a href="loop.html#control-loop-flow-with-next-and-break" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Inside the <code>if</code> and <code>else</code> clause, you can use <code>next</code> and <code>break</code> to further control the flow.</p>
 <p>The <code>next</code> function goes directly to the next loop cycle, while <code>break</code> jumped out of the current loop.</p>
 <p>Let’s see an example of <code>next</code>. For each value of the <code>fib_seq</code>, if it is even, we will skip to the next value.</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="loop.html#cb827-1" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
-<span id="cb827-2"><a href="loop.html#cb827-2" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){  <span class="co">#check if the current value is even</span></span>
-<span id="cb827-3"><a href="loop.html#cb827-3" tabindex="-1"></a>    <span class="cf">next</span></span>
-<span id="cb827-4"><a href="loop.html#cb827-4" tabindex="-1"></a>  } </span>
-<span id="cb827-5"><a href="loop.html#cb827-5" tabindex="-1"></a>  <span class="fu">cat</span>(fib_val, <span class="st">&quot;: odd</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if not, print the value</span></span>
-<span id="cb827-6"><a href="loop.html#cb827-6" tabindex="-1"></a>}</span>
-<span id="cb827-7"><a href="loop.html#cb827-7" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
-<span id="cb827-8"><a href="loop.html#cb827-8" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
-<span id="cb827-9"><a href="loop.html#cb827-9" tabindex="-1"></a><span class="co">#&gt; 3 : odd</span></span>
-<span id="cb827-10"><a href="loop.html#cb827-10" tabindex="-1"></a><span class="co">#&gt; 5 : odd</span></span>
-<span id="cb827-11"><a href="loop.html#cb827-11" tabindex="-1"></a><span class="co">#&gt; 13 : odd</span></span>
-<span id="cb827-12"><a href="loop.html#cb827-12" tabindex="-1"></a><span class="co">#&gt; 21 : odd</span></span></code></pre></div>
+<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="loop.html#cb835-1" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
+<span id="cb835-2"><a href="loop.html#cb835-2" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){  <span class="co">#check if the current value is even</span></span>
+<span id="cb835-3"><a href="loop.html#cb835-3" tabindex="-1"></a>    <span class="cf">next</span></span>
+<span id="cb835-4"><a href="loop.html#cb835-4" tabindex="-1"></a>  } </span>
+<span id="cb835-5"><a href="loop.html#cb835-5" tabindex="-1"></a>  <span class="fu">cat</span>(fib_val, <span class="st">&quot;: odd</span><span class="sc">\n</span><span class="st">&quot;</span>)        <span class="co">#if not, print the value</span></span>
+<span id="cb835-6"><a href="loop.html#cb835-6" tabindex="-1"></a>}</span>
+<span id="cb835-7"><a href="loop.html#cb835-7" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
+<span id="cb835-8"><a href="loop.html#cb835-8" tabindex="-1"></a><span class="co">#&gt; 1 : odd</span></span>
+<span id="cb835-9"><a href="loop.html#cb835-9" tabindex="-1"></a><span class="co">#&gt; 3 : odd</span></span>
+<span id="cb835-10"><a href="loop.html#cb835-10" tabindex="-1"></a><span class="co">#&gt; 5 : odd</span></span>
+<span id="cb835-11"><a href="loop.html#cb835-11" tabindex="-1"></a><span class="co">#&gt; 13 : odd</span></span>
+<span id="cb835-12"><a href="loop.html#cb835-12" tabindex="-1"></a><span class="co">#&gt; 21 : odd</span></span></code></pre></div>
 <p>Now, suppose you want to find the first value in <code>fib_seq</code> that is larger than 4. The <code>break</code> can be used in this case.</p>
-<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb828-1"><a href="loop.html#cb828-1" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
-<span id="cb828-2"><a href="loop.html#cb828-2" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">&gt;</span> <span class="dv">4</span>){  <span class="co">#check if the current value is larger than 4</span></span>
-<span id="cb828-3"><a href="loop.html#cb828-3" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot; is the first value larger than 4</span><span class="sc">\n</span><span class="st">&quot;</span>)      </span>
-<span id="cb828-4"><a href="loop.html#cb828-4" tabindex="-1"></a>    <span class="cf">break</span></span>
-<span id="cb828-5"><a href="loop.html#cb828-5" tabindex="-1"></a>  } </span>
-<span id="cb828-6"><a href="loop.html#cb828-6" tabindex="-1"></a>}</span>
-<span id="cb828-7"><a href="loop.html#cb828-7" tabindex="-1"></a><span class="co">#&gt; 5  is the first value larger than 4</span></span>
-<span id="cb828-8"><a href="loop.html#cb828-8" tabindex="-1"></a><span class="fu">cat</span>(fib_val) <span class="co">#check the current fib_val</span></span>
-<span id="cb828-9"><a href="loop.html#cb828-9" tabindex="-1"></a><span class="co">#&gt; 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="loop.html#cb836-1" tabindex="-1"></a><span class="cf">for</span>(fib_val <span class="cf">in</span> fib_seq){  <span class="co">#go over all the values in fib_seq</span></span>
+<span id="cb836-2"><a href="loop.html#cb836-2" tabindex="-1"></a>  <span class="cf">if</span>(fib_val <span class="sc">&gt;</span> <span class="dv">4</span>){  <span class="co">#check if the current value is larger than 4</span></span>
+<span id="cb836-3"><a href="loop.html#cb836-3" tabindex="-1"></a>    <span class="fu">cat</span>(fib_val, <span class="st">&quot; is the first value larger than 4</span><span class="sc">\n</span><span class="st">&quot;</span>)      </span>
+<span id="cb836-4"><a href="loop.html#cb836-4" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb836-5"><a href="loop.html#cb836-5" tabindex="-1"></a>  } </span>
+<span id="cb836-6"><a href="loop.html#cb836-6" tabindex="-1"></a>}</span>
+<span id="cb836-7"><a href="loop.html#cb836-7" tabindex="-1"></a><span class="co">#&gt; 5  is the first value larger than 4</span></span>
+<span id="cb836-8"><a href="loop.html#cb836-8" tabindex="-1"></a><span class="fu">cat</span>(fib_val) <span class="co">#check the current fib_val</span></span>
+<span id="cb836-9"><a href="loop.html#cb836-9" tabindex="-1"></a><span class="co">#&gt; 5</span></span></code></pre></div>
 <p>You can see that the <code>fib_val</code> is 5, indicating that we have breaked from the loop since it is larger than 4.</p>
 </div>
 <div id="nested-loops" class="section level3 hasAnchor" number="10.2.4">
 <h3><span class="header-section-number">10.2.4</span> Nested Loops<a href="loop.html#nested-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to a single loop, it is also common to put one loop inside another one, named the <strong>nested loop</strong>.</p>
 <p>Let’s say we want to create a matrix <code>A</code> of dimension <span class="math inline">\(5\times 5\)</span> where each element <span class="math inline">\(A_{ij} = i+j\)</span>. To create such a matrix, we can write a nested loop over <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="loop.html#cb829-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>) <span class="co">#initialize the matrix A</span></span>
-<span id="cb829-2"><a href="loop.html#cb829-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)       <span class="co">#loop over index i</span></span>
-<span id="cb829-3"><a href="loop.html#cb829-3" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){    <span class="co">#loop over index j</span></span>
-<span id="cb829-4"><a href="loop.html#cb829-4" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> i <span class="sc">+</span> j <span class="co">#set the (i, j)-th element of A</span></span>
-<span id="cb829-5"><a href="loop.html#cb829-5" tabindex="-1"></a>  }</span>
-<span id="cb829-6"><a href="loop.html#cb829-6" tabindex="-1"></a>A</span>
-<span id="cb829-7"><a href="loop.html#cb829-7" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
-<span id="cb829-8"><a href="loop.html#cb829-8" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
-<span id="cb829-9"><a href="loop.html#cb829-9" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
-<span id="cb829-10"><a href="loop.html#cb829-10" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
-<span id="cb829-11"><a href="loop.html#cb829-11" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
-<span id="cb829-12"><a href="loop.html#cb829-12" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="loop.html#cb837-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>) <span class="co">#initialize the matrix A</span></span>
+<span id="cb837-2"><a href="loop.html#cb837-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)       <span class="co">#loop over index i</span></span>
+<span id="cb837-3"><a href="loop.html#cb837-3" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){    <span class="co">#loop over index j</span></span>
+<span id="cb837-4"><a href="loop.html#cb837-4" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> i <span class="sc">+</span> j <span class="co">#set the (i, j)-th element of A</span></span>
+<span id="cb837-5"><a href="loop.html#cb837-5" tabindex="-1"></a>  }</span>
+<span id="cb837-6"><a href="loop.html#cb837-6" tabindex="-1"></a>A</span>
+<span id="cb837-7"><a href="loop.html#cb837-7" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span id="cb837-8"><a href="loop.html#cb837-8" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
+<span id="cb837-9"><a href="loop.html#cb837-9" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
+<span id="cb837-10"><a href="loop.html#cb837-10" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
+<span id="cb837-11"><a href="loop.html#cb837-11" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
+<span id="cb837-12"><a href="loop.html#cb837-12" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span></code></pre></div>
 <p>Let’s try another example where we want to create the correlation matrix in the so-called AR(1) model. In particular, the corresponding matrix <span class="math inline">\(A\)</span> is of dimension <span class="math inline">\(p\times p\)</span> where <span class="math inline">\(A_{ij} = \rho^{|i-j|}\)</span>.</p>
 <p>Let’s say an example of <span class="math inline">\(p = 4\)</span> and <span class="math inline">\(\rho = 0.5\)</span></p>
-<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="loop.html#cb830-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb830-2"><a href="loop.html#cb830-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, p) <span class="co">#initialize the matrix A</span></span>
-<span id="cb830-3"><a href="loop.html#cb830-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb830-4"><a href="loop.html#cb830-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p)       <span class="co">#loop over index i</span></span>
-<span id="cb830-5"><a href="loop.html#cb830-5" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p){    <span class="co">#loop over index j</span></span>
-<span id="cb830-6"><a href="loop.html#cb830-6" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> rho<span class="sc">^</span>{<span class="fu">abs</span>(i <span class="sc">-</span> j)} <span class="co">#set the (i, j)-th element of A</span></span>
-<span id="cb830-7"><a href="loop.html#cb830-7" tabindex="-1"></a>  }</span>
-<span id="cb830-8"><a href="loop.html#cb830-8" tabindex="-1"></a>A</span>
-<span id="cb830-9"><a href="loop.html#cb830-9" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
-<span id="cb830-10"><a href="loop.html#cb830-10" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
-<span id="cb830-11"><a href="loop.html#cb830-11" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
-<span id="cb830-12"><a href="loop.html#cb830-12" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
-<span id="cb830-13"><a href="loop.html#cb830-13" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="loop.html#cb838-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb838-2"><a href="loop.html#cb838-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, p) <span class="co">#initialize the matrix A</span></span>
+<span id="cb838-3"><a href="loop.html#cb838-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb838-4"><a href="loop.html#cb838-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p)       <span class="co">#loop over index i</span></span>
+<span id="cb838-5"><a href="loop.html#cb838-5" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p){    <span class="co">#loop over index j</span></span>
+<span id="cb838-6"><a href="loop.html#cb838-6" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> rho<span class="sc">^</span>{<span class="fu">abs</span>(i <span class="sc">-</span> j)} <span class="co">#set the (i, j)-th element of A</span></span>
+<span id="cb838-7"><a href="loop.html#cb838-7" tabindex="-1"></a>  }</span>
+<span id="cb838-8"><a href="loop.html#cb838-8" tabindex="-1"></a>A</span>
+<span id="cb838-9"><a href="loop.html#cb838-9" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
+<span id="cb838-10"><a href="loop.html#cb838-10" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
+<span id="cb838-11"><a href="loop.html#cb838-11" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
+<span id="cb838-12"><a href="loop.html#cb838-12" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
+<span id="cb838-13"><a href="loop.html#cb838-13" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
 </div>
 <div id="nested-loop-via-the-outer-function" class="section level3 hasAnchor" number="10.2.5">
 <h3><span class="header-section-number">10.2.5</span> Nested Loop via the <code>outer()</code> Function<a href="loop.html#nested-loop-via-the-outer-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It turns out for the two examples we showed in the last part, you can use avoid the loop by the <code>outer()</code> function.</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="loop.html#cb831-1" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;+&quot;</span>)</span>
-<span id="cb831-2"><a href="loop.html#cb831-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
-<span id="cb831-3"><a href="loop.html#cb831-3" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
-<span id="cb831-4"><a href="loop.html#cb831-4" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
-<span id="cb831-5"><a href="loop.html#cb831-5" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
-<span id="cb831-6"><a href="loop.html#cb831-6" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
-<span id="cb831-7"><a href="loop.html#cb831-7" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span>
-<span id="cb831-8"><a href="loop.html#cb831-8" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="cf">function</span>(i, j){<span class="fl">0.5</span><span class="sc">^</span>{<span class="fu">abs</span>(i<span class="sc">-</span>j)}})</span>
-<span id="cb831-9"><a href="loop.html#cb831-9" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
-<span id="cb831-10"><a href="loop.html#cb831-10" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
-<span id="cb831-11"><a href="loop.html#cb831-11" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
-<span id="cb831-12"><a href="loop.html#cb831-12" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
-<span id="cb831-13"><a href="loop.html#cb831-13" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="loop.html#cb839-1" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;+&quot;</span>)</span>
+<span id="cb839-2"><a href="loop.html#cb839-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span id="cb839-3"><a href="loop.html#cb839-3" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
+<span id="cb839-4"><a href="loop.html#cb839-4" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
+<span id="cb839-5"><a href="loop.html#cb839-5" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
+<span id="cb839-6"><a href="loop.html#cb839-6" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
+<span id="cb839-7"><a href="loop.html#cb839-7" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span>
+<span id="cb839-8"><a href="loop.html#cb839-8" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="cf">function</span>(i, j){<span class="fl">0.5</span><span class="sc">^</span>{<span class="fu">abs</span>(i<span class="sc">-</span>j)}})</span>
+<span id="cb839-9"><a href="loop.html#cb839-9" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
+<span id="cb839-10"><a href="loop.html#cb839-10" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
+<span id="cb839-11"><a href="loop.html#cb839-11" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
+<span id="cb839-12"><a href="loop.html#cb839-12" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
+<span id="cb839-13"><a href="loop.html#cb839-13" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
 <p>Let’s see another example of using <code>outer()</code>.</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="loop.html#cb832-1" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
-<span id="cb832-2"><a href="loop.html#cb832-2" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="st">&quot;+&quot;</span>,y,<span class="st">&quot;=&quot;</span>,x<span class="sc">+</span>y)})</span>
-<span id="cb832-3"><a href="loop.html#cb832-3" tabindex="-1"></a><span class="co">#&gt;      [,1]        [,2]        [,3]        [,4]        [,5]        </span></span>
-<span id="cb832-4"><a href="loop.html#cb832-4" tabindex="-1"></a><span class="co">#&gt; [1,] &quot;1 + 1 = 2&quot; &quot;1 + 2 = 3&quot; &quot;1 + 3 = 4&quot; &quot;1 + 4 = 5&quot; &quot;1 + 5 = 6&quot; </span></span>
-<span id="cb832-5"><a href="loop.html#cb832-5" tabindex="-1"></a><span class="co">#&gt; [2,] &quot;2 + 1 = 3&quot; &quot;2 + 2 = 4&quot; &quot;2 + 3 = 5&quot; &quot;2 + 4 = 6&quot; &quot;2 + 5 = 7&quot; </span></span>
-<span id="cb832-6"><a href="loop.html#cb832-6" tabindex="-1"></a><span class="co">#&gt; [3,] &quot;3 + 1 = 4&quot; &quot;3 + 2 = 5&quot; &quot;3 + 3 = 6&quot; &quot;3 + 4 = 7&quot; &quot;3 + 5 = 8&quot; </span></span>
-<span id="cb832-7"><a href="loop.html#cb832-7" tabindex="-1"></a><span class="co">#&gt; [4,] &quot;4 + 1 = 5&quot; &quot;4 + 2 = 6&quot; &quot;4 + 3 = 7&quot; &quot;4 + 4 = 8&quot; &quot;4 + 5 = 9&quot; </span></span>
-<span id="cb832-8"><a href="loop.html#cb832-8" tabindex="-1"></a><span class="co">#&gt; [5,] &quot;5 + 1 = 6&quot; &quot;5 + 2 = 7&quot; &quot;5 + 3 = 8&quot; &quot;5 + 4 = 9&quot; &quot;5 + 5 = 10&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="loop.html#cb840-1" tabindex="-1"></a><span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x,y){</span>
+<span id="cb840-2"><a href="loop.html#cb840-2" tabindex="-1"></a><span class="fu">paste</span>(x,<span class="st">&quot;+&quot;</span>,y,<span class="st">&quot;=&quot;</span>,x<span class="sc">+</span>y)})</span>
+<span id="cb840-3"><a href="loop.html#cb840-3" tabindex="-1"></a><span class="co">#&gt;      [,1]        [,2]        [,3]        [,4]        [,5]        </span></span>
+<span id="cb840-4"><a href="loop.html#cb840-4" tabindex="-1"></a><span class="co">#&gt; [1,] &quot;1 + 1 = 2&quot; &quot;1 + 2 = 3&quot; &quot;1 + 3 = 4&quot; &quot;1 + 4 = 5&quot; &quot;1 + 5 = 6&quot; </span></span>
+<span id="cb840-5"><a href="loop.html#cb840-5" tabindex="-1"></a><span class="co">#&gt; [2,] &quot;2 + 1 = 3&quot; &quot;2 + 2 = 4&quot; &quot;2 + 3 = 5&quot; &quot;2 + 4 = 6&quot; &quot;2 + 5 = 7&quot; </span></span>
+<span id="cb840-6"><a href="loop.html#cb840-6" tabindex="-1"></a><span class="co">#&gt; [3,] &quot;3 + 1 = 4&quot; &quot;3 + 2 = 5&quot; &quot;3 + 3 = 6&quot; &quot;3 + 4 = 7&quot; &quot;3 + 5 = 8&quot; </span></span>
+<span id="cb840-7"><a href="loop.html#cb840-7" tabindex="-1"></a><span class="co">#&gt; [4,] &quot;4 + 1 = 5&quot; &quot;4 + 2 = 6&quot; &quot;4 + 3 = 7&quot; &quot;4 + 4 = 8&quot; &quot;4 + 5 = 9&quot; </span></span>
+<span id="cb840-8"><a href="loop.html#cb840-8" tabindex="-1"></a><span class="co">#&gt; [5,] &quot;5 + 1 = 6&quot; &quot;5 + 2 = 7&quot; &quot;5 + 3 = 8&quot; &quot;5 + 4 = 9&quot; &quot;5 + 5 = 10&quot;</span></span></code></pre></div>
 <p>Finally, the <code>outer()</code> function can also be applied on matrices, which will lead to a higher dimensional array.</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="loop.html#cb833-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)  </span>
-<span id="cb833-2"><a href="loop.html#cb833-2" tabindex="-1"></a><span class="fu">outer</span>(A, A, <span class="st">&quot;-&quot;</span>)       <span class="co">#a 4-dimensional array.</span></span>
-<span id="cb833-3"><a href="loop.html#cb833-3" tabindex="-1"></a><span class="co">#&gt; , , 1, 1</span></span>
-<span id="cb833-4"><a href="loop.html#cb833-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-5"><a href="loop.html#cb833-5" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb833-6"><a href="loop.html#cb833-6" tabindex="-1"></a><span class="co">#&gt; [1,]    0    2</span></span>
-<span id="cb833-7"><a href="loop.html#cb833-7" tabindex="-1"></a><span class="co">#&gt; [2,]    1    3</span></span>
-<span id="cb833-8"><a href="loop.html#cb833-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-9"><a href="loop.html#cb833-9" tabindex="-1"></a><span class="co">#&gt; , , 2, 1</span></span>
-<span id="cb833-10"><a href="loop.html#cb833-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-11"><a href="loop.html#cb833-11" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb833-12"><a href="loop.html#cb833-12" tabindex="-1"></a><span class="co">#&gt; [1,]   -1    1</span></span>
-<span id="cb833-13"><a href="loop.html#cb833-13" tabindex="-1"></a><span class="co">#&gt; [2,]    0    2</span></span>
-<span id="cb833-14"><a href="loop.html#cb833-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-15"><a href="loop.html#cb833-15" tabindex="-1"></a><span class="co">#&gt; , , 1, 2</span></span>
-<span id="cb833-16"><a href="loop.html#cb833-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-17"><a href="loop.html#cb833-17" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb833-18"><a href="loop.html#cb833-18" tabindex="-1"></a><span class="co">#&gt; [1,]   -2    0</span></span>
-<span id="cb833-19"><a href="loop.html#cb833-19" tabindex="-1"></a><span class="co">#&gt; [2,]   -1    1</span></span>
-<span id="cb833-20"><a href="loop.html#cb833-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-21"><a href="loop.html#cb833-21" tabindex="-1"></a><span class="co">#&gt; , , 2, 2</span></span>
-<span id="cb833-22"><a href="loop.html#cb833-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb833-23"><a href="loop.html#cb833-23" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb833-24"><a href="loop.html#cb833-24" tabindex="-1"></a><span class="co">#&gt; [1,]   -3   -1</span></span>
-<span id="cb833-25"><a href="loop.html#cb833-25" tabindex="-1"></a><span class="co">#&gt; [2,]   -2    0</span></span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="loop.html#cb841-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)  </span>
+<span id="cb841-2"><a href="loop.html#cb841-2" tabindex="-1"></a><span class="fu">outer</span>(A, A, <span class="st">&quot;-&quot;</span>)       <span class="co">#a 4-dimensional array.</span></span>
+<span id="cb841-3"><a href="loop.html#cb841-3" tabindex="-1"></a><span class="co">#&gt; , , 1, 1</span></span>
+<span id="cb841-4"><a href="loop.html#cb841-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-5"><a href="loop.html#cb841-5" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb841-6"><a href="loop.html#cb841-6" tabindex="-1"></a><span class="co">#&gt; [1,]    0    2</span></span>
+<span id="cb841-7"><a href="loop.html#cb841-7" tabindex="-1"></a><span class="co">#&gt; [2,]    1    3</span></span>
+<span id="cb841-8"><a href="loop.html#cb841-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-9"><a href="loop.html#cb841-9" tabindex="-1"></a><span class="co">#&gt; , , 2, 1</span></span>
+<span id="cb841-10"><a href="loop.html#cb841-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-11"><a href="loop.html#cb841-11" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb841-12"><a href="loop.html#cb841-12" tabindex="-1"></a><span class="co">#&gt; [1,]   -1    1</span></span>
+<span id="cb841-13"><a href="loop.html#cb841-13" tabindex="-1"></a><span class="co">#&gt; [2,]    0    2</span></span>
+<span id="cb841-14"><a href="loop.html#cb841-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-15"><a href="loop.html#cb841-15" tabindex="-1"></a><span class="co">#&gt; , , 1, 2</span></span>
+<span id="cb841-16"><a href="loop.html#cb841-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-17"><a href="loop.html#cb841-17" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb841-18"><a href="loop.html#cb841-18" tabindex="-1"></a><span class="co">#&gt; [1,]   -2    0</span></span>
+<span id="cb841-19"><a href="loop.html#cb841-19" tabindex="-1"></a><span class="co">#&gt; [2,]   -1    1</span></span>
+<span id="cb841-20"><a href="loop.html#cb841-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-21"><a href="loop.html#cb841-21" tabindex="-1"></a><span class="co">#&gt; , , 2, 2</span></span>
+<span id="cb841-22"><a href="loop.html#cb841-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb841-23"><a href="loop.html#cb841-23" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb841-24"><a href="loop.html#cb841-24" tabindex="-1"></a><span class="co">#&gt; [1,]   -3   -1</span></span>
+<span id="cb841-25"><a href="loop.html#cb841-25" tabindex="-1"></a><span class="co">#&gt; [2,]   -2    0</span></span></code></pre></div>
 
 </div>
 </div>

@@ -601,6 +601,16 @@ div.csl-indent {
 <li class="chapter" data-level="7.6.2" data-path="grouped-mutate-filter.html"><a href="grouped-mutate-filter.html#grouped-mutate"><i class="fa fa-check"></i><b>7.6.2</b> Grouped Mutate</a></li>
 <li class="chapter" data-level="7.6.3" data-path="grouped-mutate-filter.html"><a href="grouped-mutate-filter.html#exercises-48"><i class="fa fa-check"></i><b>7.6.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="7.7" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i><b>7.7</b> Joins</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="joins.html"><a href="joins.html#inner-join"><i class="fa fa-check"></i><b>7.7.1</b> Inner Join</a></li>
+<li class="chapter" data-level="7.7.2" data-path="joins.html"><a href="joins.html#left-join"><i class="fa fa-check"></i><b>7.7.2</b> Left Join</a></li>
+<li class="chapter" data-level="7.7.3" data-path="joins.html"><a href="joins.html#right-join"><i class="fa fa-check"></i><b>7.7.3</b> Right Join</a></li>
+<li class="chapter" data-level="7.7.4" data-path="joins.html"><a href="joins.html#full-join"><i class="fa fa-check"></i><b>7.7.4</b> Full Join</a></li>
+<li class="chapter" data-level="7.7.5" data-path="joins.html"><a href="joins.html#filtering-join"><i class="fa fa-check"></i><b>7.7.5</b> Filtering Joins</a></li>
+<li class="chapter" data-level="7.7.6" data-path="joins.html"><a href="joins.html#a-summary-of-all-joins"><i class="fa fa-check"></i><b>7.7.6</b> A Summary of All Joins</a></li>
+<li class="chapter" data-level="7.7.7" data-path="joins.html"><a href="joins.html#exercises-49"><i class="fa fa-check"></i><b>7.7.7</b> Exercises</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>8</b> Strings</a>
 <ul>
@@ -727,62 +737,62 @@ div.csl-indent {
 <h2><span class="header-section-number">11.1</span> Introduction to Functions<a href="intro-functions.html#intro-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s look at the example for generating Fibonacci sequence to motivate functions.</p>
 <p>To get a Fibonacci sequence up to the value 100, you can use the following code.</p>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="intro-functions.html#cb839-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb839-2"><a href="intro-functions.html#cb839-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb839-3"><a href="intro-functions.html#cb839-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb839-4"><a href="intro-functions.html#cb839-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb839-5"><a href="intro-functions.html#cb839-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>){      </span>
-<span id="cb839-6"><a href="intro-functions.html#cb839-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb839-7"><a href="intro-functions.html#cb839-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb839-8"><a href="intro-functions.html#cb839-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb839-9"><a href="intro-functions.html#cb839-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb839-10"><a href="intro-functions.html#cb839-10" tabindex="-1"></a>}</span>
-<span id="cb839-11"><a href="intro-functions.html#cb839-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
-<span id="cb839-12"><a href="intro-functions.html#cb839-12" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="intro-functions.html#cb847-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb847-2"><a href="intro-functions.html#cb847-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb847-3"><a href="intro-functions.html#cb847-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb847-4"><a href="intro-functions.html#cb847-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb847-5"><a href="intro-functions.html#cb847-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>){      </span>
+<span id="cb847-6"><a href="intro-functions.html#cb847-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb847-7"><a href="intro-functions.html#cb847-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb847-8"><a href="intro-functions.html#cb847-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb847-9"><a href="intro-functions.html#cb847-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb847-10"><a href="intro-functions.html#cb847-10" tabindex="-1"></a>}</span>
+<span id="cb847-11"><a href="intro-functions.html#cb847-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb847-12"><a href="intro-functions.html#cb847-12" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
 <p>Now, to get a Fibonacci sequence up to the value 200, you just need to change the 100 in the previous code to 200.</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="intro-functions.html#cb840-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb840-2"><a href="intro-functions.html#cb840-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb840-3"><a href="intro-functions.html#cb840-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb840-4"><a href="intro-functions.html#cb840-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb840-5"><a href="intro-functions.html#cb840-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">200</span>){      </span>
-<span id="cb840-6"><a href="intro-functions.html#cb840-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb840-7"><a href="intro-functions.html#cb840-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb840-8"><a href="intro-functions.html#cb840-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb840-9"><a href="intro-functions.html#cb840-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb840-10"><a href="intro-functions.html#cb840-10" tabindex="-1"></a>}</span>
-<span id="cb840-11"><a href="intro-functions.html#cb840-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
-<span id="cb840-12"><a href="intro-functions.html#cb840-12" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128</span></span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="intro-functions.html#cb848-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb848-2"><a href="intro-functions.html#cb848-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb848-3"><a href="intro-functions.html#cb848-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb848-4"><a href="intro-functions.html#cb848-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb848-5"><a href="intro-functions.html#cb848-5" tabindex="-1"></a><span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> <span class="dv">200</span>){      </span>
+<span id="cb848-6"><a href="intro-functions.html#cb848-6" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb848-7"><a href="intro-functions.html#cb848-7" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb848-8"><a href="intro-functions.html#cb848-8" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb848-9"><a href="intro-functions.html#cb848-9" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb848-10"><a href="intro-functions.html#cb848-10" tabindex="-1"></a>}</span>
+<span id="cb848-11"><a href="intro-functions.html#cb848-11" tabindex="-1"></a>fib_seq                <span class="co">#print the sequence</span></span>
+<span id="cb848-12"><a href="intro-functions.html#cb848-12" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128</span></span></code></pre></div>
 <p>If this is some task we want to do repeatedly , it would be better to wrap the whole process into a <strong>function</strong>.</p>
 <p>Let’s first review the general syntax of a function.</p>
-<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="intro-functions.html#cb841-1" tabindex="-1"></a>fun_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2){</span>
-<span id="cb841-2"><a href="intro-functions.html#cb841-2" tabindex="-1"></a>  expr_1</span>
-<span id="cb841-3"><a href="intro-functions.html#cb841-3" tabindex="-1"></a>  expr_2</span>
-<span id="cb841-4"><a href="intro-functions.html#cb841-4" tabindex="-1"></a>  <span class="fu">return</span>(return_val)</span>
-<span id="cb841-5"><a href="intro-functions.html#cb841-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="intro-functions.html#cb849-1" tabindex="-1"></a>fun_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2){</span>
+<span id="cb849-2"><a href="intro-functions.html#cb849-2" tabindex="-1"></a>  expr_1</span>
+<span id="cb849-3"><a href="intro-functions.html#cb849-3" tabindex="-1"></a>  expr_2</span>
+<span id="cb849-4"><a href="intro-functions.html#cb849-4" tabindex="-1"></a>  <span class="fu">return</span>(return_val)</span>
+<span id="cb849-5"><a href="intro-functions.html#cb849-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>First, we need to observe what objects are needs inside the function, which will be the <strong>arguments</strong> (<code>arg1</code>, <code>arg2</code>) of the function. Here, the upper bound of the Fibonacci sequence (value 100 and 200) is the only argument.</p>
 <p>Second, we need to identify what to output from the function, i.e., <strong>return</strong> a value. In this example, the Fibonacci sequence would be a reasonable output for <code>return_val</code>.</p>
 <p>Third, we need to <strong>name</strong> the function, following the naming rule of an object introduced back in Section <a href="Object-Assignment.html#Naming">1.3.3</a>. Here, we will name it as <code>get_fibo</code>.</p>
 <p>Let’s look at our function.</p>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="intro-functions.html#cb842-1" tabindex="-1"></a>get_fibo <span class="ot">&lt;-</span> <span class="cf">function</span>(upper_bound){</span>
-<span id="cb842-2"><a href="intro-functions.html#cb842-2" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb842-3"><a href="intro-functions.html#cb842-3" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb842-4"><a href="intro-functions.html#cb842-4" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb842-5"><a href="intro-functions.html#cb842-5" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb842-6"><a href="intro-functions.html#cb842-6" tabindex="-1"></a>  <span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> upper_bound){      </span>
-<span id="cb842-7"><a href="intro-functions.html#cb842-7" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb842-8"><a href="intro-functions.html#cb842-8" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb842-9"><a href="intro-functions.html#cb842-9" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb842-10"><a href="intro-functions.html#cb842-10" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb842-11"><a href="intro-functions.html#cb842-11" tabindex="-1"></a>    }</span>
-<span id="cb842-12"><a href="intro-functions.html#cb842-12" tabindex="-1"></a>  <span class="fu">return</span>(fib_seq)                <span class="co">#print the sequence</span></span>
-<span id="cb842-13"><a href="intro-functions.html#cb842-13" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="intro-functions.html#cb850-1" tabindex="-1"></a>get_fibo <span class="ot">&lt;-</span> <span class="cf">function</span>(upper_bound){</span>
+<span id="cb850-2"><a href="intro-functions.html#cb850-2" tabindex="-1"></a>  fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb850-3"><a href="intro-functions.html#cb850-3" tabindex="-1"></a>  fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb850-4"><a href="intro-functions.html#cb850-4" tabindex="-1"></a>  fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb850-5"><a href="intro-functions.html#cb850-5" tabindex="-1"></a>  fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb850-6"><a href="intro-functions.html#cb850-6" tabindex="-1"></a>  <span class="cf">while</span>(fib_next_value <span class="sc">&lt;</span> upper_bound){      </span>
+<span id="cb850-7"><a href="intro-functions.html#cb850-7" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
+<span id="cb850-8"><a href="intro-functions.html#cb850-8" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
+<span id="cb850-9"><a href="intro-functions.html#cb850-9" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
+<span id="cb850-10"><a href="intro-functions.html#cb850-10" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb850-11"><a href="intro-functions.html#cb850-11" tabindex="-1"></a>    }</span>
+<span id="cb850-12"><a href="intro-functions.html#cb850-12" tabindex="-1"></a>  <span class="fu">return</span>(fib_seq)                <span class="co">#print the sequence</span></span>
+<span id="cb850-13"><a href="intro-functions.html#cb850-13" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, let’s try to evaluate this function with some examples.</p>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="intro-functions.html#cb843-1" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">50</span>)</span>
-<span id="cb843-2"><a href="intro-functions.html#cb843-2" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32</span></span>
-<span id="cb843-3"><a href="intro-functions.html#cb843-3" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">80</span>)</span>
-<span id="cb843-4"><a href="intro-functions.html#cb843-4" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span>
-<span id="cb843-5"><a href="intro-functions.html#cb843-5" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">300</span>)</span>
-<span id="cb843-6"><a href="intro-functions.html#cb843-6" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128 256</span></span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="intro-functions.html#cb851-1" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">50</span>)</span>
+<span id="cb851-2"><a href="intro-functions.html#cb851-2" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32</span></span>
+<span id="cb851-3"><a href="intro-functions.html#cb851-3" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">80</span>)</span>
+<span id="cb851-4"><a href="intro-functions.html#cb851-4" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span>
+<span id="cb851-5"><a href="intro-functions.html#cb851-5" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">300</span>)</span>
+<span id="cb851-6"><a href="intro-functions.html#cb851-6" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128 256</span></span></code></pre></div>
 
 </div>
             </section>
