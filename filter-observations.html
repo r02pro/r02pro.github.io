@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-16" />
+<meta name="date" content="2024-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -570,7 +570,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>7.1.1</b> Objects Masking</a></li>
 <li class="chapter" data-level="7.1.2" data-path="filter-observations.html"><a href="filter-observations.html#filter-observations-1"><i class="fa fa-check"></i><b>7.1.2</b> Filter Observations</a></li>
-<li class="chapter" data-level="7.1.3" data-path="filter-observations.html"><a href="filter-observations.html#the-pipe-operator"><i class="fa fa-check"></i><b>7.1.3</b> The pipe operator</a></li>
+<li class="chapter" data-level="7.1.3" data-path="filter-observations.html"><a href="filter-observations.html#pipe"><i class="fa fa-check"></i><b>7.1.3</b> The pipe operator</a></li>
 <li class="chapter" data-level="7.1.4" data-path="filter-observations.html"><a href="filter-observations.html#exercise-1"><i class="fa fa-check"></i><b>7.1.4</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="select-variables.html"><a href="select-variables.html"><i class="fa fa-check"></i><b>7.2</b> Select, Rename, and Reorder Variables</a>
@@ -634,11 +634,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#concatenate-strings"><i class="fa fa-check"></i><b>9.1.1</b> Concatenate Strings</a></li>
 <li class="chapter" data-level="9.1.2" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#create-and-modify-substrings"><i class="fa fa-check"></i><b>9.1.2</b> Create and Modify Substrings</a></li>
+<li class="chapter" data-level="9.1.3" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#exercises-52"><i class="fa fa-check"></i><b>9.1.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="match-pattern.html"><a href="match-pattern.html"><i class="fa fa-check"></i><b>9.2</b> Matching Pattern with Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="match-pattern.html"><a href="match-pattern.html#basic-matches"><i class="fa fa-check"></i><b>9.2.1</b> Basic Matches</a></li>
-<li class="chapter" data-level="9.2.2" data-path="match-pattern.html"><a href="match-pattern.html#character-classes-matches"><i class="fa fa-check"></i><b>9.2.2</b> Character Classes Matches</a></li>
+<li class="chapter" data-level="9.2.1" data-path="match-pattern.html"><a href="match-pattern.html#basic-pattern-matching"><i class="fa fa-check"></i><b>9.2.1</b> Basic Pattern Matching</a></li>
+<li class="chapter" data-level="9.2.2" data-path="match-pattern.html"><a href="match-pattern.html#character-classes"><i class="fa fa-check"></i><b>9.2.2</b> Character Classes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="match-pattern.html"><a href="match-pattern.html#combining-patterns-with-logical-operators"><i class="fa fa-check"></i><b>9.2.3</b> Combining Patterns with Logical Operators</a></li>
+<li class="chapter" data-level="9.2.4" data-path="match-pattern.html"><a href="match-pattern.html#conclusion"><i class="fa fa-check"></i><b>9.2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="9.2.5" data-path="match-pattern.html"><a href="match-pattern.html#exercises-53"><i class="fa fa-check"></i><b>9.2.5</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>10</b> Statistics</a>
@@ -830,8 +834,8 @@ div.csl-indent {
 <span id="cb729-3"><a href="filter-observations.html#cb729-3" tabindex="-1"></a>       year <span class="sc">==</span> <span class="dv">2004</span>,</span>
 <span id="cb729-4"><a href="filter-observations.html#cb729-4" tabindex="-1"></a>       HDI_category <span class="sc">==</span> <span class="st">&quot;very high&quot;</span> <span class="sc">|</span> HDI_category <span class="sc">==</span> <span class="st">&quot;high&quot;</span> )</span></code></pre></div>
 </div>
-<div id="the-pipe-operator" class="section level3 hasAnchor" number="7.1.3">
-<h3><span class="header-section-number">7.1.3</span> The pipe operator<a href="filter-observations.html#the-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pipe" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> The pipe operator<a href="filter-observations.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, we want to introduce a very useful operator, named <strong>pipe</strong>. The pipe operator makes it much easier to apply a sequence of operations on a dataset. For example, let’s say we want to generate a scatterplot of <code>cholesterol</code> and <code>BMI</code> only for the European countries in the <code>gm2004</code> dataset. Typically, we first use the <code>filter()</code> function to create the subset of the data and call the <code>ggplot()</code> function to create the plot.</p>
 <div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="filter-observations.html#cb730-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb730-2"><a href="filter-observations.html#cb730-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">filter</span>(gm2004, </span>

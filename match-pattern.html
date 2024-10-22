@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-16" />
+<meta name="date" content="2024-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -570,7 +570,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="filter-observations.html"><a href="filter-observations.html#objects-masking"><i class="fa fa-check"></i><b>7.1.1</b> Objects Masking</a></li>
 <li class="chapter" data-level="7.1.2" data-path="filter-observations.html"><a href="filter-observations.html#filter-observations-1"><i class="fa fa-check"></i><b>7.1.2</b> Filter Observations</a></li>
-<li class="chapter" data-level="7.1.3" data-path="filter-observations.html"><a href="filter-observations.html#the-pipe-operator"><i class="fa fa-check"></i><b>7.1.3</b> The pipe operator</a></li>
+<li class="chapter" data-level="7.1.3" data-path="filter-observations.html"><a href="filter-observations.html#pipe"><i class="fa fa-check"></i><b>7.1.3</b> The pipe operator</a></li>
 <li class="chapter" data-level="7.1.4" data-path="filter-observations.html"><a href="filter-observations.html#exercise-1"><i class="fa fa-check"></i><b>7.1.4</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="select-variables.html"><a href="select-variables.html"><i class="fa fa-check"></i><b>7.2</b> Select, Rename, and Reorder Variables</a>
@@ -634,11 +634,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#concatenate-strings"><i class="fa fa-check"></i><b>9.1.1</b> Concatenate Strings</a></li>
 <li class="chapter" data-level="9.1.2" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#create-and-modify-substrings"><i class="fa fa-check"></i><b>9.1.2</b> Create and Modify Substrings</a></li>
+<li class="chapter" data-level="9.1.3" data-path="combine-subset-strings.html"><a href="combine-subset-strings.html#exercises-52"><i class="fa fa-check"></i><b>9.1.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="match-pattern.html"><a href="match-pattern.html"><i class="fa fa-check"></i><b>9.2</b> Matching Pattern with Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="match-pattern.html"><a href="match-pattern.html#basic-matches"><i class="fa fa-check"></i><b>9.2.1</b> Basic Matches</a></li>
-<li class="chapter" data-level="9.2.2" data-path="match-pattern.html"><a href="match-pattern.html#character-classes-matches"><i class="fa fa-check"></i><b>9.2.2</b> Character Classes Matches</a></li>
+<li class="chapter" data-level="9.2.1" data-path="match-pattern.html"><a href="match-pattern.html#basic-pattern-matching"><i class="fa fa-check"></i><b>9.2.1</b> Basic Pattern Matching</a></li>
+<li class="chapter" data-level="9.2.2" data-path="match-pattern.html"><a href="match-pattern.html#character-classes"><i class="fa fa-check"></i><b>9.2.2</b> Character Classes</a></li>
+<li class="chapter" data-level="9.2.3" data-path="match-pattern.html"><a href="match-pattern.html#combining-patterns-with-logical-operators"><i class="fa fa-check"></i><b>9.2.3</b> Combining Patterns with Logical Operators</a></li>
+<li class="chapter" data-level="9.2.4" data-path="match-pattern.html"><a href="match-pattern.html#conclusion"><i class="fa fa-check"></i><b>9.2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="9.2.5" data-path="match-pattern.html"><a href="match-pattern.html#exercises-53"><i class="fa fa-check"></i><b>9.2.5</b> Exercises</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>10</b> Statistics</a>
@@ -751,104 +755,344 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="match-pattern" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Matching Pattern with Regular Expressions<a href="match-pattern.html#match-pattern" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In many applications, we may want to find out which strings match a certain pattern. To illustrate this, we will be using the variable names from the <code>sahp</code> data set from <strong>r02pro</strong> package.</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="match-pattern.html#cb800-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb800-2"><a href="match-pattern.html#cb800-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb800-3"><a href="match-pattern.html#cb800-3" tabindex="-1"></a>sahp_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(sahp)</span></code></pre></div>
-<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. To create a logical vector that reflect this match, you can use the <code>str_detect()</code> function.</p>
-<div id="basic-matches" class="section level3 hasAnchor" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Basic Matches<a href="match-pattern.html#basic-matches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let’s describe a few commonly used patterns.</p>
-<p><strong><em>a. contain a given string</em></strong></p>
-<p>To find all strings that contain <code>"room"</code>, you can run the following code.</p>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="match-pattern.html#cb801-1" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;room&quot;</span>)</span>
-<span id="cb801-2"><a href="match-pattern.html#cb801-2" tabindex="-1"></a><span class="co">#&gt; [2] │ bed&lt;room&gt;</span></span>
-<span id="cb801-3"><a href="match-pattern.html#cb801-3" tabindex="-1"></a><span class="co">#&gt; [3] │ bath&lt;room&gt;</span></span>
-<span id="cb801-4"><a href="match-pattern.html#cb801-4" tabindex="-1"></a><span class="fu">str_detect</span>(sahp_names, <span class="st">&quot;room&quot;</span>)</span>
-<span id="cb801-5"><a href="match-pattern.html#cb801-5" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
-<p>You can see that the <code>str_detect()</code> function returns a logical vector that reflects whether this is a match. In the rest of this section, we will be focusing on demonstration with <code>str_view()</code>.</p>
-<p>From the result, we can see that <code>"bedroom"</code> and <code>"bathroom"</code> are highlighted, since they both contain the string <code>"room"</code>.</p>
-<p><strong><em>b. including <code>.</code> in the pattern</em></strong></p>
-<p>In addition to specifying the exact string for matching, you can also use the wild symbol <code>.</code> to represent <strong>any character</strong>.</p>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="match-pattern.html#cb802-1" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;.h&quot;</span>)</span>
-<span id="cb802-2"><a href="match-pattern.html#cb802-2" tabindex="-1"></a><span class="co">#&gt; [3] │ ba&lt;th&gt;room</span></span>
-<span id="cb802-3"><a href="match-pattern.html#cb802-3" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;.s.&quot;</span>)</span>
-<span id="cb802-4"><a href="match-pattern.html#cb802-4" tabindex="-1"></a><span class="co">#&gt; [1] │ dt&lt;_so&gt;ld</span></span>
-<span id="cb802-5"><a href="match-pattern.html#cb802-5" tabindex="-1"></a><span class="co">#&gt; [8] │ ho&lt;use&gt;&lt;_st&gt;yle</span></span></code></pre></div>
-<p>The first pattern <code>".h"</code> represents any character plus the letter h. Note that <code>"house_style"</code> is not a match since it doesn’t have any character before the letter <code>"h"</code>.</p>
-<p>The second patter <code>".s."</code> represents a length-3 substring, with any two characters around <code>"h"</code>. Again, here <code>"sale_price"</code> is not a match since <code>"s"</code> is a first character.</p>
-<p><strong><em>c. including anchors in the pattern</em></strong></p>
-<p>Sometimes, we may want to match the <strong>start</strong> of the string (<code>"^"</code>), or the <strong>end</strong> of the string (<code>"$"</code>).</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="match-pattern.html#cb803-1" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;^l&quot;</span>)</span>
-<span id="cb803-2"><a href="match-pattern.html#cb803-2" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;l&gt;iv_area</span></span>
-<span id="cb803-3"><a href="match-pattern.html#cb803-3" tabindex="-1"></a><span class="co">#&gt; [7] │ &lt;l&gt;ot_area</span></span></code></pre></div>
-<p>The highlighted strings <code>"liv_area"</code> and <code>"lot_area"</code> both start with letter <code>"l"</code>. Although <code>"oa_qual"</code> and <code>"house_style"</code> contain <code>"l"</code>, they are not selected since <code>"l"</code> is not the start of the strings. Now, let’s find the strings the end with <code>"l"</code>.</p>
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="match-pattern.html#cb804-1" tabindex="-1"></a><span class="fu">str_view</span>(sahp_names, <span class="st">&quot;l$&quot;</span>)</span>
-<span id="cb804-2"><a href="match-pattern.html#cb804-2" tabindex="-1"></a><span class="co">#&gt;  [5] │ oa_qua&lt;l&gt;</span></span>
-<span id="cb804-3"><a href="match-pattern.html#cb804-3" tabindex="-1"></a><span class="co">#&gt;  [9] │ kit_qua&lt;l&gt;</span></span>
-<span id="cb804-4"><a href="match-pattern.html#cb804-4" tabindex="-1"></a><span class="co">#&gt; [10] │ heat_qua&lt;l&gt;</span></span></code></pre></div>
-<p>We now see <code>"oa_qual"</code>, <code>"kit_qual"</code>, and <code>"heat_qual"</code> all selected.</p>
-</div>
-<div id="character-classes-matches" class="section level3 hasAnchor" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Character Classes Matches<a href="match-pattern.html#character-classes-matches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong><em>a. Single character match</em></strong></p>
-<p>Sometimes, we may want to match the characters with a specific class or a group of values instead of exact values. Here is a list of the commonly used classes.</p>
+<p>Regular expressions provide a powerful and flexible way to find and manipulate text based on patterns of characters. They are essential tools for various tasks in data analysis and programming, including:</p>
 <ul>
-<li><code>\d</code>: matches any digit. In other words, numbers from 0 to 9.</li>
-<li><code>\s</code>: matches any whitespace (e.g. space, tab, newline). For example, <code></code>, <code>\t</code>, <code>\n</code>.</li>
-<li><code>[xyz]</code>: matches x, y, or z.</li>
-<li><code>[^xyz]</code>: matches anything except x, y, or z. (The opposite of <code>[xyz]</code>)</li>
-<li><code>[a-z]</code> or <code>[:lower:]</code>: matches every character between a and z.</li>
-<li><code>[A-Z]</code> or <code>[:upper:]</code>: matches every character between A and Z.</li>
+<li><strong>Data cleaning</strong>: Standardizing formats of names, addresses, or phone numbers.</li>
+<li><strong>Validation</strong>: Ensuring user input adheres to expected patterns (e.g., email addresses).</li>
+<li><strong>Text extraction</strong>: Isolating keywords, dates, or other crucial information from documents.</li>
 </ul>
-<p>Note that all of these are detecting a single character from the candidate ones.</p>
+<p>This section introduces you to the fundamentals of regular expressions in R, using the <strong>stringr</strong> package.</p>
+<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="match-pattern.html#cb800-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<p>The <strong>stringr</strong> package provides a very useful function called <code>str_view()</code> to highlight the elements that match the given pattern. To create a logical vector that reflect this match, you can use the <code>str_detect()</code> function.</p>
+<div id="basic-pattern-matching" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Basic Pattern Matching<a href="match-pattern.html#basic-pattern-matching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ll utilize a sample character vector to illustrate these concepts.</p>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="match-pattern.html#cb801-1" tabindex="-1"></a>sample_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple_pie&quot;</span>, <span class="st">&quot;banana_bread&quot;</span>, <span class="st">&quot;cherry_pie&quot;</span>, <span class="st">&quot;chocolate_cake&quot;</span>, <span class="st">&quot;apple_crumble&quot;</span>)</span></code></pre></div>
+<p>Let’s describe a few commonly used patterns.</p>
+<p><strong><em>a. matching literal strings</em></strong></p>
+<p>The simplest form of pattern matching involves searching for a specific sequence of characters. To find all variable names containing the exact string <code>"pie"</code>, you can run the following.</p>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="match-pattern.html#cb802-1" tabindex="-1"></a><span class="fu">str_view</span>(sample_names, <span class="st">&quot;pie&quot;</span>)</span>
+<span id="cb802-2"><a href="match-pattern.html#cb802-2" tabindex="-1"></a><span class="co">#&gt; [1] │ apple_&lt;pie&gt;</span></span>
+<span id="cb802-3"><a href="match-pattern.html#cb802-3" tabindex="-1"></a><span class="co">#&gt; [3] │ cherry_&lt;pie&gt;</span></span></code></pre></div>
+<p>Here, the <code>str_view()</code> function highlights the variable names that contain the string <code>"pie"</code>.</p>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="match-pattern.html#cb803-1" tabindex="-1"></a><span class="fu">str_detect</span>(sample_names, <span class="st">&quot;pie&quot;</span>)</span>
+<span id="cb803-2"><a href="match-pattern.html#cb803-2" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE FALSE</span></span></code></pre></div>
+<p>The <code>str_detect()</code> function returns a logical vector that reflects whether this is a match. In the rest of this section, we will be focusing on demonstration with <code>str_view()</code>.</p>
+<p><strong><em>b. using wildcards</em></strong></p>
+<p>The period <code>(.)</code> acts as a wildcard, matching <strong>any</strong> single character. This allows for more flexible pattern definitions. For example, to find all variable names that contain the letter <code>"c"</code> followed by any character, you can use the pattern <code>".c"</code>.</p>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="match-pattern.html#cb804-1" tabindex="-1"></a><span class="fu">str_view</span>(sample_names, <span class="st">&quot;.c&quot;</span>)</span>
+<span id="cb804-2"><a href="match-pattern.html#cb804-2" tabindex="-1"></a><span class="co">#&gt; [4] │ ch&lt;oc&gt;olate&lt;_c&gt;ake</span></span>
+<span id="cb804-3"><a href="match-pattern.html#cb804-3" tabindex="-1"></a><span class="co">#&gt; [5] │ apple&lt;_c&gt;rumble</span></span>
+<span id="cb804-4"><a href="match-pattern.html#cb804-4" tabindex="-1"></a><span class="fu">str_view</span>(sample_names, <span class="st">&quot;._pi.&quot;</span>)</span>
+<span id="cb804-5"><a href="match-pattern.html#cb804-5" tabindex="-1"></a><span class="co">#&gt; [1] │ appl&lt;e_pie&gt;</span></span>
+<span id="cb804-6"><a href="match-pattern.html#cb804-6" tabindex="-1"></a><span class="co">#&gt; [3] │ cherr&lt;y_pie&gt;</span></span></code></pre></div>
+<p>The first pattern <code>".p"</code> represents any character plus the letter c. Note that <code>"cherry_pie"</code> is not a match since it doesn’t have any character before the letter <code>"c"</code>.</p>
+<p>The second pattern <code>"._pi."</code> represents any character plus the string <code>"_pi"</code> plus any character.</p>
+<p><strong><em>c. including anchors</em></strong></p>
+<p>Anchors allow you to specify the position of a match within a string: - <code>^</code> matches the start of a string. - <code>$</code> matches the end of a string.</p>
+<p>For example, to find all variable names that start with the letter <code>"c"</code>, you can use the pattern <code>"^c"</code>.</p>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="match-pattern.html#cb805-1" tabindex="-1"></a><span class="fu">str_view</span>(sample_names, <span class="st">&quot;^c&quot;</span>)</span>
+<span id="cb805-2"><a href="match-pattern.html#cb805-2" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;c&gt;herry_pie</span></span>
+<span id="cb805-3"><a href="match-pattern.html#cb805-3" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;c&gt;hocolate_cake</span></span></code></pre></div>
+<p>Now, let’s find the strings the end with <code>"pie"</code>.</p>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="match-pattern.html#cb806-1" tabindex="-1"></a><span class="fu">str_view</span>(sample_names, <span class="st">&quot;pie$&quot;</span>)</span>
+<span id="cb806-2"><a href="match-pattern.html#cb806-2" tabindex="-1"></a><span class="co">#&gt; [1] │ apple_&lt;pie&gt;</span></span>
+<span id="cb806-3"><a href="match-pattern.html#cb806-3" tabindex="-1"></a><span class="co">#&gt; [3] │ cherry_&lt;pie&gt;</span></span></code></pre></div>
+</div>
+<div id="character-classes" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Character Classes<a href="match-pattern.html#character-classes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong><em>a. matching single characters</em></strong></p>
+<p>Sometimes, we may want to match the characters with a specific class or a group of values instead of exact values. Here is a table of the commonly used classes.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Class
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+\d
+</td>
+<td style="text-align:left;">
+Matches any digit (0-9)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+\s
+</td>
+<td style="text-align:left;">
+Matches any whitespace character (space, tab, newline)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+[xyz]
+</td>
+<td style="text-align:left;">
+Matches any one of the characters within the brackets (x, y, or z)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+[^xyz]
+</td>
+<td style="text-align:left;">
+Matches any character except those within the brackets
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+[a-z] or [:lower:]
+</td>
+<td style="text-align:left;">
+Matches any lowercase letter
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+[A-Z] or [:upper:]
+</td>
+<td style="text-align:left;">
+Matches any uppercase letter
+</td>
+</tr>
+</tbody>
+</table>
 <p>Let’s see some examples.</p>
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="match-pattern.html#cb805-1" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;2b&quot;</span>,<span class="st">&quot;33c&quot;</span>,<span class="st">&quot;d 2&quot;</span>, <span class="st">&quot;d f  3&quot;</span>)</span>
-<span id="cb805-2"><a href="match-pattern.html#cb805-2" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span>
-<span id="cb805-3"><a href="match-pattern.html#cb805-3" tabindex="-1"></a><span class="co">#&gt; [2] │ a&lt;1&gt;</span></span>
-<span id="cb805-4"><a href="match-pattern.html#cb805-4" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;2&gt;b</span></span>
-<span id="cb805-5"><a href="match-pattern.html#cb805-5" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;3&gt;&lt;3&gt;c</span></span>
-<span id="cb805-6"><a href="match-pattern.html#cb805-6" tabindex="-1"></a><span class="co">#&gt; [5] │ d &lt;2&gt;</span></span>
-<span id="cb805-7"><a href="match-pattern.html#cb805-7" tabindex="-1"></a><span class="co">#&gt; [6] │ d f  &lt;3&gt;</span></span></code></pre></div>
-<p>First of all, we need to have <code>"\\"</code> since <code>"\"</code> is a special character that needs the <strong>espace</strong> character <code>"\"</code>. Here, as long as the string contains at least one digits, it will be matched.</p>
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="match-pattern.html#cb806-1" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s</span><span class="sc">\\</span><span class="st">d&quot;</span>)</span>
-<span id="cb806-2"><a href="match-pattern.html#cb806-2" tabindex="-1"></a><span class="co">#&gt; [5] │ d&lt; 2&gt;</span></span>
-<span id="cb806-3"><a href="match-pattern.html#cb806-3" tabindex="-1"></a><span class="co">#&gt; [6] │ d f &lt; 3&gt;</span></span></code></pre></div>
-<p>Here, the pattern <code>"\s\d"</code> represents a pattern of a whitespace followed by a digit. Here, only <code>"d 2"</code> and <code>"d f  3"</code> match this pattern.</p>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="match-pattern.html#cb807-1" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[ac3]&quot;</span>)</span>
-<span id="cb807-2"><a href="match-pattern.html#cb807-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;a&gt;b&lt;c&gt;</span></span>
-<span id="cb807-3"><a href="match-pattern.html#cb807-3" tabindex="-1"></a><span class="co">#&gt; [2] │ &lt;a&gt;1</span></span>
-<span id="cb807-4"><a href="match-pattern.html#cb807-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;3&gt;&lt;3&gt;&lt;c&gt;</span></span>
-<span id="cb807-5"><a href="match-pattern.html#cb807-5" tabindex="-1"></a><span class="co">#&gt; [6] │ d f  &lt;3&gt;</span></span></code></pre></div>
-<p>Here, <code>"[ac3]"</code> indicates that as long as the string contains <code>"a"</code>, <code>"c"</code>, or <code>"3"</code>, it will be matched.</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="match-pattern.html#cb808-1" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[^abc3]&quot;</span>)</span>
-<span id="cb808-2"><a href="match-pattern.html#cb808-2" tabindex="-1"></a><span class="co">#&gt; [2] │ a&lt;1&gt;</span></span>
-<span id="cb808-3"><a href="match-pattern.html#cb808-3" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;2&gt;b</span></span>
-<span id="cb808-4"><a href="match-pattern.html#cb808-4" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;d&gt;&lt; &gt;&lt;2&gt;</span></span>
-<span id="cb808-5"><a href="match-pattern.html#cb808-5" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;d&gt;&lt; &gt;&lt;f&gt;&lt; &gt;&lt; &gt;3</span></span></code></pre></div>
-<p>Here, <code>"[^abc3]"</code> indicates that as long as the string contains any character that is not one of <code>"a"</code>, <code>"b"</code>, <code>"c"</code>, and <code>"3"</code>, it will be matched.</p>
-<p><strong><em>b. Repeated characters match</em></strong>
-Sometimes, you may want to match a pattern multiple times consecutively. While you can do it manually by repeating the pattern, there is an easier way to do this by using the <code>{}</code> with the number inside. Let’s create a string and see some examples.</p>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="match-pattern.html#cb809-1" tabindex="-1"></a>my_str_rep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bbbb&quot;</span>, <span class="st">&quot;1234a&quot;</span>,</span>
-<span id="cb809-2"><a href="match-pattern.html#cb809-2" tabindex="-1"></a>                <span class="st">&quot;bbb&quot;</span>, <span class="st">&quot;abcdef&quot;</span>,</span>
-<span id="cb809-3"><a href="match-pattern.html#cb809-3" tabindex="-1"></a>                <span class="st">&quot;bb ee&quot;</span>, <span class="st">&quot;123456789&quot;</span>)</span></code></pre></div>
-<p><code>b{3}</code> will match 3 b’s.</p>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="match-pattern.html#cb810-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;b{3}&quot;</span>)</span>
-<span id="cb810-2"><a href="match-pattern.html#cb810-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbb&gt;b</span></span>
-<span id="cb810-3"><a href="match-pattern.html#cb810-3" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;bbb&gt;</span></span></code></pre></div>
-<p>To match a 9-digit number, you can use <code>[1-9]{9}</code>.</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="match-pattern.html#cb811-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[1-9]{9}&quot;</span>)</span>
-<span id="cb811-2"><a href="match-pattern.html#cb811-2" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;123456789&gt;</span></span></code></pre></div>
-<p><code>[a-z]{4}</code> matches all four-letter word.</p>
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="match-pattern.html#cb812-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z]{4}&quot;</span>)</span>
-<span id="cb812-2"><a href="match-pattern.html#cb812-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbbb&gt;</span></span>
-<span id="cb812-3"><a href="match-pattern.html#cb812-3" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;abcd&gt;ef</span></span></code></pre></div>
-<p><code>[a-z1-9]{4,}</code> will match all strings which has at least 4 lower case letters or numbers.</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="match-pattern.html#cb813-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z1-9]{4,}&quot;</span>)</span>
-<span id="cb813-2"><a href="match-pattern.html#cb813-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbbb&gt;</span></span>
-<span id="cb813-3"><a href="match-pattern.html#cb813-3" tabindex="-1"></a><span class="co">#&gt; [2] │ &lt;1234a&gt;</span></span>
-<span id="cb813-4"><a href="match-pattern.html#cb813-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;abcdef&gt;</span></span>
-<span id="cb813-5"><a href="match-pattern.html#cb813-5" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;123456789&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="match-pattern.html#cb807-1" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;2b&quot;</span>,<span class="st">&quot;33c&quot;</span>,<span class="st">&quot;d 2&quot;</span>, <span class="st">&quot;d f  3&quot;</span>)</span>
+<span id="cb807-2"><a href="match-pattern.html#cb807-2" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>)       <span class="co"># Matches strings containing a digit</span></span>
+<span id="cb807-3"><a href="match-pattern.html#cb807-3" tabindex="-1"></a><span class="co">#&gt; [2] │ a&lt;1&gt;</span></span>
+<span id="cb807-4"><a href="match-pattern.html#cb807-4" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;2&gt;b</span></span>
+<span id="cb807-5"><a href="match-pattern.html#cb807-5" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;3&gt;&lt;3&gt;c</span></span>
+<span id="cb807-6"><a href="match-pattern.html#cb807-6" tabindex="-1"></a><span class="co">#&gt; [5] │ d &lt;2&gt;</span></span>
+<span id="cb807-7"><a href="match-pattern.html#cb807-7" tabindex="-1"></a><span class="co">#&gt; [6] │ d f  &lt;3&gt;</span></span>
+<span id="cb807-8"><a href="match-pattern.html#cb807-8" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s</span><span class="sc">\\</span><span class="st">d&quot;</span>)    <span class="co"># Matches a whitespace followed by a digit</span></span>
+<span id="cb807-9"><a href="match-pattern.html#cb807-9" tabindex="-1"></a><span class="co">#&gt; [5] │ d&lt; 2&gt;</span></span>
+<span id="cb807-10"><a href="match-pattern.html#cb807-10" tabindex="-1"></a><span class="co">#&gt; [6] │ d f &lt; 3&gt;</span></span>
+<span id="cb807-11"><a href="match-pattern.html#cb807-11" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[ac3]&quot;</span>)     <span class="co"># Matches strings containing &#39;a&#39;, &#39;c&#39;, or &#39;3&#39;</span></span>
+<span id="cb807-12"><a href="match-pattern.html#cb807-12" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;a&gt;b&lt;c&gt;</span></span>
+<span id="cb807-13"><a href="match-pattern.html#cb807-13" tabindex="-1"></a><span class="co">#&gt; [2] │ &lt;a&gt;1</span></span>
+<span id="cb807-14"><a href="match-pattern.html#cb807-14" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;3&gt;&lt;3&gt;&lt;c&gt;</span></span>
+<span id="cb807-15"><a href="match-pattern.html#cb807-15" tabindex="-1"></a><span class="co">#&gt; [6] │ d f  &lt;3&gt;</span></span>
+<span id="cb807-16"><a href="match-pattern.html#cb807-16" tabindex="-1"></a><span class="fu">str_view</span>(my_char, <span class="st">&quot;[^abc3]&quot;</span>)  <span class="co"># Matches strings containing characters other than &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, or &#39;3&#39;</span></span>
+<span id="cb807-17"><a href="match-pattern.html#cb807-17" tabindex="-1"></a><span class="co">#&gt; [2] │ a&lt;1&gt;</span></span>
+<span id="cb807-18"><a href="match-pattern.html#cb807-18" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;2&gt;b</span></span>
+<span id="cb807-19"><a href="match-pattern.html#cb807-19" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;d&gt;&lt; &gt;&lt;2&gt;</span></span>
+<span id="cb807-20"><a href="match-pattern.html#cb807-20" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;d&gt;&lt; &gt;&lt;f&gt;&lt; &gt;&lt; &gt;3</span></span></code></pre></div>
+<p>Here, <code>\\d</code> indicates that as long as the string contains a digit, it will be matched. As a result, <code>"a1"</code>, <code>"2b"</code>, and <code>"33c"</code> are matched. Note that you need to escape the backslash <code>\</code> by using two backslashes <code>\\</code> within R strings.</p>
+<p><strong><em>b. matching repeated characters</em></strong></p>
+<p>To match a character or group of characters multiple times in a row, you can use quantifiers:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Symbol
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+{n}
+</td>
+<td style="text-align:left;">
+Matches exactly n occurrences of the preceding element.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+{n,}
+</td>
+<td style="text-align:left;">
+Matches n or more occurrences.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+{n,m}
+</td>
+<td style="text-align:left;">
+Matches at least n and at most m occurrences.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+?
+</td>
+<td style="text-align:left;">
+Matches zero or one occurrence (equivalent to {0,1}).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
++
+</td>
+<td style="text-align:left;">
+Matches one or more occurrences (equivalent to {1,}).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+*
+</td>
+<td style="text-align:left;">
+Matches zero or more occurrences (equivalent to {0,}).
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s see some examples.</p>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="match-pattern.html#cb808-1" tabindex="-1"></a>my_str_rep <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bbbb&quot;</span>, <span class="st">&quot;1234a&quot;</span>, <span class="st">&quot;bbb&quot;</span>, <span class="st">&quot;abcdef&quot;</span>, <span class="st">&quot;bb ee&quot;</span>, <span class="st">&quot;123456789&quot;</span>)</span>
+<span id="cb808-2"><a href="match-pattern.html#cb808-2" tabindex="-1"></a></span>
+<span id="cb808-3"><a href="match-pattern.html#cb808-3" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;b{3}&quot;</span>)       <span class="co"># Matches consecutive three &#39;b&#39;s</span></span>
+<span id="cb808-4"><a href="match-pattern.html#cb808-4" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbb&gt;b</span></span>
+<span id="cb808-5"><a href="match-pattern.html#cb808-5" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;bbb&gt;</span></span></code></pre></div>
+<p>Here, <code>"b{3}"</code> indicates that the string should contain exactly three <code>"b"</code>s. As a result, <code>"bbbb"</code> and <code>"bbb"</code> are matched.</p>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="match-pattern.html#cb809-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[1-9]{9}&quot;</span>)    <span class="co"># Matches a 9-digit number</span></span>
+<span id="cb809-2"><a href="match-pattern.html#cb809-2" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;123456789&gt;</span></span></code></pre></div>
+<p>Here, <code>"[1-9]{9}"</code> indicates that the string should contain exactly nine digits. As a result, <code>"123456789"</code> is matched.</p>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="match-pattern.html#cb810-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z]{4}&quot;</span>)    <span class="co"># Matches four consecutive lowercase letters</span></span>
+<span id="cb810-2"><a href="match-pattern.html#cb810-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbbb&gt;</span></span>
+<span id="cb810-3"><a href="match-pattern.html#cb810-3" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;abcd&gt;ef</span></span></code></pre></div>
+<p>Here, <code>"[a-z]{4}"</code> indicates that the string should match exactly four consecutive lowercase letters. As a result, <code>"bbbb"</code> and <code>"abcdef"</code> are matched. Note that <code>"bb ee"</code> is not matched due to the space.</p>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="match-pattern.html#cb811-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_rep, <span class="st">&quot;[a-z1-9]{4,}&quot;</span>) <span class="co"># Matches at least four consecutive lowercase letters or digits</span></span>
+<span id="cb811-2"><a href="match-pattern.html#cb811-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;bbbb&gt;</span></span>
+<span id="cb811-3"><a href="match-pattern.html#cb811-3" tabindex="-1"></a><span class="co">#&gt; [2] │ &lt;1234a&gt;</span></span>
+<span id="cb811-4"><a href="match-pattern.html#cb811-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;abcdef&gt;</span></span>
+<span id="cb811-5"><a href="match-pattern.html#cb811-5" tabindex="-1"></a><span class="co">#&gt; [6] │ &lt;123456789&gt;</span></span></code></pre></div>
+<p>Finally, <code>"[a-z1-9]{4,}"</code> indicates that the string should contain at least four consecutive lowercase letters or digits. As a result, <code>"bbbb"</code>, 1234a”<code>,</code>“abcdef”<code>, and</code>“123456789”` are matched.</p>
+</div>
+<div id="combining-patterns-with-logical-operators" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Combining Patterns with Logical Operators<a href="match-pattern.html#combining-patterns-with-logical-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can combine multiple patterns using logical operators:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Symbol
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+Matches either the pattern on the left or the right (OR).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&amp;
+</td>
+<td style="text-align:left;">
+Requires both patterns to match (AND).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+()
+</td>
+<td style="text-align:left;">
+Groups patterns to control the scope of operators.
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s see some examples.</p>
+<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="match-pattern.html#cb812-1" tabindex="-1"></a>my_str_comb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;123&quot;</span>, <span class="st">&quot;abc123&quot;</span>, <span class="st">&quot;123abc&quot;</span>, <span class="st">&quot;abc123def&quot;</span>)</span>
+<span id="cb812-2"><a href="match-pattern.html#cb812-2" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc|123&quot;</span>)    <span class="co"># Matches either &#39;abc&#39; or &#39;123&#39;</span></span>
+<span id="cb812-3"><a href="match-pattern.html#cb812-3" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;abc&gt;</span></span>
+<span id="cb812-4"><a href="match-pattern.html#cb812-4" tabindex="-1"></a><span class="co">#&gt; [2] │ &lt;123&gt;</span></span>
+<span id="cb812-5"><a href="match-pattern.html#cb812-5" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;abc&gt;&lt;123&gt;</span></span>
+<span id="cb812-6"><a href="match-pattern.html#cb812-6" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123&gt;&lt;abc&gt;</span></span>
+<span id="cb812-7"><a href="match-pattern.html#cb812-7" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;abc&gt;&lt;123&gt;def</span></span></code></pre></div>
+<p>Here, <code>"abc|123"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123"</code>. As a result, <code>"abc"</code>, <code>"123"</code>, <code>"abc123"</code>, <code>"123abc"</code>, and <code>"abc123def"</code> are matched.</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="match-pattern.html#cb813-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc&amp;123&quot;</span>)    <span class="co"># Matches &#39;abc&#39; followed by &#39;123&#39;</span></span></code></pre></div>
+<p>Here, <code>"abc&amp;123"</code> indicates that the string should contain a substring that matches both <code>"abc"</code> and <code>"123"</code>, which is impossible. As a result, no matches are found.</p>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="match-pattern.html#cb814-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;(abc|123)abc&quot;</span>)  </span>
+<span id="cb814-2"><a href="match-pattern.html#cb814-2" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span></code></pre></div>
+<p>Here, <code>"(abc|123)abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123"</code> followed by <code>"abc"</code>. As a result, <code>"abc123"</code> is matched.</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="match-pattern.html#cb815-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc|123abc&quot;</span>) </span>
+<span id="cb815-2"><a href="match-pattern.html#cb815-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;abc&gt;</span></span>
+<span id="cb815-3"><a href="match-pattern.html#cb815-3" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;abc&gt;123</span></span>
+<span id="cb815-4"><a href="match-pattern.html#cb815-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span>
+<span id="cb815-5"><a href="match-pattern.html#cb815-5" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;abc&gt;123def</span></span></code></pre></div>
+<p>Here, <code>"abc|123abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123abc"</code>. As a result, <code>"abc"</code>, <code>"abc123"</code>, and <code>"abc123def"</code> are matched.</p>
+<p>Comparing the last two examples, the parentheses <code>()</code> are used to group the patterns to control the scope of the operators.</p>
+</div>
+<div id="conclusion" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Conclusion<a href="match-pattern.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regular expressions provide a powerful and flexible way to find and manipulate text based on patterns of characters. In this section, we introduced you to the fundamentals of regular expressions in R, using the <strong>stringr</strong> package. We demonstrated how to match literal strings, use wildcards, include anchors, character classes, and combine patterns with logical operators.</p>
+</div>
+<div id="exercises-53" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Exercises<a href="match-pattern.html#exercises-53" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Matching Literal Strings:</li>
+</ol>
+<p>Create a character vector called <code>fruits</code> containing the following elements: <code>"apple"</code>, <code>"banana"</code>, <code>"strawberry"</code>, <code>"blueberry"</code>, <code>"blackberry"</code>. Use <code>str_view()</code> to highlight the fruits containing the substring <code>"an"</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Using Wildcards</li>
+</ol>
+<p>Using the <code>fruits</code> vector from Exercise 1, use a wildcard to find and highlight fruits that have any character followed by <code>"e"</code>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Including Anchors</li>
+</ol>
+<p>Using the <code>fruits</code> vector, find and highlight fruits that ends with the string <code>"berry"</code>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Character Classes</li>
+</ol>
+<p>Create a new character vector called <code>codes</code> with the elements: <code>"A123"</code>, <code>"B456"</code>, <code>"Bb56"</code>, <code>"C789"</code>, <code>"D012"</code>, <code>"e345"</code>. Use a regular expression to highlight the elements that contains an uppercase letter followed by a number.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Matching Repeated Characters</li>
+</ol>
+<p>Create a vector named <code>phone_numbers</code> with these elements: <code>"555-123-4567"</code>, <code>"(555) 123 4567"</code>, <code>"5551234567"</code>, <code>"1-555-123-4567"</code>, <code>"555.123.4567"</code>.</p>
+<ul>
+<li>Find and highlight all phone numbers that contain exactly three digits followed by a hyphen, another three digits, a hyphen, and finally four digits (e.g., <code>555-123-4567</code>).</li>
+<li>Use <code>str_view()</code> to find all phone numbers that have parentheses around the first three digits (e.g., <code>(555) 123 4567</code>).</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Email address checker</li>
+</ol>
+<p>Now, you are asked to check whether a string is a valid email address according to the following rules</p>
+<ul>
+<li>Format: <code>username@domain.com</code></li>
+<li>Username: The part before the <code>"@"</code> symbol. It is a string of length at least one that contains any combinations of letters (upper or lower cases), numbers, periods, and underscores.</li>
+<li>Domain: It is a string of length at least one that contains any combination of letters and numbers.</li>
+<li><code>.com</code>: The domain should end with <code>.com</code>.</li>
+</ul>
+<p>Use the <code>str_detect()</code> function with your pattern on the following strings:</p>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="match-pattern.html#cb816-1" tabindex="-1"></a>emails <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb816-2"><a href="match-pattern.html#cb816-2" tabindex="-1"></a>  <span class="st">&quot;user.name@domain.com&quot;</span>, </span>
+<span id="cb816-3"><a href="match-pattern.html#cb816-3" tabindex="-1"></a>  <span class="st">&quot;user123@domain.com&quot;</span>, </span>
+<span id="cb816-4"><a href="match-pattern.html#cb816-4" tabindex="-1"></a>  <span class="st">&quot;user_name@domain.com&quot;</span>, </span>
+<span id="cb816-5"><a href="match-pattern.html#cb816-5" tabindex="-1"></a>  <span class="st">&quot;username@domaincom&quot;</span>, </span>
+<span id="cb816-6"><a href="match-pattern.html#cb816-6" tabindex="-1"></a>  <span class="st">&quot;username@domain.net&quot;</span>, </span>
+<span id="cb816-7"><a href="match-pattern.html#cb816-7" tabindex="-1"></a>  <span class="st">&quot;user@name@domain.com&quot;</span>,</span>
+<span id="cb816-8"><a href="match-pattern.html#cb816-8" tabindex="-1"></a>  <span class="st">&quot;@icloud.com&quot;</span>,</span>
+<span id="cb816-9"><a href="match-pattern.html#cb816-9" tabindex="-1"></a>  <span class="st">&quot;user@.com&quot;</span>,</span>
+<span id="cb816-10"><a href="match-pattern.html#cb816-10" tabindex="-1"></a>  <span class="st">&quot;user@do_main.com&quot;</span></span>
+<span id="cb816-11"><a href="match-pattern.html#cb816-11" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="match-pattern.html#cb817-1" tabindex="-1"></a><span class="fu">str_detect</span>(emails, <span class="st">&quot;^[a-zA-Z0-9._]+@[a-zA-Z0-9]+</span><span class="sc">\\</span><span class="st">.com$&quot;</span>)</span>
+<span id="cb817-2"><a href="match-pattern.html#cb817-2" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li>Extracting Dates</li>
+</ol>
+<p>Create a character vector called <code>dates</code> with the following elements: <code>"2021-01-01"</code>, <code>"12-31-2021"</code>, <code>"2022-28-02"</code>, <code>"2022-02-29"</code>, <code>"2022-03-01"</code>. Use a regular expression to highlight the dates that are in the format <code>YYYY-MM-DD</code>.</p>
 
 </div>
 </div>
