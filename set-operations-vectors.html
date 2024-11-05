@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.3 Object Assignment | R Programming: Zero to Pro</title>
-  <meta name="description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <title>2.14 Set Operations on Vectors | R Programming: Zero to Pro</title>
+  <meta name="description" content="2.14 Set Operations on Vectors | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta property="og:title" content="2.14 Set Operations on Vectors | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta property="og:description" content="2.14 Set Operations on Vectors | R Programming: Zero to Pro" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="2.14 Set Operations on Vectors | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="1.3 Object Assignment | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="2.14 Set Operations on Vectors | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and r02proers" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Calculator.html"/>
-<link rel="next" href="r-objects.html"/>
+<link rel="prev" href="logical_operators.html"/>
+<link rel="next" href="missing-values.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -769,205 +769,155 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Object-Assignment" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Object Assignment<a href="Object-Assignment.html#Object-Assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the last section, you have seen the power of R as a fancy calculator. However, in order to do more complicated and interesting tasks, it is super helpful to store intermediate results for future use.</p>
-<p>Let’s take a look at a concrete example. Say if you want to do the following three calculations, all involving <code>exp(3) / log(20,3) * 7</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Object-Assignment.html#cb14-1" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span>  <span class="co">#addition</span></span>
-<span id="cb14-2"><a href="Object-Assignment.html#cb14-2" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span>  <span class="co">#subtraction</span></span>
-<span id="cb14-3"><a href="Object-Assignment.html#cb14-3" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>)<span class="sc">/</span><span class="dv">3</span>  <span class="co">#division</span></span></code></pre></div>
-<p>Using R as a fancy calculator (Section <a href="Calculator.html#Calculator">1.2</a>), you need to type the expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, you will learn how to do <strong>object assignment</strong>, which can avoid the need for typing the same expression more than once.</p>
-<div id="what-is-an-r-object" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> What is an R Object?<a href="Object-Assignment.html#what-is-an-r-object" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before we get into the details, let’s first introduce <strong>object</strong>, which is perhaps the most fundamental thing in R. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, and the expression <code>exp(3) / log(20,3) * 7</code> is also an object.</p>
-<p>If you run <code>5</code>, you will get one element of value 5 from the output. Similarly, if you run <code>1 + 2</code>, you will get one element of value 3 from the output. You can try to run <code>exp(3) / log(20,3) * 7</code> by yourself. In these three examples, you can see that there is only one <strong>element</strong> in each object.</p>
-<p>However, an object can contain more than one elements, and each element has its own <strong>value</strong>, which is possibly different from that of another element. Naturally, different objects can contain different values.</p>
+<div id="set-operations-vectors" class="section level2 hasAnchor" number="2.14">
+<h2><span class="header-section-number">2.14</span> Set Operations on Vectors<a href="set-operations-vectors.html#set-operations-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="set-operations-on-vectors" class="section level3 hasAnchor" number="2.14.1">
+<h3><span class="header-section-number">2.14.1</span> Set operations on vectors<a href="set-operations-vectors.html#set-operations-on-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve spent a couple sections introducing numeric, character, and logical vectors separately. In this section, we’ll continue discussing set operations between two vectors of the <strong>same type</strong>. However, all set operators in this section are applicable to all three types off vectors. For later convenience, let’s create some numeric, character, and logical vectors now.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="set-operations-vectors.html#cb235-1" tabindex="-1"></a>num1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb235-2"><a href="set-operations-vectors.html#cb235-2" tabindex="-1"></a>num2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb235-3"><a href="set-operations-vectors.html#cb235-3" tabindex="-1"></a></span>
+<span id="cb235-4"><a href="set-operations-vectors.html#cb235-4" tabindex="-1"></a>char1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;chicken&quot;</span>)</span>
+<span id="cb235-5"><a href="set-operations-vectors.html#cb235-5" tabindex="-1"></a>char2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb235-6"><a href="set-operations-vectors.html#cb235-6" tabindex="-1"></a></span>
+<span id="cb235-7"><a href="set-operations-vectors.html#cb235-7" tabindex="-1"></a>log1 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, F, F, T)</span>
+<span id="cb235-8"><a href="set-operations-vectors.html#cb235-8" tabindex="-1"></a>log2 <span class="ot">&lt;-</span> <span class="fu">c</span>(T, T, T)</span></code></pre></div>
+<p><strong><em>a. Intersection</em></strong></p>
+<p>When attempting to inspect values appeared in <strong>both</strong> vectors, you can use the <code>intersect()</code> function. Such values can be anything that can be put inside numeric vectors, character vectors, or logical vectors.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="set-operations-vectors.html#cb236-1" tabindex="-1"></a><span class="fu">intersect</span>(num1, num2)</span>
+<span id="cb236-2"><a href="set-operations-vectors.html#cb236-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 3</span></span>
+<span id="cb236-3"><a href="set-operations-vectors.html#cb236-3" tabindex="-1"></a><span class="fu">intersect</span>(char1, char2)</span>
+<span id="cb236-4"><a href="set-operations-vectors.html#cb236-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;</span></span>
+<span id="cb236-5"><a href="set-operations-vectors.html#cb236-5" tabindex="-1"></a><span class="fu">intersect</span>(log1, log2)</span>
+<span id="cb236-6"><a href="set-operations-vectors.html#cb236-6" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>Taking a closer look at the outputs, you will notice that the intersection procedure discards duplicate values in two vectors of the same type. In other words, only the <strong>unique elements</strong> are retained in the output.</p>
+<p><strong><em>b. Union</em></strong></p>
+<p>While <code>intersect()</code> gives values appeared in both vectors of interest, the <code>union()</code> function outputs all values that appear in at least one vector in the arguments.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="set-operations-vectors.html#cb237-1" tabindex="-1"></a><span class="fu">union</span>(num1, num2)</span>
+<span id="cb237-2"><a href="set-operations-vectors.html#cb237-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span>
+<span id="cb237-3"><a href="set-operations-vectors.html#cb237-3" tabindex="-1"></a><span class="fu">union</span>(char1, char2)</span>
+<span id="cb237-4"><a href="set-operations-vectors.html#cb237-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;   &quot;monkey&quot;  &quot;chicken&quot; &quot;pig&quot;</span></span>
+<span id="cb237-5"><a href="set-operations-vectors.html#cb237-5" tabindex="-1"></a><span class="fu">union</span>(log1, log2)</span>
+<span id="cb237-6"><a href="set-operations-vectors.html#cb237-6" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span></code></pre></div>
+<p>Again, only one copy of each value is retained in the output.</p>
+<p><strong><em>c. Set difference</em></strong><br />
+To get values that are only included in one of the two vectors of interest, you can use the <code>setdiff()</code> function. Now, it’s important to keep in mind that, inside the function, the first argument will be the one you’d like to inspect its unique values.</p>
+<p>Let’s start with <code>num1</code> and <code>num2</code>, two numeric vectors we created at the beginning of this section. To get values that only appear in <code>num1</code> but not <code>num2</code>, <code>num1</code> will become the first argument and <code>num2</code> will be the second/last argument.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="set-operations-vectors.html#cb238-1" tabindex="-1"></a><span class="fu">setdiff</span>(num1, num2)</span>
+<span id="cb238-2"><a href="set-operations-vectors.html#cb238-2" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<p>Then you will get the result of <code>2</code>! Reflecting on the output, you should realize that the <code>setdiff()</code> function only cares whether a value only appears, not if a value appears more or less frequently, in the specific vector of interest (in our case, <code>num1</code>). The rationale is that the <code>setdiff()</code> function will get unique elements in the arguments before setting the difference between them.</p>
+<p>Similarly, if you want to get values in <code>num2</code> but not in <code>num1</code>, <code>num2</code> should be in the first argument and <code>num1</code> is in the second. These rules also apply to character vectors and logical vectors.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="set-operations-vectors.html#cb239-1" tabindex="-1"></a><span class="fu">setdiff</span>(num2, num1)</span>
+<span id="cb239-2"><a href="set-operations-vectors.html#cb239-2" tabindex="-1"></a><span class="co">#&gt; [1] 4 5</span></span>
+<span id="cb239-3"><a href="set-operations-vectors.html#cb239-3" tabindex="-1"></a><span class="fu">setdiff</span>(char1, char2)</span>
+<span id="cb239-4"><a href="set-operations-vectors.html#cb239-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;monkey&quot;  &quot;chicken&quot;</span></span>
+<span id="cb239-5"><a href="set-operations-vectors.html#cb239-5" tabindex="-1"></a><span class="fu">setdiff</span>(log2, log1)</span>
+<span id="cb239-6"><a href="set-operations-vectors.html#cb239-6" tabindex="-1"></a><span class="co">#&gt; logical(0)</span></span></code></pre></div>
+<p><strong><em>d. Set equality</em></strong><br />
+To check whether two vectors are the same, you can use the <code>setequal()</code> function. Similar to the <code>setdiff()</code> function, the <code>setequal()</code> function works by looking at whether the two vectors have same set of unique values.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="set-operations-vectors.html#cb240-1" tabindex="-1"></a><span class="fu">setequal</span>(num1, num2)</span>
+<span id="cb240-2"><a href="set-operations-vectors.html#cb240-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb240-3"><a href="set-operations-vectors.html#cb240-3" tabindex="-1"></a><span class="fu">setequal</span>(char1, char2)</span>
+<span id="cb240-4"><a href="set-operations-vectors.html#cb240-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb240-5"><a href="set-operations-vectors.html#cb240-5" tabindex="-1"></a><span class="fu">setequal</span>(log1, log2)</span>
+<span id="cb240-6"><a href="set-operations-vectors.html#cb240-6" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Of course you will get <code>FALSE</code> in each operation: <code>num1</code> has a unique value <code>2</code>, <code>char1</code> and <code>char1</code> each have their unique values, and <code>"F"</code> only appears in <code>log1</code>. However, you will get get <code>TRUE</code> in the following examples,</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="set-operations-vectors.html#cb241-1" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb241-2"><a href="set-operations-vectors.html#cb241-2" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb241-3"><a href="set-operations-vectors.html#cb241-3" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;peach&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;peach&quot;</span>))</span>
+<span id="cb241-4"><a href="set-operations-vectors.html#cb241-4" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb241-5"><a href="set-operations-vectors.html#cb241-5" tabindex="-1"></a><span class="fu">setequal</span>(<span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;F&quot;</span>))</span>
+<span id="cb241-6"><a href="set-operations-vectors.html#cb241-6" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p><strong><em>e. Membership determination</em></strong></p>
+<p>Finally, to check whether each element of one vector is inside the other vector in the arguments, you can use the <code>is.element()</code> function or the <code>%in%</code> operator. They are identical to each other. The order of vectors is also important for membership determination.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="set-operations-vectors.html#cb242-1" tabindex="-1"></a><span class="fu">is.element</span>(num1, num2)</span>
+<span id="cb242-2"><a href="set-operations-vectors.html#cb242-2" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE  TRUE  TRUE</span></span>
+<span id="cb242-3"><a href="set-operations-vectors.html#cb242-3" tabindex="-1"></a>char2 <span class="sc">%in%</span> char1</span>
+<span id="cb242-4"><a href="set-operations-vectors.html#cb242-4" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE</span></span>
+<span id="cb242-5"><a href="set-operations-vectors.html#cb242-5" tabindex="-1"></a>log1 <span class="sc">%in%</span> log2</span>
+<span id="cb242-6"><a href="set-operations-vectors.html#cb242-6" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE  TRUE</span></span></code></pre></div>
+<p>For <code>is.element()</code> and <code>%in%</code>, the output will be a logical vector and its length will be the same as the first argument.</p>
+<p>In the first example above, the output is a logical vector of length-5, the same length as <code>num1</code>. The first element of <code>num1</code> is <code>1</code>, and <code>num2</code> also has elements with value 1, so the first element of the logical vector is <code>TRUE</code>. The second element of <code>num1</code> is <code>2</code>, but <code>num2</code> doesn’t have any elements with value 2, hence the result is <code>FALSE</code>. You can verify the other elements by yourself.</p>
+<p>Even if the first value of <code>num2</code> is not <code>1</code>, as long as <code>1</code> appears somewhere in <code>num2</code>, the first element of the output would still be <code>TRUE</code>. In other words, <code>is.element()</code> and <code>%in%</code> don’t take the values’ indices into consideration.</p>
 </div>
-<div id="assignment" class="section level3 hasAnchor" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Assignment Operation with <code>&lt;-</code><a href="Object-Assignment.html#assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>With the importance of objects in mind, let’s learn how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the <strong>assignment operator</strong>, which will create a new object with the name you specified. Once the object assignment operation is done, you can simply use the name in subsequent calculations without redundancy. Let’s start with a simple example,</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Object-Assignment.html#cb15-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
-<p>The assignment operation has three components. From left to right，</p>
-<ul>
-<li>the first component <code>x_num</code> is the <strong>object name</strong> of a new object, which has certain naming rules that will be discussed shortly in Section <a href="Object-Assignment.html#Naming">1.3.3</a>.</li>
-<li>The second component is the <strong>assignment operator</strong> <code>&lt;-</code>, which is a combination of the less than sign <code>&lt;</code> immediately followed by the minus sign <code>-</code>, with <strong>no space</strong> in between.</li>
-<li>The final component is the object name’s assigned <strong>value(s)</strong>, which is 5 here.</li>
-</ul>
-<div class="infobox caution">
-<p>There is no space between <code>&lt;</code> and <code>-</code> in the assignment operator <code>&lt;-</code>. Note that although <code>=</code> may also appear to be working as the assignment operator, it is not recommended as <code>=</code> is usually reserved for specifying the value(s) of arguments in a function call, which will be introduced in Section <a href="intro-num-vector.html#intro-num-vector">2.1</a>.</p>
+<div id="applicance-of-the-coercion-rule" class="section level3 hasAnchor" number="2.14.2">
+<h3><span class="header-section-number">2.14.2</span> Applicance of the coercion rule<a href="set-operations-vectors.html#applicance-of-the-coercion-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At the beginning of this section, we’ve stressed that set operations are performed on two vectors of the <strong>same type</strong>. What about set operations on two vectors of different types? Are such operations achievable?</p>
+<p>The answer is Yes! Remember in Section <a href="coercion-rule.html#coercion-rule">2.4</a>, you learned the <strong>coercion rule</strong>, which basically indicates that R will <em>unify</em> all elements into the <strong>most complex type</strong>. When you apply set operations on two vectors of different types, R will coerce the simpler vector to the more complex vector’s type and subsequently perform set operations of the same type. Below is how R recognize each vector type’s complexity, from the simplest to the most complex.
+<span class="math display">\[\mbox{logical} &lt; \mbox{numeric} &lt; \mbox{character}\]</span>
+Let’s try some examples.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="set-operations-vectors.html#cb243-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb243-2"><a href="set-operations-vectors.html#cb243-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(T, T, F, T)</span>
+<span id="cb243-3"><a href="set-operations-vectors.html#cb243-3" tabindex="-1"></a><span class="fu">intersect</span>(x, y)</span>
+<span id="cb243-4"><a href="set-operations-vectors.html#cb243-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb243-5"><a href="set-operations-vectors.html#cb243-5" tabindex="-1"></a><span class="fu">union</span>(x, y)</span>
+<span id="cb243-6"><a href="set-operations-vectors.html#cb243-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6 0</span></span>
+<span id="cb243-7"><a href="set-operations-vectors.html#cb243-7" tabindex="-1"></a><span class="fu">setdiff</span>(x, y)</span>
+<span id="cb243-8"><a href="set-operations-vectors.html#cb243-8" tabindex="-1"></a><span class="co">#&gt; [1] 2 3 4 5 6</span></span>
+<span id="cb243-9"><a href="set-operations-vectors.html#cb243-9" tabindex="-1"></a><span class="fu">setequal</span>(x, y)</span>
+<span id="cb243-10"><a href="set-operations-vectors.html#cb243-10" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb243-11"><a href="set-operations-vectors.html#cb243-11" tabindex="-1"></a><span class="fu">is.element</span>(x, y)</span>
+<span id="cb243-12"><a href="set-operations-vectors.html#cb243-12" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+<p>In the example above, <code>x</code> and <code>y</code> are a numeric vector and a logical vector, respectively. When they become the arguments of set operations, the vector of the simpler type, <code>y</code>, is coerced to the more complex type, numeric type in this case. Specifically, <code>TRUE</code> is coerced to <code>1</code> and <code>FALSE</code> is coerced to <code>0</code>. This is why you get a value of <code>0</code> when performing <code>intersect()</code>, when <code>0</code> doesn’t look like extant in either <code>x</code> or <code>y</code>. From there, set operations are basically performed on two numeric vectors.</p>
 </div>
-<p>After running the code above, you will see no output in the console, unlike the situation when we ran <code>1 + 2</code> which gives us the answer <code>3</code> (as shown in Figure <a href="Object-Assignment.html#fig:noa">1.18</a>). You may be wondering, did we successfully make our first assignment operation?</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:noa"></span>
-<img src="pics/2noa.png" alt="No output" width="70%" />
-<p class="caption">
-Figure 1.18: No output
-</p>
-</div>
-<p>To verify it, you can run the code with just the object name to check its value. (For all named objects, you can get their value(s) by running codes with just their names.)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Object-Assignment.html#cb16-1" tabindex="-1"></a>x_num</span>
-<span id="cb16-2"><a href="Object-Assignment.html#cb16-2" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
-<p>Great! The output is 5, indicating that you have successfully assigned the value 5 to the name x_num, and you have created a new object <code>x_num</code>. From now on, you can use <code>x_num</code> instead of <code>5</code> to do the subsequent calculations because <code>x_num</code> and <code>5</code> have the same value.</p>
-<p>Note that R object names are <strong>case-sensitive</strong>. For example, you have defined <code>x_num</code>, but if you type <code>X_num</code>, the console will return an error message as follow.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Object-Assignment.html#cb17-1" tabindex="-1"></a>X_num</span>
-<span id="cb17-2"><a href="Object-Assignment.html#cb17-2" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;X_num&#39; not found</span></span></code></pre></div>
-<p>In addition, you can assign <strong>value(s)</strong> of an expression to a name. Let’s try to simplify the three expressions we showed at the beginning of this section. It is easy to observe that the three expressions share a common term <code>exp(3) / log(20,3) * 7</code>. Let’s assign the common term to a name.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Object-Assignment.html#cb18-1" tabindex="-1"></a>y_num <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span></span>
-<span id="cb18-2"><a href="Object-Assignment.html#cb18-2" tabindex="-1"></a>y_num</span>
-<span id="cb18-3"><a href="Object-Assignment.html#cb18-3" tabindex="-1"></a><span class="co">#&gt; [1] 51.56119</span></span></code></pre></div>
-<p>Now you have successfully created an object <code>y_num</code> with value 51.561191. Using the named object <code>y_num</code>, you can simplify the three calculations as follows.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Object-Assignment.html#cb19-1" tabindex="-1"></a>y_num <span class="sc">+</span> <span class="dv">3</span></span>
-<span id="cb19-2"><a href="Object-Assignment.html#cb19-2" tabindex="-1"></a>y_num <span class="sc">-</span> <span class="dv">3</span></span>
-<span id="cb19-3"><a href="Object-Assignment.html#cb19-3" tabindex="-1"></a>y_num<span class="sc">/</span><span class="dv">3</span></span></code></pre></div>
-<div class="infobox caution">
-<p>Note that in the object assignment process, it is not the expression itself but rather the value(s) of the expression, that is assigned to a name. So you will not get the expression <code>exp(3) / log(20,3) * 7</code> by running <code>y_num</code>.</p>
-</div>
-<p>You can also try the following examples by yourself.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Object-Assignment.html#cb20-1" tabindex="-1"></a>z_num1 <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" tabindex="-1"></a>z_num1</span>
-<span id="cb20-3"><a href="Object-Assignment.html#cb20-3" tabindex="-1"></a>z_num2 <span class="ot">&lt;-</span> <span class="dv">7</span><span class="sc">%/%</span><span class="dv">3</span></span>
-<span id="cb20-4"><a href="Object-Assignment.html#cb20-4" tabindex="-1"></a>z_num2</span></code></pre></div>
-<p>Clearly, using the object assignment, you can greatly simplify the code and avoid redundancy.</p>
-</div>
-<div id="Naming" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Object naming rule<a href="Object-Assignment.html#Naming" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As you now see, the assignment operation in R is very straightforward. In general, R is very flexible in the name you can give to an object. However, there are three important rules you need to follow.</p>
-<p><strong><em>a. Must start with a letter or . (period)</em></strong></p>
-<p>In addition, if starting with period, the second character can’t be a number.</p>
-<p><strong><em>b. Can only contain letters, numbers, <code>_</code> (underscore), and <code>.</code> (period)</em></strong></p>
-<p>One recommended naming style is to use lowercase letters and numbers, and use underscore to separate words within a name. So you can use relatively longer names that is more readable. For example, <code>this_is_name_6</code> and <code>super_rich_88</code> are great names.</p>
-<p><strong><em>c. Can not use special keywords as names.</em></strong></p>
-<p>For example, <code>TRUE &lt;- 12</code> is not permitted as <code>TRUE</code> is a special keyword in R. You can see from the following that this assignment operation leads to an error message.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Object-Assignment.html#cb21-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb21-2"><a href="Object-Assignment.html#cb21-2" tabindex="-1"></a><span class="co">#&gt; Error in TRUE &lt;- 12: invalid (do_set) left-hand side to assignment</span></span></code></pre></div>
-<p>Some commonly used reserved keywords that cannot be used as names are listed as below.</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">TRUE</td>
-<td align="left">else</td>
-</tr>
-<tr class="even">
-<td align="left">FALSE</td>
-<td align="left">for</td>
-</tr>
-<tr class="odd">
-<td align="left">NA</td>
-<td align="left">while</td>
-</tr>
-<tr class="even">
-<td align="left">Inf</td>
-<td align="left">break</td>
-</tr>
-<tr class="odd">
-<td align="left">NaN</td>
-<td align="left">next</td>
-</tr>
-<tr class="even">
-<td align="left">function</td>
-<td align="left">repeat</td>
-</tr>
-<tr class="odd">
-<td align="left">if</td>
-<td align="left">return</td>
-</tr>
-</tbody>
-</table>
-<p>To get a complete list of reserved words, you can run the following code.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Object-Assignment.html#cb22-1" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(Reserved)</span></code></pre></div>
-</div>
-<div id="review-objects-in-environment" class="section level3 hasAnchor" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> Review objects in environment<a href="Object-Assignment.html#review-objects-in-environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>At this point, we’ve introduced the rules of creating objects in R. Now, you can also confirm the success of object assignments by inspecting the <strong>Environment</strong>, located in the top right panel (<strong>panel3 in Figure</strong> <a href="Installation.html#fig:four">1.4</a> <strong>in Section</strong> <a href="Installation.html#Installation">1.1</a>).</p>
-<p>If you exercised previous examples, you can find the newly assigned objects <code>x_num</code> and <code>y_num</code> (possibly also <code>z_num1</code> and <code>z_num2</code>) in your <em>Environment</em> Viewer. You may also notice that the name <code>TRUE</code>, which we tried but failed to assign the value 12 to, doesn’t appear in the <em>Environment</em> (as shown in Figure <a href="Object-Assignment.html#fig:en">1.19</a>). You can check all the <strong>named objects</strong> and their values in this area.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en"></span>
-<img src="pics/1en.png" alt="The environment (I)" width="70%" />
-<p class="caption">
-Figure 1.19: The environment (I)
-</p>
-</div>
-<p>From the picture above, you can see that the value of <code>x_num</code> is 5. In this case, let’s try to assign the new value 6 to <code>x_num</code> and see what will happen next.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Object-Assignment.html#cb23-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb23-2"><a href="Object-Assignment.html#cb23-2" tabindex="-1"></a>x_num  <span class="co">#check its value</span></span>
-<span id="cb23-3"><a href="Object-Assignment.html#cb23-3" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
-<p>Now you can see that the value of <code>x_num</code> has changed from 5 to 6. Generally, when assigning a new value to an object, R will update the object’s value, and the previous value will no longer be stored. You can verify the result by inspecting the Environment tab, where only the new value of the object will be displayed.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en2"></span>
-<img src="pics/1en2.png" alt="The environment (II)" width="70%" />
-<p class="caption">
-Figure 1.20: The environment (II)
-</p>
-</div>
-<p>So it is helpful to monitor the environment from time to time to make sure everything looks fine. Notice that objects without names will <em>not</em> be shown in the environment.</p>
-<p>You can also see the list of all the named objects (just names without values) using the built-in R function <code>ls()</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Object-Assignment.html#cb24-1" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb24-2"><a href="Object-Assignment.html#cb24-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;key_mat&quot; &quot;Keys&quot;    &quot;x_num&quot;   &quot;y_num&quot;</span></span></code></pre></div>
-<p>All the objects shown in the environment or on the list are stored in the memory, so they are available for us in subsequent codes. It is a good habit to do object assignments if you want to retrieve their values at a later time.</p>
-</div>
-<div id="object-types" class="section level3 hasAnchor" number="1.3.5">
-<h3><span class="header-section-number">1.3.5</span> Object types<a href="Object-Assignment.html#object-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So far in this section, you have learned how to do object assignments. The values you assigned are all numbers, i.e. of numeric type. Actually, an object may contain more than one values. Also, an object may contain values other than the numeric type, such like character and logical ones. Depending on the <strong>composition of values</strong>, the object belongs to one particular type.</p>
+<div id="summary" class="section level3 hasAnchor" number="2.14.3">
+<h3><span class="header-section-number">2.14.3</span> Summary<a href="set-operations-vectors.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Please find a summary of the set operations between <code>x</code> and <code>y</code> in the following table. <code>x</code> and <code>y</code> are two vectors of the <strong>same type</strong>. If two vectors are of different vector types, the coercion rule will be applied as introduced above.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Type</th>
-<th align="left">Section</th>
+<th align="left">Operation</th>
+<th align="left">Code</th>
+<th align="left">Argument_Order</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Atomic Vector</td>
-<td align="left"><a href="r-objects.html#r-objects">2</a></td>
+<td align="left">Intersection</td>
+<td align="left"><code>intersect(x, y)</code></td>
+<td align="left">insensitive</td>
 </tr>
 <tr class="even">
-<td align="left">Matrix</td>
-<td align="left"><a href="matrix.html#matrix">3.1</a></td>
+<td align="left">Union</td>
+<td align="left"><code>union(x, y)</code></td>
+<td align="left">insensitive</td>
 </tr>
 <tr class="odd">
-<td align="left">Array</td>
-<td align="left"><a href="array.html#array">3.2</a></td>
+<td align="left">Set Difference</td>
+<td align="left"><code>setdiff(x, y)</code></td>
+<td align="left">sensitive</td>
 </tr>
 <tr class="even">
-<td align="left">Data Frame</td>
-<td align="left"><a href="dataframe.html#dataframe">3.3</a></td>
+<td align="left">Set Equality</td>
+<td align="left"><code>setequal(x, y)</code></td>
+<td align="left">insensitive</td>
 </tr>
 <tr class="odd">
-<td align="left">Tibble</td>
-<td align="left"><a href="tibble.html#tibble">3.4</a></td>
-</tr>
-<tr class="even">
-<td align="left">List</td>
-<td align="left"><a href="list.html#list">3.5</a></td>
+<td align="left">Membership Determination</td>
+<td align="left"><code>is.element(x, y)</code></td>
+<td align="left">sensitive</td>
 </tr>
 </tbody>
 </table>
-<p>We will focus on atomic vectors in Chapter <a href="r-objects.html#r-objects">2</a> and discuss other object types in Chapter <a href="object-other-type.html#object-other-type">3</a>.</p>
-<p>While some of the object types look more intuitive than others, you have nothing to worry about since we have the next two chapters devoted to the details of R objects. Objects are the building blocks of R programming and it will be time well spent mastering every object type.</p>
 </div>
-<div id="exercises-2" class="section level3 hasAnchor" number="1.3.6">
-<h3><span class="header-section-number">1.3.6</span> Exercises<a href="Object-Assignment.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-16" class="section level3 hasAnchor" number="2.14.4">
+<h3><span class="header-section-number">2.14.4</span> Exercises<a href="set-operations-vectors.html#exercises-16" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider the vector <code>s1 &lt;- seq(from = 1, to = 100, length.out = 7)</code>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Write the R code to assign the value 20 to the name <code>num_1</code>.</p></li>
-<li><p>Which of the following is a valid object name in R?</p></li>
-</ol>
-<ul>
-<li><code>2.True</code></li>
-<li><code>else</code></li>
-<li><code>I_am_not_a_valid_name</code></li>
-<li><code>I_am_a_Pretty#_name</code></li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Write the R code to get the list of all objects in the environment.</li>
+<li><p>Compare <code>s1</code> to 50 to see whether the values of <code>s1</code> are bigger than 50, then assign the result to name s2. Compare <code>s1</code> to 80 to see whether the values of <code>s1</code> are less or equal to 80, then assign the result to name s3.</p></li>
+<li><p>Use two methods (logical operators and set operations) to find the subvector of <code>s1</code> with values bigger than 50 and less or equal to 80.</p></li>
+<li><p>For <code>x &lt;- 1:200</code>, use two methods (logical operators and set operations) to find the subvector of <code>x</code> that is divisible by 7, but not divisible by 2.</p></li>
 </ol>
 
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="Calculator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logical_operators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -998,7 +948,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yangfengstat/r02pro_source/edit/main/01.03_Object_Assignment.Rmd",
+"link": "https://github.com/yangfengstat/r02pro_source/edit/main/02.14_Set_Operations.Rmd",
 "text": "Edit"
 },
 "history": {
