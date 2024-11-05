@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -759,7 +764,7 @@ div.csl-indent {
 <div id="introduction-to-data-frames" class="section level3 hasAnchor" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Introduction to Data Frames<a href="dataframe.html#introduction-to-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create a data frame, you can use the <code>data.frame()</code> function to combine several vectors of the same length into a single object. Let’s see an example of some health conditions of a sheep and a pig over the years 2019, 2020 and 2021.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="dataframe.html#cb359-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="dataframe.html#cb359-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
 <span id="cb359-2"><a href="dataframe.html#cb359-2" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
 <span id="cb359-3"><a href="dataframe.html#cb359-3" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
 <span id="cb359-4"><a href="dataframe.html#cb359-4" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
@@ -805,7 +810,8 @@ div.csl-indent {
 <span id="cb362-9"><a href="dataframe.html#cb362-9" tabindex="-1"></a><span class="co">#&gt; [6,] &quot;pig&quot;   &quot;2021&quot; &quot;800&quot;  &quot;2.3&quot;  &quot;1&quot;       &quot;FALSE&quot;</span></span></code></pre></div>
 </div>
 <p>In the process of creating data frames, you can also name each column.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="dataframe.html#cb363-1" tabindex="-1"></a>my_data_frame2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ani =</span> animal, <span class="at">y =</span> year, <span class="at">w =</span> weight, <span class="at">h =</span> height, <span class="at">con =</span> condition, <span class="at">hea =</span> healthy)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="dataframe.html#cb363-1" tabindex="-1"></a>my_data_frame2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ani =</span> animal, <span class="at">y =</span> year, <span class="at">w =</span> weight, <span class="at">h =</span> height, <span class="at">con =</span> condition,</span>
+<span id="cb363-2"><a href="dataframe.html#cb363-2" tabindex="-1"></a>    <span class="at">hea =</span> healthy)</span></code></pre></div>
 <p>In Section <a href="numeric-vector-statistics.html#numeric-vector-statistics">2.8</a>, we introduced the very useful function <code>summary()</code>, which returns important summary statistics for a vector. Using <code>summary()</code> on a data frame, you get the summary statistics for each variable.</p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="dataframe.html#cb364-1" tabindex="-1"></a><span class="fu">summary</span>(my_data_frame)</span>
 <span id="cb364-2"><a href="dataframe.html#cb364-2" tabindex="-1"></a><span class="co">#&gt;     animal               year          weight        height          condition</span></span>
@@ -847,16 +853,17 @@ div.csl-indent {
 <h3><span class="header-section-number">3.3.2</span> Adding Observations or Variables in Data Frames<a href="dataframe.html#adding-observations-or-variables-in-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes, you may want to add additional entries to the 1st dimension (i.e., rows/observations) or the 2nd dimension (i.e., columns/variables) to an existing data frame.</p>
 <p>To add additional observations, you need to put the additional observations or variables into a new data frame, and use the <code>rbind()</code> function.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="dataframe.html#cb367-1" tabindex="-1"></a>new_obs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">animal =</span> <span class="st">&quot;pig&quot;</span>, <span class="at">year =</span> <span class="dv">2018</span>, <span class="at">weight =</span> <span class="dv">200</span>, <span class="at">height =</span> <span class="fl">1.9</span>, <span class="at">condition =</span> <span class="st">&quot;excellent&quot;</span>, <span class="at">healthy =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb367-2"><a href="dataframe.html#cb367-2" tabindex="-1"></a><span class="fu">rbind</span>(my_data_frame, new_obs)</span>
-<span id="cb367-3"><a href="dataframe.html#cb367-3" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy</span></span>
-<span id="cb367-4"><a href="dataframe.html#cb367-4" tabindex="-1"></a><span class="co">#&gt; 1  sheep 2019    110    2.2 excellent    TRUE</span></span>
-<span id="cb367-5"><a href="dataframe.html#cb367-5" tabindex="-1"></a><span class="co">#&gt; 2  sheep 2020    120    2.4      good    TRUE</span></span>
-<span id="cb367-6"><a href="dataframe.html#cb367-6" tabindex="-1"></a><span class="co">#&gt; 3  sheep 2021    140    2.7      &lt;NA&gt;    TRUE</span></span>
-<span id="cb367-7"><a href="dataframe.html#cb367-7" tabindex="-1"></a><span class="co">#&gt; 4    pig 2019     NA    2.0 excellent    TRUE</span></span>
-<span id="cb367-8"><a href="dataframe.html#cb367-8" tabindex="-1"></a><span class="co">#&gt; 5    pig 2020    300    2.1      good    TRUE</span></span>
-<span id="cb367-9"><a href="dataframe.html#cb367-9" tabindex="-1"></a><span class="co">#&gt; 6    pig 2021    800    2.3   average   FALSE</span></span>
-<span id="cb367-10"><a href="dataframe.html#cb367-10" tabindex="-1"></a><span class="co">#&gt; 7    pig 2018    200    1.9 excellent    TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="dataframe.html#cb367-1" tabindex="-1"></a>new_obs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">animal =</span> <span class="st">&quot;pig&quot;</span>, <span class="at">year =</span> <span class="dv">2018</span>, <span class="at">weight =</span> <span class="dv">200</span>, <span class="at">height =</span> <span class="fl">1.9</span>, <span class="at">condition =</span> <span class="st">&quot;excellent&quot;</span>,</span>
+<span id="cb367-2"><a href="dataframe.html#cb367-2" tabindex="-1"></a>    <span class="at">healthy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb367-3"><a href="dataframe.html#cb367-3" tabindex="-1"></a><span class="fu">rbind</span>(my_data_frame, new_obs)</span>
+<span id="cb367-4"><a href="dataframe.html#cb367-4" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy</span></span>
+<span id="cb367-5"><a href="dataframe.html#cb367-5" tabindex="-1"></a><span class="co">#&gt; 1  sheep 2019    110    2.2 excellent    TRUE</span></span>
+<span id="cb367-6"><a href="dataframe.html#cb367-6" tabindex="-1"></a><span class="co">#&gt; 2  sheep 2020    120    2.4      good    TRUE</span></span>
+<span id="cb367-7"><a href="dataframe.html#cb367-7" tabindex="-1"></a><span class="co">#&gt; 3  sheep 2021    140    2.7      &lt;NA&gt;    TRUE</span></span>
+<span id="cb367-8"><a href="dataframe.html#cb367-8" tabindex="-1"></a><span class="co">#&gt; 4    pig 2019     NA    2.0 excellent    TRUE</span></span>
+<span id="cb367-9"><a href="dataframe.html#cb367-9" tabindex="-1"></a><span class="co">#&gt; 5    pig 2020    300    2.1      good    TRUE</span></span>
+<span id="cb367-10"><a href="dataframe.html#cb367-10" tabindex="-1"></a><span class="co">#&gt; 6    pig 2021    800    2.3   average   FALSE</span></span>
+<span id="cb367-11"><a href="dataframe.html#cb367-11" tabindex="-1"></a><span class="co">#&gt; 7    pig 2018    200    1.9 excellent    TRUE</span></span></code></pre></div>
 <p>To add an additional variable to the existing data frame, you just need to use the <code>$</code> operator to name the new variable and use the <code>&lt;-</code> operator to assign values to the new variable.</p>
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="dataframe.html#cb368-1" tabindex="-1"></a>my_data_frame<span class="sc">$</span>age <span class="ot">&lt;-</span> my_data_frame<span class="sc">$</span>year <span class="sc">-</span> <span class="dv">2015</span></span>
 <span id="cb368-2"><a href="dataframe.html#cb368-2" tabindex="-1"></a>my_data_frame</span>
@@ -887,7 +894,7 @@ div.csl-indent {
 <span id="cb372-3"><a href="dataframe.html#cb372-3" tabindex="-1"></a><span class="co">#&gt; 2  sheep 2020    120    2.4      good    TRUE   5</span></span>
 <span id="cb372-4"><a href="dataframe.html#cb372-4" tabindex="-1"></a>my_data_frame[, <span class="dv">3</span>]</span>
 <span id="cb372-5"><a href="dataframe.html#cb372-5" tabindex="-1"></a><span class="co">#&gt; [1] 115 120 140  NA 300 800</span></span>
-<span id="cb372-6"><a href="dataframe.html#cb372-6" tabindex="-1"></a>my_data_frame[<span class="dv">3</span>]       <span class="co">#a single index corresponds to the columns</span></span>
+<span id="cb372-6"><a href="dataframe.html#cb372-6" tabindex="-1"></a>my_data_frame[<span class="dv">3</span>]  <span class="co">#a single index corresponds to the columns</span></span>
 <span id="cb372-7"><a href="dataframe.html#cb372-7" tabindex="-1"></a><span class="co">#&gt;   weight</span></span>
 <span id="cb372-8"><a href="dataframe.html#cb372-8" tabindex="-1"></a><span class="co">#&gt; 1    115</span></span>
 <span id="cb372-9"><a href="dataframe.html#cb372-9" tabindex="-1"></a><span class="co">#&gt; 2    120</span></span>
@@ -895,7 +902,7 @@ div.csl-indent {
 <span id="cb372-11"><a href="dataframe.html#cb372-11" tabindex="-1"></a><span class="co">#&gt; 4     NA</span></span>
 <span id="cb372-12"><a href="dataframe.html#cb372-12" tabindex="-1"></a><span class="co">#&gt; 5    300</span></span>
 <span id="cb372-13"><a href="dataframe.html#cb372-13" tabindex="-1"></a><span class="co">#&gt; 6    800</span></span>
-<span id="cb372-14"><a href="dataframe.html#cb372-14" tabindex="-1"></a>my_data_frame[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
+<span id="cb372-14"><a href="dataframe.html#cb372-14" tabindex="-1"></a>my_data_frame[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)]</span>
 <span id="cb372-15"><a href="dataframe.html#cb372-15" tabindex="-1"></a><span class="co">#&gt;   animal condition healthy age</span></span>
 <span id="cb372-16"><a href="dataframe.html#cb372-16" tabindex="-1"></a><span class="co">#&gt; 1  sheep excellent    TRUE   4</span></span>
 <span id="cb372-17"><a href="dataframe.html#cb372-17" tabindex="-1"></a><span class="co">#&gt; 3  sheep      &lt;NA&gt;    TRUE   6</span></span></code></pre></div>
@@ -917,17 +924,16 @@ div.csl-indent {
 <span id="cb374-3"><a href="dataframe.html#cb374-3" tabindex="-1"></a><span class="co">#&gt; 1  sheep    120</span></span>
 <span id="cb374-4"><a href="dataframe.html#cb374-4" tabindex="-1"></a><span class="co">#&gt; 2  sheep    123</span></span></code></pre></div>
 <p>Let’s try to modify this sub data frame.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="dataframe.html#cb375-1" tabindex="-1"></a>my_data_frame[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;weight&quot;</span>)] <span class="ot">&lt;-</span></span>
-<span id="cb375-2"><a href="dataframe.html#cb375-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">animal =</span> <span class="fu">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;bear&quot;</span>),</span>
-<span id="cb375-3"><a href="dataframe.html#cb375-3" tabindex="-1"></a>             <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">300</span>))</span>
-<span id="cb375-4"><a href="dataframe.html#cb375-4" tabindex="-1"></a>my_data_frame</span>
-<span id="cb375-5"><a href="dataframe.html#cb375-5" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy age</span></span>
-<span id="cb375-6"><a href="dataframe.html#cb375-6" tabindex="-1"></a><span class="co">#&gt; 1 monkey 2019    110    2.2 excellent    TRUE   4</span></span>
-<span id="cb375-7"><a href="dataframe.html#cb375-7" tabindex="-1"></a><span class="co">#&gt; 2   bear 2020    300    2.4      good    TRUE   5</span></span>
-<span id="cb375-8"><a href="dataframe.html#cb375-8" tabindex="-1"></a><span class="co">#&gt; 3  sheep 2021    141    2.7      &lt;NA&gt;    TRUE   6</span></span>
-<span id="cb375-9"><a href="dataframe.html#cb375-9" tabindex="-1"></a><span class="co">#&gt; 4    pig 2019     NA    2.0 excellent    TRUE   4</span></span>
-<span id="cb375-10"><a href="dataframe.html#cb375-10" tabindex="-1"></a><span class="co">#&gt; 5    pig 2020    300    2.1      good    TRUE   5</span></span>
-<span id="cb375-11"><a href="dataframe.html#cb375-11" tabindex="-1"></a><span class="co">#&gt; 6    pig 2021    800    2.3   average   FALSE   6</span></span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="dataframe.html#cb375-1" tabindex="-1"></a>my_data_frame[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">c</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;weight&quot;</span>)] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">animal =</span> <span class="fu">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;bear&quot;</span>),</span>
+<span id="cb375-2"><a href="dataframe.html#cb375-2" tabindex="-1"></a>    <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">300</span>))</span>
+<span id="cb375-3"><a href="dataframe.html#cb375-3" tabindex="-1"></a>my_data_frame</span>
+<span id="cb375-4"><a href="dataframe.html#cb375-4" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy age</span></span>
+<span id="cb375-5"><a href="dataframe.html#cb375-5" tabindex="-1"></a><span class="co">#&gt; 1 monkey 2019    110    2.2 excellent    TRUE   4</span></span>
+<span id="cb375-6"><a href="dataframe.html#cb375-6" tabindex="-1"></a><span class="co">#&gt; 2   bear 2020    300    2.4      good    TRUE   5</span></span>
+<span id="cb375-7"><a href="dataframe.html#cb375-7" tabindex="-1"></a><span class="co">#&gt; 3  sheep 2021    141    2.7      &lt;NA&gt;    TRUE   6</span></span>
+<span id="cb375-8"><a href="dataframe.html#cb375-8" tabindex="-1"></a><span class="co">#&gt; 4    pig 2019     NA    2.0 excellent    TRUE   4</span></span>
+<span id="cb375-9"><a href="dataframe.html#cb375-9" tabindex="-1"></a><span class="co">#&gt; 5    pig 2020    300    2.1      good    TRUE   5</span></span>
+<span id="cb375-10"><a href="dataframe.html#cb375-10" tabindex="-1"></a><span class="co">#&gt; 6    pig 2021    800    2.3   average   FALSE   6</span></span></code></pre></div>
 <p><strong><em>c. using logical vectors to do data frame subsetting and modifying</em></strong></p>
 <p>Using logical vectors to do data frame subsetting can come in handy. Suppose we want to find the condition of the pig in year 2021.</p>
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="dataframe.html#cb376-1" tabindex="-1"></a>is_2021 <span class="ot">&lt;-</span> my_data_frame<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2021</span></span>
@@ -941,7 +947,7 @@ div.csl-indent {
 <span id="cb377-3"><a href="dataframe.html#cb377-3" tabindex="-1"></a><span class="co">#&gt; 1  monkey 2019    110    2.2 excellent    TRUE   4</span></span>
 <span id="cb377-4"><a href="dataframe.html#cb377-4" tabindex="-1"></a><span class="co">#&gt; NA   &lt;NA&gt;   NA     NA     NA      &lt;NA&gt;      NA  NA</span></span>
 <span id="cb377-5"><a href="dataframe.html#cb377-5" tabindex="-1"></a><span class="co">#&gt; 4     pig 2019     NA    2.0 excellent    TRUE   4</span></span>
-<span id="cb377-6"><a href="dataframe.html#cb377-6" tabindex="-1"></a>my_data_frame[<span class="fu">which</span>(my_data_frame<span class="sc">$</span>condition <span class="sc">==</span> <span class="st">&quot;excellent&quot;</span>), ]    <span class="co">#remove the NA row</span></span>
+<span id="cb377-6"><a href="dataframe.html#cb377-6" tabindex="-1"></a>my_data_frame[<span class="fu">which</span>(my_data_frame<span class="sc">$</span>condition <span class="sc">==</span> <span class="st">&quot;excellent&quot;</span>), ]  <span class="co">#remove the NA row</span></span>
 <span id="cb377-7"><a href="dataframe.html#cb377-7" tabindex="-1"></a><span class="co">#&gt;   animal year weight height condition healthy age</span></span>
 <span id="cb377-8"><a href="dataframe.html#cb377-8" tabindex="-1"></a><span class="co">#&gt; 1 monkey 2019    110    2.2 excellent    TRUE   4</span></span>
 <span id="cb377-9"><a href="dataframe.html#cb377-9" tabindex="-1"></a><span class="co">#&gt; 4    pig 2019     NA    2.0 excellent    TRUE   4</span></span></code></pre></div>
@@ -951,7 +957,7 @@ div.csl-indent {
 <div id="exercises-22" class="section level3 hasAnchor" number="3.3.4">
 <h3><span class="header-section-number">3.3.4</span> Exercises<a href="dataframe.html#exercises-22" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider the following data frame,</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="dataframe.html#cb379-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="dataframe.html#cb379-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
 <span id="cb379-2"><a href="dataframe.html#cb379-2" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="cn">NA</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
 <span id="cb379-3"><a href="dataframe.html#cb379-3" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;average&quot;</span>)</span>
 <span id="cb379-4"><a href="dataframe.html#cb379-4" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>

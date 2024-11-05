@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -777,17 +782,15 @@ div.csl-indent {
 <li>The <strong>lower whisker</strong> is the smallest observation value that is greater than or equal to Q1 - 1.5 * IQR. To find this value, we first calculate Q1 - 1.5 * IQR = 22.54375.
 Then, the smallest observation larger than 22.54375 is</li>
 </ul>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="boxplots.html#cb642-1" tabindex="-1"></a>lower_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&gt;=</span> </span>
-<span id="cb642-2"><a href="boxplots.html#cb642-2" tabindex="-1"></a>                             <span class="fu">quantile</span>(sale_price, <span class="fl">0.25</span>) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
-<span id="cb642-3"><a href="boxplots.html#cb642-3" tabindex="-1"></a><span class="fu">min</span>(sale_price[lower_whisker_loc])</span>
-<span id="cb642-4"><a href="boxplots.html#cb642-4" tabindex="-1"></a><span class="co">#&gt; [1] 44</span></span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="boxplots.html#cb642-1" tabindex="-1"></a>lower_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&gt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.25</span>) <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
+<span id="cb642-2"><a href="boxplots.html#cb642-2" tabindex="-1"></a><span class="fu">min</span>(sale_price[lower_whisker_loc])</span>
+<span id="cb642-3"><a href="boxplots.html#cb642-3" tabindex="-1"></a><span class="co">#&gt; [1] 44</span></span></code></pre></div>
 <ul>
 <li>The <strong>upper whisker</strong> is the largest observation value that is smaller than or equal to Q3 + 1.5 * IQR. Similarly, the value is</li>
 </ul>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="boxplots.html#cb643-1" tabindex="-1"></a>upper_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&lt;=</span> </span>
-<span id="cb643-2"><a href="boxplots.html#cb643-2" tabindex="-1"></a>                             <span class="fu">quantile</span>(sale_price, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
-<span id="cb643-3"><a href="boxplots.html#cb643-3" tabindex="-1"></a><span class="fu">max</span>(sale_price[upper_whisker_loc])</span>
-<span id="cb643-4"><a href="boxplots.html#cb643-4" tabindex="-1"></a><span class="co">#&gt; [1] 308.03</span></span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="boxplots.html#cb643-1" tabindex="-1"></a>upper_whisker_loc <span class="ot">&lt;-</span> <span class="fu">which</span>(sale_price <span class="sc">&lt;=</span> <span class="fu">quantile</span>(sale_price, <span class="fl">0.75</span>) <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price))</span>
+<span id="cb643-2"><a href="boxplots.html#cb643-2" tabindex="-1"></a><span class="fu">max</span>(sale_price[upper_whisker_loc])</span>
+<span id="cb643-3"><a href="boxplots.html#cb643-3" tabindex="-1"></a><span class="co">#&gt; [1] 308.03</span></span></code></pre></div>
 <p>To summarize, the five lines on the boxplot, from the top to bottom, are</p>
 <ul>
 <li>upper whisker (&lt;= Q3 + 1.5*IQR)</li>
@@ -802,18 +805,12 @@ Then, the smallest observation larger than 22.54375 is</li>
 <h3><span class="header-section-number">5.11.2</span> Using the <code>geom_boxplot()</code> function<a href="boxplots.html#boxplot-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As before, we will spend more time to discuss <code>geom_boxplot()</code> as it provides more functionality. Let’s first create the boxplot for <code>sale_price</code>.</p>
 <div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="boxplots.html#cb644-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb644-2"><a href="boxplots.html#cb644-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb644-3"><a href="boxplots.html#cb644-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price))</span></code></pre></div>
+<span id="cb644-2"><a href="boxplots.html#cb644-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-671-1.png" width="576" /></p>
 <p>Note that here we set <code>x = ""</code> since no information is needed on the x-axis.</p>
 <p>In addition to the default summary statistics, we can add other values to the boxplot, for example, we can add the mean value to the plot.</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="boxplots.html#cb645-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb645-2"><a href="boxplots.html#cb645-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb645-3"><a href="boxplots.html#cb645-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb645-4"><a href="boxplots.html#cb645-4" tabindex="-1"></a>             <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, </span>
-<span id="cb645-5"><a href="boxplots.html#cb645-5" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">20</span>, </span>
-<span id="cb645-6"><a href="boxplots.html#cb645-6" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>, </span>
-<span id="cb645-7"><a href="boxplots.html#cb645-7" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="boxplots.html#cb645-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
+<span id="cb645-2"><a href="boxplots.html#cb645-2" tabindex="-1"></a>    <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-672-1.png" width="576" /></p>
 <p>The <code>geom_point()</code> function will first calculate the mean hwy, and add it to the boxplot. Note that we used some global aesthetics for <code>geom_point()</code>.</p>
 </div>
@@ -821,38 +818,25 @@ Then, the smallest observation larger than 22.54375 is</li>
 <h3><span class="header-section-number">5.11.3</span> Compare distributions in different groups<a href="boxplots.html#boxplot-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One common use of boxplot is to compare the distribution of a continuous variable in different groups. To do this, you just need to set the x-axis to be the discrete variable that encodes the different groups.</p>
 <p>Let’s say we want to compare the <code>sale_price</code> for houses with different <code>kit_qual</code>.</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="boxplots.html#cb646-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb646-2"><a href="boxplots.html#cb646-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> kit_qual, </span>
-<span id="cb646-3"><a href="boxplots.html#cb646-3" tabindex="-1"></a>                   <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="boxplots.html#cb646-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-673-1.png" width="576" /></p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="boxplots.html#cb647-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004 <span class="sc">%&gt;%</span> <span class="fu">remove_missing</span>(<span class="at">vars=</span><span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb647-2"><a href="boxplots.html#cb647-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> HDI_category, </span>
-<span id="cb647-3"><a href="boxplots.html#cb647-3" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">log</span>(GDP_per_capita)))</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="boxplots.html#cb647-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004 <span class="sc">%&gt;%</span></span>
+<span id="cb647-2"><a href="boxplots.html#cb647-2" tabindex="-1"></a>    <span class="fu">remove_missing</span>(<span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> HDI_category, <span class="at">y =</span> <span class="fu">log</span>(GDP_per_capita)))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-673-2.png" width="576" /></p>
 <p>This plot shows the boxplots of <code>sale_price</code> for different values of <code>kit_qual</code> side-by-side, which makes the comparison of distributions straightforward.</p>
 <p>Just like in bar charts, you may want to arrange the boxplots in a particular order. For example, to order the boxplots in ascending order of the <code>sale_price</code>, you can use</p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="boxplots.html#cb648-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;sale_price&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb648-2"><a href="boxplots.html#cb648-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual, </span>
-<span id="cb648-3"><a href="boxplots.html#cb648-3" tabindex="-1"></a>                                   sale_price, </span>
-<span id="cb648-4"><a href="boxplots.html#cb648-4" tabindex="-1"></a>                                   median), </span>
-<span id="cb648-5"><a href="boxplots.html#cb648-5" tabindex="-1"></a>                   <span class="at">y =</span> sale_price)) </span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="boxplots.html#cb648-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;sale_price&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual,</span>
+<span id="cb648-2"><a href="boxplots.html#cb648-2" tabindex="-1"></a>    sale_price, median), <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-674-1.png" width="576" /></p>
 <p>To order it by the mean <code>sale_price</code> in descending order, you can use</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="boxplots.html#cb649-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;sale_price&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb649-2"><a href="boxplots.html#cb649-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual, </span>
-<span id="cb649-3"><a href="boxplots.html#cb649-3" tabindex="-1"></a>                                   sale_price, </span>
-<span id="cb649-4"><a href="boxplots.html#cb649-4" tabindex="-1"></a>                                   mean, </span>
-<span id="cb649-5"><a href="boxplots.html#cb649-5" tabindex="-1"></a>                                   <span class="at">.desc =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb649-6"><a href="boxplots.html#cb649-6" tabindex="-1"></a>                   <span class="at">y =</span> sale_price)) </span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="boxplots.html#cb649-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;sale_price&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(kit_qual,</span>
+<span id="cb649-2"><a href="boxplots.html#cb649-2" tabindex="-1"></a>    sale_price, mean, <span class="at">.desc =</span> <span class="cn">TRUE</span>), <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-675-1.png" width="576" /></p>
 <p>If you want to generate a flipped version of the boxplot, you can add <code>coord_flip()</code> to the <code>ggplot()</code> function. Actually, this works with any ggplot.</p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="boxplots.html#cb650-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb650-2"><a href="boxplots.html#cb650-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb650-3"><a href="boxplots.html#cb650-3" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="boxplots.html#cb650-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> kit_qual, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-676-1.png" width="576" /></p>
 <p>As an alternative, you can also switch the <code>x</code> and <code>y</code> arguments.</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="boxplots.html#cb651-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb651-2"><a href="boxplots.html#cb651-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">y =</span> kit_qual))</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="boxplots.html#cb651-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sale_price, <span class="at">y =</span> kit_qual))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-677-1.png" width="576" /></p>
 <p>Now, you have learned how to compare the distributions of a continuous variable for different groups implied by a discrete variable. How about groups implied by a continuous variable? To do this, you can use the function <code>cut_width()</code> to convert a continuous variable to a discrete one by dividing the observations into different groups, just like in histograms. Let’s try to convert the continuous variable <code>oa_qual</code> into a discrete one.</p>
 <div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="boxplots.html#cb652-1" tabindex="-1"></a><span class="fu">cut_width</span>(sahp<span class="sc">$</span>oa_qual, <span class="at">width =</span> <span class="dv">2</span>)</span>
@@ -877,27 +861,21 @@ Then, the smallest observation larger than 22.54375 is</li>
 <p>The working mechanism of <code>cut_width()</code> is that it makes groups of width <code>width</code> and create a factor with the levels be the different groups. For example, the first observation has <code>oa_qual</code> = 6, belong to the (5,7] group.</p>
 <p>Note there are also functions <code>cut_interval()</code> and <code>cut_number()</code> which also discretise continuous variable into a discrete one by making groups with equal range and equal number of observations, respectively.</p>
 <p>Now, you can compare the distributions of a continuous variable on the constructed groups from another continuous variable.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="boxplots.html#cb653-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars=</span><span class="st">&quot;oa_qual&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb653-2"><a href="boxplots.html#cb653-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">cut_width</span>(oa_qual, <span class="at">width =</span> <span class="dv">2</span>), </span>
-<span id="cb653-3"><a href="boxplots.html#cb653-3" tabindex="-1"></a>                   <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="boxplots.html#cb653-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(sahp, <span class="at">vars =</span> <span class="st">&quot;oa_qual&quot;</span>)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">cut_width</span>(oa_qual,</span>
+<span id="cb653-2"><a href="boxplots.html#cb653-2" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">2</span>), <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-679-1.png" width="576" /></p>
 <p>This agrees perfectly with our intuition that houses with higher overall quality have higher sale prices.</p>
 </div>
 <div id="aesthetics-in-boxplot" class="section level3 hasAnchor" number="5.11.4">
 <h3><span class="header-section-number">5.11.4</span> Aesthetics in boxplot<a href="boxplots.html#aesthetics-in-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before talking about aesthetics, let’s create a boxplot of <code>sale_price</code> for different values of <code>house_style</code>.</p>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="boxplots.html#cb654-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp), </span>
-<span id="cb654-2"><a href="boxplots.html#cb654-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
-<span id="cb654-3"><a href="boxplots.html#cb654-3" tabindex="-1"></a>           <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb654-4"><a href="boxplots.html#cb654-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb654-5"><a href="boxplots.html#cb654-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="boxplots.html#cb654-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp), <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb654-2"><a href="boxplots.html#cb654-2" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-680-1.png" width="576" /></p>
 <p>Note that we only show the two boxplots with <code>house_style</code> equaling <code>"1Story"</code> or <code>"2Story"</code>. To simply the codes, it is sometimes helpful to store the intermediate plot object and build additional plots on top of it. For example, we can generate the same boxplot using the following two steps.</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="boxplots.html#cb655-1" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp), </span>
-<span id="cb655-2"><a href="boxplots.html#cb655-2" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
-<span id="cb655-3"><a href="boxplots.html#cb655-3" tabindex="-1"></a>                <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb655-4"><a href="boxplots.html#cb655-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, <span class="st">&quot;2Story&quot;</span>))</span>
-<span id="cb655-5"><a href="boxplots.html#cb655-5" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="boxplots.html#cb655-1" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">na.omit</span>(sahp), <span class="fu">aes</span>(<span class="at">x =</span> house_style, <span class="at">y =</span> sale_price)) <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>,</span>
+<span id="cb655-2"><a href="boxplots.html#cb655-2" tabindex="-1"></a>    <span class="st">&quot;2Story&quot;</span>))</span>
+<span id="cb655-3"><a href="boxplots.html#cb655-3" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-681-1.png" width="576" /></p>
 <p><strong><em>a. Map the grouping variable to <code>color</code></em></strong></p>
 <p>First, let’s try to map the variable <code>house_style</code> to the <code>color</code> aesthetic.</p>
@@ -925,22 +903,18 @@ Then, the smallest observation larger than 22.54375 is</li>
 <div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="boxplots.html#cb661-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;green&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-687-1.png" width="576" /></p>
 <p>If you want to change the shape and size of the outliers, you can set the arguments <code>outlier.shape</code> and <code>outlier.size</code>.</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="boxplots.html#cb662-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="st">&quot;green&quot;</span>, </span>
-<span id="cb662-2"><a href="boxplots.html#cb662-2" tabindex="-1"></a>                 <span class="at">outlier.shape =</span> <span class="dv">2</span>, </span>
-<span id="cb662-3"><a href="boxplots.html#cb662-3" tabindex="-1"></a>                 <span class="at">outlier.size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="boxplots.html#cb662-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="st">&quot;green&quot;</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>, <span class="at">outlier.size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-688-1.png" width="576" /></p>
 </div>
 <div id="notched-boxplots" class="section level3 hasAnchor" number="5.11.5">
 <h3><span class="header-section-number">5.11.5</span> Notched Boxplots<a href="boxplots.html#notched-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to the regular boxplot, there is a more sophisticated version, called <strong>notched boxplot</strong>. We can generate such a boxplot by setting the global aesthetic <code>notch = TRUE</code> in the <code>geom_boxplot()</code> function.</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="boxplots.html#cb663-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb663-2"><a href="boxplots.html#cb663-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price), </span>
-<span id="cb663-3"><a href="boxplots.html#cb663-3" tabindex="-1"></a>               <span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="boxplots.html#cb663-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> sale_price), <span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-689-1.png" width="576" /></p>
 <p>In a notched box plot, a notch is generated around the median, with the vertical width on each side being 1.58 times IQR divided by the squared root of the sample size: <span class="math inline">\(1.58 * IQR / sqrt(n)\)</span>. This gives a roughly 95% confidence interval for the median. As a result, if the notches of two boxplots do not overlap, it offers evidence of a statistically significant difference between the two medians. In this example, the upper and lower points of the notch are</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="boxplots.html#cb664-1" tabindex="-1"></a><span class="fu">median</span>(sale_price) <span class="sc">+</span> <span class="fl">1.58</span><span class="sc">*</span><span class="fu">IQR</span>(sale_price)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price))</span>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="boxplots.html#cb664-1" tabindex="-1"></a><span class="fu">median</span>(sale_price) <span class="sc">+</span> <span class="fl">1.58</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price))</span>
 <span id="cb664-2"><a href="boxplots.html#cb664-2" tabindex="-1"></a><span class="co">#&gt; [1] 166.7854</span></span>
-<span id="cb664-3"><a href="boxplots.html#cb664-3" tabindex="-1"></a><span class="fu">median</span>(sale_price) <span class="sc">-</span> <span class="fl">1.58</span><span class="sc">*</span><span class="fu">IQR</span>(sale_price)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price))</span>
+<span id="cb664-3"><a href="boxplots.html#cb664-3" tabindex="-1"></a><span class="fu">median</span>(sale_price) <span class="sc">-</span> <span class="fl">1.58</span> <span class="sc">*</span> <span class="fu">IQR</span>(sale_price)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price))</span>
 <span id="cb664-4"><a href="boxplots.html#cb664-4" tabindex="-1"></a><span class="co">#&gt; [1] 149.1146</span></span></code></pre></div>
 </div>
 <div id="exercises-41" class="section level3 hasAnchor" number="5.11.6">

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -759,7 +764,7 @@ div.csl-indent {
 <div id="create-an-array-from-a-vector" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Create an array from a vector<a href="array.html#create-an-array-from-a-vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create an array from a vector, you can use the function <code>array()</code>. Let’s see an example and use <code>dim()</code> to get its dimension.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="array.html#cb348-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="array.html#cb348-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
 <span id="cb348-2"><a href="array.html#cb348-2" tabindex="-1"></a>x</span>
 <span id="cb348-3"><a href="array.html#cb348-3" tabindex="-1"></a><span class="co">#&gt; , , 1</span></span>
 <span id="cb348-4"><a href="array.html#cb348-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -806,18 +811,18 @@ div.csl-indent {
 <h3><span class="header-section-number">3.2.2</span> Array subsetting<a href="array.html#array-subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Like vector subsetting in Section <a href="subsetting-and-modify-values.html#vector-subsetting">2.5.2</a> and matrix subsetting in Section <a href="matrix.html#matrix-subsetting">3.1.3</a>, we can do array subsetting as well.</p>
 <p>To do array subsetting, you can specify the indices for each dimension separated by <code>,</code>. Since <code>x</code> is a three-dimensional array, you can specify at most 3 indices. If you leave the indices for certain dimensions empty, everything will be kept along the corresponding dimensions. You can also use negative index to dropping specified elements. Let’s see a few examples.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="array.html#cb351-1" tabindex="-1"></a>x[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]     <span class="co">#the (1, 2, 3)-th element of x</span></span>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="array.html#cb351-1" tabindex="-1"></a>x[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]  <span class="co">#the (1, 2, 3)-th element of x</span></span>
 <span id="cb351-2"><a href="array.html#cb351-2" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span>
-<span id="cb351-3"><a href="array.html#cb351-3" tabindex="-1"></a>x[, , <span class="dv">2</span>]       <span class="co">#the matrix where the index of the 3rd dimension equals 2</span></span>
+<span id="cb351-3"><a href="array.html#cb351-3" tabindex="-1"></a>x[, , <span class="dv">2</span>]  <span class="co">#the matrix where the index of the 3rd dimension equals 2</span></span>
 <span id="cb351-4"><a href="array.html#cb351-4" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span id="cb351-5"><a href="array.html#cb351-5" tabindex="-1"></a><span class="co">#&gt; [1,]    7    9   11</span></span>
 <span id="cb351-6"><a href="array.html#cb351-6" tabindex="-1"></a><span class="co">#&gt; [2,]    8   10   12</span></span>
-<span id="cb351-7"><a href="array.html#cb351-7" tabindex="-1"></a>x[<span class="dv">2</span>, , <span class="dv">4</span>]      <span class="co">#the vector whether the indices of the 1st and 3rd dimension equal 2 and 4.</span></span>
+<span id="cb351-7"><a href="array.html#cb351-7" tabindex="-1"></a>x[<span class="dv">2</span>, , <span class="dv">4</span>]  <span class="co">#the vector whether the indices of the 1st and 3rd dimension equal 2 and 4.</span></span>
 <span id="cb351-8"><a href="array.html#cb351-8" tabindex="-1"></a><span class="co">#&gt; [1] 20 22 24</span></span>
-<span id="cb351-9"><a href="array.html#cb351-9" tabindex="-1"></a>x[<span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>]   </span>
+<span id="cb351-9"><a href="array.html#cb351-9" tabindex="-1"></a>x[<span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>]</span>
 <span id="cb351-10"><a href="array.html#cb351-10" tabindex="-1"></a><span class="co">#&gt; [1]  5 11 23</span></span></code></pre></div>
 <p>Just like subsetting matrices, you can also use logical vectors on each dimension, as well as using names as the indices on a named array.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="array.html#cb352-1" tabindex="-1"></a>x[x[, <span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">==</span> <span class="dv">7</span>,,]</span>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="array.html#cb352-1" tabindex="-1"></a>x[x[, <span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">==</span> <span class="dv">7</span>, , ]</span>
 <span id="cb352-2"><a href="array.html#cb352-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
 <span id="cb352-3"><a href="array.html#cb352-3" tabindex="-1"></a><span class="co">#&gt; [1,]    1    7   13   19</span></span>
 <span id="cb352-4"><a href="array.html#cb352-4" tabindex="-1"></a><span class="co">#&gt; [2,]    3    9   15   21</span></span>
@@ -878,31 +883,31 @@ div.csl-indent {
 <div id="apply-functions-along-certain-dimensions" class="section level3 hasAnchor" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Apply functions along certain dimension(s)<a href="array.html#apply-functions-along-certain-dimensions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just like when we work with matrices, it is of interest to apply functions not on the whole array, but along certain dimension(s). To do this, you can use the same function <code>apply()</code> as we did in matrices.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="array.html#cb355-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">1</span>, mean)      <span class="co">#calculate the mean along the first dim</span></span>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="array.html#cb355-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">1</span>, mean)  <span class="co">#calculate the mean along the first dim</span></span>
 <span id="cb355-2"><a href="array.html#cb355-2" tabindex="-1"></a><span class="co">#&gt; [1] 4 5</span></span>
-<span id="cb355-3"><a href="array.html#cb355-3" tabindex="-1"></a><span class="fu">mean</span>(array_1[<span class="dv">1</span>, , ])         <span class="co">#verify the first element</span></span>
+<span id="cb355-3"><a href="array.html#cb355-3" tabindex="-1"></a><span class="fu">mean</span>(array_1[<span class="dv">1</span>, , ])  <span class="co">#verify the first element</span></span>
 <span id="cb355-4"><a href="array.html#cb355-4" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb355-5"><a href="array.html#cb355-5" tabindex="-1"></a><span class="fu">mean</span>(array_1[<span class="dv">2</span>, , ])         <span class="co">#verify the second element</span></span>
+<span id="cb355-5"><a href="array.html#cb355-5" tabindex="-1"></a><span class="fu">mean</span>(array_1[<span class="dv">2</span>, , ])  <span class="co">#verify the second element</span></span>
 <span id="cb355-6"><a href="array.html#cb355-6" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
-<span id="cb355-7"><a href="array.html#cb355-7" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">2</span>, sum)       <span class="co">#calculate the sum along the second dim</span></span>
+<span id="cb355-7"><a href="array.html#cb355-7" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">2</span>, sum)  <span class="co">#calculate the sum along the second dim</span></span>
 <span id="cb355-8"><a href="array.html#cb355-8" tabindex="-1"></a><span class="co">#&gt; [1] 14 22</span></span>
-<span id="cb355-9"><a href="array.html#cb355-9" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">3</span>, sd)        <span class="co">#calculate the sd along the third dim</span></span>
+<span id="cb355-9"><a href="array.html#cb355-9" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">3</span>, sd)  <span class="co">#calculate the sd along the third dim</span></span>
 <span id="cb355-10"><a href="array.html#cb355-10" tabindex="-1"></a><span class="co">#&gt; [1] 1.290994 1.290994</span></span></code></pre></div>
 <p>In the second argument of <code>apply()</code>, in addition to specifying one dimension, you can also supply a vector of dimensions that the function will be applied upon. For example, the following code computes the sum along the first two dimensions.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="array.html#cb356-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, sum) </span>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="array.html#cb356-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, sum)</span>
 <span id="cb356-2"><a href="array.html#cb356-2" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
 <span id="cb356-3"><a href="array.html#cb356-3" tabindex="-1"></a><span class="co">#&gt; [1,]    6   10</span></span>
 <span id="cb356-4"><a href="array.html#cb356-4" tabindex="-1"></a><span class="co">#&gt; [2,]    8   12</span></span>
-<span id="cb356-5"><a href="array.html#cb356-5" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">1</span>, <span class="dv">1</span>, ])      <span class="co">#verify the [1, 1] element</span></span>
+<span id="cb356-5"><a href="array.html#cb356-5" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">1</span>, <span class="dv">1</span>, ])  <span class="co">#verify the [1, 1] element</span></span>
 <span id="cb356-6"><a href="array.html#cb356-6" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
-<span id="cb356-7"><a href="array.html#cb356-7" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">1</span>, <span class="dv">2</span>, ])      <span class="co">#verify the [1, 2] element</span></span>
+<span id="cb356-7"><a href="array.html#cb356-7" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">1</span>, <span class="dv">2</span>, ])  <span class="co">#verify the [1, 2] element</span></span>
 <span id="cb356-8"><a href="array.html#cb356-8" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb356-9"><a href="array.html#cb356-9" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">2</span>, <span class="dv">1</span>, ])      <span class="co">#verify the [2, 1] element</span></span>
+<span id="cb356-9"><a href="array.html#cb356-9" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">2</span>, <span class="dv">1</span>, ])  <span class="co">#verify the [2, 1] element</span></span>
 <span id="cb356-10"><a href="array.html#cb356-10" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
-<span id="cb356-11"><a href="array.html#cb356-11" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">2</span>, <span class="dv">2</span>, ])      <span class="co">#verify the [2, 2] element</span></span>
+<span id="cb356-11"><a href="array.html#cb356-11" tabindex="-1"></a><span class="fu">sum</span>(array_1[<span class="dv">2</span>, <span class="dv">2</span>, ])  <span class="co">#verify the [2, 2] element</span></span>
 <span id="cb356-12"><a href="array.html#cb356-12" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span></code></pre></div>
 <p>In addition to the three arguments, you can add additional arguments that will be passed when applying the specified function as we did in Section <a href="matrix.html#apply-matrix">3.1.6</a>. For example, the follow code generates the 0.75 quantile along the third dimension.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="array.html#cb357-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">3</span>, quantile, <span class="fl">0.75</span>) </span>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="array.html#cb357-1" tabindex="-1"></a><span class="fu">apply</span>(array_1, <span class="dv">3</span>, quantile, <span class="fl">0.75</span>)</span>
 <span id="cb357-2"><a href="array.html#cb357-2" tabindex="-1"></a><span class="co">#&gt; [1] 3.25 7.25</span></span></code></pre></div>
 </div>
 <div id="exercises-21" class="section level3 hasAnchor" number="3.2.5">

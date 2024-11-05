@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.2 Composite Operators and Check Solution | R Programming: Zero to Pro</title>
-  <meta name="description" content="14.2 Composite Operators and Check Solution | R Programming: Zero to Pro" />
+  <title>8.3 More on Missing Values | R Programming: Zero to Pro</title>
+  <meta name="description" content="8.3 More on Missing Values | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.2 Composite Operators and Check Solution | R Programming: Zero to Pro" />
+  <meta property="og:title" content="8.3 More on Missing Values | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="14.2 Composite Operators and Check Solution | R Programming: Zero to Pro" />
+  <meta property="og:description" content="8.3 More on Missing Values | R Programming: Zero to Pro" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.2 Composite Operators and Check Solution | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="8.3 More on Missing Values | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="14.2 Composite Operators and Check Solution | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="8.3 More on Missing Values | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng and r02proers" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="permutation-operator.html"/>
-<link rel="next" href="solve24.html"/>
+<link rel="prev" href="separate-unite-columns.html"/>
+<link rel="next" href="strings.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -758,96 +758,91 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="composite-operator" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Composite Operators and Check Solution<a href="composite-operator.html#composite-operator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="composite-operators" class="section level3 hasAnchor" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> Composite Operators<a href="composite-operator.html#composite-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now, we are ready to automate the three-step composite operators process. Let’s say we consider the number sequence in the second row of <code>nums_perm</code>: 5, 1, 5, 5, with the ninth row of <code>op_mat</code>: 1, 2, 3. We know the composite operation goes as below along with the corresponding steps printed.</p>
-<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="composite-operator.html#cb905-1" tabindex="-1"></a>re_1 <span class="ot">&lt;-</span> <span class="fu">cal</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>], nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
-<span id="cb905-2"><a href="composite-operator.html#cb905-2" tabindex="-1"></a><span class="fu">print_op</span>(nums_perm[<span class="dv">2</span>, <span class="dv">1</span>], nums_perm[<span class="dv">2</span>, <span class="dv">2</span>], re_1, op_mat[<span class="dv">9</span>, <span class="dv">1</span>])</span>
-<span id="cb905-3"><a href="composite-operator.html#cb905-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;5 + 1 = 6&quot;</span></span>
-<span id="cb905-4"><a href="composite-operator.html#cb905-4" tabindex="-1"></a>re_2 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_1, nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
-<span id="cb905-5"><a href="composite-operator.html#cb905-5" tabindex="-1"></a><span class="fu">print_op</span>(re_1, nums_perm[<span class="dv">2</span>, <span class="dv">3</span>], re_2, op_mat[<span class="dv">9</span>, <span class="dv">2</span>])</span>
-<span id="cb905-6"><a href="composite-operator.html#cb905-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;6 - 5 = 1&quot;</span></span>
-<span id="cb905-7"><a href="composite-operator.html#cb905-7" tabindex="-1"></a>re_3 <span class="ot">&lt;-</span> <span class="fu">cal</span>(re_2, nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
-<span id="cb905-8"><a href="composite-operator.html#cb905-8" tabindex="-1"></a><span class="fu">print_op</span>(re_2, nums_perm[<span class="dv">2</span>, <span class="dv">4</span>], re_3, op_mat[<span class="dv">9</span>, <span class="dv">3</span>])</span>
-<span id="cb905-9"><a href="composite-operator.html#cb905-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;1 * 5 = 5&quot;</span></span></code></pre></div>
-<p>To make our code more compact, we can write a loop over the three operators.</p>
-<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="composite-operator.html#cb906-1" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, n_nums)</span>
-<span id="cb906-2"><a href="composite-operator.html#cb906-2" tabindex="-1"></a>sol[<span class="dv">1</span>] <span class="ot">&lt;-</span> nums_perm[<span class="dv">2</span>, <span class="dv">1</span>]</span>
-<span id="cb906-3"><a href="composite-operator.html#cb906-3" tabindex="-1"></a><span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb906-4"><a href="composite-operator.html#cb906-4" tabindex="-1"></a>    sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], nums_perm[<span class="dv">2</span>, step <span class="sc">+</span> <span class="dv">1</span>], op_mat[<span class="dv">9</span>, step])</span>
-<span id="cb906-5"><a href="composite-operator.html#cb906-5" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums_perm[<span class="dv">2</span>, step <span class="sc">+</span> <span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op_mat[<span class="dv">9</span>, step]),</span>
-<span id="cb906-6"><a href="composite-operator.html#cb906-6" tabindex="-1"></a>        <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb906-7"><a href="composite-operator.html#cb906-7" tabindex="-1"></a>}</span>
-<span id="cb906-8"><a href="composite-operator.html#cb906-8" tabindex="-1"></a><span class="co">#&gt; 5 + 1 = 6 </span></span>
-<span id="cb906-9"><a href="composite-operator.html#cb906-9" tabindex="-1"></a><span class="co">#&gt; 6 - 5 = 1 </span></span>
-<span id="cb906-10"><a href="composite-operator.html#cb906-10" tabindex="-1"></a><span class="co">#&gt; 1 * 5 = 5</span></span></code></pre></div>
-<p>To prepare this step as a standalone function for computing all the steps, let’s write a function.</p>
-<div class="sourceCode" id="cb907"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb907-1"><a href="composite-operator.html#cb907-1" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)) {</span>
-<span id="cb907-2"><a href="composite-operator.html#cb907-2" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> num</span>
-<span id="cb907-3"><a href="composite-operator.html#cb907-3" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step <span class="sc">+</span> <span class="dv">1</span>], op[step])</span>
-<span id="cb907-4"><a href="composite-operator.html#cb907-4" tabindex="-1"></a>    <span class="fu">return</span>(sol)</span>
-<span id="cb907-5"><a href="composite-operator.html#cb907-5" tabindex="-1"></a>}</span>
-<span id="cb907-6"><a href="composite-operator.html#cb907-6" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(nums_perm[<span class="dv">2</span>, ], op_mat[<span class="dv">9</span>, ])</span>
-<span id="cb907-7"><a href="composite-operator.html#cb907-7" tabindex="-1"></a>sol</span>
-<span id="cb907-8"><a href="composite-operator.html#cb907-8" tabindex="-1"></a><span class="co">#&gt; [1] 5 6 1 5</span></span></code></pre></div>
+<div id="more-on-missing-values" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> More on Missing Values<a href="more-on-missing-values.html#more-on-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Section <a href="missing-values.html#missing-values">2.15</a>, we have introduced the concept of missing values and how to detect them. In this section, we will discuss missingness related to tidy data.</p>
+<div id="missing-values-in-tidy-data" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Missing Values in Tidy Data<a href="more-on-missing-values.html#missing-values-in-tidy-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In tidy data, missing values are represented as <code>NA</code>. In R, <code>NA</code> stands for “Not Available” and is used to represent missing values. When working with tidy data, it is important to understand how missing values are handled in R. Let’s revisit the following dataset from Section <a href="tidy-name-value.html#tidy-name-value">8.1</a>.</p>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="more-on-missing-values.html#cb790-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb790-2"><a href="more-on-missing-values.html#cb790-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb790-3"><a href="more-on-missing-values.html#cb790-3" tabindex="-1"></a>gm_tidy <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span></span>
+<span id="cb790-4"><a href="more-on-missing-values.html#cb790-4" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;United States&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;Russia&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb790-5"><a href="more-on-missing-values.html#cb790-5" tabindex="-1"></a>    <span class="fu">select</span>(country, year, life_expectancy) <span class="sc">%&gt;%</span></span>
+<span id="cb790-6"><a href="more-on-missing-values.html#cb790-6" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2004</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2006</span>)</span></code></pre></div>
+<p>Let’s remove the 3rd and 4th rows to prepare the dataset for this section.</p>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="more-on-missing-values.html#cb791-1" tabindex="-1"></a>gm_tidy <span class="ot">&lt;-</span> gm_tidy[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), ]</span>
+<span id="cb791-2"><a href="more-on-missing-values.html#cb791-2" tabindex="-1"></a>gm_tidy</span>
+<span id="cb791-3"><a href="more-on-missing-values.html#cb791-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span id="cb791-4"><a href="more-on-missing-values.html#cb791-4" tabindex="-1"></a><span class="co">#&gt;   country        year life_expectancy</span></span>
+<span id="cb791-5"><a href="more-on-missing-values.html#cb791-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span id="cb791-6"><a href="more-on-missing-values.html#cb791-6" tabindex="-1"></a><span class="co">#&gt; 1 China          2004            73  </span></span>
+<span id="cb791-7"><a href="more-on-missing-values.html#cb791-7" tabindex="-1"></a><span class="co">#&gt; 2 Russia         2004            65  </span></span>
+<span id="cb791-8"><a href="more-on-missing-values.html#cb791-8" tabindex="-1"></a><span class="co">#&gt; 3 China          2006            74.2</span></span>
+<span id="cb791-9"><a href="more-on-missing-values.html#cb791-9" tabindex="-1"></a><span class="co">#&gt; 4 Russia         2005            66.5</span></span>
+<span id="cb791-10"><a href="more-on-missing-values.html#cb791-10" tabindex="-1"></a><span class="co">#&gt; 5 Russia         2006            67.5</span></span>
+<span id="cb791-11"><a href="more-on-missing-values.html#cb791-11" tabindex="-1"></a><span class="co">#&gt; 6 United States  2005            78  </span></span>
+<span id="cb791-12"><a href="more-on-missing-values.html#cb791-12" tabindex="-1"></a><span class="co">#&gt; 7 United States  2006            78.2</span></span></code></pre></div>
+<p>In this tidy format, we actually don’t see any missing values. Let’s try to convert it into a wide format and see what happens.</p>
+<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="more-on-missing-values.html#cb792-1" tabindex="-1"></a>gm_wide <span class="ot">&lt;-</span> gm_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb792-2"><a href="more-on-missing-values.html#cb792-2" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> life_expectancy)</span>
+<span id="cb792-3"><a href="more-on-missing-values.html#cb792-3" tabindex="-1"></a>gm_wide</span>
+<span id="cb792-4"><a href="more-on-missing-values.html#cb792-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb792-5"><a href="more-on-missing-values.html#cb792-5" tabindex="-1"></a><span class="co">#&gt;   country       `2004` `2006` `2005`</span></span>
+<span id="cb792-6"><a href="more-on-missing-values.html#cb792-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb792-7"><a href="more-on-missing-values.html#cb792-7" tabindex="-1"></a><span class="co">#&gt; 1 China             73   74.2   NA  </span></span>
+<span id="cb792-8"><a href="more-on-missing-values.html#cb792-8" tabindex="-1"></a><span class="co">#&gt; 2 Russia            65   67.5   66.5</span></span>
+<span id="cb792-9"><a href="more-on-missing-values.html#cb792-9" tabindex="-1"></a><span class="co">#&gt; 3 United States     NA   78.2   78</span></span></code></pre></div>
+<p>From this output, we can see that the <code>NA</code> values are introduced when we convert the tidy data into a wide format. This is because the <code>gm_tidy</code> dataset does not have data for China in the year 2005 or for United States in the year 2004. When we convert it into a wide format, the <code>NA</code> values are introduced to represent the missing data.</p>
+<p>Let’s try to convert <code>gm_wide</code> back to a tidy format.</p>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="more-on-missing-values.html#cb793-1" tabindex="-1"></a>gm_tidy2 <span class="ot">&lt;-</span> gm_wide <span class="sc">%&gt;%</span></span>
+<span id="cb793-2"><a href="more-on-missing-values.html#cb793-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;life_expectancy&quot;</span>)</span>
+<span id="cb793-3"><a href="more-on-missing-values.html#cb793-3" tabindex="-1"></a>gm_tidy2</span>
+<span id="cb793-4"><a href="more-on-missing-values.html#cb793-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb793-5"><a href="more-on-missing-values.html#cb793-5" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb793-6"><a href="more-on-missing-values.html#cb793-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb793-7"><a href="more-on-missing-values.html#cb793-7" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb793-8"><a href="more-on-missing-values.html#cb793-8" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
+<span id="cb793-9"><a href="more-on-missing-values.html#cb793-9" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             NA  </span></span>
+<span id="cb793-10"><a href="more-on-missing-values.html#cb793-10" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb793-11"><a href="more-on-missing-values.html#cb793-11" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
+<span id="cb793-12"><a href="more-on-missing-values.html#cb793-12" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
+<span id="cb793-13"><a href="more-on-missing-values.html#cb793-13" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             NA  </span></span>
+<span id="cb793-14"><a href="more-on-missing-values.html#cb793-14" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
+<span id="cb793-15"><a href="more-on-missing-values.html#cb793-15" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
+<p>Now, we have the missing values in the tidy format.</p>
 </div>
-<div id="check-if-solution-is-found" class="section level3 hasAnchor" number="14.2.2">
-<h3><span class="header-section-number">14.2.2</span> Check if Solution is Found<a href="composite-operator.html#check-if-solution-is-found" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Once we finish the composite operations, we can check whether our final result is equal to the target value, 24.</p>
-<div class="sourceCode" id="cb908"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb908-1"><a href="composite-operator.html#cb908-1" tabindex="-1"></a>goal <span class="ot">&lt;-</span> <span class="dv">24</span></span>
-<span id="cb908-2"><a href="composite-operator.html#cb908-2" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-05</span>) {</span>
-<span id="cb908-3"><a href="composite-operator.html#cb908-3" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Found a solution!&quot;</span>)</span>
-<span id="cb908-4"><a href="composite-operator.html#cb908-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb908-5"><a href="composite-operator.html#cb908-5" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;This is not a solution.&quot;</span>)</span>
-<span id="cb908-6"><a href="composite-operator.html#cb908-6" tabindex="-1"></a>}</span>
-<span id="cb908-7"><a href="composite-operator.html#cb908-7" tabindex="-1"></a><span class="co">#&gt; This is not a solution.</span></span></code></pre></div>
-<p>If it does, we can print the solution. Let’s write another function to print all the intermediate steps.</p>
-<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="composite-operator.html#cb909-1" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op) {</span>
-<span id="cb909-2"><a href="composite-operator.html#cb909-2" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)  <span class="co">#Only keep 3 digits to make it better looking.</span></span>
-<span id="cb909-3"><a href="composite-operator.html#cb909-3" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
-<span id="cb909-4"><a href="composite-operator.html#cb909-4" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb909-5"><a href="composite-operator.html#cb909-5" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step <span class="sc">+</span> <span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb909-6"><a href="composite-operator.html#cb909-6" tabindex="-1"></a>    }</span>
-<span id="cb909-7"><a href="composite-operator.html#cb909-7" tabindex="-1"></a>}</span>
-<span id="cb909-8"><a href="composite-operator.html#cb909-8" tabindex="-1"></a><span class="fu">print_sol</span>(nums_perm[<span class="dv">2</span>, ], sol, op_mat[<span class="dv">9</span>, ])</span>
-<span id="cb909-9"><a href="composite-operator.html#cb909-9" tabindex="-1"></a><span class="co">#&gt; 5 + 1 = 6 </span></span>
-<span id="cb909-10"><a href="composite-operator.html#cb909-10" tabindex="-1"></a><span class="co">#&gt; 6 - 5 = 1 </span></span>
-<span id="cb909-11"><a href="composite-operator.html#cb909-11" tabindex="-1"></a><span class="co">#&gt; 1 * 5 = 5</span></span></code></pre></div>
-</div>
-<div id="looping-over-all-number-sequences-and-all-operator-sequences" class="section level3 hasAnchor" number="14.2.3">
-<h3><span class="header-section-number">14.2.3</span> Looping Over All Number Sequences and All Operator Sequences<a href="composite-operator.html#looping-over-all-number-sequences-and-all-operator-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now, we know how to compute the final value given a number sequence and a operator sequence. Let’s write double loop over the number sequences and the operator sequences. Note that we only want to print the steps when we have found a solution.</p>
-<div class="sourceCode" id="cb910"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb910-1"><a href="composite-operator.html#cb910-1" tabindex="-1"></a>n_sols <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb910-2"><a href="composite-operator.html#cb910-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm)) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)) {</span>
-<span id="cb910-3"><a href="composite-operator.html#cb910-3" tabindex="-1"></a>    num_cur <span class="ot">&lt;-</span> nums_perm[i, ]</span>
-<span id="cb910-4"><a href="composite-operator.html#cb910-4" tabindex="-1"></a>    op_cur <span class="ot">&lt;-</span> op_mat[j, ]</span>
-<span id="cb910-5"><a href="composite-operator.html#cb910-5" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)</span>
-<span id="cb910-6"><a href="composite-operator.html#cb910-6" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-05</span>) {</span>
-<span id="cb910-7"><a href="composite-operator.html#cb910-7" tabindex="-1"></a>        n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb910-8"><a href="composite-operator.html#cb910-8" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb910-9"><a href="composite-operator.html#cb910-9" tabindex="-1"></a>        <span class="fu">print_sol</span>(num_cur, sol, op_cur)</span>
-<span id="cb910-10"><a href="composite-operator.html#cb910-10" tabindex="-1"></a>    }</span>
-<span id="cb910-11"><a href="composite-operator.html#cb910-11" tabindex="-1"></a>}</span>
-<span id="cb910-12"><a href="composite-operator.html#cb910-12" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb910-13"><a href="composite-operator.html#cb910-13" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
-<span id="cb910-14"><a href="composite-operator.html#cb910-14" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
-<span id="cb910-15"><a href="composite-operator.html#cb910-15" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
-<span id="cb910-16"><a href="composite-operator.html#cb910-16" tabindex="-1"></a><span class="cf">if</span> (n_sols <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb910-17"><a href="composite-operator.html#cb910-17" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
-<span id="cb910-18"><a href="composite-operator.html#cb910-18" tabindex="-1"></a>}</span></code></pre></div>
-<p>From the result, we can see that there is one solution to this difficult problem.</p>
+<div id="filling-missing-values" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Filling Missing Values<a href="more-on-missing-values.html#filling-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When working with missing values, it is important to decide how to handle them. One common approach is to fill the missing values with a specific value. In R, we can use the <code>replace_na()</code> function from the <code>tidyr</code> package to fill missing values. Let’s fill the missing values in the <code>gm_tidy2</code> dataset with the average life expectancy for each country.</p>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="more-on-missing-values.html#cb794-1" tabindex="-1"></a>gm_tidy2_filled <span class="ot">&lt;-</span> gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb794-2"><a href="more-on-missing-values.html#cb794-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb794-3"><a href="more-on-missing-values.html#cb794-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">life_expectancy =</span> <span class="fu">replace_na</span>(life_expectancy, <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb794-4"><a href="more-on-missing-values.html#cb794-4" tabindex="-1"></a>gm_tidy2_filled</span>
+<span id="cb794-5"><a href="more-on-missing-values.html#cb794-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb794-6"><a href="more-on-missing-values.html#cb794-6" tabindex="-1"></a><span class="co">#&gt; # Groups:   country [3]</span></span>
+<span id="cb794-7"><a href="more-on-missing-values.html#cb794-7" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb794-8"><a href="more-on-missing-values.html#cb794-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb794-9"><a href="more-on-missing-values.html#cb794-9" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb794-10"><a href="more-on-missing-values.html#cb794-10" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
+<span id="cb794-11"><a href="more-on-missing-values.html#cb794-11" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             73.6</span></span>
+<span id="cb794-12"><a href="more-on-missing-values.html#cb794-12" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb794-13"><a href="more-on-missing-values.html#cb794-13" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
+<span id="cb794-14"><a href="more-on-missing-values.html#cb794-14" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
+<span id="cb794-15"><a href="more-on-missing-values.html#cb794-15" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             78.1</span></span>
+<span id="cb794-16"><a href="more-on-missing-values.html#cb794-16" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
+<span id="cb794-17"><a href="more-on-missing-values.html#cb794-17" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
 
 </div>
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="permutation-operator.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="solve24.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="separate-unite-columns.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="strings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -878,7 +873,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yangfengstat/r02pro_source/edit/main/14.02_Composite_Operators_and_Check_Solution.Rmd",
+"link": "https://github.com/yangfengstat/r02pro_source/edit/main/08.03_More_on_Missing_Values.Rmd",
 "text": "Edit"
 },
 "history": {

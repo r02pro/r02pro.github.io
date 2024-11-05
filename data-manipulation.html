@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -779,7 +784,7 @@ div.csl-indent {
 <span id="cb717-21"><a href="data-manipulation.html#cb717-21" tabindex="-1"></a><span class="co">#&gt; #   cholesterol_fat_in_blood_female &lt;dbl&gt;, continent &lt;chr&gt;, region &lt;chr&gt;,</span></span>
 <span id="cb717-22"><a href="data-manipulation.html#cb717-22" tabindex="-1"></a><span class="co">#&gt; #   population &lt;dbl&gt;, life_expectancy &lt;dbl&gt;, sugar &lt;dbl&gt;, BMI_female &lt;dbl&gt;, …</span></span></code></pre></div>
 <p><code>gm</code> is a dataset of 65,531 country and year pairs, with 33 variables among with are many sociodemographic and public health features. To learn more about each variable, you can look at its documentation.</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="data-manipulation.html#cb718-1" tabindex="-1"></a>?gm</span></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="data-manipulation.html#cb718-1" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(gm)</span></code></pre></div>
 <p>To view the entire dataset, you can use the <code>View()</code> function, which will open the dataset in the new file window.</p>
 <div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="data-manipulation.html#cb719-1" tabindex="-1"></a><span class="fu">View</span>(gm)</span></code></pre></div>
 <p>To get the first 6 rows of <code>gm</code>, you can use the <code>head()</code> function, which also has an optional argument if you want a different number of top rows.</p>
@@ -800,7 +805,7 @@ div.csl-indent {
 <span id="cb720-15"><a href="data-manipulation.html#cb720-15" tabindex="-1"></a><span class="co">#&gt; #   cholesterol_fat_in_blood_male &lt;dbl&gt;, cholesterol_fat_in_blood_female &lt;dbl&gt;,</span></span>
 <span id="cb720-16"><a href="data-manipulation.html#cb720-16" tabindex="-1"></a><span class="co">#&gt; #   continent &lt;chr&gt;, region &lt;chr&gt;, population &lt;dbl&gt;, life_expectancy &lt;dbl&gt;,</span></span>
 <span id="cb720-17"><a href="data-manipulation.html#cb720-17" tabindex="-1"></a><span class="co">#&gt; #   sugar &lt;dbl&gt;, BMI_female &lt;dbl&gt;, BMI_female_group &lt;chr&gt;, BMI_male &lt;dbl&gt;, …</span></span>
-<span id="cb720-18"><a href="data-manipulation.html#cb720-18" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n =</span> <span class="dv">10</span>) <span class="co">#the first 10 rows of gm</span></span>
+<span id="cb720-18"><a href="data-manipulation.html#cb720-18" tabindex="-1"></a><span class="fu">head</span>(gm, <span class="at">n =</span> <span class="dv">10</span>)  <span class="co">#the first 10 rows of gm</span></span>
 <span id="cb720-19"><a href="data-manipulation.html#cb720-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 33</span></span>
 <span id="cb720-20"><a href="data-manipulation.html#cb720-20" tabindex="-1"></a><span class="co">#&gt;    country  year smoki…¹ smoki…² lungc…³ lungc…⁴ owid_…⁵ food_…⁶ avera…⁷ sanit…⁸</span></span>
 <span id="cb720-21"><a href="data-manipulation.html#cb720-21" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -761,12 +766,12 @@ div.csl-indent {
 <p>For the <code>gm</code> dataset, let’s say we want to find the countries that have a higher average GDP per capita than the average in the corresponding continent in the year 2008. We can use the following code.</p>
 <div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="grouped-mutate-filter.html#cb757-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb757-2"><a href="grouped-mutate-filter.html#cb757-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb757-3"><a href="grouped-mutate-filter.html#cb757-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb757-4"><a href="grouped-mutate-filter.html#cb757-4" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb757-5"><a href="grouped-mutate-filter.html#cb757-5" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb757-6"><a href="grouped-mutate-filter.html#cb757-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ave_GDP =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb757-7"><a href="grouped-mutate-filter.html#cb757-7" tabindex="-1"></a>  <span class="fu">filter</span>(GDP_per_capita <span class="sc">&gt;</span> ave_GDP) <span class="sc">%&gt;%</span></span>
-<span id="cb757-8"><a href="grouped-mutate-filter.html#cb757-8" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, GDP_per_capita, ave_GDP)</span>
+<span id="cb757-3"><a href="grouped-mutate-filter.html#cb757-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb757-4"><a href="grouped-mutate-filter.html#cb757-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb757-5"><a href="grouped-mutate-filter.html#cb757-5" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb757-6"><a href="grouped-mutate-filter.html#cb757-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ave_GDP =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb757-7"><a href="grouped-mutate-filter.html#cb757-7" tabindex="-1"></a>    <span class="fu">filter</span>(GDP_per_capita <span class="sc">&gt;</span> ave_GDP) <span class="sc">%&gt;%</span></span>
+<span id="cb757-8"><a href="grouped-mutate-filter.html#cb757-8" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita, ave_GDP)</span>
 <span id="cb757-9"><a href="grouped-mutate-filter.html#cb757-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 63 × 4</span></span>
 <span id="cb757-10"><a href="grouped-mutate-filter.html#cb757-10" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [6]</span></span>
 <span id="cb757-11"><a href="grouped-mutate-filter.html#cb757-11" tabindex="-1"></a><span class="co">#&gt;    country              continent GDP_per_capita ave_GDP</span></span>
@@ -792,13 +797,13 @@ div.csl-indent {
 <div id="grouped-mutate" class="section level3 hasAnchor" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Grouped Mutate<a href="grouped-mutate-filter.html#grouped-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let’s say we want to find the top two countries with the highest GDP per capita for each continent in the year 2008. We can use the following code.</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="grouped-mutate-filter.html#cb758-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb758-2"><a href="grouped-mutate-filter.html#cb758-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
-<span id="cb758-3"><a href="grouped-mutate-filter.html#cb758-3" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb758-4"><a href="grouped-mutate-filter.html#cb758-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(GDP_per_capita), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb758-5"><a href="grouped-mutate-filter.html#cb758-5" tabindex="-1"></a>  <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb758-6"><a href="grouped-mutate-filter.html#cb758-6" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, GDP_per_capita) <span class="sc">%&gt;%</span></span>
-<span id="cb758-7"><a href="grouped-mutate-filter.html#cb758-7" tabindex="-1"></a>  <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(GDP_per_capita))</span>
+<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="grouped-mutate-filter.html#cb758-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb758-2"><a href="grouped-mutate-filter.html#cb758-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
+<span id="cb758-3"><a href="grouped-mutate-filter.html#cb758-3" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb758-4"><a href="grouped-mutate-filter.html#cb758-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(GDP_per_capita), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb758-5"><a href="grouped-mutate-filter.html#cb758-5" tabindex="-1"></a>    <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb758-6"><a href="grouped-mutate-filter.html#cb758-6" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita) <span class="sc">%&gt;%</span></span>
+<span id="cb758-7"><a href="grouped-mutate-filter.html#cb758-7" tabindex="-1"></a>    <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(GDP_per_capita))</span>
 <span id="cb758-8"><a href="grouped-mutate-filter.html#cb758-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
 <span id="cb758-9"><a href="grouped-mutate-filter.html#cb758-9" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [5]</span></span>
 <span id="cb758-10"><a href="grouped-mutate-filter.html#cb758-10" tabindex="-1"></a><span class="co">#&gt;    country           continent GDP_per_capita</span></span>

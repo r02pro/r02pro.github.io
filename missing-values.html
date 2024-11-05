@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -769,7 +774,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="missing-values.html#cb245-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">3</span>)</span>
 <span id="cb245-2"><a href="missing-values.html#cb245-2" tabindex="-1"></a>b</span>
 <span id="cb245-3"><a href="missing-values.html#cb245-3" tabindex="-1"></a><span class="co">#&gt; [1]  1 NA  2 NA  3</span></span>
-<span id="cb245-4"><a href="missing-values.html#cb245-4" tabindex="-1"></a>b[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</span>
+<span id="cb245-4"><a href="missing-values.html#cb245-4" tabindex="-1"></a>b[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
 <span id="cb245-5"><a href="missing-values.html#cb245-5" tabindex="-1"></a><span class="co">#&gt; [1] NA NA</span></span></code></pre></div>
 <p>Let’s see another example.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="missing-values.html#cb246-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span></code></pre></div>
@@ -796,8 +801,8 @@ div.csl-indent {
 <span id="cb248-5"><a href="missing-values.html#cb248-5" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>As you can see here, <code>y</code> is <code>NA</code>, indicating the value of <code>y</code> is not available. When you try to do operations like <code>y + 3</code> or <code>y == 3</code>, the answers are clearly not available as well, hence both taking the value <code>NA</code>.</p>
 <p>How about we create another <code>NA</code> object and compare it with <code>y</code>?</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="missing-values.html#cb249-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cn">NA</span> </span>
-<span id="cb249-2"><a href="missing-values.html#cb249-2" tabindex="-1"></a>y <span class="sc">==</span> z </span>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="missing-values.html#cb249-1" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb249-2"><a href="missing-values.html#cb249-2" tabindex="-1"></a>y <span class="sc">==</span> z</span>
 <span id="cb249-3"><a href="missing-values.html#cb249-3" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
 <span id="cb249-4"><a href="missing-values.html#cb249-4" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">==</span> <span class="cn">NA</span></span>
 <span id="cb249-5"><a href="missing-values.html#cb249-5" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
@@ -816,7 +821,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="missing-values.html#cb250-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="cn">NA</span>, <span class="dv">2</span>)</span>
 <span id="cb250-2"><a href="missing-values.html#cb250-2" tabindex="-1"></a>x</span>
 <span id="cb250-3"><a href="missing-values.html#cb250-3" tabindex="-1"></a><span class="co">#&gt; [1]  1 NA  3  4 NA  2</span></span>
-<span id="cb250-4"><a href="missing-values.html#cb250-4" tabindex="-1"></a><span class="fu">sum</span>(x) </span>
+<span id="cb250-4"><a href="missing-values.html#cb250-4" tabindex="-1"></a><span class="fu">sum</span>(x)</span>
 <span id="cb250-5"><a href="missing-values.html#cb250-5" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
 <span id="cb250-6"><a href="missing-values.html#cb250-6" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
 <span id="cb250-7"><a href="missing-values.html#cb250-7" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
@@ -824,7 +829,7 @@ div.csl-indent {
 <span id="cb250-9"><a href="missing-values.html#cb250-9" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>As you can see, for many statistical functions on vectors, as long as there exists at least one <code>NA</code> values in vectors, the results are often impossible to determine, hence resulting an <code>NA</code> value as well.</p>
 <p>As a result, you may want to ignore the <code>NA</code> values during the function evaluation. Fortunately, most statistical functions on vectors provide an optional argument <code>na.rm</code>, which takes a logical value, indicating whether to remove <code>NA</code> before applying the functions. Let’s see the following examples.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="missing-values.html#cb251-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="missing-values.html#cb251-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb251-2"><a href="missing-values.html#cb251-2" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
 <span id="cb251-3"><a href="missing-values.html#cb251-3" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb251-4"><a href="missing-values.html#cb251-4" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
@@ -832,11 +837,11 @@ div.csl-indent {
 <span id="cb251-6"><a href="missing-values.html#cb251-6" tabindex="-1"></a><span class="co">#&gt; [1] 1.290994</span></span></code></pre></div>
 <p>It is easy to verify that the results are what we expect to get if the <code>NA</code> values are removed. Feel free to try the following codes which apply the same functions on the subvector with the non-missing values.</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="missing-values.html#cb252-1" tabindex="-1"></a>x_no_na <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
-<span id="cb252-2"><a href="missing-values.html#cb252-2" tabindex="-1"></a><span class="fu">sum</span>(x_no_na) </span>
+<span id="cb252-2"><a href="missing-values.html#cb252-2" tabindex="-1"></a><span class="fu">sum</span>(x_no_na)</span>
 <span id="cb252-3"><a href="missing-values.html#cb252-3" tabindex="-1"></a><span class="fu">mean</span>(x_no_na)</span>
 <span id="cb252-4"><a href="missing-values.html#cb252-4" tabindex="-1"></a><span class="fu">sd</span>(x_no_na)</span></code></pre></div>
 <p>Interesting, the <code>summary()</code> function will deal with the <code>NA</code> values automatically by removing them before computing the five percentiles and the mean. In addition, the <code>summary()</code> function provides a column which shows the number of <code>NA</code>s in <code>x</code>.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="missing-values.html#cb253-1" tabindex="-1"></a><span class="fu">summary</span>(x) </span>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="missing-values.html#cb253-1" tabindex="-1"></a><span class="fu">summary</span>(x)</span>
 <span id="cb253-2"><a href="missing-values.html#cb253-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
 <span id="cb253-3"><a href="missing-values.html#cb253-3" tabindex="-1"></a><span class="co">#&gt;    1.00    1.75    2.50    2.50    3.25    4.00       2</span></span></code></pre></div>
 <p><strong><em>b. <code>NaN</code> </em></strong></p>
@@ -848,13 +853,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="missing-values.html#cb255-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span><span class="sc">/</span><span class="dv">0</span>)</span>
 <span id="cb255-2"><a href="missing-values.html#cb255-2" tabindex="-1"></a>d</span>
 <span id="cb255-3"><a href="missing-values.html#cb255-3" tabindex="-1"></a><span class="co">#&gt; [1]   1   2   3 NaN</span></span>
-<span id="cb255-4"><a href="missing-values.html#cb255-4" tabindex="-1"></a><span class="fu">sum</span>(d) </span>
+<span id="cb255-4"><a href="missing-values.html#cb255-4" tabindex="-1"></a><span class="fu">sum</span>(d)</span>
 <span id="cb255-5"><a href="missing-values.html#cb255-5" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span>
 <span id="cb255-6"><a href="missing-values.html#cb255-6" tabindex="-1"></a><span class="fu">mean</span>(d)</span>
 <span id="cb255-7"><a href="missing-values.html#cb255-7" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span>
 <span id="cb255-8"><a href="missing-values.html#cb255-8" tabindex="-1"></a><span class="fu">sd</span>(d)</span>
 <span id="cb255-9"><a href="missing-values.html#cb255-9" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb255-10"><a href="missing-values.html#cb255-10" tabindex="-1"></a><span class="fu">sum</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb255-10"><a href="missing-values.html#cb255-10" tabindex="-1"></a><span class="fu">sum</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb255-11"><a href="missing-values.html#cb255-11" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
 <span id="cb255-12"><a href="missing-values.html#cb255-12" tabindex="-1"></a><span class="fu">mean</span>(d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb255-13"><a href="missing-values.html#cb255-13" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
@@ -872,14 +877,14 @@ div.csl-indent {
 <span id="cb256-2"><a href="missing-values.html#cb256-2" tabindex="-1"></a><span class="co">#&gt; [1] NA NA NA NA NA NA</span></span></code></pre></div>
 <p>You get a vector of all values equaling <code>NA</code>! This is actually not surprising for the following reason. Given that the <code>NA</code> you are comparing can take any unknown value, any comparison with it will result in an <code>NA</code> value due to the lack of information.</p>
 <p>Instead of using <code>==</code> for finding missing values, the correct way is to use the <code>is.na()</code> function, which returns a logical vector representing whether the value of each element is missing or not. Then, you can use the <code>which()</code> function which can return the locations of all <code>TRUE</code> values to find the indices for the <code>NA</code> values. Here, the <code>sum()</code> function on the logical vector <code>x_na</code> returns the number of <code>NA</code> values in the vector, following the coercion rule described in Section <a href="logical-patterns.html#functions-logi">2.12.2</a>.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="missing-values.html#cb257-1" tabindex="-1"></a>x_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(x)        <span class="co">#logical vector     </span></span>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="missing-values.html#cb257-1" tabindex="-1"></a>x_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(x)  <span class="co">#logical vector     </span></span>
 <span id="cb257-2"><a href="missing-values.html#cb257-2" tabindex="-1"></a>x_na</span>
 <span id="cb257-3"><a href="missing-values.html#cb257-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE FALSE  TRUE FALSE</span></span>
-<span id="cb257-4"><a href="missing-values.html#cb257-4" tabindex="-1"></a><span class="fu">which</span>(x_na)             <span class="co">#numeric vector</span></span>
+<span id="cb257-4"><a href="missing-values.html#cb257-4" tabindex="-1"></a><span class="fu">which</span>(x_na)  <span class="co">#numeric vector</span></span>
 <span id="cb257-5"><a href="missing-values.html#cb257-5" tabindex="-1"></a><span class="co">#&gt; [1] 2 5</span></span>
-<span id="cb257-6"><a href="missing-values.html#cb257-6" tabindex="-1"></a><span class="fu">sum</span>(x_na)               <span class="co">#the number of NAs in x </span></span>
+<span id="cb257-6"><a href="missing-values.html#cb257-6" tabindex="-1"></a><span class="fu">sum</span>(x_na)  <span class="co">#the number of NAs in x </span></span>
 <span id="cb257-7"><a href="missing-values.html#cb257-7" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb257-8"><a href="missing-values.html#cb257-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span>x_na)              <span class="co">#the number of non-NAs in x</span></span>
+<span id="cb257-8"><a href="missing-values.html#cb257-8" tabindex="-1"></a><span class="fu">sum</span>(<span class="sc">!</span>x_na)  <span class="co">#the number of non-NAs in x</span></span>
 <span id="cb257-9"><a href="missing-values.html#cb257-9" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
 <p>If you only want to detect whether there is any <code>NA</code> values in the vector, you can use the <code>anyNA()</code> function.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="missing-values.html#cb258-1" tabindex="-1"></a><span class="fu">anyNA</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>))</span>
@@ -920,7 +925,7 @@ div.csl-indent {
 <span id="cb262-3"><a href="missing-values.html#cb262-3" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>
 <p>Let’s see another example where both <code>999</code> and <code>-999</code> represent the value is missing. You can convert all <code>999</code> and <code>-999</code> into <code>NA</code> by using operations introduced in Section <a href="set-operations.html#set-operations">2.14</a>.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="missing-values.html#cb263-1" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">999</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">999</span>)</span>
-<span id="cb263-2"><a href="missing-values.html#cb263-2" tabindex="-1"></a><span class="do">##999 and -999 are the values indicating missingness</span></span>
+<span id="cb263-2"><a href="missing-values.html#cb263-2" tabindex="-1"></a><span class="do">## 999 and -999 are the values indicating missingness</span></span>
 <span id="cb263-3"><a href="missing-values.html#cb263-3" tabindex="-1"></a>x4[x4 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">999</span>, <span class="sc">-</span><span class="dv">999</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb263-4"><a href="missing-values.html#cb263-4" tabindex="-1"></a>x4</span>
 <span id="cb263-5"><a href="missing-values.html#cb263-5" tabindex="-1"></a><span class="co">#&gt; [1]  4 NA  1 NA  3 NA NA</span></span></code></pre></div>

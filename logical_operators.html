@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -769,8 +774,8 @@ div.csl-indent {
 <p>Sometimes, you may want to get a subvector containing elements that satisfy more than one conditions. For example, how can we find the subvector of <code>x</code> with values larger than 3 and less than or equal to 4? In this section, we will introduce several <strong>logical operators</strong> and use them to get subvectors. Here, we will focusing on applying logical operators on logical vectors, but keep in mind that many of the example here could be used to express complex arguments in R.</p>
 <p>Before we get started, let’s create another numeric vector <code>y</code>, and compare it to <code>8</code> and <code>9</code>, separately. Then you will get two logical vectors with the same values as <code>xb3</code> and <code>xs4</code>.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="logical_operators.html#cb220-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb220-2"><a href="logical_operators.html#cb220-2" tabindex="-1"></a>yb8 <span class="ot">&lt;-</span> y <span class="sc">&gt;</span> <span class="dv">8</span>           <span class="co">#xb3 is the same as yb8</span></span>
-<span id="cb220-3"><a href="logical_operators.html#cb220-3" tabindex="-1"></a>ys9 <span class="ot">&lt;-</span> y <span class="sc">&lt;=</span> <span class="dv">9</span>          <span class="co">#xs4 is the same as ys9</span></span></code></pre></div>
+<span id="cb220-2"><a href="logical_operators.html#cb220-2" tabindex="-1"></a>yb8 <span class="ot">&lt;-</span> y <span class="sc">&gt;</span> <span class="dv">8</span>  <span class="co">#xb3 is the same as yb8</span></span>
+<span id="cb220-3"><a href="logical_operators.html#cb220-3" tabindex="-1"></a>ys9 <span class="ot">&lt;-</span> y <span class="sc">&lt;=</span> <span class="dv">9</span>  <span class="co">#xs4 is the same as ys9</span></span></code></pre></div>
 <div id="not-operator-by" class="section level3 hasAnchor" number="2.13.1">
 <h3><span class="header-section-number">2.13.1</span> NOT operator by <code>!</code><a href="logical_operators.html#not-operator-by" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first operator we want to introduce is <code>!</code>, often called the <strong>NOT operator</strong>. The NOT operator returns the <strong>opposite</strong> of the input logical values. It is intuitive to understand since if something is NOT FALSE, then it is TRUE; and if it is NOT TRUE, then it has to be FALSE. The effect of <code>!</code> is summarized in the following table.</p>
@@ -846,10 +851,10 @@ div.csl-indent {
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="logical_operators.html#cb226-1" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="cn">FALSE</span></span>
 <span id="cb226-2"><a href="logical_operators.html#cb226-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>Using the AND operator, you can now easily get a subvector of <code>x</code> with value(s) &gt; 3 and &lt;= 4. Recall that at the beginning of this section, you have created two logical vectors <code>xb3</code> and <code>xs4</code>, then let’s apply <code>&amp;</code> on them,</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="logical_operators.html#cb227-1" tabindex="-1"></a>xb3 <span class="sc">&amp;</span> xs4  </span>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="logical_operators.html#cb227-1" tabindex="-1"></a>xb3 <span class="sc">&amp;</span> xs4</span>
 <span id="cb227-2"><a href="logical_operators.html#cb227-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE FALSE</span></span></code></pre></div>
 <p>From the result, you know that both <code>xb3</code> and <code>xs4</code> have value <code>TRUE</code> for the fourth element, which means the statement that <em>the value is &gt; 3 and &lt;= 4</em> is TRUE for the fourth element in <code>x</code>. Then, you can use <code>xb3 &amp; xs4</code> (a logical vector) to do vector subsetting.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="logical_operators.html#cb228-1" tabindex="-1"></a>x[xb3 <span class="sc">&amp;</span> xs4]                                      </span>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="logical_operators.html#cb228-1" tabindex="-1"></a>x[xb3 <span class="sc">&amp;</span> xs4]</span>
 <span id="cb228-2"><a href="logical_operators.html#cb228-2" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
 <p>Here, you get a subvector of <code>x</code> with the value <code>4</code>.</p>
 <p>Since <code>xs4</code> and <code>ys9</code> have the same values, you will get the same result if you include <code>ys9</code> to get a subvector. Therefore, you can try the following codes by yourself.</p>

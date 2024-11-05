@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -777,16 +782,15 @@ div.csl-indent {
 <span id="cb492-3"><a href="save-object.html#cb492-3" tabindex="-1"></a><span class="co">#&gt; [1] 7 6 5 4 3 2 1</span></span></code></pre></div>
 <p>You can verify from the value of <code>dig_num</code> that we have successfully restored the object <code>dig_num</code> from the file “dig_num.RData”.</p>
 <p>To save more than one objects into a single file, you just need to enter them as additional arguments in the <code>save()</code> function.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="save-object.html#cb493-1" tabindex="-1"></a><span class="fu">save</span>(dig_num, ani_char, </span>
-<span id="cb493-2"><a href="save-object.html#cb493-2" tabindex="-1"></a>     <span class="at">file =</span> <span class="st">&quot;data/dig_num_and_ani_char.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="save-object.html#cb493-1" tabindex="-1"></a><span class="fu">save</span>(dig_num, ani_char, <span class="at">file =</span> <span class="st">&quot;data/dig_num_and_ani_char.RData&quot;</span>)</span></code></pre></div>
 <p>To save everything in the workspace, you can use the function <code>save.image()</code> with the desired file name in double quotes as the argument.</p>
 <div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="save-object.html#cb494-1" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">&quot;data/all.RData&quot;</span>)</span></code></pre></div>
 <p>To verify that “all.RData” indeed contains all the named object, let’s try the following.</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="save-object.html#cb495-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())        <span class="co">#remove everything from the workspace.</span></span>
-<span id="cb495-2"><a href="save-object.html#cb495-2" tabindex="-1"></a><span class="fu">ls</span>()                   <span class="co">#confirm the workspace is empty.</span></span>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="save-object.html#cb495-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co">#remove everything from the workspace.</span></span>
+<span id="cb495-2"><a href="save-object.html#cb495-2" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co">#confirm the workspace is empty.</span></span>
 <span id="cb495-3"><a href="save-object.html#cb495-3" tabindex="-1"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb495-4"><a href="save-object.html#cb495-4" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/all.RData&quot;</span>) <span class="co">#restore from &quot;all.RData&quot;.</span></span>
-<span id="cb495-5"><a href="save-object.html#cb495-5" tabindex="-1"></a><span class="fu">ls</span>()                   <span class="co">#check what&#39;s in the workspace.</span></span>
+<span id="cb495-4"><a href="save-object.html#cb495-4" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/all.RData&quot;</span>)  <span class="co">#restore from &#39;all.RData&#39;.</span></span>
+<span id="cb495-5"><a href="save-object.html#cb495-5" tabindex="-1"></a><span class="fu">ls</span>()  <span class="co">#check what&#39;s in the workspace.</span></span>
 <span id="cb495-6"><a href="save-object.html#cb495-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ani_char&quot; &quot;dig_num&quot;</span></span></code></pre></div>
 </div>
 <div id="save-and-restore-a-single-object-using-saverds-and-readrds" class="section level3 hasAnchor" number="4.6.2">

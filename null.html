@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -803,13 +808,13 @@ div.csl-indent {
 <span id="cb418-9"><a href="null.html#cb418-9" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
 <span id="cb418-10"><a href="null.html#cb418-10" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>It is worth mentioning that the <code>vector()</code> function is also useful to initialize a vector of given mode and length.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="null.html#cb419-1" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="null.html#cb419-1" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;numeric&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)  <span class="do">##default is 0</span></span>
 <span id="cb419-2"><a href="null.html#cb419-2" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
-<span id="cb419-3"><a href="null.html#cb419-3" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is FALSE</span></span>
+<span id="cb419-3"><a href="null.html#cb419-3" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)  <span class="do">##default is FALSE</span></span>
 <span id="cb419-4"><a href="null.html#cb419-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE</span></span>
-<span id="cb419-5"><a href="null.html#cb419-5" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)      <span class="do">##default is 0</span></span>
+<span id="cb419-5"><a href="null.html#cb419-5" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)  <span class="do">##default is 0</span></span>
 <span id="cb419-6"><a href="null.html#cb419-6" tabindex="-1"></a><span class="co">#&gt; [1] 0 0</span></span>
-<span id="cb419-7"><a href="null.html#cb419-7" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;character&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)    <span class="do">##default is empty string</span></span>
+<span id="cb419-7"><a href="null.html#cb419-7" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;character&quot;</span>, <span class="at">length =</span> <span class="dv">2</span>)  <span class="do">##default is empty string</span></span>
 <span id="cb419-8"><a href="null.html#cb419-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot; &quot;&quot;</span></span></code></pre></div>
 <p>To check if an element is <code>NULL</code>, you can’t use the logical comparison <code>== NULL</code>. Instead, you need to use the <code>is.null()</code> function.</p>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="null.html#cb420-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
@@ -829,7 +834,7 @@ div.csl-indent {
 <p>One final point on <code>NULL</code> is that you can technically perform calculations on <code>NULL</code>. However, from the example below, you’ll realize operations on <code>NULL</code> will only change the class, leaving the length unchanged.</p>
 <div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="null.html#cb422-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb422-2"><a href="null.html#cb422-2" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb422-3"><a href="null.html#cb422-3" tabindex="-1"></a><span class="fu">str</span>(d) <span class="co"># the class is changed to numeric, but the length is still 0</span></span>
+<span id="cb422-3"><a href="null.html#cb422-3" tabindex="-1"></a><span class="fu">str</span>(d)  <span class="co"># the class is changed to numeric, but the length is still 0</span></span>
 <span id="cb422-4"><a href="null.html#cb422-4" tabindex="-1"></a><span class="co">#&gt;  num(0)</span></span></code></pre></div>
 </div>
 <div id="NaN" class="section level3 hasAnchor" number="3.6.2">
@@ -847,9 +852,9 @@ div.csl-indent {
 <p>As you can see from the results, <code>NaN</code> is a numeric vector of length 1, with the value <code>NaN</code>.</p>
 <p>To check if a value is <code>NaN</code>, you cannot use the <code>== NaN</code> similar to checking missing values. Instead, you need to use the function <code>is.nan()</code>.</p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="null.html#cb425-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
-<span id="cb425-2"><a href="null.html#cb425-2" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NaN</span>       <span class="do">##resulting an NA value</span></span>
+<span id="cb425-2"><a href="null.html#cb425-2" tabindex="-1"></a>a <span class="sc">==</span> <span class="cn">NaN</span>  <span class="do">##resulting an NA value</span></span>
 <span id="cb425-3"><a href="null.html#cb425-3" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb425-4"><a href="null.html#cb425-4" tabindex="-1"></a><span class="fu">is.nan</span>(a)      <span class="do">##the correct way to check if the value is NaN</span></span>
+<span id="cb425-4"><a href="null.html#cb425-4" tabindex="-1"></a><span class="fu">is.nan</span>(a)  <span class="do">##the correct way to check if the value is NaN</span></span>
 <span id="cb425-5"><a href="null.html#cb425-5" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb425-6"><a href="null.html#cb425-6" tabindex="-1"></a><span class="fu">is.nan</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>, <span class="cn">NaN</span>))</span>
 <span id="cb425-7"><a href="null.html#cb425-7" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
@@ -867,9 +872,9 @@ div.csl-indent {
 <span id="cb426-8"><a href="null.html#cb426-8" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
 <span id="cb426-9"><a href="null.html#cb426-9" tabindex="-1"></a><span class="cn">Inf</span> <span class="sc">+</span> <span class="cn">Inf</span></span>
 <span id="cb426-10"><a href="null.html#cb426-10" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
-<span id="cb426-11"><a href="null.html#cb426-11" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="fl">1e10</span></span>
+<span id="cb426-11"><a href="null.html#cb426-11" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="fl">1e+10</span></span>
 <span id="cb426-12"><a href="null.html#cb426-12" tabindex="-1"></a><span class="co">#&gt; [1] -Inf</span></span>
-<span id="cb426-13"><a href="null.html#cb426-13" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>        <span class="co">#it equals 0/0, hencing NaN</span></span>
+<span id="cb426-13"><a href="null.html#cb426-13" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">0</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">0</span>  <span class="co">#it equals 0/0, hencing NaN</span></span>
 <span id="cb426-14"><a href="null.html#cb426-14" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code></pre></div>
 <p>Again, it is worth to look at <code>str()</code>, <code>typeof()</code> and <code>length()</code> of <code>Inf</code>.</p>
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="null.html#cb427-1" tabindex="-1"></a><span class="fu">str</span>(<span class="cn">Inf</span>)</span>

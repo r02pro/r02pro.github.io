@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -758,21 +763,21 @@ div.csl-indent {
 <p>We’ve spent several sections learning the features of numeric vectors. In this section, we will introduce statistical functions on numeric vectors.</p>
 <p>Let’s first create a numeric vector.</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="numeric-vector-statistics.html#cb146-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">75</span>, <span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb146-2"><a href="numeric-vector-statistics.html#cb146-2" tabindex="-1"></a>h <span class="co">#check the value of h</span></span>
+<span id="cb146-2"><a href="numeric-vector-statistics.html#cb146-2" tabindex="-1"></a>h  <span class="co">#check the value of h</span></span>
 <span id="cb146-3"><a href="numeric-vector-statistics.html#cb146-3" tabindex="-1"></a><span class="co">#&gt; [1]   3   2  75   0 100</span></span></code></pre></div>
 <p>Next, we will divide statistical functions into several groups, and introduce them one by one.</p>
 <div id="minimum-and-maximum" class="section level3 hasAnchor" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Minimum and Maximum<a href="numeric-vector-statistics.html#minimum-and-maximum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="numeric-vector-statistics.html#cb147-1" tabindex="-1"></a><span class="fu">min</span>(h) </span>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="numeric-vector-statistics.html#cb147-1" tabindex="-1"></a><span class="fu">min</span>(h)</span>
 <span id="cb147-2"><a href="numeric-vector-statistics.html#cb147-2" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb147-3"><a href="numeric-vector-statistics.html#cb147-3" tabindex="-1"></a><span class="fu">max</span>(h) </span>
+<span id="cb147-3"><a href="numeric-vector-statistics.html#cb147-3" tabindex="-1"></a><span class="fu">max</span>(h)</span>
 <span id="cb147-4"><a href="numeric-vector-statistics.html#cb147-4" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span>
 <span id="cb147-5"><a href="numeric-vector-statistics.html#cb147-5" tabindex="-1"></a><span class="fu">range</span>(h)</span>
 <span id="cb147-6"><a href="numeric-vector-statistics.html#cb147-6" tabindex="-1"></a><span class="co">#&gt; [1]   0 100</span></span></code></pre></div>
 <p>First, you can get the <strong>minimum</strong> and <strong>maximum</strong> values of a numeric vector by calling the <code>min()</code> and <code>max()</code> functions, respectively. To get these two values at one time, you can call the <code>range()</code> function, which returns a length-2 vector with the minimum value(the first element) and maximum value(the second element).</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="numeric-vector-statistics.html#cb148-1" tabindex="-1"></a><span class="fu">which.min</span>(h) </span>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="numeric-vector-statistics.html#cb148-1" tabindex="-1"></a><span class="fu">which.min</span>(h)</span>
 <span id="cb148-2"><a href="numeric-vector-statistics.html#cb148-2" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb148-3"><a href="numeric-vector-statistics.html#cb148-3" tabindex="-1"></a><span class="fu">which.max</span>(h) </span>
+<span id="cb148-3"><a href="numeric-vector-statistics.html#cb148-3" tabindex="-1"></a><span class="fu">which.max</span>(h)</span>
 <span id="cb148-4"><a href="numeric-vector-statistics.html#cb148-4" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>In addition to getting the minimum and the maximum values, it is often useful to get the corresponding locations of them. In <code>h</code>, the minimum value 0 is located in the fourth place, and this is why you will get a result of <code>4</code> from <code>which.min()</code>. If multiple elements are assigned with the same minimum value, <code>which.min()</code> will return the first location. Similarly, <code>which.max()</code> tells you the location of the maximum value.</p>
 <div class="infobox caution">
@@ -783,9 +788,9 @@ div.csl-indent {
 <span id="cb149-5"><a href="numeric-vector-statistics.html#cb149-5" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>The third and fourth elements in <code>g</code> both have the minimum value, but <code>which.min(g)</code> returns a result of 3 since the minimum value firstly appears in the third element. Similarly, <code>which.max()</code> gives you a result of <code>1</code>.</p>
 </div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="numeric-vector-statistics.html#cb150-1" tabindex="-1"></a><span class="fu">cummin</span>(h) </span>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="numeric-vector-statistics.html#cb150-1" tabindex="-1"></a><span class="fu">cummin</span>(h)</span>
 <span id="cb150-2"><a href="numeric-vector-statistics.html#cb150-2" tabindex="-1"></a><span class="co">#&gt; [1] 3 2 2 0 0</span></span>
-<span id="cb150-3"><a href="numeric-vector-statistics.html#cb150-3" tabindex="-1"></a><span class="fu">cummax</span>(h) </span>
+<span id="cb150-3"><a href="numeric-vector-statistics.html#cb150-3" tabindex="-1"></a><span class="fu">cummax</span>(h)</span>
 <span id="cb150-4"><a href="numeric-vector-statistics.html#cb150-4" tabindex="-1"></a><span class="co">#&gt; [1]   3   3  75  75 100</span></span></code></pre></div>
 <p>In addition to calculating the minimum value of all elements, you can also use the <strong>cumulative minimum</strong> function, called <code>cummin()</code>. It returns a vector of the same length as the input vector, with the value at each location being the minimum of all preceding elements until that location in the original vector. For example, the first element of <code>cummin(h)</code> is <code>3</code> because the minimum of the first element in the original vector is always itself. The second element of <code>cummin(h)</code> is <code>2</code>, since the minimum of the first two elements (<code>3</code> and <code>2</code>) in <code>h</code>is 2, and so on.</p>
 <p>Note that once we reach the minimum value of the original vector, the remaining elements of the cumulative minimum function will always equal to the minimum value. There is also a corresponding function for computing the cumulative maximums, called <code>cummax()</code>.</p>

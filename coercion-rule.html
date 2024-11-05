@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -762,7 +767,7 @@ div.csl-indent {
 <span class="math display">\[\mbox{logical} &lt; \mbox{numeric} &lt; \mbox{character}\]</span></p>
 <p>Let’s see a few examples to learn how the coercion works. The first example mixes logical values with numbers.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="coercion-rule.html#cb73-1" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb73-2"><a href="coercion-rule.html#cb73-2" tabindex="-1"></a>mix_1 </span>
+<span id="cb73-2"><a href="coercion-rule.html#cb73-2" tabindex="-1"></a>mix_1</span>
 <span id="cb73-3"><a href="coercion-rule.html#cb73-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 7 4 0</span></span>
 <span id="cb73-4"><a href="coercion-rule.html#cb73-4" tabindex="-1"></a><span class="fu">typeof</span>(mix_1)</span>
 <span id="cb73-5"><a href="coercion-rule.html#cb73-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
@@ -771,7 +776,7 @@ div.csl-indent {
 <p>You can see that the logical values are converted to numbers, in particular, <code>TRUE</code> is converted to 1 and <code>FALSE</code> is converted to 0, when they mix with numbers. At the end, you can see <code>mix_1</code> is a numeric vector with four numbers. The result of coercion can be confirmed with the <code>typeof()</code> and <code>class()</code> function.</p>
 <p>The second example mixes numbers with strings.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="coercion-rule.html#cb74-1" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;today&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Jan&quot;</span>, <span class="dv">15</span>, <span class="st">&quot;2022&quot;</span>)</span>
-<span id="cb74-2"><a href="coercion-rule.html#cb74-2" tabindex="-1"></a>mix_2 </span>
+<span id="cb74-2"><a href="coercion-rule.html#cb74-2" tabindex="-1"></a>mix_2</span>
 <span id="cb74-3"><a href="coercion-rule.html#cb74-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;today&quot; &quot;is&quot;    &quot;Jan&quot;   &quot;15&quot;    &quot;2022&quot;</span></span>
 <span id="cb74-4"><a href="coercion-rule.html#cb74-4" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
 <span id="cb74-5"><a href="coercion-rule.html#cb74-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
@@ -819,7 +824,7 @@ div.csl-indent {
 <span id="cb80-2"><a href="coercion-rule.html#cb80-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
 <span id="cb80-3"><a href="coercion-rule.html#cb80-3" tabindex="-1"></a><span class="fu">typeof</span>(1L <span class="sc">*</span> 5L)</span>
 <span id="cb80-4"><a href="coercion-rule.html#cb80-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
-<span id="cb80-5"><a href="coercion-rule.html#cb80-5" tabindex="-1"></a><span class="fu">typeof</span>(1L <span class="sc">/</span> 5L)</span>
+<span id="cb80-5"><a href="coercion-rule.html#cb80-5" tabindex="-1"></a><span class="fu">typeof</span>(1L<span class="sc">/</span>5L)</span>
 <span id="cb80-6"><a href="coercion-rule.html#cb80-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 </div>
 <p>When comparing vectors of different types, the coercion rule also will apply. Take the following vectors as example:</p>
@@ -827,12 +832,12 @@ div.csl-indent {
 <span id="cb81-2"><a href="coercion-rule.html#cb81-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb81-3"><a href="coercion-rule.html#cb81-3" tabindex="-1"></a>a <span class="sc">==</span> b</span>
 <span id="cb81-4"><a href="coercion-rule.html#cb81-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span>
-<span id="cb81-5"><a href="coercion-rule.html#cb81-5" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
+<span id="cb81-5"><a href="coercion-rule.html#cb81-5" tabindex="-1"></a><span class="co"># &gt; [1] FALSE TRUE TRUE</span></span></code></pre></div>
 <p>When we are trying to figure out if <code>a</code> is equal to <code>b</code>, we get a length-3 logical vector. Elements in <code>b</code> is first converted into 1 and 0 based on the coercion rule we previously introduced, which is <code>TRUE = 1</code> and <code>FALSE = 0</code>, and the result will be <code>c(1, 0, 1)</code>. Thus, a comparison between a logical and a numeric vector is changed into comparing two numeric vectors.</p>
 <p>You can make comparisons between vectors of other types, the following example shows that the classic transitive property in math (<span class="math inline">\(a = b\)</span> and <span class="math inline">\(b = c\)</span> imply <span class="math inline">\(a = c\)</span>) doesn’t hold in R.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="coercion-rule.html#cb82-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="cn">TRUE</span></span>
 <span id="cb82-2"><a href="coercion-rule.html#cb82-2" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb82-3"><a href="coercion-rule.html#cb82-3" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span>   </span>
+<span id="cb82-3"><a href="coercion-rule.html#cb82-3" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
 <span id="cb82-4"><a href="coercion-rule.html#cb82-4" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb82-5"><a href="coercion-rule.html#cb82-5" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
 <span id="cb82-6"><a href="coercion-rule.html#cb82-6" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
@@ -862,7 +867,7 @@ div.csl-indent {
 <span id="cb84-3"><a href="coercion-rule.html#cb84-3" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb84-4"><a href="coercion-rule.html#cb84-4" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="st">&quot;pig&quot;</span></span>
 <span id="cb84-5"><a href="coercion-rule.html#cb84-5" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb84-6"><a href="coercion-rule.html#cb84-6" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> int_2 </span>
+<span id="cb84-6"><a href="coercion-rule.html#cb84-6" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> int_2</span>
 <span id="cb84-7"><a href="coercion-rule.html#cb84-7" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> num_1</span>
 <span id="cb84-8"><a href="coercion-rule.html#cb84-8" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> int_1<span class="sc">/</span>int_2</span>
 <span id="cb84-9"><a href="coercion-rule.html#cb84-9" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1)</span>

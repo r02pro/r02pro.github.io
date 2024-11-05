@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -755,11 +760,11 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="other-atomic-vector" class="section level2 hasAnchor" number="2.17">
 <h2><span class="header-section-number">2.17</span> Other Atomic Vector Types<a href="other-atomic-vector.html#other-atomic-vector" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>So far, we have covered the most commonly used atomic vector types, including logical, integer, numeric, and character, when we order by complexity. In this section, we will introduce two more atomic vector types: <strong>complex</strong> vectors and <strong>raw</strong> vectors.</p>
+<p>So far, we have covered the most commonly used atomic vector types, including logical, integer, numeric, and character, which we order by complexity. In this section, we will introduce two more atomic vector types: <strong>complex</strong> vectors and <strong>raw</strong> vectors.</p>
 <div id="complex-vectors" class="section level3 hasAnchor" number="2.17.1">
 <h3><span class="header-section-number">2.17.1</span> Complex Vectors<a href="other-atomic-vector.html#complex-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another atomic vector type in R is <strong>complex</strong>, which stores complex numbers. Let’s create a complex vector using the <code>c()</code> function.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="other-atomic-vector.html#cb289-1" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">+</span> 2i, <span class="dv">3</span> <span class="sc">+</span> 4i, <span class="sc">-</span><span class="dv">3</span> <span class="sc">-</span> 4i)</span>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="other-atomic-vector.html#cb289-1" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">+</span> (<span class="dv">0</span><span class="sc">+</span>2i), <span class="dv">3</span> <span class="sc">+</span> (<span class="dv">0</span><span class="sc">+</span>4i), <span class="sc">-</span><span class="dv">3</span> <span class="sc">-</span> (<span class="dv">0</span><span class="sc">+</span>4i))</span>
 <span id="cb289-2"><a href="other-atomic-vector.html#cb289-2" tabindex="-1"></a>my_complex</span>
 <span id="cb289-3"><a href="other-atomic-vector.html#cb289-3" tabindex="-1"></a><span class="co">#&gt; [1]  1+2i  3+4i -3-4i</span></span>
 <span id="cb289-4"><a href="other-atomic-vector.html#cb289-4" tabindex="-1"></a><span class="fu">class</span>(my_complex)</span>
@@ -769,12 +774,12 @@ div.csl-indent {
 <span id="cb289-8"><a href="other-atomic-vector.html#cb289-8" tabindex="-1"></a><span class="fu">str</span>(my_complex)</span>
 <span id="cb289-9"><a href="other-atomic-vector.html#cb289-9" tabindex="-1"></a><span class="co">#&gt;  cplx [1:3] 1+2i 3+4i -3-4i</span></span></code></pre></div>
 <p>You can do operations on complex vectors. Like integers and doubles, the operations are performed componentwisely. Keep in mind that <span class="math inline">\(i \times i = -1\)</span>.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="other-atomic-vector.html#cb290-1" tabindex="-1"></a>my_complex_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span> <span class="sc">+</span> 1i,   2i, <span class="dv">2</span> <span class="sc">+</span> 3i)</span>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="other-atomic-vector.html#cb290-1" tabindex="-1"></a>my_complex_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span> <span class="sc">+</span> (<span class="dv">0</span><span class="sc">+</span>1i), <span class="dv">0</span><span class="sc">+</span>2i, <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">0</span><span class="sc">+</span>3i))</span>
 <span id="cb290-2"><a href="other-atomic-vector.html#cb290-2" tabindex="-1"></a>my_complex <span class="sc">+</span> my_complex_2</span>
 <span id="cb290-3"><a href="other-atomic-vector.html#cb290-3" tabindex="-1"></a><span class="co">#&gt; [1]  3+3i  3+6i -1-1i</span></span>
 <span id="cb290-4"><a href="other-atomic-vector.html#cb290-4" tabindex="-1"></a>my_complex <span class="sc">*</span> my_complex_2</span>
 <span id="cb290-5"><a href="other-atomic-vector.html#cb290-5" tabindex="-1"></a><span class="co">#&gt; [1]  0+ 5i -8+ 6i  6-17i</span></span>
-<span id="cb290-6"><a href="other-atomic-vector.html#cb290-6" tabindex="-1"></a>my_complex <span class="sc">/</span> my_complex_2</span>
+<span id="cb290-6"><a href="other-atomic-vector.html#cb290-6" tabindex="-1"></a>my_complex<span class="sc">/</span>my_complex_2</span>
 <span id="cb290-7"><a href="other-atomic-vector.html#cb290-7" tabindex="-1"></a><span class="co">#&gt; [1]  0.800000+0.600000i  2.000000-1.500000i -1.384615+0.076923i</span></span></code></pre></div>
 <p>It is worth to emphasize that for complex vectors, <code>is.numeric()</code> returns <code>FALSE</code> and <code>is.complex()</code> returns <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="other-atomic-vector.html#cb291-1" tabindex="-1"></a><span class="fu">is.numeric</span>(my_complex)</span>
@@ -927,7 +932,7 @@ Hint: for a sequence of <code>y</code> values (eg. <code>y_seq &lt;- pi *seq(fro
 <!--
 
 ```r
-y_seq <- pi *seq(from = -2, to = 2, by = 0.1)
+y_seq <- pi * seq(from = -2, to = 2, by = 0.1)
 left_side <- exp(complex(real = 0, imaginary = y_seq))
 right_side <- complex(real = cos(y_seq), imaginary = sin(y_seq))
 left_side - right_side
@@ -942,7 +947,7 @@ left_side - right_side
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="other-atomic-vector.html#cb304-1" tabindex="-1"></a>my_raw <span class="ot">&lt;-</span> <span class="fu">as.raw</span>(<span class="dv">62</span>)</span>
 <span id="cb304-2"><a href="other-atomic-vector.html#cb304-2" tabindex="-1"></a>my_logi <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb304-3"><a href="other-atomic-vector.html#cb304-3" tabindex="-1"></a>my_int <span class="ot">&lt;-</span> 6L</span>
-<span id="cb304-4"><a href="other-atomic-vector.html#cb304-4" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> 14i</span>
+<span id="cb304-4"><a href="other-atomic-vector.html#cb304-4" tabindex="-1"></a>my_complex <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">+</span> (<span class="dv">0</span><span class="sc">+</span>14i)</span>
 <span id="cb304-5"><a href="other-atomic-vector.html#cb304-5" tabindex="-1"></a>my_char <span class="ot">&lt;-</span> <span class="st">&quot;Good luck!&quot;</span></span></code></pre></div>
 <p>Guess the values of the following operations and confirm them in R.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="other-atomic-vector.html#cb305-1" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">c</span>(my_raw, my_logi), my_int)</span>

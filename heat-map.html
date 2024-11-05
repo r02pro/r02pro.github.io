@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -759,14 +764,10 @@ div.csl-indent {
 <p>First of all, we prepare a smaller data set from the <code>gm2004</code> data in the <strong>r02pro</strong> package, to better illustrate the mechanism of a heat map.</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="heat-map.html#cb698-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb698-2"><a href="heat-map.html#cb698-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb698-3"><a href="heat-map.html#cb698-3" tabindex="-1"></a>country_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Australia&quot;</span>, </span>
-<span id="cb698-4"><a href="heat-map.html#cb698-4" tabindex="-1"></a>                  <span class="st">&quot;China&quot;</span>,</span>
-<span id="cb698-5"><a href="heat-map.html#cb698-5" tabindex="-1"></a>                  <span class="st">&quot;United States&quot;</span>,</span>
-<span id="cb698-6"><a href="heat-map.html#cb698-6" tabindex="-1"></a>                  <span class="st">&quot;United Kingdom&quot;</span>,</span>
-<span id="cb698-7"><a href="heat-map.html#cb698-7" tabindex="-1"></a>                  <span class="st">&quot;South Africa&quot;</span>)</span>
-<span id="cb698-8"><a href="heat-map.html#cb698-8" tabindex="-1"></a>sgm2004 <span class="ot">&lt;-</span> gm2004 <span class="sc">%&gt;%</span></span>
-<span id="cb698-9"><a href="heat-map.html#cb698-9" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">&quot;female&quot;</span>, country <span class="sc">%in%</span> country_list) <span class="sc">%&gt;%</span></span>
-<span id="cb698-10"><a href="heat-map.html#cb698-10" tabindex="-1"></a>  <span class="fu">select</span>(country, population, BMI, cholesterol, GDP_per_capita)</span></code></pre></div>
+<span id="cb698-3"><a href="heat-map.html#cb698-3" tabindex="-1"></a>country_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Australia&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;United States&quot;</span>, <span class="st">&quot;United Kingdom&quot;</span>, <span class="st">&quot;South Africa&quot;</span>)</span>
+<span id="cb698-4"><a href="heat-map.html#cb698-4" tabindex="-1"></a>sgm2004 <span class="ot">&lt;-</span> gm2004 <span class="sc">%&gt;%</span></span>
+<span id="cb698-5"><a href="heat-map.html#cb698-5" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">&quot;female&quot;</span>, country <span class="sc">%in%</span> country_list) <span class="sc">%&gt;%</span></span>
+<span id="cb698-6"><a href="heat-map.html#cb698-6" tabindex="-1"></a>    <span class="fu">select</span>(country, population, BMI, cholesterol, GDP_per_capita)</span></code></pre></div>
 <p>Note that during the data preparation process, we have used the <code>filter()</code> and <code>select()</code> functions, which filters observations and select variables from a tibble, respectively. They will be covered in detailed in the next Chapter.</p>
 <div id="using-the-heatmap-function" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Using the <code>heatmap()</code> function<a href="heat-map.html#using-the-heatmap-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -787,44 +788,30 @@ div.csl-indent {
 <p><img src="r02pro_files/figure-html/unnamed-chunk-728-1.png" width="576" /></p>
 <p>In addition to generating the heat map, the <code>heatmap()</code> function, by default, also run a <strong>clustering algorithm</strong> on both the rows and columns, and visualize the results with <strong>dendrograms</strong>. To turn off the dendrograms, you can set arguments <code>Rowv = NA</code> and <code>Colv = NA</code> for the row and column dendrograms, respectively.</p>
 <p>In addition, it is easy to customize the colors of the heatmap.</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="heat-map.html#cb701-1" tabindex="-1"></a>rc <span class="ot">&lt;-</span> <span class="fu">rainbow</span>(<span class="fu">nrow</span>(sgm2004_mat), <span class="at">start =</span> <span class="dv">0</span>, <span class="at">end =</span> .<span class="dv">3</span>)</span>
-<span id="cb701-2"><a href="heat-map.html#cb701-2" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">rainbow</span>(<span class="fu">ncol</span>(sgm2004_mat), <span class="at">start =</span> <span class="dv">0</span>, <span class="at">end =</span> .<span class="dv">3</span>)</span>
-<span id="cb701-3"><a href="heat-map.html#cb701-3" tabindex="-1"></a><span class="fu">heatmap</span>(sgm2004_mat, </span>
-<span id="cb701-4"><a href="heat-map.html#cb701-4" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">cm.colors</span>(<span class="dv">256</span>),</span>
-<span id="cb701-5"><a href="heat-map.html#cb701-5" tabindex="-1"></a>        <span class="at">scale =</span> <span class="st">&quot;column&quot;</span>,</span>
-<span id="cb701-6"><a href="heat-map.html#cb701-6" tabindex="-1"></a>        <span class="at">RowSideColors =</span> rc, </span>
-<span id="cb701-7"><a href="heat-map.html#cb701-7" tabindex="-1"></a>        <span class="at">ColSideColors =</span> cc)</span></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="heat-map.html#cb701-1" tabindex="-1"></a>rc <span class="ot">&lt;-</span> <span class="fu">rainbow</span>(<span class="fu">nrow</span>(sgm2004_mat), <span class="at">start =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="fl">0.3</span>)</span>
+<span id="cb701-2"><a href="heat-map.html#cb701-2" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">rainbow</span>(<span class="fu">ncol</span>(sgm2004_mat), <span class="at">start =</span> <span class="dv">0</span>, <span class="at">end =</span> <span class="fl">0.3</span>)</span>
+<span id="cb701-3"><a href="heat-map.html#cb701-3" tabindex="-1"></a><span class="fu">heatmap</span>(sgm2004_mat, <span class="at">col =</span> <span class="fu">cm.colors</span>(<span class="dv">256</span>), <span class="at">scale =</span> <span class="st">&quot;column&quot;</span>, <span class="at">RowSideColors =</span> rc,</span>
+<span id="cb701-4"><a href="heat-map.html#cb701-4" tabindex="-1"></a>    <span class="at">ColSideColors =</span> cc)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-729-1.png" width="576" /></p>
 </div>
 <div id="using-geom_tile-in-ggplot2" class="section level3 hasAnchor" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Using <code>geom_tile()</code> in <strong>ggplot2</strong><a href="heat-map.html#using-geom_tile-in-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the <strong>ggplot2</strong> packages, there is no geom that directly generates a heatmap, however, we can use the <code>geom_tile()</code> on a transformed data format using <code>pivot_longer()</code>, which will be introduced in Chapter ??.</p>
 <div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="heat-map.html#cb702-1" tabindex="-1"></a>sgm2004_long <span class="ot">&lt;-</span> sgm2004 <span class="sc">%&gt;%</span></span>
-<span id="cb702-2"><a href="heat-map.html#cb702-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, </span>
-<span id="cb702-3"><a href="heat-map.html#cb702-3" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Var&quot;</span>)</span>
-<span id="cb702-4"><a href="heat-map.html#cb702-4" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span></span>
-<span id="cb702-5"><a href="heat-map.html#cb702-5" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, </span>
-<span id="cb702-6"><a href="heat-map.html#cb702-6" tabindex="-1"></a>                          <span class="at">y =</span> Var,</span>
-<span id="cb702-7"><a href="heat-map.html#cb702-7" tabindex="-1"></a>                          <span class="at">fill =</span> value))</span></code></pre></div>
+<span id="cb702-2"><a href="heat-map.html#cb702-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">names_to =</span> <span class="st">&quot;Var&quot;</span>)</span>
+<span id="cb702-3"><a href="heat-map.html#cb702-3" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> Var, <span class="at">fill =</span> value))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-730-1.png" width="576" /></p>
 <p>Here, since the variables are not in the same scale, the colors of the tiles are dominated by the <code>population</code> value. As before, we need to scale the variables to make them comparable.</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="heat-map.html#cb703-1" tabindex="-1"></a>sgm2004_long <span class="ot">&lt;-</span> sgm2004_long <span class="sc">%&gt;%</span> </span>
-<span id="cb703-2"><a href="heat-map.html#cb703-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Var) <span class="sc">%&gt;%</span></span>
-<span id="cb703-3"><a href="heat-map.html#cb703-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">std_value =</span> <span class="fu">scale</span>(value)) <span class="sc">%&gt;%</span></span>
-<span id="cb703-4"><a href="heat-map.html#cb703-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb703-5"><a href="heat-map.html#cb703-5" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span></span>
-<span id="cb703-6"><a href="heat-map.html#cb703-6" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, </span>
-<span id="cb703-7"><a href="heat-map.html#cb703-7" tabindex="-1"></a>                          <span class="at">y =</span> Var,</span>
-<span id="cb703-8"><a href="heat-map.html#cb703-8" tabindex="-1"></a>                          <span class="at">fill =</span> std_value))</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="heat-map.html#cb703-1" tabindex="-1"></a>sgm2004_long <span class="ot">&lt;-</span> sgm2004_long <span class="sc">%&gt;%</span></span>
+<span id="cb703-2"><a href="heat-map.html#cb703-2" tabindex="-1"></a>    <span class="fu">group_by</span>(Var) <span class="sc">%&gt;%</span></span>
+<span id="cb703-3"><a href="heat-map.html#cb703-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">std_value =</span> <span class="fu">scale</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb703-4"><a href="heat-map.html#cb703-4" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb703-5"><a href="heat-map.html#cb703-5" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> Var, <span class="at">fill =</span> std_value))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-731-1.png" width="576" /></p>
 <p>Now, the heatmap looks more informative that shows the relative magnitude across different countries for each variable considered.</p>
 <p>Like in Section <a href="aes-local-map.html#aes-local-map">5.3</a>, you can customize the range of the tile colors by specifying the <code>low</code> and <code>high</code> parameters in the <code>scale_fill_gradient()</code> function.</p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="heat-map.html#cb704-1" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span></span>
-<span id="cb704-2"><a href="heat-map.html#cb704-2" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, </span>
-<span id="cb704-3"><a href="heat-map.html#cb704-3" tabindex="-1"></a>                          <span class="at">y =</span> Var,</span>
-<span id="cb704-4"><a href="heat-map.html#cb704-4" tabindex="-1"></a>                          <span class="at">fill =</span> std_value)) <span class="sc">+</span> </span>
-<span id="cb704-5"><a href="heat-map.html#cb704-5" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&quot;green&quot;</span>, </span>
-<span id="cb704-6"><a href="heat-map.html#cb704-6" tabindex="-1"></a>                      <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="heat-map.html#cb704-1" tabindex="-1"></a><span class="fu">ggplot</span>(sgm2004_long) <span class="sc">+</span> <span class="fu">geom_tile</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> Var, <span class="at">fill =</span> std_value)) <span class="sc">+</span></span>
+<span id="cb704-2"><a href="heat-map.html#cb704-2" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&quot;green&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-732-1.png" width="576" /></p>
 
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -760,7 +765,7 @@ div.csl-indent {
 <h3><span class="header-section-number">2.2.1</span> Creation, class and storage type<a href="intro-char-vector.html#create-character-vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>character vector</strong> is another type of atomic vector (where all elements are of the same type). In a character vector, the value of each element is of character type, which means each element is a string. A string is a sequence of characters (including letters, numbers, or symbols) surrounded by the double quotes (““) or single quotes (''). For consistency, we will stick with double quotes in this book.</p>
 <p>The first example: if the word book is surrounded by a pair of double quotes, then it is a string, and <code>"book"</code> is a character vector with length 1. The value of <code>"book"</code> is the string itself. Notice that here <code>"book"</code> is a vector <strong>without</strong> a name since we have not assigned its value to a name, which will be introduced shortly. You can then verify the number of strings in this vector by using <code>length()</code> and verify the vector type by using <code>class()</code>.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intro-char-vector.html#cb49-1" tabindex="-1"></a><span class="st">&quot;book&quot;</span> </span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intro-char-vector.html#cb49-1" tabindex="-1"></a><span class="st">&quot;book&quot;</span></span>
 <span id="cb49-2"><a href="intro-char-vector.html#cb49-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;book&quot;</span></span>
 <span id="cb49-3"><a href="intro-char-vector.html#cb49-3" tabindex="-1"></a><span class="fu">length</span>(<span class="st">&quot;book&quot;</span>)</span>
 <span id="cb49-4"><a href="intro-char-vector.html#cb49-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
@@ -768,7 +773,7 @@ div.csl-indent {
 <span id="cb49-6"><a href="intro-char-vector.html#cb49-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Now the <code>class()</code> function will return <code>character</code>, which shows that <code>"book"</code> is a character vector.</p>
 <p>After assigning the value to the name r02pro, you have created a new character vector <code>r02pro</code> with “book” as the value.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-char-vector.html#cb50-1" tabindex="-1"></a>r02pro <span class="ot">&lt;-</span> <span class="st">&quot;book&quot;</span> </span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-char-vector.html#cb50-1" tabindex="-1"></a>r02pro <span class="ot">&lt;-</span> <span class="st">&quot;book&quot;</span></span>
 <span id="cb50-2"><a href="intro-char-vector.html#cb50-2" tabindex="-1"></a>r02pro</span>
 <span id="cb50-3"><a href="intro-char-vector.html#cb50-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;book&quot;</span></span>
 <span id="cb50-4"><a href="intro-char-vector.html#cb50-4" tabindex="-1"></a><span class="fu">class</span>(r02pro)</span>
@@ -784,7 +789,7 @@ Figure 2.4: Miss the right quotation mark
 </div>
 <p>Next, let’s create a numeric vector <code>num_vec</code> with number 708. After adding a pair of double quotes around the number 708, “708” has converted to a string now. You can assign the value “708” to a name (say char_vec), which will create a new character vector named <code>char_vec</code>. Don’t forget to check the vector type by using <code>class()</code> if you are not sure.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="intro-char-vector.html#cb51-1" tabindex="-1"></a>num_vec <span class="ot">&lt;-</span> <span class="dv">708</span></span>
-<span id="cb51-2"><a href="intro-char-vector.html#cb51-2" tabindex="-1"></a>char_vec <span class="ot">&lt;-</span> <span class="st">&quot;708&quot;</span> </span>
+<span id="cb51-2"><a href="intro-char-vector.html#cb51-2" tabindex="-1"></a>char_vec <span class="ot">&lt;-</span> <span class="st">&quot;708&quot;</span></span>
 <span id="cb51-3"><a href="intro-char-vector.html#cb51-3" tabindex="-1"></a><span class="fu">class</span>(num_vec)</span>
 <span id="cb51-4"><a href="intro-char-vector.html#cb51-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span>
 <span id="cb51-5"><a href="intro-char-vector.html#cb51-5" tabindex="-1"></a><span class="fu">class</span>(char_vec)</span>

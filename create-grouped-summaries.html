@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -762,76 +767,70 @@ div.csl-indent {
 <p>To create summaries for a variable, you can use the <code>summarize()</code> function. Let’s compute the number of countries, the average population, and the median of the GDP per capita for all observations in the <code>gm</code> dataset for the year 2008.</p>
 <div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="create-grouped-summaries.html#cb753-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb753-2"><a href="create-grouped-summaries.html#cb753-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb753-3"><a href="create-grouped-summaries.html#cb753-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb753-4"><a href="create-grouped-summaries.html#cb753-4" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb753-5"><a href="create-grouped-summaries.html#cb753-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_countries =</span> <span class="fu">n</span>(), </span>
-<span id="cb753-6"><a href="create-grouped-summaries.html#cb753-6" tabindex="-1"></a>            <span class="at">ave_population =</span> <span class="fu">mean</span>(population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb753-7"><a href="create-grouped-summaries.html#cb753-7" tabindex="-1"></a>            <span class="at">q_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb753-8"><a href="create-grouped-summaries.html#cb753-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span id="cb753-9"><a href="create-grouped-summaries.html#cb753-9" tabindex="-1"></a><span class="co">#&gt;   n_countries ave_population q_GDP</span></span>
-<span id="cb753-10"><a href="create-grouped-summaries.html#cb753-10" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb753-11"><a href="create-grouped-summaries.html#cb753-11" tabindex="-1"></a><span class="co">#&gt; 1         236         34848.  5.12</span></span></code></pre></div>
+<span id="cb753-3"><a href="create-grouped-summaries.html#cb753-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb753-4"><a href="create-grouped-summaries.html#cb753-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb753-5"><a href="create-grouped-summaries.html#cb753-5" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_countries =</span> <span class="fu">n</span>(), <span class="at">ave_population =</span> <span class="fu">mean</span>(population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb753-6"><a href="create-grouped-summaries.html#cb753-6" tabindex="-1"></a>        <span class="at">q_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb753-7"><a href="create-grouped-summaries.html#cb753-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb753-8"><a href="create-grouped-summaries.html#cb753-8" tabindex="-1"></a><span class="co">#&gt;   n_countries ave_population q_GDP</span></span>
+<span id="cb753-9"><a href="create-grouped-summaries.html#cb753-9" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;          &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb753-10"><a href="create-grouped-summaries.html#cb753-10" tabindex="-1"></a><span class="co">#&gt; 1         236         34848.  5.12</span></span></code></pre></div>
 <p>Note that here we use the <code>n()</code> function to count the number of countries. The <code>mean()</code> function computes the average of the population, and the <code>median()</code> function computes the median of the GDP per capita. The <code>na.rm = TRUE</code> argument is used to remove the missing values when computing the average and median.</p>
 </div>
 <div id="create-grouped-summaries-1" class="section level3 hasAnchor" number="7.5.2">
 <h3><span class="header-section-number">7.5.2</span> Create Grouped Summaries<a href="create-grouped-summaries.html#create-grouped-summaries-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So far, we have learned to use <code>summarize()</code> to create summaries for all observations. In practical applications, it is often more useful to compute the summaries when the observations are grouped according to certain criteria. Let’s say we want to create the same summaries for each continent in the <code>gm</code> dataset.</p>
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="create-grouped-summaries.html#cb754-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb754-2"><a href="create-grouped-summaries.html#cb754-2" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
-<span id="cb754-3"><a href="create-grouped-summaries.html#cb754-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_countries =</span> <span class="fu">n</span>(), </span>
-<span id="cb754-4"><a href="create-grouped-summaries.html#cb754-4" tabindex="-1"></a>            <span class="at">ave_population =</span> <span class="fu">mean</span>(population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb754-5"><a href="create-grouped-summaries.html#cb754-5" tabindex="-1"></a>            <span class="at">q_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb754-6"><a href="create-grouped-summaries.html#cb754-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
-<span id="cb754-7"><a href="create-grouped-summaries.html#cb754-7" tabindex="-1"></a><span class="co">#&gt;   continent n_countries ave_population  q_GDP</span></span>
-<span id="cb754-8"><a href="create-grouped-summaries.html#cb754-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;          &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb754-9"><a href="create-grouped-summaries.html#cb754-9" tabindex="-1"></a><span class="co">#&gt; 1 Africa          15051         19103.  0.984</span></span>
-<span id="cb754-10"><a href="create-grouped-summaries.html#cb754-10" tabindex="-1"></a><span class="co">#&gt; 2 Americas        10578         16009.  5.26 </span></span>
-<span id="cb754-11"><a href="create-grouped-summaries.html#cb754-11" tabindex="-1"></a><span class="co">#&gt; 3 Asia            13764         53912.  3.41 </span></span>
-<span id="cb754-12"><a href="create-grouped-summaries.html#cb754-12" tabindex="-1"></a><span class="co">#&gt; 4 Europe          11439         13590. 19.1  </span></span>
-<span id="cb754-13"><a href="create-grouped-summaries.html#cb754-13" tabindex="-1"></a><span class="co">#&gt; 5 Oceania          3446          2419.  2.87 </span></span>
-<span id="cb754-14"><a href="create-grouped-summaries.html#cb754-14" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;            11253          5008. 11.8</span></span></code></pre></div>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="create-grouped-summaries.html#cb754-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb754-2"><a href="create-grouped-summaries.html#cb754-2" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb754-3"><a href="create-grouped-summaries.html#cb754-3" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_countries =</span> <span class="fu">n</span>(), <span class="at">ave_population =</span> <span class="fu">mean</span>(population, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb754-4"><a href="create-grouped-summaries.html#cb754-4" tabindex="-1"></a>        <span class="at">q_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb754-5"><a href="create-grouped-summaries.html#cb754-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span id="cb754-6"><a href="create-grouped-summaries.html#cb754-6" tabindex="-1"></a><span class="co">#&gt;   continent n_countries ave_population  q_GDP</span></span>
+<span id="cb754-7"><a href="create-grouped-summaries.html#cb754-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;           &lt;int&gt;          &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb754-8"><a href="create-grouped-summaries.html#cb754-8" tabindex="-1"></a><span class="co">#&gt; 1 Africa          15051         19103.  0.984</span></span>
+<span id="cb754-9"><a href="create-grouped-summaries.html#cb754-9" tabindex="-1"></a><span class="co">#&gt; 2 Americas        10578         16009.  5.26 </span></span>
+<span id="cb754-10"><a href="create-grouped-summaries.html#cb754-10" tabindex="-1"></a><span class="co">#&gt; 3 Asia            13764         53912.  3.41 </span></span>
+<span id="cb754-11"><a href="create-grouped-summaries.html#cb754-11" tabindex="-1"></a><span class="co">#&gt; 4 Europe          11439         13590. 19.1  </span></span>
+<span id="cb754-12"><a href="create-grouped-summaries.html#cb754-12" tabindex="-1"></a><span class="co">#&gt; 5 Oceania          3446          2419.  2.87 </span></span>
+<span id="cb754-13"><a href="create-grouped-summaries.html#cb754-13" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;            11253          5008. 11.8</span></span></code></pre></div>
 <p>From the output, you can see that the summaries are created for each continent. The <code>group_by()</code> function is used to group the observations according to the <code>continent</code> variable. Then, the <code>summarize()</code> function is used to create the summaries for each group.</p>
 <p>Let’s now do another example. We want to find the top 5 countries with the highest life expectancy in the year 2006 for each continent.</p>
-<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="create-grouped-summaries.html#cb755-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb755-2"><a href="create-grouped-summaries.html#cb755-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>,</span>
-<span id="cb755-3"><a href="create-grouped-summaries.html#cb755-3" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
-<span id="cb755-4"><a href="create-grouped-summaries.html#cb755-4" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
-<span id="cb755-5"><a href="create-grouped-summaries.html#cb755-5" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">5</span>, life_expectancy) <span class="sc">%&gt;%</span> </span>
-<span id="cb755-6"><a href="create-grouped-summaries.html#cb755-6" tabindex="-1"></a>  <span class="fu">select</span>(country, life_expectancy) <span class="sc">%&gt;%</span></span>
-<span id="cb755-7"><a href="create-grouped-summaries.html#cb755-7" tabindex="-1"></a>  <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(life_expectancy))</span>
-<span id="cb755-8"><a href="create-grouped-summaries.html#cb755-8" tabindex="-1"></a><span class="co">#&gt; Adding missing grouping variables:</span></span>
-<span id="cb755-9"><a href="create-grouped-summaries.html#cb755-9" tabindex="-1"></a><span class="co">#&gt; `continent`</span></span>
-<span id="cb755-10"><a href="create-grouped-summaries.html#cb755-10" tabindex="-1"></a><span class="co">#&gt; # A tibble: 25 × 3</span></span>
-<span id="cb755-11"><a href="create-grouped-summaries.html#cb755-11" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [5]</span></span>
-<span id="cb755-12"><a href="create-grouped-summaries.html#cb755-12" tabindex="-1"></a><span class="co">#&gt;    continent country    life_expectancy</span></span>
-<span id="cb755-13"><a href="create-grouped-summaries.html#cb755-13" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;</span></span>
-<span id="cb755-14"><a href="create-grouped-summaries.html#cb755-14" tabindex="-1"></a><span class="co">#&gt;  1 Africa    Libya                 76  </span></span>
-<span id="cb755-15"><a href="create-grouped-summaries.html#cb755-15" tabindex="-1"></a><span class="co">#&gt;  2 Africa    Tunisia               75.7</span></span>
-<span id="cb755-16"><a href="create-grouped-summaries.html#cb755-16" tabindex="-1"></a><span class="co">#&gt;  3 Africa    Mauritius             73.8</span></span>
-<span id="cb755-17"><a href="create-grouped-summaries.html#cb755-17" tabindex="-1"></a><span class="co">#&gt;  4 Africa    Algeria               73.6</span></span>
-<span id="cb755-18"><a href="create-grouped-summaries.html#cb755-18" tabindex="-1"></a><span class="co">#&gt;  5 Africa    Cape Verde            73.2</span></span>
-<span id="cb755-19"><a href="create-grouped-summaries.html#cb755-19" tabindex="-1"></a><span class="co">#&gt;  6 Americas  Canada                80.9</span></span>
-<span id="cb755-20"><a href="create-grouped-summaries.html#cb755-20" tabindex="-1"></a><span class="co">#&gt;  7 Americas  Costa Rica            80.3</span></span>
-<span id="cb755-21"><a href="create-grouped-summaries.html#cb755-21" tabindex="-1"></a><span class="co">#&gt;  8 Americas  Cuba                  78.5</span></span>
-<span id="cb755-22"><a href="create-grouped-summaries.html#cb755-22" tabindex="-1"></a><span class="co">#&gt;  9 Americas  Panama                78.5</span></span>
-<span id="cb755-23"><a href="create-grouped-summaries.html#cb755-23" tabindex="-1"></a><span class="co">#&gt; 10 Americas  Chile                 78.4</span></span>
-<span id="cb755-24"><a href="create-grouped-summaries.html#cb755-24" tabindex="-1"></a><span class="co">#&gt; # … with 15 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="create-grouped-summaries.html#cb755-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb755-2"><a href="create-grouped-summaries.html#cb755-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>, <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
+<span id="cb755-3"><a href="create-grouped-summaries.html#cb755-3" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb755-4"><a href="create-grouped-summaries.html#cb755-4" tabindex="-1"></a>    <span class="fu">top_n</span>(<span class="dv">5</span>, life_expectancy) <span class="sc">%&gt;%</span></span>
+<span id="cb755-5"><a href="create-grouped-summaries.html#cb755-5" tabindex="-1"></a>    <span class="fu">select</span>(country, life_expectancy) <span class="sc">%&gt;%</span></span>
+<span id="cb755-6"><a href="create-grouped-summaries.html#cb755-6" tabindex="-1"></a>    <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(life_expectancy))</span>
+<span id="cb755-7"><a href="create-grouped-summaries.html#cb755-7" tabindex="-1"></a><span class="co">#&gt; Adding missing grouping variables:</span></span>
+<span id="cb755-8"><a href="create-grouped-summaries.html#cb755-8" tabindex="-1"></a><span class="co">#&gt; `continent`</span></span>
+<span id="cb755-9"><a href="create-grouped-summaries.html#cb755-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 25 × 3</span></span>
+<span id="cb755-10"><a href="create-grouped-summaries.html#cb755-10" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [5]</span></span>
+<span id="cb755-11"><a href="create-grouped-summaries.html#cb755-11" tabindex="-1"></a><span class="co">#&gt;    continent country    life_expectancy</span></span>
+<span id="cb755-12"><a href="create-grouped-summaries.html#cb755-12" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span id="cb755-13"><a href="create-grouped-summaries.html#cb755-13" tabindex="-1"></a><span class="co">#&gt;  1 Africa    Libya                 76  </span></span>
+<span id="cb755-14"><a href="create-grouped-summaries.html#cb755-14" tabindex="-1"></a><span class="co">#&gt;  2 Africa    Tunisia               75.7</span></span>
+<span id="cb755-15"><a href="create-grouped-summaries.html#cb755-15" tabindex="-1"></a><span class="co">#&gt;  3 Africa    Mauritius             73.8</span></span>
+<span id="cb755-16"><a href="create-grouped-summaries.html#cb755-16" tabindex="-1"></a><span class="co">#&gt;  4 Africa    Algeria               73.6</span></span>
+<span id="cb755-17"><a href="create-grouped-summaries.html#cb755-17" tabindex="-1"></a><span class="co">#&gt;  5 Africa    Cape Verde            73.2</span></span>
+<span id="cb755-18"><a href="create-grouped-summaries.html#cb755-18" tabindex="-1"></a><span class="co">#&gt;  6 Americas  Canada                80.9</span></span>
+<span id="cb755-19"><a href="create-grouped-summaries.html#cb755-19" tabindex="-1"></a><span class="co">#&gt;  7 Americas  Costa Rica            80.3</span></span>
+<span id="cb755-20"><a href="create-grouped-summaries.html#cb755-20" tabindex="-1"></a><span class="co">#&gt;  8 Americas  Cuba                  78.5</span></span>
+<span id="cb755-21"><a href="create-grouped-summaries.html#cb755-21" tabindex="-1"></a><span class="co">#&gt;  9 Americas  Panama                78.5</span></span>
+<span id="cb755-22"><a href="create-grouped-summaries.html#cb755-22" tabindex="-1"></a><span class="co">#&gt; 10 Americas  Chile                 78.4</span></span>
+<span id="cb755-23"><a href="create-grouped-summaries.html#cb755-23" tabindex="-1"></a><span class="co">#&gt; # … with 15 more rows</span></span></code></pre></div>
 <p>In this example, we first filter the observations for the year 2006 and remove the missing values in the <code>continent</code> variable. Then, we group the observations according to the <code>continent</code> variable. The <code>top_n()</code> function is used to select the top 5 countries with the highest life expectancy for each continent. Finally, we select the <code>country</code> and <code>life_expectancy</code> variables and arrange the observations according to the continent and the life expectancy in descending order.</p>
 <p>Finally, let’s say we want to visualize the trend of the average GDP per capita for each continent from 1998 to 2018.</p>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="create-grouped-summaries.html#cb756-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
-<span id="cb756-2"><a href="create-grouped-summaries.html#cb756-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1998</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2018</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
-<span id="cb756-3"><a href="create-grouped-summaries.html#cb756-3" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb756-4"><a href="create-grouped-summaries.html#cb756-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ave_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb756-5"><a href="create-grouped-summaries.html#cb756-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> ave_GDP, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
-<span id="cb756-6"><a href="create-grouped-summaries.html#cb756-6" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb756-7"><a href="create-grouped-summaries.html#cb756-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Trend of Average GDP per Capita by Continent&quot;</span>,</span>
-<span id="cb756-8"><a href="create-grouped-summaries.html#cb756-8" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb756-9"><a href="create-grouped-summaries.html#cb756-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Average GDP per Capita&quot;</span>)</span>
-<span id="cb756-10"><a href="create-grouped-summaries.html#cb756-10" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by</span></span>
-<span id="cb756-11"><a href="create-grouped-summaries.html#cb756-11" tabindex="-1"></a><span class="co">#&gt; &#39;continent&#39;. You can override using</span></span>
-<span id="cb756-12"><a href="create-grouped-summaries.html#cb756-12" tabindex="-1"></a><span class="co">#&gt; the `.groups` argument.</span></span>
-<span id="cb756-13"><a href="create-grouped-summaries.html#cb756-13" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method =</span></span>
-<span id="cb756-14"><a href="create-grouped-summaries.html#cb756-14" tabindex="-1"></a><span class="co">#&gt; &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="create-grouped-summaries.html#cb756-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb756-2"><a href="create-grouped-summaries.html#cb756-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1998</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2018</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
+<span id="cb756-3"><a href="create-grouped-summaries.html#cb756-3" tabindex="-1"></a>    <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
+<span id="cb756-4"><a href="create-grouped-summaries.html#cb756-4" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">ave_GDP =</span> <span class="fu">median</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb756-5"><a href="create-grouped-summaries.html#cb756-5" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> ave_GDP, <span class="at">color =</span> continent)) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb756-6"><a href="create-grouped-summaries.html#cb756-6" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Trend of Average GDP per Capita by Continent&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average GDP per Capita&quot;</span>)</span>
+<span id="cb756-7"><a href="create-grouped-summaries.html#cb756-7" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by</span></span>
+<span id="cb756-8"><a href="create-grouped-summaries.html#cb756-8" tabindex="-1"></a><span class="co">#&gt; &#39;continent&#39;. You can override using the</span></span>
+<span id="cb756-9"><a href="create-grouped-summaries.html#cb756-9" tabindex="-1"></a><span class="co">#&gt; `.groups` argument.</span></span>
+<span id="cb756-10"><a href="create-grouped-summaries.html#cb756-10" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and</span></span>
+<span id="cb756-11"><a href="create-grouped-summaries.html#cb756-11" tabindex="-1"></a><span class="co">#&gt; formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-783-1.png" width="576" /></p>
 <p>Here, we first filter the observations for the years from 1998 to 2018 and remove the missing values in the <code>continent</code> variable. Then, we group the observations according to the <code>continent</code> and <code>year</code> variables. The <code>summarize()</code> function is used to compute the median of the GDP per capita for each group. Finally, we create a smoothline fit to visualize the trend of the average GDP per capita for each continent from 1998 to 2018.</p>
 </div>

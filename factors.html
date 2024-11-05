@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -760,7 +765,7 @@ div.csl-indent {
 <div id="create-a-factor-from-a-vector" class="section level3 hasAnchor" number="2.11.1">
 <h3><span class="header-section-number">2.11.1</span> Create a factor from a vector<a href="factors.html#create-a-factor-from-a-vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So, what is exactly a <strong>factor</strong>? It can be viewed as a special type of vector whose elements take on a <strong>fixed and known</strong> set of different values. You can create a factor from a vector using the <code>factor()</code> function. To understand the output of a factor, it is helpful to compare the results with the original vector <code>animals</code>.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="factors.html#cb195-1" tabindex="-1"></a>animals_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(animals)  </span>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="factors.html#cb195-1" tabindex="-1"></a>animals_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(animals)</span>
 <span id="cb195-2"><a href="factors.html#cb195-2" tabindex="-1"></a>animals_fac</span>
 <span id="cb195-3"><a href="factors.html#cb195-3" tabindex="-1"></a><span class="co">#&gt; [1] sheep  pig    monkey sheep  sheep  pig   </span></span>
 <span id="cb195-4"><a href="factors.html#cb195-4" tabindex="-1"></a><span class="co">#&gt; Levels: monkey pig sheep</span></span>
@@ -785,7 +790,7 @@ div.csl-indent {
 <span id="cb199-2"><a href="factors.html#cb199-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot; &quot;sheep&quot;  &quot;sheep&quot;  &quot;pig&quot;</span></span></code></pre></div>
 <div class="infobox caution">
 <p>To show that factors indeed could take less memory than the corresponding character vectors when the levels are repeated many times, let’s see the following example where we use the <code>object.size()</code> function to check the estimate of memory used to store the corresponding object.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="factors.html#cb200-1" tabindex="-1"></a>many_animals <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>))</span>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="factors.html#cb200-1" tabindex="-1"></a>many_animals <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>), <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>))</span>
 <span id="cb200-2"><a href="factors.html#cb200-2" tabindex="-1"></a>many_animals_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(many_animals)</span>
 <span id="cb200-3"><a href="factors.html#cb200-3" tabindex="-1"></a><span class="fu">object.size</span>(many_animals)</span>
 <span id="cb200-4"><a href="factors.html#cb200-4" tabindex="-1"></a><span class="co">#&gt; 5016 bytes</span></span>
@@ -840,22 +845,20 @@ div.csl-indent {
 <span id="cb207-3"><a href="factors.html#cb207-3" tabindex="-1"></a><span class="co">#&gt; [1] excellent good      excellent good      average  </span></span>
 <span id="cb207-4"><a href="factors.html#cb207-4" tabindex="-1"></a><span class="co">#&gt; Levels: average excellent good</span></span></code></pre></div>
 <p>Different from the animals in <code>animals</code>, the conditions have a natural ordering. We know average &lt; good &lt; excellent. To encode this information in a factor, you can create a so-called <strong>ordered factor</strong> by setting <code>ordered = TRUE</code> in the <code>factor()</code> function and specify the levels in the ascending order of the desired ordering.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="factors.html#cb208-1" tabindex="-1"></a>condition_ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, </span>
-<span id="cb208-2"><a href="factors.html#cb208-2" tabindex="-1"></a>                                <span class="at">ordered =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb208-3"><a href="factors.html#cb208-3" tabindex="-1"></a>                                <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;excellent&quot;</span>))</span>
-<span id="cb208-4"><a href="factors.html#cb208-4" tabindex="-1"></a>condition_ordered_fac</span>
-<span id="cb208-5"><a href="factors.html#cb208-5" tabindex="-1"></a><span class="co">#&gt; [1] excellent good      excellent good      average  </span></span>
-<span id="cb208-6"><a href="factors.html#cb208-6" tabindex="-1"></a><span class="co">#&gt; Levels: average &lt; good &lt; excellent</span></span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="factors.html#cb208-1" tabindex="-1"></a>condition_ordered_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;average&quot;</span>,</span>
+<span id="cb208-2"><a href="factors.html#cb208-2" tabindex="-1"></a>    <span class="st">&quot;good&quot;</span>, <span class="st">&quot;excellent&quot;</span>))</span>
+<span id="cb208-3"><a href="factors.html#cb208-3" tabindex="-1"></a>condition_ordered_fac</span>
+<span id="cb208-4"><a href="factors.html#cb208-4" tabindex="-1"></a><span class="co">#&gt; [1] excellent good      excellent good      average  </span></span>
+<span id="cb208-5"><a href="factors.html#cb208-5" tabindex="-1"></a><span class="co">#&gt; Levels: average &lt; good &lt; excellent</span></span></code></pre></div>
 <p>We can see that there is an ordering shown in the “Levels”. You can also make comparisons on ordered factors.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="factors.html#cb209-1" tabindex="-1"></a>condition_ordered_fac[<span class="dv">1</span>] <span class="sc">&lt;</span> condition_ordered_fac[<span class="dv">2</span>]</span>
 <span id="cb209-2"><a href="factors.html#cb209-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>The result is <code>FALSE</code> since excellent &gt; good. Let’s check what would be the result if we don’t specify <code>order = TRUE</code>.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="factors.html#cb210-1" tabindex="-1"></a>condition_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, </span>
-<span id="cb210-2"><a href="factors.html#cb210-2" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;excellent&quot;</span>))</span>
-<span id="cb210-3"><a href="factors.html#cb210-3" tabindex="-1"></a>condition_fac[<span class="dv">1</span>] <span class="sc">&lt;</span> condition_fac[<span class="dv">2</span>]</span>
-<span id="cb210-4"><a href="factors.html#cb210-4" tabindex="-1"></a><span class="co">#&gt; Warning in Ops.factor(condition_fac[1], condition_fac[2]): &#39;&lt;&#39; not meaningful</span></span>
-<span id="cb210-5"><a href="factors.html#cb210-5" tabindex="-1"></a><span class="co">#&gt; for factors</span></span>
-<span id="cb210-6"><a href="factors.html#cb210-6" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="factors.html#cb210-1" tabindex="-1"></a>condition_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;excellent&quot;</span>))</span>
+<span id="cb210-2"><a href="factors.html#cb210-2" tabindex="-1"></a>condition_fac[<span class="dv">1</span>] <span class="sc">&lt;</span> condition_fac[<span class="dv">2</span>]</span>
+<span id="cb210-3"><a href="factors.html#cb210-3" tabindex="-1"></a><span class="co">#&gt; Warning in Ops.factor(condition_fac[1], condition_fac[2]): &#39;&lt;&#39; not meaningful</span></span>
+<span id="cb210-4"><a href="factors.html#cb210-4" tabindex="-1"></a><span class="co">#&gt; for factors</span></span>
+<span id="cb210-5"><a href="factors.html#cb210-5" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>The result is again <code>NA</code>, since the comparison <code>&lt;</code> is not meaningful for <strong>unordered</strong> factors.</p>
 <p>We will revisit the topic of factor ordering when generating bar charts in Section <a href="bar-charts.html#reordering-bar-chart">5.8.2</a>.</p>
 </div>

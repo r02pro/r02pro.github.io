@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-10-23" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -627,6 +627,11 @@ div.csl-indent {
 <li class="chapter" data-level="8.2.2" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate"><i class="fa fa-check"></i><b>8.2.2</b> Separate One Column into Multiple Columns Using <code>separate()</code></a></li>
 <li class="chapter" data-level="8.2.3" data-path="separate-unite-columns.html"><a href="separate-unite-columns.html#exercises-51"><i class="fa fa-check"></i><b>8.2.3</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="8.3" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html"><i class="fa fa-check"></i><b>8.3</b> More on Missing Values</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#missing-values-in-tidy-data"><i class="fa fa-check"></i><b>8.3.1</b> Missing Values in Tidy Data</a></li>
+<li class="chapter" data-level="8.3.2" data-path="more-on-missing-values.html"><a href="more-on-missing-values.html#filling-missing-values"><i class="fa fa-check"></i><b>8.3.2</b> Filling Missing Values</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a>
 <ul>
@@ -763,24 +768,25 @@ div.csl-indent {
 <span id="cb390-2"><a href="list.html#cb390-2" tabindex="-1"></a>ani_char <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
 <span id="cb390-3"><a href="list.html#cb390-3" tabindex="-1"></a>x_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
 <span id="cb390-4"><a href="list.html#cb390-4" tabindex="-1"></a>conditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>)</span>
-<span id="cb390-5"><a href="list.html#cb390-5" tabindex="-1"></a>cond_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Excellent&quot;</span>))</span>
-<span id="cb390-6"><a href="list.html#cb390-6" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(dig_num, ani_char, x_mat, cond_fac)</span>
-<span id="cb390-7"><a href="list.html#cb390-7" tabindex="-1"></a>my_list</span>
-<span id="cb390-8"><a href="list.html#cb390-8" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb390-9"><a href="list.html#cb390-9" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb390-10"><a href="list.html#cb390-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb390-11"><a href="list.html#cb390-11" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb390-12"><a href="list.html#cb390-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;   </span></span>
-<span id="cb390-13"><a href="list.html#cb390-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb390-14"><a href="list.html#cb390-14" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb390-15"><a href="list.html#cb390-15" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb390-16"><a href="list.html#cb390-16" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
-<span id="cb390-17"><a href="list.html#cb390-17" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11</span></span>
-<span id="cb390-18"><a href="list.html#cb390-18" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12</span></span>
-<span id="cb390-19"><a href="list.html#cb390-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb390-20"><a href="list.html#cb390-20" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
-<span id="cb390-21"><a href="list.html#cb390-21" tabindex="-1"></a><span class="co">#&gt; [1] Excellent Good      Average   Fair      Good      Excellent</span></span>
-<span id="cb390-22"><a href="list.html#cb390-22" tabindex="-1"></a><span class="co">#&gt; Levels: Fair &lt; Average &lt; Good &lt; Excellent</span></span></code></pre></div>
+<span id="cb390-5"><a href="list.html#cb390-5" tabindex="-1"></a>cond_fac <span class="ot">&lt;-</span> <span class="fu">factor</span>(conditions, <span class="at">ordered =</span> <span class="cn">TRUE</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Good&quot;</span>,</span>
+<span id="cb390-6"><a href="list.html#cb390-6" tabindex="-1"></a>    <span class="st">&quot;Excellent&quot;</span>))</span>
+<span id="cb390-7"><a href="list.html#cb390-7" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(dig_num, ani_char, x_mat, cond_fac)</span>
+<span id="cb390-8"><a href="list.html#cb390-8" tabindex="-1"></a>my_list</span>
+<span id="cb390-9"><a href="list.html#cb390-9" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb390-10"><a href="list.html#cb390-10" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
+<span id="cb390-11"><a href="list.html#cb390-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb390-12"><a href="list.html#cb390-12" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb390-13"><a href="list.html#cb390-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;   </span></span>
+<span id="cb390-14"><a href="list.html#cb390-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb390-15"><a href="list.html#cb390-15" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb390-16"><a href="list.html#cb390-16" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb390-17"><a href="list.html#cb390-17" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
+<span id="cb390-18"><a href="list.html#cb390-18" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11</span></span>
+<span id="cb390-19"><a href="list.html#cb390-19" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12</span></span>
+<span id="cb390-20"><a href="list.html#cb390-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb390-21"><a href="list.html#cb390-21" tabindex="-1"></a><span class="co">#&gt; [[4]]</span></span>
+<span id="cb390-22"><a href="list.html#cb390-22" tabindex="-1"></a><span class="co">#&gt; [1] Excellent Good      Average   Fair      Good      Excellent</span></span>
+<span id="cb390-23"><a href="list.html#cb390-23" tabindex="-1"></a><span class="co">#&gt; Levels: Fair &lt; Average &lt; Good &lt; Excellent</span></span></code></pre></div>
 <p>Here, we created a list named <code>my_list</code>, which contains four elements of different types. From the output, at the beginning of each element, its index is represented by the surrounding <code>[[</code> and <code>]]</code>. Usually, you want to assign a name for each element and the elements can be accessed by their names later on.</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="list.html#cb391-1" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">number =</span> dig_num, <span class="at">character =</span> ani_char, <span class="at">matrix =</span> x_mat, <span class="at">factor =</span> cond_fac)</span>
 <span id="cb391-2"><a href="list.html#cb391-2" tabindex="-1"></a>my_list</span>
@@ -836,23 +842,22 @@ div.csl-indent {
 <h3><span class="header-section-number">3.5.2</span> Extract a list element and list subsetting<a href="list.html#extract-a-list-element-and-list-subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong><em>a. Extract a list element</em></strong></p>
 <p>To extract a single element from a list, you can use the <code>$</code> followed by the element name if the element is named, or use the index surrounded by <code>[[</code> and <code>]]</code>. After the elements are extracted, you can directly apply desired functions on them without the need to assign the values to another name.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="list.html#cb395-1" tabindex="-1"></a>my_list<span class="sc">$</span>number          <span class="co">#a vector</span></span>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="list.html#cb395-1" tabindex="-1"></a>my_list<span class="sc">$</span>number  <span class="co">#a vector</span></span>
 <span id="cb395-2"><a href="list.html#cb395-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb395-3"><a href="list.html#cb395-3" tabindex="-1"></a><span class="co">#my_list[[1]]           #the first element</span></span>
-<span id="cb395-4"><a href="list.html#cb395-4" tabindex="-1"></a><span class="co">#my_list$matrix          #a matrix</span></span>
-<span id="cb395-5"><a href="list.html#cb395-5" tabindex="-1"></a>my_list[[<span class="dv">3</span>]]           <span class="co">#the third element</span></span>
-<span id="cb395-6"><a href="list.html#cb395-6" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb395-7"><a href="list.html#cb395-7" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
-<span id="cb395-8"><a href="list.html#cb395-8" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11</span></span>
-<span id="cb395-9"><a href="list.html#cb395-9" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12</span></span>
-<span id="cb395-10"><a href="list.html#cb395-10" tabindex="-1"></a><span class="fu">mean</span>(my_list<span class="sc">$</span>number)</span>
-<span id="cb395-11"><a href="list.html#cb395-11" tabindex="-1"></a><span class="co">#&gt; [1] 3.5</span></span>
-<span id="cb395-12"><a href="list.html#cb395-12" tabindex="-1"></a><span class="fu">rowMeans</span>(my_list<span class="sc">$</span>matrix)</span>
-<span id="cb395-13"><a href="list.html#cb395-13" tabindex="-1"></a><span class="co">#&gt; [1] 5.5 6.5 7.5</span></span></code></pre></div>
+<span id="cb395-3"><a href="list.html#cb395-3" tabindex="-1"></a><span class="co"># my_list[[1]] #the first element my_list$matrix #a matrix</span></span>
+<span id="cb395-4"><a href="list.html#cb395-4" tabindex="-1"></a>my_list[[<span class="dv">3</span>]]  <span class="co">#the third element</span></span>
+<span id="cb395-5"><a href="list.html#cb395-5" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb395-6"><a href="list.html#cb395-6" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
+<span id="cb395-7"><a href="list.html#cb395-7" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11</span></span>
+<span id="cb395-8"><a href="list.html#cb395-8" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12</span></span>
+<span id="cb395-9"><a href="list.html#cb395-9" tabindex="-1"></a><span class="fu">mean</span>(my_list<span class="sc">$</span>number)</span>
+<span id="cb395-10"><a href="list.html#cb395-10" tabindex="-1"></a><span class="co">#&gt; [1] 3.5</span></span>
+<span id="cb395-11"><a href="list.html#cb395-11" tabindex="-1"></a><span class="fu">rowMeans</span>(my_list<span class="sc">$</span>matrix)</span>
+<span id="cb395-12"><a href="list.html#cb395-12" tabindex="-1"></a><span class="co">#&gt; [1] 5.5 6.5 7.5</span></span></code></pre></div>
 <p>If you want to do list subsetting by extracting multiple elements, you can follow similar methods as subsetting a vector introduced in Section <a href="subsetting-and-modify-values.html#vector-subsetting">2.5.2</a>.</p>
 <p><strong><em>b. Use indices to do list subsetting</em></strong></p>
 <p>The first method is to use indices to do list subsetting. To get a sublist of the 3rd element of the original list <code>my_list</code>, you can use <code>my_list[3]</code> as below.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="list.html#cb396-1" tabindex="-1"></a>my_list[<span class="dv">3</span>]      <span class="co">#the third element of my_list</span></span>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="list.html#cb396-1" tabindex="-1"></a>my_list[<span class="dv">3</span>]  <span class="co">#the third element of my_list</span></span>
 <span id="cb396-2"><a href="list.html#cb396-2" tabindex="-1"></a><span class="co">#&gt; $matrix</span></span>
 <span id="cb396-3"><a href="list.html#cb396-3" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4]</span></span>
 <span id="cb396-4"><a href="list.html#cb396-4" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
@@ -865,7 +870,7 @@ div.csl-indent {
 <span id="cb397-4"><a href="list.html#cb397-4" tabindex="-1"></a><span class="co">#&gt; List of 1</span></span>
 <span id="cb397-5"><a href="list.html#cb397-5" tabindex="-1"></a><span class="co">#&gt;  $ matrix: int [1:3, 1:4] 1 2 3 4 5 6 7 8 9 10 ...</span></span></code></pre></div>
 <p>Of course, you can create a sublist containing multiple element, just like when creating subvectors using indices.</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="list.html#cb398-1" tabindex="-1"></a>my_list[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)] <span class="co">#the first and third elements of my_list</span></span>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="list.html#cb398-1" tabindex="-1"></a>my_list[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]  <span class="co">#the first and third elements of my_list</span></span>
 <span id="cb398-2"><a href="list.html#cb398-2" tabindex="-1"></a><span class="co">#&gt; $number</span></span>
 <span id="cb398-3"><a href="list.html#cb398-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
 <span id="cb398-4"><a href="list.html#cb398-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -874,13 +879,13 @@ div.csl-indent {
 <span id="cb398-7"><a href="list.html#cb398-7" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4    7   10</span></span>
 <span id="cb398-8"><a href="list.html#cb398-8" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5    8   11</span></span>
 <span id="cb398-9"><a href="list.html#cb398-9" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6    9   12</span></span>
-<span id="cb398-10"><a href="list.html#cb398-10" tabindex="-1"></a><span class="co">#my_list[-3]     #all elements except the third one</span></span></code></pre></div>
+<span id="cb398-10"><a href="list.html#cb398-10" tabindex="-1"></a><span class="co"># my_list[-3] #all elements except the third one</span></span></code></pre></div>
 <p><strong><em>c. Use names to do list subsetting</em></strong></p>
 <p>When the list elements are named, you can also use names around <code>[</code> and <code>]</code> to do list subsetting. You can also use a character vector containing the element names.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="list.html#cb399-1" tabindex="-1"></a>my_list[<span class="st">&#39;number&#39;</span>]</span>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="list.html#cb399-1" tabindex="-1"></a>my_list[<span class="st">&quot;number&quot;</span>]</span>
 <span id="cb399-2"><a href="list.html#cb399-2" tabindex="-1"></a><span class="co">#&gt; $number</span></span>
 <span id="cb399-3"><a href="list.html#cb399-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb399-4"><a href="list.html#cb399-4" tabindex="-1"></a>my_list[<span class="fu">c</span>(<span class="st">&#39;number&#39;</span>, <span class="st">&#39;matrix&#39;</span>)]</span>
+<span id="cb399-4"><a href="list.html#cb399-4" tabindex="-1"></a>my_list[<span class="fu">c</span>(<span class="st">&quot;number&quot;</span>, <span class="st">&quot;matrix&quot;</span>)]</span>
 <span id="cb399-5"><a href="list.html#cb399-5" tabindex="-1"></a><span class="co">#&gt; $number</span></span>
 <span id="cb399-6"><a href="list.html#cb399-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
 <span id="cb399-7"><a href="list.html#cb399-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -893,7 +898,7 @@ div.csl-indent {
 <div id="list-inside-a-list" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> List inside a list<a href="list.html#list-inside-a-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One interesting aspect of the list type is that you can have lists inside a list.</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="list.html#cb400-1" tabindex="-1"></a>my_big_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">small_list =</span> my_list,  <span class="at">number =</span> dig_num)</span>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="list.html#cb400-1" tabindex="-1"></a>my_big_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">small_list =</span> my_list, <span class="at">number =</span> dig_num)</span>
 <span id="cb400-2"><a href="list.html#cb400-2" tabindex="-1"></a>my_big_list</span>
 <span id="cb400-3"><a href="list.html#cb400-3" tabindex="-1"></a><span class="co">#&gt; $small_list</span></span>
 <span id="cb400-4"><a href="list.html#cb400-4" tabindex="-1"></a><span class="co">#&gt; $small_list$number</span></span>
@@ -921,7 +926,7 @@ div.csl-indent {
 <span id="cb401-3"><a href="list.html#cb401-3" tabindex="-1"></a>my_big_list[[<span class="dv">1</span>]][[<span class="dv">2</span>]]</span>
 <span id="cb401-4"><a href="list.html#cb401-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot;  &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;</span></span></code></pre></div>
 <p>You can further put the <code>my_big_list</code> in another list.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="list.html#cb402-1" tabindex="-1"></a>my_big_big_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">big_list =</span> my_big_list,  <span class="at">character =</span> ani_char)</span>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="list.html#cb402-1" tabindex="-1"></a>my_big_big_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">big_list =</span> my_big_list, <span class="at">character =</span> ani_char)</span>
 <span id="cb402-2"><a href="list.html#cb402-2" tabindex="-1"></a>my_big_big_list</span>
 <span id="cb402-3"><a href="list.html#cb402-3" tabindex="-1"></a><span class="co">#&gt; $big_list</span></span>
 <span id="cb402-4"><a href="list.html#cb402-4" tabindex="-1"></a><span class="co">#&gt; $big_list$small_list</span></span>
@@ -953,7 +958,7 @@ div.csl-indent {
 <span id="cb403-2"><a href="list.html#cb403-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
 <span id="cb403-3"><a href="list.html#cb403-3" tabindex="-1"></a>my_big_big_list[[<span class="dv">1</span>]][[<span class="dv">1</span>]][[<span class="dv">1</span>]]</span>
 <span id="cb403-4"><a href="list.html#cb403-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span>
-<span id="cb403-5"><a href="list.html#cb403-5" tabindex="-1"></a><span class="co">#my_big_big_list[[1]]$small_list[[1]] #mix the two ways for value extraction</span></span></code></pre></div>
+<span id="cb403-5"><a href="list.html#cb403-5" tabindex="-1"></a><span class="co"># my_big_big_list[[1]]$small_list[[1]] #mix the two ways for value extraction</span></span></code></pre></div>
 </div>
 <div id="unlist-a-list" class="section level3 hasAnchor" number="3.5.4">
 <h3><span class="header-section-number">3.5.4</span> Unlist a list<a href="list.html#unlist-a-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -969,7 +974,7 @@ div.csl-indent {
 <span id="cb404-9"><a href="list.html#cb404-9" tabindex="-1"></a><span class="co">#&gt;       &quot;10&quot;       &quot;11&quot;       &quot;12&quot;        &quot;4&quot;        &quot;3&quot;        &quot;2&quot;        &quot;1&quot; </span></span>
 <span id="cb404-10"><a href="list.html#cb404-10" tabindex="-1"></a><span class="co">#&gt;    factor5    factor6 </span></span>
 <span id="cb404-11"><a href="list.html#cb404-11" tabindex="-1"></a><span class="co">#&gt;        &quot;3&quot;        &quot;4&quot;</span></span>
-<span id="cb404-12"><a href="list.html#cb404-12" tabindex="-1"></a><span class="fu">c</span>(my_list[[<span class="dv">1</span>]], my_list[[<span class="dv">2</span>]], my_list[[<span class="dv">3</span>]], my_list[[<span class="dv">4</span>]]) <span class="co">#reproduce the result</span></span>
+<span id="cb404-12"><a href="list.html#cb404-12" tabindex="-1"></a><span class="fu">c</span>(my_list[[<span class="dv">1</span>]], my_list[[<span class="dv">2</span>]], my_list[[<span class="dv">3</span>]], my_list[[<span class="dv">4</span>]])  <span class="co">#reproduce the result</span></span>
 <span id="cb404-13"><a href="list.html#cb404-13" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;1&quot;      &quot;2&quot;      &quot;3&quot;      &quot;4&quot;      &quot;5&quot;      &quot;6&quot;      &quot;sheep&quot;  &quot;pig&quot;   </span></span>
 <span id="cb404-14"><a href="list.html#cb404-14" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;monkey&quot; &quot;pig&quot;    &quot;monkey&quot; &quot;pig&quot;    &quot;1&quot;      &quot;2&quot;      &quot;3&quot;      &quot;4&quot;     </span></span>
 <span id="cb404-15"><a href="list.html#cb404-15" tabindex="-1"></a><span class="co">#&gt; [17] &quot;5&quot;      &quot;6&quot;      &quot;7&quot;      &quot;8&quot;      &quot;9&quot;      &quot;10&quot;     &quot;11&quot;     &quot;12&quot;    </span></span>
@@ -1005,7 +1010,7 @@ div.csl-indent {
 <span id="cb408-2"><a href="list.html#cb408-2" tabindex="-1"></a><span class="co">#&gt;    number character    matrix    factor </span></span>
 <span id="cb408-3"><a href="list.html#cb408-3" tabindex="-1"></a><span class="co">#&gt;         6         6        12         6</span></span></code></pre></div>
 <p>Let’s look at another example where we want to compute the quantiles of each element of a list.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="list.html#cb409-1" tabindex="-1"></a>my_num_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">b =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>)))</span>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="list.html#cb409-1" tabindex="-1"></a>my_num_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">b =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">3</span>)))</span>
 <span id="cb409-2"><a href="list.html#cb409-2" tabindex="-1"></a><span class="fu">sapply</span>(my_num_list, quantile)</span>
 <span id="cb409-3"><a href="list.html#cb409-3" tabindex="-1"></a><span class="co">#&gt;          a b</span></span>
 <span id="cb409-4"><a href="list.html#cb409-4" tabindex="-1"></a><span class="co">#&gt; 0%    1.00 0</span></span>
@@ -1038,8 +1043,8 @@ div.csl-indent {
 <p>Similar to combining vectors into matrices in Section <a href="matrix.html#combine-vectors">3.1.2</a>, you can also combine lists into list matrix using the <code>rbind()</code> or <code>cbind()</code> functions.</p>
 <div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="list.html#cb412-1" tabindex="-1"></a>l1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">num =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">mat =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
 <span id="cb412-2"><a href="list.html#cb412-2" tabindex="-1"></a>l2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">char =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">my_list =</span> <span class="fu">list</span>(<span class="at">num =</span> <span class="dv">9</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">char =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]))</span>
-<span id="cb412-3"><a href="list.html#cb412-3" tabindex="-1"></a>list_mat_r <span class="ot">&lt;-</span> <span class="fu">rbind</span>(l1,l2)</span>
-<span id="cb412-4"><a href="list.html#cb412-4" tabindex="-1"></a>list_mat_c <span class="ot">&lt;-</span> <span class="fu">cbind</span>(l1,l2)</span>
+<span id="cb412-3"><a href="list.html#cb412-3" tabindex="-1"></a>list_mat_r <span class="ot">&lt;-</span> <span class="fu">rbind</span>(l1, l2)</span>
+<span id="cb412-4"><a href="list.html#cb412-4" tabindex="-1"></a>list_mat_c <span class="ot">&lt;-</span> <span class="fu">cbind</span>(l1, l2)</span>
 <span id="cb412-5"><a href="list.html#cb412-5" tabindex="-1"></a><span class="fu">str</span>(list_mat_r)</span>
 <span id="cb412-6"><a href="list.html#cb412-6" tabindex="-1"></a><span class="co">#&gt; List of 4</span></span>
 <span id="cb412-7"><a href="list.html#cb412-7" tabindex="-1"></a><span class="co">#&gt;  $ : int [1:4] 1 2 3 4</span></span>
