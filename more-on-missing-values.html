@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -825,24 +825,92 @@ div.csl-indent {
 </div>
 <div id="filling-missing-values" class="section level3 hasAnchor" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Filling Missing Values<a href="more-on-missing-values.html#filling-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When working with missing values, it is important to decide how to handle them. One common approach is to fill the missing values with a specific value. In R, we can use the <code>replace_na()</code> function from the <code>tidyr</code> package to fill missing values. Let’s fill the missing values in the <code>gm_tidy2</code> dataset with the average life expectancy for each country.</p>
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="more-on-missing-values.html#cb802-1" tabindex="-1"></a>gm_tidy2_filled <span class="ot">&lt;-</span> gm_tidy2 <span class="sc">%&gt;%</span></span>
-<span id="cb802-2"><a href="more-on-missing-values.html#cb802-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb802-3"><a href="more-on-missing-values.html#cb802-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">life_expectancy =</span> <span class="fu">replace_na</span>(life_expectancy, <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb802-4"><a href="more-on-missing-values.html#cb802-4" tabindex="-1"></a>gm_tidy2_filled</span>
-<span id="cb802-5"><a href="more-on-missing-values.html#cb802-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
-<span id="cb802-6"><a href="more-on-missing-values.html#cb802-6" tabindex="-1"></a><span class="co">#&gt; # Groups:   country [3]</span></span>
-<span id="cb802-7"><a href="more-on-missing-values.html#cb802-7" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
-<span id="cb802-8"><a href="more-on-missing-values.html#cb802-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb802-9"><a href="more-on-missing-values.html#cb802-9" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
-<span id="cb802-10"><a href="more-on-missing-values.html#cb802-10" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
-<span id="cb802-11"><a href="more-on-missing-values.html#cb802-11" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             73.6</span></span>
-<span id="cb802-12"><a href="more-on-missing-values.html#cb802-12" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
-<span id="cb802-13"><a href="more-on-missing-values.html#cb802-13" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
-<span id="cb802-14"><a href="more-on-missing-values.html#cb802-14" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
-<span id="cb802-15"><a href="more-on-missing-values.html#cb802-15" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             78.1</span></span>
-<span id="cb802-16"><a href="more-on-missing-values.html#cb802-16" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
-<span id="cb802-17"><a href="more-on-missing-values.html#cb802-17" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
+<p>When working with missing values, it is important to decide how to handle them. One common approach is to fill the missing values with a specific value. In R, we can use the <code>replace_na()</code> function from the <code>tidyr</code> package to fill missing values. Let’s say we fill in all the missing values with the average of all the non-missing values.</p>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="more-on-missing-values.html#cb802-1" tabindex="-1"></a>gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb802-2"><a href="more-on-missing-values.html#cb802-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">life_expectancy =</span> <span class="fu">replace_na</span>(life_expectancy, <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb802-3"><a href="more-on-missing-values.html#cb802-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb802-4"><a href="more-on-missing-values.html#cb802-4" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb802-5"><a href="more-on-missing-values.html#cb802-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb802-6"><a href="more-on-missing-values.html#cb802-6" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb802-7"><a href="more-on-missing-values.html#cb802-7" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
+<span id="cb802-8"><a href="more-on-missing-values.html#cb802-8" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             71.8</span></span>
+<span id="cb802-9"><a href="more-on-missing-values.html#cb802-9" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb802-10"><a href="more-on-missing-values.html#cb802-10" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
+<span id="cb802-11"><a href="more-on-missing-values.html#cb802-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
+<span id="cb802-12"><a href="more-on-missing-values.html#cb802-12" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             71.8</span></span>
+<span id="cb802-13"><a href="more-on-missing-values.html#cb802-13" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
+<span id="cb802-14"><a href="more-on-missing-values.html#cb802-14" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
+<p>Clearly, we can see the <code>life_expectancy</code> for China in 2005 and for United States in 2005 are both replaced as the overall mean <code>71.77143</code>.</p>
+<p>Sometimes, you may want to replace the missing values by the average value within a particular group. In this case, it is reasonable to use the average value for a particular country. To achieve this, you just need to add a <code>group_by()</code> step before the mutate operation.</p>
+<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="more-on-missing-values.html#cb803-1" tabindex="-1"></a>gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb803-2"><a href="more-on-missing-values.html#cb803-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb803-3"><a href="more-on-missing-values.html#cb803-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">life_expectancy =</span> <span class="fu">replace_na</span>(life_expectancy, <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb803-4"><a href="more-on-missing-values.html#cb803-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb803-5"><a href="more-on-missing-values.html#cb803-5" tabindex="-1"></a><span class="co">#&gt; # Groups:   country [3]</span></span>
+<span id="cb803-6"><a href="more-on-missing-values.html#cb803-6" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb803-7"><a href="more-on-missing-values.html#cb803-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb803-8"><a href="more-on-missing-values.html#cb803-8" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb803-9"><a href="more-on-missing-values.html#cb803-9" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
+<span id="cb803-10"><a href="more-on-missing-values.html#cb803-10" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             73.6</span></span>
+<span id="cb803-11"><a href="more-on-missing-values.html#cb803-11" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb803-12"><a href="more-on-missing-values.html#cb803-12" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
+<span id="cb803-13"><a href="more-on-missing-values.html#cb803-13" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
+<span id="cb803-14"><a href="more-on-missing-values.html#cb803-14" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             78.1</span></span>
+<span id="cb803-15"><a href="more-on-missing-values.html#cb803-15" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
+<span id="cb803-16"><a href="more-on-missing-values.html#cb803-16" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
+<p>In some datasets with longitudinal measurements, the values are only recorded when they change. In this case, it is helpful to use <code>fill()</code> to fill in missing values with previous or next value.</p>
+<p>Let’s first try to fill in the missing values with the last non-missing value.</p>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="more-on-missing-values.html#cb804-1" tabindex="-1"></a>gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb804-2"><a href="more-on-missing-values.html#cb804-2" tabindex="-1"></a>    <span class="fu">fill</span>(life_expectancy, <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>)</span>
+<span id="cb804-3"><a href="more-on-missing-values.html#cb804-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb804-4"><a href="more-on-missing-values.html#cb804-4" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb804-5"><a href="more-on-missing-values.html#cb804-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb804-6"><a href="more-on-missing-values.html#cb804-6" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb804-7"><a href="more-on-missing-values.html#cb804-7" tabindex="-1"></a><span class="co">#&gt; 2 China         2006             74.2</span></span>
+<span id="cb804-8"><a href="more-on-missing-values.html#cb804-8" tabindex="-1"></a><span class="co">#&gt; 3 China         2005             74.2</span></span>
+<span id="cb804-9"><a href="more-on-missing-values.html#cb804-9" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb804-10"><a href="more-on-missing-values.html#cb804-10" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2006             67.5</span></span>
+<span id="cb804-11"><a href="more-on-missing-values.html#cb804-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
+<span id="cb804-12"><a href="more-on-missing-values.html#cb804-12" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             66.5</span></span>
+<span id="cb804-13"><a href="more-on-missing-values.html#cb804-13" tabindex="-1"></a><span class="co">#&gt; 8 United States 2006             78.2</span></span>
+<span id="cb804-14"><a href="more-on-missing-values.html#cb804-14" tabindex="-1"></a><span class="co">#&gt; 9 United States 2005             78</span></span></code></pre></div>
+<p>From the output, you can see the <code>life_expectancy</code> for China in 2005 is 74.2, the same value as the preceding value (the <code>life_expectancy</code> for China in 2004). The <code>life_expectancy</code> for United States in 2004 is set to be the same as the preceding value (Russia in 2005). Again, it may be more reasonable to group by the country first, arrange by <code>country</code> and <code>year</code>, and fill in the value with the preceding value for a particular country.</p>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="more-on-missing-values.html#cb805-1" tabindex="-1"></a>gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb805-2"><a href="more-on-missing-values.html#cb805-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb805-3"><a href="more-on-missing-values.html#cb805-3" tabindex="-1"></a>    <span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
+<span id="cb805-4"><a href="more-on-missing-values.html#cb805-4" tabindex="-1"></a>    <span class="fu">fill</span>(life_expectancy, <span class="at">.direction =</span> <span class="st">&quot;down&quot;</span>)</span>
+<span id="cb805-5"><a href="more-on-missing-values.html#cb805-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb805-6"><a href="more-on-missing-values.html#cb805-6" tabindex="-1"></a><span class="co">#&gt; # Groups:   country [3]</span></span>
+<span id="cb805-7"><a href="more-on-missing-values.html#cb805-7" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb805-8"><a href="more-on-missing-values.html#cb805-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb805-9"><a href="more-on-missing-values.html#cb805-9" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb805-10"><a href="more-on-missing-values.html#cb805-10" tabindex="-1"></a><span class="co">#&gt; 2 China         2005             73  </span></span>
+<span id="cb805-11"><a href="more-on-missing-values.html#cb805-11" tabindex="-1"></a><span class="co">#&gt; 3 China         2006             74.2</span></span>
+<span id="cb805-12"><a href="more-on-missing-values.html#cb805-12" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb805-13"><a href="more-on-missing-values.html#cb805-13" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2005             66.5</span></span>
+<span id="cb805-14"><a href="more-on-missing-values.html#cb805-14" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2006             67.5</span></span>
+<span id="cb805-15"><a href="more-on-missing-values.html#cb805-15" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             NA  </span></span>
+<span id="cb805-16"><a href="more-on-missing-values.html#cb805-16" tabindex="-1"></a><span class="co">#&gt; 8 United States 2005             78  </span></span>
+<span id="cb805-17"><a href="more-on-missing-values.html#cb805-17" tabindex="-1"></a><span class="co">#&gt; 9 United States 2006             78.2</span></span></code></pre></div>
+<p>Perhaps it comes as a surprise that the <code>life_expectancy</code> for United States for 2004 is still missing. The underlying reason is that for United States, there is no preceding observations that are complete. In this case, you can use <code>.direction = "downup"</code> in the <code>fill()</code> function, which will fill in the missing values in a downward fashion and then in a upward fashion.</p>
+<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="more-on-missing-values.html#cb806-1" tabindex="-1"></a>gm_tidy2 <span class="sc">%&gt;%</span></span>
+<span id="cb806-2"><a href="more-on-missing-values.html#cb806-2" tabindex="-1"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb806-3"><a href="more-on-missing-values.html#cb806-3" tabindex="-1"></a>    <span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
+<span id="cb806-4"><a href="more-on-missing-values.html#cb806-4" tabindex="-1"></a>    <span class="fu">fill</span>(life_expectancy, <span class="at">.direction =</span> <span class="st">&quot;downup&quot;</span>)</span>
+<span id="cb806-5"><a href="more-on-missing-values.html#cb806-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb806-6"><a href="more-on-missing-values.html#cb806-6" tabindex="-1"></a><span class="co">#&gt; # Groups:   country [3]</span></span>
+<span id="cb806-7"><a href="more-on-missing-values.html#cb806-7" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
+<span id="cb806-8"><a href="more-on-missing-values.html#cb806-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb806-9"><a href="more-on-missing-values.html#cb806-9" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
+<span id="cb806-10"><a href="more-on-missing-values.html#cb806-10" tabindex="-1"></a><span class="co">#&gt; 2 China         2005             73  </span></span>
+<span id="cb806-11"><a href="more-on-missing-values.html#cb806-11" tabindex="-1"></a><span class="co">#&gt; 3 China         2006             74.2</span></span>
+<span id="cb806-12"><a href="more-on-missing-values.html#cb806-12" tabindex="-1"></a><span class="co">#&gt; 4 Russia        2004             65  </span></span>
+<span id="cb806-13"><a href="more-on-missing-values.html#cb806-13" tabindex="-1"></a><span class="co">#&gt; 5 Russia        2005             66.5</span></span>
+<span id="cb806-14"><a href="more-on-missing-values.html#cb806-14" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2006             67.5</span></span>
+<span id="cb806-15"><a href="more-on-missing-values.html#cb806-15" tabindex="-1"></a><span class="co">#&gt; 7 United States 2004             78  </span></span>
+<span id="cb806-16"><a href="more-on-missing-values.html#cb806-16" tabindex="-1"></a><span class="co">#&gt; 8 United States 2005             78  </span></span>
+<span id="cb806-17"><a href="more-on-missing-values.html#cb806-17" tabindex="-1"></a><span class="co">#&gt; 9 United States 2006             78.2</span></span></code></pre></div>
+<p>In the downward pass, we fill in the <code>life_expectancy</code> value for China in 2005 with the value for 2004. Then in the upward pass, we fill in the <code>life_expectancy</code> value for United States with the value for 2005.</p>
 
 </div>
 </div>
