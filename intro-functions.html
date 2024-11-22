@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng and r02proers" />
 
 
-<meta name="date" content="2024-11-20" />
+<meta name="date" content="2024-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="functions.html"/>
-<link rel="next" href="arguments-return.html"/>
+<link rel="next" href="functions-advanced.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -728,8 +728,23 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="12" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>12</b> Functions</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="intro-functions.html"><a href="intro-functions.html"><i class="fa fa-check"></i><b>12.1</b> Introduction to Functions</a></li>
-<li class="chapter" data-level="12.2" data-path="arguments-return.html"><a href="arguments-return.html"><i class="fa fa-check"></i><b>12.2</b> Arguments and Return</a></li>
+<li class="chapter" data-level="12.1" data-path="intro-functions.html"><a href="intro-functions.html"><i class="fa fa-check"></i><b>12.1</b> Introduction to Functions</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="intro-functions.html"><a href="intro-functions.html#what-are-functions"><i class="fa fa-check"></i><b>12.1.1</b> What are Functions?</a></li>
+<li class="chapter" data-level="12.1.2" data-path="intro-functions.html"><a href="intro-functions.html#syntax-of-a-function"><i class="fa fa-check"></i><b>12.1.2</b> Syntax of a Function</a></li>
+<li class="chapter" data-level="12.1.3" data-path="intro-functions.html"><a href="intro-functions.html#default-arguments-in-functions"><i class="fa fa-check"></i><b>12.1.3</b> Default Arguments in Functions</a></li>
+<li class="chapter" data-level="12.1.4" data-path="intro-functions.html"><a href="intro-functions.html#project-dice-simulation"><i class="fa fa-check"></i><b>12.1.4</b> Project: Dice Simulation</a></li>
+<li class="chapter" data-level="12.1.5" data-path="intro-functions.html"><a href="intro-functions.html#project-get-fibonacci-sequence"><i class="fa fa-check"></i><b>12.1.5</b> Project: Get Fibonacci Sequence</a></li>
+<li class="chapter" data-level="12.1.6" data-path="intro-functions.html"><a href="intro-functions.html#exercises-59"><i class="fa fa-check"></i><b>12.1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="functions-advanced.html"><a href="functions-advanced.html"><i class="fa fa-check"></i><b>12.2</b> Advanced Concepts: Exploring Functions in R</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="functions-advanced.html"><a href="functions-advanced.html#returning-multiple-values-using-lists"><i class="fa fa-check"></i><b>12.2.1</b> Returning Multiple Values Using Lists</a></li>
+<li class="chapter" data-level="12.2.2" data-path="functions-advanced.html"><a href="functions-advanced.html#nested-functions"><i class="fa fa-check"></i><b>12.2.2</b> Nested Functions</a></li>
+<li class="chapter" data-level="12.2.3" data-path="functions-advanced.html"><a href="functions-advanced.html#higher-order-functions"><i class="fa fa-check"></i><b>12.2.3</b> Higher-Order Functions</a></li>
+<li class="chapter" data-level="12.2.4" data-path="functions-advanced.html"><a href="functions-advanced.html#error-handling-in-functions"><i class="fa fa-check"></i><b>12.2.4</b> Error Handling in Functions</a></li>
+<li class="chapter" data-level="12.2.5" data-path="functions-advanced.html"><a href="functions-advanced.html#exercise-6"><i class="fa fa-check"></i><b>12.2.5</b> Exercise</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>13</b> R Markdown</a>
 <ul>
@@ -785,65 +800,163 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="intro-functions" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Introduction to Functions<a href="intro-functions.html#intro-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s look at the example for generating Fibonacci sequence to motivate functions.</p>
-<p>To get a Fibonacci sequence up to the value 100, you can use the following code.</p>
-<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="intro-functions.html#cb926-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb926-2"><a href="intro-functions.html#cb926-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb926-3"><a href="intro-functions.html#cb926-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb926-4"><a href="intro-functions.html#cb926-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb926-5"><a href="intro-functions.html#cb926-5" tabindex="-1"></a><span class="cf">while</span> (fib_next_value <span class="sc">&lt;</span> <span class="dv">100</span>) {</span>
-<span id="cb926-6"><a href="intro-functions.html#cb926-6" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb926-7"><a href="intro-functions.html#cb926-7" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb926-8"><a href="intro-functions.html#cb926-8" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb926-9"><a href="intro-functions.html#cb926-9" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb926-10"><a href="intro-functions.html#cb926-10" tabindex="-1"></a>}</span>
-<span id="cb926-11"><a href="intro-functions.html#cb926-11" tabindex="-1"></a>fib_seq  <span class="co">#print the sequence</span></span>
-<span id="cb926-12"><a href="intro-functions.html#cb926-12" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span></code></pre></div>
-<p>Now, to get a Fibonacci sequence up to the value 200, you just need to change the 100 in the previous code to 200.</p>
-<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="intro-functions.html#cb927-1" tabindex="-1"></a>fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb927-2"><a href="intro-functions.html#cb927-2" tabindex="-1"></a>fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb927-3"><a href="intro-functions.html#cb927-3" tabindex="-1"></a>fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb927-4"><a href="intro-functions.html#cb927-4" tabindex="-1"></a>fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb927-5"><a href="intro-functions.html#cb927-5" tabindex="-1"></a><span class="cf">while</span> (fib_next_value <span class="sc">&lt;</span> <span class="dv">200</span>) {</span>
-<span id="cb927-6"><a href="intro-functions.html#cb927-6" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb927-7"><a href="intro-functions.html#cb927-7" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb927-8"><a href="intro-functions.html#cb927-8" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb927-9"><a href="intro-functions.html#cb927-9" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb927-10"><a href="intro-functions.html#cb927-10" tabindex="-1"></a>}</span>
-<span id="cb927-11"><a href="intro-functions.html#cb927-11" tabindex="-1"></a>fib_seq  <span class="co">#print the sequence</span></span>
-<span id="cb927-12"><a href="intro-functions.html#cb927-12" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128</span></span></code></pre></div>
-<p>If this is some task we want to do repeatedly , it would be better to wrap the whole process into a <strong>function</strong>.</p>
-<p>Let’s first review the general syntax of a function.</p>
-<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="intro-functions.html#cb928-1" tabindex="-1"></a>fun_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg1, arg2) {</span>
-<span id="cb928-2"><a href="intro-functions.html#cb928-2" tabindex="-1"></a>    expr_1</span>
-<span id="cb928-3"><a href="intro-functions.html#cb928-3" tabindex="-1"></a>    expr_2</span>
-<span id="cb928-4"><a href="intro-functions.html#cb928-4" tabindex="-1"></a>    <span class="fu">return</span>(return_val)</span>
-<span id="cb928-5"><a href="intro-functions.html#cb928-5" tabindex="-1"></a>}</span></code></pre></div>
-<p>First, we need to observe what objects are needs inside the function, which will be the <strong>arguments</strong> (<code>arg1</code>, <code>arg2</code>) of the function. Here, the upper bound of the Fibonacci sequence (value 100 and 200) is the only argument.</p>
-<p>Second, we need to identify what to output from the function, i.e., <strong>return</strong> a value. In this example, the Fibonacci sequence would be a reasonable output for <code>return_val</code>.</p>
-<p>Third, we need to <strong>name</strong> the function, following the naming rule of an object introduced back in Section <a href="Object-Assignment.html#Naming">1.3.3</a>. Here, we will name it as <code>get_fibo</code>.</p>
-<p>Let’s look at our function.</p>
-<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="intro-functions.html#cb929-1" tabindex="-1"></a>get_fibo <span class="ot">&lt;-</span> <span class="cf">function</span>(upper_bound) {</span>
-<span id="cb929-2"><a href="intro-functions.html#cb929-2" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb929-3"><a href="intro-functions.html#cb929-3" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
-<span id="cb929-4"><a href="intro-functions.html#cb929-4" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
-<span id="cb929-5"><a href="intro-functions.html#cb929-5" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb929-6"><a href="intro-functions.html#cb929-6" tabindex="-1"></a>    <span class="cf">while</span> (fib_next_value <span class="sc">&lt;</span> upper_bound) {</span>
-<span id="cb929-7"><a href="intro-functions.html#cb929-7" tabindex="-1"></a>        fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)</span>
-<span id="cb929-8"><a href="intro-functions.html#cb929-8" tabindex="-1"></a>        fib_cur_value <span class="ot">&lt;-</span> fib_next_value</span>
-<span id="cb929-9"><a href="intro-functions.html#cb929-9" tabindex="-1"></a>        fib_last_value <span class="ot">&lt;-</span> fib_cur_value</span>
-<span id="cb929-10"><a href="intro-functions.html#cb929-10" tabindex="-1"></a>        fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
-<span id="cb929-11"><a href="intro-functions.html#cb929-11" tabindex="-1"></a>    }</span>
-<span id="cb929-12"><a href="intro-functions.html#cb929-12" tabindex="-1"></a>    <span class="fu">return</span>(fib_seq)  <span class="co">#print the sequence</span></span>
-<span id="cb929-13"><a href="intro-functions.html#cb929-13" tabindex="-1"></a>}</span></code></pre></div>
+<div id="what-are-functions" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> What are Functions?<a href="intro-functions.html#what-are-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Functions are reusable blocks of code designed to perform a specific task. They:</p>
+<ul>
+<li>Make your code modular and readable.</li>
+<li>Help avoid repetition.</li>
+<li>Accept inputs (arguments) and return outputs.</li>
+</ul>
+<p>In fact, we have being using functions extensively in this book. For example, the <code>mean()</code> function calculates the average of a vector:</p>
+<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb926-1"><a href="intro-functions.html#cb926-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb926-2"><a href="intro-functions.html#cb926-2" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<p>You can also define your own functions. Let’s create a simple function that adds two numbers:</p>
+<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="intro-functions.html#cb927-1" tabindex="-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb927-2"><a href="intro-functions.html#cb927-2" tabindex="-1"></a>    result <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb927-3"><a href="intro-functions.html#cb927-3" tabindex="-1"></a>    <span class="fu">return</span>(result)</span>
+<span id="cb927-4"><a href="intro-functions.html#cb927-4" tabindex="-1"></a>}</span>
+<span id="cb927-5"><a href="intro-functions.html#cb927-5" tabindex="-1"></a></span>
+<span id="cb927-6"><a href="intro-functions.html#cb927-6" tabindex="-1"></a><span class="fu">add_numbers</span>(<span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb927-7"><a href="intro-functions.html#cb927-7" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
+</div>
+<div id="syntax-of-a-function" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Syntax of a Function<a href="intro-functions.html#syntax-of-a-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The basic syntax of a function in R is:</p>
+<div class="sourceCode" id="cb928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb928-1"><a href="intro-functions.html#cb928-1" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
+<span id="cb928-2"><a href="intro-functions.html#cb928-2" tabindex="-1"></a>    <span class="co"># Code to execute</span></span>
+<span id="cb928-3"><a href="intro-functions.html#cb928-3" tabindex="-1"></a>    <span class="fu">return</span>(value)</span>
+<span id="cb928-4"><a href="intro-functions.html#cb928-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here, we have the following key ingridients of a function:</p>
+<ul>
+<li><code>function_name</code>: The name of the function.</li>
+<li><code>arguments</code>: Inputs to the function.</li>
+<li><code>value</code>: The output of the function.</li>
+</ul>
+<p>Let’s see an example of a function that greets a user by their name:</p>
+<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="intro-functions.html#cb929-1" tabindex="-1"></a>greet <span class="ot">&lt;-</span> <span class="cf">function</span>(name) {</span>
+<span id="cb929-2"><a href="intro-functions.html#cb929-2" tabindex="-1"></a>    message <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;Hello,&quot;</span>, name)</span>
+<span id="cb929-3"><a href="intro-functions.html#cb929-3" tabindex="-1"></a>    <span class="fu">return</span>(message)</span>
+<span id="cb929-4"><a href="intro-functions.html#cb929-4" tabindex="-1"></a>}</span>
+<span id="cb929-5"><a href="intro-functions.html#cb929-5" tabindex="-1"></a></span>
+<span id="cb929-6"><a href="intro-functions.html#cb929-6" tabindex="-1"></a><span class="fu">greet</span>(<span class="st">&quot;Yang&quot;</span>)</span>
+<span id="cb929-7"><a href="intro-functions.html#cb929-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hello, Yang&quot;</span></span></code></pre></div>
+</div>
+<div id="default-arguments-in-functions" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Default Arguments in Functions<a href="intro-functions.html#default-arguments-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Functions can have default values for their arguments. This makes the function more flexible.</p>
+<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="intro-functions.html#cb930-1" tabindex="-1"></a>calculate_area <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">length =</span> <span class="dv">1</span>, <span class="at">width =</span> <span class="dv">1</span>) {</span>
+<span id="cb930-2"><a href="intro-functions.html#cb930-2" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Length:&quot;</span>, length, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb930-3"><a href="intro-functions.html#cb930-3" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Width:&quot;</span>, width, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb930-4"><a href="intro-functions.html#cb930-4" tabindex="-1"></a>    <span class="fu">return</span>(length <span class="sc">*</span> width)</span>
+<span id="cb930-5"><a href="intro-functions.html#cb930-5" tabindex="-1"></a>}</span>
+<span id="cb930-6"><a href="intro-functions.html#cb930-6" tabindex="-1"></a></span>
+<span id="cb930-7"><a href="intro-functions.html#cb930-7" tabindex="-1"></a><span class="fu">calculate_area</span>()  <span class="co"># Default arguments</span></span>
+<span id="cb930-8"><a href="intro-functions.html#cb930-8" tabindex="-1"></a><span class="co">#&gt; Length: 1 </span></span>
+<span id="cb930-9"><a href="intro-functions.html#cb930-9" tabindex="-1"></a><span class="co">#&gt; Width: 1</span></span>
+<span id="cb930-10"><a href="intro-functions.html#cb930-10" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb930-11"><a href="intro-functions.html#cb930-11" tabindex="-1"></a><span class="fu">calculate_area</span>(<span class="dv">5</span>, <span class="dv">10</span>)  <span class="co"># Override both defaults</span></span>
+<span id="cb930-12"><a href="intro-functions.html#cb930-12" tabindex="-1"></a><span class="co">#&gt; Length: 5 </span></span>
+<span id="cb930-13"><a href="intro-functions.html#cb930-13" tabindex="-1"></a><span class="co">#&gt; Width: 10</span></span>
+<span id="cb930-14"><a href="intro-functions.html#cb930-14" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span>
+<span id="cb930-15"><a href="intro-functions.html#cb930-15" tabindex="-1"></a><span class="fu">calculate_area</span>(<span class="dv">6</span>)  <span class="co"># Override one default</span></span>
+<span id="cb930-16"><a href="intro-functions.html#cb930-16" tabindex="-1"></a><span class="co">#&gt; Length: 6 </span></span>
+<span id="cb930-17"><a href="intro-functions.html#cb930-17" tabindex="-1"></a><span class="co">#&gt; Width: 1</span></span>
+<span id="cb930-18"><a href="intro-functions.html#cb930-18" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb930-19"><a href="intro-functions.html#cb930-19" tabindex="-1"></a><span class="fu">calculate_area</span>(<span class="at">length =</span> <span class="dv">5</span>)  <span class="co"># Override one default</span></span>
+<span id="cb930-20"><a href="intro-functions.html#cb930-20" tabindex="-1"></a><span class="co">#&gt; Length: 5 </span></span>
+<span id="cb930-21"><a href="intro-functions.html#cb930-21" tabindex="-1"></a><span class="co">#&gt; Width: 1</span></span>
+<span id="cb930-22"><a href="intro-functions.html#cb930-22" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb930-23"><a href="intro-functions.html#cb930-23" tabindex="-1"></a><span class="fu">calculate_area</span>(<span class="at">width =</span> <span class="dv">10</span>)  <span class="co"># Override one default</span></span>
+<span id="cb930-24"><a href="intro-functions.html#cb930-24" tabindex="-1"></a><span class="co">#&gt; Length: 1 </span></span>
+<span id="cb930-25"><a href="intro-functions.html#cb930-25" tabindex="-1"></a><span class="co">#&gt; Width: 10</span></span>
+<span id="cb930-26"><a href="intro-functions.html#cb930-26" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb930-27"><a href="intro-functions.html#cb930-27" tabindex="-1"></a><span class="fu">calculate_area</span>(<span class="at">width =</span> <span class="dv">10</span>, <span class="at">length =</span> <span class="dv">5</span>)  <span class="co"># Override both defaults</span></span>
+<span id="cb930-28"><a href="intro-functions.html#cb930-28" tabindex="-1"></a><span class="co">#&gt; Length: 5 </span></span>
+<span id="cb930-29"><a href="intro-functions.html#cb930-29" tabindex="-1"></a><span class="co">#&gt; Width: 10</span></span>
+<span id="cb930-30"><a href="intro-functions.html#cb930-30" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span></code></pre></div>
+<p>Here, the <code>calculate_area</code> function calculates the area of a rectangle.</p>
+<ul>
+<li>If no arguments are provided, it assumes a square with side length <code>1</code>.</li>
+<li>If both arguments are provided, it calculates the area of a rectangle with the given dimensions.</li>
+<li>If only one argument is provided, it assumes a rectangle with width <code>1</code>.</li>
+<li>If you provide the argument names, you can override the defaults in any order.</li>
+</ul>
+</div>
+<div id="project-dice-simulation" class="section level3 hasAnchor" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> Project: Dice Simulation<a href="intro-functions.html#project-dice-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Write a function <code>roll_dice</code> that:</p>
+<ol style="list-style-type: decimal">
+<li>Takes an argument <code>n</code>, the number of times to roll a six-sided die.</li>
+<li>Simulates the rolls and returns a table of the frequency of each face.</li>
+</ol>
+<p>Example:</p>
+<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb931-1"><a href="intro-functions.html#cb931-1" tabindex="-1"></a>roll_dice <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb931-2"><a href="intro-functions.html#cb931-2" tabindex="-1"></a>    rolls <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb931-3"><a href="intro-functions.html#cb931-3" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">table</span>(rolls))</span>
+<span id="cb931-4"><a href="intro-functions.html#cb931-4" tabindex="-1"></a>}</span>
+<span id="cb931-5"><a href="intro-functions.html#cb931-5" tabindex="-1"></a></span>
+<span id="cb931-6"><a href="intro-functions.html#cb931-6" tabindex="-1"></a><span class="fu">roll_dice</span>(<span class="dv">10</span>)</span>
+<span id="cb931-7"><a href="intro-functions.html#cb931-7" tabindex="-1"></a><span class="co">#&gt; rolls</span></span>
+<span id="cb931-8"><a href="intro-functions.html#cb931-8" tabindex="-1"></a><span class="co">#&gt; 1 2 3 4 5 6 </span></span>
+<span id="cb931-9"><a href="intro-functions.html#cb931-9" tabindex="-1"></a><span class="co">#&gt; 1 1 3 3 1 1</span></span></code></pre></div>
+</div>
+<div id="project-get-fibonacci-sequence" class="section level3 hasAnchor" number="12.1.5">
+<h3><span class="header-section-number">12.1.5</span> Project: Get Fibonacci Sequence<a href="intro-functions.html#project-get-fibonacci-sequence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This project demonstrates how to create a function that generates a Fibonacci sequence up to a specified upper bound.</p>
+<ul>
+<li>Step 1: Define the Function Arguments</li>
+</ul>
+<p>The <strong>arguments</strong> of a function determine what inputs it requires. For this task, the upper bound of the Fibonacci sequence is the only input argument.</p>
+<ul>
+<li>Step 2: Specify the Function Output</li>
+</ul>
+<p>The function should <strong>return</strong> the desired Fibonacci sequence as its output. This will allow users to see all Fibonacci numbers less than the given upper bound.</p>
+<ul>
+<li>Step 3: Name the Function</li>
+</ul>
+<p>When naming a function, follow consistent naming conventions introduced in Section <a href="Object-Assignment.html#Naming">1.3.3</a>. Here, we will name the function <code>get_fibo</code>.</p>
+<p>Below is the implementation of the function:</p>
+<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="intro-functions.html#cb932-1" tabindex="-1"></a>get_fibo <span class="ot">&lt;-</span> <span class="cf">function</span>(upper_bound) {</span>
+<span id="cb932-2"><a href="intro-functions.html#cb932-2" tabindex="-1"></a>    <span class="co"># Initialize the Fibonacci sequence with the first two numbers</span></span>
+<span id="cb932-3"><a href="intro-functions.html#cb932-3" tabindex="-1"></a>    fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb932-4"><a href="intro-functions.html#cb932-4" tabindex="-1"></a></span>
+<span id="cb932-5"><a href="intro-functions.html#cb932-5" tabindex="-1"></a>    <span class="co"># Set up variables for current, last, and next Fibonacci numbers</span></span>
+<span id="cb932-6"><a href="intro-functions.html#cb932-6" tabindex="-1"></a>    fib_last_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">1</span>]</span>
+<span id="cb932-7"><a href="intro-functions.html#cb932-7" tabindex="-1"></a>    fib_cur_value <span class="ot">&lt;-</span> fib_seq[<span class="dv">2</span>]</span>
+<span id="cb932-8"><a href="intro-functions.html#cb932-8" tabindex="-1"></a>    fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value</span>
+<span id="cb932-9"><a href="intro-functions.html#cb932-9" tabindex="-1"></a></span>
+<span id="cb932-10"><a href="intro-functions.html#cb932-10" tabindex="-1"></a>    <span class="co"># Generate the sequence up to the upper bound</span></span>
+<span id="cb932-11"><a href="intro-functions.html#cb932-11" tabindex="-1"></a>    <span class="cf">while</span> (fib_next_value <span class="sc">&lt;</span> upper_bound) {</span>
+<span id="cb932-12"><a href="intro-functions.html#cb932-12" tabindex="-1"></a>        fib_seq <span class="ot">&lt;-</span> <span class="fu">c</span>(fib_seq, fib_next_value)  <span class="co"># Append the next value</span></span>
+<span id="cb932-13"><a href="intro-functions.html#cb932-13" tabindex="-1"></a>        fib_last_value <span class="ot">&lt;-</span> fib_cur_value  <span class="co"># Update the last value</span></span>
+<span id="cb932-14"><a href="intro-functions.html#cb932-14" tabindex="-1"></a>        fib_cur_value <span class="ot">&lt;-</span> fib_next_value  <span class="co"># Update the current value</span></span>
+<span id="cb932-15"><a href="intro-functions.html#cb932-15" tabindex="-1"></a>        fib_next_value <span class="ot">&lt;-</span> fib_last_value <span class="sc">+</span> fib_cur_value  <span class="co"># Compute the next value</span></span>
+<span id="cb932-16"><a href="intro-functions.html#cb932-16" tabindex="-1"></a>    }</span>
+<span id="cb932-17"><a href="intro-functions.html#cb932-17" tabindex="-1"></a></span>
+<span id="cb932-18"><a href="intro-functions.html#cb932-18" tabindex="-1"></a>    <span class="co"># Return the sequence</span></span>
+<span id="cb932-19"><a href="intro-functions.html#cb932-19" tabindex="-1"></a>    <span class="fu">return</span>(fib_seq)</span>
+<span id="cb932-20"><a href="intro-functions.html#cb932-20" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, let’s try to evaluate this function with some examples.</p>
-<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="intro-functions.html#cb930-1" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">50</span>)</span>
-<span id="cb930-2"><a href="intro-functions.html#cb930-2" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32</span></span>
-<span id="cb930-3"><a href="intro-functions.html#cb930-3" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">80</span>)</span>
-<span id="cb930-4"><a href="intro-functions.html#cb930-4" tabindex="-1"></a><span class="co">#&gt; [1]  0  1  1  2  4  8 16 32 64</span></span>
-<span id="cb930-5"><a href="intro-functions.html#cb930-5" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">300</span>)</span>
-<span id="cb930-6"><a href="intro-functions.html#cb930-6" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   4   8  16  32  64 128 256</span></span></code></pre></div>
+<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb933-1"><a href="intro-functions.html#cb933-1" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">50</span>)  <span class="co"># Fibonacci sequence below 50</span></span>
+<span id="cb933-2"><a href="intro-functions.html#cb933-2" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34</span></span>
+<span id="cb933-3"><a href="intro-functions.html#cb933-3" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">80</span>)  <span class="co"># Fibonacci sequence below 80</span></span>
+<span id="cb933-4"><a href="intro-functions.html#cb933-4" tabindex="-1"></a><span class="co">#&gt;  [1]  0  1  1  2  3  5  8 13 21 34 55</span></span>
+<span id="cb933-5"><a href="intro-functions.html#cb933-5" tabindex="-1"></a><span class="fu">get_fibo</span>(<span class="at">upper_bound =</span> <span class="dv">300</span>)  <span class="co"># Fibonacci sequence below 300</span></span>
+<span id="cb933-6"><a href="intro-functions.html#cb933-6" tabindex="-1"></a><span class="co">#&gt;  [1]   0   1   1   2   3   5   8  13  21  34  55  89 144 233</span></span></code></pre></div>
+</div>
+<div id="exercises-59" class="section level3 hasAnchor" number="12.1.6">
+<h3><span class="header-section-number">12.1.6</span> Exercises<a href="intro-functions.html#exercises-59" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>Write a function <code>square</code> that returns the square of a number. Test your function with the input <code>4</code>.</p></li>
+<li><p>Create a function <code>multiply</code> that takes two arguments and returns their product. Test your function with inputs <code>3</code> and <code>7</code>.</p></li>
+<li><p>Write a function <code>rectangle_perimeter</code> that calculates the perimeter of a rectangle. Set the default width to <code>10</code>. Test your function with different inputs.</p></li>
+<li><p>Write a function <code>factorial</code> that calculates the factorial of a number using a <code>for</code> loop. Test your function with input <code>5</code>.</p></li>
+<li><p>Extend the <code>roll_dice</code> function to plot a bar chart of the frequencies. Test your function with the input <code>100</code>.</p></li>
+<li><p>Write a function <code>is_even</code> that returns <code>TRUE</code> if a number is even and <code>FALSE</code> otherwise. Test your function with the input <code>10</code>.</p></li>
+</ol>
 
+</div>
 </div>
             </section>
 
@@ -851,7 +964,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="arguments-return.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functions-advanced.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
