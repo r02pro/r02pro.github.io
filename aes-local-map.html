@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="5.3 ggplot Aesthetics (II): Local Aesthetics Mapping | R Programming: Zero to Pro" />
   
 
-<meta name="author" content="Yang Feng and r02proers" />
+<meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2024-12-01" />
+<meta name="date" content="2024-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,6 +56,13 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -823,9 +830,11 @@ div.csl-indent {
 <p>In addition to color, you can also map a discrete variable to the size aesthetic.</p>
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="aes-local-map.html#cb520-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol, <span class="at">size =</span> gender),</span>
 <span id="cb520-2"><a href="aes-local-map.html#cb520-2" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
-<span id="cb520-3"><a href="aes-local-map.html#cb520-3" tabindex="-1"></a><span class="co">#&gt; Warning: Using size for a discrete variable is not advised.</span></span>
-<span id="cb520-4"><a href="aes-local-map.html#cb520-4" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 128 rows containing missing values or values outside</span></span>
-<span id="cb520-5"><a href="aes-local-map.html#cb520-5" tabindex="-1"></a><span class="co">#&gt; the scale range (`geom_point()`).</span></span></code></pre></div>
+<span id="cb520-3"><a href="aes-local-map.html#cb520-3" tabindex="-1"></a><span class="co">#&gt; Warning: Using size for a discrete variable is</span></span>
+<span id="cb520-4"><a href="aes-local-map.html#cb520-4" tabindex="-1"></a><span class="co">#&gt; not advised.</span></span>
+<span id="cb520-5"><a href="aes-local-map.html#cb520-5" tabindex="-1"></a><span class="co">#&gt; Warning: Removed 128 rows containing missing</span></span>
+<span id="cb520-6"><a href="aes-local-map.html#cb520-6" tabindex="-1"></a><span class="co">#&gt; values or values outside the scale</span></span>
+<span id="cb520-7"><a href="aes-local-map.html#cb520-7" tabindex="-1"></a><span class="co">#&gt; range (`geom_point()`).</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-549-1.png" width="576" /></p>
 <p>You can see from the plot that the sizes of the points are now different according to the <code>gender</code>.</p>
 <p>To alleviate the overplotting issue, we added a <strong>contant-valued aesthetic</strong> <code>alpha = 0.5</code> to the <code>geom_point()</code> function, making all points more transparent. Please pay close attention to the location where we put the argument:</p>
