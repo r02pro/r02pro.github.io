@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2024-12-11" />
+<meta name="date" content="2025-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -828,7 +828,7 @@ div.csl-indent {
 <span id="cb748-16"><a href="create-variables.html#cb748-16" tabindex="-1"></a><span class="co">#&gt;  8 Andorra  2000       67.3          36        2423.</span></span>
 <span id="cb748-17"><a href="create-variables.html#cb748-17" tabindex="-1"></a><span class="co">#&gt;  9 Andorra  2001       70            36.2      2534 </span></span>
 <span id="cb748-18"><a href="create-variables.html#cb748-18" tabindex="-1"></a><span class="co">#&gt; 10 Andorra  2002       73.2          37.6      2752.</span></span>
-<span id="cb748-19"><a href="create-variables.html#cb748-19" tabindex="-1"></a><span class="co">#&gt; # … with 65,521 more rows</span></span></code></pre></div>
+<span id="cb748-19"><a href="create-variables.html#cb748-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 65,521 more rows</span></span></code></pre></div>
 <p>From the result, you can check that the resulting tibble has 5 columns, with the last column being the newly created variable <code>total_GDP</code>. You can use <code>mutate()</code> to create multiple variables at the same time following the same format.</p>
 <div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="create-variables.html#cb749-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
 <span id="cb749-2"><a href="create-variables.html#cb749-2" tabindex="-1"></a>    <span class="fu">select</span>(country, year, population, GDP_per_capita, livercancer_newcases_male,</span>
@@ -836,21 +836,21 @@ div.csl-indent {
 <span id="cb749-4"><a href="create-variables.html#cb749-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total_GDP =</span> GDP_per_capita <span class="sc">*</span> population, <span class="at">livercancer_newcases =</span> livercancer_newcases_male <span class="sc">+</span></span>
 <span id="cb749-5"><a href="create-variables.html#cb749-5" tabindex="-1"></a>        livercancer_newcases_female)</span>
 <span id="cb749-6"><a href="create-variables.html#cb749-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 65,531 × 8</span></span>
-<span id="cb749-7"><a href="create-variables.html#cb749-7" tabindex="-1"></a><span class="co">#&gt;    country  year population GDP_per_capita livercancer…¹ liver…² total…³ liver…⁴</span></span>
-<span id="cb749-8"><a href="create-variables.html#cb749-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb749-9"><a href="create-variables.html#cb749-9" tabindex="-1"></a><span class="co">#&gt;  1 Albania  1999     3130             1.96         17.8     8.28   6135.   26.1 </span></span>
-<span id="cb749-10"><a href="create-variables.html#cb749-10" tabindex="-1"></a><span class="co">#&gt;  2 Albania  2000     3130             2.14         17.1     7.66   6698.   24.8 </span></span>
-<span id="cb749-11"><a href="create-variables.html#cb749-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania  2001     3130             2.25         16.4     7.1    7042.   23.5 </span></span>
-<span id="cb749-12"><a href="create-variables.html#cb749-12" tabindex="-1"></a><span class="co">#&gt;  4 Albania  2002     3120             2.38         15.7     6.58   7426.   22.3 </span></span>
-<span id="cb749-13"><a href="create-variables.html#cb749-13" tabindex="-1"></a><span class="co">#&gt;  5 Albania  2003     3100             2.52         15.1     6.1    7812    21.2 </span></span>
-<span id="cb749-14"><a href="create-variables.html#cb749-14" tabindex="-1"></a><span class="co">#&gt;  6 Albania  2004     3090             2.68         14.4     5.66   8281.   20.1 </span></span>
-<span id="cb749-15"><a href="create-variables.html#cb749-15" tabindex="-1"></a><span class="co">#&gt;  7 Andorra  1999       65.4          34.3           5.99    2.35   2243.    8.34</span></span>
-<span id="cb749-16"><a href="create-variables.html#cb749-16" tabindex="-1"></a><span class="co">#&gt;  8 Andorra  2000       67.3          36             6.05    2.35   2423.    8.4 </span></span>
-<span id="cb749-17"><a href="create-variables.html#cb749-17" tabindex="-1"></a><span class="co">#&gt;  9 Andorra  2001       70            36.2           6.12    2.36   2534     8.48</span></span>
-<span id="cb749-18"><a href="create-variables.html#cb749-18" tabindex="-1"></a><span class="co">#&gt; 10 Andorra  2002       73.2          37.6           6.19    2.37   2752.    8.56</span></span>
-<span id="cb749-19"><a href="create-variables.html#cb749-19" tabindex="-1"></a><span class="co">#&gt; # … with 65,521 more rows, and abbreviated variable names</span></span>
-<span id="cb749-20"><a href="create-variables.html#cb749-20" tabindex="-1"></a><span class="co">#&gt; #   ¹​livercancer_newcases_male, ²​livercancer_newcases_female, ³​total_GDP,</span></span>
-<span id="cb749-21"><a href="create-variables.html#cb749-21" tabindex="-1"></a><span class="co">#&gt; #   ⁴​livercancer_newcases</span></span></code></pre></div>
+<span id="cb749-7"><a href="create-variables.html#cb749-7" tabindex="-1"></a><span class="co">#&gt;    country  year population GDP_per_capita livercancer_newcases_male</span></span>
+<span id="cb749-8"><a href="create-variables.html#cb749-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;                     &lt;dbl&gt;</span></span>
+<span id="cb749-9"><a href="create-variables.html#cb749-9" tabindex="-1"></a><span class="co">#&gt;  1 Albania  1999     3130             1.96                     17.8 </span></span>
+<span id="cb749-10"><a href="create-variables.html#cb749-10" tabindex="-1"></a><span class="co">#&gt;  2 Albania  2000     3130             2.14                     17.1 </span></span>
+<span id="cb749-11"><a href="create-variables.html#cb749-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania  2001     3130             2.25                     16.4 </span></span>
+<span id="cb749-12"><a href="create-variables.html#cb749-12" tabindex="-1"></a><span class="co">#&gt;  4 Albania  2002     3120             2.38                     15.7 </span></span>
+<span id="cb749-13"><a href="create-variables.html#cb749-13" tabindex="-1"></a><span class="co">#&gt;  5 Albania  2003     3100             2.52                     15.1 </span></span>
+<span id="cb749-14"><a href="create-variables.html#cb749-14" tabindex="-1"></a><span class="co">#&gt;  6 Albania  2004     3090             2.68                     14.4 </span></span>
+<span id="cb749-15"><a href="create-variables.html#cb749-15" tabindex="-1"></a><span class="co">#&gt;  7 Andorra  1999       65.4          34.3                       5.99</span></span>
+<span id="cb749-16"><a href="create-variables.html#cb749-16" tabindex="-1"></a><span class="co">#&gt;  8 Andorra  2000       67.3          36                         6.05</span></span>
+<span id="cb749-17"><a href="create-variables.html#cb749-17" tabindex="-1"></a><span class="co">#&gt;  9 Andorra  2001       70            36.2                       6.12</span></span>
+<span id="cb749-18"><a href="create-variables.html#cb749-18" tabindex="-1"></a><span class="co">#&gt; 10 Andorra  2002       73.2          37.6                       6.19</span></span>
+<span id="cb749-19"><a href="create-variables.html#cb749-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 65,521 more rows</span></span>
+<span id="cb749-20"><a href="create-variables.html#cb749-20" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: livercancer_newcases_female &lt;dbl&gt;, total_GDP &lt;dbl&gt;,</span></span>
+<span id="cb749-21"><a href="create-variables.html#cb749-21" tabindex="-1"></a><span class="co">#&gt; #   livercancer_newcases &lt;dbl&gt;</span></span></code></pre></div>
 <p>This operation adds two new columns <code>total_GDP</code> and <code>livercancer_newcases</code> to the existing tibble. Note that the <code>mutate()</code> function can <strong>only</strong> use the variables inside the <code>select()</code> function. The following code will show an error since <code>livercancer_newcases_male</code> is not included in the <code>select()</code> function.</p>
 <div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="create-variables.html#cb750-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
 <span id="cb750-2"><a href="create-variables.html#cb750-2" tabindex="-1"></a>    <span class="fu">select</span>(country, year, population, GDP_per_capita) <span class="sc">%&gt;%</span></span>
@@ -870,19 +870,19 @@ div.csl-indent {
 <span id="cb751-4"><a href="create-variables.html#cb751-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">GDP_order =</span> <span class="fu">order</span>(GDP_per_capita), <span class="at">GDP_per_capita_ave =</span> <span class="fu">mean</span>(GDP_per_capita,</span>
 <span id="cb751-5"><a href="create-variables.html#cb751-5" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb751-6"><a href="create-variables.html#cb751-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 6</span></span>
-<span id="cb751-7"><a href="create-variables.html#cb751-7" tabindex="-1"></a><span class="co">#&gt;    country               year population GDP_per_capita GDP_order GDP_per_capi…¹</span></span>
-<span id="cb751-8"><a href="create-variables.html#cb751-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;     &lt;int&gt;          &lt;dbl&gt;</span></span>
-<span id="cb751-9"><a href="create-variables.html#cb751-9" tabindex="-1"></a><span class="co">#&gt;  1 Afghanistan           2008    28400            0.492        13           14.8</span></span>
-<span id="cb751-10"><a href="create-variables.html#cb751-10" tabindex="-1"></a><span class="co">#&gt;  2 Angola                2008    22500            3.96        129           14.8</span></span>
-<span id="cb751-11"><a href="create-variables.html#cb751-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania               2008     2970            3.43         38           14.8</span></span>
-<span id="cb751-12"><a href="create-variables.html#cb751-12" tabindex="-1"></a><span class="co">#&gt;  4 Andorra               2008       84.5         35.4          59           14.8</span></span>
-<span id="cb751-13"><a href="create-variables.html#cb751-13" tabindex="-1"></a><span class="co">#&gt;  5 United Arab Emirates  2008     7920           34.6         132           14.8</span></span>
-<span id="cb751-14"><a href="create-variables.html#cb751-14" tabindex="-1"></a><span class="co">#&gt;  6 Argentina             2008    40500           12.4         126           14.8</span></span>
-<span id="cb751-15"><a href="create-variables.html#cb751-15" tabindex="-1"></a><span class="co">#&gt;  7 Armenia               2008     2890            2.88        180           14.8</span></span>
-<span id="cb751-16"><a href="create-variables.html#cb751-16" tabindex="-1"></a><span class="co">#&gt;  8 American Samoa        2008       NA           12.1         115           14.8</span></span>
-<span id="cb751-17"><a href="create-variables.html#cb751-17" tabindex="-1"></a><span class="co">#&gt;  9 Antigua and Barbuda   2008       86.7         15.4           1           14.8</span></span>
-<span id="cb751-18"><a href="create-variables.html#cb751-18" tabindex="-1"></a><span class="co">#&gt; 10 Australia             2008    21800           53.3          31           14.8</span></span>
-<span id="cb751-19"><a href="create-variables.html#cb751-19" tabindex="-1"></a><span class="co">#&gt; # … with 226 more rows, and abbreviated variable name ¹​GDP_per_capita_ave</span></span></code></pre></div>
+<span id="cb751-7"><a href="create-variables.html#cb751-7" tabindex="-1"></a><span class="co">#&gt;    country           year population GDP_per_capita GDP_order GDP_per_capita_ave</span></span>
+<span id="cb751-8"><a href="create-variables.html#cb751-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;     &lt;int&gt;              &lt;dbl&gt;</span></span>
+<span id="cb751-9"><a href="create-variables.html#cb751-9" tabindex="-1"></a><span class="co">#&gt;  1 Afghanistan       2008    28400            0.492        13               14.8</span></span>
+<span id="cb751-10"><a href="create-variables.html#cb751-10" tabindex="-1"></a><span class="co">#&gt;  2 Angola            2008    22500            3.96        129               14.8</span></span>
+<span id="cb751-11"><a href="create-variables.html#cb751-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania           2008     2970            3.43         38               14.8</span></span>
+<span id="cb751-12"><a href="create-variables.html#cb751-12" tabindex="-1"></a><span class="co">#&gt;  4 Andorra           2008       84.5         35.4          59               14.8</span></span>
+<span id="cb751-13"><a href="create-variables.html#cb751-13" tabindex="-1"></a><span class="co">#&gt;  5 United Arab Emi…  2008     7920           34.6         132               14.8</span></span>
+<span id="cb751-14"><a href="create-variables.html#cb751-14" tabindex="-1"></a><span class="co">#&gt;  6 Argentina         2008    40500           12.4         126               14.8</span></span>
+<span id="cb751-15"><a href="create-variables.html#cb751-15" tabindex="-1"></a><span class="co">#&gt;  7 Armenia           2008     2890            2.88        180               14.8</span></span>
+<span id="cb751-16"><a href="create-variables.html#cb751-16" tabindex="-1"></a><span class="co">#&gt;  8 American Samoa    2008       NA           12.1         115               14.8</span></span>
+<span id="cb751-17"><a href="create-variables.html#cb751-17" tabindex="-1"></a><span class="co">#&gt;  9 Antigua and Bar…  2008       86.7         15.4           1               14.8</span></span>
+<span id="cb751-18"><a href="create-variables.html#cb751-18" tabindex="-1"></a><span class="co">#&gt; 10 Australia         2008    21800           53.3          31               14.8</span></span>
+<span id="cb751-19"><a href="create-variables.html#cb751-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
 <p>The <code>mutate()</code> function is very powerful in creating new variables. However, if you only want to keep the newly created variables, you can use the <code>transmute()</code> function.</p>
 <div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="create-variables.html#cb752-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
 <span id="cb752-2"><a href="create-variables.html#cb752-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
@@ -902,7 +902,7 @@ div.csl-indent {
 <span id="cb752-16"><a href="create-variables.html#cb752-16" tabindex="-1"></a><span class="co">#&gt;  8       115               14.8</span></span>
 <span id="cb752-17"><a href="create-variables.html#cb752-17" tabindex="-1"></a><span class="co">#&gt;  9         1               14.8</span></span>
 <span id="cb752-18"><a href="create-variables.html#cb752-18" tabindex="-1"></a><span class="co">#&gt; 10        31               14.8</span></span>
-<span id="cb752-19"><a href="create-variables.html#cb752-19" tabindex="-1"></a><span class="co">#&gt; # … with 226 more rows</span></span></code></pre></div>
+<span id="cb752-19"><a href="create-variables.html#cb752-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
 <div id="exercises-46" class="section level3 hasAnchor" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Exercises<a href="create-variables.html#exercises-46" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using the <code>ahp</code> dataset and the pipe operator for the following exercises.</p>
