@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-02-23" />
+<meta name="date" content="2025-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,8 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -244,7 +245,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#named-vectors"><i class="fa fa-check"></i><b>2.5.1</b> Named Vectors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#vector-subsetting"><i class="fa fa-check"></i><b>2.5.2</b> Vector subsetting</a></li>
-<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#access-and-modify-values-in-vectors-and-sub-vectors"><i class="fa fa-check"></i><b>2.5.3</b> Access and modify values in vectors and sub-vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html"><i class="fa fa-check"></i><b>2.6</b> Numeric Vectors: Creating numeric vectors with patterns</a>
 <ul>
@@ -814,17 +816,17 @@ div.csl-indent {
 <p>Before we get started, the first item we will cover is adding comments for codes. In R, you can use the hash character <code>#</code> at any position of a given line to initiate a comment, and anything after <code>#</code> will be ignored by R. Let’s see an example,</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Calculator.html#cb5-1" tabindex="-1"></a><span class="dv">6</span> <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>  <span class="co"># first calculate 1/2=0.5, then 6-0.5=5.5</span></span>
 <span id="cb5-2"><a href="Calculator.html#cb5-2" tabindex="-1"></a><span class="co">#&gt; [1] 5.5</span></span></code></pre></div>
-<p>By running this line of code (either in the console or in the editor!), you will get a value of 5.5, which is the answer of <code>6 - 1 / 2</code>. As demonstrated, R will not run syntax after the hash character <code>#</code>. Commands and strings after the <code>#</code> are notations or explanations that can make codes easier to understand. Here, the comment informs you the operation order of previous code: the division is calculated before the subtraction.</p>
+<p>By running this line of code (either in the console or in the editor), you will get a value of 5.5, which is the answer of <code>6 - 1 / 2</code>. As demonstrated, R will not run syntax after the hash character <code>#</code>. Comments after the <code>#</code> are typically added to make codes easier to understand.</p>
 <p>In general, adding comments to codes is a very good practice, as it greatly increases readability and make collaboration easier. We will also add necessary comments in our codes to help you learn R.</p>
 </div>
 <div id="basic-calculation" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Basic calculation<a href="Calculator.html#basic-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now let’s start to use R as a calculator! In the previous section we introduced operations such as addition, subtraction, multiplication, division, as well as the combination of multiple basic operations. Additionally, you can also calculate the square root, absolute value and the sign of a number.</p>
+<p>Now let’s start to use R as a calculator. In the previous section, we introduced operations such as addition, subtraction, multiplication, division, as well as the combination of multiple basic operations. Additionally, you can also calculate the square root, absolute value and the sign of a number.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Operation</th>
-<th align="left">Explanation</th>
+<th align="left">ops</th>
+<th align="left">names</th>
 </tr>
 </thead>
 <tbody>
@@ -874,7 +876,7 @@ div.csl-indent {
 <li>Use a question mark followed by the function name, e.g. <code>?sign</code><br />
 </li>
 <li>Use help function, e.g. <code>help(sign)</code></li>
-<li>Use the help window in RStudio, as shown in Figure <a href="Calculator.html#fig:help">1.16</a>. The help window is the panel 4 of Figure <a href="Installation.html#fig:four">1.4</a> in Section <a href="Installation.html#Installation">1.1</a>. Then type in the function name in the box to the right of the magnifying glass and press return.</li>
+<li>Use the help window in RStudio, as shown in Figure <a href="Calculator.html#fig:help">1.16</a>. The help window is the panel 4 of Figure <a href="Installation.html#fig:four">1.4</a> in Section <a href="Installation.html#Installation">1.1</a>. You can type the function name in the box to the right of the magnifying glass and press Return/Enter.</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:help"></span>
 <img src="pics/1help.png" alt="Ask for help" width="70%" />
@@ -883,7 +885,7 @@ Figure 1.16: Ask for help
 </p>
 </div>
 <p><strong><em>b. Documentation for functions</em></strong></p>
-<p>After using the above operations to ask for help in R, you can get the documentation of the function in the help window. The documentation consists of different parts, let’s take the <code>sign()</code> function as an example (Figure <a href="Calculator.html#fig:d">1.17</a>),</p>
+<p>After asking for help in R, you will get the documentation of the function in the help window. The documentation consists of different parts, let’s take the <code>sign()</code> function as an example (Figure <a href="Calculator.html#fig:d">1.17</a>),</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:d"></span>
 <img src="pics/1d.png" alt="Documentation for function" width="70%" />
 <p class="caption">
@@ -892,15 +894,14 @@ Figure 1.17: Documentation for function
 </div>
 <p>This documentation contains the following parts:</p>
 <ul>
-<li><em>Description</em>: A text-format introduction of the function of interest. The introduction describes the function’s mechanism, the acceptable input and output types, and some notes of the function.</li>
+<li><em>Description</em>: A text-format introduction of the function. The introduction describes the function’s mechanism, the acceptable input and output types, and some notes of the function.</li>
 <li><em>Usage</em>: The way the function looks like.</li>
 <li><em>Arguments</em>: A detailed description of the input.</li>
 <li><em>Details</em>: A detailed description of the function, including the background, some complicated usage, and special cases of the function.</li>
-<li><em>See Also</em>: Some functions related or similar to this function.</li>
+<li><em>See Also</em>: Some functions related or similar to the function.</li>
 <li><em>Examples</em>: Sample codes and their corresponding answers. You can simply copy codes in the <em>Examples</em> part and run them in the editor or in the console. Note that all words after <code>#</code> are comments and will be ignored by R.</li>
 </ul>
-<p>Here, from the documentation of the <code>sign()</code> function, you will know that the <code>sign()</code> function can return the signs of numbers, which means it will return 0 for zero, return 1 for positive numbers, and return -1 for negative numbers.</p>
-<p>The documentation of different functions can contain different parts, we will give you the introduction of other functions in the following sections.</p>
+<p>Here, from the documentation of the <code>sign()</code> function, you will know that the <code>sign()</code> function returns the signs of numbers, which means it will return 0 for zero, return 1 for positive numbers, and return -1 for negative numbers.</p>
 </div>
 <div id="approximation" class="section level3 hasAnchor" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> Approximation<a href="Calculator.html#approximation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -909,8 +910,8 @@ Figure 1.17: Documentation for function
 <table>
 <thead>
 <tr class="header">
-<th align="left">Code</th>
-<th align="left">Name</th>
+<th align="left">codes</th>
+<th align="left">names</th>
 </tr>
 </thead>
 <tbody>
@@ -936,7 +937,7 @@ Figure 1.17: Documentation for function
 <span id="cb7-2"><a href="Calculator.html#cb7-2" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
 <span id="cb7-3"><a href="Calculator.html#cb7-3" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">7</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span>
 <span id="cb7-4"><a href="Calculator.html#cb7-4" tabindex="-1"></a><span class="co">#&gt; [1] 2.333</span></span></code></pre></div>
-<p>The <code>round()</code> function follows the <strong>rounding principle</strong>. By default, you will get the nearest integer to <code>7 / 3</code>, which is <code>2</code>. If you want to control the approximation accuracy, you can add a <code>digits</code> argument to specify how many digits you want after the decimal point. Here you will get <code>2.333</code> after adding <code>digits = 3</code>.</p>
+<p>The <code>round()</code> function follows the <strong>rounding principle</strong>. By default, you will get the nearest integer to <code>7 / 3</code>, which is <code>2</code>. If you want to control the approximation accuracy, you can add a <code>digits</code> argument to specify how many digits you want after the decimal point. For example, you will get <code>2.333</code> after setting <code>digits = 3</code>.</p>
 </div>
 <div id="power-logarithm" class="section level3 hasAnchor" number="1.2.5">
 <h3><span class="header-section-number">1.2.5</span> Power &amp; logarithm<a href="Calculator.html#power-logarithm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -952,17 +953,17 @@ Figure 1.17: Documentation for function
 <p>Another thing to note is that we don’t use commas when writing a big number in R as we do in reports and essays. For example, we need to write 1000000 for a million instead of 1,000,000.</p>
 </div>
 <p>In mathematics, the <em>logarithmic operations</em> are inverse to the power operations. If <strong><span class="math inline">\(b^y = x\)</span></strong> and you only know <em><span class="math inline">\(b\)</span></em> and <em><span class="math inline">\(x\)</span></em>, you can do logarithmic operations to solve <em><span class="math inline">\(y\)</span></em> using the general form <strong><span class="math inline">\(y = \log(x, b)\)</span></strong>, which is called the logarithm of <span class="math inline">\(x\)</span> with base <span class="math inline">\(b\)</span>.</p>
-<p>In R, logarithm functions with base value of 10, 2, or the natural number <span class="math inline">\(e\)</span> have shortcuts <code>log10()</code>, <code>log2()</code>, and <code>log()</code>, respectively. Let’s see an example of <code>log10()</code>, the logarithm function with base <em>10</em>. Here, we have added a comment to help you have a better understanding of <code>log10()</code>.</p>
+<p>In R, logarithm functions with base value of 10, 2, or the mathematical constant <span class="math inline">\(e\)</span> have shortcuts <code>log10()</code>, <code>log2()</code>, and <code>log()</code>, respectively. Let’s see an example of <code>log10()</code>, the logarithm function with base <em>10</em>. Here, we have added a comment to help you have a better understanding of <code>log10()</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Calculator.html#cb8-1" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span>
 <span id="cb8-2"><a href="Calculator.html#cb8-2" tabindex="-1"></a><span class="co">#&gt; [1] 1e+06</span></span>
 <span id="cb8-3"><a href="Calculator.html#cb8-3" tabindex="-1"></a><span class="fu">log10</span>(<span class="fl">1e+06</span>)  <span class="co">#log10(x) = log(x, 10)</span></span>
 <span id="cb8-4"><a href="Calculator.html#cb8-4" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
-<p>Next, let’s see <code>log2()</code>, the logarithm function with base <em>2</em>. There is also a comment for <code>log2()</code> here.</p>
+<p>Next, let’s see <code>log2()</code>, the logarithm function with base <em>2</em>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Calculator.html#cb9-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">10</span></span>
 <span id="cb9-2"><a href="Calculator.html#cb9-2" tabindex="-1"></a><span class="co">#&gt; [1] 1024</span></span>
 <span id="cb9-3"><a href="Calculator.html#cb9-3" tabindex="-1"></a><span class="fu">log2</span>(<span class="dv">1024</span>)  <span class="co">#log2(x) = log(x, 2)</span></span>
 <span id="cb9-4"><a href="Calculator.html#cb9-4" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
-<p>Before moving on to the natural logarithm, note that the natural number <span class="math inline">\(e\)</span> needs to be written as <code>exp(1)</code> in R. When you want to do power operations on <span class="math inline">\(e\)</span>, you can simply change the argument in the function <code>exp()</code>. For example, <code>exp(3)</code> is <span class="math inline">\(e\)</span> to the power of 3. Here, <code>log()</code> without specifying the <code>base</code> argument represents the logarithm function with base <span class="math inline">\(e\)</span>. You can see the general form of <code>log()</code> in the comment.</p>
+<p>Before moving on to the natural logarithm, note that the mathematical constant <span class="math inline">\(e\)</span> needs to be written as <code>exp(1)</code> in R. When you want to do power operations on <span class="math inline">\(e\)</span>, you can simply set the exponent as the argument in the function <code>exp()</code>. For example, <code>exp(3)</code> is <span class="math inline">\(e\)</span> to the power of 3. Here, <code>log()</code> without specifying the <code>base</code> argument represents the logarithm function with base <span class="math inline">\(e\)</span>. You can see the general form of <code>log()</code> in the comment.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Calculator.html#cb10-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span>
 <span id="cb10-2"><a href="Calculator.html#cb10-2" tabindex="-1"></a><span class="co">#&gt; [1] 2.718282</span></span>
 <span id="cb10-3"><a href="Calculator.html#cb10-3" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">3</span>)</span>

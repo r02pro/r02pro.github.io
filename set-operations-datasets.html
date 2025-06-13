@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-02-23" />
+<meta name="date" content="2025-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,8 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -244,7 +245,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#named-vectors"><i class="fa fa-check"></i><b>2.5.1</b> Named Vectors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#vector-subsetting"><i class="fa fa-check"></i><b>2.5.2</b> Vector subsetting</a></li>
-<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#access-and-modify-values-in-vectors-and-sub-vectors"><i class="fa fa-check"></i><b>2.5.3</b> Access and modify values in vectors and sub-vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html"><i class="fa fa-check"></i><b>2.6</b> Numeric Vectors: Creating numeric vectors with patterns</a>
 <ul>
@@ -813,7 +815,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb767-1"><a href="set-operations-datasets.html#cb767-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb767-2"><a href="set-operations-datasets.html#cb767-2" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>))</span>
 <span id="cb767-3"><a href="set-operations-datasets.html#cb767-3" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">value =</span> <span class="fu">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</span></code></pre></div>
-<p>After loading the <strong>dplyr</strong> package, you can see a warning message “The following objects are masked from ‘package:base’: intersect, setdiff, setequal, union”. Indeed, we have the same functions in base R and it is important to distinguish them from the ones in the <strong>dplyr</strong> package.</p>
+<p>After loading the <strong>dplyr</strong> package, you can see a warning message “The following objects are masked from ‘package:base’: intersect, setdiff, setequal, union”. Indeed, we have the same functions in base R and it is important to distinguish them from the ones in the <strong>dplyr</strong> package. To ensure you are using the desired version, you can use <code>dplyr::intersect()</code> and <code>base::intersect()</code>, respectively.</p>
 <div id="intersectx-y" class="section level3 hasAnchor" number="7.8.1">
 <h3><span class="header-section-number">7.8.1</span> <code>intersect(x, y)</code><a href="set-operations-datasets.html#intersectx-y" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>intersect(x, y)</code> function finds all rows that appear in both <code>x</code> and <code>y</code>. This is useful for identifying the common elements between two data frames.</p>

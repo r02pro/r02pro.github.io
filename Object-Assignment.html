@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-02-23" />
+<meta name="date" content="2025-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,8 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -244,7 +245,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#named-vectors"><i class="fa fa-check"></i><b>2.5.1</b> Named Vectors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#vector-subsetting"><i class="fa fa-check"></i><b>2.5.2</b> Vector subsetting</a></li>
-<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#access-and-modify-values-in-vectors-and-sub-vectors"><i class="fa fa-check"></i><b>2.5.3</b> Access and modify values in vectors and sub-vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html"><i class="fa fa-check"></i><b>2.6</b> Numeric Vectors: Creating numeric vectors with patterns</a>
 <ul>
@@ -808,23 +810,23 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="Object-Assignment" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Object Assignment<a href="Object-Assignment.html#Object-Assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the last section, you have seen the power of R as a fancy calculator. However, in order to do more complicated and interesting tasks, it is super helpful to store intermediate results for future use.</p>
+<p>In the last section, you have seen the power of R as a fancy calculator. However, in order to do more complicated and interesting tasks, it is often helpful to store intermediate results for future use.</p>
 <p>Let’s take a look at a concrete example. Say if you want to do the following three calculations, all involving <code>exp(3) / log(20,3) * 7</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Object-Assignment.html#cb14-1" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span>  <span class="co">#addition</span></span>
 <span id="cb14-2"><a href="Object-Assignment.html#cb14-2" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span>  <span class="co">#subtraction</span></span>
 <span id="cb14-3"><a href="Object-Assignment.html#cb14-3" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>)<span class="sc">/</span><span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>)<span class="sc">/</span><span class="dv">3</span>  <span class="co">#division</span></span></code></pre></div>
-<p>Using R as a fancy calculator (Section <a href="Calculator.html#Calculator">1.2</a>), you need to type the expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, you will learn how to do <strong>object assignment</strong>, which can avoid the need for typing the same expression more than once.</p>
+<p>Here, you need to type the same expression <code>exp(3) / log(20,3) * 7</code> three times, which is a bit cumbersome. In this section, you will learn how to do <strong>object assignment</strong>, which avoid redundancy and make your code more concise.</p>
 <div id="what-is-an-r-object" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> What is an R Object?<a href="Object-Assignment.html#what-is-an-r-object" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before we get into the details, let’s first introduce <strong>object</strong>, which is perhaps the most fundamental thing in R. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, and the expression <code>exp(3) / log(20,3) * 7</code> is also an object.</p>
+<p>Before delving into the details, let’s first introduce the concept of <strong>object</strong>, which is perhaps the most fundamental thing in R. In principle, <strong>everything that exists in R is an object</strong>. For example, the number <code>5</code> is an object, the expression <code>1 + 2</code> is an object, and the expression <code>exp(3) / log(20,3) * 7</code> is also an object.</p>
 <p>If you run <code>5</code>, you will get one element of value 5 from the output. Similarly, if you run <code>1 + 2</code>, you will get one element of value 3 from the output. You can try to run <code>exp(3) / log(20,3) * 7</code> by yourself. In these three examples, you can see that there is only one <strong>element</strong> in each object.</p>
-<p>However, an object can contain more than one elements, and each element has its own <strong>value</strong>, which is possibly different from that of another element. Naturally, different objects can contain different values.</p>
+<p>However, an object can contain more than one elements, and each element has its own <strong>value</strong>, which is possibly different from that of another element. Naturally, different objects can contain different values. In the following sections, you will learn how to create objects and assign values to them.</p>
 </div>
 <div id="assignment" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Assignment Operation with <code>&lt;-</code><a href="Object-Assignment.html#assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>With the importance of objects in mind, let’s learn how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the <strong>assignment operator</strong>, which will create a new object with the name you specified. Once the object assignment operation is done, you can simply use the name in subsequent calculations without redundancy. Let’s start with a simple example,</p>
+<p>With the importance of objects in mind, let’s learn how to do <strong>object assignments</strong> in R. To do object assignments, you need to assign <strong>value(s)</strong> to a <strong>name</strong> via the <strong>assignment operator</strong>, which will create a new object with the name you specified. Once the object assignment operation is done, you can simply use the name in subsequent calculations without redundancy. Let’s start with a simple example, assigning the value 5 to the name <code>x_num</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Object-Assignment.html#cb15-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
-<p>The assignment operation has three components. From left to right，</p>
+<p>The assignment operation has three components. From left to right，they are:</p>
 <ul>
 <li>the first component <code>x_num</code> is the <strong>object name</strong> of a new object, which has certain naming rules that will be discussed shortly in Section <a href="Object-Assignment.html#Naming">1.3.3</a>.</li>
 <li>The second component is the <strong>assignment operator</strong> <code>&lt;-</code>, which is a combination of the less than sign <code>&lt;</code> immediately followed by the minus sign <code>-</code>, with <strong>no space</strong> in between.</li>

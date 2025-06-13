@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-02-23" />
+<meta name="date" content="2025-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,8 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -244,7 +245,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#named-vectors"><i class="fa fa-check"></i><b>2.5.1</b> Named Vectors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#vector-subsetting"><i class="fa fa-check"></i><b>2.5.2</b> Vector subsetting</a></li>
-<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+<li class="chapter" data-level="2.5.3" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#access-and-modify-values-in-vectors-and-sub-vectors"><i class="fa fa-check"></i><b>2.5.3</b> Access and modify values in vectors and sub-vectors</a></li>
+<li class="chapter" data-level="2.5.4" data-path="subsetting-and-modify-values.html"><a href="subsetting-and-modify-values.html#exercises-7"><i class="fa fa-check"></i><b>2.5.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="patterned_numeric_vectors_creation.html"><a href="patterned_numeric_vectors_creation.html"><i class="fa fa-check"></i><b>2.6</b> Numeric Vectors: Creating numeric vectors with patterns</a>
 <ul>
@@ -812,9 +814,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="density-plot.html#cb631-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb631-2"><a href="density-plot.html#cb631-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb631-3"><a href="density-plot.html#cb631-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol, <span class="at">y =</span> ..density..))</span>
-<span id="cb631-4"><a href="density-plot.html#cb631-4" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`.</span></span>
-<span id="cb631-5"><a href="density-plot.html#cb631-5" tabindex="-1"></a><span class="co">#&gt; Pick better value with</span></span>
-<span id="cb631-6"><a href="density-plot.html#cb631-6" tabindex="-1"></a><span class="co">#&gt; `binwidth`.</span></span></code></pre></div>
+<span id="cb631-4"><a href="density-plot.html#cb631-4" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-658-1.png" width="576" /></p>
 <p>There are 30 bins by default. You may notice that this density estimate is not smooth, sometimes we may prefer a smoothed estimate. Then, we can use the <code>geom_density()</code> function to achieve this.</p>
 <div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="density-plot.html#cb632-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol))</span></code></pre></div>
@@ -822,9 +822,7 @@ div.csl-indent {
 <p>This plot shows the so-called “kernel density estimate”, a popular way to estimate the probability density function from sample. The density estimate can be viewed as a smoothed version of the histogram. We can combine the two plots together using global aesthetic mapping.</p>
 <div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="density-plot.html#cb633-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> cholesterol)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
 <span id="cb633-2"><a href="density-plot.html#cb633-2" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb633-3"><a href="density-plot.html#cb633-3" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`.</span></span>
-<span id="cb633-4"><a href="density-plot.html#cb633-4" tabindex="-1"></a><span class="co">#&gt; Pick better value with</span></span>
-<span id="cb633-5"><a href="density-plot.html#cb633-5" tabindex="-1"></a><span class="co">#&gt; `binwidth`.</span></span></code></pre></div>
+<span id="cb633-3"><a href="density-plot.html#cb633-3" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-660-1.png" width="576" /></p>
 <p>Here, we added some global aesthetics in <code>geom_density()</code> to make the density plot red and the line width by setting <code>size = 2</code>. It is clear that the density plot is a useful alternative to the histogram for visualizing continuous data.</p>
 <div id="aesthetics-in-density-plots" class="section level3 hasAnchor" number="5.10.1">
