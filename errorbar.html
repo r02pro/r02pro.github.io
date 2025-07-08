@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-07-06" />
+<meta name="date" content="2025-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -827,15 +827,15 @@ div.csl-indent {
 <p>Here, we visualize the error bar as the mean <span class="math inline">\(\pm\)</span> standard error.</p>
 <p>To show the mean of <code>sale_price</code> for different <code>house_style</code> groups, you can use the <code>geom_point()</code> function with arguments <code>stat = "summary"</code> and <code>fun = "mean"</code>.</p>
 <div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="errorbar.html#cb706-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-734-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-733-1.png" width="576" /></p>
 <p>To add error bars to the mean points, we use <code>geom_errorbar()</code> coupled with the <code>fun.data = "mean_se"</code> argument.</p>
 <div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="errorbar.html#cb707-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
 <span id="cb707-2"><a href="errorbar.html#cb707-2" tabindex="-1"></a>    <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-735-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-734-1.png" width="576" /></p>
 <p>You can control the width of the errorbar by setting the <code>width</code> argument.</p>
 <div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="errorbar.html#cb708-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
 <span id="cb708-2"><a href="errorbar.html#cb708-2" tabindex="-1"></a>    <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-736-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-735-1.png" width="576" /></p>
 <p>This plot is called a <strong>mean-error-bar</strong> plot. Let’s take a detailed look at this plot. The distance from the mean point to the lower bound of the error bar is the so called <strong>standard error</strong>, which is defined as the standard deviation of the sample divided by the square root of the sample size. Let’s try to calculate the upper and lower bounds of the error bar.</p>
 <div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="errorbar.html#cb709-1" tabindex="-1"></a>sale_price_1_story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
 <span id="cb709-2"><a href="errorbar.html#cb709-2" tabindex="-1"></a>sale_price_1_story_se <span class="ot">&lt;-</span> <span class="fu">sd</span>(sale_price_1_story)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price_1_story))</span>
@@ -846,14 +846,14 @@ div.csl-indent {
 <p>You may notice that we are referring the data as sample since the <code>sahp</code> dataset contains only a subset of the population with all houses in the world. An important application of error bar is to construct the 95% confidence interval of the population mean. You know that the 95% confidence interval for a normal distribution is mean <span class="math inline">\(\pm\)</span> 1.96*se. If the data follows a normal distribution, you can construct such a confidence interval by setting the multiplier of the standard error in the error bar to be 1.96.</p>
 <div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="errorbar.html#cb710-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
 <span id="cb710-2"><a href="errorbar.html#cb710-2" tabindex="-1"></a>    <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">fun.args =</span> <span class="fu">list</span>(<span class="at">mult =</span> <span class="fl">1.96</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-738-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-737-1.png" width="576" /></p>
 <p>Of course, you can also add the error bar on top of the other plots like the boxplot or violin plot.</p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="errorbar.html#cb711-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
 <span id="cb711-2"><a href="errorbar.html#cb711-2" tabindex="-1"></a>    <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-739-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-738-1.png" width="576" /></p>
 <div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="errorbar.html#cb712-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
 <span id="cb712-2"><a href="errorbar.html#cb712-2" tabindex="-1"></a>    <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-740-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-739-1.png" width="576" /></p>
 
 </div>
             </section>
@@ -904,7 +904,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.epub"],
+"download": ["r02pro.pdf", "r02pro.epub"],
 "search": {
 "engine": "fuse",
 "options": null

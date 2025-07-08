@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-07-06" />
+<meta name="date" content="2025-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -845,35 +845,37 @@ div.csl-indent {
 <span id="cb973-23"><a href="solve24.html#cb973-23" tabindex="-1"></a>    }</span>
 <span id="cb973-24"><a href="solve24.html#cb973-24" tabindex="-1"></a>}</span></code></pre></div>
 <p>With all the preparations, we are ready to present the final function to solve 24. In the <code>solve_24()</code> function, the first argument <code>nums</code> contains the numbers, <code>goal</code> is the target value with default 24, and <code>n_sols_max</code> represents the maximum number of solutions to search for, with a default value of 3.</p>
-<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="solve24.html#cb974-1" tabindex="-1"></a>solve_24 <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, <span class="at">goal =</span> <span class="dv">24</span>, <span class="at">n_sols_max =</span> <span class="dv">3</span>){</span>
-<span id="cb974-2"><a href="solve24.html#cb974-2" tabindex="-1"></a><span class="fu">require</span>(gtools)</span>
-<span id="cb974-3"><a href="solve24.html#cb974-3" tabindex="-1"></a>n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
+<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="solve24.html#cb974-1" tabindex="-1"></a>solve_24 <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, <span class="at">goal =</span> <span class="dv">24</span>, <span class="at">n_sols_max =</span> <span class="dv">3</span>) {</span>
+<span id="cb974-2"><a href="solve24.html#cb974-2" tabindex="-1"></a>    <span class="fu">require</span>(gtools)</span>
+<span id="cb974-3"><a href="solve24.html#cb974-3" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
 <span id="cb974-4"><a href="solve24.html#cb974-4" tabindex="-1"></a></span>
-<span id="cb974-5"><a href="solve24.html#cb974-5" tabindex="-1"></a>nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))  <span class="co">#generate all number permutations </span></span>
+<span id="cb974-5"><a href="solve24.html#cb974-5" tabindex="-1"></a>    nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))  <span class="co">#generate all number permutations </span></span>
 <span id="cb974-6"><a href="solve24.html#cb974-6" tabindex="-1"></a></span>
-<span id="cb974-7"><a href="solve24.html#cb974-7" tabindex="-1"></a>n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb974-8"><a href="solve24.html#cb974-8" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums<span class="dv">-1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>) <span class="co">#generate all operator sequences</span></span>
-<span id="cb974-9"><a href="solve24.html#cb974-9" tabindex="-1"></a>op_mat <span class="ot">&lt;-</span> op_mat[op_mat[,<span class="dv">1</span>]<span class="sc">&lt;=</span><span class="dv">4</span>, ] <span class="co">#remove redundant ones</span></span>
-<span id="cb974-10"><a href="solve24.html#cb974-10" tabindex="-1"></a>n_sols <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the number of solutions to be 0</span></span>
-<span id="cb974-11"><a href="solve24.html#cb974-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm))  <span class="co">#loop over all possible permutations</span></span>
-<span id="cb974-12"><a href="solve24.html#cb974-12" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)){ <span class="co">#loop over all possible operator sequences</span></span>
-<span id="cb974-13"><a href="solve24.html#cb974-13" tabindex="-1"></a>  num_cur <span class="ot">&lt;-</span> nums_perm[i, ] <span class="co">#get the current permutation</span></span>
-<span id="cb974-14"><a href="solve24.html#cb974-14" tabindex="-1"></a>  op_cur <span class="ot">&lt;-</span> op_mat[j, ] <span class="co">#get the current operator sequence</span></span>
-<span id="cb974-15"><a href="solve24.html#cb974-15" tabindex="-1"></a>  sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur) <span class="co">#get the steps</span></span>
-<span id="cb974-16"><a href="solve24.html#cb974-16" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-5</span> <span class="sc">&amp;</span> <span class="fu">all</span>(sol <span class="sc">&gt;=</span> <span class="dv">0</span>)){ <span class="co">#check if it is a solution</span></span>
-<span id="cb974-17"><a href="solve24.html#cb974-17" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span> <span class="co">#increase the solution counter</span></span>
-<span id="cb974-18"><a href="solve24.html#cb974-18" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb974-19"><a href="solve24.html#cb974-19" tabindex="-1"></a>    <span class="fu">print_sol</span>(num_cur, sol, op_cur) <span class="co">#print the solution</span></span>
-<span id="cb974-20"><a href="solve24.html#cb974-20" tabindex="-1"></a>  } </span>
-<span id="cb974-21"><a href="solve24.html#cb974-21" tabindex="-1"></a>  <span class="cf">if</span>(n_sols <span class="sc">&gt;=</span> n_sols_max){</span>
-<span id="cb974-22"><a href="solve24.html#cb974-22" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
-<span id="cb974-23"><a href="solve24.html#cb974-23" tabindex="-1"></a>  }</span>
-<span id="cb974-24"><a href="solve24.html#cb974-24" tabindex="-1"></a>  }</span>
-<span id="cb974-25"><a href="solve24.html#cb974-25" tabindex="-1"></a><span class="cf">if</span>(n_sols <span class="sc">==</span> <span class="dv">0</span>){ <span class="co">#fail to find a solution</span></span>
-<span id="cb974-26"><a href="solve24.html#cb974-26" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
-<span id="cb974-27"><a href="solve24.html#cb974-27" tabindex="-1"></a>}</span>
-<span id="cb974-28"><a href="solve24.html#cb974-28" tabindex="-1"></a></span>
-<span id="cb974-29"><a href="solve24.html#cb974-29" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb974-7"><a href="solve24.html#cb974-7" tabindex="-1"></a>    n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb974-8"><a href="solve24.html#cb974-8" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums <span class="sc">-</span> <span class="dv">1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)  <span class="co">#generate all operator sequences</span></span>
+<span id="cb974-9"><a href="solve24.html#cb974-9" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> op_mat[op_mat[, <span class="dv">1</span>] <span class="sc">&lt;=</span> <span class="dv">4</span>, ]  <span class="co">#remove redundant ones</span></span>
+<span id="cb974-10"><a href="solve24.html#cb974-10" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the number of solutions to be 0</span></span>
+<span id="cb974-11"><a href="solve24.html#cb974-11" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm)) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)) {</span>
+<span id="cb974-12"><a href="solve24.html#cb974-12" tabindex="-1"></a>        <span class="co"># loop over all possible operator sequences</span></span>
+<span id="cb974-13"><a href="solve24.html#cb974-13" tabindex="-1"></a>        num_cur <span class="ot">&lt;-</span> nums_perm[i, ]  <span class="co">#get the current permutation</span></span>
+<span id="cb974-14"><a href="solve24.html#cb974-14" tabindex="-1"></a>        op_cur <span class="ot">&lt;-</span> op_mat[j, ]  <span class="co">#get the current operator sequence</span></span>
+<span id="cb974-15"><a href="solve24.html#cb974-15" tabindex="-1"></a>        sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)  <span class="co">#get the steps</span></span>
+<span id="cb974-16"><a href="solve24.html#cb974-16" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-05</span> <span class="sc">&amp;</span> <span class="fu">all</span>(sol <span class="sc">&gt;=</span> <span class="dv">0</span>)) {</span>
+<span id="cb974-17"><a href="solve24.html#cb974-17" tabindex="-1"></a>            <span class="co"># check if it is a solution</span></span>
+<span id="cb974-18"><a href="solve24.html#cb974-18" tabindex="-1"></a>            n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span>  <span class="co">#increase the solution counter</span></span>
+<span id="cb974-19"><a href="solve24.html#cb974-19" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb974-20"><a href="solve24.html#cb974-20" tabindex="-1"></a>            <span class="fu">print_sol</span>(num_cur, sol, op_cur)  <span class="co">#print the solution</span></span>
+<span id="cb974-21"><a href="solve24.html#cb974-21" tabindex="-1"></a>        }</span>
+<span id="cb974-22"><a href="solve24.html#cb974-22" tabindex="-1"></a>        <span class="cf">if</span> (n_sols <span class="sc">&gt;=</span> n_sols_max) {</span>
+<span id="cb974-23"><a href="solve24.html#cb974-23" tabindex="-1"></a>            <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
+<span id="cb974-24"><a href="solve24.html#cb974-24" tabindex="-1"></a>        }</span>
+<span id="cb974-25"><a href="solve24.html#cb974-25" tabindex="-1"></a>    }</span>
+<span id="cb974-26"><a href="solve24.html#cb974-26" tabindex="-1"></a>    <span class="cf">if</span> (n_sols <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb974-27"><a href="solve24.html#cb974-27" tabindex="-1"></a>        <span class="co"># fail to find a solution</span></span>
+<span id="cb974-28"><a href="solve24.html#cb974-28" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
+<span id="cb974-29"><a href="solve24.html#cb974-29" tabindex="-1"></a>    }</span>
+<span id="cb974-30"><a href="solve24.html#cb974-30" tabindex="-1"></a></span>
+<span id="cb974-31"><a href="solve24.html#cb974-31" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we are reading to look at some examples.</p>
 <div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="solve24.html#cb975-1" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
 <span id="cb975-2"><a href="solve24.html#cb975-2" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
@@ -976,7 +978,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.epub"],
+"download": ["r02pro.pdf", "r02pro.epub"],
 "search": {
 "engine": "fuse",
 "options": null

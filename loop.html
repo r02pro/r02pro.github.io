@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-07-06" />
+<meta name="date" content="2025-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -923,33 +923,33 @@ div.csl-indent {
 <h3><span class="header-section-number">11.2.4</span> Nested Loops<a href="loop.html#nested-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to a single loop, it is also common to put one loop inside another one, named the <strong>nested loop</strong>.</p>
 <p>Let’s say we want to create a matrix <code>A</code> of dimension <span class="math inline">\(5\times 5\)</span> where each element <span class="math inline">\(A_{ij} = i+j\)</span>. To create such a matrix, we can write a nested loop over <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
-<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="loop.html#cb898-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>) <span class="co">#initialize the matrix A</span></span>
-<span id="cb898-2"><a href="loop.html#cb898-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)       <span class="co">#loop over index i</span></span>
-<span id="cb898-3"><a href="loop.html#cb898-3" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){    <span class="co">#loop over index j</span></span>
-<span id="cb898-4"><a href="loop.html#cb898-4" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> i <span class="sc">+</span> j <span class="co">#set the (i, j)-th element of A</span></span>
-<span id="cb898-5"><a href="loop.html#cb898-5" tabindex="-1"></a>  }</span>
-<span id="cb898-6"><a href="loop.html#cb898-6" tabindex="-1"></a>A</span>
-<span id="cb898-7"><a href="loop.html#cb898-7" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
-<span id="cb898-8"><a href="loop.html#cb898-8" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
-<span id="cb898-9"><a href="loop.html#cb898-9" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
-<span id="cb898-10"><a href="loop.html#cb898-10" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
-<span id="cb898-11"><a href="loop.html#cb898-11" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
-<span id="cb898-12"><a href="loop.html#cb898-12" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span></code></pre></div>
+<div class="sourceCode" id="cb898"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb898-1"><a href="loop.html#cb898-1" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb898-2"><a href="loop.html#cb898-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb898-3"><a href="loop.html#cb898-3" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> i <span class="sc">+</span> j</span>
+<span id="cb898-4"><a href="loop.html#cb898-4" tabindex="-1"></a>}</span>
+<span id="cb898-5"><a href="loop.html#cb898-5" tabindex="-1"></a>A</span>
+<span id="cb898-6"><a href="loop.html#cb898-6" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span></span>
+<span id="cb898-7"><a href="loop.html#cb898-7" tabindex="-1"></a><span class="co">#&gt; [1,]    2    3    4    5    6</span></span>
+<span id="cb898-8"><a href="loop.html#cb898-8" tabindex="-1"></a><span class="co">#&gt; [2,]    3    4    5    6    7</span></span>
+<span id="cb898-9"><a href="loop.html#cb898-9" tabindex="-1"></a><span class="co">#&gt; [3,]    4    5    6    7    8</span></span>
+<span id="cb898-10"><a href="loop.html#cb898-10" tabindex="-1"></a><span class="co">#&gt; [4,]    5    6    7    8    9</span></span>
+<span id="cb898-11"><a href="loop.html#cb898-11" tabindex="-1"></a><span class="co">#&gt; [5,]    6    7    8    9   10</span></span></code></pre></div>
 <p>Let’s try another example where we want to create the correlation matrix in the so-called AR(1) model. In particular, the corresponding matrix <span class="math inline">\(A\)</span> is of dimension <span class="math inline">\(p\times p\)</span> where <span class="math inline">\(A_{ij} = \rho^{|i-j|}\)</span>.</p>
 <p>Let’s say an example of <span class="math inline">\(p = 4\)</span> and <span class="math inline">\(\rho = 0.5\)</span></p>
 <div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="loop.html#cb899-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb899-2"><a href="loop.html#cb899-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, p) <span class="co">#initialize the matrix A</span></span>
+<span id="cb899-2"><a href="loop.html#cb899-2" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, p, p)</span>
 <span id="cb899-3"><a href="loop.html#cb899-3" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb899-4"><a href="loop.html#cb899-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p)       <span class="co">#loop over index i</span></span>
-<span id="cb899-5"><a href="loop.html#cb899-5" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p){    <span class="co">#loop over index j</span></span>
-<span id="cb899-6"><a href="loop.html#cb899-6" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> rho<span class="sc">^</span>{<span class="fu">abs</span>(i <span class="sc">-</span> j)} <span class="co">#set the (i, j)-th element of A</span></span>
-<span id="cb899-7"><a href="loop.html#cb899-7" tabindex="-1"></a>  }</span>
-<span id="cb899-8"><a href="loop.html#cb899-8" tabindex="-1"></a>A</span>
-<span id="cb899-9"><a href="loop.html#cb899-9" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
-<span id="cb899-10"><a href="loop.html#cb899-10" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
-<span id="cb899-11"><a href="loop.html#cb899-11" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
-<span id="cb899-12"><a href="loop.html#cb899-12" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
-<span id="cb899-13"><a href="loop.html#cb899-13" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
+<span id="cb899-4"><a href="loop.html#cb899-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>p) {</span>
+<span id="cb899-5"><a href="loop.html#cb899-5" tabindex="-1"></a>    A[i, j] <span class="ot">&lt;-</span> rho<span class="sc">^</span>{</span>
+<span id="cb899-6"><a href="loop.html#cb899-6" tabindex="-1"></a>        <span class="fu">abs</span>(i <span class="sc">-</span> j)</span>
+<span id="cb899-7"><a href="loop.html#cb899-7" tabindex="-1"></a>    }</span>
+<span id="cb899-8"><a href="loop.html#cb899-8" tabindex="-1"></a>}</span>
+<span id="cb899-9"><a href="loop.html#cb899-9" tabindex="-1"></a>A</span>
+<span id="cb899-10"><a href="loop.html#cb899-10" tabindex="-1"></a><span class="co">#&gt;       [,1] [,2] [,3]  [,4]</span></span>
+<span id="cb899-11"><a href="loop.html#cb899-11" tabindex="-1"></a><span class="co">#&gt; [1,] 1.000 0.50 0.25 0.125</span></span>
+<span id="cb899-12"><a href="loop.html#cb899-12" tabindex="-1"></a><span class="co">#&gt; [2,] 0.500 1.00 0.50 0.250</span></span>
+<span id="cb899-13"><a href="loop.html#cb899-13" tabindex="-1"></a><span class="co">#&gt; [3,] 0.250 0.50 1.00 0.500</span></span>
+<span id="cb899-14"><a href="loop.html#cb899-14" tabindex="-1"></a><span class="co">#&gt; [4,] 0.125 0.25 0.50 1.000</span></span></code></pre></div>
 </div>
 <div id="nested-loop-via-the-outer-function" class="section level3 hasAnchor" number="11.2.5">
 <h3><span class="header-section-number">11.2.5</span> Nested Loop via the <code>outer()</code> Function<a href="loop.html#nested-loop-via-the-outer-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1098,7 +1098,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.epub"],
+"download": ["r02pro.pdf", "r02pro.epub"],
 "search": {
 "engine": "fuse",
 "options": null

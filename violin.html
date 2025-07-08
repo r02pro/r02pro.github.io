@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-07-06" />
+<meta name="date" content="2025-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -826,41 +826,41 @@ div.csl-indent {
 <div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="violin.html#cb680-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb680-2"><a href="violin.html#cb680-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb680-3"><a href="violin.html#cb680-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> cholesterol)) <span class="sc">+</span> <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-708-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-707-1.png" width="576" /></p>
 <p>To introduce the detail of the generation process of violin plot, it is helpful to review the density plot.</p>
 <div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="violin.html#cb681-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">y =</span> cholesterol)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-709-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-708-1.png" width="576" /></p>
 <p>Looking at these two plots, it is easy to see that the basic violin plot is nothing but a <strong>Mirrored Density Plot</strong> with the kernel density estimates on each side.</p>
 </div>
 <div id="violin-plot-with-boxplot" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Violin plot with boxplot<a href="violin.html#violin-plot-with-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Usually, the violin plot includes the boxplot inside it, providing extra information about the data. To do this, we just add the boxplot layer on top of the violin plot.</p>
 <div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="violin.html#cb682-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> cholesterol)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-710-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-709-1.png" width="576" /></p>
 <p>Here, we set the aesthetic <code>width = 0.1</code> in the boxplot to make it thinner.</p>
 <p>Just like in the boxplot, we can compare the distributions of a continuous variable for different values of a discrete variable. We can achieve this by mapping the discrete variable to the x axis.</p>
 <div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="violin.html#cb683-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> cholesterol)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-711-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-710-1.png" width="576" /></p>
 <p>We can restrict the x-axis to a subset of the possible <code>continent</code> values.</p>
 <div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="violin.html#cb684-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> cholesterol, <span class="at">color =</span> continent)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
 <span id="cb684-2"><a href="violin.html#cb684-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;Africa&quot;</span>, <span class="st">&quot;Americas&quot;</span>,</span>
 <span id="cb684-3"><a href="violin.html#cb684-3" tabindex="-1"></a>    <span class="st">&quot;Asia&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-712-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-711-1.png" width="576" /></p>
 <p>Similarly, we can map a third variable to an aesthetic.</p>
 <div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="violin.html#cb685-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> cholesterol, <span class="at">fill =</span> gender)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
 <span id="cb685-2"><a href="violin.html#cb685-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;Africa&quot;</span>, <span class="st">&quot;Americas&quot;</span>,</span>
 <span id="cb685-3"><a href="violin.html#cb685-3" tabindex="-1"></a>    <span class="st">&quot;Asia&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-713-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-712-1.png" width="576" /></p>
 <p>As you can see, the boxplot doesn’t align well inside the violin plot. To fix this issue, you can add the global aesthetic <code>position = position_dodge(0.9)</code> to both geoms.</p>
 <div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="violin.html#cb686-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> cholesterol, <span class="at">fill =</span> gender)) <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>)) <span class="sc">+</span></span>
 <span id="cb686-2"><a href="violin.html#cb686-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>)) <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;Africa&quot;</span>,</span>
 <span id="cb686-3"><a href="violin.html#cb686-3" tabindex="-1"></a>    <span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Asia&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-714-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-713-1.png" width="576" /></p>
 <p>You can also try to add other Constant-Valued Aesthetics to both geoms to change their appearances.</p>
 <div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="violin.html#cb687-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, <span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> cholesterol, <span class="at">color =</span> continent)) <span class="sc">+</span> <span class="fu">geom_violin</span>(<span class="at">color =</span> <span class="st">&quot;violet&quot;</span>,</span>
 <span id="cb687-2"><a href="violin.html#cb687-2" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">&quot;Africa&quot;</span>,</span>
 <span id="cb687-3"><a href="violin.html#cb687-3" tabindex="-1"></a>    <span class="st">&quot;Americas&quot;</span>, <span class="st">&quot;Asia&quot;</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-715-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-714-1.png" width="576" /></p>
 
 </div>
 </div>
@@ -912,7 +912,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.epub"],
+"download": ["r02pro.pdf", "r02pro.epub"],
 "search": {
 "engine": "fuse",
 "options": null

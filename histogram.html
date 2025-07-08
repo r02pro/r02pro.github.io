@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2025-07-06" />
+<meta name="date" content="2025-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -826,7 +826,7 @@ div.csl-indent {
 <p>To generate a histogram, you can simply use <code>hist()</code> with the variable as the argument.</p>
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="histogram.html#cb619-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
 <span id="cb619-2"><a href="histogram.html#cb619-2" tabindex="-1"></a><span class="fu">hist</span>(gm2004<span class="sc">$</span>cholesterol)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-646-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-645-1.png" width="576" /></p>
 <p>On the x-axis, the histogram displays the range of values for the cholesterol value. Then, the histogram divides the x-axis into bins with equal width, and a bar is erected over the bin with the y-axis showing the corresponding number of observations (called Frequency on the y-axis label).</p>
 </div>
 <div id="using-the-geom_histogram-function" class="section level3 hasAnchor" number="5.9.2">
@@ -836,22 +836,22 @@ div.csl-indent {
 <span id="cb620-2"><a href="histogram.html#cb620-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol))</span>
 <span id="cb620-3"><a href="histogram.html#cb620-3" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with</span></span>
 <span id="cb620-4"><a href="histogram.html#cb620-4" tabindex="-1"></a><span class="co">#&gt; `binwidth`.</span></span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-647-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-646-1.png" width="576" /></p>
 <p>We could see a message, saying “<code>stat_bin()</code> using <code>bins = 30</code>” which implies the histogram has 30 bins by default. Next, we introduce three different ways to customize the bins.</p>
 <p><strong><em>a. Use Aesthetic <code>bins</code>.</em></strong></p>
 <p>We can change the number of bins with the constant-valued aesthetic <code>bins</code>.</p>
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="histogram.html#cb621-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol), <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-648-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-647-1.png" width="576" /></p>
 <p>We can see that the histogram now has 5 bins and each bin has the same width.</p>
 <p><strong><em>b. Use Aesthetic <code>binwidth</code>.</em></strong></p>
 <p>And from the message, another way to change the number of bins is to specify the <code>binwidth</code>, which is another constant-valued aesthetic.</p>
 <div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="histogram.html#cb622-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol), <span class="at">binwidth =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-649-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-648-1.png" width="576" /></p>
 <p><strong><em>c. Manually Set the Bins.</em></strong></p>
 <p>If desired, you can manually set the bins via the <code>breaks</code> argument in the <code>geom_histogram()</code> function.</p>
 <div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="histogram.html#cb623-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">3.5</span>,</span>
 <span id="cb623-2"><a href="histogram.html#cb623-2" tabindex="-1"></a>    <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-650-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-649-1.png" width="576" /></p>
 <p>The <code>breaks</code> argument is a numeric vector specifying how the bins are constructed. Let’s verify the height of the first bin.</p>
 <div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="histogram.html#cb624-1" tabindex="-1"></a><span class="co"># verify the first bin count</span></span>
 <span id="cb624-2"><a href="histogram.html#cb624-2" tabindex="-1"></a><span class="fu">sum</span>(gm2004<span class="sc">$</span>cholesterol <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -863,7 +863,7 @@ div.csl-indent {
 <p>Next, we introduce the aesthetics in histograms, which are very similar to those in bar charts. For example, we can map a variable to the fill aesthetic.</p>
 <div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="histogram.html#cb625-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol, <span class="at">fill =</span> gender),</span>
 <span id="cb625-2"><a href="histogram.html#cb625-2" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-652-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-651-1.png" width="576" /></p>
 <p>We can see that like the bar chart, the bar for each bin is now divided into sub-bars with different colors. The different colors in each sub-bar correspond to the values of <code>gender</code>. And the height of each sub-bar represents the count for the cases with the <code>cholesterol</code> in this particular bin and the specific value of <code>gender</code>. We observe that while the male and female group behave similarly in the middle bins, many more countries has a small mean cholesterol value for males than those for females.</p>
 <p>Just like <code>geom_bar()</code>, we have a global aesthetic called <code>position</code>, which does position adjustment for different sub-bars. The default position value is again <code>"stack"</code> if you don’t specify it.</p>
 <p><strong><em>a. Stacked Bars</em></strong></p>
@@ -874,12 +874,12 @@ div.csl-indent {
 <p>The second option for position is <code>"dodge"</code>, which places the sub-bars beside one another, making it easier to compare individual counts for the combination of a bin of <code>cholesterol</code> and <code>gender</code>.</p>
 <div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="histogram.html#cb627-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol, <span class="at">fill =</span> gender),</span>
 <span id="cb627-2"><a href="histogram.html#cb627-2" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-654-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-653-1.png" width="576" /></p>
 <p><strong><em>c. Filled Bars</em></strong></p>
 <p>Another option for optional is <code>position = "fill"</code>. It works like stacking, but makes each set of stacked bars the same height.</p>
 <div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="histogram.html#cb628-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol, <span class="at">fill =</span> gender),</span>
 <span id="cb628-2"><a href="histogram.html#cb628-2" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">3.5</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-655-1.png" width="576" /></p>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-654-1.png" width="576" /></p>
 <p>Just like <code>geom_bar()</code>, the y axis may be labeled as “proportion” rather than “count”, to be more precise. This makes it easier to compare proportions of different values of gender for different bins of cholesterol. For example, we can see that the proportion of <code>gender = "male"</code> is 100% for cholesterol values smaller than 4.</p>
 </div>
 <div id="density-estimate-using-histograms" class="section level3 hasAnchor" number="5.9.4">
@@ -887,7 +887,7 @@ div.csl-indent {
 <p>In addition to using histograms to visualize the distribution of a discrete variable, you can also construct a density density of variable using a proper normalization. To generate such a density estimate, you can add <code>y = ..density..</code> as a mapping in the <code>aes()</code> function in <code>geom_historgram()</code>. Let’s see an example as below.</p>
 <div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="histogram.html#cb629-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol, <span class="at">y =</span> ..density..),</span>
 <span id="cb629-2"><a href="histogram.html#cb629-2" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">3.5</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-656-1.png" width="576" />
+<p><img src="r02pro_files/figure-html/unnamed-chunk-655-1.png" width="576" />
 Let’s try to calculate the height of the first bar together. We know that the total area of the bars is 1, agreeing with the definition of density. First, we get the area of the first bar. Then we divide it by the width to get the height.</p>
 <div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="histogram.html#cb630-1" tabindex="-1"></a>cholesterol_no_na <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(gm2004<span class="sc">$</span>cholesterol)</span>
 <span id="cb630-2"><a href="histogram.html#cb630-2" tabindex="-1"></a><span class="fu">sum</span>(cholesterol_no_na <span class="sc">&lt;</span> <span class="dv">4</span>)<span class="sc">/</span><span class="fu">length</span>(cholesterol_no_na)  <span class="co">#area of the first bar</span></span>
@@ -961,7 +961,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["r02pro.epub"],
+"download": ["r02pro.pdf", "r02pro.epub"],
 "search": {
 "engine": "fuse",
 "options": null
