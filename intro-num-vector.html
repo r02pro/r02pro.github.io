@@ -226,7 +226,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="intro-num-vector.html"><a href="intro-num-vector.html#create-numeric-vector"><i class="fa fa-check"></i><b>2.1.1</b> Creation and class</a></li>
 <li class="chapter" data-level="2.1.2" data-path="intro-num-vector.html"><a href="intro-num-vector.html#operation-recycling"><i class="fa fa-check"></i><b>2.1.2</b> Operations and recycling rule</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro-num-vector.html"><a href="intro-num-vector.html#storage-type"><i class="fa fa-check"></i><b>2.1.3</b> Storage types (doubles and intergers)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro-num-vector.html"><a href="intro-num-vector.html#storage-type"><i class="fa fa-check"></i><b>2.1.3</b> Storage types (doubles and integers)</a></li>
 <li class="chapter" data-level="2.1.4" data-path="intro-num-vector.html"><a href="intro-num-vector.html#printing"><i class="fa fa-check"></i><b>2.1.4</b> Printing</a></li>
 <li class="chapter" data-level="2.1.5" data-path="intro-num-vector.html"><a href="intro-num-vector.html#exercises-3"><i class="fa fa-check"></i><b>2.1.5</b> Exercises</a></li>
 </ul></li>
@@ -246,7 +246,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.4" data-path="coercion-rule.html"><a href="coercion-rule.html"><i class="fa fa-check"></i><b>2.4</b> Coercion Rule</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="coercion-rule.html"><a href="coercion-rule.html#coercion-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Coercion with <code>c()</code></a></li>
-<li class="chapter" data-level="2.4.2" data-path="coercion-rule.html"><a href="coercion-rule.html#cocercion-in-operators"><i class="fa fa-check"></i><b>2.4.2</b> Cocercion in operators</a></li>
+<li class="chapter" data-level="2.4.2" data-path="coercion-rule.html"><a href="coercion-rule.html#coercion-in-operators"><i class="fa fa-check"></i><b>2.4.2</b> Coercion in operators</a></li>
 <li class="chapter" data-level="2.4.3" data-path="coercion-rule.html"><a href="coercion-rule.html#explicit-coercion"><i class="fa fa-check"></i><b>2.4.3</b> Explicit Coercion</a></li>
 <li class="chapter" data-level="2.4.4" data-path="coercion-rule.html"><a href="coercion-rule.html#exercises-6"><i class="fa fa-check"></i><b>2.4.4</b> Exercises</a></li>
 </ul></li>
@@ -835,14 +835,14 @@ div.csl-indent {
 <span id="cb25-9"><a href="intro-num-vector.html#cb25-9" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
 <p>Given the output, you can see that <code>6</code> is a numeric vector with length 1 and you have successfully created the numeric vector <code>x1</code> of length 1.</p>
 <p>Moving on, you may wonder, can a numeric vector contain more than one value? The answer is a big YES! In R, you can use the <code>c()</code> function (<code>c</code> is short for combine) to store several elements into one single numeric vector.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro-num-vector.html#cb26-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>)  <span class="co">#use c() to combine elements into a numeric vector of length 5</span></span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro-num-vector.html#cb26-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>)  <span class="co">#combine elements</span></span>
 <span id="cb26-2"><a href="intro-num-vector.html#cb26-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 3 5 5</span></span>
 <span id="cb26-3"><a href="intro-num-vector.html#cb26-3" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>)  <span class="co">#y1 is a numeric vector of length 5</span></span>
 <span id="cb26-4"><a href="intro-num-vector.html#cb26-4" tabindex="-1"></a>y1  <span class="co">#check the value of y1</span></span>
 <span id="cb26-5"><a href="intro-num-vector.html#cb26-5" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 3 5 5</span></span>
 <span id="cb26-6"><a href="intro-num-vector.html#cb26-6" tabindex="-1"></a><span class="fu">length</span>(y1)  <span class="co">#length of y1</span></span>
 <span id="cb26-7"><a href="intro-num-vector.html#cb26-7" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
-<p>In this example, firstly you have created a length-5 object using the <code>c()</code> function with arguments being the five elements separated by <strong>comma</strong>. Since all elements are numbers, this object is still a numeric vector. Then after assigning the values to the name y1, you will get a new numeric vector <code>y1</code> with 5 elements. Among the five elements, although some of them have the same value, R still recognizes and stores them separately. This is the reason why the length of <code>y1</code> is 5 instead of 3.</p>
+<p>In this example, firstly you have created a length-5 object using the <code>c()</code> function with arguments being the five elements separated by <strong>commas</strong>. Since all elements are numbers, this object is still a numeric vector. Then after assigning the values to the name y1, you will get a new numeric vector <code>y1</code> with 5 elements. Among the five elements, although some of them have the same value, R still recognizes and stores them separately. This is the reason why the length of <code>y1</code> is 5 instead of 3.</p>
 <p>Similar to <code>x1</code>, you can verify the contents of <code>y1</code> and check the length of it via the <code>length()</code> function.</p>
 <div class="infobox caution">
 <p>When you assign several values to a name, the order of the values will not change after assignment. If you create two numeric vectors containing the same numbers but in different orders, the two vectors will be two different ones maintaining the specified orders. For example,</p>
@@ -854,7 +854,7 @@ div.csl-indent {
 <span id="cb27-6"><a href="intro-num-vector.html#cb27-6" tabindex="-1"></a><span class="co">#&gt; [1] 9 7 5 3 1</span></span></code></pre></div>
 </div>
 <p>In addition to using numbers inside the <code>c()</code> function, you can also use numeric vectors as the arguments to create a longer vector. The new, longer vector will combine the input numeric vectors in the given order.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro-num-vector.html#cb28-1" tabindex="-1"></a><span class="fu">c</span>(x1, y1)  <span class="co">#use c() to combine several numeric vectors into one numeric vector</span></span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro-num-vector.html#cb28-1" tabindex="-1"></a><span class="fu">c</span>(x1, y1)  <span class="co">#combine several numeric vectors</span></span>
 <span id="cb28-2"><a href="intro-num-vector.html#cb28-2" tabindex="-1"></a><span class="co">#&gt; [1] 6 1 3 3 5 5</span></span>
 <span id="cb28-3"><a href="intro-num-vector.html#cb28-3" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, y1)</span>
 <span id="cb28-4"><a href="intro-num-vector.html#cb28-4" tabindex="-1"></a>z1</span>
@@ -930,7 +930,7 @@ Figure 2.2: The environment (II)
 <span id="cb37-3"><a href="intro-num-vector.html#cb37-3" tabindex="-1"></a>y2 <span class="sc">-</span> x1</span></code></pre></div>
 </div>
 <div id="storage-type" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Storage types (doubles and intergers)<a href="intro-num-vector.html#storage-type" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.1.3</span> Storage types (doubles and integers)<a href="intro-num-vector.html#storage-type" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, it is time to learn how numeric vectors are stored in R. To find the <strong>internal storage type</strong> of an R object, you can use the <code>typeof()</code> function.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intro-num-vector.html#cb38-1" tabindex="-1"></a>my_num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb38-2"><a href="intro-num-vector.html#cb38-2" tabindex="-1"></a><span class="fu">typeof</span>(my_num)  <span class="co">#check the internal storage type</span></span>

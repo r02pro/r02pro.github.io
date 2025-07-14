@@ -226,7 +226,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="intro-num-vector.html"><a href="intro-num-vector.html#create-numeric-vector"><i class="fa fa-check"></i><b>2.1.1</b> Creation and class</a></li>
 <li class="chapter" data-level="2.1.2" data-path="intro-num-vector.html"><a href="intro-num-vector.html#operation-recycling"><i class="fa fa-check"></i><b>2.1.2</b> Operations and recycling rule</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro-num-vector.html"><a href="intro-num-vector.html#storage-type"><i class="fa fa-check"></i><b>2.1.3</b> Storage types (doubles and intergers)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro-num-vector.html"><a href="intro-num-vector.html#storage-type"><i class="fa fa-check"></i><b>2.1.3</b> Storage types (doubles and integers)</a></li>
 <li class="chapter" data-level="2.1.4" data-path="intro-num-vector.html"><a href="intro-num-vector.html#printing"><i class="fa fa-check"></i><b>2.1.4</b> Printing</a></li>
 <li class="chapter" data-level="2.1.5" data-path="intro-num-vector.html"><a href="intro-num-vector.html#exercises-3"><i class="fa fa-check"></i><b>2.1.5</b> Exercises</a></li>
 </ul></li>
@@ -246,7 +246,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.4" data-path="coercion-rule.html"><a href="coercion-rule.html"><i class="fa fa-check"></i><b>2.4</b> Coercion Rule</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="coercion-rule.html"><a href="coercion-rule.html#coercion-with-c"><i class="fa fa-check"></i><b>2.4.1</b> Coercion with <code>c()</code></a></li>
-<li class="chapter" data-level="2.4.2" data-path="coercion-rule.html"><a href="coercion-rule.html#cocercion-in-operators"><i class="fa fa-check"></i><b>2.4.2</b> Cocercion in operators</a></li>
+<li class="chapter" data-level="2.4.2" data-path="coercion-rule.html"><a href="coercion-rule.html#coercion-in-operators"><i class="fa fa-check"></i><b>2.4.2</b> Coercion in operators</a></li>
 <li class="chapter" data-level="2.4.3" data-path="coercion-rule.html"><a href="coercion-rule.html#explicit-coercion"><i class="fa fa-check"></i><b>2.4.3</b> Explicit Coercion</a></li>
 <li class="chapter" data-level="2.4.4" data-path="coercion-rule.html"><a href="coercion-rule.html#exercises-6"><i class="fa fa-check"></i><b>2.4.4</b> Exercises</a></li>
 </ul></li>
@@ -823,29 +823,29 @@ div.csl-indent {
 <div id="grouped-filter" class="section level3 hasAnchor" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Grouped Filter<a href="grouped-mutate-filter.html#grouped-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For the <code>gm</code> dataset, let’s say we want to find the countries that have a higher average GDP per capita than the average in the corresponding continent in the year 2008. We can use the following code.</p>
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="grouped-mutate-filter.html#cb757-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb757-2"><a href="grouped-mutate-filter.html#cb757-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb757-3"><a href="grouped-mutate-filter.html#cb757-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
-<span id="cb757-4"><a href="grouped-mutate-filter.html#cb757-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb757-5"><a href="grouped-mutate-filter.html#cb757-5" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb757-6"><a href="grouped-mutate-filter.html#cb757-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ave_GDP =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb757-7"><a href="grouped-mutate-filter.html#cb757-7" tabindex="-1"></a>    <span class="fu">filter</span>(GDP_per_capita <span class="sc">&gt;</span> ave_GDP) <span class="sc">%&gt;%</span></span>
-<span id="cb757-8"><a href="grouped-mutate-filter.html#cb757-8" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita, ave_GDP)</span>
-<span id="cb757-9"><a href="grouped-mutate-filter.html#cb757-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 63 × 4</span></span>
-<span id="cb757-10"><a href="grouped-mutate-filter.html#cb757-10" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [6]</span></span>
-<span id="cb757-11"><a href="grouped-mutate-filter.html#cb757-11" tabindex="-1"></a><span class="co">#&gt;    country              continent GDP_per_capita ave_GDP</span></span>
-<span id="cb757-12"><a href="grouped-mutate-filter.html#cb757-12" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb757-13"><a href="grouped-mutate-filter.html#cb757-13" tabindex="-1"></a><span class="co">#&gt;  1 Angola               Africa              3.96    2.41</span></span>
-<span id="cb757-14"><a href="grouped-mutate-filter.html#cb757-14" tabindex="-1"></a><span class="co">#&gt;  2 Andorra              &lt;NA&gt;               35.4    27.6 </span></span>
-<span id="cb757-15"><a href="grouped-mutate-filter.html#cb757-15" tabindex="-1"></a><span class="co">#&gt;  3 United Arab Emirates Asia               34.6    13.0 </span></span>
-<span id="cb757-16"><a href="grouped-mutate-filter.html#cb757-16" tabindex="-1"></a><span class="co">#&gt;  4 Antigua and Barbuda  Americas           15.4    12.6 </span></span>
-<span id="cb757-17"><a href="grouped-mutate-filter.html#cb757-17" tabindex="-1"></a><span class="co">#&gt;  5 Australia            Oceania            53.3    11.2 </span></span>
-<span id="cb757-18"><a href="grouped-mutate-filter.html#cb757-18" tabindex="-1"></a><span class="co">#&gt;  6 Austria              Europe             42.6    26.7 </span></span>
-<span id="cb757-19"><a href="grouped-mutate-filter.html#cb757-19" tabindex="-1"></a><span class="co">#&gt;  7 Belgium              Europe             39      26.7 </span></span>
-<span id="cb757-20"><a href="grouped-mutate-filter.html#cb757-20" tabindex="-1"></a><span class="co">#&gt;  8 Bahrain              Asia               21.1    13.0 </span></span>
-<span id="cb757-21"><a href="grouped-mutate-filter.html#cb757-21" tabindex="-1"></a><span class="co">#&gt;  9 Bahamas              Americas           32.3    12.6 </span></span>
-<span id="cb757-22"><a href="grouped-mutate-filter.html#cb757-22" tabindex="-1"></a><span class="co">#&gt; 10 Bermuda              &lt;NA&gt;              118      27.6 </span></span>
-<span id="cb757-23"><a href="grouped-mutate-filter.html#cb757-23" tabindex="-1"></a><span class="co">#&gt; # ℹ 53 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="grouped-mutate-filter.html#cb756-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb756-2"><a href="grouped-mutate-filter.html#cb756-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb756-3"><a href="grouped-mutate-filter.html#cb756-3" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb756-4"><a href="grouped-mutate-filter.html#cb756-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb756-5"><a href="grouped-mutate-filter.html#cb756-5" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb756-6"><a href="grouped-mutate-filter.html#cb756-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ave_GDP =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb756-7"><a href="grouped-mutate-filter.html#cb756-7" tabindex="-1"></a>    <span class="fu">filter</span>(GDP_per_capita <span class="sc">&gt;</span> ave_GDP) <span class="sc">%&gt;%</span></span>
+<span id="cb756-8"><a href="grouped-mutate-filter.html#cb756-8" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita, ave_GDP)</span>
+<span id="cb756-9"><a href="grouped-mutate-filter.html#cb756-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 63 × 4</span></span>
+<span id="cb756-10"><a href="grouped-mutate-filter.html#cb756-10" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [6]</span></span>
+<span id="cb756-11"><a href="grouped-mutate-filter.html#cb756-11" tabindex="-1"></a><span class="co">#&gt;    country              continent GDP_per_capita ave_GDP</span></span>
+<span id="cb756-12"><a href="grouped-mutate-filter.html#cb756-12" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb756-13"><a href="grouped-mutate-filter.html#cb756-13" tabindex="-1"></a><span class="co">#&gt;  1 Angola               Africa              3.96    2.41</span></span>
+<span id="cb756-14"><a href="grouped-mutate-filter.html#cb756-14" tabindex="-1"></a><span class="co">#&gt;  2 Andorra              &lt;NA&gt;               35.4    27.6 </span></span>
+<span id="cb756-15"><a href="grouped-mutate-filter.html#cb756-15" tabindex="-1"></a><span class="co">#&gt;  3 United Arab Emirates Asia               34.6    13.0 </span></span>
+<span id="cb756-16"><a href="grouped-mutate-filter.html#cb756-16" tabindex="-1"></a><span class="co">#&gt;  4 Antigua and Barbuda  Americas           15.4    12.6 </span></span>
+<span id="cb756-17"><a href="grouped-mutate-filter.html#cb756-17" tabindex="-1"></a><span class="co">#&gt;  5 Australia            Oceania            53.3    11.2 </span></span>
+<span id="cb756-18"><a href="grouped-mutate-filter.html#cb756-18" tabindex="-1"></a><span class="co">#&gt;  6 Austria              Europe             42.6    26.7 </span></span>
+<span id="cb756-19"><a href="grouped-mutate-filter.html#cb756-19" tabindex="-1"></a><span class="co">#&gt;  7 Belgium              Europe             39      26.7 </span></span>
+<span id="cb756-20"><a href="grouped-mutate-filter.html#cb756-20" tabindex="-1"></a><span class="co">#&gt;  8 Bahrain              Asia               21.1    13.0 </span></span>
+<span id="cb756-21"><a href="grouped-mutate-filter.html#cb756-21" tabindex="-1"></a><span class="co">#&gt;  9 Bahamas              Americas           32.3    12.6 </span></span>
+<span id="cb756-22"><a href="grouped-mutate-filter.html#cb756-22" tabindex="-1"></a><span class="co">#&gt; 10 Bermuda              &lt;NA&gt;              118      27.6 </span></span>
+<span id="cb756-23"><a href="grouped-mutate-filter.html#cb756-23" tabindex="-1"></a><span class="co">#&gt; # ℹ 53 more rows</span></span></code></pre></div>
 <p>The code works in the following steps.
 1. Filter the observations for the year 2008.
 2. Group the observations by <code>continent</code>.
@@ -856,27 +856,27 @@ div.csl-indent {
 <div id="grouped-mutate" class="section level3 hasAnchor" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Grouped Mutate<a href="grouped-mutate-filter.html#grouped-mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let’s say we want to find the top two countries with the highest GDP per capita for each continent in the year 2008. We can use the following code.</p>
-<div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="grouped-mutate-filter.html#cb758-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
-<span id="cb758-2"><a href="grouped-mutate-filter.html#cb758-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
-<span id="cb758-3"><a href="grouped-mutate-filter.html#cb758-3" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb758-4"><a href="grouped-mutate-filter.html#cb758-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(GDP_per_capita), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb758-5"><a href="grouped-mutate-filter.html#cb758-5" tabindex="-1"></a>    <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb758-6"><a href="grouped-mutate-filter.html#cb758-6" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita) <span class="sc">%&gt;%</span></span>
-<span id="cb758-7"><a href="grouped-mutate-filter.html#cb758-7" tabindex="-1"></a>    <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(GDP_per_capita))</span>
-<span id="cb758-8"><a href="grouped-mutate-filter.html#cb758-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span id="cb758-9"><a href="grouped-mutate-filter.html#cb758-9" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [5]</span></span>
-<span id="cb758-10"><a href="grouped-mutate-filter.html#cb758-10" tabindex="-1"></a><span class="co">#&gt;    country           continent GDP_per_capita</span></span>
-<span id="cb758-11"><a href="grouped-mutate-filter.html#cb758-11" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;             &lt;chr&gt;              &lt;dbl&gt;</span></span>
-<span id="cb758-12"><a href="grouped-mutate-filter.html#cb758-12" tabindex="-1"></a><span class="co">#&gt;  1 Equatorial Guinea Africa              15.9</span></span>
-<span id="cb758-13"><a href="grouped-mutate-filter.html#cb758-13" tabindex="-1"></a><span class="co">#&gt;  2 Seychelles        Africa              11.7</span></span>
-<span id="cb758-14"><a href="grouped-mutate-filter.html#cb758-14" tabindex="-1"></a><span class="co">#&gt;  3 United States     Americas            51.9</span></span>
-<span id="cb758-15"><a href="grouped-mutate-filter.html#cb758-15" tabindex="-1"></a><span class="co">#&gt;  4 Greenland         Americas            42.9</span></span>
-<span id="cb758-16"><a href="grouped-mutate-filter.html#cb758-16" tabindex="-1"></a><span class="co">#&gt;  5 Macao, China      Asia                60.5</span></span>
-<span id="cb758-17"><a href="grouped-mutate-filter.html#cb758-17" tabindex="-1"></a><span class="co">#&gt;  6 Qatar             Asia                59.1</span></span>
-<span id="cb758-18"><a href="grouped-mutate-filter.html#cb758-18" tabindex="-1"></a><span class="co">#&gt;  7 Luxembourg        Europe              96  </span></span>
-<span id="cb758-19"><a href="grouped-mutate-filter.html#cb758-19" tabindex="-1"></a><span class="co">#&gt;  8 Switzerland       Europe              80.3</span></span>
-<span id="cb758-20"><a href="grouped-mutate-filter.html#cb758-20" tabindex="-1"></a><span class="co">#&gt;  9 Australia         Oceania             53.3</span></span>
-<span id="cb758-21"><a href="grouped-mutate-filter.html#cb758-21" tabindex="-1"></a><span class="co">#&gt; 10 New Zealand       Oceania             35.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="grouped-mutate-filter.html#cb757-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
+<span id="cb757-2"><a href="grouped-mutate-filter.html#cb757-2" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
+<span id="cb757-3"><a href="grouped-mutate-filter.html#cb757-3" tabindex="-1"></a>    <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb757-4"><a href="grouped-mutate-filter.html#cb757-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(GDP_per_capita), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb757-5"><a href="grouped-mutate-filter.html#cb757-5" tabindex="-1"></a>    <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb757-6"><a href="grouped-mutate-filter.html#cb757-6" tabindex="-1"></a>    <span class="fu">select</span>(country, continent, GDP_per_capita) <span class="sc">%&gt;%</span></span>
+<span id="cb757-7"><a href="grouped-mutate-filter.html#cb757-7" tabindex="-1"></a>    <span class="fu">arrange</span>(continent, <span class="fu">desc</span>(GDP_per_capita))</span>
+<span id="cb757-8"><a href="grouped-mutate-filter.html#cb757-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
+<span id="cb757-9"><a href="grouped-mutate-filter.html#cb757-9" tabindex="-1"></a><span class="co">#&gt; # Groups:   continent [5]</span></span>
+<span id="cb757-10"><a href="grouped-mutate-filter.html#cb757-10" tabindex="-1"></a><span class="co">#&gt;    country           continent GDP_per_capita</span></span>
+<span id="cb757-11"><a href="grouped-mutate-filter.html#cb757-11" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;             &lt;chr&gt;              &lt;dbl&gt;</span></span>
+<span id="cb757-12"><a href="grouped-mutate-filter.html#cb757-12" tabindex="-1"></a><span class="co">#&gt;  1 Equatorial Guinea Africa              15.9</span></span>
+<span id="cb757-13"><a href="grouped-mutate-filter.html#cb757-13" tabindex="-1"></a><span class="co">#&gt;  2 Seychelles        Africa              11.7</span></span>
+<span id="cb757-14"><a href="grouped-mutate-filter.html#cb757-14" tabindex="-1"></a><span class="co">#&gt;  3 United States     Americas            51.9</span></span>
+<span id="cb757-15"><a href="grouped-mutate-filter.html#cb757-15" tabindex="-1"></a><span class="co">#&gt;  4 Greenland         Americas            42.9</span></span>
+<span id="cb757-16"><a href="grouped-mutate-filter.html#cb757-16" tabindex="-1"></a><span class="co">#&gt;  5 Macao, China      Asia                60.5</span></span>
+<span id="cb757-17"><a href="grouped-mutate-filter.html#cb757-17" tabindex="-1"></a><span class="co">#&gt;  6 Qatar             Asia                59.1</span></span>
+<span id="cb757-18"><a href="grouped-mutate-filter.html#cb757-18" tabindex="-1"></a><span class="co">#&gt;  7 Luxembourg        Europe              96  </span></span>
+<span id="cb757-19"><a href="grouped-mutate-filter.html#cb757-19" tabindex="-1"></a><span class="co">#&gt;  8 Switzerland       Europe              80.3</span></span>
+<span id="cb757-20"><a href="grouped-mutate-filter.html#cb757-20" tabindex="-1"></a><span class="co">#&gt;  9 Australia         Oceania             53.3</span></span>
+<span id="cb757-21"><a href="grouped-mutate-filter.html#cb757-21" tabindex="-1"></a><span class="co">#&gt; 10 New Zealand       Oceania             35.3</span></span></code></pre></div>
 <p>Here, we first filter the observations for the year 2008 and remove the missing values in the <code>continent</code> variable. Then, we group the observations by <code>continent</code>. We use the <code>mutate()</code> function to create a new variable <code>r</code> which represents the rank of the GDP per capita in descending order. The <code>ties.method = "first"</code> argument is used to break the ties by giving the same rank to the same values. We then filter the observations that have a rank less than or equal to 2. Finally, we select the variables <code>country</code>, <code>continent</code>, and <code>GDP_per_capita</code>, and arrange the observations according to the continent and the GDP per capita in descending order.</p>
 </div>
 <div id="exercises-48" class="section level3 hasAnchor" number="7.6.3">
