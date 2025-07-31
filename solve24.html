@@ -678,9 +678,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1.1" data-path="normal-distribution.html"><a href="normal-distribution.html#pdf"><i class="fa fa-check"></i><b>10.1.1</b> Probability Density Function (PDF)</a></li>
 <li class="chapter" data-level="10.1.2" data-path="normal-distribution.html"><a href="normal-distribution.html#cdf"><i class="fa fa-check"></i><b>10.1.2</b> Cumulative Distribution Function (CDF)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>10.1.3</b> Quantile Function</a></li>
-<li class="chapter" data-level="10.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>10.1.4</b> Random Number Generator</a></li>
-<li class="chapter" data-level="10.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-55"><i class="fa fa-check"></i><b>10.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#the-empirical-rule-68-95-99.7"><i class="fa fa-check"></i><b>10.1.3</b> The Empirical Rule (68-95-99.7)</a></li>
+<li class="chapter" data-level="10.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>10.1.4</b> Quantile Function</a></li>
+<li class="chapter" data-level="10.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>10.1.5</b> Random Number Generator</a></li>
+<li class="chapter" data-level="10.1.6" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-55"><i class="fa fa-check"></i><b>10.1.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="other-distributions.html"><a href="other-distributions.html"><i class="fa fa-check"></i><b>10.2</b> Other Distributions</a>
 <ul>
@@ -827,112 +828,112 @@ div.csl-indent {
 <div id="solve24" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> Solve 24<a href="solve24.html#solve24" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s first review the helper functions we created.</p>
-<div class="sourceCode" id="cb976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb976-1"><a href="solve24.html#cb976-1" tabindex="-1"></a><span class="co"># single step operation</span></span>
-<span id="cb976-2"><a href="solve24.html#cb976-2" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, op) {</span>
-<span id="cb976-3"><a href="solve24.html#cb976-3" tabindex="-1"></a>    <span class="cf">switch</span>(op, x <span class="sc">+</span> y, x <span class="sc">-</span> y, x <span class="sc">*</span> y, x<span class="sc">/</span>y, y <span class="sc">-</span> x, y<span class="sc">/</span>x)</span>
-<span id="cb976-4"><a href="solve24.html#cb976-4" tabindex="-1"></a>}</span>
-<span id="cb976-5"><a href="solve24.html#cb976-5" tabindex="-1"></a><span class="co"># multi-step operations</span></span>
-<span id="cb976-6"><a href="solve24.html#cb976-6" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)) {</span>
-<span id="cb976-7"><a href="solve24.html#cb976-7" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> num</span>
-<span id="cb976-8"><a href="solve24.html#cb976-8" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step <span class="sc">+</span> <span class="dv">1</span>], op[step])</span>
-<span id="cb976-9"><a href="solve24.html#cb976-9" tabindex="-1"></a>    <span class="fu">return</span>(sol)</span>
-<span id="cb976-10"><a href="solve24.html#cb976-10" tabindex="-1"></a>}</span>
-<span id="cb976-11"><a href="solve24.html#cb976-11" tabindex="-1"></a><span class="co"># print a single step</span></span>
-<span id="cb976-12"><a href="solve24.html#cb976-12" tabindex="-1"></a>print_op <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z, op) {</span>
-<span id="cb976-13"><a href="solve24.html#cb976-13" tabindex="-1"></a>    <span class="cf">switch</span>(op, <span class="fu">paste</span>(x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;-&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;*&quot;</span>,</span>
-<span id="cb976-14"><a href="solve24.html#cb976-14" tabindex="-1"></a>        y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;/&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(y, <span class="st">&quot;-&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(y,</span>
-<span id="cb976-15"><a href="solve24.html#cb976-15" tabindex="-1"></a>        <span class="st">&quot;/&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z))</span>
-<span id="cb976-16"><a href="solve24.html#cb976-16" tabindex="-1"></a>}</span>
-<span id="cb976-17"><a href="solve24.html#cb976-17" tabindex="-1"></a><span class="co"># print multi-steps (the solution)</span></span>
-<span id="cb976-18"><a href="solve24.html#cb976-18" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op) {</span>
-<span id="cb976-19"><a href="solve24.html#cb976-19" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)  <span class="co">#Only keep 3 digits to make it better looking.</span></span>
-<span id="cb976-20"><a href="solve24.html#cb976-20" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
-<span id="cb976-21"><a href="solve24.html#cb976-21" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb976-22"><a href="solve24.html#cb976-22" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step <span class="sc">+</span> <span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb976-23"><a href="solve24.html#cb976-23" tabindex="-1"></a>    }</span>
-<span id="cb976-24"><a href="solve24.html#cb976-24" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="solve24.html#cb977-1" tabindex="-1"></a><span class="co"># single step operation</span></span>
+<span id="cb977-2"><a href="solve24.html#cb977-2" tabindex="-1"></a>cal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, op) {</span>
+<span id="cb977-3"><a href="solve24.html#cb977-3" tabindex="-1"></a>    <span class="cf">switch</span>(op, x <span class="sc">+</span> y, x <span class="sc">-</span> y, x <span class="sc">*</span> y, x<span class="sc">/</span>y, y <span class="sc">-</span> x, y<span class="sc">/</span>x)</span>
+<span id="cb977-4"><a href="solve24.html#cb977-4" tabindex="-1"></a>}</span>
+<span id="cb977-5"><a href="solve24.html#cb977-5" tabindex="-1"></a><span class="co"># multi-step operations</span></span>
+<span id="cb977-6"><a href="solve24.html#cb977-6" tabindex="-1"></a>num_op <span class="ot">&lt;-</span> <span class="cf">function</span>(num, op, <span class="at">n_nums =</span> <span class="fu">length</span>(num)) {</span>
+<span id="cb977-7"><a href="solve24.html#cb977-7" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> num</span>
+<span id="cb977-8"><a href="solve24.html#cb977-8" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) sol[step <span class="sc">+</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">cal</span>(sol[step], num[step <span class="sc">+</span> <span class="dv">1</span>], op[step])</span>
+<span id="cb977-9"><a href="solve24.html#cb977-9" tabindex="-1"></a>    <span class="fu">return</span>(sol)</span>
+<span id="cb977-10"><a href="solve24.html#cb977-10" tabindex="-1"></a>}</span>
+<span id="cb977-11"><a href="solve24.html#cb977-11" tabindex="-1"></a><span class="co"># print a single step</span></span>
+<span id="cb977-12"><a href="solve24.html#cb977-12" tabindex="-1"></a>print_op <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z, op) {</span>
+<span id="cb977-13"><a href="solve24.html#cb977-13" tabindex="-1"></a>    <span class="cf">switch</span>(op, <span class="fu">paste</span>(x, <span class="st">&quot;+&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;-&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;*&quot;</span>,</span>
+<span id="cb977-14"><a href="solve24.html#cb977-14" tabindex="-1"></a>        y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(x, <span class="st">&quot;/&quot;</span>, y, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(y, <span class="st">&quot;-&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z), <span class="fu">paste</span>(y,</span>
+<span id="cb977-15"><a href="solve24.html#cb977-15" tabindex="-1"></a>        <span class="st">&quot;/&quot;</span>, x, <span class="st">&quot;=&quot;</span>, z))</span>
+<span id="cb977-16"><a href="solve24.html#cb977-16" tabindex="-1"></a>}</span>
+<span id="cb977-17"><a href="solve24.html#cb977-17" tabindex="-1"></a><span class="co"># print multi-steps (the solution)</span></span>
+<span id="cb977-18"><a href="solve24.html#cb977-18" tabindex="-1"></a>print_sol <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, sol, op) {</span>
+<span id="cb977-19"><a href="solve24.html#cb977-19" tabindex="-1"></a>    sol <span class="ot">&lt;-</span> <span class="fu">round</span>(sol, <span class="dv">3</span>)  <span class="co">#Only keep 3 digits to make it better looking.</span></span>
+<span id="cb977-20"><a href="solve24.html#cb977-20" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(sol)</span>
+<span id="cb977-21"><a href="solve24.html#cb977-21" tabindex="-1"></a>    <span class="cf">for</span> (step <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_nums <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb977-22"><a href="solve24.html#cb977-22" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">print_op</span>(sol[step], nums[step <span class="sc">+</span> <span class="dv">1</span>], sol[step <span class="sc">+</span> <span class="dv">1</span>], op[step]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb977-23"><a href="solve24.html#cb977-23" tabindex="-1"></a>    }</span>
+<span id="cb977-24"><a href="solve24.html#cb977-24" tabindex="-1"></a>}</span></code></pre></div>
 <p>With all the preparations, we are ready to present the final function to solve 24. In the <code>solve_24()</code> function, the first argument <code>nums</code> contains the numbers, <code>goal</code> is the target value with default 24, and <code>n_sols_max</code> represents the maximum number of solutions to search for, with a default value of 3.</p>
-<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="solve24.html#cb977-1" tabindex="-1"></a>solve_24 <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, <span class="at">goal =</span> <span class="dv">24</span>, <span class="at">n_sols_max =</span> <span class="dv">3</span>) {</span>
-<span id="cb977-2"><a href="solve24.html#cb977-2" tabindex="-1"></a>    <span class="fu">require</span>(gtools)</span>
-<span id="cb977-3"><a href="solve24.html#cb977-3" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
-<span id="cb977-4"><a href="solve24.html#cb977-4" tabindex="-1"></a></span>
-<span id="cb977-5"><a href="solve24.html#cb977-5" tabindex="-1"></a>    nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))  <span class="co">#generate all number permutations </span></span>
-<span id="cb977-6"><a href="solve24.html#cb977-6" tabindex="-1"></a></span>
-<span id="cb977-7"><a href="solve24.html#cb977-7" tabindex="-1"></a>    n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb977-8"><a href="solve24.html#cb977-8" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums <span class="sc">-</span> <span class="dv">1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)  <span class="co">#generate all operator sequences</span></span>
-<span id="cb977-9"><a href="solve24.html#cb977-9" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> op_mat[op_mat[, <span class="dv">1</span>] <span class="sc">&lt;=</span> <span class="dv">4</span>, ]  <span class="co">#remove redundant ones</span></span>
-<span id="cb977-10"><a href="solve24.html#cb977-10" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the number of solutions to be 0</span></span>
-<span id="cb977-11"><a href="solve24.html#cb977-11" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm)) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)) {</span>
-<span id="cb977-12"><a href="solve24.html#cb977-12" tabindex="-1"></a>        <span class="co"># loop over all possible operator sequences</span></span>
-<span id="cb977-13"><a href="solve24.html#cb977-13" tabindex="-1"></a>        num_cur <span class="ot">&lt;-</span> nums_perm[i, ]  <span class="co">#get the current permutation</span></span>
-<span id="cb977-14"><a href="solve24.html#cb977-14" tabindex="-1"></a>        op_cur <span class="ot">&lt;-</span> op_mat[j, ]  <span class="co">#get the current operator sequence</span></span>
-<span id="cb977-15"><a href="solve24.html#cb977-15" tabindex="-1"></a>        sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)  <span class="co">#get the steps</span></span>
-<span id="cb977-16"><a href="solve24.html#cb977-16" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-05</span> <span class="sc">&amp;</span> <span class="fu">all</span>(sol <span class="sc">&gt;=</span> <span class="dv">0</span>)) {</span>
-<span id="cb977-17"><a href="solve24.html#cb977-17" tabindex="-1"></a>            <span class="co"># check if it is a solution</span></span>
-<span id="cb977-18"><a href="solve24.html#cb977-18" tabindex="-1"></a>            n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span>  <span class="co">#increase the solution counter</span></span>
-<span id="cb977-19"><a href="solve24.html#cb977-19" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb977-20"><a href="solve24.html#cb977-20" tabindex="-1"></a>            <span class="fu">print_sol</span>(num_cur, sol, op_cur)  <span class="co">#print the solution</span></span>
-<span id="cb977-21"><a href="solve24.html#cb977-21" tabindex="-1"></a>        }</span>
-<span id="cb977-22"><a href="solve24.html#cb977-22" tabindex="-1"></a>        <span class="cf">if</span> (n_sols <span class="sc">&gt;=</span> n_sols_max) {</span>
-<span id="cb977-23"><a href="solve24.html#cb977-23" tabindex="-1"></a>            <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
-<span id="cb977-24"><a href="solve24.html#cb977-24" tabindex="-1"></a>        }</span>
-<span id="cb977-25"><a href="solve24.html#cb977-25" tabindex="-1"></a>    }</span>
-<span id="cb977-26"><a href="solve24.html#cb977-26" tabindex="-1"></a>    <span class="cf">if</span> (n_sols <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb977-27"><a href="solve24.html#cb977-27" tabindex="-1"></a>        <span class="co"># fail to find a solution</span></span>
-<span id="cb977-28"><a href="solve24.html#cb977-28" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
-<span id="cb977-29"><a href="solve24.html#cb977-29" tabindex="-1"></a>    }</span>
-<span id="cb977-30"><a href="solve24.html#cb977-30" tabindex="-1"></a></span>
-<span id="cb977-31"><a href="solve24.html#cb977-31" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="solve24.html#cb978-1" tabindex="-1"></a>solve_24 <span class="ot">&lt;-</span> <span class="cf">function</span>(nums, <span class="at">goal =</span> <span class="dv">24</span>, <span class="at">n_sols_max =</span> <span class="dv">3</span>) {</span>
+<span id="cb978-2"><a href="solve24.html#cb978-2" tabindex="-1"></a>    <span class="fu">require</span>(gtools)</span>
+<span id="cb978-3"><a href="solve24.html#cb978-3" tabindex="-1"></a>    n_nums <span class="ot">&lt;-</span> <span class="fu">length</span>(nums)</span>
+<span id="cb978-4"><a href="solve24.html#cb978-4" tabindex="-1"></a></span>
+<span id="cb978-5"><a href="solve24.html#cb978-5" tabindex="-1"></a>    nums_perm <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">permutations</span>(n_nums, n_nums, nums, <span class="at">set =</span> <span class="cn">FALSE</span>))  <span class="co">#generate all number permutations </span></span>
+<span id="cb978-6"><a href="solve24.html#cb978-6" tabindex="-1"></a></span>
+<span id="cb978-7"><a href="solve24.html#cb978-7" tabindex="-1"></a>    n_ops <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb978-8"><a href="solve24.html#cb978-8" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> <span class="fu">permutations</span>(n_ops, n_nums <span class="sc">-</span> <span class="dv">1</span>, <span class="at">repeats.allowed =</span> <span class="cn">TRUE</span>)  <span class="co">#generate all operator sequences</span></span>
+<span id="cb978-9"><a href="solve24.html#cb978-9" tabindex="-1"></a>    op_mat <span class="ot">&lt;-</span> op_mat[op_mat[, <span class="dv">1</span>] <span class="sc">&lt;=</span> <span class="dv">4</span>, ]  <span class="co">#remove redundant ones</span></span>
+<span id="cb978-10"><a href="solve24.html#cb978-10" tabindex="-1"></a>    n_sols <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co">#initialize the number of solutions to be 0</span></span>
+<span id="cb978-11"><a href="solve24.html#cb978-11" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nums_perm)) <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(op_mat)) {</span>
+<span id="cb978-12"><a href="solve24.html#cb978-12" tabindex="-1"></a>        <span class="co"># loop over all possible operator sequences</span></span>
+<span id="cb978-13"><a href="solve24.html#cb978-13" tabindex="-1"></a>        num_cur <span class="ot">&lt;-</span> nums_perm[i, ]  <span class="co">#get the current permutation</span></span>
+<span id="cb978-14"><a href="solve24.html#cb978-14" tabindex="-1"></a>        op_cur <span class="ot">&lt;-</span> op_mat[j, ]  <span class="co">#get the current operator sequence</span></span>
+<span id="cb978-15"><a href="solve24.html#cb978-15" tabindex="-1"></a>        sol <span class="ot">&lt;-</span> <span class="fu">num_op</span>(num_cur, op_cur)  <span class="co">#get the steps</span></span>
+<span id="cb978-16"><a href="solve24.html#cb978-16" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">abs</span>(sol[n_nums] <span class="sc">-</span> goal) <span class="sc">&lt;</span> <span class="fl">1e-05</span> <span class="sc">&amp;</span> <span class="fu">all</span>(sol <span class="sc">&gt;=</span> <span class="dv">0</span>)) {</span>
+<span id="cb978-17"><a href="solve24.html#cb978-17" tabindex="-1"></a>            <span class="co"># check if it is a solution</span></span>
+<span id="cb978-18"><a href="solve24.html#cb978-18" tabindex="-1"></a>            n_sols <span class="ot">&lt;-</span> n_sols <span class="sc">+</span> <span class="dv">1</span>  <span class="co">#increase the solution counter</span></span>
+<span id="cb978-19"><a href="solve24.html#cb978-19" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="st">&quot;Solution #&quot;</span>, n_sols, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb978-20"><a href="solve24.html#cb978-20" tabindex="-1"></a>            <span class="fu">print_sol</span>(num_cur, sol, op_cur)  <span class="co">#print the solution</span></span>
+<span id="cb978-21"><a href="solve24.html#cb978-21" tabindex="-1"></a>        }</span>
+<span id="cb978-22"><a href="solve24.html#cb978-22" tabindex="-1"></a>        <span class="cf">if</span> (n_sols <span class="sc">&gt;=</span> n_sols_max) {</span>
+<span id="cb978-23"><a href="solve24.html#cb978-23" tabindex="-1"></a>            <span class="fu">return</span>(<span class="fu">invisible</span>(<span class="cn">NULL</span>))</span>
+<span id="cb978-24"><a href="solve24.html#cb978-24" tabindex="-1"></a>        }</span>
+<span id="cb978-25"><a href="solve24.html#cb978-25" tabindex="-1"></a>    }</span>
+<span id="cb978-26"><a href="solve24.html#cb978-26" tabindex="-1"></a>    <span class="cf">if</span> (n_sols <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb978-27"><a href="solve24.html#cb978-27" tabindex="-1"></a>        <span class="co"># fail to find a solution</span></span>
+<span id="cb978-28"><a href="solve24.html#cb978-28" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Solution not exist!&quot;</span>)</span>
+<span id="cb978-29"><a href="solve24.html#cb978-29" tabindex="-1"></a>    }</span>
+<span id="cb978-30"><a href="solve24.html#cb978-30" tabindex="-1"></a></span>
+<span id="cb978-31"><a href="solve24.html#cb978-31" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now, we are reading to look at some examples.</p>
-<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="solve24.html#cb978-1" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb978-2"><a href="solve24.html#cb978-2" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb978-3"><a href="solve24.html#cb978-3" tabindex="-1"></a><span class="co">#&gt; 1 + 2 = 3 </span></span>
-<span id="cb978-4"><a href="solve24.html#cb978-4" tabindex="-1"></a><span class="co">#&gt; 3 + 3 = 6 </span></span>
-<span id="cb978-5"><a href="solve24.html#cb978-5" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
-<span id="cb978-6"><a href="solve24.html#cb978-6" tabindex="-1"></a><span class="co">#&gt; Solution # 2 </span></span>
-<span id="cb978-7"><a href="solve24.html#cb978-7" tabindex="-1"></a><span class="co">#&gt; 1 * 2 = 2 </span></span>
-<span id="cb978-8"><a href="solve24.html#cb978-8" tabindex="-1"></a><span class="co">#&gt; 2 * 3 = 6 </span></span>
-<span id="cb978-9"><a href="solve24.html#cb978-9" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
-<span id="cb978-10"><a href="solve24.html#cb978-10" tabindex="-1"></a><span class="co">#&gt; Solution # 3 </span></span>
-<span id="cb978-11"><a href="solve24.html#cb978-11" tabindex="-1"></a><span class="co">#&gt; 1 / 2 = 0.5 </span></span>
-<span id="cb978-12"><a href="solve24.html#cb978-12" tabindex="-1"></a><span class="co">#&gt; 0.5 / 3 = 0.167 </span></span>
-<span id="cb978-13"><a href="solve24.html#cb978-13" tabindex="-1"></a><span class="co">#&gt; 4 / 0.167 = 24</span></span>
-<span id="cb978-14"><a href="solve24.html#cb978-14" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb978-15"><a href="solve24.html#cb978-15" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb978-16"><a href="solve24.html#cb978-16" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
-<span id="cb978-17"><a href="solve24.html#cb978-17" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
-<span id="cb978-18"><a href="solve24.html#cb978-18" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
-<span id="cb978-19"><a href="solve24.html#cb978-19" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">7</span>))</span>
-<span id="cb978-20"><a href="solve24.html#cb978-20" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb978-21"><a href="solve24.html#cb978-21" tabindex="-1"></a><span class="co">#&gt; 3 / 7 = 0.429 </span></span>
-<span id="cb978-22"><a href="solve24.html#cb978-22" tabindex="-1"></a><span class="co">#&gt; 0.429 + 3 = 3.429 </span></span>
-<span id="cb978-23"><a href="solve24.html#cb978-23" tabindex="-1"></a><span class="co">#&gt; 3.429 * 7 = 24</span></span>
-<span id="cb978-24"><a href="solve24.html#cb978-24" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">8</span>))</span>
-<span id="cb978-25"><a href="solve24.html#cb978-25" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb978-26"><a href="solve24.html#cb978-26" tabindex="-1"></a><span class="co">#&gt; 8 / 3 = 2.667 </span></span>
-<span id="cb978-27"><a href="solve24.html#cb978-27" tabindex="-1"></a><span class="co">#&gt; 3 - 2.667 = 0.333 </span></span>
-<span id="cb978-28"><a href="solve24.html#cb978-28" tabindex="-1"></a><span class="co">#&gt; 8 / 0.333 = 24</span></span>
-<span id="cb978-29"><a href="solve24.html#cb978-29" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb978-30"><a href="solve24.html#cb978-30" tabindex="-1"></a><span class="co">#&gt; Solution not exist!</span></span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="solve24.html#cb979-1" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb979-2"><a href="solve24.html#cb979-2" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb979-3"><a href="solve24.html#cb979-3" tabindex="-1"></a><span class="co">#&gt; 1 + 2 = 3 </span></span>
+<span id="cb979-4"><a href="solve24.html#cb979-4" tabindex="-1"></a><span class="co">#&gt; 3 + 3 = 6 </span></span>
+<span id="cb979-5"><a href="solve24.html#cb979-5" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
+<span id="cb979-6"><a href="solve24.html#cb979-6" tabindex="-1"></a><span class="co">#&gt; Solution # 2 </span></span>
+<span id="cb979-7"><a href="solve24.html#cb979-7" tabindex="-1"></a><span class="co">#&gt; 1 * 2 = 2 </span></span>
+<span id="cb979-8"><a href="solve24.html#cb979-8" tabindex="-1"></a><span class="co">#&gt; 2 * 3 = 6 </span></span>
+<span id="cb979-9"><a href="solve24.html#cb979-9" tabindex="-1"></a><span class="co">#&gt; 6 * 4 = 24 </span></span>
+<span id="cb979-10"><a href="solve24.html#cb979-10" tabindex="-1"></a><span class="co">#&gt; Solution # 3 </span></span>
+<span id="cb979-11"><a href="solve24.html#cb979-11" tabindex="-1"></a><span class="co">#&gt; 1 / 2 = 0.5 </span></span>
+<span id="cb979-12"><a href="solve24.html#cb979-12" tabindex="-1"></a><span class="co">#&gt; 0.5 / 3 = 0.167 </span></span>
+<span id="cb979-13"><a href="solve24.html#cb979-13" tabindex="-1"></a><span class="co">#&gt; 4 / 0.167 = 24</span></span>
+<span id="cb979-14"><a href="solve24.html#cb979-14" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb979-15"><a href="solve24.html#cb979-15" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb979-16"><a href="solve24.html#cb979-16" tabindex="-1"></a><span class="co">#&gt; 1 / 5 = 0.2 </span></span>
+<span id="cb979-17"><a href="solve24.html#cb979-17" tabindex="-1"></a><span class="co">#&gt; 5 - 0.2 = 4.8 </span></span>
+<span id="cb979-18"><a href="solve24.html#cb979-18" tabindex="-1"></a><span class="co">#&gt; 4.8 * 5 = 24</span></span>
+<span id="cb979-19"><a href="solve24.html#cb979-19" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">7</span>))</span>
+<span id="cb979-20"><a href="solve24.html#cb979-20" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb979-21"><a href="solve24.html#cb979-21" tabindex="-1"></a><span class="co">#&gt; 3 / 7 = 0.429 </span></span>
+<span id="cb979-22"><a href="solve24.html#cb979-22" tabindex="-1"></a><span class="co">#&gt; 0.429 + 3 = 3.429 </span></span>
+<span id="cb979-23"><a href="solve24.html#cb979-23" tabindex="-1"></a><span class="co">#&gt; 3.429 * 7 = 24</span></span>
+<span id="cb979-24"><a href="solve24.html#cb979-24" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">8</span>))</span>
+<span id="cb979-25"><a href="solve24.html#cb979-25" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb979-26"><a href="solve24.html#cb979-26" tabindex="-1"></a><span class="co">#&gt; 8 / 3 = 2.667 </span></span>
+<span id="cb979-27"><a href="solve24.html#cb979-27" tabindex="-1"></a><span class="co">#&gt; 3 - 2.667 = 0.333 </span></span>
+<span id="cb979-28"><a href="solve24.html#cb979-28" tabindex="-1"></a><span class="co">#&gt; 8 / 0.333 = 24</span></span>
+<span id="cb979-29"><a href="solve24.html#cb979-29" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb979-30"><a href="solve24.html#cb979-30" tabindex="-1"></a><span class="co">#&gt; Solution not exist!</span></span></code></pre></div>
 <p>Note that the function is more powerful than merely solving 24. It contains two extensions.</p>
 <ol style="list-style-type: decimal">
 <li>The target value can be any number, for example, 25, or 100.</li>
 <li>The input can contain more or less than 4 numbers.</li>
 </ol>
 <p>Let’s look at two interesting examples.</p>
-<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="solve24.html#cb979-1" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">25</span>), <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
-<span id="cb979-2"><a href="solve24.html#cb979-2" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb979-3"><a href="solve24.html#cb979-3" tabindex="-1"></a><span class="co">#&gt; 12 + 13 = 25 </span></span>
-<span id="cb979-4"><a href="solve24.html#cb979-4" tabindex="-1"></a><span class="co">#&gt; 25 * 23 = 575 </span></span>
-<span id="cb979-5"><a href="solve24.html#cb979-5" tabindex="-1"></a><span class="co">#&gt; 575 + 25 = 600 </span></span>
-<span id="cb979-6"><a href="solve24.html#cb979-6" tabindex="-1"></a><span class="co">#&gt; 600 / 25 = 24</span></span>
-<span id="cb979-7"><a href="solve24.html#cb979-7" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">16</span>, <span class="dv">100</span>, <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
-<span id="cb979-8"><a href="solve24.html#cb979-8" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
-<span id="cb979-9"><a href="solve24.html#cb979-9" tabindex="-1"></a><span class="co">#&gt; 11 * 12 = 132 </span></span>
-<span id="cb979-10"><a href="solve24.html#cb979-10" tabindex="-1"></a><span class="co">#&gt; 132 + 13 = 145 </span></span>
-<span id="cb979-11"><a href="solve24.html#cb979-11" tabindex="-1"></a><span class="co">#&gt; 145 - 14 = 131 </span></span>
-<span id="cb979-12"><a href="solve24.html#cb979-12" tabindex="-1"></a><span class="co">#&gt; 131 - 15 = 116 </span></span>
-<span id="cb979-13"><a href="solve24.html#cb979-13" tabindex="-1"></a><span class="co">#&gt; 116 - 16 = 100</span></span></code></pre></div>
+<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="solve24.html#cb980-1" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">25</span>), <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
+<span id="cb980-2"><a href="solve24.html#cb980-2" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb980-3"><a href="solve24.html#cb980-3" tabindex="-1"></a><span class="co">#&gt; 12 + 13 = 25 </span></span>
+<span id="cb980-4"><a href="solve24.html#cb980-4" tabindex="-1"></a><span class="co">#&gt; 25 * 23 = 575 </span></span>
+<span id="cb980-5"><a href="solve24.html#cb980-5" tabindex="-1"></a><span class="co">#&gt; 575 + 25 = 600 </span></span>
+<span id="cb980-6"><a href="solve24.html#cb980-6" tabindex="-1"></a><span class="co">#&gt; 600 / 25 = 24</span></span>
+<span id="cb980-7"><a href="solve24.html#cb980-7" tabindex="-1"></a><span class="fu">solve_24</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">16</span>, <span class="dv">100</span>, <span class="at">n_sols_max =</span> <span class="dv">1</span>)</span>
+<span id="cb980-8"><a href="solve24.html#cb980-8" tabindex="-1"></a><span class="co">#&gt; Solution # 1 </span></span>
+<span id="cb980-9"><a href="solve24.html#cb980-9" tabindex="-1"></a><span class="co">#&gt; 11 * 12 = 132 </span></span>
+<span id="cb980-10"><a href="solve24.html#cb980-10" tabindex="-1"></a><span class="co">#&gt; 132 + 13 = 145 </span></span>
+<span id="cb980-11"><a href="solve24.html#cb980-11" tabindex="-1"></a><span class="co">#&gt; 145 - 14 = 131 </span></span>
+<span id="cb980-12"><a href="solve24.html#cb980-12" tabindex="-1"></a><span class="co">#&gt; 131 - 15 = 116 </span></span>
+<span id="cb980-13"><a href="solve24.html#cb980-13" tabindex="-1"></a><span class="co">#&gt; 116 - 16 = 100</span></span></code></pre></div>
 <p>There are other possible extensions of the function we wrote. For example, you can add additional possible operators (e.g. the exponentiation <code>^</code>, the factorial <code>!</code>) by changing the <code>cal()</code> and <code>print_op</code> as well as some constants in the <code>solve_24()</code> function.</p>
 
 </div>

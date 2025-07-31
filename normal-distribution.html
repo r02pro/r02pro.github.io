@@ -678,9 +678,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1.1" data-path="normal-distribution.html"><a href="normal-distribution.html#pdf"><i class="fa fa-check"></i><b>10.1.1</b> Probability Density Function (PDF)</a></li>
 <li class="chapter" data-level="10.1.2" data-path="normal-distribution.html"><a href="normal-distribution.html#cdf"><i class="fa fa-check"></i><b>10.1.2</b> Cumulative Distribution Function (CDF)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>10.1.3</b> Quantile Function</a></li>
-<li class="chapter" data-level="10.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>10.1.4</b> Random Number Generator</a></li>
-<li class="chapter" data-level="10.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-55"><i class="fa fa-check"></i><b>10.1.5</b> Exercises</a></li>
+<li class="chapter" data-level="10.1.3" data-path="normal-distribution.html"><a href="normal-distribution.html#the-empirical-rule-68-95-99.7"><i class="fa fa-check"></i><b>10.1.3</b> The Empirical Rule (68-95-99.7)</a></li>
+<li class="chapter" data-level="10.1.4" data-path="normal-distribution.html"><a href="normal-distribution.html#qf"><i class="fa fa-check"></i><b>10.1.4</b> Quantile Function</a></li>
+<li class="chapter" data-level="10.1.5" data-path="normal-distribution.html"><a href="normal-distribution.html#rng"><i class="fa fa-check"></i><b>10.1.5</b> Random Number Generator</a></li>
+<li class="chapter" data-level="10.1.6" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-55"><i class="fa fa-check"></i><b>10.1.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="other-distributions.html"><a href="other-distributions.html"><i class="fa fa-check"></i><b>10.2</b> Other Distributions</a>
 <ul>
@@ -827,6 +828,8 @@ div.csl-indent {
 <div id="normal-distribution" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Normal Distribution<a href="normal-distribution.html#normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, let’s review the definition of <strong>normal distribution</strong>, which is also called <strong>Gaussian distribution</strong>. If <span class="math inline">\(X\sim N(\mu, \sigma^2)\)</span>, we say <span class="math inline">\(X\)</span> is a random variable following a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>The normal distribution plays a central role in statistics due to the <strong>Central Limit Theorem</strong>, which states that the sum of many independent and identically distributed random variables tends to follow a normal distribution, regardless of their original distribution.
+It appears frequently in natural and social sciences as a model for measurement errors, test scores, heights, etc.</p>
 <p>In the following table, we list the four useful functions for normal distribution, and they will be introduced in the subsequent four parts, respectively.</p>
 <table>
 <thead>
@@ -873,7 +876,7 @@ cumulative distribution function (CDF)
 quantile function (QF)
 </td>
 <td style="text-align:left;">
-<a href="normal-distribution.html#qf">10.1.3</a>
+<a href="normal-distribution.html#qf">10.1.4</a>
 </td>
 </tr>
 <tr>
@@ -884,7 +887,7 @@ quantile function (QF)
 random number generator (RNG)
 </td>
 <td style="text-align:left;">
-<a href="normal-distribution.html#rng">10.1.4</a>
+<a href="normal-distribution.html#rng">10.1.5</a>
 </td>
 </tr>
 </tbody>
@@ -955,73 +958,95 @@ random number generator (RNG)
 <span id="cb841-6"><a href="normal-distribution.html#cb841-6" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> cdf, <span class="at">color =</span> dist))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-872-1.png" width="576" /></p>
 </div>
-<div id="qf" class="section level3 hasAnchor" number="10.1.3">
-<h3><span class="header-section-number">10.1.3</span> Quantile Function<a href="normal-distribution.html#qf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The third useful function related to distributions is the <strong>quantile function</strong>. You can compute the quantile of the normal distribution using <code>qnorm(p, mean, sd)</code>. The quantile function is the inverse function of the cdf. In particular, the <span class="math inline">\(p\)</span> quantile returns the value <span class="math inline">\(x\)</span> such that
+<div id="the-empirical-rule-68-95-99.7" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> The Empirical Rule (68-95-99.7)<a href="normal-distribution.html#the-empirical-rule-68-95-99.7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A key property of the normal distribution is the Empirical Rule. It states that for any normal distribution:</p>
+<ul>
+<li>Approximately 68% of the data falls within 1 standard deviation of the mean.</li>
+<li>Approximately 95% of the data falls within 2 standard deviations of the mean.</li>
+<li>Approximately 99.7% of the data falls within 3 standard deviations of the mean.</li>
+</ul>
+<p>We can verify this with <code>pnorm()</code>. For a standard normal distribution N(0,1):</p>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="normal-distribution.html#cb842-1" tabindex="-1"></a><span class="co"># Probability within 1 SD of the mean</span></span>
+<span id="cb842-2"><a href="normal-distribution.html#cb842-2" tabindex="-1"></a>prob_1_sd <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">1</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb842-3"><a href="normal-distribution.html#cb842-3" tabindex="-1"></a><span class="co"># Probability within 2 SD of the mean</span></span>
+<span id="cb842-4"><a href="normal-distribution.html#cb842-4" tabindex="-1"></a>prob_2_sd <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">2</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb842-5"><a href="normal-distribution.html#cb842-5" tabindex="-1"></a><span class="co"># Probability within 3 SD of the mean</span></span>
+<span id="cb842-6"><a href="normal-distribution.html#cb842-6" tabindex="-1"></a>prob_3_sd <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">3</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb842-7"><a href="normal-distribution.html#cb842-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%% within 1 SD: %.3f</span><span class="sc">\n</span><span class="st">%% within 2 SD: %.3f</span><span class="sc">\n</span><span class="st">%% within 3 SD: %.3f</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb842-8"><a href="normal-distribution.html#cb842-8" tabindex="-1"></a>    prob_1_sd, prob_2_sd, prob_3_sd))</span>
+<span id="cb842-9"><a href="normal-distribution.html#cb842-9" tabindex="-1"></a><span class="co">#&gt; % within 1 SD: 0.683</span></span>
+<span id="cb842-10"><a href="normal-distribution.html#cb842-10" tabindex="-1"></a><span class="co">#&gt; % within 2 SD: 0.954</span></span>
+<span id="cb842-11"><a href="normal-distribution.html#cb842-11" tabindex="-1"></a><span class="co">#&gt; % within 3 SD: 0.997</span></span></code></pre></div>
+</div>
+<div id="qf" class="section level3 hasAnchor" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Quantile Function<a href="normal-distribution.html#qf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The third useful function related to distributions is the <strong>quantile function</strong>. It answers the question: “At what value <span class="math inline">\(x\)</span> is the probability of being less than or equal to it equal to a given probability <span class="math inline">\(p\)</span>?”</p>
+<p>You can compute the quantile of the normal distribution using <code>qnorm(p, mean, sd)</code>. The quantile function is the inverse function of the cdf. In particular, the <span class="math inline">\(p\)</span> quantile returns the value <span class="math inline">\(x\)</span> such that
 <span class="math display">\[F(x) = P(X\leq x) =  p\]</span></p>
 <p>Let’s verify <code>qnorm()</code> is indeed the inverse function of <code>pnorm()</code> using the following example.</p>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="normal-distribution.html#cb842-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.7</span>)))</span>
-<span id="cb842-2"><a href="normal-distribution.html#cb842-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5 0.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="normal-distribution.html#cb843-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.7</span>)))</span>
+<span id="cb843-2"><a href="normal-distribution.html#cb843-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5 0.7</span></span></code></pre></div>
 <p>When <span class="math inline">\(p=0.5\)</span>, <code>qnorm()</code> gives us the median of the normal distribution.
 Let’s see a few examples for computing the quantiles.</p>
-<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="normal-distribution.html#cb843-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb843-2"><a href="normal-distribution.html#cb843-2" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb843-3"><a href="normal-distribution.html#cb843-3" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>)</span>
-<span id="cb843-4"><a href="normal-distribution.html#cb843-4" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="normal-distribution.html#cb844-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb844-2"><a href="normal-distribution.html#cb844-2" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb844-3"><a href="normal-distribution.html#cb844-3" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.5</span>)</span>
+<span id="cb844-4"><a href="normal-distribution.html#cb844-4" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>You can also visualize the shape of the quantile function.</p>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="normal-distribution.html#cb844-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.01</span>, <span class="at">to =</span> <span class="fl">0.99</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb844-2"><a href="normal-distribution.html#cb844-2" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
-<span id="cb844-3"><a href="normal-distribution.html#cb844-3" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-875-1.png" width="576" /></p>
-<p>Similarly, you can visualize the quantile files of <span class="math inline">\(N(0,1)\)</span>, <span class="math inline">\(N(1,4)\)</span>, and <span class="math inline">\(N(-1, 0.25)\)</span>.</p>
 <div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="normal-distribution.html#cb845-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.01</span>, <span class="at">to =</span> <span class="fl">0.99</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb845-2"><a href="normal-distribution.html#cb845-2" tabindex="-1"></a>norm_dat_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(0, 1)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
-<span id="cb845-3"><a href="normal-distribution.html#cb845-3" tabindex="-1"></a>norm_dat_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(1, 4)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p, <span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb845-4"><a href="normal-distribution.html#cb845-4" tabindex="-1"></a>norm_dat_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(-1, 0.25)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p, <span class="sc">-</span><span class="dv">1</span>, <span class="fl">0.5</span>))</span>
-<span id="cb845-5"><a href="normal-distribution.html#cb845-5" tabindex="-1"></a></span>
-<span id="cb845-6"><a href="normal-distribution.html#cb845-6" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(norm_dat_1, norm_dat_2, norm_dat_3)</span>
-<span id="cb845-7"><a href="normal-distribution.html#cb845-7" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile, <span class="at">color =</span> dist))</span></code></pre></div>
+<span id="cb845-2"><a href="normal-distribution.html#cb845-2" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
+<span id="cb845-3"><a href="normal-distribution.html#cb845-3" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-876-1.png" width="576" /></p>
+<p>Similarly, you can visualize the quantile files of <span class="math inline">\(N(0,1)\)</span>, <span class="math inline">\(N(1,4)\)</span>, and <span class="math inline">\(N(-1, 0.25)\)</span>.</p>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="normal-distribution.html#cb846-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="fl">0.01</span>, <span class="at">to =</span> <span class="fl">0.99</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb846-2"><a href="normal-distribution.html#cb846-2" tabindex="-1"></a>norm_dat_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(0, 1)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p))</span>
+<span id="cb846-3"><a href="normal-distribution.html#cb846-3" tabindex="-1"></a>norm_dat_2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(1, 4)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb846-4"><a href="normal-distribution.html#cb846-4" tabindex="-1"></a>norm_dat_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dist =</span> <span class="st">&quot;N(-1, 0.25)&quot;</span>, <span class="at">p =</span> p, <span class="at">quantile =</span> <span class="fu">qnorm</span>(p, <span class="sc">-</span><span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb846-5"><a href="normal-distribution.html#cb846-5" tabindex="-1"></a></span>
+<span id="cb846-6"><a href="normal-distribution.html#cb846-6" tabindex="-1"></a>norm_dat <span class="ot">&lt;-</span> <span class="fu">rbind</span>(norm_dat_1, norm_dat_2, norm_dat_3)</span>
+<span id="cb846-7"><a href="normal-distribution.html#cb846-7" tabindex="-1"></a><span class="fu">ggplot</span>(norm_dat) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> quantile, <span class="at">color =</span> dist))</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-877-1.png" width="576" /></p>
 </div>
-<div id="rng" class="section level3 hasAnchor" number="10.1.4">
-<h3><span class="header-section-number">10.1.4</span> Random Number Generator<a href="normal-distribution.html#rng" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="rng" class="section level3 hasAnchor" number="10.1.5">
+<h3><span class="header-section-number">10.1.5</span> Random Number Generator<a href="normal-distribution.html#rng" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lastly, to generate random numbers from normal distributions, you can use the function <code>rnorm(n, mean, sd)</code> , with the argument <code>n</code> represents the number of random numbers to generate, the arguments <code>mean</code> and <code>sd</code> are the mean and standard deviation of the normal distribution you would like to generate from, respectively. Again, if you only supply the argument <code>n</code>, you will be generating random numbers from <span class="math inline">\(N(0,1)\)</span>.</p>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="normal-distribution.html#cb846-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co">#generate 3 random numbers from N(0, 1)</span></span>
-<span id="cb846-2"><a href="normal-distribution.html#cb846-2" tabindex="-1"></a><span class="co">#&gt; [1]  0.2492699  0.1987472 -0.9778133</span></span>
-<span id="cb846-3"><a href="normal-distribution.html#cb846-3" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)  <span class="co">#generate another 3 random numbers from N(0,1)</span></span>
-<span id="cb846-4"><a href="normal-distribution.html#cb846-4" tabindex="-1"></a><span class="co">#&gt; [1]  1.1789737 -1.1790168  0.1668201</span></span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="normal-distribution.html#cb847-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co">#generate 3 random numbers from N(0, 1)</span></span>
+<span id="cb847-2"><a href="normal-distribution.html#cb847-2" tabindex="-1"></a><span class="co">#&gt; [1]  0.2492699  0.1987472 -0.9778133</span></span>
+<span id="cb847-3"><a href="normal-distribution.html#cb847-3" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)  <span class="co">#generate another 3 random numbers from N(0,1)</span></span>
+<span id="cb847-4"><a href="normal-distribution.html#cb847-4" tabindex="-1"></a><span class="co">#&gt; [1]  1.1789737 -1.1790168  0.1668201</span></span></code></pre></div>
 <p>Since you are generating random numbers, the results may be different each time. In many applications, however, you may want to make the results reproducible. To do this, you can set random seed using the function <code>set.seed()</code> before generating the random numbers. Let’s see the following example.</p>
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="normal-distribution.html#cb847-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb847-2"><a href="normal-distribution.html#cb847-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
-<span id="cb847-3"><a href="normal-distribution.html#cb847-3" tabindex="-1"></a><span class="co">#&gt; [1]  1.2629543 -0.3262334  1.3297993</span></span></code></pre></div>
-<p>Now, let’s run it one more time.</p>
 <div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="normal-distribution.html#cb848-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
 <span id="cb848-2"><a href="normal-distribution.html#cb848-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
 <span id="cb848-3"><a href="normal-distribution.html#cb848-3" tabindex="-1"></a><span class="co">#&gt; [1]  1.2629543 -0.3262334  1.3297993</span></span></code></pre></div>
+<p>Now, let’s run it one more time.</p>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="normal-distribution.html#cb849-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb849-2"><a href="normal-distribution.html#cb849-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
+<span id="cb849-3"><a href="normal-distribution.html#cb849-3" tabindex="-1"></a><span class="co">#&gt; [1]  1.2629543 -0.3262334  1.3297993</span></span></code></pre></div>
 <p>You can see that the exact 3 numbers are reproduced since you are using the same random seed 0. You can run these two lines of code on any machine and will get the exact same three random numbers.</p>
 <div class="infobox caution">
 <p>Note that the code that involves randomness needs to be identical to reproduce the results. If you change the arguments in <code>rnorm()</code>, you will get totally different results. See the following example.</p>
 </div>
-<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="normal-distribution.html#cb849-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb849-2"><a href="normal-distribution.html#cb849-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb849-3"><a href="normal-distribution.html#cb849-3" tabindex="-1"></a><span class="co">#&gt; [1] 1.262954</span></span>
-<span id="cb849-4"><a href="normal-distribution.html#cb849-4" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
-<span id="cb849-5"><a href="normal-distribution.html#cb849-5" tabindex="-1"></a><span class="co">#&gt; [1] -0.3262334  1.3297993  1.2724293</span></span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="normal-distribution.html#cb850-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb850-2"><a href="normal-distribution.html#cb850-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb850-3"><a href="normal-distribution.html#cb850-3" tabindex="-1"></a><span class="co">#&gt; [1] 1.262954</span></span>
+<span id="cb850-4"><a href="normal-distribution.html#cb850-4" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
+<span id="cb850-5"><a href="normal-distribution.html#cb850-5" tabindex="-1"></a><span class="co">#&gt; [1] -0.3262334  1.3297993  1.2724293</span></span></code></pre></div>
 <p>By setting a different random seed, you will see different results as the following example.</p>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="normal-distribution.html#cb850-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb850-2"><a href="normal-distribution.html#cb850-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
-<span id="cb850-3"><a href="normal-distribution.html#cb850-3" tabindex="-1"></a><span class="co">#&gt; [1] -0.6264538  0.1836433 -0.8356286</span></span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="normal-distribution.html#cb851-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb851-2"><a href="normal-distribution.html#cb851-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">3</span>)</span>
+<span id="cb851-3"><a href="normal-distribution.html#cb851-3" tabindex="-1"></a><span class="co">#&gt; [1] -0.6264538  0.1836433 -0.8356286</span></span></code></pre></div>
 <p>Lastly, let’s do a simple statistical exercise by checking the closeness of the <em>sample mean</em> and <em>sample standard deviation</em> to their population counterparts.</p>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="normal-distribution.html#cb851-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e+06</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb851-2"><a href="normal-distribution.html#cb851-2" tabindex="-1"></a><span class="fu">mean</span>(x)  <span class="co">#sample mean</span></span>
-<span id="cb851-3"><a href="normal-distribution.html#cb851-3" tabindex="-1"></a><span class="co">#&gt; [1] 1.000093</span></span>
-<span id="cb851-4"><a href="normal-distribution.html#cb851-4" tabindex="-1"></a><span class="fu">var</span>(x)  <span class="co">#sample covariance</span></span>
-<span id="cb851-5"><a href="normal-distribution.html#cb851-5" tabindex="-1"></a><span class="co">#&gt; [1] 4.001485</span></span>
-<span id="cb851-6"><a href="normal-distribution.html#cb851-6" tabindex="-1"></a><span class="fu">sd</span>(x)  <span class="co">#sample standard deviation</span></span>
-<span id="cb851-7"><a href="normal-distribution.html#cb851-7" tabindex="-1"></a><span class="co">#&gt; [1] 2.000371</span></span></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="normal-distribution.html#cb852-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e+06</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb852-2"><a href="normal-distribution.html#cb852-2" tabindex="-1"></a><span class="fu">mean</span>(x)  <span class="co">#sample mean</span></span>
+<span id="cb852-3"><a href="normal-distribution.html#cb852-3" tabindex="-1"></a><span class="co">#&gt; [1] 1.000093</span></span>
+<span id="cb852-4"><a href="normal-distribution.html#cb852-4" tabindex="-1"></a><span class="fu">var</span>(x)  <span class="co">#sample covariance</span></span>
+<span id="cb852-5"><a href="normal-distribution.html#cb852-5" tabindex="-1"></a><span class="co">#&gt; [1] 4.001485</span></span>
+<span id="cb852-6"><a href="normal-distribution.html#cb852-6" tabindex="-1"></a><span class="fu">sd</span>(x)  <span class="co">#sample standard deviation</span></span>
+<span id="cb852-7"><a href="normal-distribution.html#cb852-7" tabindex="-1"></a><span class="co">#&gt; [1] 2.000371</span></span></code></pre></div>
 </div>
-<div id="exercises-55" class="section level3 hasAnchor" number="10.1.5">
-<h3><span class="header-section-number">10.1.5</span> Exercises<a href="normal-distribution.html#exercises-55" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-55" class="section level3 hasAnchor" number="10.1.6">
+<h3><span class="header-section-number">10.1.6</span> Exercises<a href="normal-distribution.html#exercises-55" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Compute the PDF of a normal distribution with mean <span class="math inline">\(\mu=1\)</span> and standard deviation <span class="math inline">\(\sigma=2\)</span> at locations <span class="math inline">\(x = -2, 0, 2\)</span>. Verify that the output agrees with the formula.</li>
 <li>Plot the PDF of a normal distribution with mean <span class="math inline">\(\mu=3\)</span> and standard deviation <span class="math inline">\(\sigma=2\)</span> over the range <span class="math inline">\(x \in [-4, 4]\)</span>.</li>
