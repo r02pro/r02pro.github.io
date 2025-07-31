@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro</title>
-  <meta name="description" content="8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
+  <title>13.2 Text Formatting in R Markdown | R Programming: Zero to Pro</title>
+  <meta name="description" content="13.2 Text Formatting in R Markdown | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
+  <meta property="og:title" content="13.2 Text Formatting in R Markdown | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
+  <meta property="og:description" content="13.2 Text Formatting in R Markdown | R Programming: Zero to Pro" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="13.2 Text Formatting in R Markdown | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="8.2 Separate and Combine Columns via separate() and unite() | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="13.2 Text Formatting in R Markdown | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="tidy-name-value.html"/>
-<link rel="next" href="more-on-missing-values.html"/>
+<link rel="prev" href="intro-r-markdown.html"/>
+<link rel="next" href="case-study.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -824,207 +824,402 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="separate-unite-columns" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Separate and Combine Columns via <code>separate()</code> and <code>unite()</code><a href="separate-unite-columns.html#separate-unite-columns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Real-world data is often messy. Sometimes, valuable information is crammed into a single column, making it difficult to analyze. Other times, separate columns might need to be combined for specific tasks. The <code>separate()</code> and <code>unite()</code> functions in <strong>tidyr</strong> provide powerful tools to reshape your data and make it tidy for analysis. Imagine a dataset with a column like ‘City, State’. <code>separate()</code> allows you to split this into separate <code>'City'</code> and <code>'State'</code> columns. Conversely, <code>unite()</code> can combine <code>'First Name'</code> and <code>'Last Name'</code> columns into a single <code>'Full Name'</code> column.</p>
-<p>To introduce the separate and and unite operation, let’s again consider the following tidy data set.</p>
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="separate-unite-columns.html#cb786-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb786-2"><a href="separate-unite-columns.html#cb786-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb786-3"><a href="separate-unite-columns.html#cb786-3" tabindex="-1"></a>gm_tidy <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span></span>
-<span id="cb786-4"><a href="separate-unite-columns.html#cb786-4" tabindex="-1"></a>    <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;United States&quot;</span>, <span class="st">&quot;China&quot;</span>, <span class="st">&quot;Russia&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb786-5"><a href="separate-unite-columns.html#cb786-5" tabindex="-1"></a>    <span class="fu">select</span>(country, year, life_expectancy) <span class="sc">%&gt;%</span></span>
-<span id="cb786-6"><a href="separate-unite-columns.html#cb786-6" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2004</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2006</span>)</span>
-<span id="cb786-7"><a href="separate-unite-columns.html#cb786-7" tabindex="-1"></a>gm_tidy</span>
-<span id="cb786-8"><a href="separate-unite-columns.html#cb786-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
-<span id="cb786-9"><a href="separate-unite-columns.html#cb786-9" tabindex="-1"></a><span class="co">#&gt;   country        year life_expectancy</span></span>
-<span id="cb786-10"><a href="separate-unite-columns.html#cb786-10" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;dbl&gt;           &lt;dbl&gt;</span></span>
-<span id="cb786-11"><a href="separate-unite-columns.html#cb786-11" tabindex="-1"></a><span class="co">#&gt; 1 China          2004            73  </span></span>
-<span id="cb786-12"><a href="separate-unite-columns.html#cb786-12" tabindex="-1"></a><span class="co">#&gt; 2 Russia         2004            65  </span></span>
-<span id="cb786-13"><a href="separate-unite-columns.html#cb786-13" tabindex="-1"></a><span class="co">#&gt; 3 United States  2004            77.7</span></span>
-<span id="cb786-14"><a href="separate-unite-columns.html#cb786-14" tabindex="-1"></a><span class="co">#&gt; 4 China          2005            73.7</span></span>
-<span id="cb786-15"><a href="separate-unite-columns.html#cb786-15" tabindex="-1"></a><span class="co">#&gt; 5 China          2006            74.2</span></span>
-<span id="cb786-16"><a href="separate-unite-columns.html#cb786-16" tabindex="-1"></a><span class="co">#&gt; 6 Russia         2005            66.5</span></span>
-<span id="cb786-17"><a href="separate-unite-columns.html#cb786-17" tabindex="-1"></a><span class="co">#&gt; 7 Russia         2006            67.5</span></span>
-<span id="cb786-18"><a href="separate-unite-columns.html#cb786-18" tabindex="-1"></a><span class="co">#&gt; 8 United States  2005            78  </span></span>
-<span id="cb786-19"><a href="separate-unite-columns.html#cb786-19" tabindex="-1"></a><span class="co">#&gt; 9 United States  2006            78.2</span></span></code></pre></div>
-<div id="combine-columns-via-unite" class="section level3 hasAnchor" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> Combine Columns via <code>unite()</code><a href="separate-unite-columns.html#combine-columns-via-unite" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sometimes, we may want to <strong>combine multiple columns</strong> into a single one. To do this, you can use the <code>unite()</code> function in the <strong>tidyr</strong> package.</p>
-<p>In the <code>unite()</code> function, you need to specify the name of the to-be created column (<code>col</code>), the columns to be combined, and the separator between the columns (<code>sep</code>).</p>
-<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="separate-unite-columns.html#cb787-1" tabindex="-1"></a>gm_year <span class="ot">&lt;-</span> gm_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb787-2"><a href="separate-unite-columns.html#cb787-2" tabindex="-1"></a>    <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;country_year&quot;</span>, country, year, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
-<span id="cb787-3"><a href="separate-unite-columns.html#cb787-3" tabindex="-1"></a>gm_year</span>
-<span id="cb787-4"><a href="separate-unite-columns.html#cb787-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 2</span></span>
-<span id="cb787-5"><a href="separate-unite-columns.html#cb787-5" tabindex="-1"></a><span class="co">#&gt;   country_year       life_expectancy</span></span>
-<span id="cb787-6"><a href="separate-unite-columns.html#cb787-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                        &lt;dbl&gt;</span></span>
-<span id="cb787-7"><a href="separate-unite-columns.html#cb787-7" tabindex="-1"></a><span class="co">#&gt; 1 China_2004                    73  </span></span>
-<span id="cb787-8"><a href="separate-unite-columns.html#cb787-8" tabindex="-1"></a><span class="co">#&gt; 2 Russia_2004                   65  </span></span>
-<span id="cb787-9"><a href="separate-unite-columns.html#cb787-9" tabindex="-1"></a><span class="co">#&gt; 3 United States_2004            77.7</span></span>
-<span id="cb787-10"><a href="separate-unite-columns.html#cb787-10" tabindex="-1"></a><span class="co">#&gt; 4 China_2005                    73.7</span></span>
-<span id="cb787-11"><a href="separate-unite-columns.html#cb787-11" tabindex="-1"></a><span class="co">#&gt; 5 China_2006                    74.2</span></span>
-<span id="cb787-12"><a href="separate-unite-columns.html#cb787-12" tabindex="-1"></a><span class="co">#&gt; 6 Russia_2005                   66.5</span></span>
-<span id="cb787-13"><a href="separate-unite-columns.html#cb787-13" tabindex="-1"></a><span class="co">#&gt; 7 Russia_2006                   67.5</span></span>
-<span id="cb787-14"><a href="separate-unite-columns.html#cb787-14" tabindex="-1"></a><span class="co">#&gt; 8 United States_2005            78  </span></span>
-<span id="cb787-15"><a href="separate-unite-columns.html#cb787-15" tabindex="-1"></a><span class="co">#&gt; 9 United States_2006            78.2</span></span></code></pre></div>
-<p>Now, the <code>gm_year</code> tibble contains a new column <code>country_year</code>, which is the combination of the <code>country</code> and <code>year</code> columns. The separator between the two columns is an underscore <code>_</code>.</p>
+<div id="rmd-text-formatting" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Text Formatting in R Markdown<a href="rmd-text-formatting.html#rmd-text-formatting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You’ve learned about the powerful YAML header and the utility of R Code Chunks in Section <a href="intro-r-markdown.html#intro-r-markdown">13.1</a>. Now, your journey continues into the art of <strong>text formatting</strong>. A well-formatted report is not just professional; it’s a powerful tool to guide your reader through your data story.</p>
+<p>R Markdown uses <strong>Pandoc’s Markdown</strong>, a simple yet powerful syntax for creating beautifully formatted documents. Think of the text in your <code>.Rmd</code> file as your raw materials (<strong>marked-up text</strong>), and the knitted document as your polished creation (<strong>formatted text</strong>).</p>
+<p>Let’s explore the tools at your disposal.</p>
+<div id="headers-your-documents-signposts" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> Headers: Your Document’s Signposts<a href="rmd-text-formatting.html#headers-your-documents-signposts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use different numbers of hash symbols (<code>#</code>) to create up to six levels of headers. More <code>#</code> symbols mean a lower-level header.</p>
+<div class="sourceCode" id="cb953"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb953-1"><a href="rmd-text-formatting.html#cb953-1" tabindex="-1"></a><span class="fu"># Level 1: The Chapter Title</span></span>
+<span id="cb953-2"><a href="rmd-text-formatting.html#cb953-2" tabindex="-1"></a><span class="fu">## Level 2: A Major Section</span></span>
+<span id="cb953-3"><a href="rmd-text-formatting.html#cb953-3" tabindex="-1"></a><span class="fu">### Level 3: A Subsection</span></span>
+<span id="cb953-4"><a href="rmd-text-formatting.html#cb953-4" tabindex="-1"></a><span class="fu">#### Level 4: A Sub-subsection</span></span>
+<span id="cb953-5"><a href="rmd-text-formatting.html#cb953-5" tabindex="-1"></a><span class="fu">##### Level 5: A Sub-sub-subsection</span></span>
+<span id="cb953-6"><a href="rmd-text-formatting.html#cb953-6" tabindex="-1"></a><span class="fu">###### Level 6: A Sub-sub-sub-subsection</span></span></code></pre></div>
+<p><strong>Pro-Tip:</strong> Set <code>number_sections: true</code> in the YAML header to automatically number your sections.</p>
 </div>
-<div id="separate-one-column-into-multiple-columns-using-separate" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Separate One Column into Multiple Columns Using <code>separate()</code><a href="separate-unite-columns.html#separate-one-column-into-multiple-columns-using-separate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We know the <code>unite()</code> function combine multiple columns into a single column. Sometimes, we need to do the opposite operation, namely separate one column into multiple ones.</p>
-<p>For example, <code>gm_year</code> is not a tidy dataset since the <code>country_year</code> column contains two variables.</p>
-<p>To make it tidy, you can use the <code>separate()</code> function. In the <code>separate()</code> function, you need to specify</p>
+<div id="emphasis-making-your-point" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> Emphasis: Making Your Point<a href="rmd-text-formatting.html#emphasis-making-your-point" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Markdown allows you to emphasize text in various ways. Here are some common styles:</p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="29%" />
+<col width="47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Style</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Italics</em></td>
+<td><code>*text*</code> or <code>_text_</code></td>
+<td><em>For emphasis or scientific names</em></td>
+</tr>
+<tr class="even">
+<td><strong>Bold</strong></td>
+<td><code>**text**</code> or <code>__text__</code></td>
+<td><strong>To show strong importance</strong></td>
+</tr>
+<tr class="odd">
+<td>~~Strikethrough~~</td>
+<td><code>~~text~~</code></td>
+<td>~~This idea was later disproven.~~</td>
+</tr>
+<tr class="even">
+<td><code>Code Font</code></td>
+<td><code>`text`</code></td>
+<td>Use for <code>function_names()</code> or <code>variables</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="inline-code-displaying-and-evaluating" class="section level3 hasAnchor" number="13.2.3">
+<h3><span class="header-section-number">13.2.3</span> Inline Code: Displaying and Evaluating<a href="rmd-text-formatting.html#inline-code-displaying-and-evaluating" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can include code within your sentences in two ways:</p>
 <ul>
-<li><code>col</code>: the name of the column to be separated</li>
-<li><code>into</code>: the desired names of the to-be created columns after separation</li>
-<li><code>sep</code>: the separator during the separation process</li>
+<li>To display code as text: Wrap it in single backticks. For example, <code>1 + 1</code> renders as 1 + 1.</li>
+<li>To evaluate code and show its output: Use inline R code with <code>`r `</code>. For example, <code>`r 1 + 1`</code> evaluates to <strong>2</strong> in the output.</li>
 </ul>
-<p>For the <code>country_year</code> column in the <code>gm_year</code> tibble, we can separate it into two columns: <code>country</code> and <code>year</code>.</p>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="separate-unite-columns.html#cb788-1" tabindex="-1"></a>gm_year <span class="sc">%&gt;%</span></span>
-<span id="cb788-2"><a href="separate-unite-columns.html#cb788-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;country_year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
-<span id="cb788-3"><a href="separate-unite-columns.html#cb788-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
-<span id="cb788-4"><a href="separate-unite-columns.html#cb788-4" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
-<span id="cb788-5"><a href="separate-unite-columns.html#cb788-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb788-6"><a href="separate-unite-columns.html#cb788-6" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
-<span id="cb788-7"><a href="separate-unite-columns.html#cb788-7" tabindex="-1"></a><span class="co">#&gt; 2 Russia        2004             65  </span></span>
-<span id="cb788-8"><a href="separate-unite-columns.html#cb788-8" tabindex="-1"></a><span class="co">#&gt; 3 United States 2004             77.7</span></span>
-<span id="cb788-9"><a href="separate-unite-columns.html#cb788-9" tabindex="-1"></a><span class="co">#&gt; 4 China         2005             73.7</span></span>
-<span id="cb788-10"><a href="separate-unite-columns.html#cb788-10" tabindex="-1"></a><span class="co">#&gt; 5 China         2006             74.2</span></span>
-<span id="cb788-11"><a href="separate-unite-columns.html#cb788-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
-<span id="cb788-12"><a href="separate-unite-columns.html#cb788-12" tabindex="-1"></a><span class="co">#&gt; 7 Russia        2006             67.5</span></span>
-<span id="cb788-13"><a href="separate-unite-columns.html#cb788-13" tabindex="-1"></a><span class="co">#&gt; 8 United States 2005             78  </span></span>
-<span id="cb788-14"><a href="separate-unite-columns.html#cb788-14" tabindex="-1"></a><span class="co">#&gt; 9 United States 2006             78.2</span></span></code></pre></div>
-<p>From the result, you can see that the original <strong>tidy</strong> tibble is recovered via the <code>separate()</code> function. After a careful look, you may notice that the column types of <code>country</code> and <code>year</code> are both <code>character</code>, which may not be what we want. To convert the types automatically, you can add the <code>convert = TRUE</code> argument in the <code>separate()</code> function.</p>
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="separate-unite-columns.html#cb789-1" tabindex="-1"></a>gm_year <span class="sc">%&gt;%</span></span>
-<span id="cb789-2"><a href="separate-unite-columns.html#cb789-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;country_year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb789-3"><a href="separate-unite-columns.html#cb789-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
-<span id="cb789-4"><a href="separate-unite-columns.html#cb789-4" tabindex="-1"></a><span class="co">#&gt;   country        year life_expectancy</span></span>
-<span id="cb789-5"><a href="separate-unite-columns.html#cb789-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt;           &lt;dbl&gt;</span></span>
-<span id="cb789-6"><a href="separate-unite-columns.html#cb789-6" tabindex="-1"></a><span class="co">#&gt; 1 China          2004            73  </span></span>
-<span id="cb789-7"><a href="separate-unite-columns.html#cb789-7" tabindex="-1"></a><span class="co">#&gt; 2 Russia         2004            65  </span></span>
-<span id="cb789-8"><a href="separate-unite-columns.html#cb789-8" tabindex="-1"></a><span class="co">#&gt; 3 United States  2004            77.7</span></span>
-<span id="cb789-9"><a href="separate-unite-columns.html#cb789-9" tabindex="-1"></a><span class="co">#&gt; 4 China          2005            73.7</span></span>
-<span id="cb789-10"><a href="separate-unite-columns.html#cb789-10" tabindex="-1"></a><span class="co">#&gt; 5 China          2006            74.2</span></span>
-<span id="cb789-11"><a href="separate-unite-columns.html#cb789-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia         2005            66.5</span></span>
-<span id="cb789-12"><a href="separate-unite-columns.html#cb789-12" tabindex="-1"></a><span class="co">#&gt; 7 Russia         2006            67.5</span></span>
-<span id="cb789-13"><a href="separate-unite-columns.html#cb789-13" tabindex="-1"></a><span class="co">#&gt; 8 United States  2005            78  </span></span>
-<span id="cb789-14"><a href="separate-unite-columns.html#cb789-14" tabindex="-1"></a><span class="co">#&gt; 9 United States  2006            78.2</span></span></code></pre></div>
-<p>Now, the <code>country</code> and <code>year</code> columns are converted to the appropriate types.</p>
-<p>In addition to separating via the separator, you can also separate by the position. For example, to separate the year into century (first two digits) and 2-digit year (last 2 digits), you can separate the <code>year</code> after position 2.</p>
-<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb790-1"><a href="separate-unite-columns.html#cb790-1" tabindex="-1"></a>gm_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb790-2"><a href="separate-unite-columns.html#cb790-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y12&quot;</span>, <span class="st">&quot;y34&quot;</span>), <span class="at">sep =</span> <span class="dv">2</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb790-3"><a href="separate-unite-columns.html#cb790-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 4</span></span>
-<span id="cb790-4"><a href="separate-unite-columns.html#cb790-4" tabindex="-1"></a><span class="co">#&gt;   country         y12   y34 life_expectancy</span></span>
-<span id="cb790-5"><a href="separate-unite-columns.html#cb790-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;int&gt;           &lt;dbl&gt;</span></span>
-<span id="cb790-6"><a href="separate-unite-columns.html#cb790-6" tabindex="-1"></a><span class="co">#&gt; 1 China            20     4            73  </span></span>
-<span id="cb790-7"><a href="separate-unite-columns.html#cb790-7" tabindex="-1"></a><span class="co">#&gt; 2 Russia           20     4            65  </span></span>
-<span id="cb790-8"><a href="separate-unite-columns.html#cb790-8" tabindex="-1"></a><span class="co">#&gt; 3 United States    20     4            77.7</span></span>
-<span id="cb790-9"><a href="separate-unite-columns.html#cb790-9" tabindex="-1"></a><span class="co">#&gt; 4 China            20     5            73.7</span></span>
-<span id="cb790-10"><a href="separate-unite-columns.html#cb790-10" tabindex="-1"></a><span class="co">#&gt; 5 China            20     6            74.2</span></span>
-<span id="cb790-11"><a href="separate-unite-columns.html#cb790-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia           20     5            66.5</span></span>
-<span id="cb790-12"><a href="separate-unite-columns.html#cb790-12" tabindex="-1"></a><span class="co">#&gt; 7 Russia           20     6            67.5</span></span>
-<span id="cb790-13"><a href="separate-unite-columns.html#cb790-13" tabindex="-1"></a><span class="co">#&gt; 8 United States    20     5            78  </span></span>
-<span id="cb790-14"><a href="separate-unite-columns.html#cb790-14" tabindex="-1"></a><span class="co">#&gt; 9 United States    20     6            78.2</span></span></code></pre></div>
-<p>From the result, you can see that the <code>year</code> column is separated into two columns: <code>y12</code> and <code>y34</code>. The <code>y12</code> column contains the first two digits of the year, while the <code>y34</code> column contains the last two digits of the year.</p>
-<p>You can also separate at multiple locations. For example, to separate the year into four columns, representing four digits, you can use multiple positions to separate.</p>
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="separate-unite-columns.html#cb791-1" tabindex="-1"></a>gm_digits <span class="ot">&lt;-</span> gm_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb791-2"><a href="separate-unite-columns.html#cb791-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;y3&quot;</span>, <span class="st">&quot;y4&quot;</span>), <span class="at">sep =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb791-3"><a href="separate-unite-columns.html#cb791-3" tabindex="-1"></a>gm_digits</span>
-<span id="cb791-4"><a href="separate-unite-columns.html#cb791-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 6</span></span>
-<span id="cb791-5"><a href="separate-unite-columns.html#cb791-5" tabindex="-1"></a><span class="co">#&gt;   country          y1    y2    y3    y4 life_expectancy</span></span>
-<span id="cb791-6"><a href="separate-unite-columns.html#cb791-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;           &lt;dbl&gt;</span></span>
-<span id="cb791-7"><a href="separate-unite-columns.html#cb791-7" tabindex="-1"></a><span class="co">#&gt; 1 China             2     0     0     4            73  </span></span>
-<span id="cb791-8"><a href="separate-unite-columns.html#cb791-8" tabindex="-1"></a><span class="co">#&gt; 2 Russia            2     0     0     4            65  </span></span>
-<span id="cb791-9"><a href="separate-unite-columns.html#cb791-9" tabindex="-1"></a><span class="co">#&gt; 3 United States     2     0     0     4            77.7</span></span>
-<span id="cb791-10"><a href="separate-unite-columns.html#cb791-10" tabindex="-1"></a><span class="co">#&gt; 4 China             2     0     0     5            73.7</span></span>
-<span id="cb791-11"><a href="separate-unite-columns.html#cb791-11" tabindex="-1"></a><span class="co">#&gt; 5 China             2     0     0     6            74.2</span></span>
-<span id="cb791-12"><a href="separate-unite-columns.html#cb791-12" tabindex="-1"></a><span class="co">#&gt; 6 Russia            2     0     0     5            66.5</span></span>
-<span id="cb791-13"><a href="separate-unite-columns.html#cb791-13" tabindex="-1"></a><span class="co">#&gt; 7 Russia            2     0     0     6            67.5</span></span>
-<span id="cb791-14"><a href="separate-unite-columns.html#cb791-14" tabindex="-1"></a><span class="co">#&gt; 8 United States     2     0     0     5            78  </span></span>
-<span id="cb791-15"><a href="separate-unite-columns.html#cb791-15" tabindex="-1"></a><span class="co">#&gt; 9 United States     2     0     0     6            78.2</span></span></code></pre></div>
-<p>Using the <code>gm_digits</code>, you can also combine the four columns into a single column named <code>year</code>.</p>
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="separate-unite-columns.html#cb792-1" tabindex="-1"></a>gm_digits <span class="sc">%&gt;%</span></span>
-<span id="cb792-2"><a href="separate-unite-columns.html#cb792-2" tabindex="-1"></a>    <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>, y1<span class="sc">:</span>y4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb792-3"><a href="separate-unite-columns.html#cb792-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
-<span id="cb792-4"><a href="separate-unite-columns.html#cb792-4" tabindex="-1"></a><span class="co">#&gt;   country       year  life_expectancy</span></span>
-<span id="cb792-5"><a href="separate-unite-columns.html#cb792-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb792-6"><a href="separate-unite-columns.html#cb792-6" tabindex="-1"></a><span class="co">#&gt; 1 China         2004             73  </span></span>
-<span id="cb792-7"><a href="separate-unite-columns.html#cb792-7" tabindex="-1"></a><span class="co">#&gt; 2 Russia        2004             65  </span></span>
-<span id="cb792-8"><a href="separate-unite-columns.html#cb792-8" tabindex="-1"></a><span class="co">#&gt; 3 United States 2004             77.7</span></span>
-<span id="cb792-9"><a href="separate-unite-columns.html#cb792-9" tabindex="-1"></a><span class="co">#&gt; 4 China         2005             73.7</span></span>
-<span id="cb792-10"><a href="separate-unite-columns.html#cb792-10" tabindex="-1"></a><span class="co">#&gt; 5 China         2006             74.2</span></span>
-<span id="cb792-11"><a href="separate-unite-columns.html#cb792-11" tabindex="-1"></a><span class="co">#&gt; 6 Russia        2005             66.5</span></span>
-<span id="cb792-12"><a href="separate-unite-columns.html#cb792-12" tabindex="-1"></a><span class="co">#&gt; 7 Russia        2006             67.5</span></span>
-<span id="cb792-13"><a href="separate-unite-columns.html#cb792-13" tabindex="-1"></a><span class="co">#&gt; 8 United States 2005             78  </span></span>
-<span id="cb792-14"><a href="separate-unite-columns.html#cb792-14" tabindex="-1"></a><span class="co">#&gt; 9 United States 2006             78.2</span></span></code></pre></div>
-<p>Note that the <code>sep</code> argument in the <code>unite()</code> function is an empty string <code>""</code>. This means that there is no separator between the columns.</p>
+<blockquote>
+<p><strong>Heads‑up:</strong> Never wrap code <em>inside</em> a code chunk with back‑ticks: <code>knitr()</code> will treat them as unmatched delimiters and throw an error when you knit.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:incorrect-back-tick-code"></span>
+<img src="pics/10code.png" alt="Incorrect back-ticks in a code chunck" width="90%" />
+<p class="caption">
+Figure 13.13: Incorrect back-ticks in a code chunck
+</p>
 </div>
-<div id="exercises-52" class="section level3 hasAnchor" number="8.2.3">
-<h3><span class="header-section-number">8.2.3</span> Exercises<a href="separate-unite-columns.html#exercises-52" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:incorrect-back-tick-code-error"></span>
+<img src="pics/10error.png" alt="The error message" width="90%" />
+<p class="caption">
+Figure 13.14: The error message
+</p>
+</div>
+</div>
+<div id="lists-ordered-and-unordered" class="section level3 hasAnchor" number="13.2.4">
+<h3><span class="header-section-number">13.2.4</span> Lists: Ordered and Unordered<a href="rmd-text-formatting.html#lists-ordered-and-unordered" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use lists to organize information and break down complex topics.</p>
+<ul>
+<li><strong>Unordered Lists</strong>: Start each line with <code>*</code>, <code>+</code>, or <code>-</code>.</li>
+<li><strong>Ordered Lists</strong>: Start each line with a number. R Markdown will automatically sequence them correctly, even if you use 1. for every item.</li>
+<li><strong>Nested Lists</strong>: Indent items to create sub-lists. You can mix and match ordered and unordered lists.</li>
+</ul>
+<p>Here is an example of a mixed list:</p>
+<div class="sourceCode" id="cb954"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb954-1"><a href="rmd-text-formatting.html#cb954-1" tabindex="-1"></a><span class="ss">1.  </span>First, collect the data.</span>
+<span id="cb954-2"><a href="rmd-text-formatting.html#cb954-2" tabindex="-1"></a><span class="ss">2.  </span>Second, clean the data.</span>
+<span id="cb954-3"><a href="rmd-text-formatting.html#cb954-3" tabindex="-1"></a><span class="ss">    * </span>Check for missing values (<span class="in">`NA`</span>).</span>
+<span id="cb954-4"><a href="rmd-text-formatting.html#cb954-4" tabindex="-1"></a><span class="ss">    * </span>Ensure correct data types.</span>
+<span id="cb954-5"><a href="rmd-text-formatting.html#cb954-5" tabindex="-1"></a><span class="ss">3.  </span>Finally, analyze the data.</span></code></pre></div>
 <ol style="list-style-type: decimal">
-<li>You have a tibble containing data on disease outbreaks, but the location column combines the country and city.</li>
-</ol>
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="separate-unite-columns.html#cb793-1" tabindex="-1"></a>outbreaks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">outbreak_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">disease =</span> <span class="fu">c</span>(<span class="st">&quot;Measles&quot;</span>, <span class="st">&quot;Influenza&quot;</span>,</span>
-<span id="cb793-2"><a href="separate-unite-columns.html#cb793-2" tabindex="-1"></a>    <span class="st">&quot;Cholera&quot;</span>), <span class="at">location =</span> <span class="fu">c</span>(<span class="st">&quot;USA_New York City&quot;</span>, <span class="st">&quot;Brazil_Sao Paulo&quot;</span>, <span class="st">&quot;India_Mumbai&quot;</span>))</span>
-<span id="cb793-3"><a href="separate-unite-columns.html#cb793-3" tabindex="-1"></a>outbreaks</span>
-<span id="cb793-4"><a href="separate-unite-columns.html#cb793-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
-<span id="cb793-5"><a href="separate-unite-columns.html#cb793-5" tabindex="-1"></a><span class="co">#&gt;   outbreak_id disease   location         </span></span>
-<span id="cb793-6"><a href="separate-unite-columns.html#cb793-6" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;            </span></span>
-<span id="cb793-7"><a href="separate-unite-columns.html#cb793-7" tabindex="-1"></a><span class="co">#&gt; 1           1 Measles   USA_New York City</span></span>
-<span id="cb793-8"><a href="separate-unite-columns.html#cb793-8" tabindex="-1"></a><span class="co">#&gt; 2           2 Influenza Brazil_Sao Paulo </span></span>
-<span id="cb793-9"><a href="separate-unite-columns.html#cb793-9" tabindex="-1"></a><span class="co">#&gt; 3           3 Cholera   India_Mumbai</span></span></code></pre></div>
-<p>Separate the <code>location</code> column into <code>country</code> and <code>city</code> columns.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>You have a tibble with separate columns for patient medical record numbers and visit dates.</li>
-</ol>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="separate-unite-columns.html#cb794-1" tabindex="-1"></a>patients <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">patient_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">record_number =</span> <span class="fu">c</span>(<span class="st">&quot;A123&quot;</span>, <span class="st">&quot;B456&quot;</span>, <span class="st">&quot;C789&quot;</span>),</span>
-<span id="cb794-2"><a href="separate-unite-columns.html#cb794-2" tabindex="-1"></a>    <span class="at">visit_date =</span> <span class="fu">c</span>(<span class="st">&quot;2024-10-15&quot;</span>, <span class="st">&quot;2024-09-22&quot;</span>, <span class="st">&quot;2024-10-16&quot;</span>))</span>
-<span id="cb794-3"><a href="separate-unite-columns.html#cb794-3" tabindex="-1"></a>patients</span>
-<span id="cb794-4"><a href="separate-unite-columns.html#cb794-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
-<span id="cb794-5"><a href="separate-unite-columns.html#cb794-5" tabindex="-1"></a><span class="co">#&gt;   patient_id record_number visit_date</span></span>
-<span id="cb794-6"><a href="separate-unite-columns.html#cb794-6" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     </span></span>
-<span id="cb794-7"><a href="separate-unite-columns.html#cb794-7" tabindex="-1"></a><span class="co">#&gt; 1          1 A123          2024-10-15</span></span>
-<span id="cb794-8"><a href="separate-unite-columns.html#cb794-8" tabindex="-1"></a><span class="co">#&gt; 2          2 B456          2024-09-22</span></span>
-<span id="cb794-9"><a href="separate-unite-columns.html#cb794-9" tabindex="-1"></a><span class="co">#&gt; 3          3 C789          2024-10-16</span></span></code></pre></div>
-<p>Combine the <code>record_number</code> and <code>visit_date</code> columns into a single column named <code>record_date</code> with the format “record_number - visit_date”.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>You have a tibble with a vaccine_date column in the format “YYYY-MM-DD”.</li>
-</ol>
-<div class="sourceCode" id="cb795"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb795-1"><a href="separate-unite-columns.html#cb795-1" tabindex="-1"></a>vaccinations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">patient_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">vaccine_name =</span> <span class="fu">c</span>(<span class="st">&quot;MMR&quot;</span>, <span class="st">&quot;Flu&quot;</span>, <span class="st">&quot;Tdap&quot;</span>),</span>
-<span id="cb795-2"><a href="separate-unite-columns.html#cb795-2" tabindex="-1"></a>    <span class="at">vaccine_date =</span> <span class="fu">c</span>(<span class="st">&quot;2023-08-10&quot;</span>, <span class="st">&quot;2024-10-05&quot;</span>, <span class="st">&quot;2022-06-15&quot;</span>))</span>
-<span id="cb795-3"><a href="separate-unite-columns.html#cb795-3" tabindex="-1"></a>vaccinations</span>
-<span id="cb795-4"><a href="separate-unite-columns.html#cb795-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
-<span id="cb795-5"><a href="separate-unite-columns.html#cb795-5" tabindex="-1"></a><span class="co">#&gt;   patient_id vaccine_name vaccine_date</span></span>
-<span id="cb795-6"><a href="separate-unite-columns.html#cb795-6" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;       </span></span>
-<span id="cb795-7"><a href="separate-unite-columns.html#cb795-7" tabindex="-1"></a><span class="co">#&gt; 1          1 MMR          2023-08-10  </span></span>
-<span id="cb795-8"><a href="separate-unite-columns.html#cb795-8" tabindex="-1"></a><span class="co">#&gt; 2          2 Flu          2024-10-05  </span></span>
-<span id="cb795-9"><a href="separate-unite-columns.html#cb795-9" tabindex="-1"></a><span class="co">#&gt; 3          3 Tdap         2022-06-15</span></span></code></pre></div>
+<li>First, collect the data.</li>
+<li>Second, clean the data.
 <ul>
-<li>Split the <code>vaccine_date</code> column into three columns: year, month, and day.</li>
-<li>Create a new column called <code>month_year</code> in the format “MM/YYYY”.</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>You have a tibble with responses to a health survey, but some responses in the symptoms column are separated by commas, while others are separated by semicolons.</li>
+<li>Check for missing values (<code>NA</code>).</li>
+<li>Ensure correct data types.</li>
+</ul></li>
+<li>Finally, analyze the data.</li>
 </ol>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="separate-unite-columns.html#cb796-1" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">respondent_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">symptoms =</span> <span class="fu">c</span>(<span class="st">&quot;Headache, Fatigue&quot;</span>,</span>
-<span id="cb796-2"><a href="separate-unite-columns.html#cb796-2" tabindex="-1"></a>    <span class="st">&quot;Nausea; Vomiting&quot;</span>, <span class="st">&quot;Cough&quot;</span>))</span>
-<span id="cb796-3"><a href="separate-unite-columns.html#cb796-3" tabindex="-1"></a>survey_data</span>
-<span id="cb796-4"><a href="separate-unite-columns.html#cb796-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
-<span id="cb796-5"><a href="separate-unite-columns.html#cb796-5" tabindex="-1"></a><span class="co">#&gt;   respondent_id symptoms         </span></span>
-<span id="cb796-6"><a href="separate-unite-columns.html#cb796-6" tabindex="-1"></a><span class="co">#&gt;           &lt;dbl&gt; &lt;chr&gt;            </span></span>
-<span id="cb796-7"><a href="separate-unite-columns.html#cb796-7" tabindex="-1"></a><span class="co">#&gt; 1             1 Headache, Fatigue</span></span>
-<span id="cb796-8"><a href="separate-unite-columns.html#cb796-8" tabindex="-1"></a><span class="co">#&gt; 2             2 Nausea; Vomiting </span></span>
-<span id="cb796-9"><a href="separate-unite-columns.html#cb796-9" tabindex="-1"></a><span class="co">#&gt; 3             3 Cough</span></span></code></pre></div>
-<p>Split the symptoms column into <code>symptom1</code> and <code>symptom2</code> columns, handling the different separators correctly.</p>
+</div>
+<div id="hyperlinks-connecting-to-the-world" class="section level3 hasAnchor" number="13.2.5">
+<h3><span class="header-section-number">13.2.5</span> Hyperlinks: Connecting to the World<a href="rmd-text-formatting.html#hyperlinks-connecting-to-the-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Guide your readers to external resources with hyperlinks. The format is <code>[Text to display](URL)</code>.</p>
+<div class="sourceCode" id="cb955"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb955-1"><a href="rmd-text-formatting.html#cb955-1" tabindex="-1"></a>I have learned R from the book <span class="co">[</span><span class="ot">r02pro</span><span class="co">](https://r02pro.github.io/)</span>.</span></code></pre></div>
+<p>This will create a clickable link in the output document that says</p>
+<p>I have learned R from the book <a href="https://r02pro.github.io/">r02pro</a>.</p>
+</div>
+<div id="blockquotes-highlighting-wisdom" class="section level3 hasAnchor" number="13.2.6">
+<h3><span class="header-section-number">13.2.6</span> Blockquotes: Highlighting Wisdom<a href="rmd-text-formatting.html#blockquotes-highlighting-wisdom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>&gt;</code> character to create a blockquote. This is perfect for quoting sources or emphasizing a key insight.</p>
+<div class="sourceCode" id="cb956"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb956-1"><a href="rmd-text-formatting.html#cb956-1" tabindex="-1"></a><span class="at">&gt; &quot;The best thing about being a statistician is that you get to play in everyone&#39;s backyard.&quot; - John Tukey</span></span></code></pre></div>
+<p>This will generate</p>
+<blockquote>
+<p>“The best thing about being a statistician is that you get to play in everyone’s backyard.” - John Tukey</p>
+</blockquote>
+</div>
+<div id="footnotes-adding-extra-details" class="section level3 hasAnchor" number="13.2.7">
+<h3><span class="header-section-number">13.2.7</span> Footnotes: Adding Extra Details<a href="rmd-text-formatting.html#footnotes-adding-extra-details" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Add non-essential details or citations using footnotes. Use <code>[^1]</code> for the marker and define it anywhere in your document. A more convenient inline method is <code>^[Your footnote text here.]</code>.</p>
+<div class="sourceCode" id="cb957"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb957-1"><a href="rmd-text-formatting.html#cb957-1" tabindex="-1"></a>This is a statement with a footnote.<span class="ot">[^1]</span></span>
+<span id="cb957-2"><a href="rmd-text-formatting.html#cb957-2" tabindex="-1"></a></span>
+<span id="cb957-3"><a href="rmd-text-formatting.html#cb957-3" tabindex="-1"></a><span class="ot">[^1]: </span>This is the footnote text that provides additional information.</span></code></pre></div>
+<p>This is a statement with a footnote.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="the-language-of-the-universe-writing-mathematics" class="section level3 hasAnchor" number="13.2.8">
+<h3><span class="header-section-number">13.2.8</span> The Language of the Universe: Writing Mathematics<a href="rmd-text-formatting.html#the-language-of-the-universe-writing-mathematics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R Markdown allows you to write beautiful mathematics using LaTeX syntax.</p>
+<div id="inline-equations" class="section level4 hasAnchor" number="13.2.8.1">
+<h4><span class="header-section-number">13.2.8.1</span> Inline Equations<a href="rmd-text-formatting.html#inline-equations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For small formulas that fit within a line of text, wrap your LaTeX code in single dollar signs (<code>$</code>).</p>
+<div class="sourceCode" id="cb958"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb958-1"><a href="rmd-text-formatting.html#cb958-1" tabindex="-1"></a>**Fun Fact:** Did you know that Euler&#39;s Identity, </span>
+<span id="cb958-2"><a href="rmd-text-formatting.html#cb958-2" tabindex="-1"></a>$e^{i\pi} + 1 = 0$, connects five of the most fundamental constants in mathematics?</span></code></pre></div>
+<p><strong>Fun Fact:</strong> Did you know that Euler’s Identity, <span class="math inline">\(e^{i\pi} + 1 = 0\)</span>, connects five of the most fundamental constants in mathematics?</p>
+</div>
+<div id="displayed-equations" class="section level4 hasAnchor" number="13.2.8.2">
+<h4><span class="header-section-number">13.2.8.2</span> Displayed Equations<a href="rmd-text-formatting.html#displayed-equations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For larger equations that deserve their own line, wrap them in double dollar signs (<code>$$</code>).</p>
+<div class="sourceCode" id="cb959"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb959-1"><a href="rmd-text-formatting.html#cb959-1" tabindex="-1"></a>*Statistical Insight:* The probability density function of the normal distribution $N(\mu, \sigma^2)$, a cornerstone of statistics, is given by:</span>
+<span id="cb959-2"><a href="rmd-text-formatting.html#cb959-2" tabindex="-1"></a>$$ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} $$</span></code></pre></div>
+<p><em>Statistical Insight:</em> The probability density function of the normal distribution <span class="math inline">\(N(\mu, \sigma^2)\)</span>, a cornerstone of statistics, is given by:
+<span class="math display">\[ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
+</div>
+</div>
+<div id="tables-from-simple-to-stunning" class="section level3 hasAnchor" number="13.2.9">
+<h3><span class="header-section-number">13.2.9</span> Tables: From Simple to Stunning<a href="rmd-text-formatting.html#tables-from-simple-to-stunning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While you can write tables by hand in Markdown, it’s far more powerful to generate them with R. The <code>knitr::kable()</code> function is your starting point.</p>
+<p>For a simple table, you can create a data frame in R:</p>
+<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="rmd-text-formatting.html#cb960-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Statistic =</span> <span class="fu">c</span>(<span class="st">&quot;Mean&quot;</span>, <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;Standard Deviation&quot;</span>), <span class="at">R_Function =</span> <span class="fu">c</span>(<span class="st">&quot;`mean()`&quot;</span>,</span>
+<span id="cb960-2"><a href="rmd-text-formatting.html#cb960-2" tabindex="-1"></a>    <span class="st">&quot;`median()`&quot;</span>, <span class="st">&quot;`sd()`&quot;</span>), <span class="at">Description =</span> <span class="fu">c</span>(<span class="st">&quot;The average value&quot;</span>, <span class="st">&quot;The middle value&quot;</span>,</span>
+<span id="cb960-3"><a href="rmd-text-formatting.html#cb960-3" tabindex="-1"></a>    <span class="st">&quot;A measure of spread&quot;</span>))</span>
+<span id="cb960-4"><a href="rmd-text-formatting.html#cb960-4" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df, <span class="at">caption =</span> <span class="st">&quot;Common Descriptive Statistics in R&quot;</span>)</span></code></pre></div>
+<table>
+<caption>
+<span id="tab:basic-table">Table 13.1: </span>Common Descriptive Statistics in R
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Statistic
+</th>
+<th style="text-align:left;">
+R_Function
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mean
+</td>
+<td style="text-align:left;">
+<code>mean()</code>
+</td>
+<td style="text-align:left;">
+The average value
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median
+</td>
+<td style="text-align:left;">
+<code>median()</code>
+</td>
+<td style="text-align:left;">
+The middle value
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Standard Deviation
+</td>
+<td style="text-align:left;">
+<code>sd()</code>
+</td>
+<td style="text-align:left;">
+A measure of spread
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Power-Up with <code>kableExtra</code>:</strong> For truly publication-quality tables, the <strong>kableExtra</strong> package is a must-have. It allows for advanced styling.</p>
+<div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb961-1"><a href="rmd-text-formatting.html#cb961-1" tabindex="-1"></a><span class="co"># You may need to run this once in your Console: install.packages(&#39;kableExtra&#39;)</span></span>
+<span id="cb961-2"><a href="rmd-text-formatting.html#cb961-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb961-3"><a href="rmd-text-formatting.html#cb961-3" tabindex="-1"></a></span>
+<span id="cb961-4"><a href="rmd-text-formatting.html#cb961-4" tabindex="-1"></a><span class="co"># Let&#39;s show some fun facts about planets</span></span>
+<span id="cb961-5"><a href="rmd-text-formatting.html#cb961-5" tabindex="-1"></a>planets_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Planet =</span> <span class="fu">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>), <span class="at">Type =</span> <span class="fu">c</span>(<span class="st">&quot;Terrestrial&quot;</span>,</span>
+<span id="cb961-6"><a href="rmd-text-formatting.html#cb961-6" tabindex="-1"></a>    <span class="st">&quot;Terrestrial&quot;</span>, <span class="st">&quot;Terrestrial&quot;</span>, <span class="st">&quot;Gas Giant&quot;</span>), <span class="at">Moons =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">95</span>), <span class="st">`</span><span class="at">Gravity (m/s^2)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">3.7</span>,</span>
+<span id="cb961-7"><a href="rmd-text-formatting.html#cb961-7" tabindex="-1"></a>    <span class="fl">9.8</span>, <span class="fl">3.7</span>, <span class="fl">24.8</span>), <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb961-8"><a href="rmd-text-formatting.html#cb961-8" tabindex="-1"></a></span>
+<span id="cb961-9"><a href="rmd-text-formatting.html#cb961-9" tabindex="-1"></a><span class="fu">kable</span>(planets_df, <span class="at">caption =</span> <span class="st">&quot;Fun Facts About Our Solar System Neighbors&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb961-10"><a href="rmd-text-formatting.html#cb961-10" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb961-11"><a href="rmd-text-formatting.html#cb961-11" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb961-12"><a href="rmd-text-formatting.html#cb961-12" tabindex="-1"></a>    <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at"> </span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="at">Classification =</span> <span class="dv">1</span>, <span class="at">Satellites =</span> <span class="dv">2</span>))</span></code></pre></div>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:kableExtra-table">Table 13.2: </span>Fun Facts About Our Solar System Neighbors
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Classification
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Satellites
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+Planet
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:right;">
+Moons
+</th>
+<th style="text-align:right;">
+Gravity (m/s^2)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mercury
+</td>
+<td style="text-align:left;font-weight: bold;">
+Terrestrial
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Earth
+</td>
+<td style="text-align:left;font-weight: bold;">
+Terrestrial
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mars
+</td>
+<td style="text-align:left;font-weight: bold;">
+Terrestrial
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jupiter
+</td>
+<td style="text-align:left;font-weight: bold;">
+Gas Giant
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+24.8
+</td>
+</tr>
+</tbody>
+</table>
+<p>This will create a table with a header row and some styling applied.</p>
+</div>
+<div id="insert-citations-and-manage-bibliographies-in-r-markdown" class="section level3 hasAnchor" number="13.2.10">
+<h3><span class="header-section-number">13.2.10</span> Insert citations and manage bibliographies in R Markdown<a href="rmd-text-formatting.html#insert-citations-and-manage-bibliographies-in-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R Markdown provides us the capability to add bibliography and manage citations with ease, similar to writing a LaTex document. To add citations, you first need to add the bibliography filed in the YAML head. If your references are in the file “references.bib”, you can set the bibliography file as follows.</p>
+<pre><code>---
+output: html_document
+bibliography: references.bib  
+---</code></pre>
+<p>The .bib file is a plain-text file that consists of bibliography entries like the following:</p>
+<pre><code>@book{r02pro,
+  title = {R Programming: From Zero to Pro},
+  author = {Yang Feng},
+  organization = {New York University},
+  address = {New York, NY},
+  year = {2024},
+  url = {https://r02pro.github.io/},
+}</code></pre>
+<p>Then, each bibtex items can be cited directly within the documentation using the syntax <code>@key</code>, where key is the citation key in the first line of the entry, e.g., <code>@r02pro</code> will show as <span class="citation">Feng (<a href="#ref-r02pro">2024</a>)</span> in the document. To put citations in parentheses, use <code>[@key]</code>. To cite more than one items, separate the keys by semicolons, e.g., <code>[@key-a; @key-b; @key-c]</code>. To suppress the author name, you can add a minus sign before @, e.g., <code>[-@r02pro]</code> will generate <span class="citation">(<a href="#ref-r02pro">2024</a>)</span>.</p>
+<p>To learn more about citations and bibliography in R Markdown, you can read the excellent book by <span class="citation">Xie, Dervieux, and Riederer (<a href="#ref-xie2020r">2020</a>)</span>..</p>
+</div>
+<div id="your-turn-a-mini-challenge" class="section level3 hasAnchor" number="13.2.11">
+<h3><span class="header-section-number">13.2.11</span> Your Turn: A Mini-Challenge<a href="rmd-text-formatting.html#your-turn-a-mini-challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Time to get your hands dirty! Create a new <code>.Rmd</code> file and try to build the following mini-report. This is the best way to solidify your new skills.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Create a Level 1 Header:</strong> “My Favorite Mathematical Constant”</li>
+<li><strong>Write a sentence in bold</strong> explaining what your favorite constant is (e.g., <strong>My favorite constant is <span class="math inline">\(\pi\)</span></strong>).</li>
+<li><strong>Add a blockquote</strong> with a fun fact about it.</li>
+<li><strong>Create an ordered list</strong> with at least two reasons why you like it.</li>
+<li><strong>Include an inline R calculation.</strong> For example: “A circle with a radius of 5 units has a circumference of <code>`r 2 * pi * 5`</code> units.”</li>
+<li><strong>Add a footnote</strong> with a link to a Wikipedia article about your chosen constant.</li>
+</ol>
+<p>Good luck, and happy formatting!</p>
+<p>An example .Rmd file is below for your reference.</p>
+<div class="sourceCode" id="cb964"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb964-1"><a href="rmd-text-formatting.html#cb964-1" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb964-2"><a href="rmd-text-formatting.html#cb964-2" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Mini-Challenge Solution: My Favorite Mathematical Constant&quot;</span></span>
+<span id="cb964-3"><a href="rmd-text-formatting.html#cb964-3" tabindex="-1"></a><span class="an">output:</span><span class="co"> html_document</span></span>
+<span id="cb964-4"><a href="rmd-text-formatting.html#cb964-4" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb964-5"><a href="rmd-text-formatting.html#cb964-5" tabindex="-1"></a></span>
+<span id="cb964-6"><a href="rmd-text-formatting.html#cb964-6" tabindex="-1"></a><span class="fu"># My Favorite Mathematical Constant</span></span>
+<span id="cb964-7"><a href="rmd-text-formatting.html#cb964-7" tabindex="-1"></a></span>
+<span id="cb964-8"><a href="rmd-text-formatting.html#cb964-8" tabindex="-1"></a>**My favorite constant is  $e$**</span>
+<span id="cb964-9"><a href="rmd-text-formatting.html#cb964-9" tabindex="-1"></a></span>
+<span id="cb964-10"><a href="rmd-text-formatting.html#cb964-10" tabindex="-1"></a><span class="at">&gt; Euler&#39;s number, $e$, is approximately 2.71828 and is the base of the natural logarithm. It appears everywhere in growth processes, probability, and calculus!</span></span>
+<span id="cb964-11"><a href="rmd-text-formatting.html#cb964-11" tabindex="-1"></a></span>
+<span id="cb964-12"><a href="rmd-text-formatting.html#cb964-12" tabindex="-1"></a>Here are a few reasons why I like $e$:</span>
+<span id="cb964-13"><a href="rmd-text-formatting.html#cb964-13" tabindex="-1"></a></span>
+<span id="cb964-14"><a href="rmd-text-formatting.html#cb964-14" tabindex="-1"></a><span class="ss">1. </span>It describes continuous growth and exponential change perfectly.</span>
+<span id="cb964-15"><a href="rmd-text-formatting.html#cb964-15" tabindex="-1"></a><span class="ss">2. </span>It has deep connections to calculus, particularly in limits and derivatives.</span>
+<span id="cb964-16"><a href="rmd-text-formatting.html#cb964-16" tabindex="-1"></a></span>
+<span id="cb964-17"><a href="rmd-text-formatting.html#cb964-17" tabindex="-1"></a>For example, if something grows continuously at a rate of 100%, after 1 unit of time it grows to:</span>
+<span id="cb964-18"><a href="rmd-text-formatting.html#cb964-18" tabindex="-1"></a></span>
+<span id="cb964-19"><a href="rmd-text-formatting.html#cb964-19" tabindex="-1"></a><span class="in">`r exp(1)`</span> units.</span>
+<span id="cb964-20"><a href="rmd-text-formatting.html#cb964-20" tabindex="-1"></a></span>
+<span id="cb964-21"><a href="rmd-text-formatting.html#cb964-21" tabindex="-1"></a>You can learn more about $e$ on its <span class="co">[</span><span class="ot">Wikipedia page</span><span class="co">]</span>(https://en.wikipedia.org/wiki/E_(mathematical_constant)).<span class="ot">[^1]</span></span>
+<span id="cb964-22"><a href="rmd-text-formatting.html#cb964-22" tabindex="-1"></a></span>
+<span id="cb964-23"><a href="rmd-text-formatting.html#cb964-23" tabindex="-1"></a><span class="ot">[^1]: </span>Wikipedia article: https://en.wikipedia.org/wiki/E_(mathematical_constant)</span></code></pre></div>
 
 </div>
+</div>
+<!-- </div> -->
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-r02pro" class="csl-entry">
+Feng, Yang. 2024. <em>R Programming: From Zero to Pro</em>. New York, NY: New York University. <a href="https://r02pro.github.io/">https://r02pro.github.io/</a>.
+</div>
+<div id="ref-xie2020r" class="csl-entry">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Chapman; Hall/CRC.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>This is the footnote text that provides additional information.<a href="rmd-text-formatting.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="tidy-name-value.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="more-on-missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="case-study.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1055,7 +1250,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yangfengstat/r02pro_source/edit/main/08.02_Separate_and_Combine_Columns.Rmd",
+"link": "https://github.com/yangfengstat/r02pro_source/edit/main/13.02_Text_Formatting_in_R_Markdown.Rmd",
 "text": "Edit"
 },
 "history": {
