@@ -833,158 +833,158 @@ div.csl-indent {
 <p>Remember in Section <a href="Object-Assignment.html#Object-Assignment">1.3</a>, we learned to give a name to an object by using the <strong>assignment operator</strong> <code>&lt;-</code>. Depending on what name you assign to an object, it may provide a broad but unspecified explanation of the element(s) the object contains. When necessary, we need a way to label each element of an object to have a concrete idea on what each element refers to. To do so, We can turn an vector into an <strong>named vector</strong>, and there are two ways to complete this task.</p>
 <p><strong><em>a. Using the equal sign whilst creating the vector</em></strong></p>
 <p>If you have an object with a short length, you can consider using the form <code>name = value</code> inside the <code>c()</code> to create a named vector in one step.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="subsetting-and-modify-values.html#cb85-1" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
-<span id="cb85-2"><a href="subsetting-and-modify-values.html#cb85-2" tabindex="-1"></a>x_w_name</span>
-<span id="cb85-3"><a href="subsetting-and-modify-values.html#cb85-3" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
-<span id="cb85-4"><a href="subsetting-and-modify-values.html#cb85-4" tabindex="-1"></a><span class="co">#&gt;    165     60     22</span></span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="subsetting-and-modify-values.html#cb86-1" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
+<span id="cb86-2"><a href="subsetting-and-modify-values.html#cb86-2" tabindex="-1"></a>x_w_name</span>
+<span id="cb86-3"><a href="subsetting-and-modify-values.html#cb86-3" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
+<span id="cb86-4"><a href="subsetting-and-modify-values.html#cb86-4" tabindex="-1"></a><span class="co">#&gt;    165     60     22</span></span></code></pre></div>
 <p>In this example, we can see that the output includes a label for every arbitrary numeric value so that we know what these numbers mean in real life. For a named vector, you can also access its elements via the names, and update the values via the assignment operator.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="subsetting-and-modify-values.html#cb86-1" tabindex="-1"></a>x_w_name[<span class="st">&quot;height&quot;</span>]</span>
-<span id="cb86-2"><a href="subsetting-and-modify-values.html#cb86-2" tabindex="-1"></a><span class="co">#&gt; height </span></span>
-<span id="cb86-3"><a href="subsetting-and-modify-values.html#cb86-3" tabindex="-1"></a><span class="co">#&gt;    165</span></span>
-<span id="cb86-4"><a href="subsetting-and-modify-values.html#cb86-4" tabindex="-1"></a>x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="ot">&lt;-</span> x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="sc">+</span> <span class="dv">10</span></span>
-<span id="cb86-5"><a href="subsetting-and-modify-values.html#cb86-5" tabindex="-1"></a>x_w_name</span>
-<span id="cb86-6"><a href="subsetting-and-modify-values.html#cb86-6" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
-<span id="cb86-7"><a href="subsetting-and-modify-values.html#cb86-7" tabindex="-1"></a><span class="co">#&gt;    165     70     22</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="subsetting-and-modify-values.html#cb87-1" tabindex="-1"></a>x_w_name[<span class="st">&quot;height&quot;</span>]</span>
+<span id="cb87-2"><a href="subsetting-and-modify-values.html#cb87-2" tabindex="-1"></a><span class="co">#&gt; height </span></span>
+<span id="cb87-3"><a href="subsetting-and-modify-values.html#cb87-3" tabindex="-1"></a><span class="co">#&gt;    165</span></span>
+<span id="cb87-4"><a href="subsetting-and-modify-values.html#cb87-4" tabindex="-1"></a>x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="ot">&lt;-</span> x_w_name[<span class="st">&quot;weight&quot;</span>] <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb87-5"><a href="subsetting-and-modify-values.html#cb87-5" tabindex="-1"></a>x_w_name</span>
+<span id="cb87-6"><a href="subsetting-and-modify-values.html#cb87-6" tabindex="-1"></a><span class="co">#&gt; height weight    BMI </span></span>
+<span id="cb87-7"><a href="subsetting-and-modify-values.html#cb87-7" tabindex="-1"></a><span class="co">#&gt;    165     70     22</span></span></code></pre></div>
 <p><strong><em>b. Using the Names Function <code>names()</code> afterwards</em></strong></p>
 <p>While the equal sign method is straightforward, it is less effective when the object contains a few elements. In such cases, we can apply the Function <code>names()</code> after the vector is created. For example, if we want to represent whether it snows on each day using a logical vector during a ten-day time period.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="subsetting-and-modify-values.html#cb87-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb87-2"><a href="subsetting-and-modify-values.html#cb87-2" tabindex="-1"></a>y</span>
-<span id="cb87-3"><a href="subsetting-and-modify-values.html#cb87-3" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</span></span>
-<span id="cb87-4"><a href="subsetting-and-modify-values.html#cb87-4" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>, <span class="st">&quot;Jan 4&quot;</span>, <span class="st">&quot;Jan 5&quot;</span>, <span class="st">&quot;Jan 6&quot;</span>, <span class="st">&quot;Jan 7&quot;</span>, <span class="st">&quot;Jan 8&quot;</span>,</span>
-<span id="cb87-5"><a href="subsetting-and-modify-values.html#cb87-5" tabindex="-1"></a>    <span class="st">&quot;Jan 9&quot;</span>, <span class="st">&quot;Jan 10&quot;</span>)</span>
-<span id="cb87-6"><a href="subsetting-and-modify-values.html#cb87-6" tabindex="-1"></a>y</span>
-<span id="cb87-7"><a href="subsetting-and-modify-values.html#cb87-7" tabindex="-1"></a><span class="co">#&gt;  Jan 1  Jan 2  Jan 3  Jan 4  Jan 5  Jan 6  Jan 7  Jan 8  Jan 9 Jan 10 </span></span>
-<span id="cb87-8"><a href="subsetting-and-modify-values.html#cb87-8" tabindex="-1"></a><span class="co">#&gt;   TRUE  FALSE   TRUE   TRUE  FALSE   TRUE   TRUE  FALSE   TRUE   TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="subsetting-and-modify-values.html#cb88-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb88-2"><a href="subsetting-and-modify-values.html#cb88-2" tabindex="-1"></a>y</span>
+<span id="cb88-3"><a href="subsetting-and-modify-values.html#cb88-3" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</span></span>
+<span id="cb88-4"><a href="subsetting-and-modify-values.html#cb88-4" tabindex="-1"></a><span class="fu">names</span>(y) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jan 1&quot;</span>, <span class="st">&quot;Jan 2&quot;</span>, <span class="st">&quot;Jan 3&quot;</span>, <span class="st">&quot;Jan 4&quot;</span>, <span class="st">&quot;Jan 5&quot;</span>, <span class="st">&quot;Jan 6&quot;</span>, <span class="st">&quot;Jan 7&quot;</span>, <span class="st">&quot;Jan 8&quot;</span>,</span>
+<span id="cb88-5"><a href="subsetting-and-modify-values.html#cb88-5" tabindex="-1"></a>    <span class="st">&quot;Jan 9&quot;</span>, <span class="st">&quot;Jan 10&quot;</span>)</span>
+<span id="cb88-6"><a href="subsetting-and-modify-values.html#cb88-6" tabindex="-1"></a>y</span>
+<span id="cb88-7"><a href="subsetting-and-modify-values.html#cb88-7" tabindex="-1"></a><span class="co">#&gt;  Jan 1  Jan 2  Jan 3  Jan 4  Jan 5  Jan 6  Jan 7  Jan 8  Jan 9 Jan 10 </span></span>
+<span id="cb88-8"><a href="subsetting-and-modify-values.html#cb88-8" tabindex="-1"></a><span class="co">#&gt;   TRUE  FALSE   TRUE   TRUE  FALSE   TRUE   TRUE  FALSE   TRUE   TRUE</span></span></code></pre></div>
 <p>Again, the output after applying <code>names()</code> provides more information than before. You can also access element(s) and update their values via their names as we introduced just now. Reflectively, we can create an named vector whenever we want the vector itself to include more information, and the specific way to do that is really contingent upon our preferences and what we are given in each case.</p>
 <p>Now, it’s important to be aware that the value for an element’s name need to be a character vector. Actually, an element’s name is also a type of attributes of R Objects. We will introduce other types of attributes as we encounter them. The name attribute provides additional information regarding the meaning of each element, and enables us to extract values using the names.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="subsetting-and-modify-values.html#cb88-1" tabindex="-1"></a><span class="fu">attributes</span>(x_w_name)</span>
-<span id="cb88-2"><a href="subsetting-and-modify-values.html#cb88-2" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
-<span id="cb88-3"><a href="subsetting-and-modify-values.html#cb88-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
-<span id="cb88-4"><a href="subsetting-and-modify-values.html#cb88-4" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
-<span id="cb88-5"><a href="subsetting-and-modify-values.html#cb88-5" tabindex="-1"></a><span class="co">#&gt;  Named num [1:3] 165 70 22</span></span>
-<span id="cb88-6"><a href="subsetting-and-modify-values.html#cb88-6" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;names&quot;)= chr [1:3] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
-<span id="cb88-7"><a href="subsetting-and-modify-values.html#cb88-7" tabindex="-1"></a></span>
-<span id="cb88-8"><a href="subsetting-and-modify-values.html#cb88-8" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
-<span id="cb88-9"><a href="subsetting-and-modify-values.html#cb88-9" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span>
-<span id="cb88-10"><a href="subsetting-and-modify-values.html#cb88-10" tabindex="-1"></a><span class="co">#&gt;  num [1:3] 165 60 22</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="subsetting-and-modify-values.html#cb89-1" tabindex="-1"></a><span class="fu">attributes</span>(x_w_name)</span>
+<span id="cb89-2"><a href="subsetting-and-modify-values.html#cb89-2" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
+<span id="cb89-3"><a href="subsetting-and-modify-values.html#cb89-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
+<span id="cb89-4"><a href="subsetting-and-modify-values.html#cb89-4" tabindex="-1"></a><span class="fu">str</span>(x_w_name)</span>
+<span id="cb89-5"><a href="subsetting-and-modify-values.html#cb89-5" tabindex="-1"></a><span class="co">#&gt;  Named num [1:3] 165 70 22</span></span>
+<span id="cb89-6"><a href="subsetting-and-modify-values.html#cb89-6" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;names&quot;)= chr [1:3] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span>
+<span id="cb89-7"><a href="subsetting-and-modify-values.html#cb89-7" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="subsetting-and-modify-values.html#cb89-8" tabindex="-1"></a>x_wo_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">165</span>, <span class="dv">60</span>, <span class="dv">22</span>)</span>
+<span id="cb89-9"><a href="subsetting-and-modify-values.html#cb89-9" tabindex="-1"></a><span class="fu">str</span>(x_wo_name)</span>
+<span id="cb89-10"><a href="subsetting-and-modify-values.html#cb89-10" tabindex="-1"></a><span class="co">#&gt;  num [1:3] 165 60 22</span></span></code></pre></div>
 <p>You can see that <code>x_w_name</code> is a named numeric vector, with the names attribute. In contrast, str() function tells us <code>x_wo_name</code> is a plain numeric vector with no attributes. To directly extract certain attributes of an R object, you can use the attr() function on it with the second argument being the specific attribute you wish to extract.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="subsetting-and-modify-values.html#cb89-1" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span>
-<span id="cb89-2"><a href="subsetting-and-modify-values.html#cb89-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="subsetting-and-modify-values.html#cb90-1" tabindex="-1"></a><span class="fu">attr</span>(x_w_name, <span class="st">&quot;names&quot;</span>)</span>
+<span id="cb90-2"><a href="subsetting-and-modify-values.html#cb90-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;height&quot; &quot;weight&quot; &quot;BMI&quot;</span></span></code></pre></div>
 </div>
 <div id="vector-subsetting" class="section level3 hasAnchor" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Vector subsetting<a href="subsetting-and-modify-values.html#vector-subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let’s delve into this section’s main focus: vector subsetting. At some point of your analysis of a vector with more than 1 element, you may want to extract particular elements to constitute a new vector. In R, the new vector is considered as a <strong>subvector</strong> of the original vector. This process is called <strong>vector subsetting</strong>, and the subvector will be of the <strong>same type</strong> as the original one.</p>
 <p>In this part, we will introduce two common ways to do vector subsetting in R. Before we get started, let’s create a vector which will be used throughout this part.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="subsetting-and-modify-values.html#cb90-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="subsetting-and-modify-values.html#cb91-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span></code></pre></div>
 <p><strong><em>a. Use logical vectors to do vector subsetting</em></strong></p>
 <p>Firstly, let’s see how we can apply logical vectors to do vector subsetting. Following the original vector’s name, a pair of square brackets <code>[ ]</code> is used to include a logical vector of the <strong>same length</strong> as the original vector. Here is an example,</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="subsetting-and-modify-values.html#cb91-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
-<span id="cb91-2"><a href="subsetting-and-modify-values.html#cb91-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="subsetting-and-modify-values.html#cb92-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
+<span id="cb92-2"><a href="subsetting-and-modify-values.html#cb92-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 <p>From the result, you can see that the values from <code>h</code> with the same positions of <code>TRUE</code>s are extracted. Since <code>3</code>, <code>4</code> and <code>90</code> are parts of the values of <code>h</code>, the vector composed of <code>3 4 90</code> is a subvector of <code>h</code>. When assigning these three values to a name, you will get a named subvector <code>sub1</code>. While <code>sub1</code> is developed from <code>h</code>, they are now stored as two different vectors.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="subsetting-and-modify-values.html#cb92-1" tabindex="-1"></a>sub1 <span class="ot">&lt;-</span> h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
-<span id="cb92-2"><a href="subsetting-and-modify-values.html#cb92-2" tabindex="-1"></a>sub1</span>
-<span id="cb92-3"><a href="subsetting-and-modify-values.html#cb92-3" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="subsetting-and-modify-values.html#cb93-1" tabindex="-1"></a>sub1 <span class="ot">&lt;-</span> h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
+<span id="cb93-2"><a href="subsetting-and-modify-values.html#cb93-2" tabindex="-1"></a>sub1</span>
+<span id="cb93-3"><a href="subsetting-and-modify-values.html#cb93-3" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 <p>In addition to writing the logical vector in an explicit form, you can also use a named logical vector or an expression whose result is a logical vector. Let’s say we want to find the subvector of <code>h</code> for all elements in <code>h</code> that are larger than 2. Then, you can first compare <code>h</code> with <code>2</code>, getting a logical vector, which is named <code>big3</code> here.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="subsetting-and-modify-values.html#cb93-1" tabindex="-1"></a>h <span class="sc">&gt;</span> <span class="dv">2</span></span>
-<span id="cb93-2"><a href="subsetting-and-modify-values.html#cb93-2" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE</span></span>
-<span id="cb93-3"><a href="subsetting-and-modify-values.html#cb93-3" tabindex="-1"></a>big3 <span class="ot">&lt;-</span> h <span class="sc">&gt;</span> <span class="dv">2</span></span>
-<span id="cb93-4"><a href="subsetting-and-modify-values.html#cb93-4" tabindex="-1"></a>big3</span>
-<span id="cb93-5"><a href="subsetting-and-modify-values.html#cb93-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="subsetting-and-modify-values.html#cb94-1" tabindex="-1"></a>h <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb94-2"><a href="subsetting-and-modify-values.html#cb94-2" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE</span></span>
+<span id="cb94-3"><a href="subsetting-and-modify-values.html#cb94-3" tabindex="-1"></a>big3 <span class="ot">&lt;-</span> h <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb94-4"><a href="subsetting-and-modify-values.html#cb94-4" tabindex="-1"></a>big3</span>
+<span id="cb94-5"><a href="subsetting-and-modify-values.html#cb94-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>Then you may notice that both <code>big3</code> and <code>h &gt; 2</code> are identical to <code>c(TRUE, FALSE, TRUE, FALSE, TRUE)</code>. So, you can clearly put either <code>big3</code> or <code>h &gt; 2</code> into <code>[ ]</code>, which generates the same subvector with <code>3 4 90</code> as its elements.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="subsetting-and-modify-values.html#cb94-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
-<span id="cb94-2"><a href="subsetting-and-modify-values.html#cb94-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
-<span id="cb94-3"><a href="subsetting-and-modify-values.html#cb94-3" tabindex="-1"></a>h[big3]</span>
-<span id="cb94-4"><a href="subsetting-and-modify-values.html#cb94-4" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
-<span id="cb94-5"><a href="subsetting-and-modify-values.html#cb94-5" tabindex="-1"></a>h[h <span class="sc">&gt;</span> <span class="dv">2</span>]</span>
-<span id="cb94-6"><a href="subsetting-and-modify-values.html#cb94-6" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="subsetting-and-modify-values.html#cb95-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)]</span>
+<span id="cb95-2"><a href="subsetting-and-modify-values.html#cb95-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
+<span id="cb95-3"><a href="subsetting-and-modify-values.html#cb95-3" tabindex="-1"></a>h[big3]</span>
+<span id="cb95-4"><a href="subsetting-and-modify-values.html#cb95-4" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
+<span id="cb95-5"><a href="subsetting-and-modify-values.html#cb95-5" tabindex="-1"></a>h[h <span class="sc">&gt;</span> <span class="dv">2</span>]</span>
+<span id="cb95-6"><a href="subsetting-and-modify-values.html#cb95-6" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 <p>Don’t restrict yourself in thinking that only numeric vectors can be subsetted. If you create a character vector <code>home</code> and compare it to <code>"pig"</code>, you will get another logical vector <code>same3</code>. Let’s try to use <code>same3</code> to do vector subsetting on <code>h</code>.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="subsetting-and-modify-values.html#cb95-1" tabindex="-1"></a>home <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb95-2"><a href="subsetting-and-modify-values.html#cb95-2" tabindex="-1"></a>same3 <span class="ot">&lt;-</span> home <span class="sc">==</span> <span class="st">&quot;pig&quot;</span></span>
-<span id="cb95-3"><a href="subsetting-and-modify-values.html#cb95-3" tabindex="-1"></a>sub2 <span class="ot">&lt;-</span> h[same3]</span>
-<span id="cb95-4"><a href="subsetting-and-modify-values.html#cb95-4" tabindex="-1"></a>sub2</span>
-<span id="cb95-5"><a href="subsetting-and-modify-values.html#cb95-5" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="subsetting-and-modify-values.html#cb96-1" tabindex="-1"></a>home <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb96-2"><a href="subsetting-and-modify-values.html#cb96-2" tabindex="-1"></a>same3 <span class="ot">&lt;-</span> home <span class="sc">==</span> <span class="st">&quot;pig&quot;</span></span>
+<span id="cb96-3"><a href="subsetting-and-modify-values.html#cb96-3" tabindex="-1"></a>sub2 <span class="ot">&lt;-</span> h[same3]</span>
+<span id="cb96-4"><a href="subsetting-and-modify-values.html#cb96-4" tabindex="-1"></a>sub2</span>
+<span id="cb96-5"><a href="subsetting-and-modify-values.html#cb96-5" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 <p>Awesome! You still get the result of <code>3 4 90</code>! As a result, as long as the logical vector you apply in subsetting have the same logical values, you will get the same result after doing vector subsetting.</p>
 <p>Of course, you can do vector subsetting on character vectors or logical vectors. Keep in mind that the result will be the same type as the original one. Try the following code by yourself.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="subsetting-and-modify-values.html#cb96-1" tabindex="-1"></a>home[same3]</span>
-<span id="cb96-2"><a href="subsetting-and-modify-values.html#cb96-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;pig&quot; &quot;pig&quot; &quot;pig&quot;</span></span>
-<span id="cb96-3"><a href="subsetting-and-modify-values.html#cb96-3" tabindex="-1"></a>home[big3]</span>
-<span id="cb96-4"><a href="subsetting-and-modify-values.html#cb96-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;pig&quot; &quot;pig&quot; &quot;pig&quot;</span></span>
-<span id="cb96-5"><a href="subsetting-and-modify-values.html#cb96-5" tabindex="-1"></a>lg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb96-6"><a href="subsetting-and-modify-values.html#cb96-6" tabindex="-1"></a>lg[same3]</span>
-<span id="cb96-7"><a href="subsetting-and-modify-values.html#cb96-7" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
-<span id="cb96-8"><a href="subsetting-and-modify-values.html#cb96-8" tabindex="-1"></a>lg[big3]</span>
-<span id="cb96-9"><a href="subsetting-and-modify-values.html#cb96-9" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="subsetting-and-modify-values.html#cb97-1" tabindex="-1"></a>home[same3]</span>
+<span id="cb97-2"><a href="subsetting-and-modify-values.html#cb97-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;pig&quot; &quot;pig&quot; &quot;pig&quot;</span></span>
+<span id="cb97-3"><a href="subsetting-and-modify-values.html#cb97-3" tabindex="-1"></a>home[big3]</span>
+<span id="cb97-4"><a href="subsetting-and-modify-values.html#cb97-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;pig&quot; &quot;pig&quot; &quot;pig&quot;</span></span>
+<span id="cb97-5"><a href="subsetting-and-modify-values.html#cb97-5" tabindex="-1"></a>lg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb97-6"><a href="subsetting-and-modify-values.html#cb97-6" tabindex="-1"></a>lg[same3]</span>
+<span id="cb97-7"><a href="subsetting-and-modify-values.html#cb97-7" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
+<span id="cb97-8"><a href="subsetting-and-modify-values.html#cb97-8" tabindex="-1"></a>lg[big3]</span>
+<span id="cb97-9"><a href="subsetting-and-modify-values.html#cb97-9" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p><strong><em>b. Use indices to do vector subsetting</em></strong></p>
 <p>Next, we will introduce how to use indices to do vector subsetting. To achieve this goal, you need to put a numeric vector inside <code>[ ]</code>, for example,</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="subsetting-and-modify-values.html#cb97-1" tabindex="-1"></a>h  <span class="co">#let&#39;s refresh ourself with what elements h contains</span></span>
-<span id="cb97-2"><a href="subsetting-and-modify-values.html#cb97-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  1  4  2 90</span></span>
-<span id="cb97-3"><a href="subsetting-and-modify-values.html#cb97-3" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]  <span class="co">#return values of the 2nd and 4th elements of h</span></span>
-<span id="cb97-4"><a href="subsetting-and-modify-values.html#cb97-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="subsetting-and-modify-values.html#cb98-1" tabindex="-1"></a>h  <span class="co">#let&#39;s refresh ourself with what elements h contains</span></span>
+<span id="cb98-2"><a href="subsetting-and-modify-values.html#cb98-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  1  4  2 90</span></span>
+<span id="cb98-3"><a href="subsetting-and-modify-values.html#cb98-3" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]  <span class="co">#return values of the 2nd and 4th elements of h</span></span>
+<span id="cb98-4"><a href="subsetting-and-modify-values.html#cb98-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
 <p>As it shows, the values of the 2nd and 4th elements in <code>h</code> are returned. Notice that, in R, the first element in a vector has index 1, whereas other programming languages may have different indexing fashion. In that sense, the numeric vector inside the <code>[ ]</code> represents relative indices instead of actual numeric values. If you add a minus sign <code>-</code> before the numeric vector, you will get all elements except the 2nd and 4th ones in <code>h</code>.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="subsetting-and-modify-values.html#cb98-1" tabindex="-1"></a>h[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]  <span class="co">#return values except the 2nd and 4th elements of h</span></span>
-<span id="cb98-2"><a href="subsetting-and-modify-values.html#cb98-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="subsetting-and-modify-values.html#cb99-1" tabindex="-1"></a>h[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]  <span class="co">#return values except the 2nd and 4th elements of h</span></span>
+<span id="cb99-2"><a href="subsetting-and-modify-values.html#cb99-2" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 <p>Similar to using a named logical vectors, you can also use a named numeric vector to do vector subsetting.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="subsetting-and-modify-values.html#cb99-1" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb99-2"><a href="subsetting-and-modify-values.html#cb99-2" tabindex="-1"></a>sub3 <span class="ot">&lt;-</span> h[ind]</span>
-<span id="cb99-3"><a href="subsetting-and-modify-values.html#cb99-3" tabindex="-1"></a>sub3</span>
-<span id="cb99-4"><a href="subsetting-and-modify-values.html#cb99-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="subsetting-and-modify-values.html#cb100-1" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb100-2"><a href="subsetting-and-modify-values.html#cb100-2" tabindex="-1"></a>sub3 <span class="ot">&lt;-</span> h[ind]</span>
+<span id="cb100-3"><a href="subsetting-and-modify-values.html#cb100-3" tabindex="-1"></a>sub3</span>
+<span id="cb100-4"><a href="subsetting-and-modify-values.html#cb100-4" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
 <p>The first line of this example looks like a new object assignment that assigns two numeric values, 2 and 4, to the name <code>ind</code>. However, what we really attempt is to restrict <code>ind</code>, a random name, to represent the 2nd and the 4th index.</p>
 <p>Also, you can get subvectors of character vectors or logical vectors via indices.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="subsetting-and-modify-values.html#cb100-1" tabindex="-1"></a>home[ind]</span>
-<span id="cb100-2"><a href="subsetting-and-modify-values.html#cb100-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;monkey&quot; &quot;monkey&quot;</span></span>
-<span id="cb100-3"><a href="subsetting-and-modify-values.html#cb100-3" tabindex="-1"></a>lg[ind]</span>
-<span id="cb100-4"><a href="subsetting-and-modify-values.html#cb100-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="subsetting-and-modify-values.html#cb101-1" tabindex="-1"></a>home[ind]</span>
+<span id="cb101-2"><a href="subsetting-and-modify-values.html#cb101-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;monkey&quot; &quot;monkey&quot;</span></span>
+<span id="cb101-3"><a href="subsetting-and-modify-values.html#cb101-3" tabindex="-1"></a>lg[ind]</span>
+<span id="cb101-4"><a href="subsetting-and-modify-values.html#cb101-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE</span></span></code></pre></div>
 <div class="infobox caution">
 <p>In conclusion, there are two ways to get a subvector of <code>h</code> with values bigger than 2.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="subsetting-and-modify-values.html#cb101-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
-<span id="cb101-2"><a href="subsetting-and-modify-values.html#cb101-2" tabindex="-1"></a>h[h <span class="sc">&gt;</span> <span class="dv">2</span>]  <span class="co">#h &gt; 2 will return TRUE if the element in h has value bigger than 2</span></span>
-<span id="cb101-3"><a href="subsetting-and-modify-values.html#cb101-3" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
-<span id="cb101-4"><a href="subsetting-and-modify-values.html#cb101-4" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)]  <span class="co">#It&#39;s clear to see that the first, third and fifth elements have values bigger than 2</span></span>
-<span id="cb101-5"><a href="subsetting-and-modify-values.html#cb101-5" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="subsetting-and-modify-values.html#cb102-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
+<span id="cb102-2"><a href="subsetting-and-modify-values.html#cb102-2" tabindex="-1"></a>h[h <span class="sc">&gt;</span> <span class="dv">2</span>]  <span class="co">#h &gt; 2 will return TRUE if the element in h has value bigger than 2</span></span>
+<span id="cb102-3"><a href="subsetting-and-modify-values.html#cb102-3" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span>
+<span id="cb102-4"><a href="subsetting-and-modify-values.html#cb102-4" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)]  <span class="co">#It&#39;s clear to see that the first, third and fifth elements have values bigger than 2</span></span>
+<span id="cb102-5"><a href="subsetting-and-modify-values.html#cb102-5" tabindex="-1"></a><span class="co">#&gt; [1]  3  4 90</span></span></code></pre></div>
 </div>
 <p><strong><em>c. using names to do vector subsetting</em></strong></p>
 <p>For a named vector, we can also use character vectors consisting of the names as indices to do vector subsetting. The elements’ names and their corresponding indices are fungible.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="subsetting-and-modify-values.html#cb102-1" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
-<span id="cb102-2"><a href="subsetting-and-modify-values.html#cb102-2" tabindex="-1"></a>x_w_name[<span class="st">&quot;height&quot;</span>]</span>
-<span id="cb102-3"><a href="subsetting-and-modify-values.html#cb102-3" tabindex="-1"></a><span class="co">#&gt; height </span></span>
-<span id="cb102-4"><a href="subsetting-and-modify-values.html#cb102-4" tabindex="-1"></a><span class="co">#&gt;    165</span></span>
-<span id="cb102-5"><a href="subsetting-and-modify-values.html#cb102-5" tabindex="-1"></a>x_w_name[<span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;BMI&quot;</span>)]</span>
-<span id="cb102-6"><a href="subsetting-and-modify-values.html#cb102-6" tabindex="-1"></a><span class="co">#&gt; weight    BMI </span></span>
-<span id="cb102-7"><a href="subsetting-and-modify-values.html#cb102-7" tabindex="-1"></a><span class="co">#&gt;     60     22</span></span>
-<span id="cb102-8"><a href="subsetting-and-modify-values.html#cb102-8" tabindex="-1"></a>x_w_name[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]  <span class="co"># c(&#39;weight&#39;, &#39;BMI&#39;) and c(2, 3) refer to the same elements, so the last two lines lead to the same output</span></span>
-<span id="cb102-9"><a href="subsetting-and-modify-values.html#cb102-9" tabindex="-1"></a><span class="co">#&gt; weight    BMI </span></span>
-<span id="cb102-10"><a href="subsetting-and-modify-values.html#cb102-10" tabindex="-1"></a><span class="co">#&gt;     60     22</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="subsetting-and-modify-values.html#cb103-1" tabindex="-1"></a>x_w_name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">height =</span> <span class="dv">165</span>, <span class="at">weight =</span> <span class="dv">60</span>, <span class="at">BMI =</span> <span class="dv">22</span>)</span>
+<span id="cb103-2"><a href="subsetting-and-modify-values.html#cb103-2" tabindex="-1"></a>x_w_name[<span class="st">&quot;height&quot;</span>]</span>
+<span id="cb103-3"><a href="subsetting-and-modify-values.html#cb103-3" tabindex="-1"></a><span class="co">#&gt; height </span></span>
+<span id="cb103-4"><a href="subsetting-and-modify-values.html#cb103-4" tabindex="-1"></a><span class="co">#&gt;    165</span></span>
+<span id="cb103-5"><a href="subsetting-and-modify-values.html#cb103-5" tabindex="-1"></a>x_w_name[<span class="fu">c</span>(<span class="st">&quot;weight&quot;</span>, <span class="st">&quot;BMI&quot;</span>)]</span>
+<span id="cb103-6"><a href="subsetting-and-modify-values.html#cb103-6" tabindex="-1"></a><span class="co">#&gt; weight    BMI </span></span>
+<span id="cb103-7"><a href="subsetting-and-modify-values.html#cb103-7" tabindex="-1"></a><span class="co">#&gt;     60     22</span></span>
+<span id="cb103-8"><a href="subsetting-and-modify-values.html#cb103-8" tabindex="-1"></a>x_w_name[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]  <span class="co"># c(&#39;weight&#39;, &#39;BMI&#39;) and c(2, 3) refer to the same elements, so the last two lines lead to the same output</span></span>
+<span id="cb103-9"><a href="subsetting-and-modify-values.html#cb103-9" tabindex="-1"></a><span class="co">#&gt; weight    BMI </span></span>
+<span id="cb103-10"><a href="subsetting-and-modify-values.html#cb103-10" tabindex="-1"></a><span class="co">#&gt;     60     22</span></span></code></pre></div>
 </div>
 <div id="access-and-modify-values-in-vectors-and-sub-vectors" class="section level3 hasAnchor" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Access and modify values in vectors and sub-vectors<a href="subsetting-and-modify-values.html#access-and-modify-values-in-vectors-and-sub-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We’ll end this section by learning the way to access and modify values in a vector. This is a fairly basic data manipulation, and the reason we wait until now to introduce it is because we use the same ways to access and modify values in atomic vectors that we presented in previous sections.</p>
 <p>Let’s begin with extracting one element from a vector. To access a specific element, you can apply vector indexing by using the index of the element with a pair of square brackets <code>[ ]</code> surrounding it following by the vector name. After accessing an element, you can also update its value by using the assignment operator with the extraction expression on the left and the new value on the right. Let’s say you want to access the third element of <code>y1</code> and update its value to 100.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="subsetting-and-modify-values.html#cb103-1" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb103-2"><a href="subsetting-and-modify-values.html#cb103-2" tabindex="-1"></a>y1</span>
-<span id="cb103-3"><a href="subsetting-and-modify-values.html#cb103-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 3 5 5</span></span>
-<span id="cb103-4"><a href="subsetting-and-modify-values.html#cb103-4" tabindex="-1"></a>y1[<span class="dv">3</span>]</span>
-<span id="cb103-5"><a href="subsetting-and-modify-values.html#cb103-5" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb103-6"><a href="subsetting-and-modify-values.html#cb103-6" tabindex="-1"></a>y1[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb103-7"><a href="subsetting-and-modify-values.html#cb103-7" tabindex="-1"></a>y1</span>
-<span id="cb103-8"><a href="subsetting-and-modify-values.html#cb103-8" tabindex="-1"></a><span class="co">#&gt; [1]   1   3 100   5   5</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="subsetting-and-modify-values.html#cb104-1" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb104-2"><a href="subsetting-and-modify-values.html#cb104-2" tabindex="-1"></a>y1</span>
+<span id="cb104-3"><a href="subsetting-and-modify-values.html#cb104-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 3 5 5</span></span>
+<span id="cb104-4"><a href="subsetting-and-modify-values.html#cb104-4" tabindex="-1"></a>y1[<span class="dv">3</span>]</span>
+<span id="cb104-5"><a href="subsetting-and-modify-values.html#cb104-5" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb104-6"><a href="subsetting-and-modify-values.html#cb104-6" tabindex="-1"></a>y1[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb104-7"><a href="subsetting-and-modify-values.html#cb104-7" tabindex="-1"></a>y1</span>
+<span id="cb104-8"><a href="subsetting-and-modify-values.html#cb104-8" tabindex="-1"></a><span class="co">#&gt; [1]   1   3 100   5   5</span></span></code></pre></div>
 <p>It is as straightforward as it looks like! From the result, you can see that you’ve updated the third element’s value is updated to 100. Now, if you did look through the first half of this section, at this point you may find that accessing a vector’s element(s) is completed similarly compared to vector subsetting. It turns out we can update the values of multiple elements of a vector in a similarly way.</p>
 <p><strong><em>a. Change all values in subsets of vectors</em></strong></p>
 <p>Firstly, let’s review values of vector <code>h</code> and get a subset of it.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="subsetting-and-modify-values.html#cb104-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
-<span id="cb104-2"><a href="subsetting-and-modify-values.html#cb104-2" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
-<span id="cb104-3"><a href="subsetting-and-modify-values.html#cb104-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="subsetting-and-modify-values.html#cb105-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
+<span id="cb105-2"><a href="subsetting-and-modify-values.html#cb105-2" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
+<span id="cb105-3"><a href="subsetting-and-modify-values.html#cb105-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2</span></span></code></pre></div>
 <p>Obviously, you will get a numeric vector with <code>1</code> and <code>2</code> as the values. Let’s see how to change values for a subset of <code>h</code>. You just need to assign new values to the subset, then you can verify the values of <code>h</code>. Let’s see an example,</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="subsetting-and-modify-values.html#cb105-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb105-2"><a href="subsetting-and-modify-values.html#cb105-2" tabindex="-1"></a>h</span>
-<span id="cb105-3"><a href="subsetting-and-modify-values.html#cb105-3" tabindex="-1"></a><span class="co">#&gt; [1]  3 10  4 20 90</span></span>
-<span id="cb105-4"><a href="subsetting-and-modify-values.html#cb105-4" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co">#recycling rule applies</span></span>
-<span id="cb105-5"><a href="subsetting-and-modify-values.html#cb105-5" tabindex="-1"></a>h</span>
-<span id="cb105-6"><a href="subsetting-and-modify-values.html#cb105-6" tabindex="-1"></a><span class="co">#&gt; [1]  3 10  4 10 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="subsetting-and-modify-values.html#cb106-1" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb106-2"><a href="subsetting-and-modify-values.html#cb106-2" tabindex="-1"></a>h</span>
+<span id="cb106-3"><a href="subsetting-and-modify-values.html#cb106-3" tabindex="-1"></a><span class="co">#&gt; [1]  3 10  4 20 90</span></span>
+<span id="cb106-4"><a href="subsetting-and-modify-values.html#cb106-4" tabindex="-1"></a>h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co">#recycling rule applies</span></span>
+<span id="cb106-5"><a href="subsetting-and-modify-values.html#cb106-5" tabindex="-1"></a>h</span>
+<span id="cb106-6"><a href="subsetting-and-modify-values.html#cb106-6" tabindex="-1"></a><span class="co">#&gt; [1]  3 10  4 10 90</span></span></code></pre></div>
 <p>In the first two lines, you can see that you have changed <code>1</code> and <code>2</code> to <code>10</code> and <code>20</code>, respectively. In the last two lines, however, since you assign multiple values to one new value, R will apply recycling rule to complete the value updating process. In both cases, you have successfully change parts of <code>h</code>!</p>
 <p><strong><em>b. Define the vector again</em></strong></p>
 <p>Another way to change values in vectors is to do object assignment again using the same name, then you can change any values of it.</p>
 <p>Let’s first reset the values of <code>h</code>.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="subsetting-and-modify-values.html#cb106-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="subsetting-and-modify-values.html#cb107-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span></code></pre></div>
 <p>From Section <a href="Object-Assignment.html#Object-Assignment">1.3</a>, you learned that you can check all objects you assigned and their values in the <strong>environment panel</strong>. So let’s review values of vector <code>h</code> from this panel together.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:h1"></span>
 <img src="pics/2h1.png" alt="Values of h (1)" width="70%" />
@@ -993,9 +993,9 @@ Figure 2.9: Values of h (1)
 </p>
 </div>
 <p>We should agree that <code>h</code> is a numeric vector with 5 values Then let’s try to do an object assignment again, this time you can assign different values to <code>h</code> and see what will happen to <code>h</code>.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="subsetting-and-modify-values.html#cb107-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb107-2"><a href="subsetting-and-modify-values.html#cb107-2" tabindex="-1"></a>h</span>
-<span id="cb107-3"><a href="subsetting-and-modify-values.html#cb107-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="subsetting-and-modify-values.html#cb108-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb108-2"><a href="subsetting-and-modify-values.html#cb108-2" tabindex="-1"></a>h</span>
+<span id="cb108-3"><a href="subsetting-and-modify-values.html#cb108-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:h2"></span>
 <img src="pics/2h2.png" alt="Values of h (2)" width="70%" />
 <p class="caption">
@@ -1003,7 +1003,7 @@ Figure 2.10: Values of h (2)
 </p>
 </div>
 <p>You can assign any values to <code>h</code> as you want, then <code>h</code> may change the vector type or even the object type according to the values assigned. By running the following code, <code>h</code> will be a character vector with three strings.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="subsetting-and-modify-values.html#cb108-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;panda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="subsetting-and-modify-values.html#cb109-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pig&quot;</span>, <span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;panda&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:h3"></span>
 <img src="pics/2h3.png" alt="Values of h (3)" width="70%" />
 <p class="caption">
@@ -1012,10 +1012,10 @@ Figure 2.11: Values of h (3)
 </div>
 <div class="infobox caution">
 <p>If you assign values of a subvector to a name, you will create a new vector. Now <code>hs</code> is not the subset of <code>h</code>, it is a vector with the same value as the subset. If you assign different value(s) to <code>hs</code>, there will be no change on <code>h</code>.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="subsetting-and-modify-values.html#cb109-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
-<span id="cb109-2"><a href="subsetting-and-modify-values.html#cb109-2" tabindex="-1"></a>hs <span class="ot">&lt;-</span> h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
-<span id="cb109-3"><a href="subsetting-and-modify-values.html#cb109-3" tabindex="-1"></a>hs <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb109-4"><a href="subsetting-and-modify-values.html#cb109-4" tabindex="-1"></a>h</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="subsetting-and-modify-values.html#cb110-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">90</span>)</span>
+<span id="cb110-2"><a href="subsetting-and-modify-values.html#cb110-2" tabindex="-1"></a>hs <span class="ot">&lt;-</span> h[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span>
+<span id="cb110-3"><a href="subsetting-and-modify-values.html#cb110-3" tabindex="-1"></a>hs <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb110-4"><a href="subsetting-and-modify-values.html#cb110-4" tabindex="-1"></a>h</span></code></pre></div>
 </div>
 </div>
 <div id="exercises-7" class="section level3 hasAnchor" number="2.5.4">

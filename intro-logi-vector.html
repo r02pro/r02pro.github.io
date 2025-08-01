@@ -832,108 +832,108 @@ div.csl-indent {
 <h3><span class="header-section-number">2.3.1</span> Logical vectors: creation by comparisons, class, and storage type<a href="intro-logi-vector.html#create-logical-vector" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>logical vector</strong> is an atomic vector containing only <strong>logical values</strong>, mostly <code>TRUE</code> and <code>FALSE</code>. Logical vectors are most omnipresent when we check whether a comparison statement is true or false. Generally, comparisons are more common between numeric vectors since it is easy to compare numbers so that we will take the comparisons between numeric vectors as examples in this section.</p>
 <p>For two length-1 vectors, the comparison is simply done between the only element of each vector. Let’s create a numeric vector <code>x</code> with value <code>3</code>, and then compare it with <code>2</code> and <code>1</code>. (Here <code>2</code> and <code>1</code> are both length-1 numeric vectors)</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="intro-logi-vector.html#cb60-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb60-2"><a href="intro-logi-vector.html#cb60-2" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">2</span></span>
-<span id="cb60-3"><a href="intro-logi-vector.html#cb60-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb60-4"><a href="intro-logi-vector.html#cb60-4" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span></span>
-<span id="cb60-5"><a href="intro-logi-vector.html#cb60-5" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="intro-logi-vector.html#cb61-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb61-2"><a href="intro-logi-vector.html#cb61-2" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">2</span></span>
+<span id="cb61-3"><a href="intro-logi-vector.html#cb61-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb61-4"><a href="intro-logi-vector.html#cb61-4" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb61-5"><a href="intro-logi-vector.html#cb61-5" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>The value of <code>x &lt; 2</code> is <code>FALSE</code> since 3 is not smaller than 2, and the value of <code>x &gt; 1</code> is <code>TRUE</code> since 3 is larger than 1. So <code>x &lt; 2</code> and <code>x &gt; 1</code> are both vectors of length 1. Just like numeric and character vectors, you can check the class, length, and storage type of the result of this comparison. Let’s take <code>x &gt; 1</code> for example.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="intro-logi-vector.html#cb61-1" tabindex="-1"></a><span class="fu">class</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb61-2"><a href="intro-logi-vector.html#cb61-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
-<span id="cb61-3"><a href="intro-logi-vector.html#cb61-3" tabindex="-1"></a><span class="fu">length</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb61-4"><a href="intro-logi-vector.html#cb61-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb61-5"><a href="intro-logi-vector.html#cb61-5" tabindex="-1"></a><span class="fu">typeof</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb61-6"><a href="intro-logi-vector.html#cb61-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro-logi-vector.html#cb62-1" tabindex="-1"></a><span class="fu">class</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb62-2"><a href="intro-logi-vector.html#cb62-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
+<span id="cb62-3"><a href="intro-logi-vector.html#cb62-3" tabindex="-1"></a><span class="fu">length</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb62-4"><a href="intro-logi-vector.html#cb62-4" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb62-5"><a href="intro-logi-vector.html#cb62-5" tabindex="-1"></a><span class="fu">typeof</span>(x <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb62-6"><a href="intro-logi-vector.html#cb62-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
 <p>In addition, you can assign values of logical vectors to names for future use.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro-logi-vector.html#cb62-1" tabindex="-1"></a>big_1 <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">1</span></span>
-<span id="cb62-2"><a href="intro-logi-vector.html#cb62-2" tabindex="-1"></a>big_1</span>
-<span id="cb62-3"><a href="intro-logi-vector.html#cb62-3" tabindex="-1"></a><span class="fu">class</span>(big_1)</span>
-<span id="cb62-4"><a href="intro-logi-vector.html#cb62-4" tabindex="-1"></a><span class="fu">typeof</span>(big_1)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="intro-logi-vector.html#cb63-1" tabindex="-1"></a>big_1 <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb63-2"><a href="intro-logi-vector.html#cb63-2" tabindex="-1"></a>big_1</span>
+<span id="cb63-3"><a href="intro-logi-vector.html#cb63-3" tabindex="-1"></a><span class="fu">class</span>(big_1)</span>
+<span id="cb63-4"><a href="intro-logi-vector.html#cb63-4" tabindex="-1"></a><span class="fu">typeof</span>(big_1)</span></code></pre></div>
 <p>Now, it is clear that <code>x &gt; 1</code> and <code>big_1</code> are both logical vectors with length of 1.</p>
 <p>There are a few other commonly used operators for doing comparisons, which all result in <code>TRUE</code> when the statement is correct, and <code>FALSE</code> otherwise.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="intro-logi-vector.html#cb63-1" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">2</span>  <span class="co">#less than</span></span>
-<span id="cb63-2"><a href="intro-logi-vector.html#cb63-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb63-3"><a href="intro-logi-vector.html#cb63-3" tabindex="-1"></a>x <span class="sc">&lt;=</span> <span class="dv">2</span>  <span class="co">#less than or equal to</span></span>
-<span id="cb63-4"><a href="intro-logi-vector.html#cb63-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb63-5"><a href="intro-logi-vector.html#cb63-5" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span>  <span class="co">#bigger than</span></span>
-<span id="cb63-6"><a href="intro-logi-vector.html#cb63-6" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb63-7"><a href="intro-logi-vector.html#cb63-7" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="dv">1</span>  <span class="co">#bigger than or equal to</span></span>
-<span id="cb63-8"><a href="intro-logi-vector.html#cb63-8" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb63-9"><a href="intro-logi-vector.html#cb63-9" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">3</span>  <span class="co">#equal to</span></span>
-<span id="cb63-10"><a href="intro-logi-vector.html#cb63-10" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb63-11"><a href="intro-logi-vector.html#cb63-11" tabindex="-1"></a><span class="co"># x = 3 #another assignment operator in addition to `&lt;-`, NOT comparison</span></span>
-<span id="cb63-12"><a href="intro-logi-vector.html#cb63-12" tabindex="-1"></a>x <span class="sc">!=</span> <span class="dv">3</span>  <span class="co">#not equal to</span></span>
-<span id="cb63-13"><a href="intro-logi-vector.html#cb63-13" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="intro-logi-vector.html#cb64-1" tabindex="-1"></a>x <span class="sc">&lt;</span> <span class="dv">2</span>  <span class="co">#less than</span></span>
+<span id="cb64-2"><a href="intro-logi-vector.html#cb64-2" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb64-3"><a href="intro-logi-vector.html#cb64-3" tabindex="-1"></a>x <span class="sc">&lt;=</span> <span class="dv">2</span>  <span class="co">#less than or equal to</span></span>
+<span id="cb64-4"><a href="intro-logi-vector.html#cb64-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb64-5"><a href="intro-logi-vector.html#cb64-5" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">1</span>  <span class="co">#bigger than</span></span>
+<span id="cb64-6"><a href="intro-logi-vector.html#cb64-6" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb64-7"><a href="intro-logi-vector.html#cb64-7" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="dv">1</span>  <span class="co">#bigger than or equal to</span></span>
+<span id="cb64-8"><a href="intro-logi-vector.html#cb64-8" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb64-9"><a href="intro-logi-vector.html#cb64-9" tabindex="-1"></a>x <span class="sc">==</span> <span class="dv">3</span>  <span class="co">#equal to</span></span>
+<span id="cb64-10"><a href="intro-logi-vector.html#cb64-10" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb64-11"><a href="intro-logi-vector.html#cb64-11" tabindex="-1"></a><span class="co"># x = 3 #another assignment operator in addition to `&lt;-`, NOT comparison</span></span>
+<span id="cb64-12"><a href="intro-logi-vector.html#cb64-12" tabindex="-1"></a>x <span class="sc">!=</span> <span class="dv">3</span>  <span class="co">#not equal to</span></span>
+<span id="cb64-13"><a href="intro-logi-vector.html#cb64-13" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>Note that if you want to check whether two vectors are equal, you have to use <strong>two equal signs</strong> (with no space in-between) as a single operator, which is <code>==</code>, to do comparisons. If only one equal sign is used, it would work as an assignment operator. In addition, you can use an exclamation mark together with one equal sign, which is <code>!=</code>, to find out whether two vectors are not equal.</p>
 <p>In addition to making comparisons involving vectors of length 1, you can also do it with vectors containing more than one elements. When we make comparisons between two vectors that contain more than one elements, R will make an <strong>element-wise</strong> comparison just like the arithmetic operations between two numeric vectors in Section <a href="intro-num-vector.html#operation-recycling">2.1.2</a>.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="intro-logi-vector.html#cb64-1" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>)</span>
-<span id="cb64-2"><a href="intro-logi-vector.html#cb64-2" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb64-3"><a href="intro-logi-vector.html#cb64-3" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> x2 <span class="sc">&lt;=</span> x3</span>
-<span id="cb64-4"><a href="intro-logi-vector.html#cb64-4" tabindex="-1"></a>logi_1</span>
-<span id="cb64-5"><a href="intro-logi-vector.html#cb64-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="intro-logi-vector.html#cb65-1" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>)</span>
+<span id="cb65-2"><a href="intro-logi-vector.html#cb65-2" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb65-3"><a href="intro-logi-vector.html#cb65-3" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> x2 <span class="sc">&lt;=</span> x3</span>
+<span id="cb65-4"><a href="intro-logi-vector.html#cb65-4" tabindex="-1"></a>logi_1</span>
+<span id="cb65-5"><a href="intro-logi-vector.html#cb65-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></span></code></pre></div>
 <p>As <code>x2</code> and <code>x3</code> are of the same length, <strong>element-wise</strong> comparison will be applied. The result of this comparison <code>logi_1</code> will be a logical vector of the same length, and only contain <code>TRUE</code> and <code>FALSE.</code> You can also manually check that the values of <code>logi_1</code> agree with the comparisons <code>1 &lt;= 2</code>, <code>2 &lt;= 2</code>, and <code>6 &lt;= 4</code>.</p>
 <p>Similar to the arithmetic operations on numeric vectors, the <strong>recycling rule</strong> (introduced in Section <a href="intro-num-vector.html#operation-recycling">2.1.2</a>) also applies to the comparison when the two vectors do not have the same length. This recycling is most often used for a comparison between a vector <strong>with length greater than 1</strong> and a vector <strong>with length of 1</strong>. Let’s see an example.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="intro-logi-vector.html#cb65-1" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb65-2"><a href="intro-logi-vector.html#cb65-2" tabindex="-1"></a>x3 <span class="sc">!=</span> <span class="dv">2</span></span>
-<span id="cb65-3"><a href="intro-logi-vector.html#cb65-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="intro-logi-vector.html#cb66-1" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb66-2"><a href="intro-logi-vector.html#cb66-2" tabindex="-1"></a>x3 <span class="sc">!=</span> <span class="dv">2</span></span>
+<span id="cb66-3"><a href="intro-logi-vector.html#cb66-3" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
 <p>Here, <code>x3</code> is a numeric vector with length of 3, and <code>2</code> is a numeric vector of length 1. From the result, you can see that <code>2</code> is compared with each element in <code>x3</code>, producing a length-3 logical vector. You can simply check the values by doing the following comparisons: <code>2 != 2</code>, <code>2 != 2</code> and <code>4 != 2</code>.</p>
 <p>Now you must be familiar with logical vectors. Similar to numeric vectors and character vector, you can also use the <code>c()</code> function along with the logical values <code>TRUE</code> (or <code>T</code> for short) and <code>FALSE</code> (or <code>F</code> for short) as elements.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="intro-logi-vector.html#cb66-1" tabindex="-1"></a>logi_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb66-2"><a href="intro-logi-vector.html#cb66-2" tabindex="-1"></a>logi_2</span>
-<span id="cb66-3"><a href="intro-logi-vector.html#cb66-3" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
-<span id="cb66-4"><a href="intro-logi-vector.html#cb66-4" tabindex="-1"></a><span class="fu">class</span>(logi_2)</span>
-<span id="cb66-5"><a href="intro-logi-vector.html#cb66-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="intro-logi-vector.html#cb67-1" tabindex="-1"></a>logi_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb67-2"><a href="intro-logi-vector.html#cb67-2" tabindex="-1"></a>logi_2</span>
+<span id="cb67-3"><a href="intro-logi-vector.html#cb67-3" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span>
+<span id="cb67-4"><a href="intro-logi-vector.html#cb67-4" tabindex="-1"></a><span class="fu">class</span>(logi_2)</span>
+<span id="cb67-5"><a href="intro-logi-vector.html#cb67-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span></code></pre></div>
 <p>The values of logical vectors can also be <code>T</code> or <code>F</code>. You can check the class of <code>logi_3</code> by using <code>class()</code>.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="intro-logi-vector.html#cb67-1" tabindex="-1"></a>logi_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(F, T, F, T)</span>
-<span id="cb67-2"><a href="intro-logi-vector.html#cb67-2" tabindex="-1"></a>logi_3</span>
-<span id="cb67-3"><a href="intro-logi-vector.html#cb67-3" tabindex="-1"></a><span class="fu">class</span>(logi_3)</span>
-<span id="cb67-4"><a href="intro-logi-vector.html#cb67-4" tabindex="-1"></a><span class="fu">typeof</span>(logi_3)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro-logi-vector.html#cb68-1" tabindex="-1"></a>logi_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(F, T, F, T)</span>
+<span id="cb68-2"><a href="intro-logi-vector.html#cb68-2" tabindex="-1"></a>logi_3</span>
+<span id="cb68-3"><a href="intro-logi-vector.html#cb68-3" tabindex="-1"></a><span class="fu">class</span>(logi_3)</span>
+<span id="cb68-4"><a href="intro-logi-vector.html#cb68-4" tabindex="-1"></a><span class="fu">typeof</span>(logi_3)</span></code></pre></div>
 <div class="infobox caution">
 <p>It is worth emphasizing that, in creating numeric vectors and logical vectors, quotation marks aren’t necessary like they are in creating character vectors. If you put quotation marks around <code>TRUE</code> or <code>FALSE</code>, you will create a character vector instead.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="intro-logi-vector.html#cb68-1" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>)</span>
-<span id="cb68-2"><a href="intro-logi-vector.html#cb68-2" tabindex="-1"></a>char_1</span>
-<span id="cb68-3"><a href="intro-logi-vector.html#cb68-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot; &quot;TRUE&quot;</span></span>
-<span id="cb68-4"><a href="intro-logi-vector.html#cb68-4" tabindex="-1"></a><span class="fu">class</span>(char_1)</span>
-<span id="cb68-5"><a href="intro-logi-vector.html#cb68-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="intro-logi-vector.html#cb69-1" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>, <span class="st">&quot;TRUE&quot;</span>)</span>
+<span id="cb69-2"><a href="intro-logi-vector.html#cb69-2" tabindex="-1"></a>char_1</span>
+<span id="cb69-3"><a href="intro-logi-vector.html#cb69-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot; &quot;TRUE&quot;</span></span>
+<span id="cb69-4"><a href="intro-logi-vector.html#cb69-4" tabindex="-1"></a><span class="fu">class</span>(char_1)</span>
+<span id="cb69-5"><a href="intro-logi-vector.html#cb69-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 </div>
 <p>It is worth mentioning that, R is case-sensitive in terms of the expression of <code>TRUE</code> and <code>FALSE</code>. Any expression other than <code>TRUE</code>, <code>FALSE</code>, <code>T</code>, or <code>F</code> will be recognized as character values or name of an object in R, not logical values. Please see the example below.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="intro-logi-vector.html#cb69-1" tabindex="-1"></a><span class="co"># Valid Expression</span></span>
-<span id="cb69-2"><a href="intro-logi-vector.html#cb69-2" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, T))</span>
-<span id="cb69-3"><a href="intro-logi-vector.html#cb69-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
-<span id="cb69-4"><a href="intro-logi-vector.html#cb69-4" tabindex="-1"></a></span>
-<span id="cb69-5"><a href="intro-logi-vector.html#cb69-5" tabindex="-1"></a><span class="co"># Invalid Expression</span></span>
-<span id="cb69-6"><a href="intro-logi-vector.html#cb69-6" tabindex="-1"></a><span class="fu">class</span>(true)</span>
-<span id="cb69-7"><a href="intro-logi-vector.html#cb69-7" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;true&#39; not found</span></span>
-<span id="cb69-8"><a href="intro-logi-vector.html#cb69-8" tabindex="-1"></a><span class="fu">class</span>(True)</span>
-<span id="cb69-9"><a href="intro-logi-vector.html#cb69-9" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;True&#39; not found</span></span>
-<span id="cb69-10"><a href="intro-logi-vector.html#cb69-10" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;true&quot;</span>)</span>
-<span id="cb69-11"><a href="intro-logi-vector.html#cb69-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro-logi-vector.html#cb70-1" tabindex="-1"></a><span class="co"># Valid Expression</span></span>
+<span id="cb70-2"><a href="intro-logi-vector.html#cb70-2" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, T))</span>
+<span id="cb70-3"><a href="intro-logi-vector.html#cb70-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;logical&quot;</span></span>
+<span id="cb70-4"><a href="intro-logi-vector.html#cb70-4" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="intro-logi-vector.html#cb70-5" tabindex="-1"></a><span class="co"># Invalid Expression</span></span>
+<span id="cb70-6"><a href="intro-logi-vector.html#cb70-6" tabindex="-1"></a><span class="fu">class</span>(true)</span>
+<span id="cb70-7"><a href="intro-logi-vector.html#cb70-7" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;true&#39; not found</span></span>
+<span id="cb70-8"><a href="intro-logi-vector.html#cb70-8" tabindex="-1"></a><span class="fu">class</span>(True)</span>
+<span id="cb70-9"><a href="intro-logi-vector.html#cb70-9" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;True&#39; not found</span></span>
+<span id="cb70-10"><a href="intro-logi-vector.html#cb70-10" tabindex="-1"></a><span class="fu">class</span>(<span class="st">&quot;true&quot;</span>)</span>
+<span id="cb70-11"><a href="intro-logi-vector.html#cb70-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Finally, you can use the <code>vector(mode, length)</code> function to create a logical vector of certain length.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro-logi-vector.html#cb70-1" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="intro-logi-vector.html#cb71-1" tabindex="-1"></a><span class="fu">vector</span>(<span class="st">&quot;logical&quot;</span>, <span class="dv">2</span>)</span></code></pre></div>
 <p>Note that the default value is <code>FALSE</code>.</p>
 </div>
 <div id="logical-vectors-creation-when-testing-for-types" class="section level3 hasAnchor" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Logical vectors: creation when testing for types<a href="intro-logi-vector.html#logical-vectors-creation-when-testing-for-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to comparison operations, another situation that you will encounter logical vectors is when we test whether an object belongs to certain type.</p>
 <p>First of all, you can use <code>is.numeric()</code> to check whether an object is numeric, i.e. can be interpreted as numbers. It will return <code>TRUE</code> if the object is numeric, and will otherwise return <code>FALSE</code>. Note that both double vectors and integer vectors (Section <a href="intro-num-vector.html#storage-type">2.1.3</a>) are numeric since they can both be interpreted as numbers. To further differentiate between double vectors and integer vectors, you can use <code>is.double()</code> and <code>is.integer()</code>.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="intro-logi-vector.html#cb71-1" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb71-2"><a href="intro-logi-vector.html#cb71-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L)</span>
-<span id="cb71-3"><a href="intro-logi-vector.html#cb71-3" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x1), <span class="fu">is.double</span>(x1), <span class="fu">is.integer</span>(x1))</span>
-<span id="cb71-4"><a href="intro-logi-vector.html#cb71-4" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></span>
-<span id="cb71-5"><a href="intro-logi-vector.html#cb71-5" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x2), <span class="fu">is.double</span>(x2), <span class="fu">is.integer</span>(x2))</span>
-<span id="cb71-6"><a href="intro-logi-vector.html#cb71-6" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="intro-logi-vector.html#cb72-1" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb72-2"><a href="intro-logi-vector.html#cb72-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(1L, 2L)</span>
+<span id="cb72-3"><a href="intro-logi-vector.html#cb72-3" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x1), <span class="fu">is.double</span>(x1), <span class="fu">is.integer</span>(x1))</span>
+<span id="cb72-4"><a href="intro-logi-vector.html#cb72-4" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE</span></span>
+<span id="cb72-5"><a href="intro-logi-vector.html#cb72-5" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x2), <span class="fu">is.double</span>(x2), <span class="fu">is.integer</span>(x2))</span>
+<span id="cb72-6"><a href="intro-logi-vector.html#cb72-6" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>From the result, you can see that both <code>x1</code> and <code>x2</code> are numeric, only <code>x1</code> is of double type, and only <code>x2</code> is of integer type.</p>
 <p>Similarly, you can use <code>is.character()</code> to check whether an object is character, and <code>is.logical()</code> to check whether an object is logical.</p>
 <p>Let’s look at some examples.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="intro-logi-vector.html#cb72-1" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb72-2"><a href="intro-logi-vector.html#cb72-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;great&quot;</span>)</span>
-<span id="cb72-3"><a href="intro-logi-vector.html#cb72-3" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb72-4"><a href="intro-logi-vector.html#cb72-4" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x1), <span class="fu">is.character</span>(x1), <span class="fu">is.logical</span>(x1))</span>
-<span id="cb72-5"><a href="intro-logi-vector.html#cb72-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE</span></span>
-<span id="cb72-6"><a href="intro-logi-vector.html#cb72-6" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x2), <span class="fu">is.character</span>(x2), <span class="fu">is.logical</span>(x2))</span>
-<span id="cb72-7"><a href="intro-logi-vector.html#cb72-7" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE</span></span>
-<span id="cb72-8"><a href="intro-logi-vector.html#cb72-8" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x3), <span class="fu">is.character</span>(x3), <span class="fu">is.logical</span>(x3))</span>
-<span id="cb72-9"><a href="intro-logi-vector.html#cb72-9" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="intro-logi-vector.html#cb73-1" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb73-2"><a href="intro-logi-vector.html#cb73-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;great&quot;</span>)</span>
+<span id="cb73-3"><a href="intro-logi-vector.html#cb73-3" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb73-4"><a href="intro-logi-vector.html#cb73-4" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x1), <span class="fu">is.character</span>(x1), <span class="fu">is.logical</span>(x1))</span>
+<span id="cb73-5"><a href="intro-logi-vector.html#cb73-5" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE</span></span>
+<span id="cb73-6"><a href="intro-logi-vector.html#cb73-6" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x2), <span class="fu">is.character</span>(x2), <span class="fu">is.logical</span>(x2))</span>
+<span id="cb73-7"><a href="intro-logi-vector.html#cb73-7" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE FALSE</span></span>
+<span id="cb73-8"><a href="intro-logi-vector.html#cb73-8" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">is.numeric</span>(x3), <span class="fu">is.character</span>(x3), <span class="fu">is.logical</span>(x3))</span>
+<span id="cb73-9"><a href="intro-logi-vector.html#cb73-9" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE</span></span></code></pre></div>
 <p>We can see that all results from those check functions are logical values and they agree with the corresponding object types.</p>
 </div>
 <div id="exercises-5" class="section level3 hasAnchor" number="2.3.3">
