@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro</title>
-  <meta name="description" content="6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro" />
+  <title>Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro</title>
+  <meta name="description" content="Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro" />
+  <meta property="og:title" content="Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro" />
+  <meta property="og:description" content="Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro" />
+  <meta name="twitter:title" content="Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro" />
   
-  <meta name="twitter:description" content="6.2 ggplot Aesthetics (I): Constant-Valued Aesthetics | R Programming: Zero to Pro" />
+  <meta name="twitter:description" content="Chapter 2 R Objects (I): Basic Vectors | R Programming: Zero to Pro" />
   
 
 <meta name="author" content="Yang Feng" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scatterplot.html"/>
-<link rel="next" href="aes-local-map.html"/>
+<link rel="prev" href="rmd-advanced-chunks.html"/>
+<link rel="next" href="intro-num-vector.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -883,72 +883,28 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="aes-constant-value" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> ggplot Aesthetics (I): Constant-Valued Aesthetics<a href="aes-constant-value.html#aes-constant-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Having learned how to generate a basic scatterplot using <code>geom_point()</code> in Section <a href="scatterplot.html#scatterplot">6.1</a>, we are now ready to introduce one of the most important ingredients in a <code>geom</code>, namely, the <strong>aesthetics</strong>. Aesthetics include distinct features that you can change that affect the appearances of a plot, including color, shape, and size.</p>
-<p>There are in general three kinds of aesthetics:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Constant-Valued Aesthetics</strong>: this type of aesthetics change the corresponding feature of a plot <strong>globally</strong> (for example, <code>color = "red"</code> will make everything red). This type of aesthetic specification appears as <strong>an argument of the geoms</strong> (for example <code>geom_point()</code>). This will be the focus of our current section.</p></li>
-<li><p><strong>Local Aesthetic Mapping</strong>: this type of aesthetics (for example, <code>color</code>) will take possibly different values (different color values) for different data points depending on the <strong>mapped variables, only for the current geom</strong>. This type of aesthetic specification appears as an argument of the <code>aes()</code> function of the corresponding geom. We will cover this type of aesthetic in the next Section (Section <a href="aes-local-map.html#aes-local-map">6.3</a>).</p></li>
-<li><p><strong>Global Aesthetic Mapping</strong>: this type of aesthetics will use possibly different values for different data points depending on the <strong>mapped variable, at the global level</strong>, which will be <strong>passed</strong> to all individual geoms. This type of aesthetic specification appears as an argument of the <code>aes()</code> function, which is an argument of the <code>ggplot()</code> function. We will cover this type of aesthetic in Section <a href="multi-geom.html#multi-geom">6.7</a>, where multiple geoms are used.</p></li>
-</ol>
-<div class="infobox caution">
-<p>Note that although we will introduce aesthetics via the example of scatterplot, they are used for all kinds of plots which will be covered at a later time.</p>
+<div id="basic-vectors" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> R Objects (I): Basic Vectors<a href="basic-vectors.html#basic-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="objectives">
+<p><strong>Learning Objectives</strong></p>
+<p>After completing this chapter, you will be able to:</p>
+<ul>
+<li>Create and manipulate numeric, character, and logical vectors</li>
+<li>Understand the type coercion rules R uses to convert between vector types</li>
+<li>Use subsetting and modifying techniques to precisely control vector values</li>
+</ul>
 </div>
-<p>Let’s first review the code we used to generate the scatterplot between <code>sugar</code> and <code>cholestrol</code> in the <code>gm2004</code> dataset.</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="aes-constant-value.html#cb524-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb524-2"><a href="aes-constant-value.html#cb524-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb524-3"><a href="aes-constant-value.html#cb524-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb524-4"><a href="aes-constant-value.html#cb524-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol))</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-542-1.png" alt="" width="576" /></p>
-<p>Now, let’s see how to set <strong>Constant-Valued Aesthetic</strong> in <code>geom_point()</code>.</p>
-<p><strong><em>a. Color</em></strong></p>
-<p>To change the color of all points, you can add a <code>color</code> argument in the <code>geom_point()</code> function. Note that it is placed <strong>outside</strong> of the <code>aes()</code> function, which is different from aesthetic mappings, to be covered in the next section.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="aes-constant-value.html#cb525-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb525-2"><a href="aes-constant-value.html#cb525-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol),</span>
-<span id="cb525-3"><a href="aes-constant-value.html#cb525-3" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-543-1.png" alt="" width="576" /></p>
-<p>Clearly, all points are changed to blue.</p>
-<p><strong><em>b. Size</em></strong></p>
-<p>Similarly, you can set the <code>size</code> aesthetic in the <code>geom_point()</code> function to change the size of the all points.</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="aes-constant-value.html#cb526-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb526-2"><a href="aes-constant-value.html#cb526-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol),</span>
-<span id="cb526-3"><a href="aes-constant-value.html#cb526-3" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-544-1.png" alt="" width="576" /></p>
-<p>Note that it is very common to set multiple constant valued aesthetic in a geom function.</p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="aes-constant-value.html#cb527-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb527-2"><a href="aes-constant-value.html#cb527-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol),</span>
-<span id="cb527-3"><a href="aes-constant-value.html#cb527-3" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb527-4"><a href="aes-constant-value.html#cb527-4" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-545-1.png" alt="" width="576" /></p>
-<p>You may notice that the points are now bigger than before. Looking at the plot, some points are overlapping with each other, which is sometimes called <strong>overplotting</strong>. To solve this issue, you can change the transparency level of the points by setting the <code>alpha</code> aesthetic.</p>
-<p><strong><em>c. Transparency</em></strong></p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="aes-constant-value.html#cb528-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb528-2"><a href="aes-constant-value.html#cb528-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol),</span>
-<span id="cb528-3"><a href="aes-constant-value.html#cb528-3" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb528-4"><a href="aes-constant-value.html#cb528-4" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, </span>
-<span id="cb528-5"><a href="aes-constant-value.html#cb528-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-546-1.png" alt="" width="576" /></p>
-<p>By setting <code>alpha = 0.5</code>, the points become more visible and the overplotting problem is largely alleviated.</p>
-<p><strong><em>d. Shape</em></strong></p>
-<p>Lastly, we can also change the shape of the points from the default <code>1</code> (circle) to other shapes by the <code>shape</code> argument in <code>geom_point()</code>.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="aes-constant-value.html#cb529-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb529-2"><a href="aes-constant-value.html#cb529-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, <span class="at">y =</span> cholesterol),</span>
-<span id="cb529-3"><a href="aes-constant-value.html#cb529-3" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb529-4"><a href="aes-constant-value.html#cb529-4" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, </span>
-<span id="cb529-5"><a href="aes-constant-value.html#cb529-5" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb529-6"><a href="aes-constant-value.html#cb529-6" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-547-1.png" alt="" width="576" /></p>
-<p>Now, we have all points blue, size of 3, of triangle shape, and of transparency level 0.5. Recall the collection of all shapes is available in Figure <a href="scatterplot.html#fig:all-shapes">6.1</a>.</p>
-<p>You are welcome to try different combinations of global aesthetics.</p>
-<div id="exercises-35" class="section level3 hasAnchor" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Exercises<a href="aes-constant-value.html#exercises-35" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Using the <code>sahp</code> dataset, create a scatterplot with <strong>ggplot2</strong> to visualize the relationship between <code>lot_area</code> (on the x-axis) and <code>sale_price</code> (on the y-axis) with all points of color purple and size 2.</p></li>
-<li><p>Using the <code>gm2004</code> dataset, create a scatterplot with <strong>ggplot2</strong> to visualize the relationship between <code>BMI</code> (on the x-axis) and <code>cholesterol</code> (on the y-axis) with all points of color pink, size 3, transparency 0.3, and shape of diamond.</p></li>
-</ol>
-
-</div>
+<p>Object assignment (Chapter <a href="Object-Assignment.html#Object-Assignment">1.3</a>) gave you the power to name and reuse values. The next step is to understand what those named values actually are. In R, almost every data structure you meet ultimately reduces to an <strong>atomic vector</strong>: a one-dimensional sequence of values that all share the same underlying type.</p>
+<p>Chapter <a href="basic-vectors.html#basic-vectors">2</a> is about mastering the basic building blocks. You will learn how to create vectors from scratch, apply R’s vectorized operations confidently, and subset them to extract specific values. Along the way you will discover how R stores different kinds of information—numbers, text, and logical flags—and how to keep those types straight as you analyze data. For more complex operations on vectors like sorting, statistics, set operations, and dates, we will cover them in Chapter <a href="advanced-vectors.html#advanced-vectors">3</a>.</p>
+<blockquote>
+<p><strong>At a glance – Chapter ROADMAP</strong></p>
+<p>Section <a href="intro-num-vector.html#intro-num-vector">2.1</a>. <strong>Numeric vectors</strong>: Create numeric sequences and perform arithmetic in a vectorized way.<br />
+Section <a href="intro-char-vector.html#intro-char-vector">2.2</a>. <strong>Character vectors</strong>: Build strings and work with textual data.<br />
+Section <a href="intro-logi-vector.html#intro-logi-vector">2.3</a>. <strong>Logical vectors</strong>: Record yes/no information.<br />
+Section <a href="coercion-rule.html#coercion-rule">2.4</a>. <strong>Type coercion</strong>: Predict how R converts between vector types when they meet in the same object.<br />
+Section <a href="subsetting-and-modify-values.html#subsetting-and-modify-values">2.5</a>. <strong>Vector subsetting</strong>: Subset and modify values precisely.</p>
+</blockquote>
+<!--chapter:end:02.00_R_Objects_Vectors.Rmd-->
 </div>
 <hr>
   <p align="center">
@@ -963,8 +919,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="scatterplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="aes-local-map.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rmd-advanced-chunks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-num-vector.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -995,7 +951,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/yangfengstat/r02pro_source/edit/main/06.02_Constant_Valued_Aesthetics_in_ggplot.Rmd",
+    "link": "https://github.com/yangfengstat/r02pro_source/edit/main/02.01_Introduction_to_Numeric_Vectors.Rmd",
     "text": "Edit"
   },
   "history": {
