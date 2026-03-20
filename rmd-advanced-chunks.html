@@ -904,18 +904,18 @@ div.csl-indent {
 <li><code>out.width</code> and <code>out.height</code>: Control the display size in the output document (e.g., <code>"80%"</code> or <code>"400px"</code>).</li>
 </ul>
 <p>Here is an example:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb55-1"><a href="rmd-advanced-chunks.html#cb55-1" tabindex="-1"></a><span class="in">```{r my-plot, fig.width=8, fig.height=5, fig.cap=&quot;Scatterplot of pressure vs. temperature&quot;, fig.align=&quot;center&quot;, out.width=&quot;80%&quot;}</span></span>
-<span id="cb55-2"><a href="rmd-advanced-chunks.html#cb55-2" tabindex="-1"></a><span class="in">plot(pressure)</span></span>
-<span id="cb55-3"><a href="rmd-advanced-chunks.html#cb55-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb41-1"><a href="rmd-advanced-chunks.html#cb41-1" tabindex="-1"></a><span class="in">```{r my-plot, fig.width=8, fig.height=5, fig.cap=&quot;Scatterplot of pressure vs. temperature&quot;, fig.align=&quot;center&quot;, out.width=&quot;80%&quot;}</span></span>
+<span id="cb41-2"><a href="rmd-advanced-chunks.html#cb41-2" tabindex="-1"></a><span class="in">plot(pressure)</span></span>
+<span id="cb41-3"><a href="rmd-advanced-chunks.html#cb41-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>When you provide <code>fig.cap</code>, the figure is automatically numbered and can be cross-referenced with <code>\@ref(fig:my-plot)</code> in bookdown.</p>
 </div>
 <div id="caching" class="section level3 hasAnchor" number="1.6.2">
 <h3><span class="header-section-number">1.6.2</span> Caching<a href="rmd-advanced-chunks.html#caching" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For code chunks that take a long time to run (e.g., fitting complex models or processing large datasets), you can use <strong>caching</strong> to save the results so they are not recomputed every time you knit.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb56-1"><a href="rmd-advanced-chunks.html#cb56-1" tabindex="-1"></a><span class="in">```{r slow-computation, cache=TRUE}</span></span>
-<span id="cb56-2"><a href="rmd-advanced-chunks.html#cb56-2" tabindex="-1"></a><span class="in"># This chunk will only run once; results are cached</span></span>
-<span id="cb56-3"><a href="rmd-advanced-chunks.html#cb56-3" tabindex="-1"></a><span class="in">result &lt;- replicate(10000, mean(rnorm(1000)))</span></span>
-<span id="cb56-4"><a href="rmd-advanced-chunks.html#cb56-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb42-1"><a href="rmd-advanced-chunks.html#cb42-1" tabindex="-1"></a><span class="in">```{r slow-computation, cache=TRUE}</span></span>
+<span id="cb42-2"><a href="rmd-advanced-chunks.html#cb42-2" tabindex="-1"></a><span class="in"># This chunk will only run once; results are cached</span></span>
+<span id="cb42-3"><a href="rmd-advanced-chunks.html#cb42-3" tabindex="-1"></a><span class="in">result &lt;- replicate(10000, mean(rnorm(1000)))</span></span>
+<span id="cb42-4"><a href="rmd-advanced-chunks.html#cb42-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>Be cautious with caching: if the data or code that a cached chunk depends on changes, the cached result may be stale. You can use <code>cache.extra</code> or <code>dependson</code> options to manage dependencies.</p>
 </div>
 <div id="controlling-output" class="section level3 hasAnchor" number="1.6.3">
@@ -968,14 +968,14 @@ div.csl-indent {
 <div id="setting-chunk-options-for-the-whole-document" class="section level3 hasAnchor" number="1.6.5">
 <h3><span class="header-section-number">1.6.5</span> Setting Chunk Options for the Whole Document<a href="rmd-advanced-chunks.html#setting-chunk-options-for-the-whole-document" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to the global chunk options introduced in Section <a href="intro-r-markdown.html#intro-r-markdown">1.4</a>, you can use the <code>knitr::opts_chunk$set()</code> function to configure many options at once.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="rmd-advanced-chunks.html#cb57-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb57-2"><a href="rmd-advanced-chunks.html#cb57-2" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb57-3"><a href="rmd-advanced-chunks.html#cb57-3" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-4"><a href="rmd-advanced-chunks.html#cb57-4" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb57-5"><a href="rmd-advanced-chunks.html#cb57-5" tabindex="-1"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
-<span id="cb57-6"><a href="rmd-advanced-chunks.html#cb57-6" tabindex="-1"></a>  <span class="at">fig.height =</span> <span class="dv">5</span>,</span>
-<span id="cb57-7"><a href="rmd-advanced-chunks.html#cb57-7" tabindex="-1"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span></span>
-<span id="cb57-8"><a href="rmd-advanced-chunks.html#cb57-8" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="rmd-advanced-chunks.html#cb43-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb43-2"><a href="rmd-advanced-chunks.html#cb43-2" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb43-3"><a href="rmd-advanced-chunks.html#cb43-3" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb43-4"><a href="rmd-advanced-chunks.html#cb43-4" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb43-5"><a href="rmd-advanced-chunks.html#cb43-5" tabindex="-1"></a>  <span class="at">fig.width =</span> <span class="dv">7</span>,</span>
+<span id="cb43-6"><a href="rmd-advanced-chunks.html#cb43-6" tabindex="-1"></a>  <span class="at">fig.height =</span> <span class="dv">5</span>,</span>
+<span id="cb43-7"><a href="rmd-advanced-chunks.html#cb43-7" tabindex="-1"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span></span>
+<span id="cb43-8"><a href="rmd-advanced-chunks.html#cb43-8" tabindex="-1"></a>)</span></code></pre></div>
 <p>Individual chunks can still override these global settings as needed.</p>
 </div>
 <div id="exercises-4" class="section level3 hasAnchor" number="1.6.6">

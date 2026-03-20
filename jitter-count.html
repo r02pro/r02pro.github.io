@@ -897,11 +897,11 @@ div.csl-indent {
 <div id="overplotting" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Overplotting<a href="jitter-count.html#overplotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As an example, let’s look at the <code>gm2004</code> dataset, and generate a scatterplot between <code>continent</code> and <code>HDI_category</code>.</p>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="jitter-count.html#cb711-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb711-2"><a href="jitter-count.html#cb711-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb711-3"><a href="jitter-count.html#cb711-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
-<span id="cb711-4"><a href="jitter-count.html#cb711-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
-<span id="cb711-5"><a href="jitter-count.html#cb711-5" tabindex="-1"></a>                           <span class="at">y =</span> HDI_category)) <span class="co">#overplotting</span></span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="jitter-count.html#cb697-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb697-2"><a href="jitter-count.html#cb697-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb697-3"><a href="jitter-count.html#cb697-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
+<span id="cb697-4"><a href="jitter-count.html#cb697-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb697-5"><a href="jitter-count.html#cb697-5" tabindex="-1"></a>                           <span class="at">y =</span> HDI_category)) <span class="co">#overplotting</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-707-1.png" alt="" width="576" /></p>
 <p>From the plot, you may immediately realize that there are many possible overlapping data points. Indeed, there will be at most 20 distinct points on the plot since there are 5 continents and 4 different HDI categories. This phenomenon is called <strong>overplotting</strong>. Overplotting is not desirable since it hides useful information about the joint distribution. For example, we don’t know which value pairs out of the 20 possibilities appear more frequently in the data.</p>
 <p>To solve the overplotting issues, we introduce two solutions, namely <strong>jittering</strong> and <strong>count plots</strong>.</p>
@@ -909,30 +909,30 @@ div.csl-indent {
 <div id="jitter" class="section level3 hasAnchor" number="6.1.2">
 <h3><span class="header-section-number">6.1.2</span> Jittering<a href="jitter-count.html#jitter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first method for solving the overplotting issue is to add a small random perturbation to all datapoints, i.e., <strong>jittering</strong>. You can use the <code>geom_jitter()</code> function which works by first perturb the data points and then generate a scatterplot.</p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="jitter-count.html#cb712-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb712-2"><a href="jitter-count.html#cb712-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
-<span id="cb712-3"><a href="jitter-count.html#cb712-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
-<span id="cb712-4"><a href="jitter-count.html#cb712-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category))</span></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="jitter-count.html#cb698-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb698-2"><a href="jitter-count.html#cb698-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
+<span id="cb698-3"><a href="jitter-count.html#cb698-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb698-4"><a href="jitter-count.html#cb698-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-708-1.png" alt="" width="576" /></p>
 <p>For the jittered plot, we can clearly see which pair of <code>continent</code> and <code>HDI_category</code> have more observations. By default, the perturbation will be performed both vertically and horizontally with the same amount of 40% of the resolution of the data. To customize the amount of jittering, you can specify the arguments <code>width</code> as the amount of horizontal jittering and <code>height</code> as the amount of vertical jittering in the unit of the resolution of the data. To turn off the horizontal jittering, you can specify <code>width = 0</code>.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="jitter-count.html#cb713-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb713-2"><a href="jitter-count.html#cb713-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
-<span id="cb713-3"><a href="jitter-count.html#cb713-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
-<span id="cb713-4"><a href="jitter-count.html#cb713-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category),</span>
-<span id="cb713-5"><a href="jitter-count.html#cb713-5" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.1</span>, </span>
-<span id="cb713-6"><a href="jitter-count.html#cb713-6" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="jitter-count.html#cb699-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb699-2"><a href="jitter-count.html#cb699-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
+<span id="cb699-3"><a href="jitter-count.html#cb699-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb699-4"><a href="jitter-count.html#cb699-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category),</span>
+<span id="cb699-5"><a href="jitter-count.html#cb699-5" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.1</span>, </span>
+<span id="cb699-6"><a href="jitter-count.html#cb699-6" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-709-1.png" alt="" width="576" />
 Now, we can see that Africa has a large number of countries with low HDI category while Europe has almost all countries in the high or very high HDI category.</p>
 </div>
 <div id="count" class="section level3 hasAnchor" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Counts Plots<a href="jitter-count.html#count" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we want to visualize the distribution of a pair of discrete variables, another method to solve the overplotting issue is the <strong>count plot</strong>, which uses circles of different sizes to represent the frequency of each value pair. You can use the function <code>geom_count()</code> to generate a count plot.</p>
-<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="jitter-count.html#cb714-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb714-2"><a href="jitter-count.html#cb714-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
-<span id="cb714-3"><a href="jitter-count.html#cb714-3" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
-<span id="cb714-4"><a href="jitter-count.html#cb714-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category),</span>
-<span id="cb714-5"><a href="jitter-count.html#cb714-5" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.1</span>, </span>
-<span id="cb714-6"><a href="jitter-count.html#cb714-6" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="jitter-count.html#cb700-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb700-2"><a href="jitter-count.html#cb700-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;HDI_category&quot;</span>))) <span class="sc">+</span> </span>
+<span id="cb700-3"><a href="jitter-count.html#cb700-3" tabindex="-1"></a>  <span class="fu">geom_count</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb700-4"><a href="jitter-count.html#cb700-4" tabindex="-1"></a>                            <span class="at">y =</span> HDI_category),</span>
+<span id="cb700-5"><a href="jitter-count.html#cb700-5" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.1</span>, </span>
+<span id="cb700-6"><a href="jitter-count.html#cb700-6" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-710-1.png" alt="" width="576" /></p>
 <p>From this plot, you can clearly tell the frequency of each value pair by the legend showing the relationship between the size of the circle and the count.</p>
 </div>

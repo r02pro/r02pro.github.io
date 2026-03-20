@@ -894,64 +894,64 @@ div.csl-indent {
 <div id="tibble" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Tibble<a href="tibble.html#tibble" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Having learned data frames in Section <a href="dataframe.html#dataframe">3.3</a>, we would like to introduce a modern version of data frame, named <strong>tibbles</strong>. Tibbles <strong>are</strong> data frames with modifications for easier coding. To use the tibble class, you need to install the <strong>tibble</strong> package, which is part of the <strong>tidyverse</strong> package.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="tibble.html#cb415-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tibble&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="tibble.html#cb401-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tibble&quot;</span>)</span></code></pre></div>
 <div id="introduction-to-tibbles" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Introduction to tibbles<a href="tibble.html#introduction-to-tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After installing the <strong>tibble</strong> package, you can load the package and create a tibble using the <code>tibble()</code> function using all vectors as its argument, a process similar to how you create a data frame.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="tibble.html#cb416-1" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb416-2"><a href="tibble.html#cb416-2" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb416-3"><a href="tibble.html#cb416-3" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
-<span id="cb416-4"><a href="tibble.html#cb416-4" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>
-<span id="cb416-5"><a href="tibble.html#cb416-5" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, healthy)</span>
-<span id="cb416-6"><a href="tibble.html#cb416-6" tabindex="-1"></a>my_tibble</span>
-<span id="cb416-7"><a href="tibble.html#cb416-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span id="cb416-8"><a href="tibble.html#cb416-8" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
-<span id="cb416-9"><a href="tibble.html#cb416-9" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;  </span></span>
-<span id="cb416-10"><a href="tibble.html#cb416-10" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
-<span id="cb416-11"><a href="tibble.html#cb416-11" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
-<span id="cb416-12"><a href="tibble.html#cb416-12" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
-<span id="cb416-13"><a href="tibble.html#cb416-13" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
-<span id="cb416-14"><a href="tibble.html#cb416-14" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
-<span id="cb416-15"><a href="tibble.html#cb416-15" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="tibble.html#cb402-1" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb402-2"><a href="tibble.html#cb402-2" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb402-3"><a href="tibble.html#cb402-3" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2019</span><span class="sc">:</span><span class="dv">2021</span>, <span class="dv">2</span>)</span>
+<span id="cb402-4"><a href="tibble.html#cb402-4" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>
+<span id="cb402-5"><a href="tibble.html#cb402-5" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, year, healthy)</span>
+<span id="cb402-6"><a href="tibble.html#cb402-6" tabindex="-1"></a>my_tibble</span>
+<span id="cb402-7"><a href="tibble.html#cb402-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb402-8"><a href="tibble.html#cb402-8" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
+<span id="cb402-9"><a href="tibble.html#cb402-9" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;  </span></span>
+<span id="cb402-10"><a href="tibble.html#cb402-10" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
+<span id="cb402-11"><a href="tibble.html#cb402-11" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
+<span id="cb402-12"><a href="tibble.html#cb402-12" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
+<span id="cb402-13"><a href="tibble.html#cb402-13" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
+<span id="cb402-14"><a href="tibble.html#cb402-14" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
+<span id="cb402-15"><a href="tibble.html#cb402-15" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE</span></span></code></pre></div>
 <p>Another way to create a tibble is using the <code>as_tibble()</code> function on an already-created data frame.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="tibble.html#cb417-1" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(animal, year, healthy)</span>
-<span id="cb417-2"><a href="tibble.html#cb417-2" tabindex="-1"></a><span class="fu">as_tibble</span>(my_data_frame)</span>
-<span id="cb417-3"><a href="tibble.html#cb417-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span id="cb417-4"><a href="tibble.html#cb417-4" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
-<span id="cb417-5"><a href="tibble.html#cb417-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;  </span></span>
-<span id="cb417-6"><a href="tibble.html#cb417-6" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
-<span id="cb417-7"><a href="tibble.html#cb417-7" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
-<span id="cb417-8"><a href="tibble.html#cb417-8" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
-<span id="cb417-9"><a href="tibble.html#cb417-9" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
-<span id="cb417-10"><a href="tibble.html#cb417-10" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
-<span id="cb417-11"><a href="tibble.html#cb417-11" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="tibble.html#cb403-1" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(animal, year, healthy)</span>
+<span id="cb403-2"><a href="tibble.html#cb403-2" tabindex="-1"></a><span class="fu">as_tibble</span>(my_data_frame)</span>
+<span id="cb403-3"><a href="tibble.html#cb403-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb403-4"><a href="tibble.html#cb403-4" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
+<span id="cb403-5"><a href="tibble.html#cb403-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;  </span></span>
+<span id="cb403-6"><a href="tibble.html#cb403-6" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
+<span id="cb403-7"><a href="tibble.html#cb403-7" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
+<span id="cb403-8"><a href="tibble.html#cb403-8" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
+<span id="cb403-9"><a href="tibble.html#cb403-9" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
+<span id="cb403-10"><a href="tibble.html#cb403-10" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
+<span id="cb403-11"><a href="tibble.html#cb403-11" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE</span></span></code></pre></div>
 <p>From the output, we can see that, under the columns’ names, their types are also shown, which is very helpful. Another useful feature of tibble compare to data frame is that when you check its value, the output only shows at most the first 10 rows and the number of columns that can fit the output window, which avoids the console to be overcrowded.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="tibble.html#cb418-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span></span>
-<span id="cb418-2"><a href="tibble.html#cb418-2" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">id =</span> x, <span class="at">value =</span> <span class="fu">sin</span>(x))</span>
-<span id="cb418-3"><a href="tibble.html#cb418-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 100,000 × 2</span></span>
-<span id="cb418-4"><a href="tibble.html#cb418-4" tabindex="-1"></a><span class="co">#&gt;       id  value</span></span>
-<span id="cb418-5"><a href="tibble.html#cb418-5" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
-<span id="cb418-6"><a href="tibble.html#cb418-6" tabindex="-1"></a><span class="co">#&gt;  1     1  0.841</span></span>
-<span id="cb418-7"><a href="tibble.html#cb418-7" tabindex="-1"></a><span class="co">#&gt;  2     2  0.909</span></span>
-<span id="cb418-8"><a href="tibble.html#cb418-8" tabindex="-1"></a><span class="co">#&gt;  3     3  0.141</span></span>
-<span id="cb418-9"><a href="tibble.html#cb418-9" tabindex="-1"></a><span class="co">#&gt;  4     4 -0.757</span></span>
-<span id="cb418-10"><a href="tibble.html#cb418-10" tabindex="-1"></a><span class="co">#&gt;  5     5 -0.959</span></span>
-<span id="cb418-11"><a href="tibble.html#cb418-11" tabindex="-1"></a><span class="co">#&gt;  6     6 -0.279</span></span>
-<span id="cb418-12"><a href="tibble.html#cb418-12" tabindex="-1"></a><span class="co">#&gt;  7     7  0.657</span></span>
-<span id="cb418-13"><a href="tibble.html#cb418-13" tabindex="-1"></a><span class="co">#&gt;  8     8  0.989</span></span>
-<span id="cb418-14"><a href="tibble.html#cb418-14" tabindex="-1"></a><span class="co">#&gt;  9     9  0.412</span></span>
-<span id="cb418-15"><a href="tibble.html#cb418-15" tabindex="-1"></a><span class="co">#&gt; 10    10 -0.544</span></span>
-<span id="cb418-16"><a href="tibble.html#cb418-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 99,990 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="tibble.html#cb404-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span></span>
+<span id="cb404-2"><a href="tibble.html#cb404-2" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">id =</span> x, <span class="at">value =</span> <span class="fu">sin</span>(x))</span>
+<span id="cb404-3"><a href="tibble.html#cb404-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 100,000 × 2</span></span>
+<span id="cb404-4"><a href="tibble.html#cb404-4" tabindex="-1"></a><span class="co">#&gt;       id  value</span></span>
+<span id="cb404-5"><a href="tibble.html#cb404-5" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span id="cb404-6"><a href="tibble.html#cb404-6" tabindex="-1"></a><span class="co">#&gt;  1     1  0.841</span></span>
+<span id="cb404-7"><a href="tibble.html#cb404-7" tabindex="-1"></a><span class="co">#&gt;  2     2  0.909</span></span>
+<span id="cb404-8"><a href="tibble.html#cb404-8" tabindex="-1"></a><span class="co">#&gt;  3     3  0.141</span></span>
+<span id="cb404-9"><a href="tibble.html#cb404-9" tabindex="-1"></a><span class="co">#&gt;  4     4 -0.757</span></span>
+<span id="cb404-10"><a href="tibble.html#cb404-10" tabindex="-1"></a><span class="co">#&gt;  5     5 -0.959</span></span>
+<span id="cb404-11"><a href="tibble.html#cb404-11" tabindex="-1"></a><span class="co">#&gt;  6     6 -0.279</span></span>
+<span id="cb404-12"><a href="tibble.html#cb404-12" tabindex="-1"></a><span class="co">#&gt;  7     7  0.657</span></span>
+<span id="cb404-13"><a href="tibble.html#cb404-13" tabindex="-1"></a><span class="co">#&gt;  8     8  0.989</span></span>
+<span id="cb404-14"><a href="tibble.html#cb404-14" tabindex="-1"></a><span class="co">#&gt;  9     9  0.412</span></span>
+<span id="cb404-15"><a href="tibble.html#cb404-15" tabindex="-1"></a><span class="co">#&gt; 10    10 -0.544</span></span>
+<span id="cb404-16"><a href="tibble.html#cb404-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 99,990 more rows</span></span></code></pre></div>
 <p>Be prepared that your console output will be flooded with numbers before running the following code.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="tibble.html#cb419-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">id =</span> x, <span class="at">value =</span> <span class="fu">sin</span>(x)) </span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="tibble.html#cb405-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">id =</span> x, <span class="at">value =</span> <span class="fu">sin</span>(x)) </span></code></pre></div>
 <p>Once we have a tibble, let’s learn its class and structure.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="tibble.html#cb420-1" tabindex="-1"></a><span class="fu">class</span>(my_tibble)</span>
-<span id="cb420-2"><a href="tibble.html#cb420-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></span>
-<span id="cb420-3"><a href="tibble.html#cb420-3" tabindex="-1"></a><span class="fu">str</span>(my_tibble)</span>
-<span id="cb420-4"><a href="tibble.html#cb420-4" tabindex="-1"></a><span class="co">#&gt; tibble [6 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
-<span id="cb420-5"><a href="tibble.html#cb420-5" tabindex="-1"></a><span class="co">#&gt;  $ animal : chr [1:6] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot; ...</span></span>
-<span id="cb420-6"><a href="tibble.html#cb420-6" tabindex="-1"></a><span class="co">#&gt;  $ year   : int [1:6] 2019 2020 2021 2019 2020 2021</span></span>
-<span id="cb420-7"><a href="tibble.html#cb420-7" tabindex="-1"></a><span class="co">#&gt;  $ healthy: logi [1:6] TRUE TRUE TRUE TRUE TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="tibble.html#cb406-1" tabindex="-1"></a><span class="fu">class</span>(my_tibble)</span>
+<span id="cb406-2"><a href="tibble.html#cb406-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></span>
+<span id="cb406-3"><a href="tibble.html#cb406-3" tabindex="-1"></a><span class="fu">str</span>(my_tibble)</span>
+<span id="cb406-4"><a href="tibble.html#cb406-4" tabindex="-1"></a><span class="co">#&gt; tibble [6 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb406-5"><a href="tibble.html#cb406-5" tabindex="-1"></a><span class="co">#&gt;  $ animal : chr [1:6] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot; ...</span></span>
+<span id="cb406-6"><a href="tibble.html#cb406-6" tabindex="-1"></a><span class="co">#&gt;  $ year   : int [1:6] 2019 2020 2021 2019 2020 2021</span></span>
+<span id="cb406-7"><a href="tibble.html#cb406-7" tabindex="-1"></a><span class="co">#&gt;  $ healthy: logi [1:6] TRUE TRUE TRUE TRUE TRUE FALSE</span></span></code></pre></div>
 <p>From the result, you can see that in addition to <code>"data.frame"</code>, the tibble also has classes of <code>"tbl_df"</code> and <code>"tbl"</code>, which contain many useful functions. We will be using tibbles extensively throughout the rest of book due to its advantages over the original data frames.</p>
 <p>For your convenience, we’ve summarized below the different variables types a tibble can include.</p>
 <table>
@@ -1001,72 +1001,72 @@ div.csl-indent {
 <div id="adding-observations-or-variables-in-tibbles" class="section level3 hasAnchor" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Adding Observations or Variables in Tibbles<a href="tibble.html#adding-observations-or-variables-in-tibbles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In a tibble, adding observations has an easier method than that in a data frame, via the <code>add_row()</code> function in the <strong>tibble</strong> package.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="tibble.html#cb421-1" tabindex="-1"></a><span class="fu">add_row</span>(my_tibble, <span class="at">animal =</span> <span class="st">&quot;pig&quot;</span>, <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2017</span>, <span class="dv">2018</span>), <span class="at">healthy =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb421-2"><a href="tibble.html#cb421-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 3</span></span>
-<span id="cb421-3"><a href="tibble.html#cb421-3" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
-<span id="cb421-4"><a href="tibble.html#cb421-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;lgl&gt;  </span></span>
-<span id="cb421-5"><a href="tibble.html#cb421-5" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
-<span id="cb421-6"><a href="tibble.html#cb421-6" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
-<span id="cb421-7"><a href="tibble.html#cb421-7" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
-<span id="cb421-8"><a href="tibble.html#cb421-8" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
-<span id="cb421-9"><a href="tibble.html#cb421-9" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
-<span id="cb421-10"><a href="tibble.html#cb421-10" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE  </span></span>
-<span id="cb421-11"><a href="tibble.html#cb421-11" tabindex="-1"></a><span class="co">#&gt; 7 pig     2017 TRUE   </span></span>
-<span id="cb421-12"><a href="tibble.html#cb421-12" tabindex="-1"></a><span class="co">#&gt; 8 pig     2018 TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="tibble.html#cb407-1" tabindex="-1"></a><span class="fu">add_row</span>(my_tibble, <span class="at">animal =</span> <span class="st">&quot;pig&quot;</span>, <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2017</span>, <span class="dv">2018</span>), <span class="at">healthy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb407-2"><a href="tibble.html#cb407-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 3</span></span>
+<span id="cb407-3"><a href="tibble.html#cb407-3" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy</span></span>
+<span id="cb407-4"><a href="tibble.html#cb407-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;lgl&gt;  </span></span>
+<span id="cb407-5"><a href="tibble.html#cb407-5" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE   </span></span>
+<span id="cb407-6"><a href="tibble.html#cb407-6" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE   </span></span>
+<span id="cb407-7"><a href="tibble.html#cb407-7" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE   </span></span>
+<span id="cb407-8"><a href="tibble.html#cb407-8" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE   </span></span>
+<span id="cb407-9"><a href="tibble.html#cb407-9" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE   </span></span>
+<span id="cb407-10"><a href="tibble.html#cb407-10" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE  </span></span>
+<span id="cb407-11"><a href="tibble.html#cb407-11" tabindex="-1"></a><span class="co">#&gt; 7 pig     2017 TRUE   </span></span>
+<span id="cb407-12"><a href="tibble.html#cb407-12" tabindex="-1"></a><span class="co">#&gt; 8 pig     2018 TRUE</span></span></code></pre></div>
 <p>From the results, we can see that multiple rows can be added at the same time by specifying the corresponding values for each variable name. Note the recycling rule applies for other variables with only one value specified.</p>
 <p>To add an additional variable, in addition to using the <code>$</code> operator followed by a name as in data frames, you can also use the function <code>add_column()</code>.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="tibble.html#cb422-1" tabindex="-1"></a><span class="fu">add_column</span>(my_tibble, </span>
-<span id="cb422-2"><a href="tibble.html#cb422-2" tabindex="-1"></a>           <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>),</span>
-<span id="cb422-3"><a href="tibble.html#cb422-3" tabindex="-1"></a>           <span class="at">height =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
-<span id="cb422-4"><a href="tibble.html#cb422-4" tabindex="-1"></a>           )</span>
-<span id="cb422-5"><a href="tibble.html#cb422-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 5</span></span>
-<span id="cb422-6"><a href="tibble.html#cb422-6" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy weight height</span></span>
-<span id="cb422-7"><a href="tibble.html#cb422-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb422-8"><a href="tibble.html#cb422-8" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE       110    2.2</span></span>
-<span id="cb422-9"><a href="tibble.html#cb422-9" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE       120    2.4</span></span>
-<span id="cb422-10"><a href="tibble.html#cb422-10" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE       140    2.7</span></span>
-<span id="cb422-11"><a href="tibble.html#cb422-11" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE        NA    2  </span></span>
-<span id="cb422-12"><a href="tibble.html#cb422-12" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE       300    2.1</span></span>
-<span id="cb422-13"><a href="tibble.html#cb422-13" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE      800    2.3</span></span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="tibble.html#cb408-1" tabindex="-1"></a><span class="fu">add_column</span>(my_tibble, </span>
+<span id="cb408-2"><a href="tibble.html#cb408-2" tabindex="-1"></a>           <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>),</span>
+<span id="cb408-3"><a href="tibble.html#cb408-3" tabindex="-1"></a>           <span class="at">height =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.3</span>)</span>
+<span id="cb408-4"><a href="tibble.html#cb408-4" tabindex="-1"></a>           )</span>
+<span id="cb408-5"><a href="tibble.html#cb408-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span id="cb408-6"><a href="tibble.html#cb408-6" tabindex="-1"></a><span class="co">#&gt;   animal  year healthy weight height</span></span>
+<span id="cb408-7"><a href="tibble.html#cb408-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt; &lt;lgl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb408-8"><a href="tibble.html#cb408-8" tabindex="-1"></a><span class="co">#&gt; 1 sheep   2019 TRUE       110    2.2</span></span>
+<span id="cb408-9"><a href="tibble.html#cb408-9" tabindex="-1"></a><span class="co">#&gt; 2 sheep   2020 TRUE       120    2.4</span></span>
+<span id="cb408-10"><a href="tibble.html#cb408-10" tabindex="-1"></a><span class="co">#&gt; 3 sheep   2021 TRUE       140    2.7</span></span>
+<span id="cb408-11"><a href="tibble.html#cb408-11" tabindex="-1"></a><span class="co">#&gt; 4 pig     2019 TRUE        NA    2  </span></span>
+<span id="cb408-12"><a href="tibble.html#cb408-12" tabindex="-1"></a><span class="co">#&gt; 5 pig     2020 TRUE       300    2.1</span></span>
+<span id="cb408-13"><a href="tibble.html#cb408-13" tabindex="-1"></a><span class="co">#&gt; 6 pig     2021 FALSE      800    2.3</span></span></code></pre></div>
 </div>
 <div id="tibble-subsetting-and-modifying" class="section level3 hasAnchor" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Tibble subsetting and modifying<a href="tibble.html#tibble-subsetting-and-modifying" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While the tibble subsetting and modifying is very similar to those for data frame, we would like to point out a key difference.</p>
 <p>First of all, when you use the <code>[</code> and <code>]</code> to do tibble subsetting, it always returns a tibble by default, even if only one column is selected. This behavior is different from subsetting data frames using <code>[</code> and <code>]</code>. If you are particularly interested in selecting only one column and returning it as a vector, you need to add <code>drop = TRUE</code> in the subsetting process. You can also subset a single row and convert it into a vector by adding the same argument.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="tibble.html#cb423-1" tabindex="-1"></a>my_tibble[, <span class="dv">1</span>]               <span class="co">#6*1 tibble</span></span>
-<span id="cb423-2"><a href="tibble.html#cb423-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 1</span></span>
-<span id="cb423-3"><a href="tibble.html#cb423-3" tabindex="-1"></a><span class="co">#&gt;   animal</span></span>
-<span id="cb423-4"><a href="tibble.html#cb423-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; </span></span>
-<span id="cb423-5"><a href="tibble.html#cb423-5" tabindex="-1"></a><span class="co">#&gt; 1 sheep </span></span>
-<span id="cb423-6"><a href="tibble.html#cb423-6" tabindex="-1"></a><span class="co">#&gt; 2 sheep </span></span>
-<span id="cb423-7"><a href="tibble.html#cb423-7" tabindex="-1"></a><span class="co">#&gt; 3 sheep </span></span>
-<span id="cb423-8"><a href="tibble.html#cb423-8" tabindex="-1"></a><span class="co">#&gt; 4 pig   </span></span>
-<span id="cb423-9"><a href="tibble.html#cb423-9" tabindex="-1"></a><span class="co">#&gt; 5 pig   </span></span>
-<span id="cb423-10"><a href="tibble.html#cb423-10" tabindex="-1"></a><span class="co">#&gt; 6 pig</span></span>
-<span id="cb423-11"><a href="tibble.html#cb423-11" tabindex="-1"></a>my_data_frame[, <span class="dv">1</span>]           <span class="co">#vector</span></span>
-<span id="cb423-12"><a href="tibble.html#cb423-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot;   &quot;pig&quot;   &quot;pig&quot;</span></span>
-<span id="cb423-13"><a href="tibble.html#cb423-13" tabindex="-1"></a>my_tibble[, <span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">TRUE</span>]  <span class="co">#vector</span></span>
-<span id="cb423-14"><a href="tibble.html#cb423-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot;   &quot;pig&quot;   &quot;pig&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="tibble.html#cb409-1" tabindex="-1"></a>my_tibble[, <span class="dv">1</span>]               <span class="co">#6*1 tibble</span></span>
+<span id="cb409-2"><a href="tibble.html#cb409-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 1</span></span>
+<span id="cb409-3"><a href="tibble.html#cb409-3" tabindex="-1"></a><span class="co">#&gt;   animal</span></span>
+<span id="cb409-4"><a href="tibble.html#cb409-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; </span></span>
+<span id="cb409-5"><a href="tibble.html#cb409-5" tabindex="-1"></a><span class="co">#&gt; 1 sheep </span></span>
+<span id="cb409-6"><a href="tibble.html#cb409-6" tabindex="-1"></a><span class="co">#&gt; 2 sheep </span></span>
+<span id="cb409-7"><a href="tibble.html#cb409-7" tabindex="-1"></a><span class="co">#&gt; 3 sheep </span></span>
+<span id="cb409-8"><a href="tibble.html#cb409-8" tabindex="-1"></a><span class="co">#&gt; 4 pig   </span></span>
+<span id="cb409-9"><a href="tibble.html#cb409-9" tabindex="-1"></a><span class="co">#&gt; 5 pig   </span></span>
+<span id="cb409-10"><a href="tibble.html#cb409-10" tabindex="-1"></a><span class="co">#&gt; 6 pig</span></span>
+<span id="cb409-11"><a href="tibble.html#cb409-11" tabindex="-1"></a>my_data_frame[, <span class="dv">1</span>]           <span class="co">#vector</span></span>
+<span id="cb409-12"><a href="tibble.html#cb409-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot;   &quot;pig&quot;   &quot;pig&quot;</span></span>
+<span id="cb409-13"><a href="tibble.html#cb409-13" tabindex="-1"></a>my_tibble[, <span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">TRUE</span>]  <span class="co">#vector</span></span>
+<span id="cb409-14"><a href="tibble.html#cb409-14" tabindex="-1"></a><span class="co">#&gt; [1] &quot;sheep&quot; &quot;sheep&quot; &quot;sheep&quot; &quot;pig&quot;   &quot;pig&quot;   &quot;pig&quot;</span></span></code></pre></div>
 </div>
 <div id="exercises-26" class="section level3 hasAnchor" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Exercises<a href="tibble.html#exercises-26" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Consider the following tibble,</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="tibble.html#cb424-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb424-2"><a href="tibble.html#cb424-2" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="cn">NA</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
-<span id="cb424-3"><a href="tibble.html#cb424-3" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;average&quot;</span>)</span>
-<span id="cb424-4"><a href="tibble.html#cb424-4" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>
-<span id="cb424-5"><a href="tibble.html#cb424-5" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, weight, condition, healthy)</span>
-<span id="cb424-6"><a href="tibble.html#cb424-6" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(animal, weight, condition, healthy)</span>
-<span id="cb424-7"><a href="tibble.html#cb424-7" tabindex="-1"></a>my_tibble</span>
-<span id="cb424-8"><a href="tibble.html#cb424-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
-<span id="cb424-9"><a href="tibble.html#cb424-9" tabindex="-1"></a><span class="co">#&gt;   animal weight condition healthy</span></span>
-<span id="cb424-10"><a href="tibble.html#cb424-10" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;lgl&gt;  </span></span>
-<span id="cb424-11"><a href="tibble.html#cb424-11" tabindex="-1"></a><span class="co">#&gt; 1 sheep     110 excellent TRUE   </span></span>
-<span id="cb424-12"><a href="tibble.html#cb424-12" tabindex="-1"></a><span class="co">#&gt; 2 sheep      NA good      TRUE   </span></span>
-<span id="cb424-13"><a href="tibble.html#cb424-13" tabindex="-1"></a><span class="co">#&gt; 3 sheep     140 &lt;NA&gt;      TRUE   </span></span>
-<span id="cb424-14"><a href="tibble.html#cb424-14" tabindex="-1"></a><span class="co">#&gt; 4 pig        NA excellent TRUE   </span></span>
-<span id="cb424-15"><a href="tibble.html#cb424-15" tabindex="-1"></a><span class="co">#&gt; 5 pig       300 good      TRUE   </span></span>
-<span id="cb424-16"><a href="tibble.html#cb424-16" tabindex="-1"></a><span class="co">#&gt; 6 pig       800 average   FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="tibble.html#cb410-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>, <span class="st">&quot;pig&quot;</span>), <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb410-2"><a href="tibble.html#cb410-2" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="cn">NA</span>, <span class="dv">140</span>, <span class="cn">NA</span>, <span class="dv">300</span>, <span class="dv">800</span>)</span>
+<span id="cb410-3"><a href="tibble.html#cb410-3" tabindex="-1"></a>condition <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;excellent&quot;</span>, <span class="st">&quot;good&quot;</span>, <span class="st">&quot;average&quot;</span>)</span>
+<span id="cb410-4"><a href="tibble.html#cb410-4" tabindex="-1"></a>healthy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">5</span>), <span class="cn">FALSE</span>)</span>
+<span id="cb410-5"><a href="tibble.html#cb410-5" tabindex="-1"></a>my_tibble <span class="ot">&lt;-</span> <span class="fu">tibble</span>(animal, weight, condition, healthy)</span>
+<span id="cb410-6"><a href="tibble.html#cb410-6" tabindex="-1"></a>my_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(animal, weight, condition, healthy)</span>
+<span id="cb410-7"><a href="tibble.html#cb410-7" tabindex="-1"></a>my_tibble</span>
+<span id="cb410-8"><a href="tibble.html#cb410-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span id="cb410-9"><a href="tibble.html#cb410-9" tabindex="-1"></a><span class="co">#&gt;   animal weight condition healthy</span></span>
+<span id="cb410-10"><a href="tibble.html#cb410-10" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;lgl&gt;  </span></span>
+<span id="cb410-11"><a href="tibble.html#cb410-11" tabindex="-1"></a><span class="co">#&gt; 1 sheep     110 excellent TRUE   </span></span>
+<span id="cb410-12"><a href="tibble.html#cb410-12" tabindex="-1"></a><span class="co">#&gt; 2 sheep      NA good      TRUE   </span></span>
+<span id="cb410-13"><a href="tibble.html#cb410-13" tabindex="-1"></a><span class="co">#&gt; 3 sheep     140 &lt;NA&gt;      TRUE   </span></span>
+<span id="cb410-14"><a href="tibble.html#cb410-14" tabindex="-1"></a><span class="co">#&gt; 4 pig        NA excellent TRUE   </span></span>
+<span id="cb410-15"><a href="tibble.html#cb410-15" tabindex="-1"></a><span class="co">#&gt; 5 pig       300 good      TRUE   </span></span>
+<span id="cb410-16"><a href="tibble.html#cb410-16" tabindex="-1"></a><span class="co">#&gt; 6 pig       800 average   FALSE</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Add the following observation to <code>my_tibble</code>: <code>animal = "pig"</code>, <code>weight = 900</code>, <code>condition = average</code>, and <code>healthy = FALSE</code>.</li>
 <li>Without running in R, what do you think are the difference between <code>my_tibble[, 1]</code> and <code>my_data_frame[, 1]</code>? How can you reproduce <code>my_data_frame[, 1]</code> by subsetting <code>my_tibble</code>?</li>

@@ -899,111 +899,111 @@ div.csl-indent {
 <p>When we supply arguments of different types in the <code>c()</code> function, R will <em>unify</em> all elements into the <strong>most complex type</strong>, which is usually called the <strong>coercion rule</strong>. Specifically, R uses the following order of complexity (from simple to complex).
 <span class="math display">\[\mbox{logical} &lt; \mbox{numeric} &lt; \mbox{character}\]</span></p>
 <p>Let’s see a few examples to learn how the coercion works. The first example mixes logical values with numbers.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="coercion-rule.html#cb109-1" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb109-2"><a href="coercion-rule.html#cb109-2" tabindex="-1"></a>mix_1</span>
-<span id="cb109-3"><a href="coercion-rule.html#cb109-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 7 4 0</span></span>
-<span id="cb109-4"><a href="coercion-rule.html#cb109-4" tabindex="-1"></a><span class="fu">typeof</span>(mix_1)</span>
-<span id="cb109-5"><a href="coercion-rule.html#cb109-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb109-6"><a href="coercion-rule.html#cb109-6" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span>
-<span id="cb109-7"><a href="coercion-rule.html#cb109-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="coercion-rule.html#cb95-1" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb95-2"><a href="coercion-rule.html#cb95-2" tabindex="-1"></a>mix_1</span>
+<span id="cb95-3"><a href="coercion-rule.html#cb95-3" tabindex="-1"></a><span class="co">#&gt; [1] 1 7 4 0</span></span>
+<span id="cb95-4"><a href="coercion-rule.html#cb95-4" tabindex="-1"></a><span class="fu">typeof</span>(mix_1)</span>
+<span id="cb95-5"><a href="coercion-rule.html#cb95-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb95-6"><a href="coercion-rule.html#cb95-6" tabindex="-1"></a><span class="fu">class</span>(mix_1)</span>
+<span id="cb95-7"><a href="coercion-rule.html#cb95-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;numeric&quot;</span></span></code></pre></div>
 <p>You can see that the logical values are converted to numbers, in particular, <code>TRUE</code> is converted to 1 and <code>FALSE</code> is converted to 0, when they mix with numbers. At the end, you can see <code>mix_1</code> is a numeric vector with four numbers. The result of coercion can be confirmed with the <code>typeof()</code> and <code>class()</code> function.</p>
 <p>The second example mixes numbers with strings.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="coercion-rule.html#cb110-1" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;today&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Jan&quot;</span>, <span class="dv">15</span>, <span class="st">&quot;2022&quot;</span>)</span>
-<span id="cb110-2"><a href="coercion-rule.html#cb110-2" tabindex="-1"></a>mix_2</span>
-<span id="cb110-3"><a href="coercion-rule.html#cb110-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;today&quot; &quot;is&quot;    &quot;Jan&quot;   &quot;15&quot;    &quot;2022&quot;</span></span>
-<span id="cb110-4"><a href="coercion-rule.html#cb110-4" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
-<span id="cb110-5"><a href="coercion-rule.html#cb110-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
-<span id="cb110-6"><a href="coercion-rule.html#cb110-6" tabindex="-1"></a><span class="fu">typeof</span>(mix_2)</span>
-<span id="cb110-7"><a href="coercion-rule.html#cb110-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="coercion-rule.html#cb96-1" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;today&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;Jan&quot;</span>, <span class="dv">15</span>, <span class="st">&quot;2022&quot;</span>)</span>
+<span id="cb96-2"><a href="coercion-rule.html#cb96-2" tabindex="-1"></a>mix_2</span>
+<span id="cb96-3"><a href="coercion-rule.html#cb96-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;today&quot; &quot;is&quot;    &quot;Jan&quot;   &quot;15&quot;    &quot;2022&quot;</span></span>
+<span id="cb96-4"><a href="coercion-rule.html#cb96-4" tabindex="-1"></a><span class="fu">class</span>(mix_2)</span>
+<span id="cb96-5"><a href="coercion-rule.html#cb96-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb96-6"><a href="coercion-rule.html#cb96-6" tabindex="-1"></a><span class="fu">typeof</span>(mix_2)</span>
+<span id="cb96-7"><a href="coercion-rule.html#cb96-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>You can see that both <code>15</code> and <code>2022</code> are converted into strings since strings are more complex than numbers. Then, <code>mix_2</code> will be a character vector.</p>
 <p>The next example mixes logical values, numbers and strings.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="coercion-rule.html#cb111-1" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb111-2"><a href="coercion-rule.html#cb111-2" tabindex="-1"></a>mix_3</span>
-<span id="cb111-3"><a href="coercion-rule.html#cb111-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="coercion-rule.html#cb97-1" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb97-2"><a href="coercion-rule.html#cb97-2" tabindex="-1"></a>mix_3</span>
+<span id="cb97-3"><a href="coercion-rule.html#cb97-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span></code></pre></div>
 <p>You can see in <code>mix_3</code>, both <code>16</code> and <code>TRUE</code> are converted to strings! That’s because values of character type are the most complex among all values.</p>
 <p>Next, let’s see an interesting example in which we have two layers of coercion.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="coercion-rule.html#cb112-1" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
-<span id="cb112-2"><a href="coercion-rule.html#cb112-2" tabindex="-1"></a>mix_4</span>
-<span id="cb112-3"><a href="coercion-rule.html#cb112-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="coercion-rule.html#cb98-1" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">16</span>, <span class="cn">TRUE</span>), <span class="st">&quot;pig&quot;</span>)</span>
+<span id="cb98-2"><a href="coercion-rule.html#cb98-2" tabindex="-1"></a>mix_4</span>
+<span id="cb98-3"><a href="coercion-rule.html#cb98-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;  &quot;1&quot;   &quot;pig&quot;</span></span></code></pre></div>
 <p>Nested <code>c()</code> will collapse into a single vector recursively and during the process, the coercion rule will apply whenever needed. First, <code>c(16, TRUE)</code> will be converted to <code>c(16, 1)</code> since numbers are more complex than logical values. Then, the expression becomes <code>c(c(16, 1), "pig")</code>. Since characters are more complex than numbers, <code>c(16, 1)</code> will be converted to <code>c("16", "1")</code> when you combine it with <code>"pig"</code>, leading to the results of <code>mix_4</code>. To help you understand the process, let’s look at another example.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="coercion-rule.html#cb113-1" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>))</span>
-<span id="cb113-2"><a href="coercion-rule.html#cb113-2" tabindex="-1"></a>mix_5</span>
-<span id="cb113-3"><a href="coercion-rule.html#cb113-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="coercion-rule.html#cb99-1" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="st">&quot;pig&quot;</span>))</span>
+<span id="cb99-2"><a href="coercion-rule.html#cb99-2" tabindex="-1"></a>mix_5</span>
+<span id="cb99-3"><a href="coercion-rule.html#cb99-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;16&quot;   &quot;TRUE&quot; &quot;pig&quot;</span></span></code></pre></div>
 <p>Here, the first layer is <code>c(TRUE, "pig")</code> which is coerced to <code>c("TRUE", "pig")</code>. Then, 16 will be coerced to <code>"16"</code> in <code>c(16, c("TRUE", "pig"))</code>, leading to the final result. The difference between <code>mix_4</code> and <code>mix_5</code> reflects the sequential coercion process.</p>
 <p>Lastly, let’s talk about the coercion within numeric values. In particular, we have learned that there are two kinds of types numeric values are stored: namely <strong>integers</strong> and <strong>doubles</strong>. In the coercion rule, we have
 <span class="math display">\[\mbox{integer} &lt; \mbox{double}.\]</span></p>
 <p>Let’s see the following examples.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="coercion-rule.html#cb114-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span><span class="dt">L</span>))</span>
-<span id="cb114-2"><a href="coercion-rule.html#cb114-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb114-3"><a href="coercion-rule.html#cb114-3" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">5</span><span class="dt">L</span>))</span>
-<span id="cb114-4"><a href="coercion-rule.html#cb114-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="coercion-rule.html#cb100-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span><span class="dt">L</span>))</span>
+<span id="cb100-2"><a href="coercion-rule.html#cb100-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb100-3"><a href="coercion-rule.html#cb100-3" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="dv">5</span><span class="dt">L</span>))</span>
+<span id="cb100-4"><a href="coercion-rule.html#cb100-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span></code></pre></div>
 <p>Let’s now summarize the coercion rule of all types we have learned.
 <span class="math display">\[\mbox{logical} &lt; \mbox{integer} &lt; \mbox{double} &lt; \mbox{character}\]</span></p>
 </div>
 <div id="coercion-in-operators" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Coercion in operators<a href="coercion-rule.html#coercion-in-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you use operators, R will also apply the coercion rule to unify the types of all elements involved in the operation. For example, if you add a numeric vector with a logical vector, R will convert the logical vector into a numeric vector first.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="coercion-rule.html#cb115-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">+</span> <span class="dv">3</span>)</span>
-<span id="cb115-2"><a href="coercion-rule.html#cb115-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
-<span id="cb115-3"><a href="coercion-rule.html#cb115-3" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="sc">+</span> <span class="cn">TRUE</span></span>
-<span id="cb115-4"><a href="coercion-rule.html#cb115-4" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb115-5"><a href="coercion-rule.html#cb115-5" tabindex="-1"></a>(<span class="cn">TRUE</span> <span class="sc">*</span> <span class="dv">30</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="sc">*</span> <span class="dv">29</span>)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb115-6"><a href="coercion-rule.html#cb115-6" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="coercion-rule.html#cb101-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">+</span> <span class="dv">3</span>)</span>
+<span id="cb101-2"><a href="coercion-rule.html#cb101-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span>
+<span id="cb101-3"><a href="coercion-rule.html#cb101-3" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="sc">+</span> <span class="cn">TRUE</span></span>
+<span id="cb101-4"><a href="coercion-rule.html#cb101-4" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb101-5"><a href="coercion-rule.html#cb101-5" tabindex="-1"></a>(<span class="cn">TRUE</span> <span class="sc">*</span> <span class="dv">30</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="sc">*</span> <span class="dv">29</span>)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb101-6"><a href="coercion-rule.html#cb101-6" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
 <div class="infobox caution">
 <p>R is very smart in whether to apply the coercion.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="coercion-rule.html#cb116-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">+</span> <span class="dv">5</span><span class="dt">L</span>)</span>
-<span id="cb116-2"><a href="coercion-rule.html#cb116-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
-<span id="cb116-3"><a href="coercion-rule.html#cb116-3" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">*</span> <span class="dv">5</span><span class="dt">L</span>)</span>
-<span id="cb116-4"><a href="coercion-rule.html#cb116-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
-<span id="cb116-5"><a href="coercion-rule.html#cb116-5" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">/</span> <span class="dv">5</span><span class="dt">L</span>)</span>
-<span id="cb116-6"><a href="coercion-rule.html#cb116-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="coercion-rule.html#cb102-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">+</span> <span class="dv">5</span><span class="dt">L</span>)</span>
+<span id="cb102-2"><a href="coercion-rule.html#cb102-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
+<span id="cb102-3"><a href="coercion-rule.html#cb102-3" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">*</span> <span class="dv">5</span><span class="dt">L</span>)</span>
+<span id="cb102-4"><a href="coercion-rule.html#cb102-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;integer&quot;</span></span>
+<span id="cb102-5"><a href="coercion-rule.html#cb102-5" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1</span><span class="dt">L</span> <span class="sc">/</span> <span class="dv">5</span><span class="dt">L</span>)</span>
+<span id="cb102-6"><a href="coercion-rule.html#cb102-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;double&quot;</span></span></code></pre></div>
 </div>
 <p>When comparing vectors of different types, the coercion rule also will apply. Take the following vectors as example:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="coercion-rule.html#cb117-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb117-2"><a href="coercion-rule.html#cb117-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb117-3"><a href="coercion-rule.html#cb117-3" tabindex="-1"></a>a <span class="sc">==</span> b</span>
-<span id="cb117-4"><a href="coercion-rule.html#cb117-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span>
-<span id="cb117-5"><a href="coercion-rule.html#cb117-5" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="coercion-rule.html#cb103-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb103-2"><a href="coercion-rule.html#cb103-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb103-3"><a href="coercion-rule.html#cb103-3" tabindex="-1"></a>a <span class="sc">==</span> b</span>
+<span id="cb103-4"><a href="coercion-rule.html#cb103-4" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span>
+<span id="cb103-5"><a href="coercion-rule.html#cb103-5" tabindex="-1"></a><span class="co">#&gt; [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
 <p>In this example, <code>a</code> is a numeric vector and <code>b</code> is a logical vector. When we compare them, R will first convert <code>b</code> into a numeric vector, which results in <code>c(1, 0, 1)</code>. Then the comparison will be done between two numeric vectors.</p>
 <p>You can make comparisons between vectors of other types, the following example shows that the classic transitive property in math (<span class="math inline">\(a = b\)</span> and <span class="math inline">\(b = c\)</span> imply <span class="math inline">\(a = c\)</span>) doesn’t hold in R.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="coercion-rule.html#cb118-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="cn">TRUE</span></span>
-<span id="cb118-2"><a href="coercion-rule.html#cb118-2" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb118-3"><a href="coercion-rule.html#cb118-3" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
-<span id="cb118-4"><a href="coercion-rule.html#cb118-4" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb118-5"><a href="coercion-rule.html#cb118-5" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
-<span id="cb118-6"><a href="coercion-rule.html#cb118-6" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="coercion-rule.html#cb104-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="cn">TRUE</span></span>
+<span id="cb104-2"><a href="coercion-rule.html#cb104-2" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb104-3"><a href="coercion-rule.html#cb104-3" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
+<span id="cb104-4"><a href="coercion-rule.html#cb104-4" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb104-5"><a href="coercion-rule.html#cb104-5" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="st">&quot;TRUE&quot;</span></span>
+<span id="cb104-6"><a href="coercion-rule.html#cb104-6" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
 <div id="explicit-coercion" class="section level3 hasAnchor" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Explicit Coercion<a href="coercion-rule.html#explicit-coercion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Besides the coercion rule which automatically converts all elements into the most complex type, you can also use functions to do the conversion <strong>explicitly</strong>. In particular,
 <code>as.numeric()</code>, <code>as.integer()</code>, <code>as.character()</code>, and <code>as.logical()</code> convert its argument into numeric, integer, character, and logical, respectively.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="coercion-rule.html#cb119-1" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb119-2"><a href="coercion-rule.html#cb119-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
-<span id="cb119-3"><a href="coercion-rule.html#cb119-3" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb119-4"><a href="coercion-rule.html#cb119-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot;</span></span>
-<span id="cb119-5"><a href="coercion-rule.html#cb119-5" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb119-6"><a href="coercion-rule.html#cb119-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
-<span id="cb119-7"><a href="coercion-rule.html#cb119-7" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb119-8"><a href="coercion-rule.html#cb119-8" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span>
-<span id="cb119-9"><a href="coercion-rule.html#cb119-9" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>))</span>
-<span id="cb119-10"><a href="coercion-rule.html#cb119-10" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="coercion-rule.html#cb105-1" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb105-2"><a href="coercion-rule.html#cb105-2" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
+<span id="cb105-3"><a href="coercion-rule.html#cb105-3" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb105-4"><a href="coercion-rule.html#cb105-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot;</span></span>
+<span id="cb105-5"><a href="coercion-rule.html#cb105-5" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb105-6"><a href="coercion-rule.html#cb105-6" tabindex="-1"></a><span class="co">#&gt; [1] 1 0</span></span>
+<span id="cb105-7"><a href="coercion-rule.html#cb105-7" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb105-8"><a href="coercion-rule.html#cb105-8" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span>
+<span id="cb105-9"><a href="coercion-rule.html#cb105-9" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span>, <span class="st">&quot;FALSE&quot;</span>))</span>
+<span id="cb105-10"><a href="coercion-rule.html#cb105-10" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE</span></span></code></pre></div>
 </div>
 <div id="exercises-9" class="section level3 hasAnchor" number="2.4.4">
 <h3><span class="header-section-number">2.4.4</span> Exercises<a href="coercion-rule.html#exercises-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li>Looking at the following codes without running in R, what are the storage types of <code>mix_1</code>, <code>mix_2</code>, <code>mix_3</code>, <code>mix_4</code>, <code>mix_5</code>, and <code>mix_6</code>? Verify your answers by running the code in R and explain the reason.</li>
 </ol>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="coercion-rule.html#cb120-1" tabindex="-1"></a>int_1 <span class="ot">&lt;-</span> <span class="dv">5</span><span class="dt">L</span></span>
-<span id="cb120-2"><a href="coercion-rule.html#cb120-2" tabindex="-1"></a>int_2 <span class="ot">&lt;-</span> <span class="dv">6</span><span class="dt">L</span></span>
-<span id="cb120-3"><a href="coercion-rule.html#cb120-3" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb120-4"><a href="coercion-rule.html#cb120-4" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="st">&quot;pig&quot;</span></span>
-<span id="cb120-5"><a href="coercion-rule.html#cb120-5" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb120-6"><a href="coercion-rule.html#cb120-6" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> int_2 </span>
-<span id="cb120-7"><a href="coercion-rule.html#cb120-7" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> num_1</span>
-<span id="cb120-8"><a href="coercion-rule.html#cb120-8" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> int_1<span class="sc">/</span>int_2</span>
-<span id="cb120-9"><a href="coercion-rule.html#cb120-9" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1)</span>
-<span id="cb120-10"><a href="coercion-rule.html#cb120-10" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, logi_1)</span>
-<span id="cb120-11"><a href="coercion-rule.html#cb120-11" tabindex="-1"></a>mix_6 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1, logi_1)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="coercion-rule.html#cb106-1" tabindex="-1"></a>int_1 <span class="ot">&lt;-</span> <span class="dv">5</span><span class="dt">L</span></span>
+<span id="cb106-2"><a href="coercion-rule.html#cb106-2" tabindex="-1"></a>int_2 <span class="ot">&lt;-</span> <span class="dv">6</span><span class="dt">L</span></span>
+<span id="cb106-3"><a href="coercion-rule.html#cb106-3" tabindex="-1"></a>num_1 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb106-4"><a href="coercion-rule.html#cb106-4" tabindex="-1"></a>char_1 <span class="ot">&lt;-</span> <span class="st">&quot;pig&quot;</span></span>
+<span id="cb106-5"><a href="coercion-rule.html#cb106-5" tabindex="-1"></a>logi_1 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb106-6"><a href="coercion-rule.html#cb106-6" tabindex="-1"></a>mix_1 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> int_2 </span>
+<span id="cb106-7"><a href="coercion-rule.html#cb106-7" tabindex="-1"></a>mix_2 <span class="ot">&lt;-</span> int_1 <span class="sc">+</span> num_1</span>
+<span id="cb106-8"><a href="coercion-rule.html#cb106-8" tabindex="-1"></a>mix_3 <span class="ot">&lt;-</span> int_1<span class="sc">/</span>int_2</span>
+<span id="cb106-9"><a href="coercion-rule.html#cb106-9" tabindex="-1"></a>mix_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1)</span>
+<span id="cb106-10"><a href="coercion-rule.html#cb106-10" tabindex="-1"></a>mix_5 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, logi_1)</span>
+<span id="cb106-11"><a href="coercion-rule.html#cb106-11" tabindex="-1"></a>mix_6 <span class="ot">&lt;-</span> <span class="fu">c</span>(num_1, char_1, logi_1)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>If <code>logi_2 &lt;- c(TRUE, FALSE, TRUE)</code> and <code>logi_3 &lt;- TRUE</code>,
 what are the values of <code>3 * logi_2 + logi_3</code> and <code>logi_2 - logi_3</code>?</li>

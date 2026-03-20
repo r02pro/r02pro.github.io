@@ -897,17 +897,17 @@ div.csl-indent {
 <div id="creating-smoothline-fits-using-geom_smooth" class="section level3 hasAnchor" number="5.6.1">
 <h3><span class="header-section-number">5.6.1</span> Creating Smoothline Fits using <code>geom_smooth()</code><a href="smoothline.html#creating-smoothline-fits-using-geom_smooth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To create a smoothline fit, you can use the <code>geom_smooth()</code> function in the <strong>ggplot2</strong> package. Let’s say you want to find the trend between cholesterol and sugar in the <code>gm2004</code> dataset.</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="smoothline.html#cb602-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb602-2"><a href="smoothline.html#cb602-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb602-3"><a href="smoothline.html#cb602-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb602-4"><a href="smoothline.html#cb602-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb602-5"><a href="smoothline.html#cb602-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span>
-<span id="cb602-6"><a href="smoothline.html#cb602-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="smoothline.html#cb588-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb588-2"><a href="smoothline.html#cb588-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb588-3"><a href="smoothline.html#cb588-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb588-4"><a href="smoothline.html#cb588-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb588-5"><a href="smoothline.html#cb588-5" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span>
+<span id="cb588-6"><a href="smoothline.html#cb588-6" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-599-1.png" alt="" width="576" /></p>
 <p>Perhaps it is helpful to review the code for generating a scatterplot between cholesterol and sugar.</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="smoothline.html#cb603-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb603-2"><a href="smoothline.html#cb603-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb603-3"><a href="smoothline.html#cb603-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="smoothline.html#cb589-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb589-2"><a href="smoothline.html#cb589-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb589-3"><a href="smoothline.html#cb589-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol))</span></code></pre></div>
 <p>We can see that the <strong>only</strong> difference between these two codes is the use of different geoms. In fact, the mechanism of <code>geom_smooth()</code> is that it fits a smooth line according to the points of the given variable pair. By default, it uses the <strong>loess</strong> method (locally estimated scatterplot smoothing), which is a popular nonparametric regression technique. In addition to the smoothline, it also generates a shaded area, representing the <strong>confidence interval</strong> around the fitted smoothline.</p>
 </div>
 <div id="constant-valued-aesthetics-in-smoothline-fits" class="section level3 hasAnchor" number="5.6.2">
@@ -915,62 +915,62 @@ div.csl-indent {
 <p>Just like in scatterplots (Section <a href="aes-constant-value.html#aes-constant-value">5.2</a>), you can also set Constant-Valued Aesthetics for smoothline fits.</p>
 <p><strong><em>a. Confidence Interval (Hide or Display)</em></strong></p>
 <p>As mentioned before, the default smoothline fit display a confidence interval around the smooth curve. To hide this shaded area, you can add the argument <code>se = FALSE</code> as a Constant-Valued aesthetic.</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="smoothline.html#cb604-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb604-2"><a href="smoothline.html#cb604-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb604-3"><a href="smoothline.html#cb604-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb604-4"><a href="smoothline.html#cb604-4" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb604-5"><a href="smoothline.html#cb604-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="smoothline.html#cb590-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb590-2"><a href="smoothline.html#cb590-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb590-3"><a href="smoothline.html#cb590-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb590-4"><a href="smoothline.html#cb590-4" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb590-5"><a href="smoothline.html#cb590-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-601-1.png" alt="" width="576" /></p>
 <p><strong><em>b. Confidence Interval Level</em></strong></p>
 <p>The default confidence interval is at 95% level. To control the level, you can set the aesthetic <code>level</code> to a desired value.</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="smoothline.html#cb605-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb605-2"><a href="smoothline.html#cb605-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb605-3"><a href="smoothline.html#cb605-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb605-4"><a href="smoothline.html#cb605-4" tabindex="-1"></a>              <span class="at">level =</span> <span class="fl">0.9</span>)</span>
-<span id="cb605-5"><a href="smoothline.html#cb605-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="smoothline.html#cb591-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb591-2"><a href="smoothline.html#cb591-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb591-3"><a href="smoothline.html#cb591-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb591-4"><a href="smoothline.html#cb591-4" tabindex="-1"></a>              <span class="at">level =</span> <span class="fl">0.9</span>)</span>
+<span id="cb591-5"><a href="smoothline.html#cb591-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-602-1.png" alt="" width="576" /></p>
 <p><strong><em>c. Smoothing Method</em></strong></p>
 <p>In addition to the default loess method for smoothline fit, <code>geom_smooth()</code> also provides other smoothing methods. We can set the <code>method</code> aesthetic to change the smoothing method. For example, <code>method = "lm"</code> represents a linear line fit.</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="smoothline.html#cb606-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb606-2"><a href="smoothline.html#cb606-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb606-3"><a href="smoothline.html#cb606-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb606-4"><a href="smoothline.html#cb606-4" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb606-5"><a href="smoothline.html#cb606-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="smoothline.html#cb592-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb592-2"><a href="smoothline.html#cb592-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb592-3"><a href="smoothline.html#cb592-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb592-4"><a href="smoothline.html#cb592-4" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
+<span id="cb592-5"><a href="smoothline.html#cb592-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-603-1.png" alt="" width="576" /></p>
 <p><strong><em>d. Color</em></strong></p>
 <p>Similar to Scatterplot, you can also set <code>color</code> to change the color of the line. Note that the <code>color</code> aesthetic is available for almost <strong>all</strong> geoms.</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="smoothline.html#cb607-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb607-2"><a href="smoothline.html#cb607-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb607-3"><a href="smoothline.html#cb607-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb607-4"><a href="smoothline.html#cb607-4" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;violet&quot;</span>)</span>
-<span id="cb607-5"><a href="smoothline.html#cb607-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="smoothline.html#cb593-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb593-2"><a href="smoothline.html#cb593-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb593-3"><a href="smoothline.html#cb593-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb593-4"><a href="smoothline.html#cb593-4" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;violet&quot;</span>)</span>
+<span id="cb593-5"><a href="smoothline.html#cb593-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-604-1.png" alt="" width="576" /></p>
 <p><strong><em>e. Size</em></strong></p>
 <p>Similar to Scatterplot, you can also set the <code>size</code> aesthetic. While the <code>size</code> controls the size of the points in a scatterplot, the <code>size</code> aesthetic controls the <strong>width</strong> of the smoothline.</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="smoothline.html#cb608-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb608-2"><a href="smoothline.html#cb608-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb608-3"><a href="smoothline.html#cb608-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb608-4"><a href="smoothline.html#cb608-4" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb608-5"><a href="smoothline.html#cb608-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="smoothline.html#cb594-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb594-2"><a href="smoothline.html#cb594-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb594-3"><a href="smoothline.html#cb594-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb594-4"><a href="smoothline.html#cb594-4" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb594-5"><a href="smoothline.html#cb594-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-605-1.png" alt="" width="576" /></p>
 <p><strong><em>f. Line Type</em></strong></p>
 <p>Another useful aesthetic that was not applicable in <code>geom_point()</code> is <code>linetype</code>, which controls the linetypes for each smoothline. The collection of different linetypes is available in Figure <a href="line-plot.html#fig:all-line-types">5.3</a>.</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="smoothline.html#cb609-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb609-2"><a href="smoothline.html#cb609-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb609-3"><a href="smoothline.html#cb609-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb609-4"><a href="smoothline.html#cb609-4" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>)</span>
-<span id="cb609-5"><a href="smoothline.html#cb609-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="smoothline.html#cb595-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb595-2"><a href="smoothline.html#cb595-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb595-3"><a href="smoothline.html#cb595-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb595-4"><a href="smoothline.html#cb595-4" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb595-5"><a href="smoothline.html#cb595-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-606-1.png" alt="" width="576" /></p>
 <p>Note that it is common to use multiple constant-valued aesthetics.</p>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="smoothline.html#cb610-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb610-2"><a href="smoothline.html#cb610-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb610-3"><a href="smoothline.html#cb610-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
-<span id="cb610-4"><a href="smoothline.html#cb610-4" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>,</span>
-<span id="cb610-5"><a href="smoothline.html#cb610-5" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>,</span>
-<span id="cb610-6"><a href="smoothline.html#cb610-6" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb610-7"><a href="smoothline.html#cb610-7" tabindex="-1"></a>              <span class="at">level =</span> <span class="fl">0.99</span>,</span>
-<span id="cb610-8"><a href="smoothline.html#cb610-8" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>)</span>
-<span id="cb610-9"><a href="smoothline.html#cb610-9" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="smoothline.html#cb596-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb596-2"><a href="smoothline.html#cb596-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb596-3"><a href="smoothline.html#cb596-3" tabindex="-1"></a>                           <span class="at">y =</span> cholesterol),</span>
+<span id="cb596-4"><a href="smoothline.html#cb596-4" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;purple&quot;</span>,</span>
+<span id="cb596-5"><a href="smoothline.html#cb596-5" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb596-6"><a href="smoothline.html#cb596-6" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb596-7"><a href="smoothline.html#cb596-7" tabindex="-1"></a>              <span class="at">level =</span> <span class="fl">0.99</span>,</span>
+<span id="cb596-8"><a href="smoothline.html#cb596-8" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb596-9"><a href="smoothline.html#cb596-9" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-607-1.png" alt="" width="576" /></p>
 <p>This generates a smoothline fit with purple color, line width 2, linear smoothing, 0.99 confidence level, and dashed line.</p>
 </div>
@@ -979,57 +979,57 @@ div.csl-indent {
 <p>As in scatterplots (Section <a href="aes-local-map.html#aes-local-map">5.3</a>), you can also map variables to aesthetics in smoothline fits.</p>
 <p><strong><em>a. Group</em></strong></p>
 <p>When we map a variable to the <code>group</code> aesthetic, <code>geom_smooth</code> will first divide all the data points into different <em>groups</em> according to the variable value, and then fit a separate smoothline for each group.</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="smoothline.html#cb611-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb611-2"><a href="smoothline.html#cb611-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb611-3"><a href="smoothline.html#cb611-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb611-4"><a href="smoothline.html#cb611-4" tabindex="-1"></a>                            <span class="at">group =</span> gender))</span>
-<span id="cb611-5"><a href="smoothline.html#cb611-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="smoothline.html#cb597-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb597-2"><a href="smoothline.html#cb597-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb597-3"><a href="smoothline.html#cb597-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb597-4"><a href="smoothline.html#cb597-4" tabindex="-1"></a>                            <span class="at">group =</span> gender))</span>
+<span id="cb597-5"><a href="smoothline.html#cb597-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-608-1.png" alt="" width="576" /></p>
 <p>You can see that two smoothlines are generated. However, it is not clear from the plot which group each smoothline corresponds to. To better differentiate the two groups, you can map the variable to other aesthetics like <code>color</code>.</p>
 <p><strong><em>b. Color</em></strong></p>
 <p>As in <code>geom_point()</code>, we can map the variable to the color aesthetic.</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="smoothline.html#cb612-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb612-2"><a href="smoothline.html#cb612-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb612-3"><a href="smoothline.html#cb612-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb612-4"><a href="smoothline.html#cb612-4" tabindex="-1"></a>                            <span class="at">color =</span> gender))</span>
-<span id="cb612-5"><a href="smoothline.html#cb612-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="smoothline.html#cb598-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb598-2"><a href="smoothline.html#cb598-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb598-3"><a href="smoothline.html#cb598-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb598-4"><a href="smoothline.html#cb598-4" tabindex="-1"></a>                            <span class="at">color =</span> gender))</span>
+<span id="cb598-5"><a href="smoothline.html#cb598-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-609-1.png" alt="" width="576" /></p>
 <p>This is a more informative plot than the one using <code>group</code> aesthetic as you can see the two smoothlines have different colors according to the value of <code>gender</code>. We can observe that when the value of sugar is low, it appears that female has a larger cholesterol value than male and the difference becomes smaller as the sugar value increases.</p>
 <p><strong><em>c. Line Type</em></strong></p>
 <p>We can also use different line types to differentiate a variable by the <code>linetype</code> aesthetic.</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="smoothline.html#cb613-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb613-2"><a href="smoothline.html#cb613-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb613-3"><a href="smoothline.html#cb613-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb613-4"><a href="smoothline.html#cb613-4" tabindex="-1"></a>                            <span class="at">linetype =</span> gender))</span>
-<span id="cb613-5"><a href="smoothline.html#cb613-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="smoothline.html#cb599-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb599-2"><a href="smoothline.html#cb599-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb599-3"><a href="smoothline.html#cb599-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb599-4"><a href="smoothline.html#cb599-4" tabindex="-1"></a>                            <span class="at">linetype =</span> gender))</span>
+<span id="cb599-5"><a href="smoothline.html#cb599-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-610-1.png" alt="" width="576" /></p>
 <p>The plot shows a dashed line for the smoothline corresponding to <code>gender = "male"</code>, and a solid line for the smoothline corresponding to <code>gender == "female"</code>.</p>
 <p><strong><em>d. Size</em></strong></p>
 <p>You can also map <code>gender</code> to the <code>size</code> aesthetic, which controls the width of each smoothline fit.</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="smoothline.html#cb614-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb614-2"><a href="smoothline.html#cb614-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb614-3"><a href="smoothline.html#cb614-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb614-4"><a href="smoothline.html#cb614-4" tabindex="-1"></a>                            <span class="at">size =</span> gender))</span>
-<span id="cb614-5"><a href="smoothline.html#cb614-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="smoothline.html#cb600-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb600-2"><a href="smoothline.html#cb600-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb600-3"><a href="smoothline.html#cb600-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb600-4"><a href="smoothline.html#cb600-4" tabindex="-1"></a>                            <span class="at">size =</span> gender))</span>
+<span id="cb600-5"><a href="smoothline.html#cb600-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-611-1.png" alt="" width="576" /></p>
 <p>Note that similar to <code>geom_point()</code>, you can see a warning message: “Using size for a discrete variable is not advised.”</p>
 <p>It is worth to mention that <code>shape</code> is not a valid aesthetic for <code>geom_smooth</code> as it doesn’t make sense to talk about the shape of a line.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="smoothline.html#cb615-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb615-2"><a href="smoothline.html#cb615-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb615-3"><a href="smoothline.html#cb615-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb615-4"><a href="smoothline.html#cb615-4" tabindex="-1"></a>                            <span class="at">shape =</span> gender))</span>
-<span id="cb615-5"><a href="smoothline.html#cb615-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="smoothline.html#cb601-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb601-2"><a href="smoothline.html#cb601-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb601-3"><a href="smoothline.html#cb601-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb601-4"><a href="smoothline.html#cb601-4" tabindex="-1"></a>                            <span class="at">shape =</span> gender))</span>
+<span id="cb601-5"><a href="smoothline.html#cb601-5" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-612-1.png" alt="" width="576" /></p>
 <p>When you try to map a variable to the <code>shape</code> aesthetic, <code>geom_smooth()</code> will show a warning message “Warning: Ignoring unknown aesthetics: shape”, and use the <code>group</code> aesthetic instead.</p>
 <p>Naturally, you can mix different local aesthetic mappings as well as different constant-valued aesthetics on the same plot.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="smoothline.html#cb616-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb616-2"><a href="smoothline.html#cb616-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
-<span id="cb616-3"><a href="smoothline.html#cb616-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
-<span id="cb616-4"><a href="smoothline.html#cb616-4" tabindex="-1"></a>                            <span class="at">color =</span> gender,</span>
-<span id="cb616-5"><a href="smoothline.html#cb616-5" tabindex="-1"></a>                            <span class="at">linetype =</span> gender),</span>
-<span id="cb616-6"><a href="smoothline.html#cb616-6" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>,</span>
-<span id="cb616-7"><a href="smoothline.html#cb616-7" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb616-8"><a href="smoothline.html#cb616-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="smoothline.html#cb602-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb602-2"><a href="smoothline.html#cb602-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> sugar, </span>
+<span id="cb602-3"><a href="smoothline.html#cb602-3" tabindex="-1"></a>                            <span class="at">y =</span> cholesterol,</span>
+<span id="cb602-4"><a href="smoothline.html#cb602-4" tabindex="-1"></a>                            <span class="at">color =</span> gender,</span>
+<span id="cb602-5"><a href="smoothline.html#cb602-5" tabindex="-1"></a>                            <span class="at">linetype =</span> gender),</span>
+<span id="cb602-6"><a href="smoothline.html#cb602-6" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb602-7"><a href="smoothline.html#cb602-7" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb602-8"><a href="smoothline.html#cb602-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-613-1.png" alt="" width="576" /></p>
 </div>
 <div id="exercises-40" class="section level3 hasAnchor" number="5.6.4">

@@ -903,32 +903,32 @@ div.csl-indent {
 <li>Simplify code by avoiding unnecessary function declarations.</li>
 </ul>
 <p><strong>Example: Anonymous Function in <code>sapply</code></strong></p>
-<div class="sourceCode" id="cb992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb992-1"><a href="anonymous-and-scoping.html#cb992-1" tabindex="-1"></a><span class="co"># Using an anonymous function to compute squares</span></span>
-<span id="cb992-2"><a href="anonymous-and-scoping.html#cb992-2" tabindex="-1"></a>squared_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb992-3"><a href="anonymous-and-scoping.html#cb992-3" tabindex="-1"></a><span class="fu">print</span>(squared_values)</span>
-<span id="cb992-4"><a href="anonymous-and-scoping.html#cb992-4" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
+<div class="sourceCode" id="cb978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb978-1"><a href="anonymous-and-scoping.html#cb978-1" tabindex="-1"></a><span class="co"># Using an anonymous function to compute squares</span></span>
+<span id="cb978-2"><a href="anonymous-and-scoping.html#cb978-2" tabindex="-1"></a>squared_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb978-3"><a href="anonymous-and-scoping.html#cb978-3" tabindex="-1"></a><span class="fu">print</span>(squared_values)</span>
+<span id="cb978-4"><a href="anonymous-and-scoping.html#cb978-4" tabindex="-1"></a><span class="co">#&gt; [1]  1  4  9 16 25</span></span></code></pre></div>
 <p>Here, the <code>function(x) x^2</code> is an anonymous function that computes the square of its input.</p>
 <p><strong>Example: Filtering with an Anonymous Function</strong></p>
-<div class="sourceCode" id="cb993"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb993-1"><a href="anonymous-and-scoping.html#cb993-1" tabindex="-1"></a><span class="co"># Filter elements greater than 2 using an anonymous function</span></span>
-<span id="cb993-2"><a href="anonymous-and-scoping.html#cb993-2" tabindex="-1"></a>filtered_values <span class="ot">&lt;-</span> <span class="fu">Filter</span>(<span class="cf">function</span>(x) x <span class="sc">&gt;</span> <span class="dv">2</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb993-3"><a href="anonymous-and-scoping.html#cb993-3" tabindex="-1"></a><span class="fu">print</span>(filtered_values)</span>
-<span id="cb993-4"><a href="anonymous-and-scoping.html#cb993-4" tabindex="-1"></a><span class="co">#&gt; [1] 3 4 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="anonymous-and-scoping.html#cb979-1" tabindex="-1"></a><span class="co"># Filter elements greater than 2 using an anonymous function</span></span>
+<span id="cb979-2"><a href="anonymous-and-scoping.html#cb979-2" tabindex="-1"></a>filtered_values <span class="ot">&lt;-</span> <span class="fu">Filter</span>(<span class="cf">function</span>(x) x <span class="sc">&gt;</span> <span class="dv">2</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb979-3"><a href="anonymous-and-scoping.html#cb979-3" tabindex="-1"></a><span class="fu">print</span>(filtered_values)</span>
+<span id="cb979-4"><a href="anonymous-and-scoping.html#cb979-4" tabindex="-1"></a><span class="co">#&gt; [1] 3 4 5</span></span></code></pre></div>
 <p>Here, the anonymous function <code>function(x) x &gt; 2</code> filters elements greater than 2 from the input vector.</p>
 </div>
 <div id="advanced-use-cases-for-anonymous-functions" class="section level3 hasAnchor" number="12.3.2">
 <h3><span class="header-section-number">12.3.2</span> Advanced Use Cases for Anonymous Functions<a href="anonymous-and-scoping.html#advanced-use-cases-for-anonymous-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Anonymous functions can also handle more complex operations, such as interacting with external variables or embedding control structures.</p>
 <p><strong>Example: Combining Multiple Operations</strong></p>
-<div class="sourceCode" id="cb994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb994-1"><a href="anonymous-and-scoping.html#cb994-1" tabindex="-1"></a><span class="co"># Anonymous function to calculate square and add a constant</span></span>
-<span id="cb994-2"><a href="anonymous-and-scoping.html#cb994-2" tabindex="-1"></a>constant <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb994-3"><a href="anonymous-and-scoping.html#cb994-3" tabindex="-1"></a>calculated_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) (x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> constant)</span>
-<span id="cb994-4"><a href="anonymous-and-scoping.html#cb994-4" tabindex="-1"></a><span class="fu">print</span>(calculated_values)</span>
-<span id="cb994-5"><a href="anonymous-and-scoping.html#cb994-5" tabindex="-1"></a><span class="co">#&gt; [1] 11 14 19 26 35</span></span></code></pre></div>
+<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="anonymous-and-scoping.html#cb980-1" tabindex="-1"></a><span class="co"># Anonymous function to calculate square and add a constant</span></span>
+<span id="cb980-2"><a href="anonymous-and-scoping.html#cb980-2" tabindex="-1"></a>constant <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb980-3"><a href="anonymous-and-scoping.html#cb980-3" tabindex="-1"></a>calculated_values <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) (x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> constant)</span>
+<span id="cb980-4"><a href="anonymous-and-scoping.html#cb980-4" tabindex="-1"></a><span class="fu">print</span>(calculated_values)</span>
+<span id="cb980-5"><a href="anonymous-and-scoping.html#cb980-5" tabindex="-1"></a><span class="co">#&gt; [1] 11 14 19 26 35</span></span></code></pre></div>
 <p><strong>Example: Conditional Logic in Anonymous Functions</strong></p>
-<div class="sourceCode" id="cb995"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb995-1"><a href="anonymous-and-scoping.html#cb995-1" tabindex="-1"></a><span class="co"># Apply a conditional operation using an anonymous function</span></span>
-<span id="cb995-2"><a href="anonymous-and-scoping.html#cb995-2" tabindex="-1"></a>conditional_results <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) <span class="cf">if</span> (x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="st">&quot;Even&quot;</span> <span class="cf">else</span> <span class="st">&quot;Odd&quot;</span>)</span>
-<span id="cb995-3"><a href="anonymous-and-scoping.html#cb995-3" tabindex="-1"></a><span class="fu">print</span>(conditional_results)</span>
-<span id="cb995-4"><a href="anonymous-and-scoping.html#cb995-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Odd&quot;  &quot;Even&quot; &quot;Odd&quot;  &quot;Even&quot; &quot;Odd&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb981"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb981-1"><a href="anonymous-and-scoping.html#cb981-1" tabindex="-1"></a><span class="co"># Apply a conditional operation using an anonymous function</span></span>
+<span id="cb981-2"><a href="anonymous-and-scoping.html#cb981-2" tabindex="-1"></a>conditional_results <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(x) <span class="cf">if</span> (x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="st">&quot;Even&quot;</span> <span class="cf">else</span> <span class="st">&quot;Odd&quot;</span>)</span>
+<span id="cb981-3"><a href="anonymous-and-scoping.html#cb981-3" tabindex="-1"></a><span class="fu">print</span>(conditional_results)</span>
+<span id="cb981-4"><a href="anonymous-and-scoping.html#cb981-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Odd&quot;  &quot;Even&quot; &quot;Odd&quot;  &quot;Even&quot; &quot;Odd&quot;</span></span></code></pre></div>
 <p>Here, the anonymous function checks if a number is even or odd and returns the corresponding string.</p>
 </div>
 <div id="scoping-in-r" class="section level3 hasAnchor" number="12.3.3">
@@ -941,23 +941,23 @@ div.csl-indent {
 <li><strong>Nested Scope</strong>: Functions can access variables from their parent environment.</li>
 </ol>
 <p><strong>Example: Local Scope</strong></p>
-<div class="sourceCode" id="cb996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb996-1"><a href="anonymous-and-scoping.html#cb996-1" tabindex="-1"></a>local_scope_example <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb996-2"><a href="anonymous-and-scoping.html#cb996-2" tabindex="-1"></a>  local_var <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb996-3"><a href="anonymous-and-scoping.html#cb996-3" tabindex="-1"></a>  <span class="fu">return</span>(local_var)</span>
-<span id="cb996-4"><a href="anonymous-and-scoping.html#cb996-4" tabindex="-1"></a>}</span>
-<span id="cb996-5"><a href="anonymous-and-scoping.html#cb996-5" tabindex="-1"></a></span>
-<span id="cb996-6"><a href="anonymous-and-scoping.html#cb996-6" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb996-7"><a href="anonymous-and-scoping.html#cb996-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">local_scope_example</span>())</span>
-<span id="cb996-8"><a href="anonymous-and-scoping.html#cb996-8" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
-<span id="cb996-9"><a href="anonymous-and-scoping.html#cb996-9" tabindex="-1"></a></span>
-<span id="cb996-10"><a href="anonymous-and-scoping.html#cb996-10" tabindex="-1"></a><span class="co"># Attempting to access local_var outside the function will result in an error</span></span>
-<span id="cb996-11"><a href="anonymous-and-scoping.html#cb996-11" tabindex="-1"></a><span class="co"># print(local_var) # Uncomment to see the error</span></span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="anonymous-and-scoping.html#cb982-1" tabindex="-1"></a>local_scope_example <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb982-2"><a href="anonymous-and-scoping.html#cb982-2" tabindex="-1"></a>  local_var <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb982-3"><a href="anonymous-and-scoping.html#cb982-3" tabindex="-1"></a>  <span class="fu">return</span>(local_var)</span>
+<span id="cb982-4"><a href="anonymous-and-scoping.html#cb982-4" tabindex="-1"></a>}</span>
+<span id="cb982-5"><a href="anonymous-and-scoping.html#cb982-5" tabindex="-1"></a></span>
+<span id="cb982-6"><a href="anonymous-and-scoping.html#cb982-6" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb982-7"><a href="anonymous-and-scoping.html#cb982-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">local_scope_example</span>())</span>
+<span id="cb982-8"><a href="anonymous-and-scoping.html#cb982-8" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb982-9"><a href="anonymous-and-scoping.html#cb982-9" tabindex="-1"></a></span>
+<span id="cb982-10"><a href="anonymous-and-scoping.html#cb982-10" tabindex="-1"></a><span class="co"># Attempting to access local_var outside the function will result in an error</span></span>
+<span id="cb982-11"><a href="anonymous-and-scoping.html#cb982-11" tabindex="-1"></a><span class="co"># print(local_var) # Uncomment to see the error</span></span></code></pre></div>
 <p>Here, <code>local_var</code> is a local variable within the function <code>local_scope_example</code>. If you try to access <code>local_var</code> outside the function, it will result in an error.</p>
 <p><strong>Example: Global Scope</strong></p>
-<div class="sourceCode" id="cb997"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb997-1"><a href="anonymous-and-scoping.html#cb997-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb997-2"><a href="anonymous-and-scoping.html#cb997-2" tabindex="-1"></a>global_scope_example <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb997-3"><a href="anonymous-and-scoping.html#cb997-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
-<span id="cb997-4"><a href="anonymous-and-scoping.html#cb997-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb983"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb983-1"><a href="anonymous-and-scoping.html#cb983-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb983-2"><a href="anonymous-and-scoping.html#cb983-2" tabindex="-1"></a>global_scope_example <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb983-3"><a href="anonymous-and-scoping.html#cb983-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
+<span id="cb983-4"><a href="anonymous-and-scoping.html#cb983-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here, <code>global_var</code> is a global variable accessible inside the function <code>global_scope_example</code>.</p>
 <p><strong>Scoping Diagram</strong></p>
 <pre class="plaintext"><code>Global Environment
@@ -970,41 +970,41 @@ div.csl-indent {
 <li><code>inner_function()</code> accesses <code>a</code> from its parent (lexical) environment while using its local <code>b</code>.</li>
 </ul>
 <p><strong>Example: Nested Scope</strong></p>
-<div class="sourceCode" id="cb999"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb999-1"><a href="anonymous-and-scoping.html#cb999-1" tabindex="-1"></a><span class="co"># Nested scoping example</span></span>
-<span id="cb999-2"><a href="anonymous-and-scoping.html#cb999-2" tabindex="-1"></a>outer_function <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
-<span id="cb999-3"><a href="anonymous-and-scoping.html#cb999-3" tabindex="-1"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>(b) {</span>
-<span id="cb999-4"><a href="anonymous-and-scoping.html#cb999-4" tabindex="-1"></a>    <span class="fu">return</span>(a <span class="sc">+</span> b)</span>
-<span id="cb999-5"><a href="anonymous-and-scoping.html#cb999-5" tabindex="-1"></a>  }</span>
-<span id="cb999-6"><a href="anonymous-and-scoping.html#cb999-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">inner_function</span>(<span class="dv">5</span>))</span>
-<span id="cb999-7"><a href="anonymous-and-scoping.html#cb999-7" tabindex="-1"></a>}</span>
-<span id="cb999-8"><a href="anonymous-and-scoping.html#cb999-8" tabindex="-1"></a><span class="fu">outer_function</span>(<span class="dv">10</span>)</span>
-<span id="cb999-9"><a href="anonymous-and-scoping.html#cb999-9" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
+<div class="sourceCode" id="cb985"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb985-1"><a href="anonymous-and-scoping.html#cb985-1" tabindex="-1"></a><span class="co"># Nested scoping example</span></span>
+<span id="cb985-2"><a href="anonymous-and-scoping.html#cb985-2" tabindex="-1"></a>outer_function <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
+<span id="cb985-3"><a href="anonymous-and-scoping.html#cb985-3" tabindex="-1"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>(b) {</span>
+<span id="cb985-4"><a href="anonymous-and-scoping.html#cb985-4" tabindex="-1"></a>    <span class="fu">return</span>(a <span class="sc">+</span> b)</span>
+<span id="cb985-5"><a href="anonymous-and-scoping.html#cb985-5" tabindex="-1"></a>  }</span>
+<span id="cb985-6"><a href="anonymous-and-scoping.html#cb985-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">inner_function</span>(<span class="dv">5</span>))</span>
+<span id="cb985-7"><a href="anonymous-and-scoping.html#cb985-7" tabindex="-1"></a>}</span>
+<span id="cb985-8"><a href="anonymous-and-scoping.html#cb985-8" tabindex="-1"></a><span class="fu">outer_function</span>(<span class="dv">10</span>)</span>
+<span id="cb985-9"><a href="anonymous-and-scoping.html#cb985-9" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
 <p>Here, the inner function <code>inner_function</code> accesses the variable <code>a</code> from the outer function <code>outer_function</code>.</p>
 <p><strong>Example: Global Variables</strong></p>
-<div class="sourceCode" id="cb1000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1000-1"><a href="anonymous-and-scoping.html#cb1000-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb1000-2"><a href="anonymous-and-scoping.html#cb1000-2" tabindex="-1"></a>modify_global_var <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb1000-3"><a href="anonymous-and-scoping.html#cb1000-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
-<span id="cb1000-4"><a href="anonymous-and-scoping.html#cb1000-4" tabindex="-1"></a>  global_var <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb1000-5"><a href="anonymous-and-scoping.html#cb1000-5" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
-<span id="cb1000-6"><a href="anonymous-and-scoping.html#cb1000-6" tabindex="-1"></a>}</span>
-<span id="cb1000-7"><a href="anonymous-and-scoping.html#cb1000-7" tabindex="-1"></a><span class="fu">modify_global_var</span>()</span>
-<span id="cb1000-8"><a href="anonymous-and-scoping.html#cb1000-8" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb1000-9"><a href="anonymous-and-scoping.html#cb1000-9" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
-<span id="cb1000-10"><a href="anonymous-and-scoping.html#cb1000-10" tabindex="-1"></a><span class="fu">print</span>(global_var)</span>
-<span id="cb1000-11"><a href="anonymous-and-scoping.html#cb1000-11" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb986-1"><a href="anonymous-and-scoping.html#cb986-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb986-2"><a href="anonymous-and-scoping.html#cb986-2" tabindex="-1"></a>modify_global_var <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb986-3"><a href="anonymous-and-scoping.html#cb986-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
+<span id="cb986-4"><a href="anonymous-and-scoping.html#cb986-4" tabindex="-1"></a>  global_var <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb986-5"><a href="anonymous-and-scoping.html#cb986-5" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
+<span id="cb986-6"><a href="anonymous-and-scoping.html#cb986-6" tabindex="-1"></a>}</span>
+<span id="cb986-7"><a href="anonymous-and-scoping.html#cb986-7" tabindex="-1"></a><span class="fu">modify_global_var</span>()</span>
+<span id="cb986-8"><a href="anonymous-and-scoping.html#cb986-8" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb986-9"><a href="anonymous-and-scoping.html#cb986-9" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
+<span id="cb986-10"><a href="anonymous-and-scoping.html#cb986-10" tabindex="-1"></a><span class="fu">print</span>(global_var)</span>
+<span id="cb986-11"><a href="anonymous-and-scoping.html#cb986-11" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
 <p>Here, the function <code>modify_global_var</code> prints and modifies the global variable <code>global_var</code>. However, the modification is local to the function and does not affect the global variable. If you want to change the global variable, you need to use the <code>&lt;&lt;-</code> operator.</p>
 <p><strong>Modifying Global Variables</strong></p>
-<div class="sourceCode" id="cb1001"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1001-1"><a href="anonymous-and-scoping.html#cb1001-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb1001-2"><a href="anonymous-and-scoping.html#cb1001-2" tabindex="-1"></a>modify_global_var <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb1001-3"><a href="anonymous-and-scoping.html#cb1001-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
-<span id="cb1001-4"><a href="anonymous-and-scoping.html#cb1001-4" tabindex="-1"></a>  global_var <span class="ot">&lt;&lt;-</span> <span class="dv">20</span></span>
-<span id="cb1001-5"><a href="anonymous-and-scoping.html#cb1001-5" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
-<span id="cb1001-6"><a href="anonymous-and-scoping.html#cb1001-6" tabindex="-1"></a>}</span>
-<span id="cb1001-7"><a href="anonymous-and-scoping.html#cb1001-7" tabindex="-1"></a><span class="fu">modify_global_var</span>()</span>
-<span id="cb1001-8"><a href="anonymous-and-scoping.html#cb1001-8" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb1001-9"><a href="anonymous-and-scoping.html#cb1001-9" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
-<span id="cb1001-10"><a href="anonymous-and-scoping.html#cb1001-10" tabindex="-1"></a><span class="fu">print</span>(global_var)</span>
-<span id="cb1001-11"><a href="anonymous-and-scoping.html#cb1001-11" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span></code></pre></div>
+<div class="sourceCode" id="cb987"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb987-1"><a href="anonymous-and-scoping.html#cb987-1" tabindex="-1"></a>global_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb987-2"><a href="anonymous-and-scoping.html#cb987-2" tabindex="-1"></a>modify_global_var <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb987-3"><a href="anonymous-and-scoping.html#cb987-3" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
+<span id="cb987-4"><a href="anonymous-and-scoping.html#cb987-4" tabindex="-1"></a>  global_var <span class="ot">&lt;&lt;-</span> <span class="dv">20</span></span>
+<span id="cb987-5"><a href="anonymous-and-scoping.html#cb987-5" tabindex="-1"></a>  <span class="fu">print</span>(global_var)</span>
+<span id="cb987-6"><a href="anonymous-and-scoping.html#cb987-6" tabindex="-1"></a>}</span>
+<span id="cb987-7"><a href="anonymous-and-scoping.html#cb987-7" tabindex="-1"></a><span class="fu">modify_global_var</span>()</span>
+<span id="cb987-8"><a href="anonymous-and-scoping.html#cb987-8" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb987-9"><a href="anonymous-and-scoping.html#cb987-9" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
+<span id="cb987-10"><a href="anonymous-and-scoping.html#cb987-10" tabindex="-1"></a><span class="fu">print</span>(global_var)</span>
+<span id="cb987-11"><a href="anonymous-and-scoping.html#cb987-11" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span></code></pre></div>
 <p>Now, the global variable <code>global_var</code> is modified using the <code>&lt;&lt;-</code> operator, which changes the global value.</p>
 </div>
 <div id="exercises-72" class="section level3 hasAnchor" number="12.3.4">

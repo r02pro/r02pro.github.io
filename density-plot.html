@@ -894,76 +894,76 @@ div.csl-indent {
 <div id="density-plot" class="section level2 hasAnchor" number="5.10">
 <h2><span class="header-section-number">5.10</span> Density Plots<a href="density-plot.html#density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In Section <a href="histogram.html#histogram">5.9</a>, we have learned to use <code>geom_histogram()</code> as a way to visualize the distribution of a continuous variable. In addition, we also showed that it can be used to generate a piece-wise constant estimate of the probability density function. Today, we will introduce another popular visualization method for continuous data, namely the <strong>density plots</strong>. First, let’s review the <code>geom_histogram()</code> for estimating the density function.</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="density-plot.html#cb666-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb666-2"><a href="density-plot.html#cb666-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb666-3"><a href="density-plot.html#cb666-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb666-4"><a href="density-plot.html#cb666-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol,</span>
-<span id="cb666-5"><a href="density-plot.html#cb666-5" tabindex="-1"></a>                               <span class="at">y =</span> ..density..))</span>
-<span id="cb666-6"><a href="density-plot.html#cb666-6" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="density-plot.html#cb652-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb652-2"><a href="density-plot.html#cb652-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb652-3"><a href="density-plot.html#cb652-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb652-4"><a href="density-plot.html#cb652-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cholesterol,</span>
+<span id="cb652-5"><a href="density-plot.html#cb652-5" tabindex="-1"></a>                               <span class="at">y =</span> ..density..))</span>
+<span id="cb652-6"><a href="density-plot.html#cb652-6" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-661-1.png" alt="" width="576" /></p>
 <p>There are 30 bins by default. You may notice that this density estimate is not smooth, sometimes we may prefer a smoothed estimate. Then, we can use the <code>geom_density()</code> function to achieve this.</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="density-plot.html#cb667-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
-<span id="cb667-2"><a href="density-plot.html#cb667-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol))</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="density-plot.html#cb653-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004) <span class="sc">+</span> </span>
+<span id="cb653-2"><a href="density-plot.html#cb653-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-662-1.png" alt="" width="576" /></p>
 <p>This plot shows the so-called “kernel density estimate”, a popular way to estimate the probability density function from sample. The density estimate can be viewed as a smoothed version of the histogram. We can combine the two plots together using global aesthetic mapping.</p>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="density-plot.html#cb668-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, </span>
-<span id="cb668-2"><a href="density-plot.html#cb668-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cholesterol)) <span class="sc">+</span></span>
-<span id="cb668-3"><a href="density-plot.html#cb668-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
-<span id="cb668-4"><a href="density-plot.html#cb668-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb668-5"><a href="density-plot.html#cb668-5" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="density-plot.html#cb654-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gm2004, </span>
+<span id="cb654-2"><a href="density-plot.html#cb654-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cholesterol)) <span class="sc">+</span></span>
+<span id="cb654-3"><a href="density-plot.html#cb654-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
+<span id="cb654-4"><a href="density-plot.html#cb654-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb654-5"><a href="density-plot.html#cb654-5" tabindex="-1"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-663-1.png" alt="" width="576" /></p>
 <p>Here, we added some global aesthetics in <code>geom_density()</code> to make the density plot red and the line width by setting <code>size = 2</code>. It is clear that the density plot is a useful alternative to the histogram for visualizing continuous data.</p>
 <div id="aesthetics-in-density-plots" class="section level3 hasAnchor" number="5.10.1">
 <h3><span class="header-section-number">5.10.1</span> Aesthetics in Density Plots<a href="density-plot.html#aesthetics-in-density-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now, let’s introduce some commonly used aesthetics for density plots.</p>
 <p><strong><em>a. Color</em></strong></p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="density-plot.html#cb669-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb669-2"><a href="density-plot.html#cb669-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
-<span id="cb669-3"><a href="density-plot.html#cb669-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb669-4"><a href="density-plot.html#cb669-4" tabindex="-1"></a>                   <span class="at">color =</span> HDI_category))</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="density-plot.html#cb655-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb655-2"><a href="density-plot.html#cb655-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb655-3"><a href="density-plot.html#cb655-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb655-4"><a href="density-plot.html#cb655-4" tabindex="-1"></a>                   <span class="at">color =</span> HDI_category))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-664-1.png" alt="" width="576" /></p>
 <p>Here, we divide the data into four groups according to the value of <code>HDI_category</code> (human development index category), then generate separate density estimates with different colors. It is interesting to observe that the countries with very high HDI values have higher cholesterol values compared with countries with lower HDI values.</p>
 <p>Here, we can also manually reorder the factor levels just like in Bar Chart:</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="density-plot.html#cb670-1" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
-<span id="cb670-2"><a href="density-plot.html#cb670-2" tabindex="-1"></a>my_gm2004 <span class="ot">&lt;-</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb670-3"><a href="density-plot.html#cb670-3" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb670-4"><a href="density-plot.html#cb670-4" tabindex="-1"></a>my_gm2004<span class="sc">$</span>HDI_category <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(my_gm2004<span class="sc">$</span>HDI_category,</span>
-<span id="cb670-5"><a href="density-plot.html#cb670-5" tabindex="-1"></a>                                       <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;very high&quot;</span>))</span>
-<span id="cb670-6"><a href="density-plot.html#cb670-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_gm2004) <span class="sc">+</span>  </span>
-<span id="cb670-7"><a href="density-plot.html#cb670-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb670-8"><a href="density-plot.html#cb670-8" tabindex="-1"></a>                   <span class="at">color =</span> HDI_category)) </span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="density-plot.html#cb656-1" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb656-2"><a href="density-plot.html#cb656-2" tabindex="-1"></a>my_gm2004 <span class="ot">&lt;-</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb656-3"><a href="density-plot.html#cb656-3" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb656-4"><a href="density-plot.html#cb656-4" tabindex="-1"></a>my_gm2004<span class="sc">$</span>HDI_category <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(my_gm2004<span class="sc">$</span>HDI_category,</span>
+<span id="cb656-5"><a href="density-plot.html#cb656-5" tabindex="-1"></a>                                       <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;very high&quot;</span>))</span>
+<span id="cb656-6"><a href="density-plot.html#cb656-6" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_gm2004) <span class="sc">+</span>  </span>
+<span id="cb656-7"><a href="density-plot.html#cb656-7" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb656-8"><a href="density-plot.html#cb656-8" tabindex="-1"></a>                   <span class="at">color =</span> HDI_category)) </span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-665-1.png" alt="" width="576" /></p>
 <p>Here, a copy of the original dataset was created with the missing value of <code>HDI_category</code> removed and the level reordered manually.</p>
 <p><strong><em>b. Fill</em></strong></p>
 <p>Another way to generate different density estimates is to use the <code>fill</code> aesthetic. Let’s see the following example.</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="density-plot.html#cb671-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb671-2"><a href="density-plot.html#cb671-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
-<span id="cb671-3"><a href="density-plot.html#cb671-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb671-4"><a href="density-plot.html#cb671-4" tabindex="-1"></a>                   <span class="at">fill =</span> HDI_category))</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="density-plot.html#cb657-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb657-2"><a href="density-plot.html#cb657-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb657-3"><a href="density-plot.html#cb657-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb657-4"><a href="density-plot.html#cb657-4" tabindex="-1"></a>                   <span class="at">fill =</span> HDI_category))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-666-1.png" alt="" width="576" /></p>
 <p>The <code>fill</code> aesthetic also divides the data into groups according to <code>HDI_category</code>, then generate separate density estimates. The difference between <code>fill</code> and <code>color</code> aesthetics is that <code>fill</code> generates shaded areas below each density curve with different colors while <code>color</code> generates density curves with different colors. As we can see from the plot, there is a substantial overlap of the shaded areas. To fix this issue, we can change the transparency of the shades by adjusting the value of the <code>alpha</code> aesthetic.</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="density-plot.html#cb672-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb672-2"><a href="density-plot.html#cb672-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
-<span id="cb672-3"><a href="density-plot.html#cb672-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb672-4"><a href="density-plot.html#cb672-4" tabindex="-1"></a>                   <span class="at">fill =</span> HDI_category), </span>
-<span id="cb672-5"><a href="density-plot.html#cb672-5" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="density-plot.html#cb658-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb658-2"><a href="density-plot.html#cb658-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb658-3"><a href="density-plot.html#cb658-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb658-4"><a href="density-plot.html#cb658-4" tabindex="-1"></a>                   <span class="at">fill =</span> HDI_category), </span>
+<span id="cb658-5"><a href="density-plot.html#cb658-5" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-667-1.png" alt="" width="576" /></p>
 <p>We can now see all shaded areas in a clear way.</p>
 <p><strong><em>c. Linetype</em></strong></p>
 <p>We can also use different linetypes for different curves.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="density-plot.html#cb673-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb673-2"><a href="density-plot.html#cb673-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
-<span id="cb673-3"><a href="density-plot.html#cb673-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb673-4"><a href="density-plot.html#cb673-4" tabindex="-1"></a>                   <span class="at">linetype =</span> HDI_category))</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="density-plot.html#cb659-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb659-2"><a href="density-plot.html#cb659-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb659-3"><a href="density-plot.html#cb659-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb659-4"><a href="density-plot.html#cb659-4" tabindex="-1"></a>                   <span class="at">linetype =</span> HDI_category))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-668-1.png" alt="" width="576" /></p>
 <p><strong><em>d. Constant-Valued Aesthetics</em></strong></p>
 <p>As usual, we can also set constant-valued aesthetics for <code>geom_density()</code> and combine it with the mapped aesthetics.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="density-plot.html#cb674-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
-<span id="cb674-2"><a href="density-plot.html#cb674-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
-<span id="cb674-3"><a href="density-plot.html#cb674-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
-<span id="cb674-4"><a href="density-plot.html#cb674-4" tabindex="-1"></a>                   <span class="at">linetype =</span> HDI_category), </span>
-<span id="cb674-5"><a href="density-plot.html#cb674-5" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>, </span>
-<span id="cb674-6"><a href="density-plot.html#cb674-6" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="density-plot.html#cb660-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">remove_missing</span>(gm2004, </span>
+<span id="cb660-2"><a href="density-plot.html#cb660-2" tabindex="-1"></a>                             <span class="at">vars =</span> <span class="st">&quot;HDI_category&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb660-3"><a href="density-plot.html#cb660-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> cholesterol, </span>
+<span id="cb660-4"><a href="density-plot.html#cb660-4" tabindex="-1"></a>                   <span class="at">linetype =</span> HDI_category), </span>
+<span id="cb660-5"><a href="density-plot.html#cb660-5" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb660-6"><a href="density-plot.html#cb660-6" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-669-1.png" alt="" width="576" /></p>
 <p>Here, the <code>size</code> controls the width of the density curve.</p>
 </div>

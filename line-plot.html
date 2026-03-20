@@ -898,19 +898,19 @@ div.csl-indent {
 <div id="line-plots-via-plot" class="section level3 hasAnchor" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Line Plots via <code>plot()</code><a href="line-plot.html#line-plots-via-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To generate a line plot, you can use the <code>plot()</code> function by setting the argument <code>type = "l"</code>.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="line-plot.html#cb591-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb591-2"><a href="line-plot.html#cb591-2" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold, </span>
-<span id="cb591-3"><a href="line-plot.html#cb591-3" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price, </span>
-<span id="cb591-4"><a href="line-plot.html#cb591-4" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="line-plot.html#cb577-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb577-2"><a href="line-plot.html#cb577-2" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold, </span>
+<span id="cb577-3"><a href="line-plot.html#cb577-3" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price, </span>
+<span id="cb577-4"><a href="line-plot.html#cb577-4" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-587-1.png" alt="" width="576" /></p>
 <p>Wow, this doesn’t look pretty at all. The reason that we get such a chaotic plot is due to the working mechanism of <code>plot()</code>. The <code>plot()</code> works by first getting the location of the value pairs of <code>dt_sold</code> and <code>sale_price</code>. Then, connect the points <strong>in the order of the observations</strong>.</p>
 <p>As a result, before calling the <code>plot()</code> function, you need to first sort the observations (in Section <a href="numeric-sort-rank-order.html#numeric-sort-rank-order">2.7</a>) according to the variable on the x-axis, which is <code>dt_sold</code> in this example.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="line-plot.html#cb592-1" tabindex="-1"></a>dt_sold_order <span class="ot">&lt;-</span> <span class="fu">order</span>(sahp<span class="sc">$</span>dt_sold)</span>
-<span id="cb592-2"><a href="line-plot.html#cb592-2" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order], </span>
-<span id="cb592-3"><a href="line-plot.html#cb592-3" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
-<span id="cb592-4"><a href="line-plot.html#cb592-4" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb592-5"><a href="line-plot.html#cb592-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
-<span id="cb592-6"><a href="line-plot.html#cb592-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="line-plot.html#cb578-1" tabindex="-1"></a>dt_sold_order <span class="ot">&lt;-</span> <span class="fu">order</span>(sahp<span class="sc">$</span>dt_sold)</span>
+<span id="cb578-2"><a href="line-plot.html#cb578-2" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order], </span>
+<span id="cb578-3"><a href="line-plot.html#cb578-3" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
+<span id="cb578-4"><a href="line-plot.html#cb578-4" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb578-5"><a href="line-plot.html#cb578-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
+<span id="cb578-6"><a href="line-plot.html#cb578-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-588-1.png" alt="" width="576" /></p>
 <p>Note that here we added the labels for the x and y axes like we did for scatterplots.</p>
 <p>In the line plots, we would like to introduce two additional graphical parameters that we can customize in the <code>plot()</code> function.</p>
@@ -949,29 +949,29 @@ Figure 5.3: All Possible Line Types
 <!-- knitr::kable(d) -->
 <!-- ``` -->
 <p>Let’s see an example with the two parameters.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="line-plot.html#cb593-1" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order], </span>
-<span id="cb593-2"><a href="line-plot.html#cb593-2" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
-<span id="cb593-3"><a href="line-plot.html#cb593-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
-<span id="cb593-4"><a href="line-plot.html#cb593-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
-<span id="cb593-5"><a href="line-plot.html#cb593-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>, </span>
-<span id="cb593-6"><a href="line-plot.html#cb593-6" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>, </span>
-<span id="cb593-7"><a href="line-plot.html#cb593-7" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="line-plot.html#cb579-1" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order], </span>
+<span id="cb579-2"><a href="line-plot.html#cb579-2" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
+<span id="cb579-3"><a href="line-plot.html#cb579-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, </span>
+<span id="cb579-4"><a href="line-plot.html#cb579-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
+<span id="cb579-5"><a href="line-plot.html#cb579-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>, </span>
+<span id="cb579-6"><a href="line-plot.html#cb579-6" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>, </span>
+<span id="cb579-7"><a href="line-plot.html#cb579-7" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-590-1.png" alt="" width="576" /></p>
 <p>The <code>plot()</code> function also offers the capability to show the points and line on the same plot by changing <code>type = "b"</code>.</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="line-plot.html#cb594-1" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order],</span>
-<span id="cb594-2"><a href="line-plot.html#cb594-2" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
-<span id="cb594-3"><a href="line-plot.html#cb594-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
-<span id="cb594-4"><a href="line-plot.html#cb594-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
-<span id="cb594-5"><a href="line-plot.html#cb594-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="line-plot.html#cb580-1" tabindex="-1"></a><span class="fu">plot</span>(sahp<span class="sc">$</span>dt_sold[dt_sold_order],</span>
+<span id="cb580-2"><a href="line-plot.html#cb580-2" tabindex="-1"></a>     sahp<span class="sc">$</span>sale_price[dt_sold_order], </span>
+<span id="cb580-3"><a href="line-plot.html#cb580-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb580-4"><a href="line-plot.html#cb580-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Date Sold&quot;</span>, </span>
+<span id="cb580-5"><a href="line-plot.html#cb580-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Sale Price&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-591-1.png" alt="" width="576" /></p>
 </div>
 <div id="line-plots-via-geom_line" class="section level3 hasAnchor" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Line Plots via <code>geom_line()</code><a href="line-plot.html#line-plots-via-geom_line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to the <code>plot()</code> function in base R, we can use the <code>geom_line()</code> function in the ggplot family.</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="line-plot.html#cb595-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb595-2"><a href="line-plot.html#cb595-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb595-3"><a href="line-plot.html#cb595-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb595-4"><a href="line-plot.html#cb595-4" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="line-plot.html#cb581-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb581-2"><a href="line-plot.html#cb581-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb581-3"><a href="line-plot.html#cb581-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb581-4"><a href="line-plot.html#cb581-4" tabindex="-1"></a>                          <span class="at">y =</span> sale_price))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-592-1.png" alt="" width="576" /></p>
 <p>The generated line plot looks essentially the same as that generated by <code>plot()</code>. It is worth noting that here, the points are connected <strong>not</strong> by the order of the observations, but <strong>by the values of the variable on the x-axis</strong>, i.e. <code>dt_sold</code>, which avoids the need to sort the observations by the x-axis.</p>
 </div>
@@ -980,48 +980,48 @@ Figure 5.3: All Possible Line Types
 <p>Like in Scatterplots, you can also set Constant-Valued Aesthetics (see Section <a href="aes-constant-value.html#aes-constant-value">5.2</a>) in line plots.</p>
 <p><strong><em>a. Color</em></strong></p>
 <p>We can change the color of the line by setting the color aesthetic to a constant value.</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="line-plot.html#cb596-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb596-2"><a href="line-plot.html#cb596-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
-<span id="cb596-3"><a href="line-plot.html#cb596-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
-<span id="cb596-4"><a href="line-plot.html#cb596-4" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="line-plot.html#cb582-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb582-2"><a href="line-plot.html#cb582-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
+<span id="cb582-3"><a href="line-plot.html#cb582-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
+<span id="cb582-4"><a href="line-plot.html#cb582-4" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-593-1.png" alt="" width="576" /></p>
 <p><strong><em>b. Line Type</em></strong></p>
 <p>One useful aesthetic in <code>geom_line()</code> that was not applicable in <code>geom_point()</code> is <code>linetype</code>, which controls the line type. The collection of different line types is available in Figure <a href="line-plot.html#fig:all-line-types">5.3</a>.</p>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="line-plot.html#cb597-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb597-2"><a href="line-plot.html#cb597-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
-<span id="cb597-3"><a href="line-plot.html#cb597-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
-<span id="cb597-4"><a href="line-plot.html#cb597-4" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="line-plot.html#cb583-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb583-2"><a href="line-plot.html#cb583-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
+<span id="cb583-3"><a href="line-plot.html#cb583-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
+<span id="cb583-4"><a href="line-plot.html#cb583-4" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-594-1.png" alt="" width="576" /></p>
 <p><strong><em>c. Size</em></strong></p>
 <p>Similar to scatterplots, you can also set the <code>size</code> aesthetic in a line plot. While the <code>size</code> controls the size of the points in a scatterplot, the <code>size</code> aesthetic controls the <strong>width</strong> of the line.</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="line-plot.html#cb598-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb598-2"><a href="line-plot.html#cb598-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
-<span id="cb598-3"><a href="line-plot.html#cb598-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
-<span id="cb598-4"><a href="line-plot.html#cb598-4" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="line-plot.html#cb584-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb584-2"><a href="line-plot.html#cb584-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold,</span>
+<span id="cb584-3"><a href="line-plot.html#cb584-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price), </span>
+<span id="cb584-4"><a href="line-plot.html#cb584-4" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-595-1.png" alt="" width="576" /></p>
 </div>
 <div id="mapping-variables-to-aesthetics-in-line-plots" class="section level3 hasAnchor" number="5.5.4">
 <h3><span class="header-section-number">5.5.4</span> Mapping Variables to Aesthetics in Line Plots<a href="line-plot.html#mapping-variables-to-aesthetics-in-line-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to constant-valued aesthetics, you can also Map Variables to Aesthetics (see Section <a href="aes-local-map.html#aes-local-map">5.3</a>) in line plots to highlight different groups.</p>
 <p><strong><em>a. Color</em></strong></p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="line-plot.html#cb599-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb599-2"><a href="line-plot.html#cb599-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb599-3"><a href="line-plot.html#cb599-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price, </span>
-<span id="cb599-4"><a href="line-plot.html#cb599-4" tabindex="-1"></a>                          <span class="at">color =</span> kit_qual))</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="line-plot.html#cb585-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb585-2"><a href="line-plot.html#cb585-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb585-3"><a href="line-plot.html#cb585-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price, </span>
+<span id="cb585-4"><a href="line-plot.html#cb585-4" tabindex="-1"></a>                          <span class="at">color =</span> kit_qual))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-596-1.png" alt="" width="576" /></p>
 <p>Here, the observations are divided into groups according to the value of <code>kit_qual</code> and separate line plots are generated for each group, represented by different colors.</p>
 <p><strong><em>b. Line Type</em></strong></p>
 <p>Similarly, we can also map variables to the <code>linetype</code> aesthetic, which uses different line types for each group.</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="line-plot.html#cb600-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
-<span id="cb600-2"><a href="line-plot.html#cb600-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
-<span id="cb600-3"><a href="line-plot.html#cb600-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price, </span>
-<span id="cb600-4"><a href="line-plot.html#cb600-4" tabindex="-1"></a>                          <span class="at">linetype =</span> kit_qual))</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="line-plot.html#cb586-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sahp) <span class="sc">+</span> </span>
+<span id="cb586-2"><a href="line-plot.html#cb586-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dt_sold, </span>
+<span id="cb586-3"><a href="line-plot.html#cb586-3" tabindex="-1"></a>                          <span class="at">y =</span> sale_price, </span>
+<span id="cb586-4"><a href="line-plot.html#cb586-4" tabindex="-1"></a>                          <span class="at">linetype =</span> kit_qual))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-597-1.png" alt="" width="576" /></p>
 </div>
 <div id="exercises-39" class="section level3 hasAnchor" number="5.5.5">
 <h3><span class="header-section-number">5.5.5</span> Exercises<a href="line-plot.html#exercises-39" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First, create a data set <code>sahp_2006</code> by running the following code</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="line-plot.html#cb601-1" tabindex="-1"></a>sahp_2006 <span class="ot">&lt;-</span> sahp[<span class="fu">format</span>(sahp<span class="sc">$</span>dt_sold, <span class="st">&quot;%Y&quot;</span>) <span class="sc">&lt;</span> <span class="dv">2007</span>, ] <span class="co">#all houses sold before 2007</span></span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="line-plot.html#cb587-1" tabindex="-1"></a>sahp_2006 <span class="ot">&lt;-</span> sahp[<span class="fu">format</span>(sahp<span class="sc">$</span>dt_sold, <span class="st">&quot;%Y&quot;</span>) <span class="sc">&lt;</span> <span class="dv">2007</span>, ] <span class="co">#all houses sold before 2007</span></span></code></pre></div>
 <p>Then, use <code>sahp_2006</code> to answer the following questions.</p>
 <ol style="list-style-type: decimal">
 <li><p>Using <code>plot()</code> to create a line plot of <code>dt_sold</code> (on the x-axis) and <code>sale_price</code> (on the y-axis) to show the trend of the sale price as a function of the sold date of the house, then give title “DS” for the x-axis and title “SP” for the y-axis and make the line to be a “twodash” line.</p></li>

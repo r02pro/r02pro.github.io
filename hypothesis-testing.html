@@ -900,19 +900,19 @@ div.csl-indent {
 <div id="one-sample-t-test" class="section level4 hasAnchor" number="10.5.1.1">
 <h4><span class="header-section-number">10.5.1.1</span> One-sample t-test<a href="hypothesis-testing.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Suppose we want to test whether the average sale price of houses in the <code>sahp</code> dataset is different from $200,000 (i.e., 200 in the unit of thousands).</p>
-<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb915-1"><a href="hypothesis-testing.html#cb915-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb915-2"><a href="hypothesis-testing.html#cb915-2" tabindex="-1"></a><span class="fu">t.test</span>(sahp<span class="sc">$</span>sale_price, <span class="at">mu =</span> <span class="dv">200</span>)</span>
-<span id="cb915-3"><a href="hypothesis-testing.html#cb915-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb915-4"><a href="hypothesis-testing.html#cb915-4" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
-<span id="cb915-5"><a href="hypothesis-testing.html#cb915-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb915-6"><a href="hypothesis-testing.html#cb915-6" tabindex="-1"></a><span class="co">#&gt; data:  sahp$sale_price</span></span>
-<span id="cb915-7"><a href="hypothesis-testing.html#cb915-7" tabindex="-1"></a><span class="co">#&gt; t = -3.0911, df = 163, p-value = 0.002346</span></span>
-<span id="cb915-8"><a href="hypothesis-testing.html#cb915-8" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 200</span></span>
-<span id="cb915-9"><a href="hypothesis-testing.html#cb915-9" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb915-10"><a href="hypothesis-testing.html#cb915-10" tabindex="-1"></a><span class="co">#&gt;  167.0439 192.7363</span></span>
-<span id="cb915-11"><a href="hypothesis-testing.html#cb915-11" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb915-12"><a href="hypothesis-testing.html#cb915-12" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
-<span id="cb915-13"><a href="hypothesis-testing.html#cb915-13" tabindex="-1"></a><span class="co">#&gt;  179.8901</span></span></code></pre></div>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="hypothesis-testing.html#cb901-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb901-2"><a href="hypothesis-testing.html#cb901-2" tabindex="-1"></a><span class="fu">t.test</span>(sahp<span class="sc">$</span>sale_price, <span class="at">mu =</span> <span class="dv">200</span>)</span>
+<span id="cb901-3"><a href="hypothesis-testing.html#cb901-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-4"><a href="hypothesis-testing.html#cb901-4" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
+<span id="cb901-5"><a href="hypothesis-testing.html#cb901-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-6"><a href="hypothesis-testing.html#cb901-6" tabindex="-1"></a><span class="co">#&gt; data:  sahp$sale_price</span></span>
+<span id="cb901-7"><a href="hypothesis-testing.html#cb901-7" tabindex="-1"></a><span class="co">#&gt; t = -3.0911, df = 163, p-value = 0.002346</span></span>
+<span id="cb901-8"><a href="hypothesis-testing.html#cb901-8" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 200</span></span>
+<span id="cb901-9"><a href="hypothesis-testing.html#cb901-9" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb901-10"><a href="hypothesis-testing.html#cb901-10" tabindex="-1"></a><span class="co">#&gt;  167.0439 192.7363</span></span>
+<span id="cb901-11"><a href="hypothesis-testing.html#cb901-11" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb901-12"><a href="hypothesis-testing.html#cb901-12" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
+<span id="cb901-13"><a href="hypothesis-testing.html#cb901-13" tabindex="-1"></a><span class="co">#&gt;  179.8901</span></span></code></pre></div>
 <p>The output includes:</p>
 <ul>
 <li><strong>t</strong>: the test statistic</li>
@@ -926,33 +926,33 @@ div.csl-indent {
 <div id="two-sample-t-test" class="section level4 hasAnchor" number="10.5.1.2">
 <h4><span class="header-section-number">10.5.1.2</span> Two-sample t-test<a href="hypothesis-testing.html#two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We can also compare the means of two groups. Let’s test whether one-story and two-story houses have different average sale prices.</p>
-<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="hypothesis-testing.html#cb916-1" tabindex="-1"></a>price_1story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
-<span id="cb916-2"><a href="hypothesis-testing.html#cb916-2" tabindex="-1"></a>price_2story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>]</span>
-<span id="cb916-3"><a href="hypothesis-testing.html#cb916-3" tabindex="-1"></a><span class="fu">t.test</span>(price_1story, price_2story)</span>
-<span id="cb916-4"><a href="hypothesis-testing.html#cb916-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb916-5"><a href="hypothesis-testing.html#cb916-5" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
-<span id="cb916-6"><a href="hypothesis-testing.html#cb916-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb916-7"><a href="hypothesis-testing.html#cb916-7" tabindex="-1"></a><span class="co">#&gt; data:  price_1story and price_2story</span></span>
-<span id="cb916-8"><a href="hypothesis-testing.html#cb916-8" tabindex="-1"></a><span class="co">#&gt; t = -0.87927, df = 88.388, p-value = 0.3816</span></span>
-<span id="cb916-9"><a href="hypothesis-testing.html#cb916-9" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
-<span id="cb916-10"><a href="hypothesis-testing.html#cb916-10" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb916-11"><a href="hypothesis-testing.html#cb916-11" tabindex="-1"></a><span class="co">#&gt;  -48.19646  18.62819</span></span>
-<span id="cb916-12"><a href="hypothesis-testing.html#cb916-12" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb916-13"><a href="hypothesis-testing.html#cb916-13" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
-<span id="cb916-14"><a href="hypothesis-testing.html#cb916-14" tabindex="-1"></a><span class="co">#&gt;  183.0277  197.8118</span></span></code></pre></div>
+<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="hypothesis-testing.html#cb902-1" tabindex="-1"></a>price_1story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
+<span id="cb902-2"><a href="hypothesis-testing.html#cb902-2" tabindex="-1"></a>price_2story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;2Story&quot;</span>]</span>
+<span id="cb902-3"><a href="hypothesis-testing.html#cb902-3" tabindex="-1"></a><span class="fu">t.test</span>(price_1story, price_2story)</span>
+<span id="cb902-4"><a href="hypothesis-testing.html#cb902-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb902-5"><a href="hypothesis-testing.html#cb902-5" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb902-6"><a href="hypothesis-testing.html#cb902-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb902-7"><a href="hypothesis-testing.html#cb902-7" tabindex="-1"></a><span class="co">#&gt; data:  price_1story and price_2story</span></span>
+<span id="cb902-8"><a href="hypothesis-testing.html#cb902-8" tabindex="-1"></a><span class="co">#&gt; t = -0.87927, df = 88.388, p-value = 0.3816</span></span>
+<span id="cb902-9"><a href="hypothesis-testing.html#cb902-9" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span id="cb902-10"><a href="hypothesis-testing.html#cb902-10" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb902-11"><a href="hypothesis-testing.html#cb902-11" tabindex="-1"></a><span class="co">#&gt;  -48.19646  18.62819</span></span>
+<span id="cb902-12"><a href="hypothesis-testing.html#cb902-12" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb902-13"><a href="hypothesis-testing.html#cb902-13" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb902-14"><a href="hypothesis-testing.html#cb902-14" tabindex="-1"></a><span class="co">#&gt;  183.0277  197.8118</span></span></code></pre></div>
 <p>By default, <code>t.test()</code> performs a <strong>Welch two-sample t-test</strong>, which does not assume equal variances. To assume equal variances, set <code>var.equal = TRUE</code>.</p>
-<div class="sourceCode" id="cb917"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb917-1"><a href="hypothesis-testing.html#cb917-1" tabindex="-1"></a><span class="fu">t.test</span>(price_1story, price_2story, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb917-2"><a href="hypothesis-testing.html#cb917-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb917-3"><a href="hypothesis-testing.html#cb917-3" tabindex="-1"></a><span class="co">#&gt;  Two Sample t-test</span></span>
-<span id="cb917-4"><a href="hypothesis-testing.html#cb917-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb917-5"><a href="hypothesis-testing.html#cb917-5" tabindex="-1"></a><span class="co">#&gt; data:  price_1story and price_2story</span></span>
-<span id="cb917-6"><a href="hypothesis-testing.html#cb917-6" tabindex="-1"></a><span class="co">#&gt; t = -0.91686, df = 128, p-value = 0.3609</span></span>
-<span id="cb917-7"><a href="hypothesis-testing.html#cb917-7" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
-<span id="cb917-8"><a href="hypothesis-testing.html#cb917-8" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb917-9"><a href="hypothesis-testing.html#cb917-9" tabindex="-1"></a><span class="co">#&gt;  -46.68985  17.12157</span></span>
-<span id="cb917-10"><a href="hypothesis-testing.html#cb917-10" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb917-11"><a href="hypothesis-testing.html#cb917-11" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
-<span id="cb917-12"><a href="hypothesis-testing.html#cb917-12" tabindex="-1"></a><span class="co">#&gt;  183.0277  197.8118</span></span></code></pre></div>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="hypothesis-testing.html#cb903-1" tabindex="-1"></a><span class="fu">t.test</span>(price_1story, price_2story, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb903-2"><a href="hypothesis-testing.html#cb903-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-3"><a href="hypothesis-testing.html#cb903-3" tabindex="-1"></a><span class="co">#&gt;  Two Sample t-test</span></span>
+<span id="cb903-4"><a href="hypothesis-testing.html#cb903-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-5"><a href="hypothesis-testing.html#cb903-5" tabindex="-1"></a><span class="co">#&gt; data:  price_1story and price_2story</span></span>
+<span id="cb903-6"><a href="hypothesis-testing.html#cb903-6" tabindex="-1"></a><span class="co">#&gt; t = -0.91686, df = 128, p-value = 0.3609</span></span>
+<span id="cb903-7"><a href="hypothesis-testing.html#cb903-7" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span id="cb903-8"><a href="hypothesis-testing.html#cb903-8" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb903-9"><a href="hypothesis-testing.html#cb903-9" tabindex="-1"></a><span class="co">#&gt;  -46.68985  17.12157</span></span>
+<span id="cb903-10"><a href="hypothesis-testing.html#cb903-10" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb903-11"><a href="hypothesis-testing.html#cb903-11" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb903-12"><a href="hypothesis-testing.html#cb903-12" tabindex="-1"></a><span class="co">#&gt;  183.0277  197.8118</span></span></code></pre></div>
 </div>
 <div id="paired-t-test" class="section level4 hasAnchor" number="10.5.1.3">
 <h4><span class="header-section-number">10.5.1.3</span> Paired t-test<a href="hypothesis-testing.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -963,40 +963,40 @@ div.csl-indent {
 <h3><span class="header-section-number">10.5.2</span> The Chi-Squared Test<a href="hypothesis-testing.html#the-chi-squared-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>chi-squared test</strong> is used to test the association between two categorical variables. R provides <code>chisq.test()</code> for this purpose.</p>
 <p>Let’s test whether kitchen quality (<code>kit_qual</code>) and house style (<code>house_style</code>) are independent in the <code>sahp</code> dataset.</p>
-<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="hypothesis-testing.html#cb918-1" tabindex="-1"></a><span class="co"># Create a contingency table</span></span>
-<span id="cb918-2"><a href="hypothesis-testing.html#cb918-2" tabindex="-1"></a>quality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(sahp<span class="sc">$</span>kit_qual, sahp<span class="sc">$</span>house_style)</span>
-<span id="cb918-3"><a href="hypothesis-testing.html#cb918-3" tabindex="-1"></a>quality_table</span>
-<span id="cb918-4"><a href="hypothesis-testing.html#cb918-4" tabindex="-1"></a><span class="co">#&gt;            </span></span>
-<span id="cb918-5"><a href="hypothesis-testing.html#cb918-5" tabindex="-1"></a><span class="co">#&gt;             1.5Fin 1Story 2Story SFoyer SLvl</span></span>
-<span id="cb918-6"><a href="hypothesis-testing.html#cb918-6" tabindex="-1"></a><span class="co">#&gt;   Average       14     43     18      4    6</span></span>
-<span id="cb918-7"><a href="hypothesis-testing.html#cb918-7" tabindex="-1"></a><span class="co">#&gt;   Excellent      0      9      5      0    0</span></span>
-<span id="cb918-8"><a href="hypothesis-testing.html#cb918-8" tabindex="-1"></a><span class="co">#&gt;   Fair           2      5      2      0    0</span></span>
-<span id="cb918-9"><a href="hypothesis-testing.html#cb918-9" tabindex="-1"></a><span class="co">#&gt;   Good           5     24     25      1    2</span></span>
-<span id="cb918-10"><a href="hypothesis-testing.html#cb918-10" tabindex="-1"></a></span>
-<span id="cb918-11"><a href="hypothesis-testing.html#cb918-11" tabindex="-1"></a><span class="co"># Perform chi-squared test</span></span>
-<span id="cb918-12"><a href="hypothesis-testing.html#cb918-12" tabindex="-1"></a><span class="fu">chisq.test</span>(quality_table)</span>
-<span id="cb918-13"><a href="hypothesis-testing.html#cb918-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb918-14"><a href="hypothesis-testing.html#cb918-14" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test</span></span>
-<span id="cb918-15"><a href="hypothesis-testing.html#cb918-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb918-16"><a href="hypothesis-testing.html#cb918-16" tabindex="-1"></a><span class="co">#&gt; data:  quality_table</span></span>
-<span id="cb918-17"><a href="hypothesis-testing.html#cb918-17" tabindex="-1"></a><span class="co">#&gt; X-squared = 15.492, df = 12, p-value = 0.2156</span></span></code></pre></div>
+<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="hypothesis-testing.html#cb904-1" tabindex="-1"></a><span class="co"># Create a contingency table</span></span>
+<span id="cb904-2"><a href="hypothesis-testing.html#cb904-2" tabindex="-1"></a>quality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(sahp<span class="sc">$</span>kit_qual, sahp<span class="sc">$</span>house_style)</span>
+<span id="cb904-3"><a href="hypothesis-testing.html#cb904-3" tabindex="-1"></a>quality_table</span>
+<span id="cb904-4"><a href="hypothesis-testing.html#cb904-4" tabindex="-1"></a><span class="co">#&gt;            </span></span>
+<span id="cb904-5"><a href="hypothesis-testing.html#cb904-5" tabindex="-1"></a><span class="co">#&gt;             1.5Fin 1Story 2Story SFoyer SLvl</span></span>
+<span id="cb904-6"><a href="hypothesis-testing.html#cb904-6" tabindex="-1"></a><span class="co">#&gt;   Average       14     43     18      4    6</span></span>
+<span id="cb904-7"><a href="hypothesis-testing.html#cb904-7" tabindex="-1"></a><span class="co">#&gt;   Excellent      0      9      5      0    0</span></span>
+<span id="cb904-8"><a href="hypothesis-testing.html#cb904-8" tabindex="-1"></a><span class="co">#&gt;   Fair           2      5      2      0    0</span></span>
+<span id="cb904-9"><a href="hypothesis-testing.html#cb904-9" tabindex="-1"></a><span class="co">#&gt;   Good           5     24     25      1    2</span></span>
+<span id="cb904-10"><a href="hypothesis-testing.html#cb904-10" tabindex="-1"></a></span>
+<span id="cb904-11"><a href="hypothesis-testing.html#cb904-11" tabindex="-1"></a><span class="co"># Perform chi-squared test</span></span>
+<span id="cb904-12"><a href="hypothesis-testing.html#cb904-12" tabindex="-1"></a><span class="fu">chisq.test</span>(quality_table)</span>
+<span id="cb904-13"><a href="hypothesis-testing.html#cb904-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb904-14"><a href="hypothesis-testing.html#cb904-14" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s Chi-squared test</span></span>
+<span id="cb904-15"><a href="hypothesis-testing.html#cb904-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb904-16"><a href="hypothesis-testing.html#cb904-16" tabindex="-1"></a><span class="co">#&gt; data:  quality_table</span></span>
+<span id="cb904-17"><a href="hypothesis-testing.html#cb904-17" tabindex="-1"></a><span class="co">#&gt; X-squared = 15.492, df = 12, p-value = 0.2156</span></span></code></pre></div>
 <p>A small p-value suggests that the two variables are not independent.</p>
 </div>
 <div id="the-correlation-test" class="section level3 hasAnchor" number="10.5.3">
 <h3><span class="header-section-number">10.5.3</span> The Correlation Test<a href="hypothesis-testing.html#the-correlation-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To test whether the correlation between two numeric variables is significantly different from zero, use <code>cor.test()</code>.</p>
-<div class="sourceCode" id="cb919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb919-1"><a href="hypothesis-testing.html#cb919-1" tabindex="-1"></a><span class="fu">cor.test</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
-<span id="cb919-2"><a href="hypothesis-testing.html#cb919-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb919-3"><a href="hypothesis-testing.html#cb919-3" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s product-moment correlation</span></span>
-<span id="cb919-4"><a href="hypothesis-testing.html#cb919-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb919-5"><a href="hypothesis-testing.html#cb919-5" tabindex="-1"></a><span class="co">#&gt; data:  sahp$liv_area and sahp$sale_price</span></span>
-<span id="cb919-6"><a href="hypothesis-testing.html#cb919-6" tabindex="-1"></a><span class="co">#&gt; t = 12.443, df = 162, p-value &lt; 2.2e-16</span></span>
-<span id="cb919-7"><a href="hypothesis-testing.html#cb919-7" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
-<span id="cb919-8"><a href="hypothesis-testing.html#cb919-8" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb919-9"><a href="hypothesis-testing.html#cb919-9" tabindex="-1"></a><span class="co">#&gt;  0.6113017 0.7698383</span></span>
-<span id="cb919-10"><a href="hypothesis-testing.html#cb919-10" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb919-11"><a href="hypothesis-testing.html#cb919-11" tabindex="-1"></a><span class="co">#&gt;       cor </span></span>
-<span id="cb919-12"><a href="hypothesis-testing.html#cb919-12" tabindex="-1"></a><span class="co">#&gt; 0.6990621</span></span></code></pre></div>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="hypothesis-testing.html#cb905-1" tabindex="-1"></a><span class="fu">cor.test</span>(sahp<span class="sc">$</span>liv_area, sahp<span class="sc">$</span>sale_price)</span>
+<span id="cb905-2"><a href="hypothesis-testing.html#cb905-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb905-3"><a href="hypothesis-testing.html#cb905-3" tabindex="-1"></a><span class="co">#&gt;  Pearson&#39;s product-moment correlation</span></span>
+<span id="cb905-4"><a href="hypothesis-testing.html#cb905-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb905-5"><a href="hypothesis-testing.html#cb905-5" tabindex="-1"></a><span class="co">#&gt; data:  sahp$liv_area and sahp$sale_price</span></span>
+<span id="cb905-6"><a href="hypothesis-testing.html#cb905-6" tabindex="-1"></a><span class="co">#&gt; t = 12.443, df = 162, p-value &lt; 2.2e-16</span></span>
+<span id="cb905-7"><a href="hypothesis-testing.html#cb905-7" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb905-8"><a href="hypothesis-testing.html#cb905-8" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb905-9"><a href="hypothesis-testing.html#cb905-9" tabindex="-1"></a><span class="co">#&gt;  0.6113017 0.7698383</span></span>
+<span id="cb905-10"><a href="hypothesis-testing.html#cb905-10" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb905-11"><a href="hypothesis-testing.html#cb905-11" tabindex="-1"></a><span class="co">#&gt;       cor </span></span>
+<span id="cb905-12"><a href="hypothesis-testing.html#cb905-12" tabindex="-1"></a><span class="co">#&gt; 0.6990621</span></span></code></pre></div>
 <p>The output shows the estimated correlation, the test statistic, and the p-value.</p>
 </div>
 <div id="interpreting-results" class="section level3 hasAnchor" number="10.5.4">
