@@ -884,9 +884,9 @@ div.csl-indent {
 <h2><span class="header-section-number">1.3</span> Object Assignment<a href="Object-Assignment.html#Object-Assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the last section, you saw how R handles one-off calculations. To carry out a full analysis, though, you almost always need to preserve the output from one step so you can use it again later.</p>
 <p>Consider the following three calculations, each of which repeats the expression <code>exp(3) / log(20, 3) * 7</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Object-Assignment.html#cb16-1" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span> <span class="co">#addition</span></span>
-<span id="cb16-2"><a href="Object-Assignment.html#cb16-2" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span> <span class="co">#subtraction</span></span>
-<span id="cb16-3"><a href="Object-Assignment.html#cb16-3" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">/</span> <span class="dv">3</span> <span class="co">#division</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Object-Assignment.html#cb14-1" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">+</span> <span class="dv">3</span> <span class="co">#addition</span></span>
+<span id="cb14-2"><a href="Object-Assignment.html#cb14-2" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">3</span> <span class="co">#subtraction</span></span>
+<span id="cb14-3"><a href="Object-Assignment.html#cb14-3" tabindex="-1"></a>(<span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span>) <span class="sc">/</span> <span class="dv">3</span> <span class="co">#division</span></span></code></pre></div>
 <p>Typing the same expression three times invites typos and makes future edits painful. Object assignment lets you store that intermediate value once and reuse it wherever you need it.</p>
 <div id="what-is-an-r-object" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> What is an R Object?<a href="Object-Assignment.html#what-is-an-r-object" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -896,7 +896,7 @@ div.csl-indent {
 <div id="assignment" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Assignment Operation with <code>&lt;-</code><a href="Object-Assignment.html#assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With objects in mind, the next step is to learn how to create a named object. The basic pattern is <code>name &lt;- value</code>: choose a descriptive name, place the assignment operator <code>&lt;-</code> in the middle, and supply the value you want to store. Once the object exists, you can reuse the name in later expressions without retyping the original value. Here is the simplest possible example.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Object-Assignment.html#cb17-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Object-Assignment.html#cb15-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">5</span></span></code></pre></div>
 <p>The expression has three parts: the <strong>object name</strong> (<code>x_num</code>), the <strong>assignment operator</strong> (<code>&lt;-</code>, written with no space between <code>&lt;</code> and <code>-</code>), and the <strong>value</strong> being stored (the number <code>5</code>). Naming rules are covered in Section <a href="Object-Assignment.html#Naming">1.3.3</a>.</p>
 <div class="infobox caution">
 <p>Keep the two characters of <code>&lt;-</code> together. Although R also accepts <code>=</code>, we strongly recommend reserving <code>=</code> for function arguments (to be introduced in Section <a href="intro-num-vector.html#intro-num-vector">2.1</a>); mixing the two styles easily leads to confusing code.</p>
@@ -909,29 +909,29 @@ Figure 1.18: No output during the assignment operation.
 </p>
 </div>
 <p>To confirm the value stored in an object, run a line containing only its name. R prints the contents of the object to the console.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Object-Assignment.html#cb18-1" tabindex="-1"></a>x_num</span>
-<span id="cb18-2"><a href="Object-Assignment.html#cb18-2" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Object-Assignment.html#cb16-1" tabindex="-1"></a>x_num</span>
+<span id="cb16-2"><a href="Object-Assignment.html#cb16-2" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>Great! The output <code>5</code> shows that the name <code>x_num</code> now stores the value <code>5</code>. Anywhere you would have typed the literal number, you can now reference <code>x_num</code> instead.</p>
 <p>Note that R object names are <strong>case-sensitive</strong>. For example, you defined <code>x_num</code>, but if you type <code>X_num</code>, the console returns an error because R treats those names as different objects.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Object-Assignment.html#cb19-1" tabindex="-1"></a>X_num</span>
-<span id="cb19-2"><a href="Object-Assignment.html#cb19-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb19-3"><a href="Object-Assignment.html#cb19-3" tabindex="-1"></a><span class="co">#&gt; ! object &#39;X_num&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Object-Assignment.html#cb17-1" tabindex="-1"></a>X_num</span>
+<span id="cb17-2"><a href="Object-Assignment.html#cb17-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
+<span id="cb17-3"><a href="Object-Assignment.html#cb17-3" tabindex="-1"></a><span class="co">#&gt; ! object &#39;X_num&#39; not found</span></span></code></pre></div>
 <p>You can also assign the <strong>result</strong> of an expression to a name. Let’s simplify the three expressions we showed at the beginning of this section. Each one shares the common term <code>exp(3) / log(20, 3) * 7</code>, so we will store that term in an object.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Object-Assignment.html#cb20-1" tabindex="-1"></a>y_num <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span></span>
-<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" tabindex="-1"></a>y_num</span>
-<span id="cb20-3"><a href="Object-Assignment.html#cb20-3" tabindex="-1"></a><span class="co">#&gt; [1] 51.56119</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Object-Assignment.html#cb18-1" tabindex="-1"></a>y_num <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">7</span></span>
+<span id="cb18-2"><a href="Object-Assignment.html#cb18-2" tabindex="-1"></a>y_num</span>
+<span id="cb18-3"><a href="Object-Assignment.html#cb18-3" tabindex="-1"></a><span class="co">#&gt; [1] 51.56119</span></span></code></pre></div>
 <p>Now you have successfully created an object <code>y_num</code> that stores the numeric value 51.561191. Using the named object <code>y_num</code>, you can simplify the three calculations as follows.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Object-Assignment.html#cb21-1" tabindex="-1"></a>y_num <span class="sc">+</span> <span class="dv">3</span></span>
-<span id="cb21-2"><a href="Object-Assignment.html#cb21-2" tabindex="-1"></a>y_num <span class="sc">-</span> <span class="dv">3</span></span>
-<span id="cb21-3"><a href="Object-Assignment.html#cb21-3" tabindex="-1"></a>y_num <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Object-Assignment.html#cb19-1" tabindex="-1"></a>y_num <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb19-2"><a href="Object-Assignment.html#cb19-2" tabindex="-1"></a>y_num <span class="sc">-</span> <span class="dv">3</span></span>
+<span id="cb19-3"><a href="Object-Assignment.html#cb19-3" tabindex="-1"></a>y_num <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
 <div class="infobox caution">
 <p>During assignment, the expression on the right-hand side is evaluated first and only the resulting value is stored. Running <code>y_num</code> therefore returns the numeric result, not the text of the original expression.</p>
 </div>
 <p>Try the following examples to see a few more assignment patterns.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Object-Assignment.html#cb22-1" tabindex="-1"></a>z_num1 <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>)</span>
-<span id="cb22-2"><a href="Object-Assignment.html#cb22-2" tabindex="-1"></a>z_num1</span>
-<span id="cb22-3"><a href="Object-Assignment.html#cb22-3" tabindex="-1"></a>z_num2 <span class="ot">&lt;-</span> <span class="dv">7</span> <span class="sc">%/%</span> <span class="dv">3</span></span>
-<span id="cb22-4"><a href="Object-Assignment.html#cb22-4" tabindex="-1"></a>z_num2</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Object-Assignment.html#cb20-1" tabindex="-1"></a>z_num1 <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="dv">7</span> <span class="sc">/</span> <span class="dv">3</span>)</span>
+<span id="cb20-2"><a href="Object-Assignment.html#cb20-2" tabindex="-1"></a>z_num1</span>
+<span id="cb20-3"><a href="Object-Assignment.html#cb20-3" tabindex="-1"></a>z_num2 <span class="ot">&lt;-</span> <span class="dv">7</span> <span class="sc">%/%</span> <span class="dv">3</span></span>
+<span id="cb20-4"><a href="Object-Assignment.html#cb20-4" tabindex="-1"></a>z_num2</span></code></pre></div>
 <p>Clearly, object assignment greatly simplifies the code and avoids redundant typing.</p>
 </div>
 <div id="Naming" class="section level3 hasAnchor" number="1.3.3">
@@ -943,9 +943,9 @@ Figure 1.18: No output during the assignment operation.
 <p>A consistent style improves readability. We recommend all-lowercase names separated with underscores, such as <code>this_is_name_6</code> or <code>super_rich_88</code>.</p>
 <p><strong><em>c. Avoid reserved keywords</em></strong></p>
 <p>Names such as <code>TRUE</code>, <code>if</code>, or <code>function</code> are reserved by R and cannot be reassigned. Attempting to do so results in an error, as shown below.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Object-Assignment.html#cb23-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb23-2"><a href="Object-Assignment.html#cb23-2" tabindex="-1"></a><span class="co">#&gt; Error in `TRUE &lt;- 12`:</span></span>
-<span id="cb23-3"><a href="Object-Assignment.html#cb23-3" tabindex="-1"></a><span class="co">#&gt; ! invalid (do_set) left-hand side to assignment</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Object-Assignment.html#cb21-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb21-2"><a href="Object-Assignment.html#cb21-2" tabindex="-1"></a><span class="co">#&gt; Error in `TRUE &lt;- 12`:</span></span>
+<span id="cb21-3"><a href="Object-Assignment.html#cb21-3" tabindex="-1"></a><span class="co">#&gt; ! invalid (do_set) left-hand side to assignment</span></span></code></pre></div>
 <p>Some common reserved keywords that cannot be used as names are listed below.</p>
 <table>
 <tbody>
@@ -980,7 +980,7 @@ Figure 1.18: No output during the assignment operation.
 </tbody>
 </table>
 <p>To get a complete list of reserved words, you can run the following code.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Object-Assignment.html#cb24-1" tabindex="-1"></a>?Reserved</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Object-Assignment.html#cb22-1" tabindex="-1"></a>?Reserved</span></code></pre></div>
 </div>
 <div id="review-objects-in-environment" class="section level3 hasAnchor" number="1.3.4">
 <h3><span class="header-section-number">1.3.4</span> Review objects in environment<a href="Object-Assignment.html#review-objects-in-environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -993,9 +993,9 @@ Figure 1.19: The environment (I)
 </p>
 </div>
 <p>From the screenshot above you can see that <code>x_num</code> currently stores the value 5. Let’s update it to 6 and observe what changes.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Object-Assignment.html#cb25-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb25-2"><a href="Object-Assignment.html#cb25-2" tabindex="-1"></a>x_num  <span class="co">#check its value</span></span>
-<span id="cb25-3"><a href="Object-Assignment.html#cb25-3" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Object-Assignment.html#cb23-1" tabindex="-1"></a>x_num <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb23-2"><a href="Object-Assignment.html#cb23-2" tabindex="-1"></a>x_num  <span class="co">#check its value</span></span>
+<span id="cb23-3"><a href="Object-Assignment.html#cb23-3" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
 <p>The Environment now shows <code>x_num</code> with value 6. Assigning a new value replaces the old one; R does not keep past values once you reassign the name.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:en2"></span>
 <img src="pics/1en2.png" alt="The environment (II)" width="70%" />
@@ -1005,8 +1005,8 @@ Figure 1.20: The environment (II)
 </div>
 <p>Keep an eye on the Environment pane while you work to confirm objects contain what you expect. Only named objects appear there; unnamed results vanish as soon as they are printed.</p>
 <p>You can also list the names programmatically with the built-in <code>ls()</code> function. The function returns a character vector, which means you can combine it with other functions (<code>length(ls())</code>, <code>rm(list = ls())</code>, and so on) when you want to audit or tidy your workspace from the console.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Object-Assignment.html#cb26-1" tabindex="-1"></a><span class="fu">ls</span>()</span>
-<span id="cb26-2"><a href="Object-Assignment.html#cb26-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;x_num&quot;  &quot;y_num&quot;  &quot;z_num1&quot; &quot;z_num2&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Object-Assignment.html#cb24-1" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb24-2"><a href="Object-Assignment.html#cb24-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;x_num&quot;  &quot;y_num&quot;  &quot;z_num1&quot; &quot;z_num2&quot;</span></span></code></pre></div>
 <p>Everything shown in the Environment pane or returned by <code>ls()</code> lives in memory, ready for reuse in later code. Assigning important results to objects and removing ones you no longer need keep your workspace organized and your scripts reproducible.</p>
 </div>
 <div id="object-types" class="section level3 hasAnchor" number="1.3.5">
