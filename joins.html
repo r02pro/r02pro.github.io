@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-03-21" />
+<meta name="date" content="2026-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,6 +185,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i>How to Use This Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#what-you-will-be-able-to-do"><i class="fa fa-check"></i>What you will be able to do</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#how-chapters-are-organized"><i class="fa fa-check"></i>How chapters are organized</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#conventions"><i class="fa fa-check"></i>Conventions</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
@@ -263,7 +270,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="intro-char-vector.html"><a href="intro-char-vector.html#create-character-vector"><i class="fa fa-check"></i><b>2.2.1</b> Creation, class and storage type</a></li>
 <li class="chapter" data-level="2.2.2" data-path="intro-char-vector.html"><a href="intro-char-vector.html#case"><i class="fa fa-check"></i><b>2.2.2</b> Change case</a></li>
-<li class="chapter" data-level="2.2.3" data-path="intro-char-vector.html"><a href="intro-char-vector.html#review-of-getting-help-in-r"><i class="fa fa-check"></i><b>2.2.3</b> Review of getting help in R</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro-char-vector.html"><a href="intro-char-vector.html#a-deeper-look-at-r-help-documentation"><i class="fa fa-check"></i><b>2.2.3</b> A Deeper Look at R Help Documentation</a></li>
 <li class="chapter" data-level="2.2.4" data-path="intro-char-vector.html"><a href="intro-char-vector.html#exercises-6"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html"><i class="fa fa-check"></i><b>2.3</b> Introduction to Logical Vectors</a>
@@ -312,7 +319,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3.3" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#mean-and-median"><i class="fa fa-check"></i><b>3.3.3</b> Mean and median</a></li>
 <li class="chapter" data-level="3.3.4" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#quantiles"><i class="fa fa-check"></i><b>3.3.4</b> Quantiles</a></li>
 <li class="chapter" data-level="3.3.5" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#vector-summary"><i class="fa fa-check"></i><b>3.3.5</b> Summary statistics</a></li>
-<li class="chapter" data-level="3.3.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-12"><i class="fa fa-check"></i><b>3.3.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.3.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#variance-and-standard-deviation"><i class="fa fa-check"></i><b>3.3.6</b> Variance and standard deviation</a></li>
+<li class="chapter" data-level="3.3.7" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-12"><i class="fa fa-check"></i><b>3.3.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="char-concatenate.html"><a href="char-concatenate.html"><i class="fa fa-check"></i><b>3.4</b> Character Vectors: Create with Repetition and Concatenate</a>
 <ul>
@@ -892,80 +900,80 @@ div.csl-indent {
 <div id="joins" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> Joins<a href="joins.html#joins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, we have been working on a single data set. In applications, however, we often have the need to combine multiple data sets into a single one before doing data analysis. Let’s prepare two data sets to show the various ways we can <strong>join two data sets</strong>.</p>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="joins.html#cb774-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb774-2"><a href="joins.html#cb774-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb774-3"><a href="joins.html#cb774-3" tabindex="-1"></a>top_pop <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> </span>
-<span id="cb774-4"><a href="joins.html#cb774-4" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
-<span id="cb774-5"><a href="joins.html#cb774-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(population), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb774-6"><a href="joins.html#cb774-6" tabindex="-1"></a>  <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb774-7"><a href="joins.html#cb774-7" tabindex="-1"></a>  <span class="fu">select</span>(country, population, HDI_category) <span class="sc">%&gt;%</span></span>
-<span id="cb774-8"><a href="joins.html#cb774-8" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(population))</span>
-<span id="cb774-9"><a href="joins.html#cb774-9" tabindex="-1"></a>HDI_cate_dict <span class="ot">&lt;-</span></span>
-<span id="cb774-10"><a href="joins.html#cb774-10" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">HDI_category =</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>), </span>
-<span id="cb774-11"><a href="joins.html#cb774-11" tabindex="-1"></a>         <span class="at">HDI_description =</span> <span class="fu">c</span>(<span class="st">&quot;below 0.549&quot;</span>,</span>
-<span id="cb774-12"><a href="joins.html#cb774-12" tabindex="-1"></a>                             <span class="st">&quot;between 0.550–0.699&quot;</span>,</span>
-<span id="cb774-13"><a href="joins.html#cb774-13" tabindex="-1"></a>                             <span class="st">&quot;between 0.700–0.799&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="joins.html#cb775-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb775-2"><a href="joins.html#cb775-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb775-3"><a href="joins.html#cb775-3" tabindex="-1"></a>top_pop <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> </span>
+<span id="cb775-4"><a href="joins.html#cb775-4" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(continent)) <span class="sc">%&gt;%</span></span>
+<span id="cb775-5"><a href="joins.html#cb775-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(population), <span class="at">ties.method =</span> <span class="st">&quot;first&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb775-6"><a href="joins.html#cb775-6" tabindex="-1"></a>  <span class="fu">filter</span>(r <span class="sc">&lt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb775-7"><a href="joins.html#cb775-7" tabindex="-1"></a>  <span class="fu">select</span>(country, population, HDI_category) <span class="sc">%&gt;%</span></span>
+<span id="cb775-8"><a href="joins.html#cb775-8" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(population))</span>
+<span id="cb775-9"><a href="joins.html#cb775-9" tabindex="-1"></a>HDI_cate_dict <span class="ot">&lt;-</span></span>
+<span id="cb775-10"><a href="joins.html#cb775-10" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">HDI_category =</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>), </span>
+<span id="cb775-11"><a href="joins.html#cb775-11" tabindex="-1"></a>         <span class="at">HDI_description =</span> <span class="fu">c</span>(<span class="st">&quot;below 0.549&quot;</span>,</span>
+<span id="cb775-12"><a href="joins.html#cb775-12" tabindex="-1"></a>                             <span class="st">&quot;between 0.550–0.699&quot;</span>,</span>
+<span id="cb775-13"><a href="joins.html#cb775-13" tabindex="-1"></a>                             <span class="st">&quot;between 0.700–0.799&quot;</span>))</span></code></pre></div>
 <p>Here, <code>top_pop</code> is a tibble of the top 3 countries with the highest population in 2008. <code>HDI_cate_dict</code> is a tibble that provides the description of the Human Development Index (HDI) categories.</p>
 <p>It is clear that the two tibbles share a variable named <code>HDI_category</code>. It could be interesting to join the two tibbles into a single one by including all variables while matching the values of <code>HDI_category</code>. The bridging variable <code>HDI_category</code> is usually called the <strong>key</strong> to the joining operation.</p>
 <p>Next, we will discuss several different join operations between <code>top_pop</code> and <code>HDI_cate_dict</code>, with the key being <code>HDI_category</code>.</p>
 <div id="inner-join" class="section level3 hasAnchor" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Inner Join<a href="joins.html#inner-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first type of <strong>join</strong> operation on two tables with a set of keys is called <strong>inner join</strong>. You can use the <code>inner_join(tb1, tb2)</code> function, which returns all rows in <code>tb1</code> such that there are matching values of the corresponding keys in <code>tb2</code>.</p>
-<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="joins.html#cb775-1" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb775-2"><a href="joins.html#cb775-2" tabindex="-1"></a>inner</span>
-<span id="cb775-3"><a href="joins.html#cb775-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
-<span id="cb775-4"><a href="joins.html#cb775-4" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category HDI_description    </span></span>
-<span id="cb775-5"><a href="joins.html#cb775-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
-<span id="cb775-6"><a href="joins.html#cb775-6" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium       between 0.550–0.699</span></span>
-<span id="cb775-7"><a href="joins.html#cb775-7" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium       between 0.550–0.699</span></span>
-<span id="cb775-8"><a href="joins.html#cb775-8" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium       between 0.550–0.699</span></span>
-<span id="cb775-9"><a href="joins.html#cb775-9" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high         between 0.700–0.799</span></span></code></pre></div>
+<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="joins.html#cb776-1" tabindex="-1"></a>inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb776-2"><a href="joins.html#cb776-2" tabindex="-1"></a>inner</span>
+<span id="cb776-3"><a href="joins.html#cb776-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb776-4"><a href="joins.html#cb776-4" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category HDI_description    </span></span>
+<span id="cb776-5"><a href="joins.html#cb776-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
+<span id="cb776-6"><a href="joins.html#cb776-6" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium       between 0.550–0.699</span></span>
+<span id="cb776-7"><a href="joins.html#cb776-7" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium       between 0.550–0.699</span></span>
+<span id="cb776-8"><a href="joins.html#cb776-8" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium       between 0.550–0.699</span></span>
+<span id="cb776-9"><a href="joins.html#cb776-9" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high         between 0.700–0.799</span></span></code></pre></div>
 <p>From the result, you can see that there are 4 observations. Each observation corresponds to one row in <code>top_pop</code> that has a matching value in <code>HDI_cate_dict</code> for <code>HDI_category</code>. The observation corresponding to United States in <code>top_pop</code> is dropped in the result since its <code>HDI_category</code> value is <code>"very high"</code>, which doesn’t have a matched row in <code>HDI_cate_dict</code>.</p>
 </div>
 <div id="left-join" class="section level3 hasAnchor" number="8.7.2">
 <h3><span class="header-section-number">8.7.2</span> Left Join<a href="joins.html#left-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The second type of <strong>join</strong> operation on two tables with a set of keys is called <strong>left join</strong>. You can use the <code>left_join(tb1, tb2)</code> function, which returns all rows in <code>tb1</code>, <strong>no matter</strong> whether there are matching values of the corresponding keys in <code>tb2</code>.</p>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="joins.html#cb776-1" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb776-2"><a href="joins.html#cb776-2" tabindex="-1"></a>left</span>
-<span id="cb776-3"><a href="joins.html#cb776-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span id="cb776-4"><a href="joins.html#cb776-4" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category HDI_description    </span></span>
-<span id="cb776-5"><a href="joins.html#cb776-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
-<span id="cb776-6"><a href="joins.html#cb776-6" tabindex="-1"></a><span class="co">#&gt; 1 China            1360000 medium       between 0.550–0.699</span></span>
-<span id="cb776-7"><a href="joins.html#cb776-7" tabindex="-1"></a><span class="co">#&gt; 2 India            1220000 medium       between 0.550–0.699</span></span>
-<span id="cb776-8"><a href="joins.html#cb776-8" tabindex="-1"></a><span class="co">#&gt; 3 United States     306000 very high    &lt;NA&gt;               </span></span>
-<span id="cb776-9"><a href="joins.html#cb776-9" tabindex="-1"></a><span class="co">#&gt; 4 Indonesia         239000 medium       between 0.550–0.699</span></span>
-<span id="cb776-10"><a href="joins.html#cb776-10" tabindex="-1"></a><span class="co">#&gt; 5 Brazil            194000 high         between 0.700–0.799</span></span></code></pre></div>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="joins.html#cb777-1" tabindex="-1"></a>left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb777-2"><a href="joins.html#cb777-2" tabindex="-1"></a>left</span>
+<span id="cb777-3"><a href="joins.html#cb777-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb777-4"><a href="joins.html#cb777-4" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category HDI_description    </span></span>
+<span id="cb777-5"><a href="joins.html#cb777-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
+<span id="cb777-6"><a href="joins.html#cb777-6" tabindex="-1"></a><span class="co">#&gt; 1 China            1360000 medium       between 0.550–0.699</span></span>
+<span id="cb777-7"><a href="joins.html#cb777-7" tabindex="-1"></a><span class="co">#&gt; 2 India            1220000 medium       between 0.550–0.699</span></span>
+<span id="cb777-8"><a href="joins.html#cb777-8" tabindex="-1"></a><span class="co">#&gt; 3 United States     306000 very high    &lt;NA&gt;               </span></span>
+<span id="cb777-9"><a href="joins.html#cb777-9" tabindex="-1"></a><span class="co">#&gt; 4 Indonesia         239000 medium       between 0.550–0.699</span></span>
+<span id="cb777-10"><a href="joins.html#cb777-10" tabindex="-1"></a><span class="co">#&gt; 5 Brazil            194000 high         between 0.700–0.799</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>top_pop</code> is kept, even though United States doesn’t have a matching observation in <code>HDI_cate_dict</code> for the variable <code>HDI_category</code>. In this case, the corresponding value for <code>HDI_description</code> is <code>NA</code>.</p>
 </div>
 <div id="right-join" class="section level3 hasAnchor" number="8.7.3">
 <h3><span class="header-section-number">8.7.3</span> Right Join<a href="joins.html#right-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The third type of <strong>join</strong> operation on two tables with a set of keys is called <strong>right join</strong>, which works in a similar fashion as left join. You can use the <code>right_join(tb1, tb2)</code> function, which returns all rows in <code>tb2</code>, <strong>no matter</strong> whether there are matching values of the corresponding keys in <code>tb1</code> or not.</p>
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="joins.html#cb777-1" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb777-2"><a href="joins.html#cb777-2" tabindex="-1"></a>right</span>
-<span id="cb777-3"><a href="joins.html#cb777-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
-<span id="cb777-4"><a href="joins.html#cb777-4" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category HDI_description    </span></span>
-<span id="cb777-5"><a href="joins.html#cb777-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
-<span id="cb777-6"><a href="joins.html#cb777-6" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium       between 0.550–0.699</span></span>
-<span id="cb777-7"><a href="joins.html#cb777-7" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium       between 0.550–0.699</span></span>
-<span id="cb777-8"><a href="joins.html#cb777-8" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium       between 0.550–0.699</span></span>
-<span id="cb777-9"><a href="joins.html#cb777-9" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high         between 0.700–0.799</span></span>
-<span id="cb777-10"><a href="joins.html#cb777-10" tabindex="-1"></a><span class="co">#&gt; 5 &lt;NA&gt;              NA low          below 0.549</span></span></code></pre></div>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="joins.html#cb778-1" tabindex="-1"></a>right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb778-2"><a href="joins.html#cb778-2" tabindex="-1"></a>right</span>
+<span id="cb778-3"><a href="joins.html#cb778-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb778-4"><a href="joins.html#cb778-4" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category HDI_description    </span></span>
+<span id="cb778-5"><a href="joins.html#cb778-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
+<span id="cb778-6"><a href="joins.html#cb778-6" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium       between 0.550–0.699</span></span>
+<span id="cb778-7"><a href="joins.html#cb778-7" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium       between 0.550–0.699</span></span>
+<span id="cb778-8"><a href="joins.html#cb778-8" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium       between 0.550–0.699</span></span>
+<span id="cb778-9"><a href="joins.html#cb778-9" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high         between 0.700–0.799</span></span>
+<span id="cb778-10"><a href="joins.html#cb778-10" tabindex="-1"></a><span class="co">#&gt; 5 &lt;NA&gt;              NA low          below 0.549</span></span></code></pre></div>
 <p>As you can see from the result, all rows in <code>HDI_cate_dict</code> is kept, even though there aren’t any matching observations in <code>top_pop</code> for <code>HDI_category == "low"</code>. In this case, the corresponding values for <code>country</code> and <code>population</code> are <code>NA</code>.</p>
 </div>
 <div id="full-join" class="section level3 hasAnchor" number="8.7.4">
 <h3><span class="header-section-number">8.7.4</span> Full Join<a href="joins.html#full-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The fourth type of <strong>join</strong> operation on two tables with a set of keys is called <strong>full join</strong>. You can use the <code>full_join(tb1, tb2)</code> function, which returns all rows in both <code>tb1</code> and <code>tb2</code>, <strong>no matter</strong> whether there are matching values of the keys in either <code>tb1</code> or <code>tb2</code>.</p>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="joins.html#cb778-1" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb778-2"><a href="joins.html#cb778-2" tabindex="-1"></a>full</span>
-<span id="cb778-3"><a href="joins.html#cb778-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
-<span id="cb778-4"><a href="joins.html#cb778-4" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category HDI_description    </span></span>
-<span id="cb778-5"><a href="joins.html#cb778-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
-<span id="cb778-6"><a href="joins.html#cb778-6" tabindex="-1"></a><span class="co">#&gt; 1 China            1360000 medium       between 0.550–0.699</span></span>
-<span id="cb778-7"><a href="joins.html#cb778-7" tabindex="-1"></a><span class="co">#&gt; 2 India            1220000 medium       between 0.550–0.699</span></span>
-<span id="cb778-8"><a href="joins.html#cb778-8" tabindex="-1"></a><span class="co">#&gt; 3 United States     306000 very high    &lt;NA&gt;               </span></span>
-<span id="cb778-9"><a href="joins.html#cb778-9" tabindex="-1"></a><span class="co">#&gt; 4 Indonesia         239000 medium       between 0.550–0.699</span></span>
-<span id="cb778-10"><a href="joins.html#cb778-10" tabindex="-1"></a><span class="co">#&gt; 5 Brazil            194000 high         between 0.700–0.799</span></span>
-<span id="cb778-11"><a href="joins.html#cb778-11" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;                  NA low          below 0.549</span></span></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="joins.html#cb779-1" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb779-2"><a href="joins.html#cb779-2" tabindex="-1"></a>full</span>
+<span id="cb779-3"><a href="joins.html#cb779-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span id="cb779-4"><a href="joins.html#cb779-4" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category HDI_description    </span></span>
+<span id="cb779-5"><a href="joins.html#cb779-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;              </span></span>
+<span id="cb779-6"><a href="joins.html#cb779-6" tabindex="-1"></a><span class="co">#&gt; 1 China            1360000 medium       between 0.550–0.699</span></span>
+<span id="cb779-7"><a href="joins.html#cb779-7" tabindex="-1"></a><span class="co">#&gt; 2 India            1220000 medium       between 0.550–0.699</span></span>
+<span id="cb779-8"><a href="joins.html#cb779-8" tabindex="-1"></a><span class="co">#&gt; 3 United States     306000 very high    &lt;NA&gt;               </span></span>
+<span id="cb779-9"><a href="joins.html#cb779-9" tabindex="-1"></a><span class="co">#&gt; 4 Indonesia         239000 medium       between 0.550–0.699</span></span>
+<span id="cb779-10"><a href="joins.html#cb779-10" tabindex="-1"></a><span class="co">#&gt; 5 Brazil            194000 high         between 0.700–0.799</span></span>
+<span id="cb779-11"><a href="joins.html#cb779-11" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;                  NA low          below 0.549</span></span></code></pre></div>
 <p>As you can see from the result, all rows in both <code>top_pop</code> and <code>HDI_cate_dict</code> are kept. The rows in <code>top_pop</code> that don’t have matching values in <code>HDI_cate_dict</code> are filled with <code>NA</code> for the variables in <code>HDI_cate_dict</code>, and vice versa.</p>
 </div>
 <div id="filtering-join" class="section level3 hasAnchor" number="8.7.5">
@@ -973,22 +981,22 @@ div.csl-indent {
 <p>For the previous four types of joins, the resulting table contains columns from both input tables. Sometimes, you may want to only keep the columns from one of the input tables. This is called <strong>filtering joins</strong>, meaning that it is actually doing the filtering operations like the <code>filter()</code> function we learned in Section <a href="filter-observations.html#filter-observations">8.1</a>.</p>
 <p><strong><em>a. Semi Join</em></strong></p>
 <p>The first type of filtering joins is called <strong>semi join</strong>, in which <code>semi_join(tb1, tb2)</code> returns all rows from <code>tb1</code> where there are matching values in <code>tb2</code> for the <strong>keys</strong>.</p>
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="joins.html#cb779-1" tabindex="-1"></a><span class="fu">semi_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb779-2"><a href="joins.html#cb779-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
-<span id="cb779-3"><a href="joins.html#cb779-3" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category</span></span>
-<span id="cb779-4"><a href="joins.html#cb779-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;       </span></span>
-<span id="cb779-5"><a href="joins.html#cb779-5" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium      </span></span>
-<span id="cb779-6"><a href="joins.html#cb779-6" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium      </span></span>
-<span id="cb779-7"><a href="joins.html#cb779-7" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium      </span></span>
-<span id="cb779-8"><a href="joins.html#cb779-8" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high</span></span></code></pre></div>
+<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="joins.html#cb780-1" tabindex="-1"></a><span class="fu">semi_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb780-2"><a href="joins.html#cb780-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span id="cb780-3"><a href="joins.html#cb780-3" tabindex="-1"></a><span class="co">#&gt;   country   population HDI_category</span></span>
+<span id="cb780-4"><a href="joins.html#cb780-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;       </span></span>
+<span id="cb780-5"><a href="joins.html#cb780-5" tabindex="-1"></a><span class="co">#&gt; 1 China        1360000 medium      </span></span>
+<span id="cb780-6"><a href="joins.html#cb780-6" tabindex="-1"></a><span class="co">#&gt; 2 India        1220000 medium      </span></span>
+<span id="cb780-7"><a href="joins.html#cb780-7" tabindex="-1"></a><span class="co">#&gt; 3 Indonesia     239000 medium      </span></span>
+<span id="cb780-8"><a href="joins.html#cb780-8" tabindex="-1"></a><span class="co">#&gt; 4 Brazil        194000 high</span></span></code></pre></div>
 <p>From the result, you can see that only the rows in <code>top_pop</code> that have matching values in <code>HDI_cate_dict</code> for <code>HDI_category</code> are kept. Again, the columns from <code>HDI_cate_dict</code> are not included in the output, making it a filtering operation.</p>
 <p><strong><em>b. Anti Join</em></strong></p>
 <p>Another type of filtering joins is called <strong>anti join</strong>, in which <code>anti_join(tb1, tb2)</code> returns all rows from <code>tb1</code> where there <strong>don’t exist</strong> matching values in <code>tb2</code> on the <strong>keys</strong>.</p>
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="joins.html#cb780-1" tabindex="-1"></a><span class="fu">anti_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
-<span id="cb780-2"><a href="joins.html#cb780-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
-<span id="cb780-3"><a href="joins.html#cb780-3" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category</span></span>
-<span id="cb780-4"><a href="joins.html#cb780-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;       </span></span>
-<span id="cb780-5"><a href="joins.html#cb780-5" tabindex="-1"></a><span class="co">#&gt; 1 United States     306000 very high</span></span></code></pre></div>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="joins.html#cb781-1" tabindex="-1"></a><span class="fu">anti_join</span>(top_pop, HDI_cate_dict, <span class="at">by =</span> <span class="st">&quot;HDI_category&quot;</span>)</span>
+<span id="cb781-2"><a href="joins.html#cb781-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb781-3"><a href="joins.html#cb781-3" tabindex="-1"></a><span class="co">#&gt;   country       population HDI_category</span></span>
+<span id="cb781-4"><a href="joins.html#cb781-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;       </span></span>
+<span id="cb781-5"><a href="joins.html#cb781-5" tabindex="-1"></a><span class="co">#&gt; 1 United States     306000 very high</span></span></code></pre></div>
 <p>From the result, you can see that only the rows in <code>top_pop</code> that don’t have matching values in <code>HDI_cate_dict</code> for <code>HDI_category</code> are kept. The columns from <code>HDI_cate_dict</code> are not included in the output, making it a filtering operation.</p>
 </div>
 <div id="a-summary-of-all-joins" class="section level3 hasAnchor" number="8.7.6">
@@ -1069,30 +1077,30 @@ Rows in <code>tb1</code> without matching keys in <code>tb2</code>
 <div id="exercises-60" class="section level3 hasAnchor" number="8.7.7">
 <h3><span class="header-section-number">8.7.7</span> Exercises<a href="joins.html#exercises-60" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First, let’s prepare two data sets for the exercises.</p>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="joins.html#cb781-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb781-2"><a href="joins.html#cb781-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb781-3"><a href="joins.html#cb781-3" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
-<span id="cb781-4"><a href="joins.html#cb781-4" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
-<span id="cb781-5"><a href="joins.html#cb781-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb781-6"><a href="joins.html#cb781-6" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), </span>
-<span id="cb781-7"><a href="joins.html#cb781-7" tabindex="-1"></a>             <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
-<span id="cb781-8"><a href="joins.html#cb781-8" tabindex="-1"></a>d1</span>
-<span id="cb781-9"><a href="joins.html#cb781-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
-<span id="cb781-10"><a href="joins.html#cb781-10" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
-<span id="cb781-11"><a href="joins.html#cb781-11" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
-<span id="cb781-12"><a href="joins.html#cb781-12" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average</span></span>
-<span id="cb781-13"><a href="joins.html#cb781-13" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good   </span></span>
-<span id="cb781-14"><a href="joins.html#cb781-14" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average</span></span>
-<span id="cb781-15"><a href="joins.html#cb781-15" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good   </span></span>
-<span id="cb781-16"><a href="joins.html#cb781-16" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair</span></span>
-<span id="cb781-17"><a href="joins.html#cb781-17" tabindex="-1"></a>d2</span>
-<span id="cb781-18"><a href="joins.html#cb781-18" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 2</span></span>
-<span id="cb781-19"><a href="joins.html#cb781-19" tabindex="-1"></a><span class="co">#&gt;   bsmt_ht   height      </span></span>
-<span id="cb781-20"><a href="joins.html#cb781-20" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       </span></span>
-<span id="cb781-21"><a href="joins.html#cb781-21" tabindex="-1"></a><span class="co">#&gt; 1 Excellent 100+ inches </span></span>
-<span id="cb781-22"><a href="joins.html#cb781-22" tabindex="-1"></a><span class="co">#&gt; 2 Good      90-99 inches</span></span>
-<span id="cb781-23"><a href="joins.html#cb781-23" tabindex="-1"></a><span class="co">#&gt; 3 Average   80-89 inches</span></span>
-<span id="cb781-24"><a href="joins.html#cb781-24" tabindex="-1"></a><span class="co">#&gt; 4 Poor      &lt;70 inches</span></span></code></pre></div>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="joins.html#cb782-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb782-2"><a href="joins.html#cb782-2" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb782-3"><a href="joins.html#cb782-3" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> ahp <span class="sc">%&gt;%</span> </span>
+<span id="cb782-4"><a href="joins.html#cb782-4" tabindex="-1"></a>  <span class="fu">select</span>(dt_sold, bsmt_area, bsmt_ht) <span class="sc">%&gt;%</span></span>
+<span id="cb782-5"><a href="joins.html#cb782-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb782-6"><a href="joins.html#cb782-6" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">bsmt_ht =</span> <span class="fu">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Average&quot;</span>, <span class="st">&quot;Poor&quot;</span>), </span>
+<span id="cb782-7"><a href="joins.html#cb782-7" tabindex="-1"></a>             <span class="at">height =</span> <span class="fu">c</span>(<span class="st">&quot;100+ inches&quot;</span>, <span class="st">&quot;90-99 inches&quot;</span>, <span class="st">&quot;80-89 inches&quot;</span>, <span class="st">&quot;&lt;70 inches&quot;</span>))</span>
+<span id="cb782-8"><a href="joins.html#cb782-8" tabindex="-1"></a>d1</span>
+<span id="cb782-9"><a href="joins.html#cb782-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb782-10"><a href="joins.html#cb782-10" tabindex="-1"></a><span class="co">#&gt;   dt_sold    bsmt_area bsmt_ht</span></span>
+<span id="cb782-11"><a href="joins.html#cb782-11" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;         &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb782-12"><a href="joins.html#cb782-12" tabindex="-1"></a><span class="co">#&gt; 1 2010-03-25       725 Average</span></span>
+<span id="cb782-13"><a href="joins.html#cb782-13" tabindex="-1"></a><span class="co">#&gt; 2 2009-04-10       913 Good   </span></span>
+<span id="cb782-14"><a href="joins.html#cb782-14" tabindex="-1"></a><span class="co">#&gt; 3 2010-01-15      1057 Average</span></span>
+<span id="cb782-15"><a href="joins.html#cb782-15" tabindex="-1"></a><span class="co">#&gt; 4 2010-04-19       384 Good   </span></span>
+<span id="cb782-16"><a href="joins.html#cb782-16" tabindex="-1"></a><span class="co">#&gt; 5 2010-03-22       676 Fair</span></span>
+<span id="cb782-17"><a href="joins.html#cb782-17" tabindex="-1"></a>d2</span>
+<span id="cb782-18"><a href="joins.html#cb782-18" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 2</span></span>
+<span id="cb782-19"><a href="joins.html#cb782-19" tabindex="-1"></a><span class="co">#&gt;   bsmt_ht   height      </span></span>
+<span id="cb782-20"><a href="joins.html#cb782-20" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb782-21"><a href="joins.html#cb782-21" tabindex="-1"></a><span class="co">#&gt; 1 Excellent 100+ inches </span></span>
+<span id="cb782-22"><a href="joins.html#cb782-22" tabindex="-1"></a><span class="co">#&gt; 2 Good      90-99 inches</span></span>
+<span id="cb782-23"><a href="joins.html#cb782-23" tabindex="-1"></a><span class="co">#&gt; 3 Average   80-89 inches</span></span>
+<span id="cb782-24"><a href="joins.html#cb782-24" tabindex="-1"></a><span class="co">#&gt; 4 Poor      &lt;70 inches</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Perform an inner join between <code>d1</code> and <code>d2</code> by the key <code>bsmt_ht</code>. What are the rows and columns in the final output?</li>
 <li>Perform a left join between <code>d1</code> and <code>d2</code> by the key <code>bsmt_ht</code>. What are the rows and columns in the final output?</li>

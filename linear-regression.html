@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-03-21" />
+<meta name="date" content="2026-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,6 +185,13 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i>How to Use This Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#who-this-book-is-for"><i class="fa fa-check"></i>Who this book is for</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#what-you-will-be-able-to-do"><i class="fa fa-check"></i>What you will be able to do</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#how-chapters-are-organized"><i class="fa fa-check"></i>How chapters are organized</a></li>
+<li class="chapter" data-level="" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html#conventions"><i class="fa fa-check"></i>Conventions</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
@@ -263,7 +270,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="intro-char-vector.html"><a href="intro-char-vector.html#create-character-vector"><i class="fa fa-check"></i><b>2.2.1</b> Creation, class and storage type</a></li>
 <li class="chapter" data-level="2.2.2" data-path="intro-char-vector.html"><a href="intro-char-vector.html#case"><i class="fa fa-check"></i><b>2.2.2</b> Change case</a></li>
-<li class="chapter" data-level="2.2.3" data-path="intro-char-vector.html"><a href="intro-char-vector.html#review-of-getting-help-in-r"><i class="fa fa-check"></i><b>2.2.3</b> Review of getting help in R</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro-char-vector.html"><a href="intro-char-vector.html#a-deeper-look-at-r-help-documentation"><i class="fa fa-check"></i><b>2.2.3</b> A Deeper Look at R Help Documentation</a></li>
 <li class="chapter" data-level="2.2.4" data-path="intro-char-vector.html"><a href="intro-char-vector.html#exercises-6"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="intro-logi-vector.html"><a href="intro-logi-vector.html"><i class="fa fa-check"></i><b>2.3</b> Introduction to Logical Vectors</a>
@@ -312,7 +319,8 @@ div.csl-indent {
 <li class="chapter" data-level="3.3.3" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#mean-and-median"><i class="fa fa-check"></i><b>3.3.3</b> Mean and median</a></li>
 <li class="chapter" data-level="3.3.4" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#quantiles"><i class="fa fa-check"></i><b>3.3.4</b> Quantiles</a></li>
 <li class="chapter" data-level="3.3.5" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#vector-summary"><i class="fa fa-check"></i><b>3.3.5</b> Summary statistics</a></li>
-<li class="chapter" data-level="3.3.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-12"><i class="fa fa-check"></i><b>3.3.6</b> Exercises</a></li>
+<li class="chapter" data-level="3.3.6" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#variance-and-standard-deviation"><i class="fa fa-check"></i><b>3.3.6</b> Variance and standard deviation</a></li>
+<li class="chapter" data-level="3.3.7" data-path="numeric-vector-statistics.html"><a href="numeric-vector-statistics.html#exercises-12"><i class="fa fa-check"></i><b>3.3.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="char-concatenate.html"><a href="char-concatenate.html"><i class="fa fa-check"></i><b>3.4</b> Character Vectors: Create with Repetition and Concatenate</a>
 <ul>
@@ -898,28 +906,28 @@ div.csl-indent {
 <span class="math display">\[y = \beta_0 + \beta_1 x + \epsilon,\]</span>
 where <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> is the slope, and <span class="math inline">\(\epsilon\)</span> is the error term.</p>
 <p>In R, we use the <code>lm()</code> function (short for “linear model”) to fit a regression. The syntax uses a <strong>formula</strong>: <code>y ~ x</code>.</p>
-<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="linear-regression.html#cb900-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb900-2"><a href="linear-regression.html#cb900-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sale_price <span class="sc">~</span> liv_area, <span class="at">data =</span> sahp)</span>
-<span id="cb900-3"><a href="linear-regression.html#cb900-3" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
-<span id="cb900-4"><a href="linear-regression.html#cb900-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb900-5"><a href="linear-regression.html#cb900-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb900-6"><a href="linear-regression.html#cb900-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = sale_price ~ liv_area, data = sahp)</span></span>
-<span id="cb900-7"><a href="linear-regression.html#cb900-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb900-8"><a href="linear-regression.html#cb900-8" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
-<span id="cb900-9"><a href="linear-regression.html#cb900-9" tabindex="-1"></a><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
-<span id="cb900-10"><a href="linear-regression.html#cb900-10" tabindex="-1"></a><span class="co">#&gt; -193.441  -32.964   -1.663   22.530  215.137 </span></span>
-<span id="cb900-11"><a href="linear-regression.html#cb900-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb900-12"><a href="linear-regression.html#cb900-12" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb900-13"><a href="linear-regression.html#cb900-13" tabindex="-1"></a><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb900-14"><a href="linear-regression.html#cb900-14" tabindex="-1"></a><span class="co">#&gt; (Intercept)  7.206839  14.641271   0.492    0.623    </span></span>
-<span id="cb900-15"><a href="linear-regression.html#cb900-15" tabindex="-1"></a><span class="co">#&gt; liv_area     0.116886   0.009394  12.443   &lt;2e-16 ***</span></span>
-<span id="cb900-16"><a href="linear-regression.html#cb900-16" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb900-17"><a href="linear-regression.html#cb900-17" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb900-18"><a href="linear-regression.html#cb900-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb900-19"><a href="linear-regression.html#cb900-19" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 59.76 on 162 degrees of freedom</span></span>
-<span id="cb900-20"><a href="linear-regression.html#cb900-20" tabindex="-1"></a><span class="co">#&gt;   (1 observation deleted due to missingness)</span></span>
-<span id="cb900-21"><a href="linear-regression.html#cb900-21" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.4887, Adjusted R-squared:  0.4855 </span></span>
-<span id="cb900-22"><a href="linear-regression.html#cb900-22" tabindex="-1"></a><span class="co">#&gt; F-statistic: 154.8 on 1 and 162 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="linear-regression.html#cb901-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb901-2"><a href="linear-regression.html#cb901-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(sale_price <span class="sc">~</span> liv_area, <span class="at">data =</span> sahp)</span>
+<span id="cb901-3"><a href="linear-regression.html#cb901-3" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
+<span id="cb901-4"><a href="linear-regression.html#cb901-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-5"><a href="linear-regression.html#cb901-5" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb901-6"><a href="linear-regression.html#cb901-6" tabindex="-1"></a><span class="co">#&gt; lm(formula = sale_price ~ liv_area, data = sahp)</span></span>
+<span id="cb901-7"><a href="linear-regression.html#cb901-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-8"><a href="linear-regression.html#cb901-8" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb901-9"><a href="linear-regression.html#cb901-9" tabindex="-1"></a><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb901-10"><a href="linear-regression.html#cb901-10" tabindex="-1"></a><span class="co">#&gt; -193.441  -32.964   -1.663   22.530  215.137 </span></span>
+<span id="cb901-11"><a href="linear-regression.html#cb901-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-12"><a href="linear-regression.html#cb901-12" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb901-13"><a href="linear-regression.html#cb901-13" tabindex="-1"></a><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb901-14"><a href="linear-regression.html#cb901-14" tabindex="-1"></a><span class="co">#&gt; (Intercept)  7.206839  14.641271   0.492    0.623    </span></span>
+<span id="cb901-15"><a href="linear-regression.html#cb901-15" tabindex="-1"></a><span class="co">#&gt; liv_area     0.116886   0.009394  12.443   &lt;2e-16 ***</span></span>
+<span id="cb901-16"><a href="linear-regression.html#cb901-16" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb901-17"><a href="linear-regression.html#cb901-17" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb901-18"><a href="linear-regression.html#cb901-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb901-19"><a href="linear-regression.html#cb901-19" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 59.76 on 162 degrees of freedom</span></span>
+<span id="cb901-20"><a href="linear-regression.html#cb901-20" tabindex="-1"></a><span class="co">#&gt;   (1 observation deleted due to missingness)</span></span>
+<span id="cb901-21"><a href="linear-regression.html#cb901-21" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.4887, Adjusted R-squared:  0.4855 </span></span>
+<span id="cb901-22"><a href="linear-regression.html#cb901-22" tabindex="-1"></a><span class="co">#&gt; F-statistic: 154.8 on 1 and 162 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
 <p>The <code>summary()</code> output includes:</p>
 <ul>
 <li><strong>Coefficients</strong>: the estimated intercept (<span class="math inline">\(\hat\beta_0\)</span>) and slope (<span class="math inline">\(\hat\beta_1\)</span>), along with their standard errors, t-values, and p-values.</li>
@@ -931,74 +939,74 @@ where <span class="math inline">\(\beta_0\)</span> is the intercept, <span class
 <div id="visualizing-the-regression-line" class="section level3 hasAnchor" number="11.6.2">
 <h3><span class="header-section-number">11.6.2</span> Visualizing the Regression Line<a href="linear-regression.html#visualizing-the-regression-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can easily overlay the regression line on a scatterplot using <code>geom_smooth()</code> in <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="linear-regression.html#cb901-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb901-2"><a href="linear-regression.html#cb901-2" tabindex="-1"></a><span class="fu">ggplot</span>(sahp, <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
-<span id="cb901-3"><a href="linear-regression.html#cb901-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb901-4"><a href="linear-regression.html#cb901-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb901-5"><a href="linear-regression.html#cb901-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sale Price vs. Living Area&quot;</span>,</span>
-<span id="cb901-6"><a href="linear-regression.html#cb901-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Living Area (sq ft)&quot;</span>,</span>
-<span id="cb901-7"><a href="linear-regression.html#cb901-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Sale Price (thousands)&quot;</span>)</span>
-<span id="cb901-8"><a href="linear-regression.html#cb901-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="linear-regression.html#cb902-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb902-2"><a href="linear-regression.html#cb902-2" tabindex="-1"></a><span class="fu">ggplot</span>(sahp, <span class="fu">aes</span>(<span class="at">x =</span> liv_area, <span class="at">y =</span> sale_price)) <span class="sc">+</span></span>
+<span id="cb902-3"><a href="linear-regression.html#cb902-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb902-4"><a href="linear-regression.html#cb902-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb902-5"><a href="linear-regression.html#cb902-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sale Price vs. Living Area&quot;</span>,</span>
+<span id="cb902-6"><a href="linear-regression.html#cb902-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Living Area (sq ft)&quot;</span>,</span>
+<span id="cb902-7"><a href="linear-regression.html#cb902-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Sale Price (thousands)&quot;</span>)</span>
+<span id="cb902-8"><a href="linear-regression.html#cb902-8" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = &#39;y ~ x&#39;</span></span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-920-1.png" alt="" width="576" /></p>
 <p>The shaded region around the line represents the 95% confidence interval for the regression line.</p>
 </div>
 <div id="multiple-linear-regression" class="section level3 hasAnchor" number="11.6.3">
 <h3><span class="header-section-number">11.6.3</span> Multiple Linear Regression<a href="linear-regression.html#multiple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can include multiple predictors by adding them to the formula with <code>+</code>.</p>
-<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="linear-regression.html#cb902-1" tabindex="-1"></a>model_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(sale_price <span class="sc">~</span> liv_area <span class="sc">+</span> lot_area <span class="sc">+</span> oa_qual, <span class="at">data =</span> sahp)</span>
-<span id="cb902-2"><a href="linear-regression.html#cb902-2" tabindex="-1"></a><span class="fu">summary</span>(model_multi)</span>
-<span id="cb902-3"><a href="linear-regression.html#cb902-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb902-4"><a href="linear-regression.html#cb902-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb902-5"><a href="linear-regression.html#cb902-5" tabindex="-1"></a><span class="co">#&gt; lm(formula = sale_price ~ liv_area + lot_area + oa_qual, data = sahp)</span></span>
-<span id="cb902-6"><a href="linear-regression.html#cb902-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb902-7"><a href="linear-regression.html#cb902-7" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
-<span id="cb902-8"><a href="linear-regression.html#cb902-8" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb902-9"><a href="linear-regression.html#cb902-9" tabindex="-1"></a><span class="co">#&gt; -98.044 -27.811  -1.472  21.637 142.101 </span></span>
-<span id="cb902-10"><a href="linear-regression.html#cb902-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb902-11"><a href="linear-regression.html#cb902-11" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb902-12"><a href="linear-regression.html#cb902-12" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb902-13"><a href="linear-regression.html#cb902-13" tabindex="-1"></a><span class="co">#&gt; (Intercept) -1.497e+02  1.440e+01 -10.399  &lt; 2e-16 ***</span></span>
-<span id="cb902-14"><a href="linear-regression.html#cb902-14" tabindex="-1"></a><span class="co">#&gt; liv_area     4.234e-02  8.051e-03   5.259 4.62e-07 ***</span></span>
-<span id="cb902-15"><a href="linear-regression.html#cb902-15" tabindex="-1"></a><span class="co">#&gt; lot_area     4.066e-03  6.618e-04   6.144 6.21e-09 ***</span></span>
-<span id="cb902-16"><a href="linear-regression.html#cb902-16" tabindex="-1"></a><span class="co">#&gt; oa_qual      3.721e+01  2.666e+00  13.960  &lt; 2e-16 ***</span></span>
-<span id="cb902-17"><a href="linear-regression.html#cb902-17" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb902-18"><a href="linear-regression.html#cb902-18" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb902-19"><a href="linear-regression.html#cb902-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb902-20"><a href="linear-regression.html#cb902-20" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 39.28 on 159 degrees of freedom</span></span>
-<span id="cb902-21"><a href="linear-regression.html#cb902-21" tabindex="-1"></a><span class="co">#&gt;   (2 observations deleted due to missingness)</span></span>
-<span id="cb902-22"><a href="linear-regression.html#cb902-22" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.7829, Adjusted R-squared:  0.7788 </span></span>
-<span id="cb902-23"><a href="linear-regression.html#cb902-23" tabindex="-1"></a><span class="co">#&gt; F-statistic: 191.1 on 3 and 159 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="linear-regression.html#cb903-1" tabindex="-1"></a>model_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(sale_price <span class="sc">~</span> liv_area <span class="sc">+</span> lot_area <span class="sc">+</span> oa_qual, <span class="at">data =</span> sahp)</span>
+<span id="cb903-2"><a href="linear-regression.html#cb903-2" tabindex="-1"></a><span class="fu">summary</span>(model_multi)</span>
+<span id="cb903-3"><a href="linear-regression.html#cb903-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-4"><a href="linear-regression.html#cb903-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb903-5"><a href="linear-regression.html#cb903-5" tabindex="-1"></a><span class="co">#&gt; lm(formula = sale_price ~ liv_area + lot_area + oa_qual, data = sahp)</span></span>
+<span id="cb903-6"><a href="linear-regression.html#cb903-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-7"><a href="linear-regression.html#cb903-7" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb903-8"><a href="linear-regression.html#cb903-8" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb903-9"><a href="linear-regression.html#cb903-9" tabindex="-1"></a><span class="co">#&gt; -98.044 -27.811  -1.472  21.637 142.101 </span></span>
+<span id="cb903-10"><a href="linear-regression.html#cb903-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-11"><a href="linear-regression.html#cb903-11" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb903-12"><a href="linear-regression.html#cb903-12" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb903-13"><a href="linear-regression.html#cb903-13" tabindex="-1"></a><span class="co">#&gt; (Intercept) -1.497e+02  1.440e+01 -10.399  &lt; 2e-16 ***</span></span>
+<span id="cb903-14"><a href="linear-regression.html#cb903-14" tabindex="-1"></a><span class="co">#&gt; liv_area     4.234e-02  8.051e-03   5.259 4.62e-07 ***</span></span>
+<span id="cb903-15"><a href="linear-regression.html#cb903-15" tabindex="-1"></a><span class="co">#&gt; lot_area     4.066e-03  6.618e-04   6.144 6.21e-09 ***</span></span>
+<span id="cb903-16"><a href="linear-regression.html#cb903-16" tabindex="-1"></a><span class="co">#&gt; oa_qual      3.721e+01  2.666e+00  13.960  &lt; 2e-16 ***</span></span>
+<span id="cb903-17"><a href="linear-regression.html#cb903-17" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb903-18"><a href="linear-regression.html#cb903-18" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb903-19"><a href="linear-regression.html#cb903-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb903-20"><a href="linear-regression.html#cb903-20" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 39.28 on 159 degrees of freedom</span></span>
+<span id="cb903-21"><a href="linear-regression.html#cb903-21" tabindex="-1"></a><span class="co">#&gt;   (2 observations deleted due to missingness)</span></span>
+<span id="cb903-22"><a href="linear-regression.html#cb903-22" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.7829, Adjusted R-squared:  0.7788 </span></span>
+<span id="cb903-23"><a href="linear-regression.html#cb903-23" tabindex="-1"></a><span class="co">#&gt; F-statistic: 191.1 on 3 and 159 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div>
 <p>Each coefficient represents the estimated effect of that predictor while holding the other predictors constant.</p>
 </div>
 <div id="extracting-model-information" class="section level3 hasAnchor" number="11.6.4">
 <h3><span class="header-section-number">11.6.4</span> Extracting Model Information<a href="linear-regression.html#extracting-model-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R provides several useful functions to extract information from a fitted model.</p>
-<div class="sourceCode" id="cb903"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb903-1"><a href="linear-regression.html#cb903-1" tabindex="-1"></a><span class="co"># Fitted (predicted) values</span></span>
-<span id="cb903-2"><a href="linear-regression.html#cb903-2" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">fitted</span>(model))</span>
-<span id="cb903-3"><a href="linear-regression.html#cb903-3" tabindex="-1"></a><span class="co">#&gt;        1        3        4        5        6        7 </span></span>
-<span id="cb903-4"><a href="linear-regression.html#cb903-4" tabindex="-1"></a><span class="co">#&gt; 180.0818 130.7558 175.9908 176.1077 227.8883 132.5091</span></span>
-<span id="cb903-5"><a href="linear-regression.html#cb903-5" tabindex="-1"></a></span>
-<span id="cb903-6"><a href="linear-regression.html#cb903-6" tabindex="-1"></a><span class="co"># Residuals (observed - fitted)</span></span>
-<span id="cb903-7"><a href="linear-regression.html#cb903-7" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(model))</span>
-<span id="cb903-8"><a href="linear-regression.html#cb903-8" tabindex="-1"></a><span class="co">#&gt;          1          3          4          5          6          7 </span></span>
-<span id="cb903-9"><a href="linear-regression.html#cb903-9" tabindex="-1"></a><span class="co">#&gt; -49.581814 -21.755756  -1.990790 -37.607676 -37.888348   7.490948</span></span>
-<span id="cb903-10"><a href="linear-regression.html#cb903-10" tabindex="-1"></a></span>
-<span id="cb903-11"><a href="linear-regression.html#cb903-11" tabindex="-1"></a><span class="co"># Coefficients</span></span>
-<span id="cb903-12"><a href="linear-regression.html#cb903-12" tabindex="-1"></a><span class="fu">coef</span>(model)</span>
-<span id="cb903-13"><a href="linear-regression.html#cb903-13" tabindex="-1"></a><span class="co">#&gt; (Intercept)    liv_area </span></span>
-<span id="cb903-14"><a href="linear-regression.html#cb903-14" tabindex="-1"></a><span class="co">#&gt;   7.2068391   0.1168864</span></span>
-<span id="cb903-15"><a href="linear-regression.html#cb903-15" tabindex="-1"></a></span>
-<span id="cb903-16"><a href="linear-regression.html#cb903-16" tabindex="-1"></a><span class="co"># Confidence intervals for coefficients</span></span>
-<span id="cb903-17"><a href="linear-regression.html#cb903-17" tabindex="-1"></a><span class="fu">confint</span>(model)</span>
-<span id="cb903-18"><a href="linear-regression.html#cb903-18" tabindex="-1"></a><span class="co">#&gt;                    2.5 %     97.5 %</span></span>
-<span id="cb903-19"><a href="linear-regression.html#cb903-19" tabindex="-1"></a><span class="co">#&gt; (Intercept) -21.70551022 36.1191884</span></span>
-<span id="cb903-20"><a href="linear-regression.html#cb903-20" tabindex="-1"></a><span class="co">#&gt; liv_area      0.09833663  0.1354362</span></span></code></pre></div>
+<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="linear-regression.html#cb904-1" tabindex="-1"></a><span class="co"># Fitted (predicted) values</span></span>
+<span id="cb904-2"><a href="linear-regression.html#cb904-2" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">fitted</span>(model))</span>
+<span id="cb904-3"><a href="linear-regression.html#cb904-3" tabindex="-1"></a><span class="co">#&gt;        1        3        4        5        6        7 </span></span>
+<span id="cb904-4"><a href="linear-regression.html#cb904-4" tabindex="-1"></a><span class="co">#&gt; 180.0818 130.7558 175.9908 176.1077 227.8883 132.5091</span></span>
+<span id="cb904-5"><a href="linear-regression.html#cb904-5" tabindex="-1"></a></span>
+<span id="cb904-6"><a href="linear-regression.html#cb904-6" tabindex="-1"></a><span class="co"># Residuals (observed - fitted)</span></span>
+<span id="cb904-7"><a href="linear-regression.html#cb904-7" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(model))</span>
+<span id="cb904-8"><a href="linear-regression.html#cb904-8" tabindex="-1"></a><span class="co">#&gt;          1          3          4          5          6          7 </span></span>
+<span id="cb904-9"><a href="linear-regression.html#cb904-9" tabindex="-1"></a><span class="co">#&gt; -49.581814 -21.755756  -1.990790 -37.607676 -37.888348   7.490948</span></span>
+<span id="cb904-10"><a href="linear-regression.html#cb904-10" tabindex="-1"></a></span>
+<span id="cb904-11"><a href="linear-regression.html#cb904-11" tabindex="-1"></a><span class="co"># Coefficients</span></span>
+<span id="cb904-12"><a href="linear-regression.html#cb904-12" tabindex="-1"></a><span class="fu">coef</span>(model)</span>
+<span id="cb904-13"><a href="linear-regression.html#cb904-13" tabindex="-1"></a><span class="co">#&gt; (Intercept)    liv_area </span></span>
+<span id="cb904-14"><a href="linear-regression.html#cb904-14" tabindex="-1"></a><span class="co">#&gt;   7.2068391   0.1168864</span></span>
+<span id="cb904-15"><a href="linear-regression.html#cb904-15" tabindex="-1"></a></span>
+<span id="cb904-16"><a href="linear-regression.html#cb904-16" tabindex="-1"></a><span class="co"># Confidence intervals for coefficients</span></span>
+<span id="cb904-17"><a href="linear-regression.html#cb904-17" tabindex="-1"></a><span class="fu">confint</span>(model)</span>
+<span id="cb904-18"><a href="linear-regression.html#cb904-18" tabindex="-1"></a><span class="co">#&gt;                    2.5 %     97.5 %</span></span>
+<span id="cb904-19"><a href="linear-regression.html#cb904-19" tabindex="-1"></a><span class="co">#&gt; (Intercept) -21.70551022 36.1191884</span></span>
+<span id="cb904-20"><a href="linear-regression.html#cb904-20" tabindex="-1"></a><span class="co">#&gt; liv_area      0.09833663  0.1354362</span></span></code></pre></div>
 </div>
 <div id="diagnostic-plots" class="section level3 hasAnchor" number="11.6.5">
 <h3><span class="header-section-number">11.6.5</span> Diagnostic Plots<a href="linear-regression.html#diagnostic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Checking model assumptions is an important step in regression analysis. R provides built-in diagnostic plots.</p>
-<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="linear-regression.html#cb904-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb904-2"><a href="linear-regression.html#cb904-2" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb905"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb905-1"><a href="linear-regression.html#cb905-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb905-2"><a href="linear-regression.html#cb905-2" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-923-1.png" alt="" width="672" /></p>
 <p>These four plots help you check:</p>
 <ol style="list-style-type: decimal">
