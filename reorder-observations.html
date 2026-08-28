@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.3 Reorder Observations | R Programming: Zero to Pro</title>
   <meta name="description" content="8.3 Reorder Observations | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.3 Reorder Observations | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-04-17" />
+<meta name="date" content="2026-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
@@ -76,8 +76,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -149,7 +150,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -194,7 +194,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-grammar-or-code-issues"><i class="fa fa-check"></i>Typos, Grammar, or Code Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#problems-you-cannot-fix-yourself"><i class="fa fa-check"></i>Problems You Cannot Fix Yourself</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
@@ -901,99 +902,99 @@ div.csl-indent {
 <h2><span class="header-section-number">8.3</span> Reorder Observations<a href="reorder-observations.html#reorder-observations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s look at the third task: find the 10 countries with the highest life expectancy in the year 2008. To order observations, you can use the function <code>arrange()</code> in the <strong>dplyr</strong> package.</p>
 <p>First, let’s create a new dataset called <code>gm_2008</code> that only contains the observations in 2008 and the variables <code>country</code>, <code>life_expectancy</code>, and <code>GDP_per_capita</code>.</p>
-<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="reorder-observations.html#cb759-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb759-2"><a href="reorder-observations.html#cb759-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb759-3"><a href="reorder-observations.html#cb759-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb759-4"><a href="reorder-observations.html#cb759-4" tabindex="-1"></a>gm_2008 <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> </span>
-<span id="cb759-5"><a href="reorder-observations.html#cb759-5" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb759-6"><a href="reorder-observations.html#cb759-6" tabindex="-1"></a>  <span class="fu">select</span>(country, life_expectancy, GDP_per_capita)</span></code></pre></div>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="reorder-observations.html#cb760-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb760-2"><a href="reorder-observations.html#cb760-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb760-3"><a href="reorder-observations.html#cb760-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb760-4"><a href="reorder-observations.html#cb760-4" tabindex="-1"></a>gm_2008 <span class="ot">&lt;-</span> gm <span class="sc">%&gt;%</span> </span>
+<span id="cb760-5"><a href="reorder-observations.html#cb760-5" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb760-6"><a href="reorder-observations.html#cb760-6" tabindex="-1"></a>  <span class="fu">select</span>(country, life_expectancy, GDP_per_capita)</span></code></pre></div>
 <p>To arrange the observations in the ascending order of the life expectancy (<code>life_expectancy</code>), you just need to add <code>life_expectancy</code> as an argument of the <code>arrange()</code> function. To arrange the descending order, you can add <code>desc()</code> around the variable.</p>
-<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="reorder-observations.html#cb760-1" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span> </span>
-<span id="cb760-2"><a href="reorder-observations.html#cb760-2" tabindex="-1"></a>  <span class="fu">arrange</span>(life_expectancy)         <span class="co">#arrange in the ascending order of life_expectancy</span></span>
-<span id="cb760-3"><a href="reorder-observations.html#cb760-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
-<span id="cb760-4"><a href="reorder-observations.html#cb760-4" tabindex="-1"></a><span class="co">#&gt;    country                  life_expectancy GDP_per_capita</span></span>
-<span id="cb760-5"><a href="reorder-observations.html#cb760-5" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                              &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb760-6"><a href="reorder-observations.html#cb760-6" tabindex="-1"></a><span class="co">#&gt;  1 Eswatini                            46.4          3.21 </span></span>
-<span id="cb760-7"><a href="reorder-observations.html#cb760-7" tabindex="-1"></a><span class="co">#&gt;  2 Central African Republic            47.4          0.514</span></span>
-<span id="cb760-8"><a href="reorder-observations.html#cb760-8" tabindex="-1"></a><span class="co">#&gt;  3 Lesotho                             47.4          0.948</span></span>
-<span id="cb760-9"><a href="reorder-observations.html#cb760-9" tabindex="-1"></a><span class="co">#&gt;  4 Zimbabwe                            50.2          0.941</span></span>
-<span id="cb760-10"><a href="reorder-observations.html#cb760-10" tabindex="-1"></a><span class="co">#&gt;  5 Mozambique                          53.5          0.463</span></span>
-<span id="cb760-11"><a href="reorder-observations.html#cb760-11" tabindex="-1"></a><span class="co">#&gt;  6 Somalia                             54.6         NA    </span></span>
-<span id="cb760-12"><a href="reorder-observations.html#cb760-12" tabindex="-1"></a><span class="co">#&gt;  7 Malawi                              55            0.346</span></span>
-<span id="cb760-13"><a href="reorder-observations.html#cb760-13" tabindex="-1"></a><span class="co">#&gt;  8 Sierra Leone                        55.3          0.52 </span></span>
-<span id="cb760-14"><a href="reorder-observations.html#cb760-14" tabindex="-1"></a><span class="co">#&gt;  9 Guinea-Bissau                       55.5          0.574</span></span>
-<span id="cb760-15"><a href="reorder-observations.html#cb760-15" tabindex="-1"></a><span class="co">#&gt; 10 South Africa                        55.7          5.48 </span></span>
-<span id="cb760-16"><a href="reorder-observations.html#cb760-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span>
-<span id="cb760-17"><a href="reorder-observations.html#cb760-17" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span></span>
-<span id="cb760-18"><a href="reorder-observations.html#cb760-18" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(life_expectancy))   <span class="co">#arrange in the descending order of life_expectancy</span></span>
-<span id="cb760-19"><a href="reorder-observations.html#cb760-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
-<span id="cb760-20"><a href="reorder-observations.html#cb760-20" tabindex="-1"></a><span class="co">#&gt;    country          life_expectancy GDP_per_capita</span></span>
-<span id="cb760-21"><a href="reorder-observations.html#cb760-21" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb760-22"><a href="reorder-observations.html#cb760-22" tabindex="-1"></a><span class="co">#&gt;  1 Japan                       83.3           31.7</span></span>
-<span id="cb760-23"><a href="reorder-observations.html#cb760-23" tabindex="-1"></a><span class="co">#&gt;  2 Hong Kong, China            82.7           35.9</span></span>
-<span id="cb760-24"><a href="reorder-observations.html#cb760-24" tabindex="-1"></a><span class="co">#&gt;  3 Switzerland                 82.5           80.3</span></span>
-<span id="cb760-25"><a href="reorder-observations.html#cb760-25" tabindex="-1"></a><span class="co">#&gt;  4 Singapore                   82.5           43.3</span></span>
-<span id="cb760-26"><a href="reorder-observations.html#cb760-26" tabindex="-1"></a><span class="co">#&gt;  5 Iceland                     82.4           49.5</span></span>
-<span id="cb760-27"><a href="reorder-observations.html#cb760-27" tabindex="-1"></a><span class="co">#&gt;  6 Australia                   81.9           53.3</span></span>
-<span id="cb760-28"><a href="reorder-observations.html#cb760-28" tabindex="-1"></a><span class="co">#&gt;  7 Andorra                     81.8           35.4</span></span>
-<span id="cb760-29"><a href="reorder-observations.html#cb760-29" tabindex="-1"></a><span class="co">#&gt;  8 Spain                       81.8           25.8</span></span>
-<span id="cb760-30"><a href="reorder-observations.html#cb760-30" tabindex="-1"></a><span class="co">#&gt;  9 Italy                       81.8           31.6</span></span>
-<span id="cb760-31"><a href="reorder-observations.html#cb760-31" tabindex="-1"></a><span class="co">#&gt; 10 San Marino                  81.8           56.7</span></span>
-<span id="cb760-32"><a href="reorder-observations.html#cb760-32" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
-<p>You may observe from the results that there are several countries with the same <code>life_expectancy</code> value, leading to a tie. To break the tie, you can supply additional variables in the <code>arrange()</code> function, which will arrange the observations within the tie according to the additional variables in the order they are supplied.</p>
 <div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="reorder-observations.html#cb761-1" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span> </span>
-<span id="cb761-2"><a href="reorder-observations.html#cb761-2" tabindex="-1"></a>  <span class="fu">arrange</span>(life_expectancy, </span>
-<span id="cb761-3"><a href="reorder-observations.html#cb761-3" tabindex="-1"></a>          GDP_per_capita) </span>
-<span id="cb761-4"><a href="reorder-observations.html#cb761-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
-<span id="cb761-5"><a href="reorder-observations.html#cb761-5" tabindex="-1"></a><span class="co">#&gt;    country                  life_expectancy GDP_per_capita</span></span>
-<span id="cb761-6"><a href="reorder-observations.html#cb761-6" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                              &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb761-7"><a href="reorder-observations.html#cb761-7" tabindex="-1"></a><span class="co">#&gt;  1 Eswatini                            46.4          3.21 </span></span>
-<span id="cb761-8"><a href="reorder-observations.html#cb761-8" tabindex="-1"></a><span class="co">#&gt;  2 Central African Republic            47.4          0.514</span></span>
-<span id="cb761-9"><a href="reorder-observations.html#cb761-9" tabindex="-1"></a><span class="co">#&gt;  3 Lesotho                             47.4          0.948</span></span>
-<span id="cb761-10"><a href="reorder-observations.html#cb761-10" tabindex="-1"></a><span class="co">#&gt;  4 Zimbabwe                            50.2          0.941</span></span>
-<span id="cb761-11"><a href="reorder-observations.html#cb761-11" tabindex="-1"></a><span class="co">#&gt;  5 Mozambique                          53.5          0.463</span></span>
-<span id="cb761-12"><a href="reorder-observations.html#cb761-12" tabindex="-1"></a><span class="co">#&gt;  6 Somalia                             54.6         NA    </span></span>
-<span id="cb761-13"><a href="reorder-observations.html#cb761-13" tabindex="-1"></a><span class="co">#&gt;  7 Malawi                              55            0.346</span></span>
-<span id="cb761-14"><a href="reorder-observations.html#cb761-14" tabindex="-1"></a><span class="co">#&gt;  8 Sierra Leone                        55.3          0.52 </span></span>
-<span id="cb761-15"><a href="reorder-observations.html#cb761-15" tabindex="-1"></a><span class="co">#&gt;  9 Guinea-Bissau                       55.5          0.574</span></span>
-<span id="cb761-16"><a href="reorder-observations.html#cb761-16" tabindex="-1"></a><span class="co">#&gt; 10 Zambia                              55.7          1.13 </span></span>
-<span id="cb761-17"><a href="reorder-observations.html#cb761-17" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
-<p>Here, the observations are arranged in the ascending order of <code>life_expectancy</code>, and the ties are broken in the ascending order of <code>GDP_per_capita</code>. Note that the observations that has an <code>NA</code> value in the specified variable will always be arranged at the end of the output.</p>
-<p>If you want to break the tie in the descending order of <code>GDP_per_capita</code>, you can use <code>desc()</code> around the variable.</p>
+<span id="cb761-2"><a href="reorder-observations.html#cb761-2" tabindex="-1"></a>  <span class="fu">arrange</span>(life_expectancy)         <span class="co">#arrange in the ascending order of life_expectancy</span></span>
+<span id="cb761-3"><a href="reorder-observations.html#cb761-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
+<span id="cb761-4"><a href="reorder-observations.html#cb761-4" tabindex="-1"></a><span class="co">#&gt;    country                  life_expectancy GDP_per_capita</span></span>
+<span id="cb761-5"><a href="reorder-observations.html#cb761-5" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                              &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb761-6"><a href="reorder-observations.html#cb761-6" tabindex="-1"></a><span class="co">#&gt;  1 Eswatini                            46.4          3.21 </span></span>
+<span id="cb761-7"><a href="reorder-observations.html#cb761-7" tabindex="-1"></a><span class="co">#&gt;  2 Central African Republic            47.4          0.514</span></span>
+<span id="cb761-8"><a href="reorder-observations.html#cb761-8" tabindex="-1"></a><span class="co">#&gt;  3 Lesotho                             47.4          0.948</span></span>
+<span id="cb761-9"><a href="reorder-observations.html#cb761-9" tabindex="-1"></a><span class="co">#&gt;  4 Zimbabwe                            50.2          0.941</span></span>
+<span id="cb761-10"><a href="reorder-observations.html#cb761-10" tabindex="-1"></a><span class="co">#&gt;  5 Mozambique                          53.5          0.463</span></span>
+<span id="cb761-11"><a href="reorder-observations.html#cb761-11" tabindex="-1"></a><span class="co">#&gt;  6 Somalia                             54.6         NA    </span></span>
+<span id="cb761-12"><a href="reorder-observations.html#cb761-12" tabindex="-1"></a><span class="co">#&gt;  7 Malawi                              55            0.346</span></span>
+<span id="cb761-13"><a href="reorder-observations.html#cb761-13" tabindex="-1"></a><span class="co">#&gt;  8 Sierra Leone                        55.3          0.52 </span></span>
+<span id="cb761-14"><a href="reorder-observations.html#cb761-14" tabindex="-1"></a><span class="co">#&gt;  9 Guinea-Bissau                       55.5          0.574</span></span>
+<span id="cb761-15"><a href="reorder-observations.html#cb761-15" tabindex="-1"></a><span class="co">#&gt; 10 South Africa                        55.7          5.48 </span></span>
+<span id="cb761-16"><a href="reorder-observations.html#cb761-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span>
+<span id="cb761-17"><a href="reorder-observations.html#cb761-17" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span></span>
+<span id="cb761-18"><a href="reorder-observations.html#cb761-18" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(life_expectancy))   <span class="co">#arrange in the descending order of life_expectancy</span></span>
+<span id="cb761-19"><a href="reorder-observations.html#cb761-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
+<span id="cb761-20"><a href="reorder-observations.html#cb761-20" tabindex="-1"></a><span class="co">#&gt;    country          life_expectancy GDP_per_capita</span></span>
+<span id="cb761-21"><a href="reorder-observations.html#cb761-21" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb761-22"><a href="reorder-observations.html#cb761-22" tabindex="-1"></a><span class="co">#&gt;  1 Japan                       83.3           31.7</span></span>
+<span id="cb761-23"><a href="reorder-observations.html#cb761-23" tabindex="-1"></a><span class="co">#&gt;  2 Hong Kong, China            82.7           35.9</span></span>
+<span id="cb761-24"><a href="reorder-observations.html#cb761-24" tabindex="-1"></a><span class="co">#&gt;  3 Switzerland                 82.5           80.3</span></span>
+<span id="cb761-25"><a href="reorder-observations.html#cb761-25" tabindex="-1"></a><span class="co">#&gt;  4 Singapore                   82.5           43.3</span></span>
+<span id="cb761-26"><a href="reorder-observations.html#cb761-26" tabindex="-1"></a><span class="co">#&gt;  5 Iceland                     82.4           49.5</span></span>
+<span id="cb761-27"><a href="reorder-observations.html#cb761-27" tabindex="-1"></a><span class="co">#&gt;  6 Australia                   81.9           53.3</span></span>
+<span id="cb761-28"><a href="reorder-observations.html#cb761-28" tabindex="-1"></a><span class="co">#&gt;  7 Andorra                     81.8           35.4</span></span>
+<span id="cb761-29"><a href="reorder-observations.html#cb761-29" tabindex="-1"></a><span class="co">#&gt;  8 Spain                       81.8           25.8</span></span>
+<span id="cb761-30"><a href="reorder-observations.html#cb761-30" tabindex="-1"></a><span class="co">#&gt;  9 Italy                       81.8           31.6</span></span>
+<span id="cb761-31"><a href="reorder-observations.html#cb761-31" tabindex="-1"></a><span class="co">#&gt; 10 San Marino                  81.8           56.7</span></span>
+<span id="cb761-32"><a href="reorder-observations.html#cb761-32" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
+<p>You may observe from the results that there are several countries with the same <code>life_expectancy</code> value, leading to a tie. To break the tie, you can supply additional variables in the <code>arrange()</code> function, which will arrange the observations within the tie according to the additional variables in the order they are supplied.</p>
 <div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="reorder-observations.html#cb762-1" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span> </span>
 <span id="cb762-2"><a href="reorder-observations.html#cb762-2" tabindex="-1"></a>  <span class="fu">arrange</span>(life_expectancy, </span>
-<span id="cb762-3"><a href="reorder-observations.html#cb762-3" tabindex="-1"></a>          <span class="fu">desc</span>(GDP_per_capita)) </span>
+<span id="cb762-3"><a href="reorder-observations.html#cb762-3" tabindex="-1"></a>          GDP_per_capita) </span>
 <span id="cb762-4"><a href="reorder-observations.html#cb762-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
 <span id="cb762-5"><a href="reorder-observations.html#cb762-5" tabindex="-1"></a><span class="co">#&gt;    country                  life_expectancy GDP_per_capita</span></span>
 <span id="cb762-6"><a href="reorder-observations.html#cb762-6" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                              &lt;dbl&gt;          &lt;dbl&gt;</span></span>
 <span id="cb762-7"><a href="reorder-observations.html#cb762-7" tabindex="-1"></a><span class="co">#&gt;  1 Eswatini                            46.4          3.21 </span></span>
-<span id="cb762-8"><a href="reorder-observations.html#cb762-8" tabindex="-1"></a><span class="co">#&gt;  2 Lesotho                             47.4          0.948</span></span>
-<span id="cb762-9"><a href="reorder-observations.html#cb762-9" tabindex="-1"></a><span class="co">#&gt;  3 Central African Republic            47.4          0.514</span></span>
+<span id="cb762-8"><a href="reorder-observations.html#cb762-8" tabindex="-1"></a><span class="co">#&gt;  2 Central African Republic            47.4          0.514</span></span>
+<span id="cb762-9"><a href="reorder-observations.html#cb762-9" tabindex="-1"></a><span class="co">#&gt;  3 Lesotho                             47.4          0.948</span></span>
 <span id="cb762-10"><a href="reorder-observations.html#cb762-10" tabindex="-1"></a><span class="co">#&gt;  4 Zimbabwe                            50.2          0.941</span></span>
 <span id="cb762-11"><a href="reorder-observations.html#cb762-11" tabindex="-1"></a><span class="co">#&gt;  5 Mozambique                          53.5          0.463</span></span>
 <span id="cb762-12"><a href="reorder-observations.html#cb762-12" tabindex="-1"></a><span class="co">#&gt;  6 Somalia                             54.6         NA    </span></span>
 <span id="cb762-13"><a href="reorder-observations.html#cb762-13" tabindex="-1"></a><span class="co">#&gt;  7 Malawi                              55            0.346</span></span>
 <span id="cb762-14"><a href="reorder-observations.html#cb762-14" tabindex="-1"></a><span class="co">#&gt;  8 Sierra Leone                        55.3          0.52 </span></span>
 <span id="cb762-15"><a href="reorder-observations.html#cb762-15" tabindex="-1"></a><span class="co">#&gt;  9 Guinea-Bissau                       55.5          0.574</span></span>
-<span id="cb762-16"><a href="reorder-observations.html#cb762-16" tabindex="-1"></a><span class="co">#&gt; 10 South Africa                        55.7          5.48 </span></span>
+<span id="cb762-16"><a href="reorder-observations.html#cb762-16" tabindex="-1"></a><span class="co">#&gt; 10 Zambia                              55.7          1.13 </span></span>
 <span id="cb762-17"><a href="reorder-observations.html#cb762-17" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
-<p>Now, we are ready to present the 10 countries with the highest life expectancy in 2008.</p>
+<p>Here, the observations are arranged in the ascending order of <code>life_expectancy</code>, and the ties are broken in the ascending order of <code>GDP_per_capita</code>. Note that the observations that has an <code>NA</code> value in the specified variable will always be arranged at the end of the output.</p>
+<p>If you want to break the tie in the descending order of <code>GDP_per_capita</code>, you can use <code>desc()</code> around the variable.</p>
 <div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="reorder-observations.html#cb763-1" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span> </span>
-<span id="cb763-2"><a href="reorder-observations.html#cb763-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(life_expectancy)) <span class="sc">%&gt;%</span> </span>
-<span id="cb763-3"><a href="reorder-observations.html#cb763-3" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
-<span id="cb763-4"><a href="reorder-observations.html#cb763-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span id="cb763-5"><a href="reorder-observations.html#cb763-5" tabindex="-1"></a><span class="co">#&gt;    country          life_expectancy GDP_per_capita</span></span>
-<span id="cb763-6"><a href="reorder-observations.html#cb763-6" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb763-7"><a href="reorder-observations.html#cb763-7" tabindex="-1"></a><span class="co">#&gt;  1 Japan                       83.3           31.7</span></span>
-<span id="cb763-8"><a href="reorder-observations.html#cb763-8" tabindex="-1"></a><span class="co">#&gt;  2 Hong Kong, China            82.7           35.9</span></span>
-<span id="cb763-9"><a href="reorder-observations.html#cb763-9" tabindex="-1"></a><span class="co">#&gt;  3 Switzerland                 82.5           80.3</span></span>
-<span id="cb763-10"><a href="reorder-observations.html#cb763-10" tabindex="-1"></a><span class="co">#&gt;  4 Singapore                   82.5           43.3</span></span>
-<span id="cb763-11"><a href="reorder-observations.html#cb763-11" tabindex="-1"></a><span class="co">#&gt;  5 Iceland                     82.4           49.5</span></span>
-<span id="cb763-12"><a href="reorder-observations.html#cb763-12" tabindex="-1"></a><span class="co">#&gt;  6 Australia                   81.9           53.3</span></span>
-<span id="cb763-13"><a href="reorder-observations.html#cb763-13" tabindex="-1"></a><span class="co">#&gt;  7 Andorra                     81.8           35.4</span></span>
-<span id="cb763-14"><a href="reorder-observations.html#cb763-14" tabindex="-1"></a><span class="co">#&gt;  8 Spain                       81.8           25.8</span></span>
-<span id="cb763-15"><a href="reorder-observations.html#cb763-15" tabindex="-1"></a><span class="co">#&gt;  9 Italy                       81.8           31.6</span></span>
-<span id="cb763-16"><a href="reorder-observations.html#cb763-16" tabindex="-1"></a><span class="co">#&gt; 10 San Marino                  81.8           56.7</span></span></code></pre></div>
+<span id="cb763-2"><a href="reorder-observations.html#cb763-2" tabindex="-1"></a>  <span class="fu">arrange</span>(life_expectancy, </span>
+<span id="cb763-3"><a href="reorder-observations.html#cb763-3" tabindex="-1"></a>          <span class="fu">desc</span>(GDP_per_capita)) </span>
+<span id="cb763-4"><a href="reorder-observations.html#cb763-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 3</span></span>
+<span id="cb763-5"><a href="reorder-observations.html#cb763-5" tabindex="-1"></a><span class="co">#&gt;    country                  life_expectancy GDP_per_capita</span></span>
+<span id="cb763-6"><a href="reorder-observations.html#cb763-6" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                              &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb763-7"><a href="reorder-observations.html#cb763-7" tabindex="-1"></a><span class="co">#&gt;  1 Eswatini                            46.4          3.21 </span></span>
+<span id="cb763-8"><a href="reorder-observations.html#cb763-8" tabindex="-1"></a><span class="co">#&gt;  2 Lesotho                             47.4          0.948</span></span>
+<span id="cb763-9"><a href="reorder-observations.html#cb763-9" tabindex="-1"></a><span class="co">#&gt;  3 Central African Republic            47.4          0.514</span></span>
+<span id="cb763-10"><a href="reorder-observations.html#cb763-10" tabindex="-1"></a><span class="co">#&gt;  4 Zimbabwe                            50.2          0.941</span></span>
+<span id="cb763-11"><a href="reorder-observations.html#cb763-11" tabindex="-1"></a><span class="co">#&gt;  5 Mozambique                          53.5          0.463</span></span>
+<span id="cb763-12"><a href="reorder-observations.html#cb763-12" tabindex="-1"></a><span class="co">#&gt;  6 Somalia                             54.6         NA    </span></span>
+<span id="cb763-13"><a href="reorder-observations.html#cb763-13" tabindex="-1"></a><span class="co">#&gt;  7 Malawi                              55            0.346</span></span>
+<span id="cb763-14"><a href="reorder-observations.html#cb763-14" tabindex="-1"></a><span class="co">#&gt;  8 Sierra Leone                        55.3          0.52 </span></span>
+<span id="cb763-15"><a href="reorder-observations.html#cb763-15" tabindex="-1"></a><span class="co">#&gt;  9 Guinea-Bissau                       55.5          0.574</span></span>
+<span id="cb763-16"><a href="reorder-observations.html#cb763-16" tabindex="-1"></a><span class="co">#&gt; 10 South Africa                        55.7          5.48 </span></span>
+<span id="cb763-17"><a href="reorder-observations.html#cb763-17" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
+<p>Now, we are ready to present the 10 countries with the highest life expectancy in 2008.</p>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="reorder-observations.html#cb764-1" tabindex="-1"></a>gm_2008 <span class="sc">%&gt;%</span> </span>
+<span id="cb764-2"><a href="reorder-observations.html#cb764-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(life_expectancy)) <span class="sc">%&gt;%</span> </span>
+<span id="cb764-3"><a href="reorder-observations.html#cb764-3" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb764-4"><a href="reorder-observations.html#cb764-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
+<span id="cb764-5"><a href="reorder-observations.html#cb764-5" tabindex="-1"></a><span class="co">#&gt;    country          life_expectancy GDP_per_capita</span></span>
+<span id="cb764-6"><a href="reorder-observations.html#cb764-6" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                      &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb764-7"><a href="reorder-observations.html#cb764-7" tabindex="-1"></a><span class="co">#&gt;  1 Japan                       83.3           31.7</span></span>
+<span id="cb764-8"><a href="reorder-observations.html#cb764-8" tabindex="-1"></a><span class="co">#&gt;  2 Hong Kong, China            82.7           35.9</span></span>
+<span id="cb764-9"><a href="reorder-observations.html#cb764-9" tabindex="-1"></a><span class="co">#&gt;  3 Switzerland                 82.5           80.3</span></span>
+<span id="cb764-10"><a href="reorder-observations.html#cb764-10" tabindex="-1"></a><span class="co">#&gt;  4 Singapore                   82.5           43.3</span></span>
+<span id="cb764-11"><a href="reorder-observations.html#cb764-11" tabindex="-1"></a><span class="co">#&gt;  5 Iceland                     82.4           49.5</span></span>
+<span id="cb764-12"><a href="reorder-observations.html#cb764-12" tabindex="-1"></a><span class="co">#&gt;  6 Australia                   81.9           53.3</span></span>
+<span id="cb764-13"><a href="reorder-observations.html#cb764-13" tabindex="-1"></a><span class="co">#&gt;  7 Andorra                     81.8           35.4</span></span>
+<span id="cb764-14"><a href="reorder-observations.html#cb764-14" tabindex="-1"></a><span class="co">#&gt;  8 Spain                       81.8           25.8</span></span>
+<span id="cb764-15"><a href="reorder-observations.html#cb764-15" tabindex="-1"></a><span class="co">#&gt;  9 Italy                       81.8           31.6</span></span>
+<span id="cb764-16"><a href="reorder-observations.html#cb764-16" tabindex="-1"></a><span class="co">#&gt; 10 San Marino                  81.8           56.7</span></span></code></pre></div>
 <p>Here, the <code>head(10)</code> function is used to get the first 10 observations in the dataset.</p>
 <div id="exercises-56" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Exercises<a href="reorder-observations.html#exercises-56" class="anchor-section" aria-label="Anchor link to header"></a></h3>

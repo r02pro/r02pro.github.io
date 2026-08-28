@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13.2 Going Beyond Basics: Advanced R Functions | R Programming: Zero to Pro</title>
   <meta name="description" content="13.2 Going Beyond Basics: Advanced R Functions | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13.2 Going Beyond Basics: Advanced R Functions | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-04-17" />
+<meta name="date" content="2026-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
@@ -76,8 +76,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -149,7 +150,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -194,7 +194,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-grammar-or-code-issues"><i class="fa fa-check"></i>Typos, Grammar, or Code Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#problems-you-cannot-fix-yourself"><i class="fa fa-check"></i>Problems You Cannot Fix Yourself</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
@@ -906,100 +907,100 @@ div.csl-indent {
 <div id="example-returning-a-list" class="section level4 hasAnchor" number="13.2.1.1">
 <h4><span class="header-section-number">13.2.1.1</span> Example: Returning a List<a href="functions-advanced.html#example-returning-a-list" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s create a function that calculates the mean and variance of a numeric vector and returns both values in a list:</p>
-<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="functions-advanced.html#cb968-1" tabindex="-1"></a><span class="co"># Define the function</span></span>
-<span id="cb968-2"><a href="functions-advanced.html#cb968-2" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb968-3"><a href="functions-advanced.html#cb968-3" tabindex="-1"></a>  mean_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)         <span class="co"># Calculate the mean</span></span>
-<span id="cb968-4"><a href="functions-advanced.html#cb968-4" tabindex="-1"></a>  variance_value <span class="ot">&lt;-</span> <span class="fu">var</span>(x)      <span class="co"># Calculate the variance</span></span>
-<span id="cb968-5"><a href="functions-advanced.html#cb968-5" tabindex="-1"></a>  </span>
-<span id="cb968-6"><a href="functions-advanced.html#cb968-6" tabindex="-1"></a>  <span class="co"># Return the results as a list</span></span>
-<span id="cb968-7"><a href="functions-advanced.html#cb968-7" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean_value, <span class="at">variance =</span> variance_value))</span>
-<span id="cb968-8"><a href="functions-advanced.html#cb968-8" tabindex="-1"></a>}</span>
-<span id="cb968-9"><a href="functions-advanced.html#cb968-9" tabindex="-1"></a></span>
-<span id="cb968-10"><a href="functions-advanced.html#cb968-10" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb968-11"><a href="functions-advanced.html#cb968-11" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">summary_stats</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb968-12"><a href="functions-advanced.html#cb968-12" tabindex="-1"></a><span class="fu">print</span>(results)</span>
-<span id="cb968-13"><a href="functions-advanced.html#cb968-13" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
-<span id="cb968-14"><a href="functions-advanced.html#cb968-14" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb968-15"><a href="functions-advanced.html#cb968-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb968-16"><a href="functions-advanced.html#cb968-16" tabindex="-1"></a><span class="co">#&gt; $variance</span></span>
-<span id="cb968-17"><a href="functions-advanced.html#cb968-17" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="functions-advanced.html#cb969-1" tabindex="-1"></a><span class="co"># Define the function</span></span>
+<span id="cb969-2"><a href="functions-advanced.html#cb969-2" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb969-3"><a href="functions-advanced.html#cb969-3" tabindex="-1"></a>  mean_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)         <span class="co"># Calculate the mean</span></span>
+<span id="cb969-4"><a href="functions-advanced.html#cb969-4" tabindex="-1"></a>  variance_value <span class="ot">&lt;-</span> <span class="fu">var</span>(x)      <span class="co"># Calculate the variance</span></span>
+<span id="cb969-5"><a href="functions-advanced.html#cb969-5" tabindex="-1"></a>  </span>
+<span id="cb969-6"><a href="functions-advanced.html#cb969-6" tabindex="-1"></a>  <span class="co"># Return the results as a list</span></span>
+<span id="cb969-7"><a href="functions-advanced.html#cb969-7" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean_value, <span class="at">variance =</span> variance_value))</span>
+<span id="cb969-8"><a href="functions-advanced.html#cb969-8" tabindex="-1"></a>}</span>
+<span id="cb969-9"><a href="functions-advanced.html#cb969-9" tabindex="-1"></a></span>
+<span id="cb969-10"><a href="functions-advanced.html#cb969-10" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb969-11"><a href="functions-advanced.html#cb969-11" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">summary_stats</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb969-12"><a href="functions-advanced.html#cb969-12" tabindex="-1"></a><span class="fu">print</span>(results)</span>
+<span id="cb969-13"><a href="functions-advanced.html#cb969-13" tabindex="-1"></a><span class="co">#&gt; $mean</span></span>
+<span id="cb969-14"><a href="functions-advanced.html#cb969-14" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb969-15"><a href="functions-advanced.html#cb969-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb969-16"><a href="functions-advanced.html#cb969-16" tabindex="-1"></a><span class="co">#&gt; $variance</span></span>
+<span id="cb969-17"><a href="functions-advanced.html#cb969-17" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div>
 <p>Here, the function <code>summary_stats()</code> calculates the mean and variance of the input vector <code>x</code> and returns both values as a list. The returned list contains two elements: <code>mean</code> and <code>variance</code>.</p>
 <p>You can access the elements of the returned list using the <code>$</code> operator or by indexing:</p>
-<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="functions-advanced.html#cb969-1" tabindex="-1"></a><span class="co"># Access elements by name</span></span>
-<span id="cb969-2"><a href="functions-advanced.html#cb969-2" tabindex="-1"></a>results<span class="sc">$</span>mean</span>
-<span id="cb969-3"><a href="functions-advanced.html#cb969-3" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb969-4"><a href="functions-advanced.html#cb969-4" tabindex="-1"></a>results<span class="sc">$</span>variance</span>
-<span id="cb969-5"><a href="functions-advanced.html#cb969-5" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
-<span id="cb969-6"><a href="functions-advanced.html#cb969-6" tabindex="-1"></a></span>
-<span id="cb969-7"><a href="functions-advanced.html#cb969-7" tabindex="-1"></a><span class="co"># Access elements by index</span></span>
-<span id="cb969-8"><a href="functions-advanced.html#cb969-8" tabindex="-1"></a>results[[<span class="dv">1</span>]]  <span class="co"># Mean</span></span>
-<span id="cb969-9"><a href="functions-advanced.html#cb969-9" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb969-10"><a href="functions-advanced.html#cb969-10" tabindex="-1"></a>results[[<span class="dv">2</span>]]  <span class="co"># Variance</span></span>
-<span id="cb969-11"><a href="functions-advanced.html#cb969-11" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functions-advanced.html#cb970-1" tabindex="-1"></a><span class="co"># Access elements by name</span></span>
+<span id="cb970-2"><a href="functions-advanced.html#cb970-2" tabindex="-1"></a>results<span class="sc">$</span>mean</span>
+<span id="cb970-3"><a href="functions-advanced.html#cb970-3" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb970-4"><a href="functions-advanced.html#cb970-4" tabindex="-1"></a>results<span class="sc">$</span>variance</span>
+<span id="cb970-5"><a href="functions-advanced.html#cb970-5" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
+<span id="cb970-6"><a href="functions-advanced.html#cb970-6" tabindex="-1"></a></span>
+<span id="cb970-7"><a href="functions-advanced.html#cb970-7" tabindex="-1"></a><span class="co"># Access elements by index</span></span>
+<span id="cb970-8"><a href="functions-advanced.html#cb970-8" tabindex="-1"></a>results[[<span class="dv">1</span>]]  <span class="co"># Mean</span></span>
+<span id="cb970-9"><a href="functions-advanced.html#cb970-9" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb970-10"><a href="functions-advanced.html#cb970-10" tabindex="-1"></a>results[[<span class="dv">2</span>]]  <span class="co"># Variance</span></span>
+<span id="cb970-11"><a href="functions-advanced.html#cb970-11" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span></code></pre></div>
 </div>
 </div>
 <div id="nested-functions" class="section level3 hasAnchor" number="13.2.2">
 <h3><span class="header-section-number">13.2.2</span> Nested Functions<a href="functions-advanced.html#nested-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Functions can be defined within other functions in R. Nested functions are useful for encapsulating helper functions that are only relevant within a specific context.</p>
 <p><strong>Example: Nested Function</strong></p>
-<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="functions-advanced.html#cb970-1" tabindex="-1"></a><span class="co"># Outer function</span></span>
-<span id="cb970-2"><a href="functions-advanced.html#cb970-2" tabindex="-1"></a>outer_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb970-3"><a href="functions-advanced.html#cb970-3" tabindex="-1"></a>  </span>
-<span id="cb970-4"><a href="functions-advanced.html#cb970-4" tabindex="-1"></a>  <span class="co"># Inner function</span></span>
-<span id="cb970-5"><a href="functions-advanced.html#cb970-5" tabindex="-1"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
-<span id="cb970-6"><a href="functions-advanced.html#cb970-6" tabindex="-1"></a>    <span class="fu">return</span>(y<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb970-7"><a href="functions-advanced.html#cb970-7" tabindex="-1"></a>  }</span>
-<span id="cb970-8"><a href="functions-advanced.html#cb970-8" tabindex="-1"></a>  </span>
-<span id="cb970-9"><a href="functions-advanced.html#cb970-9" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">inner_function</span>(x) <span class="sc">+</span> x</span>
-<span id="cb970-10"><a href="functions-advanced.html#cb970-10" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb970-11"><a href="functions-advanced.html#cb970-11" tabindex="-1"></a>}</span>
-<span id="cb970-12"><a href="functions-advanced.html#cb970-12" tabindex="-1"></a></span>
-<span id="cb970-13"><a href="functions-advanced.html#cb970-13" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb970-14"><a href="functions-advanced.html#cb970-14" tabindex="-1"></a><span class="fu">outer_function</span>(<span class="dv">5</span>)</span>
-<span id="cb970-15"><a href="functions-advanced.html#cb970-15" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="functions-advanced.html#cb971-1" tabindex="-1"></a><span class="co"># Outer function</span></span>
+<span id="cb971-2"><a href="functions-advanced.html#cb971-2" tabindex="-1"></a>outer_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb971-3"><a href="functions-advanced.html#cb971-3" tabindex="-1"></a>  </span>
+<span id="cb971-4"><a href="functions-advanced.html#cb971-4" tabindex="-1"></a>  <span class="co"># Inner function</span></span>
+<span id="cb971-5"><a href="functions-advanced.html#cb971-5" tabindex="-1"></a>  inner_function <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb971-6"><a href="functions-advanced.html#cb971-6" tabindex="-1"></a>    <span class="fu">return</span>(y<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb971-7"><a href="functions-advanced.html#cb971-7" tabindex="-1"></a>  }</span>
+<span id="cb971-8"><a href="functions-advanced.html#cb971-8" tabindex="-1"></a>  </span>
+<span id="cb971-9"><a href="functions-advanced.html#cb971-9" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">inner_function</span>(x) <span class="sc">+</span> x</span>
+<span id="cb971-10"><a href="functions-advanced.html#cb971-10" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb971-11"><a href="functions-advanced.html#cb971-11" tabindex="-1"></a>}</span>
+<span id="cb971-12"><a href="functions-advanced.html#cb971-12" tabindex="-1"></a></span>
+<span id="cb971-13"><a href="functions-advanced.html#cb971-13" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb971-14"><a href="functions-advanced.html#cb971-14" tabindex="-1"></a><span class="fu">outer_function</span>(<span class="dv">5</span>)</span>
+<span id="cb971-15"><a href="functions-advanced.html#cb971-15" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span></code></pre></div>
 <p>Here, the function <code>outer_function()</code> contains an inner function <code>inner_function()</code>. The inner function squares the input <code>y</code>, and the outer function calculates the sum of the squared input and the original input.</p>
 </div>
 <div id="higher-order-functions" class="section level3 hasAnchor" number="13.2.3">
 <h3><span class="header-section-number">13.2.3</span> Higher-Order Functions<a href="functions-advanced.html#higher-order-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A higher-order function is a function that takes other functions as arguments or returns a function as its output. This concept is widely used in functional programming.</p>
 <p><strong>Example: Function as an Argument</strong></p>
-<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="functions-advanced.html#cb971-1" tabindex="-1"></a>apply_function <span class="ot">&lt;-</span> <span class="cf">function</span>(func, x) {</span>
-<span id="cb971-2"><a href="functions-advanced.html#cb971-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">func</span>(x))</span>
-<span id="cb971-3"><a href="functions-advanced.html#cb971-3" tabindex="-1"></a>}</span>
-<span id="cb971-4"><a href="functions-advanced.html#cb971-4" tabindex="-1"></a></span>
-<span id="cb971-5"><a href="functions-advanced.html#cb971-5" tabindex="-1"></a><span class="co"># Test with built-in functions</span></span>
-<span id="cb971-6"><a href="functions-advanced.html#cb971-6" tabindex="-1"></a><span class="fu">apply_function</span>(mean, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb971-7"><a href="functions-advanced.html#cb971-7" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb971-8"><a href="functions-advanced.html#cb971-8" tabindex="-1"></a><span class="fu">apply_function</span>(sum, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb971-9"><a href="functions-advanced.html#cb971-9" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
+<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="functions-advanced.html#cb972-1" tabindex="-1"></a>apply_function <span class="ot">&lt;-</span> <span class="cf">function</span>(func, x) {</span>
+<span id="cb972-2"><a href="functions-advanced.html#cb972-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">func</span>(x))</span>
+<span id="cb972-3"><a href="functions-advanced.html#cb972-3" tabindex="-1"></a>}</span>
+<span id="cb972-4"><a href="functions-advanced.html#cb972-4" tabindex="-1"></a></span>
+<span id="cb972-5"><a href="functions-advanced.html#cb972-5" tabindex="-1"></a><span class="co"># Test with built-in functions</span></span>
+<span id="cb972-6"><a href="functions-advanced.html#cb972-6" tabindex="-1"></a><span class="fu">apply_function</span>(mean, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb972-7"><a href="functions-advanced.html#cb972-7" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb972-8"><a href="functions-advanced.html#cb972-8" tabindex="-1"></a><span class="fu">apply_function</span>(sum, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb972-9"><a href="functions-advanced.html#cb972-9" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span></code></pre></div>
 <p>Here, the function <code>apply_function()</code> takes another function <code>func</code> and an input <code>x</code>. It applies the function <code>func</code> to the input <code>x</code> and returns the result. This allows you to pass different functions as arguments to <code>apply_function()</code>.</p>
 <p>Another common use of higher-order functions is to return a function as output. This is useful for creating functions that can be customized based on the input arguments.</p>
-<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="functions-advanced.html#cb972-1" tabindex="-1"></a><span class="co"># Define a higher-order function</span></span>
-<span id="cb972-2"><a href="functions-advanced.html#cb972-2" tabindex="-1"></a>power_function <span class="ot">&lt;-</span> <span class="cf">function</span>(power) {</span>
-<span id="cb972-3"><a href="functions-advanced.html#cb972-3" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x) x<span class="sc">^</span>power)</span>
-<span id="cb972-4"><a href="functions-advanced.html#cb972-4" tabindex="-1"></a>}</span>
-<span id="cb972-5"><a href="functions-advanced.html#cb972-5" tabindex="-1"></a>power_of_2 <span class="ot">&lt;-</span> <span class="fu">power_function</span>(<span class="dv">2</span>)</span>
-<span id="cb972-6"><a href="functions-advanced.html#cb972-6" tabindex="-1"></a>power_of_3 <span class="ot">&lt;-</span> <span class="fu">power_function</span>(<span class="dv">3</span>)</span>
-<span id="cb972-7"><a href="functions-advanced.html#cb972-7" tabindex="-1"></a><span class="fu">power_of_2</span>(<span class="dv">5</span>)</span>
-<span id="cb972-8"><a href="functions-advanced.html#cb972-8" tabindex="-1"></a><span class="co">#&gt; [1] 25</span></span>
-<span id="cb972-9"><a href="functions-advanced.html#cb972-9" tabindex="-1"></a><span class="fu">power_of_3</span>(<span class="dv">5</span>)</span>
-<span id="cb972-10"><a href="functions-advanced.html#cb972-10" tabindex="-1"></a><span class="co">#&gt; [1] 125</span></span></code></pre></div>
+<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functions-advanced.html#cb973-1" tabindex="-1"></a><span class="co"># Define a higher-order function</span></span>
+<span id="cb973-2"><a href="functions-advanced.html#cb973-2" tabindex="-1"></a>power_function <span class="ot">&lt;-</span> <span class="cf">function</span>(power) {</span>
+<span id="cb973-3"><a href="functions-advanced.html#cb973-3" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x) x<span class="sc">^</span>power)</span>
+<span id="cb973-4"><a href="functions-advanced.html#cb973-4" tabindex="-1"></a>}</span>
+<span id="cb973-5"><a href="functions-advanced.html#cb973-5" tabindex="-1"></a>power_of_2 <span class="ot">&lt;-</span> <span class="fu">power_function</span>(<span class="dv">2</span>)</span>
+<span id="cb973-6"><a href="functions-advanced.html#cb973-6" tabindex="-1"></a>power_of_3 <span class="ot">&lt;-</span> <span class="fu">power_function</span>(<span class="dv">3</span>)</span>
+<span id="cb973-7"><a href="functions-advanced.html#cb973-7" tabindex="-1"></a><span class="fu">power_of_2</span>(<span class="dv">5</span>)</span>
+<span id="cb973-8"><a href="functions-advanced.html#cb973-8" tabindex="-1"></a><span class="co">#&gt; [1] 25</span></span>
+<span id="cb973-9"><a href="functions-advanced.html#cb973-9" tabindex="-1"></a><span class="fu">power_of_3</span>(<span class="dv">5</span>)</span>
+<span id="cb973-10"><a href="functions-advanced.html#cb973-10" tabindex="-1"></a><span class="co">#&gt; [1] 125</span></span></code></pre></div>
 <p>Here, the function <code>power_function()</code> returns a function that raises its input to the specified power. You can create custom functions like <code>power_of_2</code> and <code>power_of_3</code> by calling <code>power_function()</code> with different power values.</p>
 </div>
 <div id="error-handling-in-functions" class="section level3 hasAnchor" number="13.2.4">
 <h3><span class="header-section-number">13.2.4</span> Error Handling in Functions<a href="functions-advanced.html#error-handling-in-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When writing functions, it’s important to handle errors gracefully to ensure that your code runs smoothly even when unexpected input is encountered.</p>
 <p><strong>Example: Adding Error Handling</strong></p>
-<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="functions-advanced.html#cb973-1" tabindex="-1"></a>safe_division <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
-<span id="cb973-2"><a href="functions-advanced.html#cb973-2" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb973-3"><a href="functions-advanced.html#cb973-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Error: Division by zero is not allowed!&quot;</span>)</span>
-<span id="cb973-4"><a href="functions-advanced.html#cb973-4" tabindex="-1"></a>  }</span>
-<span id="cb973-5"><a href="functions-advanced.html#cb973-5" tabindex="-1"></a>  <span class="fu">return</span>(a <span class="sc">/</span> b)</span>
-<span id="cb973-6"><a href="functions-advanced.html#cb973-6" tabindex="-1"></a>}</span>
-<span id="cb973-7"><a href="functions-advanced.html#cb973-7" tabindex="-1"></a></span>
-<span id="cb973-8"><a href="functions-advanced.html#cb973-8" tabindex="-1"></a><span class="co"># Test the function</span></span>
-<span id="cb973-9"><a href="functions-advanced.html#cb973-9" tabindex="-1"></a><span class="fu">safe_division</span>(<span class="dv">10</span>, <span class="dv">2</span>)  <span class="co"># Valid</span></span>
-<span id="cb973-10"><a href="functions-advanced.html#cb973-10" tabindex="-1"></a><span class="fu">safe_division</span>(<span class="dv">10</span>, <span class="dv">0</span>)  <span class="co"># Error</span></span></code></pre></div>
+<div class="sourceCode" id="cb974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb974-1"><a href="functions-advanced.html#cb974-1" tabindex="-1"></a>safe_division <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb974-2"><a href="functions-advanced.html#cb974-2" tabindex="-1"></a>  <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb974-3"><a href="functions-advanced.html#cb974-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Error: Division by zero is not allowed!&quot;</span>)</span>
+<span id="cb974-4"><a href="functions-advanced.html#cb974-4" tabindex="-1"></a>  }</span>
+<span id="cb974-5"><a href="functions-advanced.html#cb974-5" tabindex="-1"></a>  <span class="fu">return</span>(a <span class="sc">/</span> b)</span>
+<span id="cb974-6"><a href="functions-advanced.html#cb974-6" tabindex="-1"></a>}</span>
+<span id="cb974-7"><a href="functions-advanced.html#cb974-7" tabindex="-1"></a></span>
+<span id="cb974-8"><a href="functions-advanced.html#cb974-8" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb974-9"><a href="functions-advanced.html#cb974-9" tabindex="-1"></a><span class="fu">safe_division</span>(<span class="dv">10</span>, <span class="dv">2</span>)  <span class="co"># Valid</span></span>
+<span id="cb974-10"><a href="functions-advanced.html#cb974-10" tabindex="-1"></a><span class="fu">safe_division</span>(<span class="dv">10</span>, <span class="dv">0</span>)  <span class="co"># Error</span></span></code></pre></div>
 <p>Here, the function <code>safe_division()</code> checks if the divisor <code>b</code> is zero and raises an error if division by zero is attempted. This prevents the function from returning an incorrect result or crashing due to invalid input.</p>
 </div>
 <div id="exercises-78" class="section level3 hasAnchor" number="13.2.5">

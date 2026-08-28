@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.5 Error Bars | R Programming: Zero to Pro</title>
   <meta name="description" content="7.5 Error Bars | R Programming: Zero to Pro" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.5 Error Bars | R Programming: Zero to Pro" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-04-17" />
+<meta name="date" content="2026-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,7 +58,7 @@
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
@@ -76,8 +76,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -149,7 +150,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -194,7 +194,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html"><i class="fa fa-check"></i>Contributing to the Book</a>
 <ul>
-<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-or-grammar-issues"><i class="fa fa-check"></i>Typos or Grammar Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#typos-grammar-or-code-issues"><i class="fa fa-check"></i>Typos, Grammar, or Code Issues</a></li>
+<li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#problems-you-cannot-fix-yourself"><i class="fa fa-check"></i>Problems You Cannot Fix Yourself</a></li>
 <li class="chapter" data-level="" data-path="contributing-to-the-book.html"><a href="contributing-to-the-book.html#general-questions-or-feedback"><i class="fa fa-check"></i>General Questions or Feedback</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="acknowledgement.html"><a href="acknowledgement.html"><i class="fa fa-check"></i>Acknowledgement</a></li>
@@ -900,60 +901,60 @@ div.csl-indent {
 <div id="errorbar" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Error Bars<a href="errorbar.html#errorbar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, we have learned several ways to compare continuous distributions for different groups, including the density plot, boxplot, and the violin plot. In this lesson, we introduce another visualization method, called <strong>error bar</strong>, which is a graphical representations of the uncertainty in a certain measurement. Let’s prepare a ggplot object to get started.</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="errorbar.html#cb719-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
-<span id="cb719-2"><a href="errorbar.html#cb719-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb719-3"><a href="errorbar.html#cb719-3" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
-<span id="cb719-4"><a href="errorbar.html#cb719-4" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
-<span id="cb719-5"><a href="errorbar.html#cb719-5" tabindex="-1"></a>                <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
-<span id="cb719-6"><a href="errorbar.html#cb719-6" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, </span>
-<span id="cb719-7"><a href="errorbar.html#cb719-7" tabindex="-1"></a>                            <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="errorbar.html#cb720-1" tabindex="-1"></a><span class="fu">library</span>(r02pro)</span>
+<span id="cb720-2"><a href="errorbar.html#cb720-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb720-3"><a href="errorbar.html#cb720-3" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> sahp, </span>
+<span id="cb720-4"><a href="errorbar.html#cb720-4" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> house_style, </span>
+<span id="cb720-5"><a href="errorbar.html#cb720-5" tabindex="-1"></a>                <span class="at">y =</span> sale_price)) <span class="sc">+</span> </span>
+<span id="cb720-6"><a href="errorbar.html#cb720-6" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="st">&quot;1Story&quot;</span>, </span>
+<span id="cb720-7"><a href="errorbar.html#cb720-7" tabindex="-1"></a>                            <span class="st">&quot;2Story&quot;</span>))</span></code></pre></div>
 <p>Here, we visualize the error bar as the mean <span class="math inline">\(\pm\)</span> standard error.</p>
 <p>To show the mean of <code>sale_price</code> for different <code>house_style</code> groups, you can use the <code>geom_point()</code> function with arguments <code>stat = "summary"</code> and <code>fun = "mean"</code>.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="errorbar.html#cb720-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb720-2"><a href="errorbar.html#cb720-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="errorbar.html#cb721-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb721-2"><a href="errorbar.html#cb721-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-735-1.png" alt="" width="576" /></p>
 <p>To add error bars to the mean points, we use <code>geom_errorbar()</code> coupled with the <code>fun.data = "mean_se"</code> argument.</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="errorbar.html#cb721-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb721-2"><a href="errorbar.html#cb721-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb721-3"><a href="errorbar.html#cb721-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb721-4"><a href="errorbar.html#cb721-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>) </span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-736-1.png" alt="" width="576" /></p>
-<p>You can control the width of the errorbar by setting the <code>width</code> argument.</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="errorbar.html#cb722-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="errorbar.html#cb722-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
 <span id="cb722-2"><a href="errorbar.html#cb722-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb722-3"><a href="errorbar.html#cb722-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb722-4"><a href="errorbar.html#cb722-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
-<span id="cb722-5"><a href="errorbar.html#cb722-5" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<span id="cb722-4"><a href="errorbar.html#cb722-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>) </span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-736-1.png" alt="" width="576" /></p>
+<p>You can control the width of the errorbar by setting the <code>width</code> argument.</p>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="errorbar.html#cb723-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb723-2"><a href="errorbar.html#cb723-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb723-3"><a href="errorbar.html#cb723-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb723-4"><a href="errorbar.html#cb723-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
+<span id="cb723-5"><a href="errorbar.html#cb723-5" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-737-1.png" alt="" width="576" /></p>
 <p>This plot is called a <strong>mean-error-bar</strong> plot. Let’s take a detailed look at this plot. The distance from the mean point to the lower bound of the error bar is the so called <strong>standard error</strong>, which is defined as the standard deviation of the sample divided by the square root of the sample size. Let’s try to calculate the upper and lower bounds of the error bar.</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="errorbar.html#cb723-1" tabindex="-1"></a>sale_price_1_story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
-<span id="cb723-2"><a href="errorbar.html#cb723-2" tabindex="-1"></a>sale_price_1_story_se <span class="ot">&lt;-</span> <span class="fu">sd</span>(sale_price_1_story)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price_1_story))</span>
-<span id="cb723-3"><a href="errorbar.html#cb723-3" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">+</span> sale_price_1_story_se</span>
-<span id="cb723-4"><a href="errorbar.html#cb723-4" tabindex="-1"></a><span class="co">#&gt; [1] 192.251</span></span>
-<span id="cb723-5"><a href="errorbar.html#cb723-5" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">-</span> sale_price_1_story_se</span>
-<span id="cb723-6"><a href="errorbar.html#cb723-6" tabindex="-1"></a><span class="co">#&gt; [1] 173.8044</span></span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="errorbar.html#cb724-1" tabindex="-1"></a>sale_price_1_story <span class="ot">&lt;-</span> sahp<span class="sc">$</span>sale_price[sahp<span class="sc">$</span>house_style <span class="sc">==</span> <span class="st">&quot;1Story&quot;</span>]</span>
+<span id="cb724-2"><a href="errorbar.html#cb724-2" tabindex="-1"></a>sale_price_1_story_se <span class="ot">&lt;-</span> <span class="fu">sd</span>(sale_price_1_story)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sale_price_1_story))</span>
+<span id="cb724-3"><a href="errorbar.html#cb724-3" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">+</span> sale_price_1_story_se</span>
+<span id="cb724-4"><a href="errorbar.html#cb724-4" tabindex="-1"></a><span class="co">#&gt; [1] 192.251</span></span>
+<span id="cb724-5"><a href="errorbar.html#cb724-5" tabindex="-1"></a><span class="fu">mean</span>(sale_price_1_story) <span class="sc">-</span> sale_price_1_story_se</span>
+<span id="cb724-6"><a href="errorbar.html#cb724-6" tabindex="-1"></a><span class="co">#&gt; [1] 173.8044</span></span></code></pre></div>
 <p>You may notice that we are referring the data as sample since the <code>sahp</code> dataset contains only a subset of the population with all houses in the world. An important application of error bar is to construct the 95% confidence interval of the population mean. You know that the 95% confidence interval for a normal distribution is mean <span class="math inline">\(\pm\)</span> 1.96*se. If the data follows a normal distribution, you can construct such a confidence interval by setting the multiplier of the standard error in the error bar to be 1.96.</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="errorbar.html#cb724-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb724-2"><a href="errorbar.html#cb724-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb724-3"><a href="errorbar.html#cb724-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb724-4"><a href="errorbar.html#cb724-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
-<span id="cb724-5"><a href="errorbar.html#cb724-5" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, </span>
-<span id="cb724-6"><a href="errorbar.html#cb724-6" tabindex="-1"></a>                <span class="at">fun.args =</span> <span class="fu">list</span>(<span class="at">mult =</span> <span class="fl">1.96</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="errorbar.html#cb725-1" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb725-2"><a href="errorbar.html#cb725-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb725-3"><a href="errorbar.html#cb725-3" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb725-4"><a href="errorbar.html#cb725-4" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
+<span id="cb725-5"><a href="errorbar.html#cb725-5" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, </span>
+<span id="cb725-6"><a href="errorbar.html#cb725-6" tabindex="-1"></a>                <span class="at">fun.args =</span> <span class="fu">list</span>(<span class="at">mult =</span> <span class="fl">1.96</span>))</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-739-1.png" alt="" width="576" /></p>
 <p>Of course, you can also add the error bar on top of the other plots like the boxplot or violin plot.</p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="errorbar.html#cb725-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb725-2"><a href="errorbar.html#cb725-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb725-3"><a href="errorbar.html#cb725-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb725-4"><a href="errorbar.html#cb725-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
-<span id="cb725-5"><a href="errorbar.html#cb725-5" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
-<span id="cb725-6"><a href="errorbar.html#cb725-6" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="r02pro_files/figure-html/unnamed-chunk-740-1.png" alt="" width="576" /></p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="errorbar.html#cb726-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
-<span id="cb726-2"><a href="errorbar.html#cb726-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span></span>
-<span id="cb726-3"><a href="errorbar.html#cb726-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb726-4"><a href="errorbar.html#cb726-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
-<span id="cb726-5"><a href="errorbar.html#cb726-5" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>,</span>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="errorbar.html#cb726-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb726-2"><a href="errorbar.html#cb726-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb726-3"><a href="errorbar.html#cb726-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb726-4"><a href="errorbar.html#cb726-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, </span>
+<span id="cb726-5"><a href="errorbar.html#cb726-5" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>, </span>
 <span id="cb726-6"><a href="errorbar.html#cb726-6" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="r02pro_files/figure-html/unnamed-chunk-740-1.png" alt="" width="576" /></p>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="errorbar.html#cb727-1" tabindex="-1"></a>g  <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
+<span id="cb727-2"><a href="errorbar.html#cb727-2" tabindex="-1"></a>                <span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="sc">+</span></span>
+<span id="cb727-3"><a href="errorbar.html#cb727-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb727-4"><a href="errorbar.html#cb727-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
+<span id="cb727-5"><a href="errorbar.html#cb727-5" tabindex="-1"></a>                <span class="at">fun.data =</span> <span class="st">&quot;mean_se&quot;</span>,</span>
+<span id="cb727-6"><a href="errorbar.html#cb727-6" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p><img src="r02pro_files/figure-html/unnamed-chunk-741-1.png" alt="" width="576" /></p>
 <p>In this section, we introduced the error bar plot, which visualizes the uncertainty in a measurement. The standard error bar shows the mean <span class="math inline">\(\pm\)</span> one standard error, while a 95% confidence interval uses a multiplier of 1.96. Error bars can be overlaid on top of boxplots or violin plots to combine distribution information with uncertainty measures.</p>
 <div id="exercises-52" class="section level3 hasAnchor" number="7.5.1">
