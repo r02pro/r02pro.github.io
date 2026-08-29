@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-08-28" />
+<meta name="date" content="2026-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1006,11 +1006,11 @@ Figure 2.2: The environment (II)
 <p>The most common use of recycling is an operation between a vector and a scalar (a length-1 vector). Let’s see an example.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intro-num-vector.html#cb49-1" tabindex="-1"></a>y1 <span class="sc">+</span> x1</span>
 <span id="cb49-2"><a href="intro-num-vector.html#cb49-2" tabindex="-1"></a><span class="co">#&gt; [1]  7  9  9 11 11</span></span></code></pre></div>
-<p>Here, <code>y1</code> is a length-5 vector (<code>c(1, 3, 5, 2, 4)</code>) and <code>x1</code> is a length-1 vector (<code>6</code>). R internally recycles <code>x1</code> into <code>c(6, 6, 6, 6, 6)</code> and then performs element-wise addition:</p>
-<pre><code>    y1:    1    3    5    2    4
+<p>Here, <code>y1</code> is a length-5 vector (<code>c(1, 3, 3, 5, 5)</code>) and <code>x1</code> is a length-1 vector (<code>6</code>). R internally recycles <code>x1</code> into <code>c(6, 6, 6, 6, 6)</code> and then performs element-wise addition:</p>
+<pre><code>    y1:    1    3    3    5    5
     x1:    6    6    6    6    6   &lt;- recycled from length 1 to length 5
   ----  ----  ----  ----  ----  ----
-  sum:    7    9   11    8   10</code></pre>
+  sum:    7    9    9   11   11</code></pre>
 <p>So the output is a length-5 numeric vector where each element of <code>y1</code> has been increased by 6.</p>
 <div class="infobox caution">
 <p>By now you have created several objects, and you may find that objects will not be saved in R if you don’t assign their values to names, for example, the results of <code>y1 + x1</code> is not shown in the environment.</p>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-08-28" />
+<meta name="date" content="2026-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1105,10 +1105,6 @@ Matches any uppercase letter
 <td align="left">Matches either the pattern on the left or the right (OR).</td>
 </tr>
 <tr class="even">
-<td align="left">&amp;</td>
-<td align="left">Requires both patterns to match (AND).</td>
-</tr>
-<tr class="odd">
 <td align="left">()</td>
 <td align="left">Groups patterns to control the scope of operators.</td>
 </tr>
@@ -1123,18 +1119,25 @@ Matches any uppercase letter
 <span id="cb850-6"><a href="match-pattern.html#cb850-6" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123&gt;&lt;abc&gt;</span></span>
 <span id="cb850-7"><a href="match-pattern.html#cb850-7" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;abc&gt;&lt;123&gt;def</span></span></code></pre></div>
 <p>Here, <code>"abc|123"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123"</code>. As a result, <code>"abc"</code>, <code>"123"</code>, <code>"abc123"</code>, <code>"123abc"</code>, and <code>"abc123def"</code> are matched.</p>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="match-pattern.html#cb851-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc&amp;123&quot;</span>)    <span class="co"># Matches &#39;abc&#39; and &#39;123&#39;</span></span>
+<p>Note that regular expressions do not have a built-in AND operator: there is no symbol that means “this pattern and that pattern must both match.” The character <code>&amp;</code> is simply a literal ampersand, so a pattern like <code>"abc&amp;123"</code> only matches strings that literally contain the substring <code>"abc&amp;123"</code>.</p>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="match-pattern.html#cb851-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc&amp;123&quot;</span>)    <span class="co"># Matches the literal substring &#39;abc&amp;123&#39;</span></span>
 <span id="cb851-2"><a href="match-pattern.html#cb851-2" tabindex="-1"></a><span class="co">#&gt; ✖ Empty `string` provided.</span></span></code></pre></div>
-<p>Here, <code>"abc&amp;123"</code> indicates that the string should contain a substring that matches both <code>"abc"</code> and <code>"123"</code>, which is impossible. As a result, no matches are found.</p>
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="match-pattern.html#cb852-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;(abc|123)abc&quot;</span>)  </span>
-<span id="cb852-2"><a href="match-pattern.html#cb852-2" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span></code></pre></div>
-<p>Here, <code>"(abc|123)abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123"</code> followed by <code>"abc"</code>. As a result, <code>"abc123"</code> is matched.</p>
-<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="match-pattern.html#cb853-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc|123abc&quot;</span>) </span>
-<span id="cb853-2"><a href="match-pattern.html#cb853-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;abc&gt;</span></span>
-<span id="cb853-3"><a href="match-pattern.html#cb853-3" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;abc&gt;123</span></span>
-<span id="cb853-4"><a href="match-pattern.html#cb853-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span>
-<span id="cb853-5"><a href="match-pattern.html#cb853-5" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;abc&gt;123def</span></span></code></pre></div>
-<p>Here, <code>"abc|123abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123abc"</code>. As a result, <code>"abc"</code>, <code>"abc123"</code>, and <code>"abc123def"</code> are matched.</p>
+<p>Here, <code>"abc&amp;123"</code> looks for the literal characters <code>"abc&amp;123"</code> in a row. Since none of the strings in <code>my_str_comb</code> contain a literal <code>&amp;</code>, no matches are found. This is not because AND-matching is impossible, but simply because <code>&amp;</code> is treated as an ordinary character, not an operator.</p>
+<p>If you want to require that a string contains both <code>"abc"</code> and <code>"123"</code> somewhere (in either order), you can emulate AND using lookaheads.</p>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="match-pattern.html#cb852-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;(?=.*abc)(?=.*123)&quot;</span>)   <span class="co"># Matches strings containing both &#39;abc&#39; and &#39;123&#39;</span></span>
+<span id="cb852-2"><a href="match-pattern.html#cb852-2" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;&gt;abc123</span></span>
+<span id="cb852-3"><a href="match-pattern.html#cb852-3" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;&gt;123abc</span></span>
+<span id="cb852-4"><a href="match-pattern.html#cb852-4" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;&gt;abc123def</span></span></code></pre></div>
+<p>Here, <code>(?=.*abc)</code> is a lookahead that checks the string contains <code>"abc"</code> somewhere, and <code>(?=.*123)</code> checks it also contains <code>"123"</code> somewhere, without consuming any characters. As a result, <code>"abc123"</code>, <code>"123abc"</code>, and <code>"abc123def"</code> are matched. Since lookaheads do not consume characters, <code>str_view()</code> highlights an empty match at the start of each matching string.</p>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="match-pattern.html#cb853-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;(abc|123)abc&quot;</span>)</span>
+<span id="cb853-2"><a href="match-pattern.html#cb853-2" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span></code></pre></div>
+<p>Here, <code>"(abc|123)abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123"</code> immediately followed by <code>"abc"</code>. As a result, <code>"123abc"</code> is matched.</p>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="match-pattern.html#cb854-1" tabindex="-1"></a><span class="fu">str_view</span>(my_str_comb, <span class="st">&quot;abc|123abc&quot;</span>)</span>
+<span id="cb854-2"><a href="match-pattern.html#cb854-2" tabindex="-1"></a><span class="co">#&gt; [1] │ &lt;abc&gt;</span></span>
+<span id="cb854-3"><a href="match-pattern.html#cb854-3" tabindex="-1"></a><span class="co">#&gt; [3] │ &lt;abc&gt;123</span></span>
+<span id="cb854-4"><a href="match-pattern.html#cb854-4" tabindex="-1"></a><span class="co">#&gt; [4] │ &lt;123abc&gt;</span></span>
+<span id="cb854-5"><a href="match-pattern.html#cb854-5" tabindex="-1"></a><span class="co">#&gt; [5] │ &lt;abc&gt;123def</span></span></code></pre></div>
+<p>Here, <code>"abc|123abc"</code> indicates that the string should contain either <code>"abc"</code> or <code>"123abc"</code>. As a result, <code>"abc"</code>, <code>"abc123"</code>, <code>"123abc"</code>, and <code>"abc123def"</code> are matched.</p>
 <p>Comparing the last two examples, the parentheses <code>()</code> are used to group the patterns to control the scope of the operators.</p>
 </div>
 <div id="conclusion" class="section level3 hasAnchor" number="10.2.4">
@@ -1178,17 +1181,17 @@ Matches any uppercase letter
 <li><code>.com</code>: The domain should end with <code>.com</code>.</li>
 </ul>
 <p>Use the <code>str_detect()</code> function with your pattern on the following strings:</p>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="match-pattern.html#cb854-1" tabindex="-1"></a>emails <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb854-2"><a href="match-pattern.html#cb854-2" tabindex="-1"></a>  <span class="st">&quot;user.name@domain.com&quot;</span>, </span>
-<span id="cb854-3"><a href="match-pattern.html#cb854-3" tabindex="-1"></a>  <span class="st">&quot;user123@domain.com&quot;</span>, </span>
-<span id="cb854-4"><a href="match-pattern.html#cb854-4" tabindex="-1"></a>  <span class="st">&quot;user_name@domain.com&quot;</span>, </span>
-<span id="cb854-5"><a href="match-pattern.html#cb854-5" tabindex="-1"></a>  <span class="st">&quot;username@domaincom&quot;</span>, </span>
-<span id="cb854-6"><a href="match-pattern.html#cb854-6" tabindex="-1"></a>  <span class="st">&quot;username@domain.net&quot;</span>, </span>
-<span id="cb854-7"><a href="match-pattern.html#cb854-7" tabindex="-1"></a>  <span class="st">&quot;user@name@domain.com&quot;</span>,</span>
-<span id="cb854-8"><a href="match-pattern.html#cb854-8" tabindex="-1"></a>  <span class="st">&quot;@icloud.com&quot;</span>,</span>
-<span id="cb854-9"><a href="match-pattern.html#cb854-9" tabindex="-1"></a>  <span class="st">&quot;user@.com&quot;</span>,</span>
-<span id="cb854-10"><a href="match-pattern.html#cb854-10" tabindex="-1"></a>  <span class="st">&quot;user@do_main.com&quot;</span></span>
-<span id="cb854-11"><a href="match-pattern.html#cb854-11" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="match-pattern.html#cb855-1" tabindex="-1"></a>emails <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb855-2"><a href="match-pattern.html#cb855-2" tabindex="-1"></a>  <span class="st">&quot;user.name@domain.com&quot;</span>, </span>
+<span id="cb855-3"><a href="match-pattern.html#cb855-3" tabindex="-1"></a>  <span class="st">&quot;user123@domain.com&quot;</span>, </span>
+<span id="cb855-4"><a href="match-pattern.html#cb855-4" tabindex="-1"></a>  <span class="st">&quot;user_name@domain.com&quot;</span>, </span>
+<span id="cb855-5"><a href="match-pattern.html#cb855-5" tabindex="-1"></a>  <span class="st">&quot;username@domaincom&quot;</span>, </span>
+<span id="cb855-6"><a href="match-pattern.html#cb855-6" tabindex="-1"></a>  <span class="st">&quot;username@domain.net&quot;</span>, </span>
+<span id="cb855-7"><a href="match-pattern.html#cb855-7" tabindex="-1"></a>  <span class="st">&quot;user@name@domain.com&quot;</span>,</span>
+<span id="cb855-8"><a href="match-pattern.html#cb855-8" tabindex="-1"></a>  <span class="st">&quot;@icloud.com&quot;</span>,</span>
+<span id="cb855-9"><a href="match-pattern.html#cb855-9" tabindex="-1"></a>  <span class="st">&quot;user@.com&quot;</span>,</span>
+<span id="cb855-10"><a href="match-pattern.html#cb855-10" tabindex="-1"></a>  <span class="st">&quot;user@do_main.com&quot;</span></span>
+<span id="cb855-11"><a href="match-pattern.html#cb855-11" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>Extracting Dates</li>
 </ol>

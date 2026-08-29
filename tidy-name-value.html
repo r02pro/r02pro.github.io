@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-08-28" />
+<meta name="date" content="2026-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1038,7 +1038,7 @@ div.csl-indent {
 <span id="cb801-31"><a href="tidy-name-value.html#cb801-31" tabindex="-1"></a><span class="co">#&gt; #   `life_expectancy-Russia-2006` &lt;dbl&gt;,</span></span>
 <span id="cb801-32"><a href="tidy-name-value.html#cb801-32" tabindex="-1"></a><span class="co">#&gt; #   `life_expectancy-United States-2005` &lt;dbl&gt;,</span></span>
 <span id="cb801-33"><a href="tidy-name-value.html#cb801-33" tabindex="-1"></a><span class="co">#&gt; #   `life_expectancy-United States-2006` &lt;dbl&gt;, …</span></span></code></pre></div>
-<p>In the <code>pivot_wider()</code> function, you can specify multiple variables in the <code>names_from</code> and <code>values_from</code> arguments. The resulting tibble <code>gm_wide</code> contains the life expectancy and GDP per capita of the United States, China, and Russia from 2004 to 2006. The column names are in the format of <code>country_year_variable</code>. Note that we have an extra argument <code>names_sep</code> in the <code>pivot_wider()</code> function. This argument is used to separate the column names with a hyphen <code>"-"</code>. We didn’t use the separator <code>"_"</code> because it is already used in the column names of the original tibble.</p>
+<p>In the <code>pivot_wider()</code> function, you can specify multiple variables in the <code>names_from</code> and <code>values_from</code> arguments. The resulting tibble <code>gm_wide</code> contains the life expectancy and GDP per capita of the United States, China, and Russia from 2004 to 2006. The column names are in the format <code>variable-country-year</code> (e.g. <code>life_expectancy-China-2004</code>), i.e., the value column name comes first, followed by the <code>names_from</code> variables joined with <code>names_sep</code>. Note that we have an extra argument <code>names_sep</code> in the <code>pivot_wider()</code> function. This argument is used to separate the column names with a hyphen <code>"-"</code>. We didn’t use the separator <code>"_"</code> because it is already used in the column names of the original tibble.</p>
 <p>To make the tibble tidy, you can use the <code>pivot_longer()</code> function.</p>
 <div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="tidy-name-value.html#cb802-1" tabindex="-1"></a>gm_wide <span class="sc">%&gt;%</span> </span>
 <span id="cb802-2"><a href="tidy-name-value.html#cb802-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), </span>

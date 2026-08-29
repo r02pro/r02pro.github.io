@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-08-28" />
+<meta name="date" content="2026-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -904,7 +904,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="character-sort-rank-order.html#cb193-1" tabindex="-1"></a>char_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;aB&quot;</span>,<span class="st">&quot;ac&quot;</span>, <span class="st">&quot;1c&quot;</span>, <span class="st">&quot;.a&quot;</span>, <span class="st">&quot;1a&quot;</span>,<span class="st">&quot;2a&quot;</span>,<span class="st">&quot;.a&quot;</span>,<span class="st">&quot;&amp;u&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;_4&quot;</span>)</span></code></pre></div>
 <div id="ordering-rules" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Ordering rules<a href="character-sort-rank-order.html#ordering-rules" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For character vectors, R uses the <strong>lexicographical ordering</strong>, which is sometimes called dictionary order since it is the order used in a dictionary. Note that the strings in character vectors can contain letters, numbers, or symbols. There are a few important ordering rules as follows.</p>
+<p>For character vectors, R uses the <strong>lexicographical ordering</strong>, which is sometimes called dictionary order since it is the order used in a dictionary. Note that the strings in character vectors can contain letters, numbers, or symbols.</p>
+<p>Before going further, it is important to know that string sorting in R is <strong>locale-dependent</strong>: the exact ordering rules are governed by the collation locale of your R session, which you can check with <code>Sys.getlocale("LC_COLLATE")</code>. The rules and examples in this section assume a typical English locale such as <code>en_US.UTF-8</code>, which is the default on most personal computers. If your session instead uses the <code>C</code> locale (common on Linux servers, Docker containers, and some classroom setups), results can differ substantially; most notably, all uppercase letters sort before all lowercase letters (e.g., <code>sort(c(letters, LETTERS))</code> gives <code>A B C ... a b c ...</code> instead of interleaving cases), and symbols sort in raw ASCII order rather than the sequence shown below. If the code in this section produces different output than shown, check your locale first before assuming something is wrong.</p>
+<p>There are a few important ordering rules as follows.</p>
 <ul>
 <li><p>symbols &lt; digits &lt; letters: symbols appear first, followed by digits, and letters appear last.</p></li>
 <li><p>symbols are ordered in a specific way as shown below.</p></li>
@@ -955,7 +957,7 @@ div.csl-indent {
 </div>
 <div id="get-ranks-in-vectors-with-rank-1" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Get ranks in vectors with <code>rank()</code><a href="character-sort-rank-order.html#get-ranks-in-vectors-with-rank-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The same ordering rules introduced in subsection <a href="character-sort-rank-order.html#ordering-rules">3.5.1</a> do apply when R ranks a character vector’s strings. Here, the element with rank 1 is <code>_4</code> and <code>.a</code> has rank 2. Just like numeric vectors, if you have strings with the same value (i.e., characters) in character vectors, these elements’ ranks will be the same (the average of the corresponding ranks) by default.</p>
+<p>The same ordering rules introduced in subsection <a href="character-sort-rank-order.html#ordering-rules">3.5.1</a> do apply when R ranks a character vector’s strings. Here, the element with rank 1 is <code>_4</code> and <code>.a</code> has rank 2.5 (the average of ranks 2 and 3, since there are two tied <code>.a</code> elements). Just like numeric vectors, if you have strings with the same value (i.e., characters) in character vectors, these elements’ ranks will be the same (the average of the corresponding ranks) by default.</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="character-sort-rank-order.html#cb200-1" tabindex="-1"></a><span class="fu">rank</span>(char_vec)</span>
 <span id="cb200-2"><a href="character-sort-rank-order.html#cb200-2" tabindex="-1"></a><span class="co">#&gt;  [1]  9.0 10.0 14.0 13.0 11.0 12.0  6.0  2.5  5.0  7.0  2.5  4.0  8.0  1.0</span></span></code></pre></div>
 <p>As expected, you can set the <code>ties.method</code> argument in <code>rank()</code> to use other methods for breaking ties.</p>

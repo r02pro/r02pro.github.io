@@ -23,7 +23,7 @@
 <meta name="author" content="Yang Feng" />
 
 
-<meta name="date" content="2026-08-28" />
+<meta name="date" content="2026-08-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -953,45 +953,45 @@ div.csl-indent {
 <span id="cb767-7"><a href="create-variables.html#cb767-7" tabindex="-1"></a><span class="co">#&gt;   livercancer_newcases_female`.</span></span>
 <span id="cb767-8"><a href="create-variables.html#cb767-8" tabindex="-1"></a><span class="co">#&gt; Caused by error:</span></span>
 <span id="cb767-9"><a href="create-variables.html#cb767-9" tabindex="-1"></a><span class="co">#&gt; ! object &#39;livercancer_newcases_male&#39; not found</span></span></code></pre></div>
-<p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the order of each country in terms of GDP per capita in the year 2008, you can use <code>mutate(GDP_order = order(GDP_per_capita))</code>. To create a variable as the mean of the <code>GDP_per_capita</code> of all countries, you can add <code>GDP_per_capita_ave = mean(GDP_per_capita, na.rm = TRUE)</code> as an argument in the <code>mutate()</code> function.</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="create-variables.html#cb768-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
+<p>Note that you are free to use any functions on a vector, including all the arithmetic operations and various functions. For example, to include the rank of each country in terms of GDP per capita in the year 2008, you can use <code>mutate(GDP_rank = rank(GDP_per_capita))</code>. To create a variable as the mean of the <code>GDP_per_capita</code> of all countries, you can add <code>GDP_per_capita_ave = mean(GDP_per_capita, na.rm = TRUE)</code> as an argument in the <code>mutate()</code> function.</p>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="create-variables.html#cb768-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
 <span id="cb768-2"><a href="create-variables.html#cb768-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb768-3"><a href="create-variables.html#cb768-3" tabindex="-1"></a>  <span class="fu">select</span>(country, year, population, GDP_per_capita) <span class="sc">%&gt;%</span> </span>
-<span id="cb768-4"><a href="create-variables.html#cb768-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GDP_order =</span> <span class="fu">order</span>(GDP_per_capita),</span>
+<span id="cb768-3"><a href="create-variables.html#cb768-3" tabindex="-1"></a>  <span class="fu">select</span>(country, year, population, GDP_per_capita) <span class="sc">%&gt;%</span></span>
+<span id="cb768-4"><a href="create-variables.html#cb768-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GDP_rank =</span> <span class="fu">rank</span>(GDP_per_capita),</span>
 <span id="cb768-5"><a href="create-variables.html#cb768-5" tabindex="-1"></a>         <span class="at">GDP_per_capita_ave =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb768-6"><a href="create-variables.html#cb768-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 6</span></span>
-<span id="cb768-7"><a href="create-variables.html#cb768-7" tabindex="-1"></a><span class="co">#&gt;    country           year population GDP_per_capita GDP_order GDP_per_capita_ave</span></span>
-<span id="cb768-8"><a href="create-variables.html#cb768-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;     &lt;int&gt;              &lt;dbl&gt;</span></span>
-<span id="cb768-9"><a href="create-variables.html#cb768-9" tabindex="-1"></a><span class="co">#&gt;  1 Afghanistan       2008    28400            0.492        13               14.8</span></span>
-<span id="cb768-10"><a href="create-variables.html#cb768-10" tabindex="-1"></a><span class="co">#&gt;  2 Angola            2008    22500            3.96        129               14.8</span></span>
-<span id="cb768-11"><a href="create-variables.html#cb768-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania           2008     2970            3.43         38               14.8</span></span>
-<span id="cb768-12"><a href="create-variables.html#cb768-12" tabindex="-1"></a><span class="co">#&gt;  4 Andorra           2008       84.5         35.4          59               14.8</span></span>
-<span id="cb768-13"><a href="create-variables.html#cb768-13" tabindex="-1"></a><span class="co">#&gt;  5 United Arab Emi…  2008     7920           34.6         132               14.8</span></span>
-<span id="cb768-14"><a href="create-variables.html#cb768-14" tabindex="-1"></a><span class="co">#&gt;  6 Argentina         2008    40500           12.4         126               14.8</span></span>
-<span id="cb768-15"><a href="create-variables.html#cb768-15" tabindex="-1"></a><span class="co">#&gt;  7 Armenia           2008     2890            2.88        180               14.8</span></span>
-<span id="cb768-16"><a href="create-variables.html#cb768-16" tabindex="-1"></a><span class="co">#&gt;  8 American Samoa    2008       NA           12.1         115               14.8</span></span>
-<span id="cb768-17"><a href="create-variables.html#cb768-17" tabindex="-1"></a><span class="co">#&gt;  9 Antigua and Bar…  2008       86.7         15.4           1               14.8</span></span>
-<span id="cb768-18"><a href="create-variables.html#cb768-18" tabindex="-1"></a><span class="co">#&gt; 10 Australia         2008    21800           53.3          31               14.8</span></span>
+<span id="cb768-7"><a href="create-variables.html#cb768-7" tabindex="-1"></a><span class="co">#&gt;    country            year population GDP_per_capita GDP_rank GDP_per_capita_ave</span></span>
+<span id="cb768-8"><a href="create-variables.html#cb768-8" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;              &lt;dbl&gt;</span></span>
+<span id="cb768-9"><a href="create-variables.html#cb768-9" tabindex="-1"></a><span class="co">#&gt;  1 Afghanistan        2008    28400            0.492        9               14.8</span></span>
+<span id="cb768-10"><a href="create-variables.html#cb768-10" tabindex="-1"></a><span class="co">#&gt;  2 Angola             2008    22500            3.96        85               14.8</span></span>
+<span id="cb768-11"><a href="create-variables.html#cb768-11" tabindex="-1"></a><span class="co">#&gt;  3 Albania            2008     2970            3.43        78               14.8</span></span>
+<span id="cb768-12"><a href="create-variables.html#cb768-12" tabindex="-1"></a><span class="co">#&gt;  4 Andorra            2008       84.5         35.4        175               14.8</span></span>
+<span id="cb768-13"><a href="create-variables.html#cb768-13" tabindex="-1"></a><span class="co">#&gt;  5 United Arab Emir…  2008     7920           34.6        171               14.8</span></span>
+<span id="cb768-14"><a href="create-variables.html#cb768-14" tabindex="-1"></a><span class="co">#&gt;  6 Argentina          2008    40500           12.4        139               14.8</span></span>
+<span id="cb768-15"><a href="create-variables.html#cb768-15" tabindex="-1"></a><span class="co">#&gt;  7 Armenia            2008     2890            2.88        67               14.8</span></span>
+<span id="cb768-16"><a href="create-variables.html#cb768-16" tabindex="-1"></a><span class="co">#&gt;  8 American Samoa     2008       NA           12.1        138               14.8</span></span>
+<span id="cb768-17"><a href="create-variables.html#cb768-17" tabindex="-1"></a><span class="co">#&gt;  9 Antigua and Barb…  2008       86.7         15.4        144               14.8</span></span>
+<span id="cb768-18"><a href="create-variables.html#cb768-18" tabindex="-1"></a><span class="co">#&gt; 10 Australia          2008    21800           53.3        192               14.8</span></span>
 <span id="cb768-19"><a href="create-variables.html#cb768-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
 <p>The <code>mutate()</code> function is very powerful in creating new variables. However, if you only want to keep the newly created variables, you can use the <code>transmute()</code> function.</p>
-<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="create-variables.html#cb769-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="create-variables.html#cb769-1" tabindex="-1"></a>gm <span class="sc">%&gt;%</span></span>
 <span id="cb769-2"><a href="create-variables.html#cb769-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb769-3"><a href="create-variables.html#cb769-3" tabindex="-1"></a>  <span class="fu">select</span>(country, year, population, GDP_per_capita) <span class="sc">%&gt;%</span> </span>
-<span id="cb769-4"><a href="create-variables.html#cb769-4" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">GDP_order =</span> <span class="fu">order</span>(GDP_per_capita),</span>
+<span id="cb769-3"><a href="create-variables.html#cb769-3" tabindex="-1"></a>  <span class="fu">select</span>(country, year, population, GDP_per_capita) <span class="sc">%&gt;%</span></span>
+<span id="cb769-4"><a href="create-variables.html#cb769-4" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">GDP_rank =</span> <span class="fu">rank</span>(GDP_per_capita),</span>
 <span id="cb769-5"><a href="create-variables.html#cb769-5" tabindex="-1"></a>            <span class="at">GDP_per_capita_ave =</span> <span class="fu">mean</span>(GDP_per_capita, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb769-6"><a href="create-variables.html#cb769-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 236 × 2</span></span>
-<span id="cb769-7"><a href="create-variables.html#cb769-7" tabindex="-1"></a><span class="co">#&gt;    GDP_order GDP_per_capita_ave</span></span>
-<span id="cb769-8"><a href="create-variables.html#cb769-8" tabindex="-1"></a><span class="co">#&gt;        &lt;int&gt;              &lt;dbl&gt;</span></span>
-<span id="cb769-9"><a href="create-variables.html#cb769-9" tabindex="-1"></a><span class="co">#&gt;  1        13               14.8</span></span>
-<span id="cb769-10"><a href="create-variables.html#cb769-10" tabindex="-1"></a><span class="co">#&gt;  2       129               14.8</span></span>
-<span id="cb769-11"><a href="create-variables.html#cb769-11" tabindex="-1"></a><span class="co">#&gt;  3        38               14.8</span></span>
-<span id="cb769-12"><a href="create-variables.html#cb769-12" tabindex="-1"></a><span class="co">#&gt;  4        59               14.8</span></span>
-<span id="cb769-13"><a href="create-variables.html#cb769-13" tabindex="-1"></a><span class="co">#&gt;  5       132               14.8</span></span>
-<span id="cb769-14"><a href="create-variables.html#cb769-14" tabindex="-1"></a><span class="co">#&gt;  6       126               14.8</span></span>
-<span id="cb769-15"><a href="create-variables.html#cb769-15" tabindex="-1"></a><span class="co">#&gt;  7       180               14.8</span></span>
-<span id="cb769-16"><a href="create-variables.html#cb769-16" tabindex="-1"></a><span class="co">#&gt;  8       115               14.8</span></span>
-<span id="cb769-17"><a href="create-variables.html#cb769-17" tabindex="-1"></a><span class="co">#&gt;  9         1               14.8</span></span>
-<span id="cb769-18"><a href="create-variables.html#cb769-18" tabindex="-1"></a><span class="co">#&gt; 10        31               14.8</span></span>
+<span id="cb769-7"><a href="create-variables.html#cb769-7" tabindex="-1"></a><span class="co">#&gt;    GDP_rank GDP_per_capita_ave</span></span>
+<span id="cb769-8"><a href="create-variables.html#cb769-8" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt;              &lt;dbl&gt;</span></span>
+<span id="cb769-9"><a href="create-variables.html#cb769-9" tabindex="-1"></a><span class="co">#&gt;  1        9               14.8</span></span>
+<span id="cb769-10"><a href="create-variables.html#cb769-10" tabindex="-1"></a><span class="co">#&gt;  2       85               14.8</span></span>
+<span id="cb769-11"><a href="create-variables.html#cb769-11" tabindex="-1"></a><span class="co">#&gt;  3       78               14.8</span></span>
+<span id="cb769-12"><a href="create-variables.html#cb769-12" tabindex="-1"></a><span class="co">#&gt;  4      175               14.8</span></span>
+<span id="cb769-13"><a href="create-variables.html#cb769-13" tabindex="-1"></a><span class="co">#&gt;  5      171               14.8</span></span>
+<span id="cb769-14"><a href="create-variables.html#cb769-14" tabindex="-1"></a><span class="co">#&gt;  6      139               14.8</span></span>
+<span id="cb769-15"><a href="create-variables.html#cb769-15" tabindex="-1"></a><span class="co">#&gt;  7       67               14.8</span></span>
+<span id="cb769-16"><a href="create-variables.html#cb769-16" tabindex="-1"></a><span class="co">#&gt;  8      138               14.8</span></span>
+<span id="cb769-17"><a href="create-variables.html#cb769-17" tabindex="-1"></a><span class="co">#&gt;  9      144               14.8</span></span>
+<span id="cb769-18"><a href="create-variables.html#cb769-18" tabindex="-1"></a><span class="co">#&gt; 10      192               14.8</span></span>
 <span id="cb769-19"><a href="create-variables.html#cb769-19" tabindex="-1"></a><span class="co">#&gt; # ℹ 226 more rows</span></span></code></pre></div>
 <div id="exercises-57" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Exercises<a href="create-variables.html#exercises-57" class="anchor-section" aria-label="Anchor link to header"></a></h3>
