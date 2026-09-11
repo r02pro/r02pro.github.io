@@ -910,9 +910,14 @@ div.csl-indent {
 <!-- ``` -->
 <div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="import-data.html#cb474-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb474-2"><a href="import-data.html#cb474-2" tabindex="-1"></a>gm_small <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/gm_small.csv&quot;</span>)</span>
-<span id="cb474-3"><a href="import-data.html#cb474-3" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb474-4"><a href="import-data.html#cb474-4" tabindex="-1"></a><span class="co">#&gt; ! &#39;data/gm_small.csv&#39; does not exist in current working directory:</span></span>
-<span id="cb474-5"><a href="import-data.html#cb474-5" tabindex="-1"></a><span class="co">#&gt;   &#39;/home/runner/work/r02pro_source/r02pro_source&#39;.</span></span></code></pre></div>
+<span id="cb474-3"><a href="import-data.html#cb474-3" tabindex="-1"></a><span class="co">#&gt; Rows: 5 Columns: 4</span></span>
+<span id="cb474-4"><a href="import-data.html#cb474-4" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb474-5"><a href="import-data.html#cb474-5" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb474-6"><a href="import-data.html#cb474-6" tabindex="-1"></a><span class="co">#&gt; chr (3): country, gender, continent</span></span>
+<span id="cb474-7"><a href="import-data.html#cb474-7" tabindex="-1"></a><span class="co">#&gt; dbl (1): year</span></span>
+<span id="cb474-8"><a href="import-data.html#cb474-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb474-9"><a href="import-data.html#cb474-9" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb474-10"><a href="import-data.html#cb474-10" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre></div>
 <p>We can see that there is a message showing the <strong>Column specification</strong> during the import process. In particular, we see <code>country</code>, <code>gender</code>, and <code>continent</code> are of type character, and <code>year</code> is of type double. We can also check the value of <code>gm_small</code> and its structure.</p>
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="import-data.html#cb475-1" tabindex="-1"></a>gm_small</span>
 <span id="cb475-2"><a href="import-data.html#cb475-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
@@ -924,11 +929,19 @@ div.csl-indent {
 <span id="cb475-8"><a href="import-data.html#cb475-8" tabindex="-1"></a><span class="co">#&gt; 4 Argentina             2004 female Americas </span></span>
 <span id="cb475-9"><a href="import-data.html#cb475-9" tabindex="-1"></a><span class="co">#&gt; 5 Armenia               2004 female Asia</span></span>
 <span id="cb475-10"><a href="import-data.html#cb475-10" tabindex="-1"></a><span class="fu">str</span>(gm_small)</span>
-<span id="cb475-11"><a href="import-data.html#cb475-11" tabindex="-1"></a><span class="co">#&gt; tibble [5 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb475-11"><a href="import-data.html#cb475-11" tabindex="-1"></a><span class="co">#&gt; spc_tbl_ [5 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span></span>
 <span id="cb475-12"><a href="import-data.html#cb475-12" tabindex="-1"></a><span class="co">#&gt;  $ country  : chr [1:5] &quot;Albania&quot; &quot;Andorra&quot; &quot;United Arab Emirates&quot; &quot;Argentina&quot; ...</span></span>
 <span id="cb475-13"><a href="import-data.html#cb475-13" tabindex="-1"></a><span class="co">#&gt;  $ year     : num [1:5] 2004 2004 2004 2004 2004</span></span>
 <span id="cb475-14"><a href="import-data.html#cb475-14" tabindex="-1"></a><span class="co">#&gt;  $ gender   : chr [1:5] &quot;female&quot; &quot;female&quot; &quot;female&quot; &quot;female&quot; ...</span></span>
-<span id="cb475-15"><a href="import-data.html#cb475-15" tabindex="-1"></a><span class="co">#&gt;  $ continent: chr [1:5] &quot;Europe&quot; NA &quot;Asia&quot; &quot;Americas&quot; ...</span></span></code></pre></div>
+<span id="cb475-15"><a href="import-data.html#cb475-15" tabindex="-1"></a><span class="co">#&gt;  $ continent: chr [1:5] &quot;Europe&quot; NA &quot;Asia&quot; &quot;Americas&quot; ...</span></span>
+<span id="cb475-16"><a href="import-data.html#cb475-16" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;spec&quot;)=</span></span>
+<span id="cb475-17"><a href="import-data.html#cb475-17" tabindex="-1"></a><span class="co">#&gt;   .. cols(</span></span>
+<span id="cb475-18"><a href="import-data.html#cb475-18" tabindex="-1"></a><span class="co">#&gt;   ..   country = col_character(),</span></span>
+<span id="cb475-19"><a href="import-data.html#cb475-19" tabindex="-1"></a><span class="co">#&gt;   ..   year = col_double(),</span></span>
+<span id="cb475-20"><a href="import-data.html#cb475-20" tabindex="-1"></a><span class="co">#&gt;   ..   gender = col_character(),</span></span>
+<span id="cb475-21"><a href="import-data.html#cb475-21" tabindex="-1"></a><span class="co">#&gt;   ..   continent = col_character()</span></span>
+<span id="cb475-22"><a href="import-data.html#cb475-22" tabindex="-1"></a><span class="co">#&gt;   .. )</span></span>
+<span id="cb475-23"><a href="import-data.html#cb475-23" tabindex="-1"></a><span class="co">#&gt;  - attr(*, &quot;problems&quot;)=&lt;pointer: 0x55ec69945b30&gt;</span></span></code></pre></div>
 <p>We can see that the tibble <code>gm_small</code> is generated along with the correct column types. In order to introduce the various options associated with <code>read_csv()</code> function, let’s move on to the topic of <strong>inline</strong> .csv files next.</p>
 </div>
 <div id="read-inline-.csv-files" class="section level3 hasAnchor" number="5.3.2">
@@ -1060,9 +1073,21 @@ div.csl-indent {
 <div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="import-data.html#cb483-1" tabindex="-1"></a>my_animals <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;data/gm_small_star.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;*&quot;</span>)</span></code></pre></div>
 <p>Let’s try to use <code>read_csv()</code> instead to check what will you get.</p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="import-data.html#cb484-1" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/gm_small_star.csv&quot;</span>)</span>
-<span id="cb484-2"><a href="import-data.html#cb484-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb484-3"><a href="import-data.html#cb484-3" tabindex="-1"></a><span class="co">#&gt; ! &#39;data/gm_small_star.csv&#39; does not exist in current working directory:</span></span>
-<span id="cb484-4"><a href="import-data.html#cb484-4" tabindex="-1"></a><span class="co">#&gt;   &#39;/home/runner/work/r02pro_source/r02pro_source&#39;.</span></span></code></pre></div>
+<span id="cb484-2"><a href="import-data.html#cb484-2" tabindex="-1"></a><span class="co">#&gt; Rows: 5 Columns: 1</span></span>
+<span id="cb484-3"><a href="import-data.html#cb484-3" tabindex="-1"></a><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span id="cb484-4"><a href="import-data.html#cb484-4" tabindex="-1"></a><span class="co">#&gt; Delimiter: &quot;,&quot;</span></span>
+<span id="cb484-5"><a href="import-data.html#cb484-5" tabindex="-1"></a><span class="co">#&gt; chr (1): country*year*gender*continent</span></span>
+<span id="cb484-6"><a href="import-data.html#cb484-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb484-7"><a href="import-data.html#cb484-7" tabindex="-1"></a><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span id="cb484-8"><a href="import-data.html#cb484-8" tabindex="-1"></a><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span id="cb484-9"><a href="import-data.html#cb484-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 1</span></span>
+<span id="cb484-10"><a href="import-data.html#cb484-10" tabindex="-1"></a><span class="co">#&gt;   `country*year*gender*continent`      </span></span>
+<span id="cb484-11"><a href="import-data.html#cb484-11" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                </span></span>
+<span id="cb484-12"><a href="import-data.html#cb484-12" tabindex="-1"></a><span class="co">#&gt; 1 Albania*2004*female*Europe           </span></span>
+<span id="cb484-13"><a href="import-data.html#cb484-13" tabindex="-1"></a><span class="co">#&gt; 2 Andorra*2004*female*NA               </span></span>
+<span id="cb484-14"><a href="import-data.html#cb484-14" tabindex="-1"></a><span class="co">#&gt; 3 United Arab Emirates*2004*female*Asia</span></span>
+<span id="cb484-15"><a href="import-data.html#cb484-15" tabindex="-1"></a><span class="co">#&gt; 4 Argentina*2004*female*Americas       </span></span>
+<span id="cb484-16"><a href="import-data.html#cb484-16" tabindex="-1"></a><span class="co">#&gt; 5 Armenia*2004*female*Asia</span></span></code></pre></div>
 <p>You will see that the imported data has only one variable named <code>country*year*gender*continent</code> since the function will interpret the whole thing as a single variable.</p>
 </div>
 <div id="import-menu" class="section level3 hasAnchor" number="5.3.5">

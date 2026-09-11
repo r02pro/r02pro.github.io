@@ -975,11 +975,16 @@ div.csl-indent {
 <div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="import-other.html#cb497-1" tabindex="-1"></a><span class="fu">write_sav</span>(my_animals, <span class="st">&quot;data/my_animals.sav&quot;</span>)</span></code></pre></div>
 <p>To read a SPSS file ending in .sav or .por, you can use the function <code>read_spss()</code> which will automatically call <code>read_sav()</code> for .sav files and <code>read_por()</code> for .por files.</p>
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="import-other.html#cb498-1" tabindex="-1"></a>my_animals_spss <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;data/my_animals.sav&quot;</span>)</span>
-<span id="cb498-2"><a href="import-other.html#cb498-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb498-3"><a href="import-other.html#cb498-3" tabindex="-1"></a><span class="co">#&gt; ! &#39;data/my_animals.sav&#39; does not exist in current working directory (&#39;/home/runner/work/r02pro_source/r02pro_source&#39;).</span></span>
-<span id="cb498-4"><a href="import-other.html#cb498-4" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span>
-<span id="cb498-5"><a href="import-other.html#cb498-5" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb498-6"><a href="import-other.html#cb498-6" tabindex="-1"></a><span class="co">#&gt; ! object &#39;my_animals_spss&#39; not found</span></span></code></pre></div>
+<span id="cb498-2"><a href="import-other.html#cb498-2" tabindex="-1"></a><span class="fu">head</span>(my_animals_spss)</span>
+<span id="cb498-3"><a href="import-other.html#cb498-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb498-4"><a href="import-other.html#cb498-4" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions </span></span>
+<span id="cb498-5"><a href="import-other.html#cb498-5" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      </span></span>
+<span id="cb498-6"><a href="import-other.html#cb498-6" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  &quot;Excellent&quot;</span></span>
+<span id="cb498-7"><a href="import-other.html#cb498-7" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    &quot;Good&quot;     </span></span>
+<span id="cb498-8"><a href="import-other.html#cb498-8" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; &quot;&quot;         </span></span>
+<span id="cb498-9"><a href="import-other.html#cb498-9" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    &quot;Fair&quot;     </span></span>
+<span id="cb498-10"><a href="import-other.html#cb498-10" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; &quot;Good&quot;     </span></span>
+<span id="cb498-11"><a href="import-other.html#cb498-11" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       &quot;Good&quot;</span></span></code></pre></div>
 <div class="infobox caution">
 <p>You may notice that the imported data has additional type information (e.g., <code>&lt;chr&gt;</code> appears as <code>&lt;chr+lbl&gt;</code>). This is because SPSS files can store <strong>value labels</strong> — metadata that maps values to descriptive labels. The <strong>haven</strong> package preserves this metadata using a special <code>labelled</code> class. You can convert labelled columns to regular R types using <code>as_factor()</code> (for labelled factors) or <code>zap_labels()</code> (to remove labels entirely).</p>
 </div>
@@ -990,11 +995,16 @@ div.csl-indent {
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="import-other.html#cb499-1" tabindex="-1"></a><span class="fu">write_sas</span>(my_animals, <span class="st">&quot;data/my_animals.sas7bdat&quot;</span>)</span></code></pre></div>
 <p>To import a SAS file, you can use the function <code>read_sas()</code>.</p>
 <div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="import-other.html#cb500-1" tabindex="-1"></a>my_animals_sas <span class="ot">&lt;-</span> <span class="fu">read_sas</span>(<span class="st">&quot;data/my_animals.sas7bdat&quot;</span>)</span>
-<span id="cb500-2"><a href="import-other.html#cb500-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb500-3"><a href="import-other.html#cb500-3" tabindex="-1"></a><span class="co">#&gt; ! &#39;data/my_animals.sas7bdat&#39; does not exist in current working directory (&#39;/home/runner/work/r02pro_source/r02pro_source&#39;).</span></span>
-<span id="cb500-4"><a href="import-other.html#cb500-4" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span>
-<span id="cb500-5"><a href="import-other.html#cb500-5" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb500-6"><a href="import-other.html#cb500-6" tabindex="-1"></a><span class="co">#&gt; ! object &#39;my_animals_sas&#39; not found</span></span></code></pre></div>
+<span id="cb500-2"><a href="import-other.html#cb500-2" tabindex="-1"></a><span class="fu">head</span>(my_animals_sas)</span>
+<span id="cb500-3"><a href="import-other.html#cb500-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb500-4"><a href="import-other.html#cb500-4" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions </span></span>
+<span id="cb500-5"><a href="import-other.html#cb500-5" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      </span></span>
+<span id="cb500-6"><a href="import-other.html#cb500-6" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  &quot;Excellent&quot;</span></span>
+<span id="cb500-7"><a href="import-other.html#cb500-7" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    &quot;Good&quot;     </span></span>
+<span id="cb500-8"><a href="import-other.html#cb500-8" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; &quot;&quot;         </span></span>
+<span id="cb500-9"><a href="import-other.html#cb500-9" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    &quot;Fair&quot;     </span></span>
+<span id="cb500-10"><a href="import-other.html#cb500-10" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; &quot;Good&quot;     </span></span>
+<span id="cb500-11"><a href="import-other.html#cb500-11" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       &quot;Good&quot;</span></span></code></pre></div>
 <div class="infobox caution">
 <p>SAS variable names must be at most 32 characters. If any column name in your data frame exceeds this limit, <code>write_sas()</code> will throw an error (not silently truncate). Rename long columns with <code>names()</code> or <code>dplyr::rename()</code> before exporting.</p>
 </div>
@@ -1005,11 +1015,16 @@ div.csl-indent {
 <div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="import-other.html#cb501-1" tabindex="-1"></a><span class="fu">write_dta</span>(my_animals, <span class="st">&quot;data/my_animals.dta&quot;</span>)</span></code></pre></div>
 <p>To read a Stata file ending in .dta, you can use the function <code>read_dta()</code>.</p>
 <div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="import-other.html#cb502-1" tabindex="-1"></a>my_animals_stata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;data/my_animals.dta&quot;</span>)</span>
-<span id="cb502-2"><a href="import-other.html#cb502-2" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb502-3"><a href="import-other.html#cb502-3" tabindex="-1"></a><span class="co">#&gt; ! &#39;data/my_animals.dta&#39; does not exist in current working directory (&#39;/home/runner/work/r02pro_source/r02pro_source&#39;).</span></span>
-<span id="cb502-4"><a href="import-other.html#cb502-4" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span>
-<span id="cb502-5"><a href="import-other.html#cb502-5" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
-<span id="cb502-6"><a href="import-other.html#cb502-6" tabindex="-1"></a><span class="co">#&gt; ! object &#39;my_animals_stata&#39; not found</span></span></code></pre></div>
+<span id="cb502-2"><a href="import-other.html#cb502-2" tabindex="-1"></a><span class="fu">head</span>(my_animals_stata)</span>
+<span id="cb502-3"><a href="import-other.html#cb502-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb502-4"><a href="import-other.html#cb502-4" tabindex="-1"></a><span class="co">#&gt;   dig_num ani_char conditions </span></span>
+<span id="cb502-5"><a href="import-other.html#cb502-5" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;      </span></span>
+<span id="cb502-6"><a href="import-other.html#cb502-6" tabindex="-1"></a><span class="co">#&gt; 1       7 &quot;sheep&quot;  &quot;Excellent&quot;</span></span>
+<span id="cb502-7"><a href="import-other.html#cb502-7" tabindex="-1"></a><span class="co">#&gt; 2       6 &quot;pig&quot;    &quot;Good&quot;     </span></span>
+<span id="cb502-8"><a href="import-other.html#cb502-8" tabindex="-1"></a><span class="co">#&gt; 3       5 &quot;monkey&quot; &quot;&quot;         </span></span>
+<span id="cb502-9"><a href="import-other.html#cb502-9" tabindex="-1"></a><span class="co">#&gt; 4       4 &quot;pig&quot;    &quot;Fair&quot;     </span></span>
+<span id="cb502-10"><a href="import-other.html#cb502-10" tabindex="-1"></a><span class="co">#&gt; 5       3 &quot;monkey&quot; &quot;Good&quot;     </span></span>
+<span id="cb502-11"><a href="import-other.html#cb502-11" tabindex="-1"></a><span class="co">#&gt; 6       2 &quot;&quot;       &quot;Good&quot;</span></span></code></pre></div>
 <div class="infobox caution">
 <p>Stata variable names cannot contain special characters (such as <code>.</code> or spaces) and must be 32 characters or fewer. The <code>write_dta()</code> function will return an error if column names do not meet these requirements. You can rename columns using <code>names()</code> or <code>dplyr::rename()</code> before exporting.</p>
 </div>
